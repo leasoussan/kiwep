@@ -32,7 +32,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # apps
-    'accounts'
+    'accounts',
+    'todo',
+    
+    #3rd Parties
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -116,14 +120,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 LOGIN_REDIRECT_URL = "school_dashboard"
 
 LOGOUT_REDIRECT_URL = "school_dashboard"
 
-
+APPEND_SLASH=False
 
 
 
