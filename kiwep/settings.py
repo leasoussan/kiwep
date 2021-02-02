@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # apps
     'accounts',
     'todo',
+    'institution',
     
     #3rd Parties
     'rest_framework',

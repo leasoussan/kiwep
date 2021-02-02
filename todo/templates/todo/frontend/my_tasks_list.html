@@ -40,6 +40,8 @@
     </div>
 
     <script type="text/JavaScript">
+
+    
         // Key Component:
     //     "activeItem" =null until an edit button is clicked.
     //     will contain Object of item created 
@@ -90,7 +92,7 @@
 
     
 
-            var url = 'http://127.0.0.1:8000/todo/task_list/'
+            var url = "{% url 'task_list' %}"
             
             fetch(url)
             .then((resp) => resp.json())
@@ -188,7 +190,7 @@
         var form = document.getElementById('form_wrapper')
         form.addEventListener('submit', function(e) {
             e.preventDefault()
-            var url = 'http://127.0.0.1:8000/todo/task_create/'
+            var url = "{% url 'task_create' %}"
          
             if (activeItem != null){
 				var url = `http://127.0.0.1:8000/todo/task_update/${activeItem.id}/`
@@ -226,7 +228,12 @@
     //   function to delet
         function deleteItem(item){
             console.log('Item Deleted')
-            fetch(`http://127.0.0.1:8000/todo/task_delete/${item.id}`, {
+           
+            
+            const url = "{% url 'task_delete' pk=000 %}".replace(000, item.id)
+            
+         
+            fetch(url , {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -246,7 +253,9 @@
 			console.log('Strike clicked')
 
 			item.completed = !item.completed
-			fetch(`http://127.0.0.1:8000/todo/task_update/${item.id}/`, {
+            console.log(item.completed)
+            url = "{% url 'task_update' pk=000 %}".replace(000, item.id)
+			fetch(url , {
 				method:'POST', 
 				headers:{
 					'Content-type':'application/json',

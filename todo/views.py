@@ -65,3 +65,6 @@ def task_delete(request, pk):
 
 def frontend_list_view(request):
     return render(request, 'todo/frontend/my_tasks_list.html')
+
+def show_jokes(request):
+    return render(request, 'todo/frontend/task.html')
