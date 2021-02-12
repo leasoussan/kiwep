@@ -1,37 +1,44 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 from django.urls import reverse
 import datetime
-from institution.models import  InstitutionCategory, Field
+from backend.models import Institution, Group, Field
+
+class Country(models.Model):
+    name = models.CharField(max_length=100) 
+    
+    def __str__(self):
+       return self.name
+
+
+class City(models.Model): 
+    name = models.CharField(max_length=100) 
+    country = models.ForeignKey(Country, on_delete=models.CASCADE) 
+
+    def __str__(self):
+       return self.name
+
+
+
+class UserType(models.Model):
+    name =  models.CharField(max_length=100)
+   
+    def __str__(self):
+       return self.name
+
+
 
 
 class User(AbstractUser):
-    is_student = models.BooleanField(default=False)
-    is_speaker = models.BooleanField(default=False)
-    is_institution = models.BooleanField(default=False)
-
-
-    def __str__(self):
-        return self.username
-
-
-
-class Institution(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
-    name = models.CharField(max_length = 100)
-    category = models.ForeignKey(InstitutionCategory, on_delete=models.CASCADE)
-    field = models.ForeignKey(Field, on_delete=models.CASCADE)
-    profile_pic = models.ImageField()
-    address = models.CharField(max_length = 100, blank = True, null = True)
-    city = models.CharField(max_length = 50)
-    country = models.CharField(max_length = 50)
-    joined_date = models.DateField(auto_now_add=True)
-    contact_name = models.CharField(max_length = 100)
-    phone_number = models.CharField(max_length = 100)
     email = models.EmailField()
-    website = models.URLField()
-    description = models.TextField(blank = True, null = True) 
-    
+    phone_number = models.CharField(max_length=30, blank = True, null = True)
+    profile_pic = models.ImageField(blank = True, null = True)
+    joined_date = models.DateField(auto_now_add=True, blank = True, null = True)
+    city = models.ForeignKey(City,on_delete=models.CASCADE, null=True, blank=True) 
+    usertype = models.ManyToManyField(UserType)
+
+
     def __str__(self):
         return self.name
 
@@ -39,30 +46,36 @@ class Institution(models.Model):
 
 
 
+class Representative(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
+    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.first_name}, {self.institution.name}"
+
+
+
+
+
+
+
 class Student(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
-    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
-    class_level = models.CharField(max_length=100)
-    speciality = models.CharField(max_length=100)
+    class_level = models.ForeignKey(Group, on_delete=models.CASCADE)
+    Field = models.ForeignKey(Field,  on_delete=models.CASCADE)
     dob = models.DateField()
-    city = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=100)
-    profile_pic = models.ImageField()
+  
     def __str__(self):
         return f"{self.user.first_name}, {self.user.last_name}"
 
 
 
 
-
-
 class Speaker(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
     institution = models.ManyToManyField(Institution)
-    phone_number = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
     field = models.ForeignKey(Field, on_delete = models.CASCADE)
-    profile_pic = models.ImageField()
+    group = models.ManyToManyField(Group)
     def __str__(self):
         return f"{self.user.first_name}, {self.user.last_name}"
 

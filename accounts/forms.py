@@ -1,64 +1,60 @@
 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-
+from django.conf import settings
 from django import forms
 from django.db import transaction 
-from .models import Student, Speaker, Institution
+from .models import Student, Speaker, Representative
 
 from django.contrib.auth import get_user_model
 
 
-User = get_user_model()
 
 
-# class MyUserCreationForm(UserCreationForm):
-#     class Meta:
-#         model = User
-#         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', ]
 
 
+# Form to create a basic User 
 class MyUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         fields = UserCreationForm.Meta.fields + ('first_name', 'last_name', 'email',)
 
 
+# Form To change Basic Info- name -user or password 
+class MyUserChangeForm(UserChangeForm):
 
-
-
-
-
-
-
-class StudentCreationForm(UserCreationForm):
     class Meta:
-        model = User
+        model = settings.AUTH_USER_MODEL
+        fields = ('username', 'email')
+
+
+
+
+# Form To create Profile 
+
+class StudentProfileCreationForm(UserCreationForm):
+    class Meta:
+        model = Student
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', ]
 
 
 
-class SpeakerCreationForm(UserCreationForm):
+class SpeakerProfileCreationForm(UserCreationForm):
     class Meta:
-        model = User
+        model = Speaker
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', ]
 
 
-class InstitutionCreationForm(UserCreationForm):
+class RepresentativeCreationForm(UserCreationForm):
     class Meta:
-        model = User
+        model = Representative
         fields = ['username', 'email', 'password1', 'password2', ]
 
 
 
-class InstitutionProfileCreateForm(forms.ModelForm):
+class RepresentativeProfileCreateForm(forms.ModelForm):
     class Meta:
-        model = Institution 
+        model = Representative 
         exclude = ['user'] 
 
 
 
-class CustomUserChangeForm(UserChangeForm):
-
-    class Meta:
-        model = User
-        fields = ('username', 'email')
 

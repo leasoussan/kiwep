@@ -33,7 +33,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # apps
     'accounts',
+    'backend',
     'todo',
+    
     'institution',
     
     #3rd Parties

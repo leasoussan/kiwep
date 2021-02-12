@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
+
+
 from .forms import MyUserCreationForm, CustomUserChangeForm
 from .models import User, Student, Speaker, Institution
 
@@ -17,3 +19,4 @@ admin.site.register(Student)
 admin.site.register(Speaker)
 
 admin.site.register(Institution)
+

@@ -1,3 +1,7 @@
+
+
+
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -146,7 +150,8 @@ class InstitutionCreateProfile(CreateView):
     form_class = InstitutionProfileCreateForm
     success_url = reverse_lazy('institution_profile')
 
- 
+    
+    
 
     def get_initial(self):
         initial = super().get_initial()
@@ -177,5 +182,7 @@ class InstitutionProfile(DetailView):
 #     }
 
 #     return render(request, 'artists/artist_profile.html', context)
+
+
 
 
