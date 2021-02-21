@@ -35,9 +35,9 @@ INSTALLED_APPS = [
     'accounts',
     'backend',
     'todo',
-    
-    'institution',
-    
+    'message',
+    'content',
+
     #3rd Parties
     'rest_framework',
 ]

@@ -14,46 +14,48 @@ from django.contrib.auth import get_user_model
 
 # Form to create a basic User 
 class MyUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        fields = UserCreationForm.Meta.fields + ('first_name', 'last_name', 'email',)
+    class Meta:
+        model = get_user_model()
+        fields = ('username', 'email', 'password1', 'password2', 'usertype')
+    
+
+    # get_usertype 
+    def get_user_type(self):
+        return self.usertype
+
 
 
 # Form To change Basic Info- name -user or password 
 class MyUserChangeForm(UserChangeForm):
 
     class Meta:
-        model = settings.AUTH_USER_MODEL
-        fields = ('username', 'email')
+        model = get_user_model()
+        fields = ('username', 'first_name', 'last_name', 'email')
 
 
 
 
 # Form To create Profile 
 
-class StudentProfileCreationForm(UserCreationForm):
+class StudentProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', ]
+        exclude = '__all__'
 
 
 
-class SpeakerProfileCreationForm(UserCreationForm):
+class SpeakerProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Speaker
-        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', ]
+        exclude = ['user'] 
 
 
-class RepresentativeCreationForm(UserCreationForm):
+class RepresentativeProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Representative
-        fields = ['username', 'email', 'password1', 'password2', ]
-
-
-
-class RepresentativeProfileCreateForm(forms.ModelForm):
-    class Meta:
-        model = Representative 
         exclude = ['user'] 
+
+
 
 
 

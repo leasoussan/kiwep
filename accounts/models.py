@@ -31,6 +31,9 @@ class UserType(models.Model):
 
 
 class User(AbstractUser):
+    first_name = models.CharField(max_length=30, blank = True, null = True)
+    last_name =models.CharField(max_length=30, blank = True, null = True)
+    username = models.CharField(max_length=30, unique = True)
     email = models.EmailField()
     phone_number = models.CharField(max_length=30, blank = True, null = True)
     profile_pic = models.ImageField(blank = True, null = True)
@@ -40,14 +43,14 @@ class User(AbstractUser):
 
 
     def __str__(self):
-        return self.name
+        return str(self.username)
 
 
 
 
 
 class Representative(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -72,10 +75,11 @@ class Student(models.Model):
 
 
 class Speaker(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
     institution = models.ManyToManyField(Institution)
     field = models.ForeignKey(Field, on_delete = models.CASCADE)
     group = models.ManyToManyField(Group)
+    
     def __str__(self):
         return f"{self.user.first_name}, {self.user.last_name}"
 

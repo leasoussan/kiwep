@@ -6,9 +6,15 @@
 
 <h2>Welcome to Kiwep Registration</h2>
 
-<a href="{% url 'student_register' %}">Student</a>
-<a href="{% url 'speaker_register' %}">Speaker</a>
-<a href="{% url 'institution_register' %}">Institution</a>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Signup">
+</form>
+
+
+
 
 
 <a href="{% url 'login' %}">Back to login</a>
