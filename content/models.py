@@ -43,7 +43,7 @@ class Project(models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Project Name {self.name}"
+        return f"Project Name {self.pk} {self.name}"
 
 
     def get_absolute_url(self):

@@ -22,8 +22,12 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('backend/', include('backend.urls')),
     path('content/', include('content.urls')),
+   
     path('message/', include('content.urls')),
     path('todo/', include('todo.urls')),
     path('content/', include('content.urls')),
+
+     # to add the api module 
+    path('api/content/', include('content.api.urls')),
 
 ]

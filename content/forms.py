@@ -12,7 +12,6 @@ class ProjectAddForm(ModelForm):
             'field',
             'difficulty',
             'mission'
-
         ] 
 
         # exclude = ['completed', 'created_by']

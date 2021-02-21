@@ -31,9 +31,6 @@ class UserType(models.Model):
 
 
 class User(AbstractUser):
-    first_name = models.CharField(max_length=30, blank = True, null = True)
-    last_name =models.CharField(max_length=30, blank = True, null = True)
-    username = models.CharField(max_length=30, unique = True)
     email = models.EmailField()
     phone_number = models.CharField(max_length=30, blank = True, null = True)
     profile_pic = models.ImageField(blank = True, null = True)
@@ -45,25 +42,24 @@ class User(AbstractUser):
     def __str__(self):
         return str(self.username)
 
+    # get_usertype 
+    def get_user_type(self):
+        return self.usertype
 
 
 
 
 class Representative(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
-    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    institution = models.ForeignKey(Institution, on_delete=models.CASCADE )
 
     def __str__(self):
         return f"{self.user.first_name}, {self.institution.name}"
 
 
 
-
-
-
-
 class Student(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
     class_level = models.ForeignKey(Group, on_delete=models.CASCADE)
     Field = models.ForeignKey(Field,  on_delete=models.CASCADE)
     dob = models.DateField()
@@ -75,7 +71,7 @@ class Student(models.Model):
 
 
 class Speaker(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
     institution = models.ManyToManyField(Institution)
     field = models.ForeignKey(Field, on_delete = models.CASCADE)
     group = models.ManyToManyField(Group)

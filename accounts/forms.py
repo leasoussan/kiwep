@@ -8,29 +8,43 @@ from .models import Student, Speaker, Representative
 from django.contrib.auth import get_user_model
 
 
-
+User = get_user_model()
 
 
 
 # Form to create a basic User 
 class MyUserCreationForm(UserCreationForm):
+    USER_TYPE=[
+        ('student','student'),
+        ('speaker', 'speaker'),
+        ('representative', 'representative'), 
+    ]
+    usertype = forms.ChoiceField(choices=USER_TYPE)
+    
     class Meta:
-        model = get_user_model()
-        fields = ('username', 'email', 'password1', 'password2', 'usertype')
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
     
 
-    # get_usertype 
-    def get_user_type(self):
-        return self.usertype
+    # def clean_username(self):
+    #     username = self.cleaned_data.get('username')
+    #     queryset = User.objects.get(username__iexact=username)
+    #     if not queryset.exists():
+    #         raise forms.ValidationError("Invalid user")
+    #     return username
+        
 
+
+    
 
 
 # Form To change Basic Info- name -user or password 
 class MyUserChangeForm(UserChangeForm):
 
     class Meta:
-        model = get_user_model()
-        fields = ('username', 'first_name', 'last_name', 'email')
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']
 
 
 
@@ -40,7 +54,7 @@ class MyUserChangeForm(UserChangeForm):
 class StudentProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Student
-        exclude = '__all__'
+        exclude = ['user'] 
 
 
 

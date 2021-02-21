@@ -40,119 +40,52 @@ class Register(View):
 
         if form.is_valid():
             user = form.save() 
-            user = authenticate(username= form.cleaned_data['username'], password =form.cleaned_data['password1'], usertype=form.cleaned_data['usertype'] )
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            usertype=form.cleaned_data['usertype'] 
+            user = authenticate(username= username, password = password, usertype =usertype)
+            login(request, user)
+
             
-            if user is not None:
-                if user.get_user_type == 'Student':
-                    login(request, user)
-                    return redirect('student_create_profile')
             
-                elif user.get_user_type == 'Speaker':  
-                    login(request, user)  
-                    return redirect('speaker_create_profile')
-
-                elif user.get_user_type == 'Institution':
-                    login(request, user)
-                    return redirect('representative_create_profile')   
+            return redirect('create_profile', form.cleaned_data['usertype'])
 
 
-
-            return render(request, 'registration/register.html', {"form":form})      
+        return render(request, 'registration/register.html', {"form":form})      
 
 
 # -----------------------------------------------------------------------------------------------
 
-# ____________________________________________________________________________________________________CREATE PROFILE 
-
-
-class StudentCreateProfile(CreateView):
-
-    model = Student
-    template_name = 'accounts/profile/edit_student_profile.html'
-    form_class = StudentProfileCreationForm
-    success_url = reverse_lazy('student_profile')
-
-    def get_initial(self):
-        initial = super().get_initial()
-        return initial
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
-
-
-
-
-
-
-
-# _________________________________________________________________________________________________Speaker___CREATE PROFILE 
-
-
-class SpeakerCreateProfile(CreateView):
-
-    model = Speaker
-    template_name = 'accounts/profile/edit_speaker_profile.html'
-    form_class = SpeakerProfileCreationForm
-    success_url = reverse_lazy('speaker_profile')
-
-    def get_initial(self):
-        initial = super().get_initial()
-        return initial
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
-
-class InstitutionCreateProfile(CreateView):
-    model = Representative
-    template_name = 'profile/profile/edit_institution_profile.html'
-
-    form_class = RepresentativeProfileCreationForm
+class CreateProfile(View):
+    def get(self, request,id=None):
+        if id == 'student':
+            profile_form = StudentProfileCreationForm()
     
-    success_url = reverse_lazy('institution_profile')
+        elif id == 'speaker':  
+            profile_form = SpeakerProfileCreationForm()
 
-    def get_initial(self):
-        initial = super().get_initial()
-        return initial
+        elif id == 'institution':
+            profile_form = RepresentativeProfileCreationForm()
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+        return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form})
+        
+
+    def post(self, request,  id=None):
+        if id == 'student':
+            profile_form = StudentProfileCreationForm(request.POST)
     
+        elif id == 'speaker':  
+            profile_form = SpeakerProfileCreationForm(request.POST)
 
+        elif id == 'institution':
+            profile_form = RepresentativeProfileCreationForm(request.POST)
 
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.user = request.user
+            profile.save()
 
+            return redirect('homepage')
 
-
-
-
-
-
-
-# -----------------------------------------------------------------------------------------------INSTITUTION _registration
-
-class RepresentativeCreateProfile(CreateView):
-   pass
-
-
-
-# _________________________________________________________________________________________________Institution___CREATE PROFILE 
-
-
-
-
-# def institution_profile(request, pk):
-#     institution = Institution.objects.get(pk=pk)
-#     context={
-#         'profile':profile,
-#         'items':items
-#     }
-
-#     return render(request, 'artists/artist_profile.html', context)
-
-
-
-
+        return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form})
+ 
