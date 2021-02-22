@@ -40,7 +40,6 @@ class ProjectUpdateAPIView(RetrieveUpdateAPIView):
     def perform_update(self, serializer):
         serializer.save(created_by=self.request.user)
     
-    
 
 
 class ProjectDeleteAPIView(DestroyAPIView):

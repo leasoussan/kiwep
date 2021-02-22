@@ -16,7 +16,7 @@ from django.views.generic import (
 
 
 
-# ----------------------List_View/
+# -------------------PROJECT---List_View/
 
 class ProjectListView(ListView):
     model = Project
@@ -30,7 +30,7 @@ class ProjectListView(ListView):
 
 
 
-# ----------------------Detail_View/
+# ----------------PROJECT------Detail_View/
 
 class ProjectDetailView(DetailView):
     model = Project
@@ -43,7 +43,7 @@ class ProjectDetailView(DetailView):
 
 
 
-# ----------------------------------Create_View:
+# -----------------------------PROJECT-----Create_View:
 
 
 class ProjectCreatelView(CreateView):
@@ -54,7 +54,7 @@ class ProjectCreatelView(CreateView):
     
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.created_by = self.request.user
+        self.object.speaker = self.request.user
         self.object.completed = False
         self.object.save()
         return super().form_valid(form)
@@ -63,6 +63,9 @@ class ProjectCreatelView(CreateView):
 
     # def get_success_url(self):
     #     return ('content/project_list')
+
+
+# -----------------------------PROJECT-----UpdateView:
 
 
 class ProjectUpdateView(UpdateView):
@@ -84,7 +87,8 @@ class ProjectUpdateView(UpdateView):
 
 
 
-# Delete View 
+# 
+# -----------------------------PROJECT-----:Delete View 
 
 class ProjectDeleteView(DeleteView):
     model = Project

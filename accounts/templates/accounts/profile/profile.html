@@ -2,14 +2,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Student Registration</h2>
+<h2>{{ usertype }} Profile </h2>
 
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Login">
+    <input type="submit" value="create">
 </form>
 
 
-<a href="{% url 'password_reset' %}">Reset password</a>
 {% endblock %}

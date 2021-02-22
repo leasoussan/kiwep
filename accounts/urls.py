@@ -1,21 +1,24 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from accounts.views import (
-    school_dashboard, 
+     
     Register, 
     CreateProfile,
+    # EditProfile,
+    edit_profile,
+    EditStudentProfile
     
  )
 
 urlpatterns = [
-    path('school_dashboard/', school_dashboard, name='school_dashboard'),
+    
     path('register/', Register.as_view(), name='register'),
-    path('create_profile/<str:id>/', CreateProfile.as_view(), name='create_profile'),
-   
+    path('create-profile/<str:id>/', CreateProfile.as_view(), name='create_profile'),
+    path('edit-profile/<int:pk>', edit_profile, name="edit_profile"),
+    path('student-edit_profile/<int:pk>/', EditStudentProfile.as_view(), name="student_create_profile"),
 
-
-    # profile creat, edit and view 
-    # path('student_create_profile/', StudentCreateProfile.as_view(), name="student_create_profile"),
+    
+    # path('student_create_profile/', EditStudentProfile.as_view(), name="student_edit_profile"),
     # path('speaker_create_profile/', SpeakerCreateProfile.as_view(), name="speaker_create_profile"),
     # path('institution_create_profile/', RepresentativeCreateProfile.as_view(), name="representative_create_profile"),
     # path('institution_profile/<int:pk>', InstitutionProfile.as_view(), name="institution_profile"),

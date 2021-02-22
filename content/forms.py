@@ -1,5 +1,5 @@
 from django.forms import ModelForm 
-from .models import Project
+from .models import Project, Team
 
 
 class ProjectAddForm(ModelForm):
@@ -16,3 +16,17 @@ class ProjectAddForm(ModelForm):
 
         # exclude = ['completed', 'created_by']
 
+class TeamAddForm(ModelForm):
+    class Meta:
+        model = Team
+        fields = [
+            'name',
+            'project',
+            'start_date',
+            'due_date',
+            'group_Institution',
+            'participants',
+            'tasks',
+            'final_project',
+        ] 
+        
