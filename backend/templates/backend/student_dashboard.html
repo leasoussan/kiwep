@@ -1,7 +1,5 @@
 
-{% extends 'base.html' %}
 
-{% block content %}
 Hello, {{ user.username|default:'Guest' }}!
 
 
@@ -18,10 +16,21 @@ Hello, {{ user.username|default:'Guest' }}!
 
 
 <div>
-    Speaker Dashboard 
+    Student Dashboard 
 
-   <a href="{% url 'create_project' %}">Create Project</a> 
+
 
 </div>
 
-{% endblock %}
+<div>
+  My Projects 
+
+</div>
+
+
+<div>
+    My Teams 
+  
+  </div>
+
+  

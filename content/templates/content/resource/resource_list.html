@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+Resource  List 
+
+{% for project in project_list %}
+<h1>Resource Name {{ resource.name }}</h1>
+
+{% endfor %}
+
+
+
+
+{% endblock %}

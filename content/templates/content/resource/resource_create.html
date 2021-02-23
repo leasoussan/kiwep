@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+CREATE Resource
+
+<form action="", method="POST">
+
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button type="submit" value="Save">SAVE</button>
+</form>
+
+{% endblock %}

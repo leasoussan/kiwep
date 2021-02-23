@@ -19,6 +19,22 @@ from.models import Student, Speaker, Representative
 from django.urls import reverse_lazy
 
 
+# ----------------------------------------------------------------------------------Mixin
+
+# class ProfileCheckUserPassesTestMixin(UserPassesTestMixin):
+#     def test_func(self):
+#         return check_profile(self.request.user)
+    
+    
+#     def get_login_url(self):
+#         if not self.request.user.is_authenticated:
+#             return super().get_login_url()
+#         else:
+#             return '/create_profile/'
+
+#     def handle_no_permission(self):
+#         return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
+
 
 
 
@@ -57,20 +73,23 @@ class Register(View):
 
 # -----------------------------------------------------------------------------------------------
 
-def get_user_profile_form(request, user):
-  
-    if user.usertype == 'student':
-        profile_form = StudentProfileCreationForm()
-        return profile_form
+def get_user_profile_form(request, usertype): 
+    
+    data = request.POST or None 
 
-    elif user.usertype  == 'speaker':  
-        profile_form =SpeakerProfileCreationForm()
-        return profile_form
-         
+    if  usertype == 'student':
+        profile_form = StudentProfileCreationForm(data)
+       
 
-    elif user.usertype == 'institution':
-        profile_form =  RepresentativeProfileCreationForm()
-        return profile_form
+    elif usertype  == 'speaker':  
+        profile_form =SpeakerProfileCreationForm(data)
+    
+
+    elif usertype == 'representative':
+        profile_form =  RepresentativeProfileCreationForm(data)
+    
+    return profile_form
+
 
 
 # -----------------------------------------------------------------------------------------------
@@ -78,62 +97,40 @@ def get_user_profile_form(request, user):
 
 class CreateProfile(View):
     def get(self, request , id):
-        if id == 'student':
-            profile_form = StudentProfileCreationForm()
-
-        elif id  == 'speaker':  
-            profile_form = SpeakerProfileCreationForm()
-
-        elif id == 'institution':
-            profile_form = RepresentativeProfileCreationForm()
-
-        
+        profile_form = get_user_profile_form(request, id)
         return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form})
         
 
     def post(self, request,  id=None):
-        if id == 'student':
-            profile_form = StudentProfileCreationForm(request.POST)
-    
-        elif id == 'speaker':  
-            profile_form = SpeakerProfileCreationForm(request.POST)
-
-        elif id == 'institution':
-            profile_form = RepresentativeProfileCreationForm(request.POST)
+        
+        profile_form = get_user_profile_form(request, id)
 
         if profile_form.is_valid():
             profile = profile_form.save(commit=False)
             profile.user = request.user
             profile.save()
 
-            return redirect('{usertype}_dashboard')
+            return redirect(f'{id}_dashboard')
 
         return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form})
 
 
 
+# -----------------------------------------------------------Profile
+
+
+class profile_view():
+    pass
 
 
 
-class EditStudentProfile(View):
-    def post(self, request, id=None):
-        user_form = MyUserChangeForm(request.POST, id = request.user)
-     
-        profile_form = StudentProfileCreationForm(request.POST, id=request.user)
-    
-        
-        if user_form.is_valid(self):
-            user = user_form.save()
-            profile = profile_form.save(commit=False)
-            profile.user = request.user
-            profile.save()
-            
-            return redirect('{usertype}_dashboard')
-
-        return ('profile')
 
 
 
+
+
+
+# ----------------------------------------------------------------------------
 def edit_profile(request, id):
     if request.method == "POST":
         user_form = MyUserChangeForm()
@@ -143,7 +140,7 @@ def edit_profile(request, id):
         elif id == 'speaker':  
             profile_form = SpeakerProfileCreationForm(request.POST, id=request.user)
 
-        elif id == 'institution':
+        elif id == 'representative':
             profile_form = RepresentativeProfileCreationForm(request.POST, id=request.user)
 
 
@@ -161,4 +158,22 @@ def edit_profile(request, id):
         args['form'] = user_form
         args['profile_form'] = profile_form
         return render(request, 'artists/edit_profile.html', args)
+
+
+# ----------------------------------------------------------------------Edit-Profile
+class EditStudentProfile(View):
+    def post(self, request, id=None):
+        user_form = MyUserChangeForm(request.POST, id = request.user)
+     
+        profile_form = StudentProfileCreationForm(request.POST, id=request.user)
+       
+        if user_form.is_valid(self):
+            user = user_form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            
+            return redirect('student_dashboard')
+
+        return ('profile')
 

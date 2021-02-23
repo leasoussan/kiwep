@@ -127,9 +127,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-LOGIN_REDIRECT_URL = "institution_homepage"
+LOGIN_REDIRECT_URL = "homepage"
 
-LOGOUT_REDIRECT_URL = "school_dashboard"
+LOGOUT_REDIRECT_URL = "homepage"
 
 APPEND_SLASH=False
 

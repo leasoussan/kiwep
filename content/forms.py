@@ -1,5 +1,5 @@
 from django.forms import ModelForm 
-from .models import Project, Team
+from .models import Project, Team, Mission, Resource
 
 
 class ProjectAddForm(ModelForm):
@@ -29,4 +29,29 @@ class TeamAddForm(ModelForm):
             'tasks',
             'final_project',
         ] 
-        
+    
+
+
+
+class MissionAddForm(ModelForm):
+    class Meta:
+        model = Mission
+
+        fields = [
+            'name', 
+            'field', 
+            'level',
+            'description',
+            'resources',
+        ]
+
+
+class ResourceAddForm(ModelForm):
+    class Meta:
+        model = Resource
+
+        fields = [
+            'name', 
+            'link',
+            'text',
+        ]

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+My Teams 
+
+{% for mission in mission_list %}
+<h1>Mission Name {{ mission.name }}</h1>
+
+{% endfor %}
+
+
+
+
+{% endblock %}

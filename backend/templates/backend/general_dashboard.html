@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% if user.profile.name == 'representative' %}
+
+{% include 'backend/representative_dashboard.html' %}
+repre
+
+{% elif user.profile.name == 'speaker' %}
+
+{% include 'backend/speaker_dashboard.html' %}
+speaker
+
+{% elif user.profile.name  == 'student' %}
+
+{% include 'backend/student_dashboard.html' %}
+
+student
+
+{% endif %}
+
+
+{% endblock %}

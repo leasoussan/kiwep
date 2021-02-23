@@ -6,7 +6,7 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import MyUserCreationForm, MyUserChangeForm
 from django.contrib.auth import get_user_model
 
-from .models import User, Student, Speaker, Representative, UserType, City, Country
+from .models import User, Student, Speaker, Representative, City, Country
 
 class CustomUserAdmin(UserAdmin):
     add_form = MyUserCreationForm
@@ -22,7 +22,6 @@ admin.site.register(Speaker)
 admin.site.register(Representative)
 
 
-admin.site.register(UserType)
 admin.site.register(City)
 admin.site.register(Country)
 

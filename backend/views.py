@@ -5,13 +5,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-def speaker_dashboard(request, id):
-    user = User.objects.get(id = id)
-    context = {
-        'user': user,
-       
-         
-    }
+def dashboard(request):
     
 
-    return render(request, "accounts/speaker_dashboard.html", {'queryset': user})
+    return render(request, "backend/general_dashboard.html")

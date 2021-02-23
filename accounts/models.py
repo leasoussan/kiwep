@@ -21,12 +21,6 @@ class City(models.Model):
 
 
 
-class UserType(models.Model):
-    name =  models.CharField(max_length=100)
-   
-    def __str__(self):
-       return self.name
-
 
 
 
@@ -36,15 +30,33 @@ class User(AbstractUser):
     profile_pic = models.ImageField(blank = True, null = True)
     joined_date = models.DateField(auto_now_add=True, blank = True, null = True)
     city = models.ForeignKey(City,on_delete=models.CASCADE, null=True, blank=True) 
-    usertype = models.ManyToManyField(UserType)
 
 
     def __str__(self):
-        return f"{user.id},{str(self.username)}"
+        return f"{self.id},{str(self.username)}"
 
     # get_usertype 
     def get_user_type(self):
-        return self.usertype
+        user_type = {
+        'represntative':Representative,
+        'speaker': Speaker,
+        'student' : Student,
+        }
+        
+        for key, value in user_type.items():
+
+            if value.objects.filter(user=self).exists():
+                return key
+
+
+    def profile(self):
+        types = [Representative,Speaker,Student]
+
+        for value in types:
+            qs =  value.objects.filter(user=self)
+            if qs.exists():
+                return qs.first()
+
 
 
 
@@ -55,6 +67,14 @@ class Representative(models.Model):
 
     def __str__(self):
         return f"{self.user.first_name}, {self.institution.name}"
+
+    def get_absolute_url(self):
+        return reverse('profile', kwargs={"pk":self.pk})
+
+    # to be able to call it as class name in lower case
+    def name(self):
+        return self.__class__.__name__.lower() 
+
 
 
 
@@ -67,6 +87,12 @@ class Student(models.Model):
     def __str__(self):
         return f"{self.user.first_name}, {self.user.last_name}"
 
+    def get_absolute_url(self):
+        return reverse('profile', kwargs={"pk":self.pk})
+
+
+    def name(self):
+        return self.__class__.__name__.lower() 
 
 
 
@@ -79,3 +105,8 @@ class Speaker(models.Model):
     def __str__(self):
         return f"{self.user.first_name}, {self.user.last_name}"
 
+    def get_absolute_url(self):
+        return reverse('profile/', kwargs={"pk":self.pk})
+    
+    def name(self):
+        return self.__class__.__name__.lower() 

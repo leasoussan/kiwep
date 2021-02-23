@@ -49,7 +49,7 @@ class ProjectDetailView(DetailView):
 class ProjectCreatelView(CreateView):
     model = Project
     form_class = ProjectAddForm
-    template_name = 'content/create_project.html'
+    template_name = 'content/project/project_create.html'
 
     
     def form_valid(self, form):
@@ -93,7 +93,7 @@ class ProjectUpdateView(UpdateView):
 class ProjectDeleteView(DeleteView):
     model = Project
     template_name = 'content/delete_project.html'
-    success_url = reverse_lazy('project_list')
+    success_url = reverse_lazy('project-list')
 
     def get_object(self):
         pk = self.kwargs.get("pk")
