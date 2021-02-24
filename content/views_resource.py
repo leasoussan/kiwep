@@ -63,7 +63,7 @@ class ResourceUpdateView(UpdateView):
 class ResourceDeleteView(DeleteView):
     model = Resource
     template_name = 'content/resource/resource_delete.html'
-    success_url = ('resource_list')
+    success_url = reverse_lazy('resource_list')
 
     def get_object(self):
         pk = self.kwargs.get('pk')

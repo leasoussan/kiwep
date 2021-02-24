@@ -6,3 +6,8 @@ from django.views.generic import (
 
 def homepage_view(request):
     return render(request, 'homepage.html')
+
+
+
+def content_manager(request):
+   return render(request, 'content/crud_manager.html')

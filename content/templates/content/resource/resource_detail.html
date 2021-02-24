@@ -4,4 +4,7 @@
 
 Resource  {{ resource.name }}
 
+<a href="{% url 'delete_resource' resource.pk %}">Delete Resource </a>
+<a href="{% url 'resource_list' %}">List Resource </a>
+
 {% endblock %}

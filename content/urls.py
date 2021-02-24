@@ -39,6 +39,10 @@ urlpatterns = [
     path('create-resource/', ResourceCreateView.as_view(), name = "create_resource"),
     path('update-resource/<int:pk>', ResourceUpdateView.as_view(), name = "update_resource"),
     path('delete-resource/<int:pk>', ResourceDeleteView.as_view(), name = "delete_resource"),
+
+
+    # development link - to view
+    path('content-manager/', content_manager, name="content_manager"),
 ]
 
 

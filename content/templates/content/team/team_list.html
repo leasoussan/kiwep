@@ -2,14 +2,16 @@
 
 {% block content %}
 
+<a href="{% url 'content_manager' %}">content Manager </a>
 My Teams 
 
 {% for team in team_list %}
-<h1>Team Name {{ team.name }}</h1>
+<h1>Team Name <a href="{% url 'team_detail' team.pk %}"></a> {{ team.name }}</h1>
 
 {% endfor %}
 
 
+<a href="{% url 'create_team' %}">Add Team </a>
 
 
 {% endblock %}

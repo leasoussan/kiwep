@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<a href="{% url 'content_manager' %}">content Manager </a>
 
 Project List 
 
 {% for project in project_list %}
-<h1>Project Name {{ project.name }}</h1>
+<h1>Project Name <a href="{% url 'project_detail' project.pk %}">{{ project.name }}</a> </h1>
 
 {% endfor %}
 
-
+<a href="{% url 'create_project' %}">Add Project</a>
 
 
 {% endblock %}

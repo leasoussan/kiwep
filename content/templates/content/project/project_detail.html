@@ -4,4 +4,9 @@
 
 Project {{ project.name }}
 
+
+<a href="{% url 'delete_project' project.pk %}">Delete Project </a>
+<a href="{% url 'project_list' %}">List Project </a>
+
+
 {% endblock %}

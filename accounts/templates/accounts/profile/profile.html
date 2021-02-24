@@ -2,13 +2,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>{{ usertype }} Profile </h2>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="create">
-</form>
+<div>
+    Basic User Profile
 
+    {{user.username}}
+    {{user.get_user_type}}
+
+</div>
+
+
+<div>
+
+    {% if user.profile.name == 'representative' %}
+
+    {% include 'accounts/profile/representative_profile.html' %}
+    
+    
+    Adding here Isntitution attached to hime 
+    
+    {% elif user.profile.name == 'speaker' %}
+    
+    {% include 'accounts/profile/speaker_profile.html' %}
+    speaker Profile
+    
+    {% elif user.profile.name  == 'student' %}
+    
+    {% include 'accounts/profile/student_profile.html' %}
+    
+    student Profile 
+    
+    {% endif %}
+    
+
+
+</div>
 
 {% endblock %}

@@ -4,4 +4,10 @@
 
 Mission {{ mission.name }}
 
+
+<a href="{% url 'delete_mission' mission.pk %}">Delete Mission </a>
+<a href="{% url 'mission_list' %}">List Mission </a>
+
+
+
 {% endblock %}

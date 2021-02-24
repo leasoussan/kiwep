@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.conf import settings 
@@ -15,7 +15,7 @@ from .forms import (
     RepresentativeProfileCreationForm,
 )
 
-from.models import Student, Speaker, Representative
+from.models import Student, Speaker, Representative, User
 from django.urls import reverse_lazy
 
 
@@ -73,6 +73,7 @@ class Register(View):
 
 # -----------------------------------------------------------------------------------------------
 
+
 def get_user_profile_form(request, usertype): 
     
     data = request.POST or None 
@@ -89,7 +90,6 @@ def get_user_profile_form(request, usertype):
         profile_form =  RepresentativeProfileCreationForm(data)
     
     return profile_form
-
 
 
 # -----------------------------------------------------------------------------------------------
@@ -110,7 +110,7 @@ class CreateProfile(View):
             profile.user = request.user
             profile.save()
 
-            return redirect(f'{id}_dashboard')
+            return redirect('dashboard')
 
         return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form})
 
@@ -119,61 +119,71 @@ class CreateProfile(View):
 # -----------------------------------------------------------Profile
 
 
-class profile_view():
-    pass
+class ProfileView(View):
+
+    def get(self, request, id):
+        user = User.objects.get(id=id)
+        profile = user.profile
+        return render(request, 'accounts/profile/profile.html', {'usertype':user, 'form': profile})
 
 
-
-
-
-
+# def profile(request):
+#     return render(request, 'accounts/profile/profile.html')
 
 
 
 # ----------------------------------------------------------------------------
-def edit_profile(request, id):
-    if request.method == "POST":
-        user_form = MyUserChangeForm()
-        if id == 'student':
-            profile_form = StudentProfileCreationForm(request.POST, id=request.user)
+
     
-        elif id == 'speaker':  
-            profile_form = SpeakerProfileCreationForm(request.POST, id=request.user)
+class EditProfile(UpdateView): 
+    model = User 
+   
+    template_name = 'accounts/profile/profile.html'
 
-        elif id == 'representative':
-            profile_form = RepresentativeProfileCreationForm(request.POST, id=request.user)
+    def get(self, request , id):
+        user_form = MyUserChangeForm(request.user)
+        profile_form_edit = get_user_profile_form(request, id)
+        return render(request, 'accounts/profile/edit_profile.html', {'user':user_form, 'form': profile_form_edit})
+        
 
+    def post(self, request,  id=None):
+        user = User.objects.get(id=id)
+        profile_form_edit = get_user_profile_form(request, id)
 
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            profile = profile_form.save(commit = False)
-            profile.user = request.user 
+        if profile_form_edit.is_valid():
+            profile = profile_form_edit.save(commit=False)
+            profile.user = request.user
             profile.save()
-            return redirect('profile_page')
+
+            return redirect(f'profile')
+
+        return render(request, 'accounts/profile/edit_profile.html', {'user':user, 'form': profile_form_edit})
+
+
+
+    
+def edit_profile(request, id=None):
+    usertype = request.user.get_user_type
+    if request.method == 'POST':
+        user_form = MyUserChangeForm(request.POST,request.FILES,instance=request.user)
+        edit_profile = get_user_profile_form(request, usertype)  
+
+        if user_form.is_valid() and edit_profile.is_valid():
+            user = user_form.save()
+            updated_form = edit_profile.save(False)
+            updated_form.user = user
+            updated_form.save()
+            return redirect('profile')
+        
     else:
-        user_form = MyUserChangeForm(id=request.user)
-        profile_form = get_user_profile_form(id=request.user.profile)
-        args = {}
-        # args.update(csrf(request))
-        args['form'] = user_form
-        args['profile_form'] = profile_form
-        return render(request, 'artists/edit_profile.html', args)
+        user_form = MyUserChangeForm(instance=request.user)
+        edit_profile = get_user_profile_form(request, usertype)  
+ 
+        args = {
+            'user_form': user_form,
+            'edit_profile' : edit_profile
+        }
+      
+        return render(request, 'accounts/edit_profile.html', args)
 
-
-# ----------------------------------------------------------------------Edit-Profile
-class EditStudentProfile(View):
-    def post(self, request, id=None):
-        user_form = MyUserChangeForm(request.POST, id = request.user)
-     
-        profile_form = StudentProfileCreationForm(request.POST, id=request.user)
-       
-        if user_form.is_valid(self):
-            user = user_form.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
-            
-            return redirect('student_dashboard')
-
-        return ('profile')
 

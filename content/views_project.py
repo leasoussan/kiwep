@@ -20,7 +20,7 @@ from django.views.generic import (
 
 class ProjectListView(ListView):
     model = Project
-    template_name = 'content/project_list.html'
+    template_name = 'content/project/project_list.html'
     context_object_name = 'project_list'
 
     # Query Specifiq set of project
@@ -34,7 +34,7 @@ class ProjectListView(ListView):
 
 class ProjectDetailView(DetailView):
     model = Project
-    template_name = 'content/project_page.html'
+    template_name = 'content/project/project_detail.html'
     
     def get_object(self):
         pk = self.kwargs.get("pk")
@@ -93,7 +93,7 @@ class ProjectUpdateView(UpdateView):
 class ProjectDeleteView(DeleteView):
     model = Project
     template_name = 'content/delete_project.html'
-    success_url = reverse_lazy('project-list')
+    success_url = reverse_lazy('project_list')
 
     def get_object(self):
         pk = self.kwargs.get("pk")

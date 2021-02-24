@@ -15,7 +15,8 @@ class Resource(models.Model):
     def __str__(self):
         return f"Ressource Name : {self.name}"
 
-
+    def get_absolute_url(self):
+        return reverse("resource_detail", kwargs={"pk":self.pk})
 
 
 class Mission(models.Model):

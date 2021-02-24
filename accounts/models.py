@@ -38,7 +38,7 @@ class User(AbstractUser):
     # get_usertype 
     def get_user_type(self):
         user_type = {
-        'represntative':Representative,
+        'representative':Representative,
         'speaker': Speaker,
         'student' : Student,
         }

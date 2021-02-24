@@ -18,14 +18,14 @@ from django.views.generic import (
 
 class TeamListView(ListView):
     model = Team
-    template_name = 'content/team_list.html'
+    template_name = 'content/team/team_list.html'
     context_object_name = 'team_list'
 
 
 
 class TeamDetailView(DetailView):
     model = Team
-    template_name = 'content/team_detail.html'
+    template_name = 'content/team/team_detail.html'
 
     def get_object(self):
         pk = self.kwargs.get("pk")
@@ -56,7 +56,7 @@ class TeamUpdateView(UpdateView):
 
 class TeamDeleteView(DeleteView):
     model = Team
-    template_name = 'content/team_delete.html'
+    template_name = 'content/team/team_delete.html'
     success_url = reverse_lazy('team-list')
 
     def get_object(self):
