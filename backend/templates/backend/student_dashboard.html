@@ -22,15 +22,50 @@ Hello, {{ user.username|default:'Guest' }}!
 
 </div>
 
+   
 <div>
-  My Projects 
+    Projects 
+    <a href="{% url 'create_project' %}">Create Project</a> 
+    <a href="{% url 'project_list' %}">project List</a>
+    Top Projects
+
+    {% for project in projects %}
+    {{project.name}}
+    {% endfor %}
 
 </div>
 
+<div>
+    My Teams
+    <a href="{% url 'create_team' %}">Create team</a> 
+    <a href="{% url 'team_list' %}">team List</a>
+    Top teams
+
+    {% for team in teams %}
+    {{team.name}}
+    {% endfor %}
+
+
+</div>
 
 <div>
-    My Teams 
+    My Missions
+    <a href="{% url 'create_mission' %}">Create mission</a> 
+    <a href="{% url 'mission_list' %}">Mission List</a>
   
-  </div>
 
+    {% for mission in missions %}
+    {{mission.name}}
+    {% endfor %}
+
+
+</div>
+<div>
+    My Resources 
+    <a href="{% url 'create_resource' %}">Create Resource</a> 
+    <a href="{% url 'resource_list' %}">Resource List</a>
   
+
+    {% for resource in resources %}
+    {{resource.name}}
+    {% endfor %}

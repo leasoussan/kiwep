@@ -95,6 +95,7 @@ def get_user_profile_form(request, usertype):
 # -----------------------------------------------------------------------------------------------
 
 
+
 class CreateProfile(View):
     def get(self, request , id):
         profile_form = get_user_profile_form(request, id)
@@ -113,7 +114,6 @@ class CreateProfile(View):
             return redirect('dashboard')
 
         return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form})
-
 
 
 # -----------------------------------------------------------Profile
@@ -142,22 +142,22 @@ class EditProfile(UpdateView):
 
     def get(self, request , id):
         user_form = MyUserChangeForm(request.user)
-        profile_form_edit = get_user_profile_form(request, id)
-        return render(request, 'accounts/profile/edit_profile.html', {'user':user_form, 'form': profile_form_edit})
+        profile_form = get_user_profile_form(request, id)
+        return render(request, 'accounts/profile/edit_profile.html', {'user':user_form, 'form': profile_form})
         
 
     def post(self, request,  id=None):
         user = User.objects.get(id=id)
-        profile_form_edit = get_user_profile_form(request, id)
+        profile_form = get_user_profile_form(request, id)
 
-        if profile_form_edit.is_valid():
-            profile = profile_form_edit.save(commit=False)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
             profile.user = request.user
             profile.save()
 
             return redirect(f'profile')
 
-        return render(request, 'accounts/profile/edit_profile.html', {'user':user, 'form': profile_form_edit})
+        return render(request, 'accounts/profile/edit_profile.html', {'user':user, 'form': profile_form})
 
 
 
@@ -166,22 +166,22 @@ def edit_profile(request, id=None):
     usertype = request.user.get_user_type
     if request.method == 'POST':
         user_form = MyUserChangeForm(request.POST,request.FILES,instance=request.user)
-        edit_profile = get_user_profile_form(request, usertype)  
+        profile_form = get_user_profile_form(request, usertype)  
 
-        if user_form.is_valid() and edit_profile.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
-            updated_form = edit_profile.save(False)
+            updated_form = profile_form.save(False)
             updated_form.user = user
             updated_form.save()
             return redirect('profile')
         
     else:
         user_form = MyUserChangeForm(instance=request.user)
-        edit_profile = get_user_profile_form(request, usertype)  
+        profile_form = get_user_profile_form(request, usertype)  
  
         args = {
             'user_form': user_form,
-            'edit_profile' : edit_profile
+            'edit_profile' : profile_form
         }
       
         return render(request, 'accounts/edit_profile.html', args)

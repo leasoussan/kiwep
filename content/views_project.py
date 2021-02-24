@@ -23,9 +23,8 @@ class ProjectListView(ListView):
     template_name = 'content/project/project_list.html'
     context_object_name = 'project_list'
 
-    # Query Specifiq set of project
-    # def get_queryset(self):
-    #     return Project.objects.filter(created_by=self.request.user)
+    def get_queryset(self):
+        return Project.objects.filter(speaker=self.request.user.profile)
 
 
 

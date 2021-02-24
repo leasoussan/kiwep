@@ -11,6 +11,7 @@ class Resource(models.Model):
     name = models.CharField(max_length=200) 
     link =  models.CharField(max_length=200)
     text =  models.TextField() 
+    speaker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Ressource Name : {self.name}"
@@ -26,6 +27,7 @@ class Mission(models.Model):
     description = models.TextField()
     completed = models.BooleanField
     resources = models.ManyToManyField(Resource)
+    speaker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Mission Name : {self.name}"
