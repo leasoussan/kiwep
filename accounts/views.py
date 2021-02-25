@@ -14,26 +14,15 @@ from .forms import (
     SpeakerProfileCreationForm, 
     RepresentativeProfileCreationForm,
 )
-
-from.models import Student, Speaker, Representative, User
 from django.urls import reverse_lazy
-
+from django.contrib.auth.views import redirect_to_login
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import user_passes_test, login_required
+from.models import Student, Speaker, Representative, User
+from accounts.decorators import check_profile
+from accounts.mixin import ProfileCheckPassesTestMixin
 
 # ----------------------------------------------------------------------------------Mixin
-
-# class ProfileCheckUserPassesTestMixin(UserPassesTestMixin):
-#     def test_func(self):
-#         return check_profile(self.request.user)
-    
-    
-#     def get_login_url(self):
-#         if not self.request.user.is_authenticated:
-#             return super().get_login_url()
-#         else:
-#             return '/create_profile/'
-
-#     def handle_no_permission(self):
-#         return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
 
 
 
@@ -119,7 +108,7 @@ class CreateProfile(View):
 # -----------------------------------------------------------Profile
 
 
-class ProfileView(View):
+class ProfileView(LoginRequiredMixin, View):
 
     def get(self, request, id):
         user = User.objects.get(id=id)
@@ -135,7 +124,7 @@ class ProfileView(View):
 # ----------------------------------------------------------------------------
 
     
-class EditProfile(UpdateView): 
+class EditProfile(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView): 
     model = User 
    
     template_name = 'accounts/profile/profile.html'

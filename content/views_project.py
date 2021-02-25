@@ -14,24 +14,26 @@ from django.views.generic import (
     DeleteView
 )
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from accounts.mixin import ProfileCheckPassesTestMixin
 
 
 # -------------------PROJECT---List_View/
 
-class ProjectListView(ListView):
+class ProjectListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     model = Project
     template_name = 'content/project/project_list.html'
     context_object_name = 'project_list'
 
     def get_queryset(self):
-        return Project.objects.filter(speaker=self.request.user.profile)
+        return Project.objects.filter(speaker=self.request.user).first()
 
 
 
 
 # ----------------PROJECT------Detail_View/
 
-class ProjectDetailView(DetailView):
+class ProjectDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
     model = Project
     template_name = 'content/project/project_detail.html'
     
@@ -45,7 +47,7 @@ class ProjectDetailView(DetailView):
 # -----------------------------PROJECT-----Create_View:
 
 
-class ProjectCreatelView(CreateView):
+class ProjectCreatelView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
     model = Project
     form_class = ProjectAddForm
     template_name = 'content/project/project_create.html'
@@ -67,7 +69,7 @@ class ProjectCreatelView(CreateView):
 # -----------------------------PROJECT-----UpdateView:
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):
     model = Project
     fields = ['name',
             'description',
@@ -89,7 +91,7 @@ class ProjectUpdateView(UpdateView):
 # 
 # -----------------------------PROJECT-----:Delete View 
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
     model = Project
     template_name = 'content/delete_project.html'
     success_url = reverse_lazy('project_list')

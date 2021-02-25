@@ -14,15 +14,18 @@ from django.views.generic import (
     DeleteView
 )
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from accounts.mixin import ProfileCheckPassesTestMixin
 
-class ResourceListView(ListView):
+
+class ResourceListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     model = Resource
     template_name = 'content/resource/resource_list.html'
     context_object_name = 'resource_list'
 
 
 
-class ResourceDetailView(DetailView):
+class ResourceDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
 
     model = Resource
     template_name = 'content/resource/resource_detail.html'
@@ -34,7 +37,7 @@ class ResourceDetailView(DetailView):
 
 
 
-class ResourceCreateView(CreateView):
+class ResourceCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
      
     model = Resource
     form_class = ResourceAddForm
@@ -47,7 +50,7 @@ class ResourceCreateView(CreateView):
 
 
 
-class ResourceUpdateView(UpdateView):
+class ResourceUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):
     model = Resource
     template_name = 'content/resource/resource_update.html'
     fields = ['name', 
@@ -60,7 +63,7 @@ class ResourceUpdateView(UpdateView):
         return get_object_or_404(Resource, pk=pk)
 
 
-class ResourceDeleteView(DeleteView):
+class ResourceDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
     model = Resource
     template_name = 'content/resource/resource_delete.html'
     success_url = reverse_lazy('resource_list')

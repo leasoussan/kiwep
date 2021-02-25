@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import user_passes_test, login_required
 from content.models import Project, Team, Mission, Resource
 # Create your views here.
 User = get_user_model()
 
+@login_required
 
 def dashboard(request):
     projects = Project.objects.filter(speaker = request.user.id)[:5]

@@ -14,16 +14,19 @@ from django.views.generic import (
     DeleteView
 )
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from accounts.mixin import ProfileCheckPassesTestMixin
 
 
-class TeamListView(ListView):
+
+class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     model = Team
     template_name = 'content/team/team_list.html'
     context_object_name = 'team_list'
 
 
 
-class TeamDetailView(DetailView):
+class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
     model = Team
     template_name = 'content/team/team_detail.html'
 
@@ -32,7 +35,7 @@ class TeamDetailView(DetailView):
         return get_object_or_404(Team, pk=pk)
 
 
-class TeamCreateView(CreateView):
+class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
     model = Team 
     form_class = TeamAddForm
     template_name = 'content/team/team_create.html'
@@ -42,7 +45,7 @@ class TeamCreateView(CreateView):
         return super().form_valid(form)
 
 
-class TeamUpdateView(UpdateView):
+class TeamUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):
     model = Team 
     field = ['name', 'project', 'start_date', 'due_date', 'group_Institution', 'participants', 'tasks' ,'final_project'] 
     template_name = 'content/team/team_update.html'
@@ -54,7 +57,7 @@ class TeamUpdateView(UpdateView):
 
 
 
-class TeamDeleteView(DeleteView):
+class TeamDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
     model = Team
     template_name = 'content/team/team_delete.html'
     success_url = reverse_lazy('team-list')
