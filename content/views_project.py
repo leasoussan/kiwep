@@ -25,15 +25,14 @@ class ProjectListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView)
     template_name = 'content/project/project_list.html'
     context_object_name = 'project_list'
 
-    def get_queryset(self):
-        return Project.objects.filter(speaker=self.request.user).first()
+    
 
 
 
 
 # ----------------PROJECT------Detail_View/
 
-class ProjectDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
+class ProjectDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
     model = Project
     template_name = 'content/project/project_detail.html'
     
@@ -47,7 +46,7 @@ class ProjectDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailV
 # -----------------------------PROJECT-----Create_View:
 
 
-class ProjectCreatelView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
+class ProjectCreatelView(LoginRequiredMixin, ProfileCheckPassesTestMixin,  CreateView):
     model = Project
     form_class = ProjectAddForm
     template_name = 'content/project/project_create.html'
@@ -77,7 +76,7 @@ class ProjectUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateV
             'field',
             'difficulty',
             'mission']
-    template_name = 'content/update_project.html'
+    template_name = 'content/project/update_project.html'
     
     def get_object(self):
         pk = self.kwargs.get("pk")
@@ -93,7 +92,7 @@ class ProjectUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateV
 
 class ProjectDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
     model = Project
-    template_name = 'content/delete_project.html'
+    template_name = 'content/project/project_delete.html'
     success_url = reverse_lazy('project_list')
 
     def get_object(self):

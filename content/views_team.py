@@ -41,7 +41,9 @@ class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView
     template_name = 'content/team/team_create.html'
     
     def form_valid(self, form):
-        self.object = form.save()
+        self.object = form.save(commit = False)
+        self.object.manager = self.request.user
+        self.object.save()
         return super().form_valid(form)
 
 
@@ -60,7 +62,7 @@ class TeamUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView
 class TeamDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
     model = Team
     template_name = 'content/team/team_delete.html'
-    success_url = reverse_lazy('team-list')
+    success_url = reverse_lazy('team_list')
 
     def get_object(self):
         pk = self.kwargs.get("pk")

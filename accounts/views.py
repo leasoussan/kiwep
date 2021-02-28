@@ -17,10 +17,12 @@ from .forms import (
 from django.urls import reverse_lazy
 from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from accounts.mixin import ProfileCheckPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test, login_required
+from .mailer import *
 from.models import Student, Speaker, Representative, User
 from accounts.decorators import check_profile
-from accounts.mixin import ProfileCheckPassesTestMixin
+
 
 # ----------------------------------------------------------------------------------Mixin
 
@@ -49,8 +51,7 @@ class Register(View):
             usertype=form.cleaned_data['usertype'] 
             user = authenticate(username= username, password = password, usertype =usertype)
             login(request, user)
-
-            
+            send_welcome_signup(user)
             
             return redirect('create_profile', form.cleaned_data['usertype'])
 
@@ -125,28 +126,21 @@ class ProfileView(LoginRequiredMixin, View):
 
     
 class EditProfile(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView): 
-    model = User 
    
-    template_name = 'accounts/profile/profile.html'
-
     def get(self, request , id):
         user_form = MyUserChangeForm(request.user)
-        profile_form = get_user_profile_form(request, id)
-        return render(request, 'accounts/profile/edit_profile.html', {'user':user_form, 'form': profile_form})
+        return render(request, 'accounts/profile/edit_profile.html', {'user':user_form})
         
 
     def post(self, request,  id=None):
-        user = User.objects.get(id=id)
-        profile_form = get_user_profile_form(request, id)
+        user_form = MyUserChangeForm(request.POST)
 
-        if profile_form.is_valid():
-            profile = profile_form.save(commit=False)
-            profile.user = request.user
-            profile.save()
+        if user_form.is_valid():
+            user_form.save()
 
-            return redirect(f'profile')
+            return redirect('profile')
 
-        return render(request, 'accounts/profile/edit_profile.html', {'user':user, 'form': profile_form})
+        return render(request, 'accounts/profile/edit_profile.html', {'user':user_form})
 
 
 

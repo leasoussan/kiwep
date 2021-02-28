@@ -29,7 +29,7 @@ Hello, {{ user.username|default:'Guest' }}!
     <a href="{% url 'project_list' %}">project List</a>
     Top Projects
 
-    {% for project in projects %}
+    {% for project in sdut_pro %}
     {{project.name}}
     {% endfor %}
 

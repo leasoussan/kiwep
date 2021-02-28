@@ -66,7 +66,7 @@ class Representative(models.Model):
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE )
 
     def __str__(self):
-        return f"{self.user.first_name}, {self.institution.name}"
+        return f"{self.user.username}, {self.institution.name}"
 
     def get_absolute_url(self):
         return reverse('profile', kwargs={"pk":self.pk})
@@ -85,7 +85,7 @@ class Student(models.Model):
     dob = models.DateField()
   
     def __str__(self):
-        return f"{self.user.first_name}, {self.user.last_name}"
+        return f"{self.user.username}, {self.user.last_name}"
 
     def get_absolute_url(self):
         return reverse('profile', kwargs={"pk":self.pk})
@@ -103,7 +103,7 @@ class Speaker(models.Model):
     group = models.ManyToManyField(Group)
     
     def __str__(self):
-        return f"{self.user.first_name}, {self.user.last_name}"
+        return f"{self.user.username}, {self.user.last_name}"
 
     def get_absolute_url(self):
         return reverse('profile/', kwargs={"pk":self.pk})

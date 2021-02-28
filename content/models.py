@@ -1,10 +1,11 @@
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from accounts.models import Speaker, Student
 from backend.models import Field,Level, Group
 from todo.models import Task
-
+from .managers import *
 
 
 class Resource(models.Model):
@@ -12,6 +13,9 @@ class Resource(models.Model):
     link =  models.CharField(max_length=200)
     text =  models.TextField() 
     speaker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    
+    objects = ResourceModelManager()
 
     def __str__(self):
         return f"Ressource Name : {self.name}"
@@ -28,12 +32,18 @@ class Mission(models.Model):
     completed = models.BooleanField
     resources = models.ManyToManyField(Resource)
     speaker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    attributed_to = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE, related_name = "mission_owner")
+
+    objects = MissionModelManager()
 
     def __str__(self):
         return f"Mission Name : {self.name}"
 
     def get_absolute_url(self):
         return reverse("mission_detail", kwargs={"pk":self.pk})
+
+
+
 
 
 class Project(models.Model):
@@ -46,12 +56,16 @@ class Project(models.Model):
     completed = models.BooleanField(default =False)
     speaker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+    objects = ProjectModelManager()
+
     def __str__(self):
         return f"Project Name {self.pk} {self.name}"
 
-
     def get_absolute_url(self):
-        return reverse("project-detail", kwargs={"pk":self.pk})
+        return reverse("project_detail", kwargs={"pk":self.pk})
+
+
+    
 
 
 class Team(models.Model):
@@ -62,13 +76,17 @@ class Team(models.Model):
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Student)
     tasks = models.ForeignKey(Task, on_delete=models.CASCADE, null = True, blank=True)
-    final_project = models.CharField(max_length=200) 
-   
+    final_project = models.CharField(max_length=200)    
+    manager = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="team_manager")
+
+
+ 
+    objects = TeamModelManager()
 
     def __str__(self):
         return f"Team Name : {self.name}"
 
     def get_absolute_url(self):
-        return reverse("team-detail", kwargs={"pk":self.pk})
+        return reverse("team_detail", kwargs={"pk":self.pk})
 
 

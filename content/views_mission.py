@@ -18,7 +18,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin
 
 
 
-class MissionListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
+class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     model = Mission
     template_name = 'content/mission/mission_list.html'    
     context_object_name = 'mission_list'
@@ -28,7 +28,7 @@ class MissionListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView)
 
 
 
-class MissionDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
+class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
     model = Mission
     template_name = 'content/mission/mission_detail.html'    
     
@@ -44,15 +44,16 @@ class MissionCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateV
     model = Mission
     form_class = MissionAddForm 
     template_name = 'content/mission/mission_create.html'  
-    
-    def form_valid(self, form):
-        self.object = form.save()
 
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.speaker = self.request.user
+        self.object.save()
         return super().form_valid(form)
 
 
-
-class MissionUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):
+class MissionUpdateView(LoginRequiredMixin,ProfileCheckPassesTestMixin, UpdateView):
     model = Mission
     fileds = ['name', 
             'field', 
@@ -63,7 +64,7 @@ class MissionUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateV
     template_name = 'content/mission/mission_create.html'  
 
 
-class MissionDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
+class MissionDeleteView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DeleteView):
     model = Mission
     template_name = 'content/mission/mission_delete.html' 
-    success_url = reverse_lazy('mission-list')
+    success_url = reverse_lazy('mission_list')

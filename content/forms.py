@@ -28,6 +28,7 @@ class TeamAddForm(ModelForm):
             'participants',
             'tasks',
             'final_project',
+            
         ] 
     
 
@@ -43,6 +44,7 @@ class MissionAddForm(ModelForm):
             'level',
             'description',
             'resources',
+            'attributed_to'
         ]
 
 
@@ -54,4 +56,6 @@ class ResourceAddForm(ModelForm):
             'name', 
             'link',
             'text',
+            'field',
+            
         ]
