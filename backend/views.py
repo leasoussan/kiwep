@@ -9,22 +9,20 @@ User = get_user_model()
 
 
 @login_required
-def dashboard(request, user):
-    if user.get_user_type() == "student":
-        context = student_dashboard_content(user)
+def dashboard(request, context):
+    if request.user == "student":
+        dashboard = student_dashboard_content(context=context)
     
-    elif user.get_user_type() == "speaker":
-        context = student_dashboard_content(user)
-
-
+    elif request.user == "speaker":
+        dashboard = student_dashboard_content(context=context)
     
-    return render(request, "backend/general_dashboard.html", context)
+    return render(request, "backend/general_dashboard.html", {'dashboard':dashboard})
 
 
 
 
 
-def student_dashboard_content(request):
+def student_dashboard_content():
     teams = Team.objects.filter(participants = request.user.id).all()
     projects = teams.project.all()
     missions =projects.mission.all()
@@ -38,7 +36,7 @@ def student_dashboard_content(request):
     return context
 
 
-def speaker_dashboard_content(user):
+def speaker_dashboard_content():
     projects = Project.objects.get_speaker_projects(user)
     teams = Team.objects.get_speaker_teams(user)
     missions = Mission.objects.get_speaker_missions(user)
