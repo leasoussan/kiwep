@@ -13,6 +13,7 @@ from .forms import (
     StudentProfileCreationForm, 
     SpeakerProfileCreationForm, 
     RepresentativeProfileCreationForm,
+    UserForm,
 )
 from django.urls import reverse_lazy
 from django.contrib.auth.views import redirect_to_login
@@ -20,7 +21,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from accounts.mixin import ProfileCheckPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test, login_required
 from .mailer import *
-from.models import Student, Speaker, Representative, User
+from.models import Student, Speaker, Representative, MyUser
 from accounts.decorators import check_profile
 
 
@@ -88,8 +89,9 @@ def get_user_profile_form(request, usertype):
 
 class CreateProfile(View):
     def get(self, request , id):
+        user_form = UserForm()
         profile_form = get_user_profile_form(request, id)
-        return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form})
+        return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form, 'user_form': user_form})
         
 
     def post(self, request,  id=None):
@@ -112,7 +114,7 @@ class CreateProfile(View):
 class ProfileView(LoginRequiredMixin, View):
 
     def get(self, request, id):
-        user = User.objects.get(id=id)
+        user = MyUser.objects.get(id=id)
         profile = user.profile
         return render(request, 'accounts/profile/profile.html', {'usertype':user, 'form': profile})
 

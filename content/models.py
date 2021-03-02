@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from accounts.models import Speaker, Student
+from accounts.models import Speaker, Student, Representative, MyUser
 from backend.models import Field,Level, Group
 from todo.models import Task
 from .managers import *
@@ -14,7 +14,7 @@ class Resource(models.Model):
     image = models.ImageField(default = 'image/default.png', upload_to='images/') 
     file_rsc = models.FileField(null=True, blank=True)
     text =  models.TextField() 
-    speaker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE,  blank=True, null =True)
     
     objects = ResourceModelManager()
@@ -34,22 +34,18 @@ class Resource(models.Model):
 
 class Mission(models.Model):
     STAGE_CHOICE = [
-         ('start', 'Start'),
+        ('start', 'Start'),
         ('middle', 'Middle'),
-        ('final', 'Fianl'),
+        ('final', 'Final'),
     ]
-
-
     name = models.CharField(max_length=200)
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
     level = models.ForeignKey(Level, on_delete=models.CASCADE)
     stage = models.CharField( max_length=10, choices=STAGE_CHOICE, default='start')
     description = models.TextField()
-    completed = models.BooleanField
     resources = models.ManyToManyField(Resource)
-    speaker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    attributed_to = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE, related_name = "my_mission")
-
+    owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    
     objects = MissionModelManager()
 
     def __str__(self):
@@ -67,10 +63,10 @@ class Project(models.Model):
     description = models.TextField()
     time_to_complet = models.PositiveIntegerField()
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
-    difficulty = models.ForeignKey(Level, on_delete=models.CASCADE)
-    mission = models.ManyToManyField(Mission)
+    difficulty = models.ForeignKey(Level, on_delete=models.CASCADE) 
     completed = models.BooleanField(default =False)
-    speaker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
+    mission = models.ManyToManyField(Mission, through = 'MissionsProject')
 
     objects = ProjectModelManager()
 
@@ -81,7 +77,15 @@ class Project(models.Model):
         return reverse("project_detail", kwargs={"pk":self.pk})
 
 
-    
+
+class MissionsProject(models.Model):
+    project = models.ForeignKey(Project, on_delete= models.CASCADE)
+    mission =  models.ForeignKey(Mission, on_delete= models.CASCADE) 
+    completed= models.BooleanField()
+    created_date = models.DateField(auto_now_add=True)
+    due_date = models.DateField()
+    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_mission")
+
 
 
 class Team(models.Model):
@@ -91,9 +95,8 @@ class Team(models.Model):
     due_date = models.DateField()
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Student)
-    tasks = models.ForeignKey(Task, on_delete=models.CASCADE, null = True, blank=True)
     final_project = models.CharField(max_length=200)    
-    manager = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="team_manager")
+    manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
 
 
  

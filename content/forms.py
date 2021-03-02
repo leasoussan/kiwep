@@ -26,9 +26,7 @@ class TeamAddForm(ModelForm):
             'due_date',
             'group_Institution',
             'participants',
-            'tasks',
             'final_project',
-            
         ] 
     
 
@@ -44,7 +42,7 @@ class MissionAddForm(ModelForm):
             'level',
             'description',
             'resources',
-            'attributed_to'
+            
         ]
 
 

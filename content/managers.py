@@ -4,7 +4,7 @@ from .models import *
 
 class ProjectModelManager(models.Manager):
     def get_speaker_projects(self, user ):
-        return self.get_queryset().filter(speaker= user)
+        return self.get_queryset().filter(owner= user)
 
     # def get_student_projects(self, user):
     #     return self.get_queryset().filter(team__participants=user)

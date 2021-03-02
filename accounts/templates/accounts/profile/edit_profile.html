@@ -5,10 +5,17 @@
 <h2>{{ usertype }} Profile EDIT</h2>
 
 <form method="post">
+    
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    <input type="submit" value="save">
+</form>
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="save">
 </form>
+
 
 
 

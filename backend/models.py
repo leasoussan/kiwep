@@ -3,17 +3,22 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from accounts.models import *
 
-Representative = settings.AUTH_USER_MODEL
+
+class Level(models.Model):
+    name = models.CharField(max_length=100)
+    rating = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.name
+
+
 
 class Field(models.Model):
     name = models.CharField(max_length=100) 
 
-
     def __str__(self):
         return self.name
     
-
-
 
 
 class InstitutionCategory(models.Model):
@@ -26,7 +31,7 @@ class InstitutionCategory(models.Model):
 
 
 class Institution(models.Model):
-    
+    representative = models.OneToOneField(Representative, on_delete=models.CASCADE)
     name = models.CharField(max_length = 100)
     category = models.ForeignKey(InstitutionCategory, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
@@ -44,12 +49,6 @@ class Institution(models.Model):
         return self.name
 
 
-class Level(models.Model):
-    name = models.CharField(max_length=100)
-    rating = models.PositiveIntegerField()
-
-    def __str__(self):
-        return self.name
 
 class Group(models.Model):
     name = models.CharField(max_length = 100)

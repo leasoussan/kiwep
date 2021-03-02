@@ -25,10 +25,8 @@ import requests
 fak = Faker()
 
 
-User = get_user_model()
-Representative = get_user_model()
-Student = get_user_model()
-Speaker = get_user_model()
+MyUser = get_user_model()
+
 
 
 
@@ -38,10 +36,9 @@ fields_list = ['Economics', 'Digital', 'Commercial', 'Artisitic', 'Fashion', 'Ot
 
 def pop_field(fields_list):
     for f in fields_list:
-        f = Field.objects.create(name=f)
+        f = Field.objects.get_or_create(name=f)
     
         print(f"the Field {f} was created")
-
 
 
 
@@ -94,25 +91,21 @@ def pop_city():
 
 
 
-
-
-
-
-
 instit_name = ['new School', 'old School']
 def pop_institution(n):
     for institut in range(n):
-        name = random.choice(instit_name),
-        category = random.choice(InstitutionCategory.objects.all()),
-        field = random.choice(InstitutionCategory.objects.all()),
-        profile_pic = 'images/default.png',
-        address = 'undefine Adress yet',
-        city = random.choice(City.objects.all()),
-        joined_date = '09/08/2002',
-        contact_name = 'Unknown',
-        phone_number = '+97654321',
-        email = 'art@gmail.com',
-        website = 'www.google.com',
+        representative = random.choice(Representative.objects.all())
+        name = random.choice(instit_name)
+        category = random.choice(InstitutionCategory.objects.all())
+        field = random.choice(list(Field.objects.all()))
+        profile_pic = 'images/default.png'
+        address = 'undefine Adress yet'
+        city = random.choice(list(City.objects.all()))
+        joined_date = '09/08/2002'
+        contact_name = 'Unknown'
+        phone_number = '+97654321'
+        email = 'art@gmail.com'
+        website = 'www.google.com'
         description = 'School for the people'
 
         institut = Institution(
@@ -128,6 +121,7 @@ def pop_institution(n):
             email = email,
             website = website,
             description = description,
+            representative =representative
         )
         institut.save()
 
@@ -137,7 +131,7 @@ def pop_institution(n):
 
 def pop_representative(n):
     for i in range(n):
-        user = User.objects.create(
+        user = MyUser.objects.create(
             first_name = fak.first_name(),
             last_name =fak.last_name(),
             email = fak.email(),
@@ -150,23 +144,40 @@ def pop_representative(n):
         user.save()
 
         rep_profile = Representative.objects.create(
-            institution = random.choice(Institution.objects.all()),
-            
+    
+
 
             user = user,       
         )
         rep_profile.save()
 
-        print(f'Reprensentative Created Profile:{profile.id}')
+        print(f'Reprensentative Created Profile:{rep_profile.id}')
 
         # finished
     print(f"Finished...{n}speaker  entries populated.")
 
 
+groups = ['3rd', '4th', '5th', '6th']
+
+def pop_level(n):
+    for level in range(n):
+        level= Level.objects.create(name=level, rating='3')
+
+
+def pop_group(groups):
+    for group in groups:
+        group = Group.objects.get_or_create(name=group,
+        number_of_participants = '5',
+        level = random.choice(Level.objects.all()),
+        institution = random.choice(Institution.objects.all())
+)
+
+
+
 
 def pop_speaker(n):
     for i in range(n):
-        user = User.objects.create_user(
+        user = MyUser.objects.create_user(
             first_name = fak.first_name(),
             last_name =fak.last_name(),
             email = fak.email(),
@@ -175,19 +186,17 @@ def pop_speaker(n):
             password = '123456',
             phone_number = '+972 500000000',
             profile_pic = 'media/profile/avatar.png',
-            city = 'tel-aviv'
+            city = City.objects.get(name='Tel-aviv')
             )
         user.save()
 
         speaker_profile = Speaker.objects.create(
-            institution = random.choice(Institution.objects.all()),
-            
-            dob= '09/09/1987',
             user = user,       
             )
         speaker_profile.save() 
-
-        print(f'Speaker Created Profile:{profile.id}')
+        speaker_profile.institution.add(random.choice(Institution.objects.all()))
+        speaker_profile.group.add(random.choice(Group.objects.all()))
+        print(f'Speaker Created Profile:{speaker_profile.id}')
 
     # finished
     print(f"Finished...{n}speaker  entries populated.")
@@ -197,7 +206,7 @@ def pop_speaker(n):
 
 def pop_student(n):
     for i in range(n):
-        user = User.objects.create_user(
+        user = MyUser.objects.create_user(
             first_name = fak.first_name(),
             last_name =fak.last_name(),
             email = fak.email(),
@@ -206,18 +215,20 @@ def pop_student(n):
             password = '123456',
             phone_number = '+972 500000000',
             profile_pic = 'media/profile/avatar.png',
-            city = 'tel-aviv')
+            city = City.objects.get(name='Tel-aviv'),
+            )
+        user.save()
 
         student_profile = Student.objects.create(
             class_level= random.choice(Group.objects.all()),
-            field = random.choice(Field.objects.all()),
-            dob= '09/09/1987',
+            Field = random.choice(Field.objects.all()),
+            dob= '1987-09-09',
             user = user,       
-            )
+        )
         student_profile.save()
         
 
-        print(f'Student Created Profile:{profile.id}')
+        print(f'Student Created Profile:{student_profile.id}')
 
     # finished
     print(f"Finished...{n} students populated.")
@@ -337,9 +348,3 @@ def pop_team(n):
 
 
 
-
-# pop_field(fields_list)
-
-
-# pop_country()
-# pop_city()

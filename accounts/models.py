@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.urls import reverse
 import datetime
-from backend.models import Institution, Group, Field
+
 
 class Country(models.Model):
     name = models.CharField(max_length=100) 
@@ -24,7 +24,8 @@ class City(models.Model):
 
 
 
-class User(AbstractUser):
+
+class MyUser(AbstractUser):
     email = models.EmailField()
     phone_number = models.CharField(max_length=30, blank = True, null = True)
     profile_pic = models.ImageField(default = 'profile/avatar.png', upload_to='profile/', blank = True, null = True)
@@ -40,7 +41,7 @@ class User(AbstractUser):
         user_type = {
         'representative':Representative,
         'speaker': Speaker,
-        'student' : Student,
+        'student' : Student,        
         }
         
         for key, value in user_type.items():
@@ -65,8 +66,7 @@ class User(AbstractUser):
 
 
 class Representative(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
-    institution = models.ForeignKey(Institution, on_delete=models.CASCADE )
+    user = models.OneToOneField(MyUser, on_delete = models.CASCADE)
 
     def __str__(self):
         return f"{self.user.username}, {self.institution.name}"
@@ -82,9 +82,9 @@ class Representative(models.Model):
 
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
-    class_level = models.ForeignKey(Group, on_delete=models.CASCADE)
-    Field = models.ForeignKey(Field,  on_delete=models.CASCADE)
+    user = models.OneToOneField(MyUser, on_delete = models.CASCADE)
+    class_level = models.ForeignKey('backend.Group', on_delete=models.CASCADE)
+    Field = models.ForeignKey('backend.Field',  on_delete=models.CASCADE)
     dob = models.DateField()
   
     def __str__(self):
@@ -100,9 +100,9 @@ class Student(models.Model):
 
 
 class Speaker(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
-    institution = models.ManyToManyField(Institution)    
-    group = models.ManyToManyField(Group)
+    user = models.OneToOneField(MyUser, on_delete = models.CASCADE)
+    institution = models.ManyToManyField('backend.Institution')    
+    group = models.ManyToManyField('backend.Group')
     
     def __str__(self):
         return f"{self.user.username}, {self.user.last_name}"
