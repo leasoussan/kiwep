@@ -4,17 +4,10 @@ Hello, {{ user.username|default:'Guest' }}!
 
 
 
-
-
-
 <div>
     Speaker Dashboard 
 
-   
 
-
-
-  
    
 <div>
     Projects 
@@ -22,7 +15,7 @@ Hello, {{ user.username|default:'Guest' }}!
     <a href="{% url 'project_list' %}">project List</a>
     Top Projects
 
-    {% for project in projects %}
+    {% for project in user.project_set.all %}
     
     {{project.name}}
     {% endfor %}
@@ -35,7 +28,7 @@ Hello, {{ user.username|default:'Guest' }}!
     <a href="{% url 'team_list' %}">team List</a>
     Top teams
 
-    {% for team in teams %}
+    {% for team in user.team_manager.all %}
     {{team.name}}
     {% endfor %}
 
@@ -48,7 +41,7 @@ Hello, {{ user.username|default:'Guest' }}!
     <a href="{% url 'mission_list' %}">Mission List</a>
   
 
-    {% for mission in missions %}
+    {% for mission in user.mission_set.all %}
     {{mission.name}}
     {% endfor %}
 
@@ -60,7 +53,7 @@ Hello, {{ user.username|default:'Guest' }}!
     <a href="{% url 'resource_list' %}">Resource List</a>
   
 
-    {% for resource in resources %}
+    {% for resource in user.resource_set.all %}
     {{resource.name}}
     {% endfor %}
 

@@ -11,9 +11,11 @@ from .managers import *
 class Resource(models.Model):
     name = models.CharField(max_length=200) 
     link =  models.CharField(max_length=200)
+    image = models.ImageField(default = 'image/default.png', upload_to='images/') 
+    file_rsc = models.FileField(null=True, blank=True)
     text =  models.TextField() 
     speaker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    field = models.ForeignKey(Field, on_delete=models.CASCADE,  blank=True, null =True)
     
     objects = ResourceModelManager()
 
@@ -24,15 +26,29 @@ class Resource(models.Model):
         return reverse("resource_detail", kwargs={"pk":self.pk})
 
 
+    def get_resourceImg_or_default(self, default_path= 'images/default.png'):
+        if self.image:
+            return self.image.url
+        return default_path
+
+
 class Mission(models.Model):
+    STAGE_CHOICE = [
+         ('start', 'Start'),
+        ('middle', 'Middle'),
+        ('final', 'Fianl'),
+    ]
+
+
     name = models.CharField(max_length=200)
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
     level = models.ForeignKey(Level, on_delete=models.CASCADE)
+    stage = models.CharField( max_length=10, choices=STAGE_CHOICE, default='start')
     description = models.TextField()
     completed = models.BooleanField
     resources = models.ManyToManyField(Resource)
     speaker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    attributed_to = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE, related_name = "mission_owner")
+    attributed_to = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE, related_name = "my_mission")
 
     objects = MissionModelManager()
 

@@ -128,7 +128,8 @@ class ProfileView(LoginRequiredMixin, View):
 class EditProfile(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView): 
    
     def get(self, request , id):
-        user_form = MyUserChangeForm(request.user)
+        user_form = MyUserChangeForm(instance =request.user)
+        profile_form = get_user_profile_form(request, usertype)  
         return render(request, 'accounts/profile/edit_profile.html', {'user':user_form})
         
 

@@ -27,7 +27,7 @@ class City(models.Model):
 class User(AbstractUser):
     email = models.EmailField()
     phone_number = models.CharField(max_length=30, blank = True, null = True)
-    profile_pic = models.ImageField(blank = True, null = True)
+    profile_pic = models.ImageField(default = 'profile/avatar.png', upload_to='profile/', blank = True, null = True)
     joined_date = models.DateField(auto_now_add=True, blank = True, null = True)
     city = models.ForeignKey(City,on_delete=models.CASCADE, null=True, blank=True) 
 
@@ -58,7 +58,10 @@ class User(AbstractUser):
                 return qs.first()
 
 
-
+    def profilepic_or_default(self, default_path='profile/default.png'):
+        if self.profile_pic:
+            return self.profile_pic.url
+        return default_path
 
 
 class Representative(models.Model):
@@ -98,8 +101,7 @@ class Student(models.Model):
 
 class Speaker(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
-    institution = models.ManyToManyField(Institution)
-    field = models.ForeignKey(Field, on_delete = models.CASCADE)
+    institution = models.ManyToManyField(Institution)    
     group = models.ManyToManyField(Group)
     
     def __str__(self):

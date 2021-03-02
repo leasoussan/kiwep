@@ -9,43 +9,32 @@ User = get_user_model()
 
 
 @login_required
-def dashboard(request, context):
-    if request.user == "student":
-        dashboard = student_dashboard_content(context=context)
+def dashboard(request):
+    # projects = Project.objects.get_speaker_projects(request.user)
+    # teams = Team.objects.get_speaker_teams(request.user)
+    # missions = Mission.objects.get_speaker_missions(request.user)
+    # resources = Resource.objects.get_speaker_resources(request.user)
+    # context = {
+    #     'projects': projects,
+    #     'teams':teams,
+    #     'resources':resources,
+    #     'missions': missions,
+    # }
     
-    elif request.user == "speaker":
-        dashboard = student_dashboard_content(context=context)
-    
-    return render(request, "backend/general_dashboard.html", {'dashboard':dashboard})
+    return render(request, "backend/general_dashboard.html" )
 
 
 
-
-
-def student_dashboard_content():
-    teams = Team.objects.filter(participants = request.user.id).all()
-    projects = teams.project.all()
-    missions =projects.mission.all()
-    resources = missions.resources.all()
-    context = {
-        'projects': projects,
-        'teams':teams,
-        'resources':resources,
-        'mission': missions,
-    }
-    return context
-
-
-def speaker_dashboard_content():
-    projects = Project.objects.get_speaker_projects(user)
-    teams = Team.objects.get_speaker_teams(user)
-    missions = Mission.objects.get_speaker_missions(user)
-    resources = Resource.objects.get_speaker_resources(user)
-    context = {
-        'projects': projects,
-        'teams':teams,
-        'resources':resources,
-        'missions': missions,
-    }
-    return context
+# def speaker_dashboard_content():
+#     projects = Project.objects.get_speaker_projects(user)
+#     teams = Team.objects.get_speaker_teams(user)
+#     missions = Mission.objects.get_speaker_missions(user)
+#     resources = Resource.objects.get_speaker_resources(user)
+#     context = {
+#         'projects': projects,
+#         'teams':teams,
+#         'resources':resources,
+#         'missions': missions,
+#     }
+#     return context
 

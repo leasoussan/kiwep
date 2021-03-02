@@ -29,8 +29,8 @@ Hello, {{ user.username|default:'Guest' }}!
     <a href="{% url 'project_list' %}">project List</a>
     Top Projects
 
-    {% for project in sdut_pro %}
-    {{project.name}}
+    {% for team in user.profile.team_set.all %}
+    {{team.project.name}}
     {% endfor %}
 
 </div>
@@ -40,12 +40,26 @@ Hello, {{ user.username|default:'Guest' }}!
     <a href="{% url 'create_team' %}">Create team</a> 
     <a href="{% url 'team_list' %}">team List</a>
     Top teams
+<ul>
+    {% for team in user.profile.team_set.all %}
+    <li>
+        <ul>
+           <li> Name : {{ team.name }}</li>
+           <li>Speaker :{{team.manager}}</li>
+        </ul>
+        
+  
+    {% for student in team.participants.all %}
 
-    {% for team in teams %}
-    {{team.name}}
+    username -student: {{student.user.username}}
+    {% endfor %}
+    </li>
+    
     {% endfor %}
 
 
+</ul>
+    
 </div>
 
 <div>
@@ -54,7 +68,7 @@ Hello, {{ user.username|default:'Guest' }}!
     <a href="{% url 'mission_list' %}">Mission List</a>
   
 
-    {% for mission in missions %}
+    {% for mission in user.my_mission.all %}
     {{mission.name}}
     {% endfor %}
 
@@ -66,6 +80,8 @@ Hello, {{ user.username|default:'Guest' }}!
     <a href="{% url 'resource_list' %}">Resource List</a>
   
 
-    {% for resource in resources %}
+    {% for mission in user.my_mission.all %}
+    {% for resource in mission.resources.all %}
     {{resource.name}}
+    {% endfor %}
     {% endfor %}

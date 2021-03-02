@@ -3,6 +3,8 @@
 {% block content %}
 
 Resource  {{ resource.name }}
+<img src="{{ resource.get_resourceImg_or_default }}" alt="" style = 'width: 300px; height: 300px;;'>
+<a href="{{ resource.upload_file.url }}">name of file </a>
 
 <a href="{% url 'delete_resource' resource.pk %}">Delete Resource </a>
 <a href="{% url 'resource_list' %}">List Resource </a>

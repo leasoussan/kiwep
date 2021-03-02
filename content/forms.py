@@ -57,5 +57,6 @@ class ResourceAddForm(ModelForm):
             'link',
             'text',
             'field',
-            
+            'image',
+            'file_rsc',
         ]

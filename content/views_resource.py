@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, HttpResponse,redirect
 from .models import Resource
 from django.forms import ModelForm
 from .forms import ResourceAddForm
 from django.urls import reverse_lazy
-
+from django.contrib.auth.decorators import user_passes_test, login_required
 
 from django.views.generic import (
     CreateView, 
@@ -31,7 +31,7 @@ class ResourceDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Detail
     template_name = 'content/resource/resource_detail.html'
 
     def get_object(self):
-        pk = self.kwargs.get('pk')
+        pk = self.kwargs.get('pk') 
         return get_object_or_404(Resource, pk=pk)
 
 
@@ -52,12 +52,15 @@ class ResourceCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Create
 
 
 
+
+
 class ResourceUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):
     model = Resource
     template_name = 'content/resource/resource_update.html'
     fields = ['name', 
             'link',
-            'text',]
+            'text',
+            'image']
     success_url = ('resource_detail')
 
     def get_object(self):

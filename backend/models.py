@@ -26,14 +26,13 @@ class InstitutionCategory(models.Model):
 
 
 class Institution(models.Model):
-    user = models.ForeignKey(Representative, on_delete = models.CASCADE)
+    
     name = models.CharField(max_length = 100)
     category = models.ForeignKey(InstitutionCategory, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
     profile_pic = models.ImageField()
     address = models.CharField(max_length = 100, null = True, blank = True)
     city = models.CharField(max_length = 50, null = True, blank = True)
-    country = models.CharField(max_length = 50, null = True, blank = True)
     joined_date = models.DateField(auto_now_add=True)
     contact_name = models.CharField(max_length = 100)
     phone_number = models.CharField(max_length = 100)
