@@ -46,7 +46,7 @@ class ResourceCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Create
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.speaker = self.request.user
+        self.object.owner = self.request.user
         self.object.save()
         return super().form_valid(form)
 

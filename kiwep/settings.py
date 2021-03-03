@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #3rd Parties
     'rest_framework',
+     'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -135,6 +136,9 @@ LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "homepage"
 
 APPEND_SLASH=False
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 
 

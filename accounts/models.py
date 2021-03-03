@@ -84,7 +84,7 @@ class Representative(models.Model):
 class Student(models.Model):
     user = models.OneToOneField(MyUser, on_delete = models.CASCADE)
     class_level = models.ForeignKey('backend.Group', on_delete=models.CASCADE)
-    Field = models.ForeignKey('backend.Field',  on_delete=models.CASCADE)
+    field = models.ForeignKey('backend.Field',  on_delete=models.CASCADE)
     dob = models.DateField()
   
     def __str__(self):

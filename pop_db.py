@@ -17,6 +17,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 
+from django.forms.models import model_to_dict
 
 import json
 import urllib
@@ -237,17 +238,17 @@ def pop_student(n):
 
 def pop_resources(n):
     for resource in range(n):
-        name = 'Mesource {n}',
-        link = "www.google.com",
-        image =  'image/default.png',
-        file_rsc = 'null',
+        name = 'Mesource {n}'
+        link = "www.google.com"
+        image =  'image/default.png'
+        file_rsc = 'null'
         text = 'This is aresource about.......'
-        speaker = random.choice(Speaker.objects.all())
+        owner = random.choice(MyUser.objects.all())
         field =  random.choice(Field.objects.all())  
 
-        r = Resource(name=name, link=link, image=image, file_rsc=file_rsc, text=text,speaker=speaker, field=field)
+        r = Resource(name=name, link=link, image=image, file_rsc=file_rsc, text=text,owner=owner, field=field)
         r.save()
-        print(f'resource :{resource.id} was created')
+        print(f'resource :{r.name} was created')
 
     print(f"Finished...{n} Resource populated.")
 
@@ -260,58 +261,53 @@ STAGE_CHOICE = ['Start','Middle', 'Final']
 
 def pop_missions(n):
     for mission in range(n):
-        name = 'Mission {n}',
-        field =  random.choice(Field.objects.all()),  
-        level = random.choice(Level.objects.all()),
-        stage =  random.choice(STAGE_CHOICE),
-        description = 'This mission you have to .....about.......',
-        completed = False,
-        resource = random.choice(Resource.objects.all()),
-        speaker = random.choice(Speaker.objects.all()),
-        attributed_to =  random.choice(Student.objects.all()),
-
+        name = 'Mission {n}'
+        field =  random.choice(Field.objects.all())  
+        level = random.choice(Level.objects.all())
+        stage =  random.choice(STAGE_CHOICE)
+        description = 'This mission you have to .....about.......'
+        
+        owner = random.choice(MyUser.objects.all())
+        
         m = Mission(
             name=name, 
             field=field, 
             level=level, 
             stage=stage, 
             description=description,
-            completed=completed, 
-            resource=resource,
-            speaker=speaker, 
-            attributed_to=attributed_to
+            owner=owner, 
+        
             )
         m.save()
-        print(f'mission:{mission.id} was created')
+        m.resources.add(random.choice(list(Resource.objects.all())))
+        print(f'mission:{m.id} was created')
 
     print(f"Finished...{n} Mission populated.")
 
 
 
 def pop_project(n):
-    for project in range(n):
-        name = "Proejct {n}",
-        description = "This Project is about Blbalabal",
-        time_to_complet = random.randint(60, 120, 10),
-        field = random.choice(Field.objects.all()),
-        difficulty = random.randint(1,5,1),
-        mission = random.sample(Mission.objects.all(), 3),
-        completed = False,
-        speaker = random.choice(Speaker.objects.all()),
-
+    for project in range(n+1):
+        name = "Proejct {n}"
+        description = "This Project is about Blbalabal"
+        time_to_complet = random.randrange(60, 120, 10)
+        field = random.choice(Field.objects.all())
+        difficulty = random.choice(Level.objects.all())
+        completed = False
+        speaker = random.choice(Speaker.objects.all())
+        
         p = Project(
             name = name,
             description = description,
             time_to_complet = time_to_complet,
             field = field,
             difficulty = difficulty,
-            mission = mission,
             completed = completed,
             speaker = speaker,
         ) 
         p.save()
-
-        print(f'Project:{project.id}')
+  
+        print(f'Project:{p.id}')
 
     
     print(f"Finished...{n} Projects populated.")
@@ -319,32 +315,52 @@ def pop_project(n):
 
 def pop_team(n):
     for team in range(n):
-        name = "project {n}",
-        project = random.choice(Project.objects.all()),
-        start_date = ('09/09/2021'),
-        due_date = ('09/09/2021'),
-        group_Institution = random.choice(Institution.objects.all()),
-        participants = random.sample(Student.objects.all(), 5),
-        tasks = 'task_list_to be defined',
-        final_project = 'file to upload per participant',
-        manager = random.choice(Speaker.objects.all()),
+        name = "project {n}"
+        project = random.choice(Project.objects.all())
+        start_date = ('2021-09-09')
+        due_date = ('2021-10-10')
+        group_Institution = random.choice(Group.objects.all())
+        final_project = 'file to upload per participant'
+        manager = random.choice(Speaker.objects.all())
     
         t = Team(
+            name=name,
             project = project,
             start_date =start_date,
             due_date = due_date,
             group_Institution = group_Institution,
-            participants = participants,
-            tasks = tasks,
             final_project = final_project,   
             manager = manager,
         )
 
         t.save()
-        print(f'Team:{team.id}')
+        members = list(Student.objects.order_by('id')[:5])
+
+        nbr = 4
+        t.participants.add(random.sample(members,nbr))
+        print(f'Team:{t.id}')
 
     
     print(f"Finished...{n} Teams populated.")
 
 
 
+def pop_mission_projects(n):
+    for project in range(n):
+        project = random.choice(Project.objects.all())
+        mission = random.choice(Mission.objects.all())
+        completed = False
+        created_date = '2020-09-08'
+        due_date = '2020-10-10'
+        attributed_to = random.choice(Student.objects.all())
+
+        mp = MissionsProject(
+            project=project,
+            mission=mission,
+            completed=completed,
+            created_date=created_date,
+            due_date=due_date,
+            attributed_to=attributed_to
+        )
+        mp.save()
+        print(f'mp:{mp.id}')

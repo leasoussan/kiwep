@@ -60,13 +60,14 @@ class Mission(models.Model):
 
 class Project(models.Model):
     name = models.CharField(max_length=200)
+    title = models.CharField(max_length=300)
     description = models.TextField()
     time_to_complet = models.PositiveIntegerField()
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
     difficulty = models.ForeignKey(Level, on_delete=models.CASCADE) 
     completed = models.BooleanField(default =False)
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-    mission = models.ManyToManyField(Mission, through = 'MissionsProject')
+    mission = models.ManyToManyField(Mission, through = 'MissionsProject', blank =True)
 
     objects = ProjectModelManager()
 

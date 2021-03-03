@@ -1,15 +1,52 @@
-
-{% extends 'base.html' %}
+{% extends 'baseb.html' %}
 
 {% block content %}
+
 <h2>Login</h2>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Login">
-</form>
+<body class="auth-page sign-in">
 
 
-<a href="{% url 'password_reset' %}">Reset password</a>
-{% endblock %}
+    <div class="connect-container align-content-stretch d-flex flex-wrap">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="auth-form">
+                        <div class="row">
+                            <div class="col">
+                                <div class="logo-box"><a href="#" class="logo-text">Kiwep Platform</a></div>
+                                <form>
+
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <button type="submit"
+                                            class="btn btn-primary btn-block btn-submit">LogIn</button>
+                                    </form>
+
+
+                                    <div class="auth-options">
+                                        <div class="custom-control custom-checkbox form-group">
+                                            <input type="checkbox" class="custom-control-input" id="exampleCheck1">
+                                            <label class="custom-control-label" for="exampleCheck1">Remember me</label>
+                                        </div>
+                                        <a href="{{ 'password_reset' }}" class="forgot-link">Forgot Password?</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block d-xl-block">
+                    <div class="auth-image">
+                        <img src="#" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <a href="{% url 'password_reset' %}">Reset password</a>
+    {% endblock %}

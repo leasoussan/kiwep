@@ -23,12 +23,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
-    path('backend/', include('backend.urls')),
-    path('content/', include('content.urls')),
+    path('', include('backend.urls')),
+    path('', include('content.urls')),
    
     path('message/', include('content.urls')),
     path('todo/', include('todo.urls')),
-    path('content/', include('content.urls')),
+  
 
      # to add the api module 
     path('api/content/', include('content.api.urls')),

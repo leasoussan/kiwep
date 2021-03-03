@@ -4,14 +4,29 @@
 
 Create Team 
 
-<form action="", method="POST">
+<div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
+    <div class="container">
+        <h2>Create new Project</h2>
+        <div class="cart-wrap">
+            <form>
+                <table class="cart-table">
+                    <form action="", method="POST">
 
-    {% csrf_token %}
-    {{form.as_p}}
+                        {% csrf_token %}
+                        {{form|crispy }}
+                    
+                        <button class="btn-shop orange-color" type="submit" value="Save">SAVE</button>
+                    </form>
+                </table>
+            </form>
+            
+            </div>
+        </div>
+    </div>
 
-    <button type="submit" value="Save">SAVE</button>
-</form>
 
-<a href="{% url 'team_list' %}">List Team </a>
+
+
+<a class="btn-shop orange-color" href="{% url 'team_list' %}">List Team </a>
 
 {% endblock %}

@@ -1,29 +1,107 @@
-{% extends 'base.html' %}
-
+{% extends 'baseb.html' %}
+{% load static %}
 
 {% block content %}
 
 
 
-{% if user.profile.name == 'representative' %}
-
-{% include 'backend/representative_dashboard.html' %}
-repre
-
-{% elif user.profile.name == 'speaker' %}
-
-{% include 'backend/speaker_dashboard.html' %}
 
 
 
+<div class="page-content">
+    <div class="page-container">
+        <div class="main-wrapper">
+            <div class="row stats-row">
+                <div class="col-lg-4 col-md-12">
+                    <div class="card card-transparent stats-card">
+                        <div class="card-body">
+                            {% if user.profile.name == 'representative' %}
 
-{% elif user.profile.name  == 'student' %}
+                            {% include 'backend/representative_dashboard.html' %}
+                            repre
 
-{% include 'backend/student_dashboard.html' %}
+                            {% elif user.profile.name == 'speaker' %}
 
-student
+                            {% include 'backend/speaker_dashboard.html' %}
 
-{% endif %}
 
+
+
+                            {% elif user.profile.name  == 'student' %}
+
+                            {% include 'backend/student_dashboard.html' %}
+
+                            student
+
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="card card-transparent stats-card">
+                        <div class="card-body">
+                            part 2
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="card card-transparent stats-card">
+                        <div class="card-body">
+                            part 3
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card savings-card">
+                        <div class="card-body">
+                            part 4
+                        </div>
+                    </div>
+                    <div class="card top-products">
+                        <div class="card-body">
+
+                            Others
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            Other
+                        </div>
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+<!-- Javascripts -->
+<script src="../../backend/plugins/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../backend/plugins/bootstrap/popper.min.js"></script>
+<script src="../../backend/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../backend/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="../../backend/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+<script src="../../backend/plugins/apexcharts/dist/apexcharts.min.js"></script>
+<script src="../../backend/plugins/blockui/jquery.blockUI.js"></script>
+<script src="../../backend/plugins/flot/jquery.flot.min.js"></script>
+<script src="../../backend/plugins/flot/jquery.flot.time.min.js"></script>
+<script src="../../backend/plugins/flot/jquery.flot.symbol.min.js"></script>
+<script src="../../backend/plugins/flot/jquery.flot.resize.min.js"></script>
+<script src="../../backend/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="../../backend/js/connect.min.js"></script>
+<script src="../../backend/js/pages/dashboard.js"></script>
+</body>
 
 {% endblock %}

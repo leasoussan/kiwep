@@ -8,7 +8,7 @@ from .views import *
 
 urlpatterns = [
 
-    path('homepage/', homepage_view, name = 'homepage'),
+    path('', homepage_view, name = 'homepage'),
     # project
     path('project-list/', ProjectListView.as_view(), name = "project_list"),
     path('project-detail/<int:pk>', ProjectDetailView.as_view(), name = "project_detail"),
