@@ -334,13 +334,14 @@ def pop_team(n):
         )
 
         t.save()
-        members = list(Student.objects.order_by('id')[:5])
+        members = list(Student.objects.all())
 
-        nbr = 4
-        t.participants.add(random.sample(members,nbr))
+        t.participants.add(*random.sample(members, 4))
         print(f'Team:{t.id}')
 
-    
+# * to unpack a list (as we cant give a list) 
+# ** to unpack a dict
+#  
     print(f"Finished...{n} Teams populated.")
 
 
@@ -364,3 +365,5 @@ def pop_mission_projects(n):
         )
         mp.save()
         print(f'mp:{mp.id}')
+
+

@@ -39,17 +39,15 @@ class MyUserCreationForm(UserCreationForm):
     
 
 
-# Form To change Basic Info- name -user or password 
-class MyUserChangeForm(UserChangeForm):
 
-    class Meta:
-        model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+
 
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
+            'first_name', 
+            'last_name',
             'phone_number',
             'profile_pic', 
             'city']
@@ -74,8 +72,6 @@ class RepresentativeProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Representative
         exclude = ['user'] 
-
-
 
 
 

@@ -3,14 +3,14 @@ from django.contrib.auth.admin import UserAdmin
 
 
 
-from .forms import MyUserCreationForm, MyUserChangeForm
+from .forms import UserForm, MyUserCreationForm
 from django.contrib.auth import get_user_model
 
 from .models import MyUser, Student, Speaker, Representative, City, Country
 
 class CustomUserAdmin(UserAdmin):
     add_form = MyUserCreationForm
-    form = MyUserChangeForm
+    form = UserForm
     model = get_user_model
     list_display = ['id', 'email', 'username',]
 

@@ -9,11 +9,12 @@ from django.views.generic import View
 from django.urls import reverse
 from .forms import (
     MyUserCreationForm,
-    MyUserChangeForm,
+    UserForm,
     StudentProfileCreationForm, 
     SpeakerProfileCreationForm, 
     RepresentativeProfileCreationForm,
     UserForm,
+ 
 )
 from django.urls import reverse_lazy
 from django.contrib.auth.views import redirect_to_login
@@ -65,22 +66,30 @@ class Register(View):
 # -----------------------------------------------------------------------------------------------
 
 
-def get_user_profile_form(request, usertype): 
-    
+def get_user_profile_form(request, usertype, edit=False): 
+    if edit: 
+        instance = request.user.profile() 
+    else: 
+        instance = None
+
+
     data = request.POST or None 
 
     if  usertype == 'student':
-        profile_form = StudentProfileCreationForm(data)
+        profile_form = StudentProfileCreationForm(data, instance=instance )
        
 
     elif usertype  == 'speaker':  
-        profile_form =SpeakerProfileCreationForm(data)
+        profile_form =SpeakerProfileCreationForm(data, instance=instance)
     
 
     elif usertype == 'representative':
-        profile_form =  RepresentativeProfileCreationForm(data)
+        profile_form =  RepresentativeProfileCreationForm(data, instance=instance)
     
     return profile_form
+
+
+
 
 
 # -----------------------------------------------------------------------------------------------
@@ -116,60 +125,32 @@ class ProfileView(LoginRequiredMixin, View):
     def get(self, request, id):
         user = MyUser.objects.get(id=id)
         profile = user.profile
-        return render(request, 'accounts/profile/profile.html', {'usertype':user, 'form': profile})
+        return render(request, 'accounts/profile/profile.html', {'user':user, 'profile': profile})
 
-
-# def profile(request):
-#     return render(request, 'accounts/profile/profile.html')
 
 
 
 # ----------------------------------------------------------------------------
 
     
-class EditProfile(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView): 
+class EditProfile(LoginRequiredMixin, ProfileCheckPassesTestMixin, View): 
    
-    def get(self, request , id):
-        user_form = MyUserChangeForm(instance =request.user)
-        profile_form = get_user_profile_form(request, usertype)  
-        return render(request, 'accounts/profile/edit_profile.html', {'user':user_form})
+    def get(self, request):
+        user_form = UserForm(instance =request.user)
+        profile_form = get_user_profile_form(request, request.user.get_user_type(), edit =True) 
+        
+        return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'profile_form': profile_form})
         
 
-    def post(self, request,  id=None):
-        user_form = MyUserChangeForm(request.POST)
-
-        if user_form.is_valid():
-            user_form.save()
-
-            return redirect('profile')
-
-        return render(request, 'accounts/profile/edit_profile.html', {'user':user_form})
-
-
-
-    
-def edit_profile(request, id=None):
-    usertype = request.user.get_user_type
-    if request.method == 'POST':
-        user_form = MyUserChangeForm(request.POST,request.FILES,instance=request.user)
-        profile_form = get_user_profile_form(request, usertype)  
-
+    def post(self, request):
+        user_form = UserForm(request.POST, instance = request.user)
+        profile_form = get_user_profile_form(request, request.user.get_user_type(), edit =True) 
         if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            updated_form = profile_form.save(False)
-            updated_form.user = user
-            updated_form.save()
-            return redirect('profile')
-        
-    else:
-        user_form = MyUserChangeForm(instance=request.user)
-        profile_form = get_user_profile_form(request, usertype)  
- 
-        args = {
-            'user_form': user_form,
-            'edit_profile' : profile_form
-        }
-      
-        return render(request, 'accounts/edit_profile.html', args)
+            user_form.save()
+            profile_form.save()
+            return redirect('profile',request.user.id)
+
+        return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'profile_form': profile_form})
+
 
 
