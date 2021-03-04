@@ -1,6 +1,8 @@
 from django.urls import path
-from . import views 
+from .views import  (
+    my_inbox,
+)
 
 urlpatterns = [
-    
+    path('my_inbox', my_inbox, name= 'my_inbox')   
 ]

@@ -1,0 +1,38 @@
+{% extends 'baseb.html' %}
+
+
+{% block content %}
+<div class="page-content">
+    <div class="page-info">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Apps</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Calendar</li>
+            </ol>
+        </nav>
+        <div class="page-options">
+            <a href="#" class="btn btn-primary">Add Event</a>
+        </div>
+    </div>
+    <div class="main-wrapper">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div id='calendar'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+<div class="mailbox-compose-overlay"></div>
+<div class="mailbox-item-overlay"></div>
+
+{% endblock %}
+
+

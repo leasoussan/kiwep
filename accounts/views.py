@@ -120,12 +120,14 @@ class CreateProfile(View):
 # -----------------------------------------------------------Profile
 
 
-class ProfileView(LoginRequiredMixin, View):
+class MyProfileView( View):
 
     def get(self, request, id):
         user = MyUser.objects.get(id=id)
-        profile = user.profile
-        return render(request, 'accounts/profile/profile.html', {'user':user, 'profile': profile})
+        profile_view = user.profile
+        return render(request, 'accounts/profile/profile.html', {'user':user, 'profile_view': profile_view})
+
+
 
 
 

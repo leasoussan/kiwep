@@ -26,7 +26,7 @@ urlpatterns = [
     path('', include('backend.urls')),
     path('', include('content.urls')),
    
-    path('message/', include('content.urls')),
+    path('message/', include('message.urls')),
     path('todo/', include('todo.urls')),
   
 

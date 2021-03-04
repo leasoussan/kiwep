@@ -11,31 +11,10 @@ User = get_user_model()
 @login_required
 @user_passes_test(check_profile, login_url= 'create_profile/')
 def dashboard(request):
-    # projects = Project.objects.get_speaker_projects(request.user)
-    # teams = Team.objects.get_speaker_teams(request.user)
-    # missions = Mission.objects.get_speaker_missions(request.user)
-    # resources = Resource.objects.get_speaker_resources(request.user)
-    # context = {
-    #     'projects': projects,
-    #     'teams':teams,
-    #     'resources':resources,
-    #     'missions': missions,
-    # }
-    
+
     return render(request, "backend/general_dashboard.html" )
 
-
-
-# def speaker_dashboard_content():
-#     projects = Project.objects.get_speaker_projects(user)
-#     teams = Team.objects.get_speaker_teams(user)
-#     missions = Mission.objects.get_speaker_missions(user)
-#     resources = Resource.objects.get_speaker_resources(user)
-#     context = {
-#         'projects': projects,
-#         'teams':teams,
-#         'resources':resources,
-#         'missions': missions,
-#     }
-#     return context
-
+@login_required
+@user_passes_test(check_profile, login_url = 'create_profile')
+def my_calendar_view(request):
+    return render(request, 'backend/my_calendar.html')

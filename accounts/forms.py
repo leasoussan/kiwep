@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.conf import settings
 from django import forms
 from django.db import transaction 
-from .models import Student, Speaker, Representative
+from .models import Student, Speaker, Representative, MyUser
 
 from django.contrib.auth import get_user_model
 
@@ -22,7 +22,7 @@ class MyUserCreationForm(UserCreationForm):
     usertype = forms.ChoiceField(choices=USER_TYPE)
     
     class Meta:
-        model = User
+        model = MyUser
         fields = ['username', 'email', 'password1', 'password2']
 
     
@@ -44,7 +44,7 @@ class MyUserCreationForm(UserCreationForm):
 
 class UserForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = MyUser
         fields = [
             'first_name', 
             'last_name',
