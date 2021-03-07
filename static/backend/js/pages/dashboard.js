@@ -193,7 +193,7 @@ $(document).ready(function() {
             shadeIntensity: 0,
             opacityFrom: .6,
             opacityTo: .2,
-            colors: ['#5FD0A5'],
+            colors: ['425940'],
             stops: [0, 100]
         }
       },
@@ -201,7 +201,7 @@ $(document).ready(function() {
         borderColor: 'rgba(94, 96, 110, .5)',
         strokeDashArray: 4
       },
-      colors:['#5FD0A5'],
+      colors:['425940'],
       legend: {
         show: true,
         position: 'top'
