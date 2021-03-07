@@ -1,10 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'baseb.html' %}
 
 {% block content %}
 
+
 <div id="rs-page-error" class="rs-page-error">
     <div class="error-text">
-        <h2>Do you want to delete the team {{ team.name }}</h2>
+        <h2>Do you want to delete the Project {{ project.name }}</h2>
         <h3 class="error-message">Page Not Found</h3>
         <form action="" method="POST">
             {% csrf_token %}
@@ -12,10 +13,8 @@
         
             <button type="submit" value="delete">Delete</button>
         </form>
-        <a class="readon orange-btn" href='team_list' >Back to Team List</a>
+        <a class="readon orange-btn" href='projects_list' >Back to Projects</a>
     </div>
 </div>
-
-
 
 {% endblock %}

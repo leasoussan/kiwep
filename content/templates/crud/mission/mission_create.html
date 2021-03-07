@@ -1,12 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'baseb.html' %}
 
+{% load crispy_forms_tags %}
 {% block content %}
 
-Create Team 
 
 <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
     <div class="container">
-        <h2>Create new Project</h2>
+        <h2>Create new Mission</h2>
         <div class="cart-wrap">
             <form>
                 <table class="cart-table">
@@ -27,6 +27,6 @@ Create Team
 
 
 
-<a class="btn-shop orange-color" href="{% url 'team_list' %}">List Team </a>
 
+<a class="btn-shop orange-color"  href="{% url 'mission_list' %}">List Mission </a>
 {% endblock %}

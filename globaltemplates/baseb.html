@@ -52,12 +52,12 @@
 
 <body>
 
-    {% if user.is_authenticated %}
+    {% if request.user.is_authenticated %}
 
     <div class="connect-container align-content-stretch d-flex flex-wrap">
         <div class="page-sidebar">
-            <div class="logo-box"><a href="{% url 'homepage' %}" class="logo-text">KIWEP</a><a href="#" id="sidebar-close"><i
-                        class="material-icons">close</i></a> <a href="#" id="sidebar-state"><i
+            <div class="logo-box"><a href="{% url 'homepage' %}" class="logo-text">KIWEP</a><a href="#"
+                    id="sidebar-close"><i class="material-icons">close</i></a> <a href="#" id="sidebar-state"><i
                         class="material-icons">adjust</i><i
                         class="material-icons compact-sidebar-icon">panorama_fish_eye</i></a></div>
             <div class="page-sidebar-inner slimscroll">
@@ -69,17 +69,17 @@
                         <a href="{% url 'dashboard' %}" class="active"><i
                                 class="material-icons-outlined">dashboard</i>Dashboard</a>
                     </li>
-                  
+
                     <li>
                         <a href="{% url 'profile' user.id %}"><i
                                 class="material-icons-outlined">account_circle</i>Profile</a>
                     </li>
-                   
-                  
+
+
                     <li>
                         <a href="{% url 'frontend_list' %}"><i class="material-icons">done</i>Todo</a>
                     </li>
-                    
+
 
 
                 </ul>
@@ -147,8 +147,9 @@
                     </div>
                 </nav>
             </div>
+            {% endif %}
             <div class="page-content">
-                {% endif %}
+                
                 {% block content %}
 
 
@@ -207,10 +208,10 @@
 
             <!-- Mailbox Script  -->
             <script src="{% static 'backend/js/pages/mailbox.js' %}"></script>
-            
+
             {% endblock %}
 
-            </div>
-            </div>
-            
+        </div>
+    </div>
+
 </body>

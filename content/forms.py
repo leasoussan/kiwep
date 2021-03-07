@@ -42,6 +42,7 @@ class MissionAddForm(ModelForm):
             'level',
             'description',
             'resources',
+            'points'
             
         ]
 

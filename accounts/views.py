@@ -156,3 +156,8 @@ class EditProfile(LoginRequiredMixin, ProfileCheckPassesTestMixin, View):
 
 
 
+# @user_passes_test(login_check, login_url='/homepage/')
+# def login_page(request):
+
+#     return render(request, 'homepage.html')
+    

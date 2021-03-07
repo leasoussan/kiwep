@@ -20,7 +20,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin
 
 class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     model = Mission
-    template_name = 'content/mission/mission_list.html'    
+    template_name = 'crud/mission/mission_list.html'    
     context_object_name = 'mission_list'
 
 
@@ -30,7 +30,7 @@ class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
 
 class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
     model = Mission
-    template_name = 'content/mission/mission_detail.html'    
+    template_name = 'crud/mission/mission_detail.html'    
     
 
     def get_object(self):
@@ -43,7 +43,7 @@ class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailVi
 class MissionCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
     model = Mission
     form_class = MissionAddForm 
-    template_name = 'content/mission/mission_create.html'  
+    template_name = 'crud/mission/mission_create.html'  
 
 
     def form_valid(self, form):
@@ -61,10 +61,10 @@ class MissionUpdateView(LoginRequiredMixin,ProfileCheckPassesTestMixin, UpdateVi
             'description',
             'completed',
             'resources',]
-    template_name = 'content/mission/mission_create.html'  
+    template_name = 'crud/mission/mission_create.html'  
 
 
 class MissionDeleteView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DeleteView):
     model = Mission
-    template_name = 'content/mission/mission_delete.html' 
+    template_name = 'crud/mission/mission_delete.html' 
     success_url = reverse_lazy('mission_list')

@@ -1,11 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'baseb.html' %}
 
-{% block content %}
 {% load crispy_forms_tags %}
-    
+{% block content %}
 
-
-CREATE Resource
+Create Team 
 
 <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
     <div class="container">
@@ -13,7 +11,7 @@ CREATE Resource
         <div class="cart-wrap">
             <form>
                 <table class="cart-table">
-                    <form method="POST" enctype="multipart/form-data">
+                    <form action="", method="POST">
 
                         {% csrf_token %}
                         {{form|crispy }}
@@ -30,7 +28,6 @@ CREATE Resource
 
 
 
+<a class="btn-shop orange-color" href="{% url 'team_list' %}">List Team </a>
 
-<a class="btn-shop orange-color" href="{% url 'resource_list' %}">List Resource </a>
- 
 {% endblock %}

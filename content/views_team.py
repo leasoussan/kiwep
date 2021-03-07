@@ -21,14 +21,14 @@ from accounts.mixin import ProfileCheckPassesTestMixin
 
 class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     model = Team
-    template_name = 'content/team/team_list.html'
+    template_name = 'crud/team/team_list.html'
     context_object_name = 'team_list'
 
 
 
 class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
     model = Team
-    template_name = 'content/team/team_detail.html'
+    template_name = 'crud/team/team_detail.html'
 
     def get_object(self):
         pk = self.kwargs.get("pk")
@@ -38,7 +38,7 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
 class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
     model = Team 
     form_class = TeamAddForm
-    template_name = 'content/team/team_create.html'
+    template_name = 'crud/team/team_create.html'
     
     def form_valid(self, form):
         self.object = form.save(commit = False)
@@ -50,7 +50,7 @@ class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView
 class TeamUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):
     model = Team 
     field = ['name', 'project', 'start_date', 'due_date', 'group_Institution', 'participants', 'tasks' ,'final_project'] 
-    template_name = 'content/team/team_update.html'
+    template_name = 'crud/team/team_update.html'
     success_url = ('team_detail')
 
 
@@ -61,7 +61,7 @@ class TeamUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView
 
 class TeamDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
     model = Team
-    template_name = 'content/team/team_delete.html'
+    template_name = 'crud/team/team_delete.html'
     success_url = reverse_lazy('team_list')
 
     def get_object(self):

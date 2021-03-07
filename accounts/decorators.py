@@ -1,5 +1,7 @@
 from .models import Student, Speaker, Representative
+from django.shortcuts import redirect
 
+from django.http import HttpResponse
 
 
 def check_profile(user):
@@ -14,3 +16,11 @@ def check_profile(user):
         user =  Representative.objects.filter(user=user).exists()
 
     return user
+
+
+
+# def login_check(user):
+#     if user.is_authenticated:
+#         return redirect('homepage.html') 
+#     else:
+#         return redirect('login.html')

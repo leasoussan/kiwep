@@ -16,12 +16,27 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(MyUser, CustomUserAdmin)
 
-admin.site.register(Student)
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+    pass
 
-admin.site.register(Speaker)
-admin.site.register(Representative)
+
+@admin.register(Speaker)
+class SpeakerAdmin(admin.ModelAdmin):
+    pass
 
 
-admin.site.register(City)
-admin.site.register(Country)
+@admin.register(Representative)
+class RepresentativeAdmin(admin.ModelAdmin):
+    pass
 
+
+
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Country)
+class CountryAdmin(admin.ModelAdmin):
+    pass

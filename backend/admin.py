@@ -2,9 +2,30 @@ from django.contrib import admin
 from .models import Field, Institution, InstitutionCategory, Level, Group
 
 
-admin.site.register(Field)
-admin.site.register(InstitutionCategory)
-admin.site.register(Institution)
 
-admin.site.register(Level)
-admin.site.register(Group)
+
+@admin.register(Field)
+class FieldAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(InstitutionCategory)
+class InstitutionCategoryAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Institution)
+class InstitutionAdmin(admin.ModelAdmin):
+    pass
+
+
+
+
+@admin.register(Level)
+class LeveAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Group)
+class GroupAdmin(admin.ModelAdmin):
+    pass

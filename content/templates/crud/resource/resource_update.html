@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+d{% extends 'baseb.html' %}
 
 {% block content %}
 
-Edit Team 
+Resource update {{ resource.name }}
 
 <form action="", method="POST">
 
@@ -13,6 +13,7 @@ Edit Team
 </form>
 
 
-<a href="{% url 'delete_team' pk %}">Delete Team </a>
+
+<a href="{% url 'delete_resource' pk %}">Delete Resource </a>
 
 {% endblock %}
