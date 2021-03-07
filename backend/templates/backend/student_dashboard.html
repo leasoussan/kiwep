@@ -19,69 +19,148 @@ Hello, {{ user.username|default:'Guest' }}!
     Student Dashboard 
 
 
+    <div class="main-wrapper">
+        <div class="row stats-row">
+            <div class="col-lg-8">
+                <div class="card card-transactions">
+                    <div class="card-body">
+                        <h5 class="card-title">Projects<a href="#" class="card-title-helper blockui-transactions"><i
+                                    class="material-icons">refresh</i></a></h5>
+                        <a href="{% url 'create_project' %}">Create Project</a>
+                        <a href="{% url 'project_list' %}">project List</a>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Group</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for team in user.profile.team_set.all %}
+                            
+
+                                    <tr>
+                                        <td> {{team.project.id}}</td>
+                                        <td> {{team.project.name}}</td>
+                                        <td> {{team.project.field}}</td>
+                                        <td> {{team.project.completed}}</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-lg-4 col-md-12">
+                <div class="card card-transparent stats-card">
+                    <div class="card-body">
+                        <div class="stats-info">
+                            <h5 class="card-title">TEAMS<span
+                                    class="stats-change stats-change-success">{{user.team_manager.all.count}}</span>
+                            </h5>
+
+                            <a href="{% url 'create_team' %}">Create team</a>
+                            <a href="{% url 'team_list' %}">team List</a>
+                            {% for team in user.profile.team_set.all %}
+                            
+                            <div class="product-item">
+                                <h5>{{ team.name }}</h5><li>
+                                
+                                    <ul>
+                                       <li> Name : {{ team.name }}</li>
+                                       <li>Speaker :{{team.manager}}</li>
+                                    </ul>
+                                    
+                              
+                                {% for student in team.participants.all %}
+                            
+                                username -student: {{student.user.username}}
+                                {% endfor %}
+                                </li>
+                                
+                                {% endfor %}
+                            </div>
+                        
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="card card-transparent stats-card">
+                    <div class="card-body">
+                        <div class="stats-info">
+                            <h5 class="card-title">Missions<span
+                                    class="stats-change stats-change-success">#Missions</span></h5>
+
+                            <a href="{% url 'create_mission' %}">Create mission</a>
+                            <a href="{% url 'mission_list' %}">Mission List</a>
+
+
+                            <div class="top-products-list">
+
+
+                                {% for mission in user.my_mission.all %}
+                           
+                                <div class="product-item">
+                                    <h5>{{ mission.name }}</h5>
+                                    <span>4,037 downloads</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="card card-transparent stats-card">
+
+                    <div class="card-body">
+                        <div class="stats-info">
+                            <h5 class="card-title">Resource<span class="stats-change stats-change-success">nbr
+                                    of Rsc</span></h5>
+                            <a href="{% url 'create_resource' %}">Create Resource</a>
+                            <a href="{% url 'resource_list' %}">Resource List</a>
+
+                            <div class="top-products-list">
+
+                                {% for mission in user.my_mission.all %}
+                                {% for resource in mission.resources.all %}
+
+                                <div class="product-item">
+                      
+                                    {{resource.name}}
+                                  
+                              
+                           
+
+                                </div>
+                                {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </div>
+
+
 
    
-<div>
-    Projects 
-    <a href="{% url 'create_project' %}">Create Project</a> 
-    <a href="{% url 'project_list' %}">project List</a>
-    Top Projects
-
-    {% for team in user.profile.team_set.all %}
-    {{team.project.name}}
-    {% endfor %}
-
-</div>
-
-<div>
-    My Teams
-    <a href="{% url 'create_team' %}">Create team</a> 
-    <a href="{% url 'team_list' %}">team List</a>
-    Top teams
-<ul>
-    {% for team in user.profile.team_set.all %}
-    <li>
-        <ul>
-           <li> Name : {{ team.name }}</li>
-           <li>Speaker :{{team.manager}}</li>
-        </ul>
-        
-  
-    {% for student in team.participants.all %}
-
-    username -student: {{student.user.username}}
-    {% endfor %}
-    </li>
-    
-    {% endfor %}
-
-
-</ul>
-    
-</div>
-
-<div>
-    My Missions
-    <a href="{% url 'create_mission' %}">Create mission</a> 
-    <a href="{% url 'mission_list' %}">Mission List</a>
-  
-
-    {% for mission in user.my_mission.all %}
-    {{mission.name}}
-    {% endfor %}
-
-
-</div>
-<div>
-    My Resources 
-    <a href="{% url 'create_resource' %}">Create Resource</a> 
-    <a href="{% url 'resource_list' %}">Resource List</a>
-  
-
-    {% for mission in user.my_mission.all %}
-    {% for resource in mission.resources.all %}
-    {{resource.name}}
-    {% endfor %}
-    {% endfor %}
