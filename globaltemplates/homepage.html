@@ -1,83 +1,23 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
 
 <body class="defult-home">
         
-    <!--Preloader area start here-->
-    <div id="loader" class="loader green-color">
-        <div class="loader-container">
-            <div class='loader-icon'>
-                <img src="assets/images/pre-logo.png" alt="">
-            </div>
-        </div>
-    </div>
-    <!--Preloader area End here-->  
+   
 
 
-<div>
-    {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Logout</a>
-        <a href="{% url 'password_change' %}">Change password</a>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a>
-    {% endif %}
-</div>
-
-
-            <!-- Canvas Menu start -->
-            <nav class="right_menu_togle hidden-md">
-                <div class="close-btn">
-                    <span id="nav-close">
-                        <div class="line">
-                            <span class="line1"></span><span class="line2"></span>
-                        </div>
-                    </span>
-                </div>
-                <div class="canvas-logo">
-                    <a href="index.html"><img src="assets/images/logo-dark.png" alt="logo"></a>
-                </div>
-                <div class="offcanvas-text">
-                    <p>We denounce with righteous indige nationality and dislike men who are so beguiled and demo  by the charms of pleasure of the moment data com so blinded by desire.</p>
-                </div>
-                <div class="offcanvas-gallery">
-                    <div class="gallery-img">
-                        <a class="image-popup" href="assets/images/gallery/1.jpg"><img src="assets/images/gallery/1.jpg" alt=""></a>
-                    </div>
-                    <div class="gallery-img">
-                        <a class="image-popup" href="assets/images/gallery/2.jpg"><img src="assets/images/gallery/2.jpg" alt=""></a>
-                    </div>
-                    <div class="gallery-img">
-                        <a class="image-popup" href="assets/images/gallery/3.jpg"><img src="assets/images/gallery/3.jpg" alt=""></a>
-                    </div>
-                    <div class="gallery-img">
-                        <a class="image-popup" href="assets/images/gallery/4.jpg"><img src="assets/images/gallery/4.jpg" alt=""></a>
-                    </div>
-                    <div class="gallery-img">
-                        <a class="image-popup" href="assets/images/gallery/5.jpg"><img src="assets/images/gallery/5.jpg" alt=""></a>
-                    </div>
-                    <div class="gallery-img">
-                        <a class="image-popup" href="assets/images/gallery/6.jpg"><img src="assets/images/gallery/6.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="map-img">
-                    <img src="assets/images/map.jpg" alt="">
-                </div>
-                <div class="canvas-contact">
-                    <ul class="social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </nav>
-            <!-- Canvas Menu end -->
+          
         </header>
         <!--Header End-->
     </div>
     <!--Full width header End-->
+
+
+
+
+
 
     <!-- Main content Start -->
     <div class="main-content">
@@ -87,16 +27,16 @@
                 <div class="row">
                     <div class="col-lg-6 pl-60 order-last">
                         <div class="img-part">
-                           <img class="up-down-new" src="assets/images/banner/home12/1.png" alt="">
+                           <img class="#" src="{% static 'front_end/images/kiwep/random.png' %}" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6 pr-0">
                         <div class="banner-content">
-                           <div class="sl-sub-title wow bounceInLeft" data-wow-delay="300ms" data-wow-duration="2000ms">Freelancer Courses</div>
-                            <h1 class="sl-title wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="3000ms">We Proudly Teaching Online Courses With Online Experts.
+                           <div class="sl-sub-title wow bounceInLeft" data-wow-delay="300ms" data-wow-duration="2000ms">Educational Projects</div>
+                            <h1 class="sl-title wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="3000ms">The Future of Learning
                             </h1>
                             <div class="banner-btn wow fadeInUp" data-wow-delay="1500ms" data-wow-duration="2000ms">
-                                <a class="readon green-banner" href="#">Get Started</a>
+                                <a class="readon green-banner" href="#">Institution Registration</a>
                             </div>
                         </div>
                     </div> 
@@ -104,38 +44,14 @@
             </div>
             <div class="banner-intro-box">
                 <div class="shape-img">
-                    <img class="up-down-new" src="assets/images/banner/home12/dotted-shape.png" alt="">
+                    <img class="up-down-new" src="{% static 'front_end/images/banner/home12/dotted-shape.png' %}" alt="">
                 </div>
-                <div class="intro-img">
-                    <img class="spine2" src="assets/images/banner/home12/intro-box.png" alt="">
-                </div>
+                
             </div>
         </div>
         <!-- Banner Section End -->
   
-        <!-- Partner Start -->
-        <div class="rs-partner style2 pt-100 md-pt-70">
-            <div class="container">
-                <div class="rs-carousel owl-carousel" data-loop="true" data-items="5" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="3" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="5" data-md-device-nav="false" data-md-device-dots="false">
-                    <div class="partner-item">
-                        <a href="#"><img src="assets/images/partner/style3/1.png" alt=""></a>
-                    </div>
-                    <div class="partner-item">
-                        <a href="#"><img src="assets/images/partner/style3/2.png" alt=""></a>
-                    </div>
-                    <div class="partner-item">
-                        <a href="#"><img src="assets/images/partner/style3/3.png" alt=""></a>
-                    </div>
-                    <div class="partner-item">
-                        <a href="#"><img src="assets/images/partner/style3/4.png" alt=""></a>
-                    </div>
-                    <div class="partner-item">
-                        <a href="#"><img src="assets/images/partner/style3/5.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Partner End -->
+
 
         <!-- Services Section Start -->
         <div id="rs-services" class="rs-services home12-style">
@@ -145,6 +61,8 @@
                     <h2 class="title purple-color">Explore Top Subjects</h2>
                 </div> 
                 <div class="row">
+                    {% for project in projects_lis %}
+
                     <div class="col-lg-4 md-mb-30">
                        <div class="services-item">
                            <div class="services-image">
@@ -163,42 +81,8 @@
                            </div>
                        </div> 
                     </div>  
-                    <div class="col-lg-4 md-mb-30">
-                       <div class="services-item">
-                           <div class="services-image">
-                               <div class="services-icons">
-                                   <img src="assets/images/services/home12/2.png" alt="">
-                               </div>
-                               <div class="services-text">
-                                   <div class="services-title">
-                                       <h2 class="title">Web Design</h2>
-                                   </div>
-                                   <p class="text">
-                                        Lorem ipsum dolor sit amet, conseced
-                                       tetur adipiscing elit, sed do eiusmod tempor dolore magna mere jan
-                                   </p>
-                               </div>
-                           </div>
-                       </div> 
-                    </div>  
-                    <div class="col-lg-4">
-                       <div class="services-item">
-                           <div class="services-image">
-                               <div class="services-icons">
-                                   <img src="assets/images/services/home12/3.png" alt="">
-                               </div>
-                               <div class="services-text">
-                                   <div class="services-title">
-                                       <h2 class="title">SEO Optimization</h2>
-                                   </div>
-                                   <p class="text">
-                                        Lorem ipsum dolor sit amet, conseced
-                                       tetur adipiscing elit, sed do eiusmod tempor dolore magna mere jan
-                                   </p>
-                               </div>
-                           </div>
-                       </div> 
-                    </div>
+                    {% endfor %}
+    
                 </div>
                 <div class="col-lg-12 text-center pt-45">
                     <a class="readon green-btn" href="#">View All Subjects </a>
@@ -207,322 +91,10 @@
         </div>
         <!-- Services Section End -->
 
-        <!-- Categories Section Start -->
-        <div id="rs-popular-courses" class="rs-popular-courses main-home home12-style pt-90 pb-100 md-pt-0 md-pb-0">
-            <div class="container">
-                <div class="sec-title4 text-center mb-45">
-                    <div class="sub-title">Select Courses</div>
-                    <h2 class="title black-color">Explore Popular Courses</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-30">
-                       <div class="courses-item">
-                            <div class="courses-grid">
-                                <div class="img-part">
-                                    <a href="#"><img src="assets/images/courses/home12/1.jpg" alt=""></a>
-                                </div>
-                                <div class="content-part">
-                                    <div class="info-meta">
-                                        <ul>                                                
-                                            <li class="ratings">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                (1 rating)
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="course-price">
-                                        <span class="price">Free</span>
-                                    </div>
-                                    <h3 class="title"><a href="#">Fitness Development Strategy Buildup Laoreet</a></h3>
-                                    <ul class="meta-part">
-                                        <li class="user">
-                                            <i class="fa fa-user"></i>
-                                             25 Students                                        
-                                        </li>
-                                        <li class="user">
-                                            <i class="fa fa-file"></i>
-                                            6 Lessons                                        
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                       </div>
-                    </div> 
-                    <div class="col-lg-4 col-md-6 mb-30">
-                       <div class="courses-item">
-                            <div class="courses-grid">
-                                <div class="img-part">
-                                    <a href="#"><img src="assets/images/courses/home12/2.jpg" alt=""></a>
-                                </div>
-                                <div class="content-part">
-                                    <div class="info-meta">
-                                        <ul>                                                
-                                            <li class="ratings">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                (1 rating)
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="course-price">
-                                        <span class="price">$40.00</span>
-                                    </div>
-                                    <h3 class="title"><a href="#">Artificial Intelligence Fundamental Startup.</a></h3>
-                                    <ul class="meta-part">
-                                        <li class="user">
-                                            <i class="fa fa-user"></i>
-                                             25 Students                                        
-                                        </li>
-                                        <li class="user">
-                                            <i class="fa fa-file"></i>
-                                            6 Lessons                                        
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                       </div>
-                    </div> 
-                    <div class="col-lg-4 col-md-6 mb-30">
-                       <div class="courses-item">
-                            <div class="courses-grid">
-                                <div class="img-part">
-                                    <a href="#"><img src="assets/images/courses/home12/3.jpg" alt=""></a>
-                                </div>
-                                <div class="content-part">
-                                    <div class="info-meta">
-                                        <ul>                                                
-                                            <li class="ratings">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                (1 rating)
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="course-price">
-                                        <span class="price">$35.00</span>
-                                    </div>
-                                    <h3 class="title"><a href="#">Computer Science Startup et Commodo.</a></h3>
-                                    <ul class="meta-part">
-                                        <li class="user">
-                                            <i class="fa fa-user"></i>
-                                             25 Students                                        
-                                        </li>
-                                        <li class="user">
-                                            <i class="fa fa-file"></i>
-                                            6 Lessons                                        
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                       </div>
-                    </div> 
-                    <div class="col-lg-4 col-md-6 md-mb-30">
-                       <div class="courses-item">
-                            <div class="courses-grid">
-                                <div class="img-part">
-                                    <a href="#"><img src="assets/images/courses/home12/4.jpg" alt=""></a>
-                                </div>
-                                <div class="content-part">
-                                    <div class="info-meta">
-                                        <ul>                                                
-                                            <li class="ratings">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                (1 rating)
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="course-price">
-                                        <span class="price">$32.00</span>
-                                    </div>
-                                    <h3 class="title"><a href="#">Testy & Delicious Food Recipes for Lunch Tellus</a></h3>
-                                    <ul class="meta-part">
-                                        <li class="user">
-                                            <i class="fa fa-user"></i>
-                                             25 Students                                        
-                                        </li>
-                                        <li class="user">
-                                            <i class="fa fa-file"></i>
-                                            6 Lessons                                        
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                       </div>
-                    </div> 
-                    <div class="col-lg-4 col-md-6 sm-mb-30">
-                       <div class="courses-item">
-                            <div class="courses-grid">
-                                <div class="img-part">
-                                    <a href="#"><img src="assets/images/courses/home12/5.jpg" alt=""></a>
-                                </div>
-                                <div class="content-part">
-                                    <div class="info-meta">
-                                        <ul>                                                
-                                            <li class="ratings">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                (1 rating)
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="course-price">
-                                        <span class="price">$22.00</span>
-                                    </div>
-                                    <h3 class="title"><a href="#">Lawyer Advance Mental Simulator Handle Nulla</a></h3>
-                                    <ul class="meta-part">
-                                        <li class="user">
-                                            <i class="fa fa-user"></i>
-                                             25 Students                                        
-                                        </li>
-                                        <li class="user">
-                                            <i class="fa fa-file"></i>
-                                            6 Lessons                                        
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                       </div>
-                    </div> 
-                    <div class="col-lg-4 col-md-6">
-                       <div class="courses-item">
-                            <div class="courses-grid">
-                                <div class="img-part">
-                                    <a href="#"><img src="assets/images/courses/home12/6.jpg" alt=""></a>
-                                </div>
-                                <div class="content-part">
-                                    <div class="info-meta">
-                                        <ul>                                                
-                                            <li class="ratings">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                (1 rating)
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="course-price">
-                                        <span class="price">$28.00</span>
-                                    </div>
-                                    <h3 class="title"><a href="#">Computer Fundamentals Basic Startup Ultricies</a></h3>
-                                    <ul class="meta-part">
-                                        <li class="user">
-                                            <i class="fa fa-user"></i>
-                                             25 Students                                        
-                                        </li>
-                                        <li class="user">
-                                            <i class="fa fa-file"></i>
-                                            6 Lessons                                        
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                       </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Categories Section End -->
+      
 
-        <!-- Choose Section Start -->
-        <div class="why-choose-us style3">
-            <div class="container">
-               <div class="row align-items-center">
-                   <div class="col-lg-6 js-tilt md-mb-40">
-                       <div class="img-part">
-                            <img src="assets/images/choose/home12/1.png" alt="">
-                        
-                       </div>
-                   </div>
-                   <div class="col-lg-6 pl-60 md-pl-15">
-                        <div class="sec-title3 mb-30">
-                            <h2 class=" title new-title margin-0 pb-15">Why Learn Here</h2>
-                            <div class="new-desc">Lorem ipsum dolor sit amet, ing elit, sed eius to mod tempors incididunt ut labore et dolore magna this aliqua.</div>
-                        </div>
-                        <div class="services-part mb-20">
-                            <div class="services-icon">
-                                <img src="assets/images/choose/home12/icon/1.png" alt="">
-                            </div>
-                            <div class="services-text">
-                                <h2 class="title"> Lower Learning Cost</h2>
-                                <p class="services-txt">  At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
-                            </div>
-                        </div> 
-                        <div class="services-part mb-20">
-                            <div class="services-icon">
-                                <img src="assets/images/choose/home12/icon/2.png" alt="">
-                            </div>
-                            <div class="services-text">
-                                <h2 class="title"> Learn With Experts</h2>
-                                <p class="services-txt">  At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
-                            </div>
-                        </div> 
-                        <div class="services-part">
-                            <div class="services-icon">
-                                <img src="assets/images/choose/home12/icon/3.png" alt="">
-                            </div>
-                            <div class="services-text">
-                                <h2 class="title">Different Course Variation</h2>
-                                <p class="services-txt">  At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
-                            </div>
-                        </div>
-                   </div> 
-               </div> 
-            </div>
-        </div>
-        <!-- Choose Section End -->
 
-        <!-- Counter Section End -->
-        <div class="rs-counter home12-style pt-80">
-            <div class="container">
-                <div class="row couter-area bg8">
-                    <div class="col-lg-3 col-md-6 md-mb-30">
-                        <div class="counter-item text-center">
-                            <h2 class="rs-count pr-0">50</h2>
-                            <span class="prefix">k</span>
-                            <h4 class="title mb-0">Enrolled Learners</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 md-mb-30">
-                        <div class="counter-item text-center">
-                            <h2 class="number rs-count kplus">70</h2>
-                            <h4 class="title mb-0">Enrolled Learners</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 sm-mb-30">
-                        <div class="counter-item text-center">
-                            <h2 class="rs-count plus">120</h2>
-                            <h4 class="title mb-0">Online Instructors</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="counter-item text-center">
-                            <h2 class="rs-count percent">99</h2>
-                            <h4 class="title mb-0">Satisfaction Rate</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Counter Section Start -->
+
     
         <!-- Faq Section Start -->
         <div class="rs-faq-part style1 pt-100 pb-100 md-pt-70 md-pb-70">
@@ -571,472 +143,19 @@
                           </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 padding-0 col-md-12">
-                        <div class="rs-free-contact">
-                            <div class="sec-title3">
-                                <h2 class="title white-color">Register Free Courses</h2>
-                            </div>
-                                <form id="contact-form" method="post" action="mailer.php">
-                                    <div class="row">
-                                        <div class="col-lg-6 mb-30 col-md-12">
-                                            <input class="from-control" type="text" id="name" name="name" placeholder="Name" required="">
-                                        </div> 
-                                        <div class="col-lg-6 mb-30 col-md-12">
-                                            <input class="from-control" type="text" id="name" name="email" placeholder="Email" required="">
-                                        </div>   
-                                        <div class="col-lg-6 mb-30 col-md-12">
-                                            <input class="from-control" type="text" id="name" name="phone" placeholder="Phone" required="">
-                                        </div>   
-                                        <div class="col-lg-6 mb-30 col-md-12">
-                                            <input class="from-control" type="text" id="name" name="subject" placeholder="Subject" required="">
-                                        </div>
-                                     
-                                        <div class="col-lg-12 mb-35">
-                                            <textarea class="from-control" id="message" name="message" placeholder=" Message" required=""></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-btn">
-                                        <input class=" readon submit-requset" type="submit" value="Submit-Requset">
-                                    </div>
-                            </form>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
         <!-- faq Section Start -->
 
-        <!-- Testimonial Section Start -->
-        <div class="rs-testimonial home12-style">
-            <div class="container">
-                <div class="sec-title4 mb-50 md-mb-30 text-center">
-                    <div class="sub-title primary">Testimonial</div>
-                    <h2 class="title mb-0">What Our Students Says</h2>
-                </div>
-                    <div class="rs-carousel owl-carousel" data-loop="true" data-items="3" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="true" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="1" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="3" data-md-device-nav="false" data-md-device-dots="false">
-                    <div class="testi-item">
-                        <div class="item-content-basic">
-                            <div class="desc"><img class="quote" src="assets/images/testimonial/home12/quote.png" alt="">Professional, responsive, and able to keep up with ever-changing demand and tight deadlines: That’s how I would describe Jeramy and his team at The Lorem Ipsum Company. When it comes to content marketing, you’ll definitely get the 5-star treatment from the Lorem Ipsum Company.</div>
-                            <div class="testi-content">
-                                <div class="img-wrap">
-                                    <img src="assets/images/testimonial/home12/1.jpg" alt="">
-                                </div>
-                                <div class="name">
-                                    Junita Mushenko
-                                </div>
-                                <span class="designation">Math Teacher</span>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="testi-item">
-                        <div class="item-content-basic">
-                            <div class="desc"><img class="quote" src="assets/images/testimonial/home12/quote.png" alt="">Professional, responsive, and able to keep up with ever-changing demand and tight deadlines: That’s how I would describe Jeramy and his team at The Lorem Ipsum Company. When it comes to content marketing, you’ll definitely get the 5-star treatment from the Lorem Ipsum Company.</div>
-                            <div class="testi-content">
-                                <div class="img-wrap">
-                                    <img src="assets/images/testimonial/home12/2.jpg" alt="">
-                                </div>
-                                <div class="name">
-                                   Sonia Akhter
-                                </div>
-                                <span class="designation">Chemisty Teacher</span>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="testi-item">
-                        <div class="item-content-basic">
-                            <div class="desc"><img class="quote" src="assets/images/testimonial/home12/quote.png" alt="">Professional, responsive, and able to keep up with ever-changing demand and tight deadlines: That’s how I would describe Jeramy and his team at The Lorem Ipsum Company. When it comes to content marketing, you’ll definitely get the 5-star treatment from the Lorem Ipsum Company.</div>
-                            <div class="testi-content">
-                                <div class="img-wrap">
-                                    <img src="assets/images/testimonial/home12/3.jpg" alt="">
-                                </div>
-                                <div class="name">
-                                    Alex Fernando
-                                </div>
-                                <span class="designation">English Teacher</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testi-item">
-                        <div class="item-content-basic">
-                            <div class="desc"><img class="quote" src="assets/images/testimonial/home12/quote.png" alt="">Professional, responsive, and able to keep up with ever-changing demand and tight deadlines: That’s how I would describe Jeramy and his team at The Lorem Ipsum Company. When it comes to content marketing, you’ll definitely get the 5-star treatment from the Lorem Ipsum Company.</div>
-                            <div class="testi-content">
-                                <div class="img-wrap">
-                                    <img src="assets/images/testimonial/home12/4.jpg" alt="">
-                                </div>
-                                <div class="name">
-                                    Tamim Ikbal
-                                </div>
-                                <span class="designation">Head Teacher</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Testimonial Section End -->
+        
 
-        <!-- Download Section Start -->
-        <div class="rs-download-app pt-100 pb-100 md-pt-70 md-pb-70">
-            <div class="container">
-               <div class="row align-items-center">
-                   <div class="col-lg-6 md-mb-40">
-                       <div class="img-part">
-                            <img src="assets/images/Download/m-app.png" alt="">
-                        
-                       </div>
-                   </div>
-                   <div class="col-lg-6 pl-60 md-pl-15">
-                        <div class="sec-title3 mb-30">
-                            <div class="sub-title green-color">Download Mobile App</div>
-                            <h2 class=" title new-title">Learn anything - Any Time - Any Where ; Mobile/Desktop</h2>
-                            <div class="new-desc">Lorem ipsum dolor sit amet, ing elit, sed eius to mod tempors incididunt ut labore et dolore magna this aliqua sed eius to mod tempors incid idunt ut labore data management.</div>
-                        </div>
-                        <div class="mobile-img">
-                            <div class="apps-image pr-20 sm-pr-5">
-                                <img src="assets/images/Download/play.png" alt="">
-                            </div>
-                            <div class="apps-image">
-                                <img src="assets/images/Download/apple.png" alt="">
-                            </div>
-                        </div>
-                   </div> 
-               </div> 
-            </div>
-        </div>
-        <!-- Download Section End -->
+        
 
-         <!-- Events Section Start -->
-        <div class="rs-event home12style">
-            <div class="container">
-                <div class="sec-title4 text-center mb-50">
-                    <div class="sub-title">Join Events</div>
-                    <h2 class="title purple-color">Upcoming Events</h2>
-                </div> 
-                <div class="rs-carousel owl-carousel" data-loop="true" data-items="3" data-margin="30" data-autoplay="true" data-autoplay-timeout="7000" data-smart-speed="2000" data-dots="true" data-nav="false" data-nav-speed="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="true" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="true" data-ipad-device2="1" data-ipad-device-nav2="false" data-ipad-device-dots2="true" data-md-device="3" data-md-device-nav="false" data-md-device-dots="true">
-                <div class="event-item home12-style">
-                    <div class="event-short">
-                       <div class="featured-img">
-                           <img src="assets/images/event/home12/1.jpg" alt="Image">
-                       </div>
-                       <div class="content-part">
-                            <div class="all-dates-time">
-                                <div class="address"><i class="fa fa-map-o"></i> New Margania</div>
-                                <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> 11:00 AM - 03:00 AM</div>    
-                            </div>
-                           <h4 class="title"><a href="#">Educational Technology and Mobile Learning</a></h4>
-                           <div class="event-btm">
-                               <div class="date-part">
-                                   <div class="date">
-                                       <i class="fa fa-calendar-check-o"></i>
-                                       July 24, 2020 
-                                   </div>
-                               </div>
-                               <div class="btn-part">
-                                   <a href="#">Join Event</a>
-                               </div>
-                           </div>
-                       </div> 
-                    </div>
-                </div>
-                <div class="event-item home12-style">
-                    <div class="event-short">
-                       <div class="featured-img">
-                           <img src="assets/images/event/home12/2.jpg" alt="Image">
-                       </div>
-                       <div class="content-part">
-                            <div class="all-dates-time">
-                                <div class="address"><i class="fa fa-map-o"></i> New Margania</div>
-                                <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> 11:00 AM - 03:00 AM</div>    
-                            </div>
-                           <h4 class="title"><a href="#">Best Technology  Graduation Ceremony.</a></h4>
-                           <div class="event-btm">
-                               <div class="date-part">
-                                   <div class="date">
-                                       <i class="fa fa-calendar-check-o"></i>
-                                       July 24, 2020 
-                                   </div>
-                               </div>
-                               <div class="btn-part">
-                                   <a href="#">Join Event</a>
-                               </div>
-                           </div>
-                       </div> 
-                    </div>
-                </div>
-                <div class="event-item home12-style">
-                    <div class="event-short">
-                       <div class="featured-img">
-                           <img src="assets/images/event/home12/3.jpg" alt="Image">
-                       </div>
-                       <div class="content-part">
-                            <div class="all-dates-time">
-                                <div class="address"><i class="fa fa-map-o"></i> New Margania</div>
-                                <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> 11:00 AM - 03:00 AM</div>    
-                            </div>
-                           <h4 class="title"><a href="#">Educational Technology and Mobile Learning</a></h4>
-                           <div class="event-btm">
-                               <div class="date-part">
-                                   <div class="date">
-                                       <i class="fa fa-calendar-check-o"></i>
-                                       July 24, 2020 
-                                   </div>
-                               </div>
-                               <div class="btn-part">
-                                   <a href="#">Join Event</a>
-                               </div>
-                           </div>
-                       </div> 
-                    </div>
-                </div>
-                <div class="event-item home12-style">
-                    <div class="event-short">
-                       <div class="featured-img">
-                           <img src="assets/images/event/home12/4.jpg" alt="Image">
-                       </div>
-                       <div class="content-part">
-                            <div class="all-dates-time">
-                                <div class="address"><i class="fa fa-map-o"></i> New Margania</div>
-                                <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> 11:00 AM - 03:00 AM</div>    
-                            </div>
-                           <h4 class="title"><a href="#">Educational Technology and Mobile Learning</a></h4>
-                           <div class="event-btm">
-                               <div class="date-part">
-                                   <div class="date">
-                                       <i class="fa fa-calendar-check-o"></i>
-                                       July 24, 2020 
-                                   </div>
-                               </div>
-                               <div class="btn-part">
-                                   <a href="#">Join Event</a>
-                               </div>
-                           </div>
-                       </div> 
-                    </div>
-                </div>
-                <div class="event-item home12-style">
-                    <div class="event-short">
-                       <div class="featured-img">
-                           <img src="assets/images/event/home12/5.jpg" alt="Image">
-                       </div>
-                       <div class="content-part">
-                            <div class="all-dates-time">
-                                <div class="address"><i class="fa fa-map-o"></i> New Margania</div>
-                                <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> 11:00 AM - 03:00 AM</div>    
-                            </div>
-                           <h4 class="title"><a href="#">Best Technology  Graduation Ceremony.</a></h4>
-                           <div class="event-btm">
-                               <div class="date-part">
-                                   <div class="date">
-                                       <i class="fa fa-calendar-check-o"></i>
-                                       July 24, 2020 
-                                   </div>
-                               </div>
-                               <div class="btn-part">
-                                   <a href="#">Join Event</a>
-                               </div>
-                           </div>
-                       </div> 
-                    </div>
-                </div>
-                <div class="event-item home12-style">
-                    <div class="event-short">
-                       <div class="featured-img">
-                           <img src="assets/images/event/home12/1.jpg" alt="Image">
-                       </div>
-                       <div class="content-part">
-                            <div class="all-dates-time">
-                                <div class="address"><i class="fa fa-map-o"></i> New Margania</div>
-                                <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> 11:00 AM - 03:00 AM</div>    
-                            </div>
-                           <h4 class="title"><a href="#">Educational Technology and Mobile Learning</a></h4>
-                           <div class="event-btm">
-                               <div class="date-part">
-                                   <div class="date">
-                                       <i class="fa fa-calendar-check-o"></i>
-                                       July 24, 2020 
-                                   </div>
-                               </div>
-                               <div class="btn-part">
-                                   <a href="#">Join Event</a>
-                               </div>
-                           </div>
-                       </div> 
-                    </div>
-                </div>
-                <div class="event-item home12-style">
-                    <div class="event-short">
-                       <div class="featured-img">
-                           <img src="assets/images/event/home12/2.jpg" alt="Image">
-                       </div>
-                       <div class="content-part">
-                            <div class="all-dates-time">
-                                <div class="address"><i class="fa fa-map-o"></i> New Margania</div>
-                                <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> 11:00 AM - 03:00 AM</div>    
-                            </div>
-                           <h4 class="title"><a href="#">Educational Technology and Mobile Learning</a></h4>
-                           <div class="event-btm">
-                               <div class="date-part">
-                                   <div class="date">
-                                       <i class="fa fa-calendar-check-o"></i>
-                                       July 24, 2020 
-                                   </div>
-                               </div>
-                               <div class="btn-part">
-                                   <a href="#">Join Event</a>
-                               </div>
-                           </div>
-                       </div> 
-                    </div>
-                </div>
-              </div>
-            </div> 
-        </div>
-        <!-- Events Section End -->
+        
 
-        <!-- Blog Section Start -->
-        <div id="rs-blog" class="rs-blog main-home modify1 pb-100 pt-100 md-pt-70 md-pb-70">
-            <div class="container">  
-                  <div class="sec-title4 text-center mb-50">
-                    <div class="sub-title"> News Update</div>
-                    <h2 class="title">Latest News & Article's</h2>
-                  </div> 
-                <div class="rs-carousel owl-carousel" data-loop="true" data-items="3" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="1" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="3" data-md-device-nav="false" data-md-device-dots="false">
-                    <div class="blog-item">
-                        <div class="image-part">
-                            <img src="assets/images/blog/style9/1.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="date"><i class="fa fa-calendar-check-o"></i> September 24, 2020</span>
-                                <span class="admin"><i class="fa fa-user"></i> admin</span>
-                            </div>
-                            <h3 class="title"><a href="blog-single.html">How universities can nurture for the world climate crisis</a></h3>
-                            <div class="btn-btm">
-                                <div class="cat-list">
-                                    <ul class="post-categories">
-                                        <li><a href="#">College</a></li>
-                                    </ul>
-                                </div>
-                                <div class="rs-view-btn">
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="image-part">
-                            <img src="assets/images/blog/style9/2.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="date"><i class="fa fa-calendar-check-o"></i> September 24, 2020</span>
-                                <span class="admin"><i class="fa fa-user"></i> admin</span>
-                            </div>
-                            <h3 class="title"><a href="blog-single.html">Oxford vaccine trial resumes in UK after being halted</a></h3>
-                            <div class="btn-btm">
-                                <div class="cat-list">
-                                    <ul class="post-categories">
-                                        <li><a href="#">College</a></li>
-                                    </ul>
-                                </div>
-                                <div class="rs-view-btn">
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="image-part">
-                            <img src="assets/images/blog/style9/3.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="date"><i class="fa fa-calendar-check-o"></i> September 24, 2020</span>
-                                <span class="admin"><i class="fa fa-user"></i> admin</span>
-                            </div>
-                            <h3 class="title"><a href="blog-single.html">University class starting soon while the lovely valley team work </a></h3>
-                            <div class="btn-btm">
-                                <div class="cat-list">
-                                    <ul class="post-categories">
-                                        <li><a href="#">College</a></li>
-                                    </ul>
-                                </div>
-                                <div class="rs-view-btn">
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="image-part">
-                            <img src="assets/images/blog/style9/4.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="date"><i class="fa fa-calendar-check-o"></i> September 24, 2020</span>
-                                <span class="admin"><i class="fa fa-user"></i> admin</span>
-                            </div>
-                            <h3 class="title"><a href="blog-single.html">High school program starting soon 2021 for covid-19 situation</a></h3>
-                            <div class="btn-btm">
-                                <div class="cat-list">
-                                    <ul class="post-categories">
-                                        <li><a href="#">College</a></li>
-                                    </ul>
-                                </div>
-                                <div class="rs-view-btn">
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="image-part">
-                            <img src="assets/images/blog/style9/5.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="date"><i class="fa fa-calendar-check-o"></i> September 24, 2020</span>
-                                <span class="admin"><i class="fa fa-user"></i> admin</span>
-                            </div>
-                            <h3 class="title"><a href="blog-single.html">Majority of students dissatisfied for world coronavirus support</a></h3>
-                            <div class="btn-btm">
-                                <div class="cat-list">
-                                    <ul class="post-categories">
-                                        <li><a href="#">College</a></li>
-                                    </ul>
-                                </div>
-                                <div class="rs-view-btn">
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="image-part">
-                            <img src="assets/images/blog/style9/6.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="date"><i class="fa fa-calendar-check-o"></i> September 24, 2020</span>
-                                <span class="admin"><i class="fa fa-user"></i> admin</span>
-                            </div>
-                            <h3 class="title"><a href="blog-single.html">Combating discrimination against most international students</a></h3>
-                            <div class="btn-btm">
-                                <div class="cat-list">
-                                    <ul class="post-categories">
-                                        <li><a href="#">College</a></li>
-                                    </ul>
-                                </div>
-                                <div class="rs-view-btn">
-                                    <a href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-        </div>
-        <!-- Blog Section End -->
+       
 
        
     </div> 

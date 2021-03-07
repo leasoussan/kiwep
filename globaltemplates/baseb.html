@@ -56,7 +56,7 @@
 
     <div class="connect-container align-content-stretch d-flex flex-wrap">
         <div class="page-sidebar">
-            <div class="logo-box"><a href="#" class="logo-text">KIWEP</a><a href="#" id="sidebar-close"><i
+            <div class="logo-box"><a href="{% url 'homepage' %}" class="logo-text">KIWEP</a><a href="#" id="sidebar-close"><i
                         class="material-icons">close</i></a> <a href="#" id="sidebar-state"><i
                         class="material-icons">adjust</i><i
                         class="material-icons compact-sidebar-icon">panorama_fish_eye</i></a></div>
@@ -69,20 +69,13 @@
                         <a href="{% url 'dashboard' %}" class="active"><i
                                 class="material-icons-outlined">dashboard</i>Dashboard</a>
                     </li>
-                    <li>
-                        <a href="{% url 'my_inbox' %}"><i class="material-icons-outlined">inbox</i>Mailbox</a>
-                    </li>
+                  
                     <li>
                         <a href="{% url 'profile' user.id %}"><i
                                 class="material-icons-outlined">account_circle</i>Profile</a>
                     </li>
-                    <li>
-                        <a href="file-manager.html"><i class="material-icons">cloud_queue</i>File Manager</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'my_calendar' %}"><i
-                                class="material-icons-outlined">calendar_today</i>Calendar</a>
-                    </li>
+                   
+                  
                     <li>
                         <a href="{% url 'frontend_list' %}"><i class="material-icons">done</i>Todo</a>
                     </li>
@@ -214,7 +207,7 @@
 
             <!-- Mailbox Script  -->
             <script src="{% static 'backend/js/pages/mailbox.js' %}"></script>
-
+            
             {% endblock %}
 
             </div>
