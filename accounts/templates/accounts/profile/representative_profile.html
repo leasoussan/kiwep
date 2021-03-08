@@ -1,10 +1,93 @@
+<body class="app-profile">
+        
+
+            
+    <div class="main-wrapper">
+        <div class="profile-header">
+            <div class="row">
+                <div class="col">
+                    <div class="profile-img">
+                        <img src="{{ 'user.profilepic_or_default' }}">
+                    </div>
+                    <div class="profile-name">
+                        <h3>{{user.username}}</h3>
+                        <span>{{ user.get_user_type }}</span>
+                    </div>
+                    <div class="profile-menu">
+                        <ul>
+                            <!-- <li>
+                                <a href="#">Feed</a>
+                            </li>
+                            <li>
+                                <a href="#">About</a>
+                            </li>
+                            <li>
+                                <a href="#">Friends</a>
+                            </li>
+                            <li>
+                                <a href="#">Photos</a>
+                            </li>
+                            <li>
+                                <a href="#">Videos</a>
+                            </li> -->
+                            <li>
+                                <a href="{% url 'edit_profile' %}">EDIT Institution Profile</a>
+                            </li>
+                        </ul>
+                        <div class="profile-status">
+                            <i> Active</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="profile-content">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            The school Info 
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">About</h5>
+                            <p>Add bio-description into model</p>
+                            <ul class="list-unstyled profile-about-list">
+                                <li><i class="material-icons">school</i><span>Studied Mechanical Engineering at <a href="#">{{user.profile.institution.name}}</a></span></li>
+                            
+                                <li><i class="material-icons">my_location</i><span>From <a href="#">{{user.city}}</a></span></li>
+        
+                                <li>
+    
+                                    <!-- <button class="btn btn-block btn-secondary m-t-lg">Message</button> -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Contact Info</h5>
+                            <ul class="list-unstyled profile-about-list">
+                                <li><i class="material-icons">mail_outline</i><span>{{user.email}}</span></li>
+                                <li><i class="material-icons">home</i><span>Lives in <a href="#">{{user.city}}</a></span></li>
+                                <li><i class="material-icons">local_phone</i><span>{{user.phone_number}}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
-{% block content %}
-<h2>Institution Profile </h2>
 
-Hello Institution
-
-
-{% endblock %}
+</body>

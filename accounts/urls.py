@@ -7,7 +7,8 @@ from accounts.views import (
     Register, 
     CreateProfile,
     EditProfile,
-    MyProfileView,    
+    MyProfileView,  
+    ProfileView  
 
  )
 
@@ -19,5 +20,5 @@ urlpatterns = [
     path('create-profile/<str:id>/', CreateProfile.as_view(), name='create_profile'),
     path('profile/<int:id>',MyProfileView.as_view(), name="profile"),
     path('edit-profile/', EditProfile.as_view(), name="edit_profile"),
-   
+    path('profile_view/', ProfileView.as_view(), name = "profile_view")
 ]

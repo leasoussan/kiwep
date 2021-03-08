@@ -121,7 +121,7 @@ class CreateProfile(View):
 # -----------------------------------------------------------Profile
 
 
-class MyProfileView( View):
+class MyProfileView(LoginRequiredMixin, ProfileCheckPassesTestMixin, View):
 
     def get(self, request, id):
         user = MyUser.objects.get(id=id)
@@ -165,3 +165,7 @@ class MyLoginView(LoginView):
         if request.user.is_authenticated:
             return redirect('homepage')
         return self.super().get(self, request, *args, **kwargs)
+
+
+class ProfileView(View):
+    pass

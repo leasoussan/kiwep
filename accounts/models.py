@@ -28,7 +28,7 @@ class City(models.Model):
 class MyUser(AbstractUser):
     email = models.EmailField()
     phone_number = models.CharField(max_length=30, blank = True, null = True)
-    profile_pic = models.ImageField(default = 'profile/avatar.png', upload_to='profile/', blank = True, null = True)
+    profile_pic = models.ImageField(default = 'profile/avatar.png', upload_to='media/profile/', blank = True, null = True)
     joined_date = models.DateField(auto_now_add=True, blank = True, null = True)
     city = models.ForeignKey(City,on_delete=models.CASCADE, null=True, blank=True) 
 
@@ -59,7 +59,7 @@ class MyUser(AbstractUser):
                 return qs.first()
 
 
-    def profilepic_or_default(self, default_path='profile/default.png'):
+    def profilepic_or_default(self, default_path='media/profile/avatar.png'):
         if self.profile_pic:
             return self.profile_pic.url
         return default_path

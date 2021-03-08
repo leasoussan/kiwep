@@ -18,3 +18,13 @@ def dashboard(request):
 @user_passes_test(check_profile, login_url = 'create_profile')
 def my_calendar_view(request):
     return render(request, 'backend/my_calendar.html')
+
+
+
+
+
+@login_required
+@user_passes_test(check_profile, login_url= 'create_profile/')
+def team_board(request):
+
+    return render(request, "backend/team_board.html" )

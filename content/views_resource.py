@@ -20,7 +20,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin
 
 class ResourceListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     model = Resource
-    template_name = 'crud/resource/resource_list.html'
+    template_name = 'crud/list_view.html'
     context_object_name = 'resource_list'
 
 
@@ -28,7 +28,7 @@ class ResourceListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView
 class ResourceDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
 
     model = Resource
-    template_name = 'crud/resource/resource_detail.html'
+    template_name = 'crud/detail_view.html'
 
     def get_object(self):
         pk = self.kwargs.get('pk') 
@@ -41,7 +41,7 @@ class ResourceCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Create
      
     model = Resource
     form_class = ResourceAddForm
-    template_name = 'crud/resource/resource_create.html'
+    template_name = 'crud/create.html'
 
 
     def form_valid(self, form):
@@ -56,7 +56,7 @@ class ResourceCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Create
 
 class ResourceUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):
     model = Resource
-    template_name = 'crud/resource/resource_update.html'
+    template_name = 'crud/update.html'
     fields = ['name', 
             'link',
             'text',
@@ -70,7 +70,7 @@ class ResourceUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Update
 
 class ResourceDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
     model = Resource
-    template_name = 'crud/resource/resource_delete.html'
+    template_name = 'crud/delete.html'
     success_url = reverse_lazy('resource_list')
 
     def get_object(self):
