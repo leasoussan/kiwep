@@ -1,27 +1,17 @@
 {% extends 'baseb.html' %}
 
 {% block content %}
-
-<a href="{% url 'delete_resource' resource.pk %}">Delete Resource </a>
-<a href="{% url 'resource_list' %}">List Resource </a>
-
 <div class="container">
     <div class="coupon-toggle">
         <div id="accordion" class="accordion">
             <div class="card">
                 <div class="billing-fields">
                     <div class="checkout-title">
-                        <h3>Mission {{ mission.name }}</h3>
+                        <h3>{{type}} {{ mission.name }}</h3>
                     </div>
                     <div class="form-content-box">
                         <div class="row">
                             <h2>{{mission.text}}</h2>
-                        </div>
-                        <div>
-                            <img src="{{ resource.get_resourceImg_or_default }}" alt="" style = 'width: 300px; height: 300px;;'>
-                        </div>
-                        <div>
-                            <a href="{{ resource.upload_file.url }}">name of file </a>
                         </div>
                     </div>
 
@@ -34,6 +24,9 @@
 
 
 
+
+<a href="{% url 'delete_mission' mission.pk %}">Delete Mission </a>
+<a href="{% url 'mission_list' %}">List Mission </a>
 
 
 

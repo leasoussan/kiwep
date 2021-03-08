@@ -46,6 +46,8 @@ class Mission(models.Model):
     resources = models.ManyToManyField(Resource)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     points = models.PositiveIntegerField()
+    
+    
     objects = MissionModelManager()
 
     def __str__(self):
@@ -82,9 +84,9 @@ class Project(models.Model):
 class MissionsProject(models.Model):
     project = models.ForeignKey(Project, on_delete= models.CASCADE)
     mission =  models.ForeignKey(Mission, on_delete= models.CASCADE) 
-    completed= models.BooleanField()
+    completed= models.BooleanField(default=False)
     created_date = models.DateField(auto_now_add=True)
-    due_date = models.DateField()
+    due_date = models.DateField(auto_now_add=True)
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_mission")
     
 

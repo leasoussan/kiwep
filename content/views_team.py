@@ -39,11 +39,14 @@ class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView
     model = Team 
     form_class = TeamAddForm
     template_name = 'crud/team/team_create.html'
-    
+
+
     def form_valid(self, form):
         self.object = form.save(commit = False)
-        self.object.manager = self.request.user
+        self.object.manager = self.request.user.profile()
+
         self.object.save()
+        
         return super().form_valid(form)
 
 

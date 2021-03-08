@@ -23,8 +23,8 @@ from accounts.mixin import ProfileCheckPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test, login_required
 from .mailer import *
 from.models import Student, Speaker, Representative, MyUser
-from accounts.decorators import check_profile
-
+from accounts.decorators import check_profile, login_check
+from django.contrib.auth.views import LoginView, LogoutView
 
 # ----------------------------------------------------------------------------------Mixin
 
@@ -98,16 +98,17 @@ def get_user_profile_form(request, usertype, edit=False):
 
 class CreateProfile(View):
     def get(self, request , id):
-        user_form = UserForm()
+        user_form = UserForm(instance = request.user)
         profile_form = get_user_profile_form(request, id)
-        return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form, 'user_form': user_form})
+        return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'profile_form': profile_form, 'user_form': user_form})
         
 
     def post(self, request,  id=None):
-        
+        user_form = UserForm(request.POST, instance = request.user)
         profile_form = get_user_profile_form(request, id)
-
-        if profile_form.is_valid():
+        print(profile_form)
+        if profile_form.is_valid() and user_form.is_valid():
+            user_form.save()
             profile = profile_form.save(commit=False)
             profile.user = request.user
             profile.save()
@@ -156,8 +157,11 @@ class EditProfile(LoginRequiredMixin, ProfileCheckPassesTestMixin, View):
 
 
 
-# @user_passes_test(login_check, login_url='/homepage/')
-# def login_page(request):
 
-#     return render(request, 'homepage.html')
-    
+
+
+class MyLoginView(LoginView):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('homepage')
+        return self.super().get(self, request, *args, **kwargs)

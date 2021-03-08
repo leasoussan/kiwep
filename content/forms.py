@@ -1,6 +1,7 @@
+from django import forms
 from django.forms import ModelForm 
 from .models import Project, Team, Mission, Resource
-
+from accounts.models import Student
 
 class ProjectAddForm(ModelForm):
     class Meta:
@@ -11,7 +12,6 @@ class ProjectAddForm(ModelForm):
             'time_to_complet',
             'field',
             'difficulty',
-            'mission'
         ] 
 
         # exclude = ['completed', 'created_by']
@@ -28,6 +28,11 @@ class TeamAddForm(ModelForm):
             'participants',
             'final_project',
         ] 
+        
+        participants = forms.ModelMultipleChoiceField(
+        queryset=Student.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
     
 
 

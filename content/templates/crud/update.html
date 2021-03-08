@@ -1,0 +1,11 @@
+{% extends 'baseb.html' %}
+
+{% block content %}
+
+Mission {{ }}
+
+
+<a href="{% url 'delete_{{resource}}' {{resource}}.pk %}">Delete Resource </a>
+
+
+{% endblock %}

@@ -22,7 +22,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin
 
 class ProjectListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     model = Project
-    template_name = 'crud/project/project_list.html'
+    template_name = 'crud/list_view.html'
     context_object_name = 'project_list'
 
     
@@ -34,7 +34,7 @@ class ProjectListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView)
 
 class ProjectDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
     model = Project
-    template_name = 'crud/project/project_detail.html'
+    template_name = 'crud/detail_view.html'
     
     def get_object(self):
         pk = self.kwargs.get("pk")
@@ -49,12 +49,12 @@ class ProjectDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailVi
 class ProjectCreatelView(LoginRequiredMixin, ProfileCheckPassesTestMixin,  CreateView):
     model = Project
     form_class = ProjectAddForm
-    template_name = 'crud/project/project_create.html'
+    template_name = 'crud/create.html'
 
     
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.speaker = self.request.user
+        self.object.speaker = self.request.user.profile()
         self.object.completed = False
         self.object.save()
         return super().form_valid(form)
@@ -76,7 +76,7 @@ class ProjectUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateV
             'field',
             'difficulty',
             'mission']
-    template_name = 'crud/project/update_project.html'
+    template_name = 'crud/update.html'
     
     def get_object(self):
         pk = self.kwargs.get("pk")
@@ -92,7 +92,7 @@ class ProjectUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateV
 
 class ProjectDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
     model = Project
-    template_name = 'crud/project/project_delete.html'
+    template_name = 'crud/delete.html'
     success_url = reverse_lazy('project_list')
 
     def get_object(self):

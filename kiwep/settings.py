@@ -134,6 +134,8 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = "dashboard"
 
 LOGOUT_REDIRECT_URL = "homepage"
+LOGOUT_URL = "homepage"
+
 
 APPEND_SLASH=False
 

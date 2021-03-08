@@ -1,14 +1,13 @@
 {% extends 'baseb.html' %}
 
 {% load crispy_forms_tags %}
-
 {% block content %}
+
 
 <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
     <div class="container">
-        <h2>Create new Project</h2>
+        <h2>Create new {{model.name}}</h2>
         <div class="cart-wrap">
-            <form>
                 <table class="cart-table">
                     <form action="", method="POST">
 
@@ -18,7 +17,7 @@
                         <button class="btn-shop orange-color" type="submit" value="Save">SAVE</button>
                     </form>
                 </table>
-            </form>
+            
             
             </div>
         </div>
@@ -26,8 +25,6 @@
 
 
 
-
-<a class="btn-shop orange-color" href="{% url 'project_list' %}">List Project </a>
 
 
 {% endblock %}

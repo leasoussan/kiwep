@@ -27,8 +27,8 @@ Hello, {{ user.username|default:'Guest' }}!
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    {% for project in user.project_set.all %}
+                                   
+                                    {% for project in user.profile.project_set.all %}
 
 
                                     <tr>
@@ -61,7 +61,7 @@ Hello, {{ user.username|default:'Guest' }}!
                             <a href="{% url 'team_list' %}">team List</a>
 
 
-                            {% for team in user.team_manager.all %}
+                            {% for team in user.profile.team_manager.all %}
                             <div class="product-item">
                                 <h5>{{ team.name }}</h5>
                                 <span>4,037 downloads</span>
@@ -85,7 +85,7 @@ Hello, {{ user.username|default:'Guest' }}!
 
                             <div class="top-products-list">
 
-                                {% for mission in user.mission_set.all %}
+                                {% for mission in user.profile.mission_set.all %}
                                 <div class="product-item">
                                     <h5>{{ mission.name }}</h5>
                                     <span>4,037 downloads</span>

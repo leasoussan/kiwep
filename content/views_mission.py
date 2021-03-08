@@ -20,7 +20,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin
 
 class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     model = Mission
-    template_name = 'crud/mission/mission_list.html'    
+    template_name = 'crud/list_view.html'    
     context_object_name = 'mission_list'
 
 
@@ -30,7 +30,7 @@ class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
 
 class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
     model = Mission
-    template_name = 'crud/mission/mission_detail.html'    
+    template_name = 'crud/detail_view.html'    
     
 
     def get_object(self):
@@ -43,14 +43,16 @@ class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailVi
 class MissionCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
     model = Mission
     form_class = MissionAddForm 
-    template_name = 'crud/mission/mission_create.html'  
+    template_name = 'crud/create.html'  
 
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.speaker = self.request.user
+        self.object.owner = self.request.user
         self.object.save()
         return super().form_valid(form)
+
+
 
 
 class MissionUpdateView(LoginRequiredMixin,ProfileCheckPassesTestMixin, UpdateView):
@@ -61,10 +63,10 @@ class MissionUpdateView(LoginRequiredMixin,ProfileCheckPassesTestMixin, UpdateVi
             'description',
             'completed',
             'resources',]
-    template_name = 'crud/mission/mission_create.html'  
+    template_name = 'crud/update.html'  
 
 
 class MissionDeleteView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DeleteView):
     model = Mission
-    template_name = 'crud/mission/mission_delete.html' 
+    template_name = 'crud/delete.html' 
     success_url = reverse_lazy('mission_list')

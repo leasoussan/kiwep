@@ -8,7 +8,7 @@ def send_welcome_signup(user):
     message = f'Hi {user}, thank you for registering To KIWEP.'
     email_from = settings.EMAIL_HOST_USER 
     recipient_list = [user.email,] 
-    print(recipient_list)
+    
     send_mail(subject, message, email_from, recipient_list, fail_silently = False ) 
 
 
