@@ -85,7 +85,7 @@ Hello, {{ user.username|default:'Guest' }}!
 
                             <div class="top-products-list">
 
-                                {% for mission in user.profile.mission_set.all %}
+                                {% for mission in user.mission_set.all %}
                                 <div class="product-item">
                                     <h5>{{ mission.name }}</h5>
                                     <span>4,037 downloads</span>

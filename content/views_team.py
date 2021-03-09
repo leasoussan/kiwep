@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Team
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Team, TeamProjectMission
 from django.forms import ModelForm
-from .forms import TeamAddForm
+from .forms import TeamAddForm, TeamProjectMissionFormSet
 from django.urls import reverse_lazy
 
 
@@ -35,19 +35,53 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
         return get_object_or_404(Team, pk=pk)
 
 
-class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
+class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin,  CreateView):
     model = Team 
     form_class = TeamAddForm
     template_name = 'crud/create.html'
 
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs) 
+        context['formset']= TeamProjectMissionFormSet(self.request.POST or None)
+        return context
+
 
     def form_valid(self, form):
-        self.object = form.save(commit = False)
+        self.object = form.save(commit=False)
         self.object.manager = self.request.user.profile()
-
+        self.object.completed = False
         self.object.save()
+
+        formset = TeamProjectMissionFormSet(self.request.POST, instance = self.object)
         
-        return super().form_valid(form)
+        if formset.is_valid():
+            formset.save()
+            return super().form_valid(form)
+        return super().form_invalid(form)
+
+# class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
+#     model = Team 
+#     form_class = TeamAddForm
+#     template_name = 'crud/create.html'
+    
+
+#     def form_valid(self, form):
+#         self.object = form.save(commit = False)
+#         self.object.manager = self.request.user.profile()
+#         self.object.save()
+        
+#         # return super().form_valid(form)
+#         return redirect('create_team_missions', form.cleaned_data['team.id'])
+
+
+
+
+# # def get_context_data(self):
+# #         # allo to access the team with the team ID 
+# #         # team = team.object.get(id - team_id)
+# #         # when initialising formset = intance = team
+# #         pass
 
 
 class TeamUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):

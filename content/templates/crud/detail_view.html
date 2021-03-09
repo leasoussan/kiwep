@@ -1,12 +1,17 @@
 {% extends 'baseb.html' %}
 
-
+{% load mytags %}
 {% block content %}
 
-Project {{ project.name }}
+
+<h1>
+
+    
+{{object|return_class_name}}
 
 
-<a href="{% url 'delete_project' project.pk %}">Delete Project </a>
+</h1>
+
 <a href="{% url 'project_list' %}">List Project </a>
 
  <!-- Intro Courses -->

@@ -2,10 +2,14 @@
 
 {% block content %}
 
-Mission {{ }}
+<form action="post">
+{% csrf_token %}
+
+{{form.as_p}}
 
 
-<a href="{% url 'delete_{{resource}}' {{resource}}.pk %}">Delete Resource </a>
+</form>
+
 
 
 {% endblock %}

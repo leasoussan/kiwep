@@ -70,7 +70,9 @@ class Project(models.Model):
     completed = models.BooleanField(default =False)
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
     mission = models.ManyToManyField(Mission, through = 'MissionsProject', blank =True)
-
+    points = models.PositiveIntegerField()
+    
+    
     objects = ProjectModelManager()
 
     def __str__(self):
@@ -84,11 +86,9 @@ class Project(models.Model):
 class MissionsProject(models.Model):
     project = models.ForeignKey(Project, on_delete= models.CASCADE)
     mission =  models.ForeignKey(Mission, on_delete= models.CASCADE) 
-    completed= models.BooleanField(default=False)
-    created_date = models.DateField(auto_now_add=True)
-    due_date = models.DateField(auto_now_add=True)
-    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_mission")
     
+    def __str__(self):
+        return f"Missions for Projects: {self.project}"
 
 
 class Team(models.Model):
@@ -111,4 +111,16 @@ class Team(models.Model):
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
+
+
+class TeamProjectMission(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    mission_project = models.ForeignKey(MissionsProject, on_delete=models.CASCADE)        
+    created_date = models.DateField(auto_now_add=True)
+    due_date = models.DateField()
+    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_mission", null=True)
+    completed= models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Missions of Team: {self.team}"
 

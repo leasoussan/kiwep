@@ -1,7 +1,8 @@
 from django import forms
 from django.forms import ModelForm 
-from .models import Project, Team, Mission, Resource
+from .models import Project, Team, Mission, Resource, MissionsProject, TeamProjectMission
 from accounts.models import Student
+from django.forms import inlineformset_factory
 
 class ProjectAddForm(ModelForm):
     class Meta:
@@ -12,6 +13,7 @@ class ProjectAddForm(ModelForm):
             'time_to_complet',
             'field',
             'difficulty',
+            'points'
         ] 
 
         # exclude = ['completed', 'created_by']
@@ -64,3 +66,9 @@ class ResourceAddForm(ModelForm):
             'image',
             'file_rsc',
         ]
+
+
+ProjectMissionFormSet = inlineformset_factory(Project, MissionsProject, fields ='__all__' )
+
+TeamProjectMissionFormSet = inlineformset_factory(Team, TeamProjectMission, exclude=('team', 'created_date', 'completed' ))
+

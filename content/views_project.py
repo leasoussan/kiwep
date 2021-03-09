@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Project
 from django.forms import ModelForm
-from .forms import ProjectAddForm
+from .forms import ProjectAddForm, ProjectMissionFormSet
 from django.urls import reverse_lazy
-
 
 from django.views.generic import (
     CreateView, 
@@ -52,12 +51,25 @@ class ProjectCreatelView(LoginRequiredMixin, ProfileCheckPassesTestMixin,  Creat
     template_name = 'crud/create.html'
 
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs) 
+        context['formset']= ProjectMissionFormSet(self.request.POST or None)
+        return context
+
+
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.speaker = self.request.user.profile()
         self.object.completed = False
         self.object.save()
-        return super().form_valid(form)
+
+        formset = ProjectMissionFormSet(self.request.POST, instance = self.object)
+        
+        if formset.is_valid():
+            formset.save()
+            return super().form_valid(form)
+        return super().form_invalid(form)
+
 
 # To Overwrite the Get_absolut_url if I want it to go somewhere else - for ex in the update view 
 
@@ -98,3 +110,7 @@ class ProjectDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteV
     def get_object(self):
         pk = self.kwargs.get("pk")
         return get_object_or_404(Project, pk=pk)
+
+
+# author = Project.objects.get(name=)
+# formset = BookFormSet(instance=author)

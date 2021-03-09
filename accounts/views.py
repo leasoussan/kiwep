@@ -164,7 +164,7 @@ class MyLoginView(LoginView):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('homepage')
-        return self.super().get(self, request, *args, **kwargs)
+        return super().get(self, request, *args, **kwargs)
 
 
 class ProfileView(View):

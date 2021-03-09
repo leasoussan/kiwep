@@ -1,0 +1,19 @@
+{% extends 'baseb.html' %}
+
+{% block content %}
+
+
+<a href="{% url 'content_manager' %}">content Manager </a>
+
+
+My Teams 
+
+{% for mission in mission_list %}
+<h1>Mission Name <a href="{% url 'mission_detail'  mission.pk %}">{{ mission.name }}</a></h1>
+
+{% endfor %}
+
+<a href="{% url 'create_mission' %}">Add Mission</a>
+
+
+{% endblock %}

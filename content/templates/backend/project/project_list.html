@@ -1,0 +1,100 @@
+{% extends 'baseb.html' %}
+
+{% block content %}
+
+
+<!-- Main content Start -->
+<div class="main-content">
+    <!-- Breadcrumbs Start -->
+    <div class="rs-breadcrumbs breadcrumbs-overlay">
+        <div class="breadcrumbs-img">
+            <img src="assets/images/breadcrumbs/2.jpg" alt="Breadcrumbs Image">
+        </div>
+        <div class="breadcrumbs-text white-color">
+            <h1 class="page-title">Course Grid 02</h1>
+            <a href="{% url 'content_manager' %}">content Manager </a>
+
+            Project List
+
+
+            <a href="{% url 'create_project' %}">Add Project</a>
+            <ul>
+                <li>
+                    <a class="active" href="index.html">Home</a>
+                </li>
+                <li>Course</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Popular Courses Section Start -->
+    <div id="rs-popular-courses" class="rs-popular-courses style1 orange-color pt-100 pb-100 md-pt-70 md-pb-70">
+        <div class="container">
+            <div class="gridFilter text-center mb-50">
+                <button class="active" data-filter="*">ALL</button>
+
+                {% for field in project.field_set.all %}
+                <button data-filter=".filter1">{{field.name}}</button>
+
+                {% endfor %}
+            </div>
+            <div class="row grid">
+                <div class="col-lg-4 col-md-6 grid-item filter1">
+
+                    {% for project in project_list %}
+
+
+
+                    <div class="courses-item mb-30">
+                        <div class="img-part">
+                            <img src="assets/images/courses/1.jpg" alt="">
+                        </div>
+                        <div class="content-part">
+                            <ul class="meta-part">
+                                <li><a class="categorie"
+                                        href="{% url 'project_detail' project.pk %}">{{ project.name }}</a></li>
+                            </ul>
+                            <h3 class="title"><a href="course-single.html">{{ project.title }}</a>
+                            </h3>
+                            <div class="bottom-part">
+                                <div class="info-meta">
+                                    <ul>
+                                        <li class="user"><i class="fa fa-user"></i> 245</li>
+                                        <li class="ratings">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            (05)
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="btn-part">
+                                    <a href="#"><i class="flaticon-right-arrow"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+
+            </div>
+            <div class="pagination-area orange-color text-center mt-30 md-mt-0">
+                <ul class="pagination-part">
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">Next <i class="fa fa-long-arrow-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Popular Courses Section End -->
+
+
+</div>
+<!-- Main content End -->
+
+
+
+{% endblock %}

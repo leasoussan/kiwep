@@ -1,6 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'baseb.html' %}
 
 {% block content %}
+
+
+<a href="{% url 'resource_list' %}">List Resource </a>
+
 <div class="container">
     <div class="coupon-toggle">
         <div id="accordion" class="accordion">
@@ -13,6 +17,12 @@
                         <div class="row">
                             <h2>{{mission.text}}</h2>
                         </div>
+                        <div>
+                            <img src="{{ resource.get_resourceImg_or_default }}" alt="" style = 'width: 300px; height: 300px;;'>
+                        </div>
+                        <div>
+                            <a href="{{ resource.upload_file.url }}">name of file </a>
+                        </div>
                     </div>
 
                 </div>
@@ -24,8 +34,6 @@
 
 
 
-
-<a href="{% url 'mission_list' %}">List Mission </a>
 
 
 

@@ -1,19 +1,32 @@
 {% extends 'baseb.html' %}
-
+{% load mytags %}
 {% load crispy_forms_tags %}
+
 {% block content %}
 
 
+{{object}}
+
 <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
     <div class="container">
-        <h2>Create new {{model.name}}</h2>
+        <h2>Create new {{view.model|return_class_name}}</h2>
         <div class="cart-wrap">
                 <table class="cart-table">
+                    
                     <form action="", method="POST">
 
                         {% csrf_token %}
                         {{form|crispy }}
                     
+                        {% if formset %}
+                        {{formset.management_form}}
+                        {% for subform in formset %}
+
+                        {{subform|crispy}}
+
+
+                        {% endfor %}
+                        {% endif %}
                         <button class="btn-shop orange-color" type="submit" value="Save">SAVE</button>
                     </form>
                 </table>
