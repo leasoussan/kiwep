@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Field, Institution, InstitutionCategory, Level, Group
+from .models import Field, Institution, InstitutionCategory, Group
 
 
 
@@ -20,10 +20,6 @@ class InstitutionAdmin(admin.ModelAdmin):
 
 
 
-
-@admin.register(Level)
-class LeveAdmin(admin.ModelAdmin):
-    pass
 
 
 @admin.register(Group)

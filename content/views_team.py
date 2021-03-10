@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Team, TeamProjectMission
+from .models import Team, TeamProjectMission, Project
 from django.forms import ModelForm
 from .forms import TeamAddForm, TeamProjectMissionFormSet
 from django.urls import reverse_lazy
@@ -11,7 +11,8 @@ from django.views.generic import (
     ListView, 
     DetailView, 
     UpdateView, 
-    DeleteView
+    DeleteView,
+    View,
 )
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -39,12 +40,12 @@ class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin,  CreateVie
     model = Team 
     form_class = TeamAddForm
     template_name = 'crud/create.html'
-
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs) 
-        context['formset']= TeamProjectMissionFormSet(self.request.POST or None)
-        return context
+    
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs) 
+    #     context['formset']= TeamProjectMissionFormSet(self.request.POST or None)
+    #     return context
 
 
     def form_valid(self, form):
@@ -53,12 +54,48 @@ class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin,  CreateVie
         self.object.completed = False
         self.object.save()
 
-        formset = TeamProjectMissionFormSet(self.request.POST, instance = self.object)
+        # formset = TeamProjectMissionFormSet(self.request.POST, instance = self.object)
         
+        # if formset.is_valid():
+        #     formset.save()
+        #     return super().form_valid(form)
+        return super().form_valid(form)
+
+    
+    def get_success_url(self):
+        return reverse_lazy('create_team_missions', kwargs={'id':self.object.id})
+
+
+
+
+
+class TeamCreateMissionView(LoginRequiredMixin, ProfileCheckPassesTestMixin, View):
+    model = TeamProjectMission
+    def get(self, request, *args, **kwargs):
+        
+        team = Team.objects.get(id = self.kwargs['id'])
+        missions = team.project.mission.all()
+        formset = TeamProjectMissionFormSet(instance = team)
+        
+        return render(request, 'crud/create_team_missions.html', {'formset': formset, "missions": missions})
+    
+
+    def post(self, request, *args, **kwargs):
+        
+        
+        team = Team.objects.get(id = self.kwargs['id'])
+        missions = team.project.mission.all()
+
+        formset = TeamProjectMissionFormSet(request.POST, instance = team)
+
+
         if formset.is_valid():
+        
             formset.save()
-            return super().form_valid(form)
-        return super().form_invalid(form)
+
+        return render(request, 'crud/create_team_missions.html', {'formset': formset, "missions": missions})
+
+
 
 # class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
 #     model = Team 

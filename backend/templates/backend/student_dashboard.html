@@ -14,9 +14,13 @@ Hello, {{ user.username|default:'Guest' }}!
     {% endif %}
 </div>
 
+Hello, {{ user.username|default:'Guest' }}!
+
 
 <div>
-    Student Dashboard 
+    Student Dashboard
+
+
 
 
     <div class="main-wrapper">
@@ -39,14 +43,15 @@ Hello, {{ user.username|default:'Guest' }}!
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for team in user.profile.team_set.all %}
-                            
+                                   
+                                    {% for team in user.profile.team.project_set.all %}
+
 
                                     <tr>
-                                        <td> {{team.project.id}}</td>
-                                        <td> {{team.project.name}}</td>
-                                        <td> {{team.project.field}}</td>
-                                        <td> {{team.project.completed}}</td>
+                                        <td> <a href="{% url 'project_detail'  project.id %}">{{project.id}}</a> </td>
+                                        <td>{{ project.name }}</td>
+                                        <td>{{ project.Filed }}</td>
+                                        <td>{{ project.completed }}</td>
                                     </tr>
                                     {% endfor %}
 
@@ -70,26 +75,14 @@ Hello, {{ user.username|default:'Guest' }}!
 
                             <a href="{% url 'create_team' %}">Create team</a>
                             <a href="{% url 'team_list' %}">team List</a>
+
+
                             {% for team in user.profile.team_set.all %}
-                            
                             <div class="product-item">
-                                <h5>{{ team.name }}</h5><li>
-                                
-                                    <ul>
-                                       <li> Name : {{ team.name }}</li>
-                                       <li>Speaker :{{team.manager}}</li>
-                                    </ul>
-                                    
-                              
-                                {% for student in team.participants.all %}
-                            
-                                username -student: {{student.user.username}}
-                                {% endfor %}
-                                </li>
-                                
-                                {% endfor %}
+                                <h5>{{ team.name }}</h5>
+                                <span>4,037 downloads</span>
                             </div>
-                        
+                            {% endfor %}
                         </div>
 
                     </div>
@@ -108,9 +101,7 @@ Hello, {{ user.username|default:'Guest' }}!
 
                             <div class="top-products-list">
 
-
                                 {% for mission in user.my_mission.all %}
-                           
                                 <div class="product-item">
                                     <h5>{{ mission.name }}</h5>
                                     <span>4,037 downloads</span>
@@ -134,6 +125,7 @@ Hello, {{ user.username|default:'Guest' }}!
                             <a href="{% url 'create_resource' %}">Create Resource</a>
                             <a href="{% url 'resource_list' %}">Resource List</a>
 
+                           
                             <div class="top-products-list">
 
                                 {% for mission in user.my_mission.all %}
@@ -160,6 +152,10 @@ Hello, {{ user.username|default:'Guest' }}!
     </div>
 
 </div>
+
+</div>
+</div>
+
 
 
 

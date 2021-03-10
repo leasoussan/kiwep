@@ -30,14 +30,7 @@
     <!-- Popular Courses Section Start -->
     <div id="rs-popular-courses" class="rs-popular-courses style1 orange-color pt-100 pb-100 md-pt-70 md-pb-70">
         <div class="container">
-            <div class="gridFilter text-center mb-50">
-                <button class="active" data-filter="*">ALL</button>
-
-                {% for field in project.field_set.all %}
-                <button data-filter=".filter1">{{field.name}}</button>
-
-                {% endfor %}
-            </div>
+            
             <div class="row grid">
                 <div class="col-lg-4 col-md-6 grid-item filter1">
 
@@ -57,22 +50,13 @@
                             <h3 class="title"><a href="course-single.html">{{ project.title }}</a>
                             </h3>
                             <div class="bottom-part">
-                                <div class="info-meta">
-                                    <ul>
-                                        <li class="user"><i class="fa fa-user"></i> 245</li>
-                                        <li class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            (05)
-                                        </li>
-                                    </ul>
-                                </div>
+                                Some info
                                 <div class="btn-part">
                                     <a href="#"><i class="flaticon-right-arrow"></i></a>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     {% endfor %}
                 </div>

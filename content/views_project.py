@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Project
 from django.forms import ModelForm
-from .forms import ProjectAddForm, ProjectMissionFormSet
+from .forms import ProjectAddForm
 from django.urls import reverse_lazy
 
 from django.views.generic import (
@@ -21,7 +21,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin
 
 class ProjectListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     model = Project
-    template_name = 'crud/list_view.html'
+    template_name = 'backend/project/project_list.html'
     context_object_name = 'project_list'
 
     
@@ -33,7 +33,7 @@ class ProjectListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView)
 
 class ProjectDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
     model = Project
-    template_name = 'crud/detail_view.html'
+    template_name = 'backend/project/project_detail.html'
     
     def get_object(self):
         pk = self.kwargs.get("pk")
@@ -51,10 +51,10 @@ class ProjectCreatelView(LoginRequiredMixin, ProfileCheckPassesTestMixin,  Creat
     template_name = 'crud/create.html'
 
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs) 
-        context['formset']= ProjectMissionFormSet(self.request.POST or None)
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs) 
+    #     context['formset']= ProjectMissionFormSet(self.request.POST or None)
+    #     return context
 
 
     def form_valid(self, form):
@@ -63,12 +63,12 @@ class ProjectCreatelView(LoginRequiredMixin, ProfileCheckPassesTestMixin,  Creat
         self.object.completed = False
         self.object.save()
 
-        formset = ProjectMissionFormSet(self.request.POST, instance = self.object)
+        # formset = ProjectMissionFormSet(self.request.POST, instance = self.object)
         
-        if formset.is_valid():
-            formset.save()
-            return super().form_valid(form)
-        return super().form_invalid(form)
+        # if formset.is_valid():
+        #     formset.save()
+        #     return super().form_valid(form)
+        return super().form_valid(form)
 
 
 # To Overwrite the Get_absolut_url if I want it to go somewhere else - for ex in the update view 

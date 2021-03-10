@@ -53,7 +53,7 @@ class Institution(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length = 100)
     number_of_participants = models.PositiveIntegerField()
-    level = models.ForeignKey(Level, on_delete=models.CASCADE)
+   
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
 
     def __str__(self):

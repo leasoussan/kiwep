@@ -57,6 +57,31 @@ class Mission(models.Model):
         return reverse("mission_detail", kwargs={"pk":self.pk})
 
 
+class Subjects(models.Model):
+    name = models.CharField(max_length= 100)
+
+    
+    def __str__(self):
+        return f"Subject{self.name}"
+
+    
+
+class SkillsAquired(models.Model):
+    name  = models.CharField(max_length= 100)
+    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
+    points = models.PositiveIntegerField()
+    
+    def __str__(self):
+        return f"Subject{self.subject}, {self.name}"
+
+
+class RequiredSkills(models.Model):
+    name  = models.CharField(max_length= 100)
+    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"SubjectRequired sikills {self.subject}, {self.name}"
+
 
 
 
@@ -64,12 +89,14 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     title = models.CharField(max_length=300)
     description = models.TextField()
+    required_skills = models.ManyToManyField(RequiredSkills)
+    aquried_skils = models.ManyToManyField(SkillsAquired)
     time_to_complet = models.PositiveIntegerField()
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
     difficulty = models.ForeignKey(Level, on_delete=models.CASCADE) 
     completed = models.BooleanField(default =False)
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-    mission = models.ManyToManyField(Mission, through = 'MissionsProject', blank =True)
+    mission = models.ManyToManyField(Mission, blank =True)
     points = models.PositiveIntegerField()
     
     
@@ -82,15 +109,6 @@ class Project(models.Model):
         return reverse("project_detail", kwargs={"pk":self.pk})
 
 
-
-class MissionsProject(models.Model):
-    project = models.ForeignKey(Project, on_delete= models.CASCADE)
-    mission =  models.ForeignKey(Mission, on_delete= models.CASCADE) 
-    
-    def __str__(self):
-        return f"Missions for Projects: {self.project}"
-
-
 class Team(models.Model):
     name = models.CharField(max_length=200)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
@@ -100,6 +118,7 @@ class Team(models.Model):
     participants = models.ManyToManyField(Student)
     final_project = models.CharField(max_length=200)    
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
+    missions = models.ManyToManyField(Mission, through = 'TeamProjectMission')        
 
 
  
@@ -115,7 +134,7 @@ class Team(models.Model):
 
 class TeamProjectMission(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    mission_project = models.ForeignKey(MissionsProject, on_delete=models.CASCADE)        
+    mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
     created_date = models.DateField(auto_now_add=True)
     due_date = models.DateField()
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_mission", null=True)
@@ -123,4 +142,5 @@ class TeamProjectMission(models.Model):
 
     def __str__(self):
         return f"Missions of Team: {self.team}"
+
 

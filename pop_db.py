@@ -80,7 +80,7 @@ def pop_country():
 
 
 def pop_city():
-    city = City.objects.create(name='Tel-aviv', country = Country.objects.get(name='israel')), 
+    city = City.objects.get_or_create(name='Tel-aviv', country = Country.objects.get(name='israel')), 
     
     print(f"the City  {city} was created")
 
@@ -95,7 +95,7 @@ def pop_city():
 instit_name = ['new School', 'old School']
 def pop_institution(n):
     for institut in range(n):
-        representative = random.choice(Representative.objects.all())
+        representative = random.choice(Representative.objects.filter(institution = None))
         name = random.choice(instit_name)
         category = random.choice(InstitutionCategory.objects.all())
         field = random.choice(list(Field.objects.all()))
@@ -160,16 +160,17 @@ def pop_representative(n):
 
 groups = ['3rd', '4th', '5th', '6th']
 
+
 def pop_level(n):
-    for level in range(n):
-        level= Level.objects.create(name=level, rating='3')
+    for i in range(n):
+        level= Level.objects.get_or_create(name=i, rating='3')
 
 
 def pop_group(groups):
     for group in groups:
         group = Group.objects.get_or_create(name=group,
         number_of_participants = '5',
-        level = random.choice(Level.objects.all()),
+
         institution = random.choice(Institution.objects.all())
 )
 
@@ -222,7 +223,7 @@ def pop_student(n):
 
         student_profile = Student.objects.create(
             class_level= random.choice(Group.objects.all()),
-            Field = random.choice(Field.objects.all()),
+            field = random.choice(Field.objects.all()),
             dob= '1987-09-09',
             user = user,       
         )
@@ -261,13 +262,15 @@ STAGE_CHOICE = ['Start','Middle', 'Final']
 
 def pop_missions(n):
     for mission in range(n):
-        name = 'Mission {n}'
+        name = f'Mission {mission}'
         field =  random.choice(Field.objects.all())  
         level = random.choice(Level.objects.all())
         stage =  random.choice(STAGE_CHOICE)
         description = 'This mission you have to .....about.......'
-        
+        resources = random.choices(Resource.objects.all())
         owner = random.choice(MyUser.objects.all())
+        points = 3
+        
         
         m = Mission(
             name=name, 
@@ -276,7 +279,7 @@ def pop_missions(n):
             stage=stage, 
             description=description,
             owner=owner, 
-        
+            points = points
             )
         m.save()
         m.resources.add(random.choice(list(Resource.objects.all())))
@@ -304,6 +307,8 @@ def pop_project(n):
             difficulty = difficulty,
             completed = completed,
             speaker = speaker,
+            title = "title",
+            points = random.randint(1,4)
         ) 
         p.save()
   
@@ -362,8 +367,75 @@ def pop_mission_projects(n):
             created_date=created_date,
             due_date=due_date,
             attributed_to=attributed_to
+
         )
         mp.save()
         print(f'mp:{mp.id}')
+
+
+# -------------------------------------------------
+
+
+
+
+
+pop_field(fields_list)
+   
+
+
+pop_institution_category_list(institution_category_list)
+
+
+
+
+pop_country()
+  
+
+
+
+pop_city()
+
+
+
+pop_representative(2)
+  
+
+
+
+pop_institution(2)
+
+
+
+
+
+groups = ['3rd', '4th', '5th', '6th']
+
+pop_level(4)
+pop_group(groups)
+
+
+
+
+pop_speaker(5)
+    
+
+
+
+
+pop_student(30)
+
+
+
+
+pop_resources(20)
+
+pop_missions(20)
+
+
+pop_project(6)
+
+
+pop_team(4)
+pop_mission_projects(20)
 
 

@@ -32,7 +32,7 @@ Hello, {{ user.username|default:'Guest' }}!
 
 
                                     <tr>
-                                        <td>{{ project.id }}</td>
+                                        <td> <a href="{% url 'project_detail'  project.id %}">{{project.id}}</a> </td>
                                         <td>{{ project.name }}</td>
                                         <td>{{ project.Filed }}</td>
                                         <td>{{ project.completed }}</td>
