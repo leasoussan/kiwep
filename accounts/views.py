@@ -169,3 +169,8 @@ class MyLoginView(LoginView):
 
 class ProfileView(View):
     pass
+
+
+
+def page_404(request):
+    return render(request, '404.html')

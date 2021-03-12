@@ -14,7 +14,7 @@ from django.views.generic import (
 )
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from accounts.mixin import ProfileCheckPassesTestMixin
+from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin
 
 
 # -------------------PROJECT---List_View/
@@ -45,7 +45,7 @@ class ProjectDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailVi
 # -----------------------------PROJECT-----Create_View:
 
 
-class ProjectCreatelView(LoginRequiredMixin, ProfileCheckPassesTestMixin,  CreateView):
+class ProjectCreatelView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
     model = Project
     form_class = ProjectAddForm
     template_name = 'crud/create.html'

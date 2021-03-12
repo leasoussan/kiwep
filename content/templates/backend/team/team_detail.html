@@ -1,6 +1,14 @@
 {% extends 'baseb.html' %}
 
 {% block content %}
+
+{% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+
+<a href="{% url 'join_team' team.id %}"></a>
+
+{%endif %}
+
+
 <div id="rs-team" class="rs-team style1 orange-color pt-94 pb-100 md-pt-64 md-pb-70 white-bg">
     <div class="container">
         <div class="row">

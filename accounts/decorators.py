@@ -6,17 +6,20 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 
 
 def check_profile(user):
-    if user.get_user_type == 'student':
-        user = Student.objects.filter(user=user).exists()
+    exists = False
+    if user.get_user_type() == 'student':
+        exists = Student.objects.filter(user=user).exists()
 
-    elif user.get_user_type == 'speaker':  
-        user =  Speaker.objects.filter(user=user).exists()
+    elif user.get_user_type() == 'speaker':  
+        exists =  Speaker.objects.filter(user=user).exists()
 
     
-    elif user.get_user_type == 'representative':
-        user =  Representative.objects.filter(user=user).exists()
+    elif user.get_user_type() == 'representative':
+        exists =  Representative.objects.filter(user=user).exists()
 
-    return user
+    return exists
+
+# we need a True or false answer to be able if user passes test 
 
 
 
@@ -37,3 +40,13 @@ def login_check(user):
 #     if function:
 #         return actual_decorator(function)
 #     return actual_decorator
+
+
+def speaker_check(user):
+    print(user.get_user_type())
+    return user.get_user_type() == "speaker"
+
+    # if user.get_user_type() == 'speaker':  
+    #     return True
+    # else:
+    #     return False

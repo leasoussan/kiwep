@@ -71,5 +71,5 @@ class ResourceAddForm(ModelForm):
 
 # ProjectMissionFormSet = inlineformset_factory(Project, MissionsProject, fields ='__all__' )
 
-TeamProjectMissionFormSet = inlineformset_factory(Team, TeamProjectMission, exclude=('team', 'created_date', 'completed' ))
+TeamProjectMissionFormSet = inlineformset_factory(Team, TeamProjectMission, exclude=('team', 'created_date', 'completed' , 'attributed_to'),  extra=1)
 

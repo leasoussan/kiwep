@@ -30,8 +30,7 @@ Hello, {{ user.username|default:'Guest' }}!
                     <div class="card-body">
                         <h5 class="card-title">Projects<a href="#" class="card-title-helper blockui-transactions"><i
                                     class="material-icons">refresh</i></a></h5>
-                        <a href="{% url 'create_project' %}">Create Project</a>
-                        <a href="{% url 'project_list' %}">project List</a>
+                                    <a href="{% url 'create_project' %}">Create Project</a>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -44,14 +43,14 @@ Hello, {{ user.username|default:'Guest' }}!
                                 </thead>
                                 <tbody>
                                    
-                                    {% for team in user.profile.team.project_set.all %}
+                                    {% for team in user.profile.team_set.all %}
 
 
                                     <tr>
                                         <td> <a href="{% url 'project_detail'  project.id %}">{{project.id}}</a> </td>
-                                        <td>{{ project.name }}</td>
-                                        <td>{{ project.Filed }}</td>
-                                        <td>{{ project.completed }}</td>
+                                        <td>{{ team.project.name }}</td>
+                                        <td>{{ team.project.Filed }}</td>
+                                        <td>{{ team.project.completed }}</td>
                                     </tr>
                                     {% endfor %}
 
@@ -65,7 +64,7 @@ Hello, {{ user.username|default:'Guest' }}!
         </div>
         <div class="row">
 
-            <div class="col-lg-4 col-md-12">
+            <!-- <div class="col-lg-4 col-md-12">
                 <div class="card card-transparent stats-card">
                     <div class="card-body">
                         <div class="stats-info">
@@ -87,7 +86,7 @@ Hello, {{ user.username|default:'Guest' }}!
 
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-lg-4 col-md-12">
                 <div class="card card-transparent stats-card">
                     <div class="card-body">

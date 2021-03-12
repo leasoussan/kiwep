@@ -30,7 +30,7 @@ class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
 
 class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
     model = Mission
-    template_name = 'crud/detail_view.html'    
+    template_name = 'backend/mission/mission_detail.html'    
     
 
     def get_object(self):

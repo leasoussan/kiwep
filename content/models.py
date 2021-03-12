@@ -89,8 +89,8 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     title = models.CharField(max_length=300)
     description = models.TextField()
-    required_skills = models.ManyToManyField(RequiredSkills)
-    aquried_skils = models.ManyToManyField(SkillsAquired)
+    required_skills = models.ManyToManyField(RequiredSkills, blank=True)
+    aquried_skils = models.ManyToManyField(SkillsAquired, blank=True)
     time_to_complet = models.PositiveIntegerField()
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
     difficulty = models.ForeignKey(Level, on_delete=models.CASCADE) 
@@ -115,7 +115,7 @@ class Team(models.Model):
     start_date = models.DateField()
     due_date = models.DateField()
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
-    participants = models.ManyToManyField(Student)
+    participants = models.ManyToManyField(Student, blank = True )
     final_project = models.CharField(max_length=200)    
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
     missions = models.ManyToManyField(Mission, through = 'TeamProjectMission')        
@@ -137,7 +137,7 @@ class TeamProjectMission(models.Model):
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
     created_date = models.DateField(auto_now_add=True)
     due_date = models.DateField()
-    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_mission", null=True)
+    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_mission", blank = True, null=True)
     completed= models.BooleanField(default=False)
 
     def __str__(self):

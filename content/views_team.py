@@ -75,25 +75,30 @@ class TeamCreateMissionView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Vie
         
         team = Team.objects.get(id = self.kwargs['id'])
         missions = team.project.mission.all()
+        student = team.participants.all()
         formset = TeamProjectMissionFormSet(instance = team)
         
-        return render(request, 'crud/create_team_missions.html', {'formset': formset, "missions": missions})
+        for form in formset:
+            form.fields['mission'].queryset = missions
+            form.fields['attributed_to'].queryset = student
+
+        return render(request, 'crud/create_team_missions.html', {'formset': formset})
     
 
     def post(self, request, *args, **kwargs):
         
-        
         team = Team.objects.get(id = self.kwargs['id'])
         missions = team.project.mission.all()
-
+        student = team.participants.all()
         formset = TeamProjectMissionFormSet(request.POST, instance = team)
 
 
         if formset.is_valid():
-        
             formset.save()
+            return redirect('team_list')
+        return render(request, 'crud/create_team_missions.html', {'formset': formset})
 
-        return render(request, 'crud/create_team_missions.html', {'formset': formset, "missions": missions})
+
 
 
 

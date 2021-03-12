@@ -17,6 +17,8 @@ Hello, {{ user.username|default:'Guest' }}!
                         <a href="{% url 'create_project' %}">Create Project</a>
                         <a href="{% url 'project_list' %}">project List</a>
                         <div class="table-responsive">
+                            <a href="{% url 'create_project' %}">Create Project</a>
+                        
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -61,7 +63,7 @@ Hello, {{ user.username|default:'Guest' }}!
                             <a href="{% url 'team_list' %}">team List</a>
 
 
-                            {% for team in user.profile.team_manager.all %}
+                            {% for team in user.speaker.team_manager.all %}
                             <div class="product-item">
                                 <h5>{{ team.name }}</h5>
                                 <span>4,037 downloads</span>
