@@ -22,7 +22,7 @@ Hello, {{ user.username|default:'Guest' }}!
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
+                                        <th scope="col">ID</a> </th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Group</th>
                                         <th scope="col">Status</th>
@@ -65,7 +65,7 @@ Hello, {{ user.username|default:'Guest' }}!
 
                             {% for team in user.speaker.team_manager.all %}
                             <div class="product-item">
-                                <h5>{{ team.name }}</h5>
+                                <h5>  <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5>
                                 <span>4,037 downloads</span>
                             </div>
                             {% endfor %}

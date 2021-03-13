@@ -28,15 +28,16 @@ class TeamAddForm(ModelForm):
             'start_date',
             'due_date',
             'group_Institution',
-            'participants',
             'final_project',
         ] 
-        
-        participants = forms.ModelMultipleChoiceField(
-        queryset=Student.objects.all(),
-        widget=forms.CheckboxSelectMultiple
-    )
     
+
+# class JoinTeamForm(ModelForm):
+#     class Meta:
+#         fields = ['participants']
+
+
+
 
 
 

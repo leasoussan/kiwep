@@ -1,0 +1,17 @@
+{% extends 'baseb.html' %}
+
+
+{% block content %}
+<h2>Do you want to join the team {{team.name}}</h2>
+
+<form action="post">
+    {% csrf_token %}
+    
+    <!-- {{form.as_p}} -->
+    
+    <button type="submit">Join</button>
+    
+    </form>
+    
+
+{% endblock %}

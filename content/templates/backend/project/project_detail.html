@@ -162,13 +162,3 @@
 
 
 {% endblock %}
-
-
-time_to_complet = models.PositiveIntegerField()
-field = models.ForeignKey(Field, on_delete=models.CASCADE)
-difficulty = models.ForeignKey(Level, on_delete=models.CASCADE) 
-completed = models.BooleanField(default =False)
-speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-mission = models.ManyToManyField(Mission, through = 'MissionsProject', blank =True)
-points = models.PositiveIntegerField()
-

@@ -6,7 +6,7 @@
 My Teams 
 
 {% for team in team_list %}
-<h1>Team Name <a href="{% url 'team_detail' team.pk %}"></a> {{ team.name }}</h1>
+<h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1>
 
 {% endfor %}
 

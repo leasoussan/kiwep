@@ -116,7 +116,7 @@ class Team(models.Model):
     due_date = models.DateField()
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Student, blank = True )
-    final_project = models.CharField(max_length=200)    
+    final_project = models.CharField(max_length=200, blank = True)    
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
     missions = models.ManyToManyField(Mission, through = 'TeamProjectMission')        
 
@@ -144,3 +144,5 @@ class TeamProjectMission(models.Model):
         return f"Missions of Team: {self.team}"
 
 
+    def get_absolute_url(self):
+        return reverse("team_detail", kwargs={"pk":self.pk})

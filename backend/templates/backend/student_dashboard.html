@@ -1,5 +1,3 @@
-
-
 Hello, {{ user.username|default:'Guest' }}!
 
 
@@ -7,10 +5,10 @@ Hello, {{ user.username|default:'Guest' }}!
 
 <div>
     {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Logout</a>
-        <a href="{% url 'password_change' %}">Change password</a>
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'password_change' %}">Change password</a>
     {% else %}
-        <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'login' %}">Login</a>
     {% endif %}
 </div>
 
@@ -28,9 +26,10 @@ Hello, {{ user.username|default:'Guest' }}!
             <div class="col-lg-8">
                 <div class="card card-transactions">
                     <div class="card-body">
-                        <h5 class="card-title">Projects<a href="#" class="card-title-helper blockui-transactions"><i
+                        <h5 class="card-title">Available Project<a href="#" class="card-title-helper blockui-transactions"><i
                                     class="material-icons">refresh</i></a></h5>
-                                    <a href="{% url 'create_project' %}">Create Project</a>
+        
+
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -42,14 +41,49 @@ Hello, {{ user.username|default:'Guest' }}!
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   
+
+                                    {% for team in user.profile.class_level.team_set.all %}
+
+
+                                    <tr>
+                                        <td> <a href="{% url 'team_detail' team.id  %}">{{team.name}}</a> </td>
+                                        <td>{{ team.project.name }}</td>
+                                        <td>{{ team.project.filed }}</td>
+                                        <td>{{ team.project.completed }}</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card card-transactions">
+                    <div class="card-body">
+                        <h5 class="card-title">My Team  Project<a href="#" class="card-title-helper blockui-transactions"><i
+                                    class="material-icons">refresh</i></a></h5>
+        
+                            <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Group</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
                                     {% for team in user.profile.team_set.all %}
 
 
                                     <tr>
-                                        <td> <a href="{% url 'project_detail'  project.id %}">{{project.id}}</a> </td>
+                                        <td> <a href="{% url 'project_detail'  project.id %}">{{team.id}}</a> </td>
                                         <td>{{ team.project.name }}</td>
-                                        <td>{{ team.project.Filed }}</td>
+                                        <td>{{ team.project.filed }}</td>
                                         <td>{{ team.project.completed }}</td>
                                     </tr>
                                     {% endfor %}
@@ -124,18 +158,18 @@ Hello, {{ user.username|default:'Guest' }}!
                             <a href="{% url 'create_resource' %}">Create Resource</a>
                             <a href="{% url 'resource_list' %}">Resource List</a>
 
-                           
+
                             <div class="top-products-list">
 
                                 {% for mission in user.my_mission.all %}
                                 {% for resource in mission.resources.all %}
 
                                 <div class="product-item">
-                      
+
                                     {{resource.name}}
-                                  
-                              
-                           
+
+
+
 
                                 </div>
                                 {% endfor %}
@@ -154,8 +188,3 @@ Hello, {{ user.username|default:'Guest' }}!
 
 </div>
 </div>
-
-
-
-
-   

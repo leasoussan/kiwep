@@ -29,7 +29,7 @@ class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
 
 class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
     model = Team
-    template_name = 'crud/detail_view.html'
+    template_name = 'backend/team/team_detail.html'
 
     def get_object(self):
         pk = self.kwargs.get("pk")
@@ -75,12 +75,12 @@ class TeamCreateMissionView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Vie
         
         team = Team.objects.get(id = self.kwargs['id'])
         missions = team.project.mission.all()
-        student = team.participants.all()
+
         formset = TeamProjectMissionFormSet(instance = team)
         
         for form in formset:
             form.fields['mission'].queryset = missions
-            form.fields['attributed_to'].queryset = student
+           
 
         return render(request, 'crud/create_team_missions.html', {'formset': formset})
     
@@ -89,18 +89,18 @@ class TeamCreateMissionView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Vie
         
         team = Team.objects.get(id = self.kwargs['id'])
         missions = team.project.mission.all()
-        student = team.participants.all()
+        
         formset = TeamProjectMissionFormSet(request.POST, instance = team)
 
 
         if formset.is_valid():
             formset.save()
-            return redirect('team_list')
+            return redirect('team_detail' , team.id)
         return render(request, 'crud/create_team_missions.html', {'formset': formset})
 
-
-
-
+        # student = team.participants.all()
+#  form.fields['attributed_to'].queryset = student
+# student = team.participants.all()
 
 # class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
 #     model = Team 
@@ -128,7 +128,7 @@ class TeamCreateMissionView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Vie
 
 class TeamUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):
     model = Team 
-    field = ['name', 'project', 'start_date', 'due_date', 'group_Institution', 'participants', 'tasks' ,'final_project'] 
+    fields = ['name', 'project', 'start_date', 'due_date', 'group_Institution', 'participants', 'tasks' ,'final_project'] 
     template_name = 'crud/update.html'
     success_url = ('team_detail')
 
@@ -146,3 +146,24 @@ class TeamDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView
     def get_object(self):
         pk = self.kwargs.get("pk")
         return get_object_or_404(Team, pk=pk)
+
+
+
+
+
+class JoinTeamView(UpdateView):
+    model = Team 
+    fields = ['participants']
+    template_name = 'backend/team/join_team.html'
+    success_url = ('team_detail')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs) 
+        context['participants']= self.request.user
+        return context
+
+    def save(self):
+        student= self.request.user
+        participants = super().participants
+        participants += student
+        participants.save()

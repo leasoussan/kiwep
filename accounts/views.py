@@ -168,6 +168,7 @@ class MyLoginView(LoginView):
 
 
 class ProfileView(View):
+    'profile_view'
     pass
 
 
