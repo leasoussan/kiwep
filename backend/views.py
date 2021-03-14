@@ -28,3 +28,5 @@ def my_calendar_view(request):
 def team_board(request):
 
     return render(request, "backend/team_board.html" )
+
+

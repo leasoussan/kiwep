@@ -34,9 +34,9 @@ Hello, {{ user.username|default:'Guest' }}!
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Group</th>
+                                        <th scope="col">Team Name</th>
+                                        <th scope="col">Project Name </th>
+                                        <th scope="col">Field</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
@@ -46,10 +46,10 @@ Hello, {{ user.username|default:'Guest' }}!
 
 
                                     <tr>
-                                        <td> <a href="{% url 'team_detail' team.id  %}">{{team.name}}</a> </td>
+                                        <td> <a href="{% url 'team_detail'  team.id %}">{{team.name}}</a> </td>
                                         <td>{{ team.project.name }}</td>
-                                        <td>{{ team.project.filed }}</td>
-                                        <td>{{ team.project.completed }}</td>
+                                        <td>{{ team.project.field }}</td>
+                                        <td>{{ team.project.time_to_complet }}</td>
                                     </tr>
                                     {% endfor %}
 
@@ -69,10 +69,10 @@ Hello, {{ user.username|default:'Guest' }}!
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Group</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Team Name</th>
+                                        <th scope="col">Project Name </th>
+                                        <th scope="col">Field</th>
+                                        <th scope="col">Time To Complete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,10 +81,15 @@ Hello, {{ user.username|default:'Guest' }}!
 
 
                                     <tr>
-                                        <td> <a href="{% url 'project_detail'  project.id %}">{{team.id}}</a> </td>
+                                        <td> <a href="{% url 'team_detail'  team.id %}">{{team.name}}</a> </td>
                                         <td>{{ team.project.name }}</td>
-                                        <td>{{ team.project.filed }}</td>
-                                        <td>{{ team.project.completed }}</td>
+                                        <td>{{ team.project.field }}</td>
+                                        {% if project.completed != 'True' %}
+                                        <td>In Process</td>
+                                        {% else %}
+                                        <td>Project is Done</td>
+                                        {% endif %}     
+                                    </tr>
                                     </tr>
                                     {% endfor %}
 
@@ -98,46 +103,22 @@ Hello, {{ user.username|default:'Guest' }}!
         </div>
         <div class="row">
 
-            <!-- <div class="col-lg-4 col-md-12">
-                <div class="card card-transparent stats-card">
-                    <div class="card-body">
-                        <div class="stats-info">
-                            <h5 class="card-title">TEAMS<span
-                                    class="stats-change stats-change-success">{{user.team_manager.all.count}}</span>
-                            </h5>
-
-                            <a href="{% url 'create_team' %}">Create team</a>
-                            <a href="{% url 'team_list' %}">team List</a>
-
-
-                            {% for team in user.profile.team_set.all %}
-                            <div class="product-item">
-                                <h5>{{ team.name }}</h5>
-                                <span>4,037 downloads</span>
-                            </div>
-                            {% endfor %}
-                        </div>
-
-                    </div>
-                </div>
-            </div> -->
             <div class="col-lg-4 col-md-12">
                 <div class="card card-transparent stats-card">
                     <div class="card-body">
                         <div class="stats-info">
-                            <h5 class="card-title">Missions<span
+                            <h5 class="card-title">My Missions<span
                                     class="stats-change stats-change-success">#Missions</span></h5>
 
-                            <a href="{% url 'create_mission' %}">Create mission</a>
-                            <a href="{% url 'mission_list' %}">Mission List</a>
+                            <a href="{% url 'mission_list' %}">All Missions List</a>
 
 
                             <div class="top-products-list">
 
-                                {% for mission in user.my_mission.all %}
+                                {% for mission in user.profile.team.my_mission_set.all %}
                                 <div class="product-item">
                                     <h5>{{ mission.name }}</h5>
-                                    <span>4,037 downloads</span>
+                                    
                                 </div>
                                 {% endfor %}
                             </div>
@@ -155,7 +136,7 @@ Hello, {{ user.username|default:'Guest' }}!
                         <div class="stats-info">
                             <h5 class="card-title">Resource<span class="stats-change stats-change-success">nbr
                                     of Rsc</span></h5>
-                            <a href="{% url 'create_resource' %}">Create Resource</a>
+                          
                             <a href="{% url 'resource_list' %}">Resource List</a>
 
 

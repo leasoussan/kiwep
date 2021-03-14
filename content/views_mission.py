@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Mission
+from .models import Mission, TeamProjectMission
 from django.forms import ModelForm
 from .forms import MissionAddForm
 from django.urls import reverse_lazy
@@ -14,15 +14,18 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
-from accounts.mixin import ProfileCheckPassesTestMixin
+from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin
 
 
 
 class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
-    model = Mission
+    model = TeamProjectMission
     template_name = 'crud/list_view.html'    
     context_object_name = 'mission_list'
 
+
+    def get_queryset(self):
+        return super().get_queryset().filter(attributed_to = self.request.user.profile())
 
 
 
@@ -40,7 +43,7 @@ class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailVi
 
 
 
-class MissionCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
+class MissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
     model = Mission
     form_class = MissionAddForm 
     template_name = 'crud/create.html'  
@@ -55,7 +58,7 @@ class MissionCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateV
 
 
 
-class MissionUpdateView(LoginRequiredMixin,ProfileCheckPassesTestMixin, UpdateView):
+class MissionUpdateView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, UpdateView):
     model = Mission
     fileds = ['name', 
             'field', 
@@ -66,7 +69,7 @@ class MissionUpdateView(LoginRequiredMixin,ProfileCheckPassesTestMixin, UpdateVi
     template_name = 'crud/update.html'  
 
 
-class MissionDeleteView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DeleteView):
+class MissionDeleteView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, DeleteView):
     model = Mission
     template_name = 'crud/delete.html' 
     success_url = reverse_lazy('mission_list')

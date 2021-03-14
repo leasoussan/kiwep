@@ -15,7 +15,7 @@ from django.views.generic import (
 )
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from accounts.mixin import ProfileCheckPassesTestMixin
+from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin
 
 
 class ResourceListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
@@ -37,7 +37,7 @@ class ResourceDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Detail
 
 
 
-class ResourceCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
+class ResourceCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
      
     model = Resource
     form_class = ResourceAddForm
@@ -54,7 +54,7 @@ class ResourceCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Create
 
 
 
-class ResourceUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):
+class ResourceUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
     model = Resource
     template_name = 'crud/update.html'
     fields = ['name', 
@@ -68,7 +68,7 @@ class ResourceUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Update
         return get_object_or_404(Resource, pk=pk)
 
 
-class ResourceDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
+class ResourceDeleteView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, DeleteView):
     model = Resource
     template_name = 'crud/delete.html'
     success_url = reverse_lazy('resource_list')

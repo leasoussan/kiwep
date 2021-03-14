@@ -80,7 +80,7 @@ class ProjectCreatelView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Create
 # -----------------------------PROJECT-----UpdateView:
 
 
-class ProjectUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
     model = Project
     fields = ['name',
             'description',
@@ -102,7 +102,7 @@ class ProjectUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateV
 # 
 # -----------------------------PROJECT-----:Delete View 
 
-class ProjectDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, DeleteView):
     model = Project
     template_name = 'crud/delete.html'
     success_url = reverse_lazy('project_list')

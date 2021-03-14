@@ -130,6 +130,9 @@ class Team(models.Model):
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
+    def get_available_mission(self):
+
+        return TeamProjectMission.objects.filter(team=self, attributed_to = None)
 
 
 class TeamProjectMission(models.Model):

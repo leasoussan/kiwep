@@ -16,10 +16,17 @@ class TeamModelManager(models.Manager):
     def get_speaker_teams(self, user):
         return self.get_queryset().filter(manager = user)
 
+    
+    def get_available_mission(self):
+            
+        pass
 
 class MissionModelManager(models.Manager):
     def get_speaker_missions(self, user):
         return self.get_queryset().filter(speaker = user)
+
+    
+    
 
 
 class ResourceModelManager(models.Manager):

@@ -3,7 +3,7 @@ from .models import Team, TeamProjectMission, Project
 from django.forms import ModelForm
 from .forms import TeamAddForm, TeamProjectMissionFormSet
 from django.urls import reverse_lazy
-
+from django.views.generic.base import RedirectView
 
 from django.views.generic import (
     CreateView, 
@@ -16,7 +16,7 @@ from django.views.generic import (
 )
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from accounts.mixin import ProfileCheckPassesTestMixin
+from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin
 
 
 
@@ -36,7 +36,7 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
         return get_object_or_404(Team, pk=pk)
 
 
-class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin,  CreateView):
+class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateView):
     model = Team 
     form_class = TeamAddForm
     template_name = 'crud/create.html'
@@ -69,7 +69,7 @@ class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin,  CreateVie
 
 
 
-class TeamCreateMissionView(LoginRequiredMixin, ProfileCheckPassesTestMixin, View):
+class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
     model = TeamProjectMission
     def get(self, request, *args, **kwargs):
         
@@ -126,7 +126,7 @@ class TeamCreateMissionView(LoginRequiredMixin, ProfileCheckPassesTestMixin, Vie
 # #         pass
 
 
-class TeamUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView):
+class TeamUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
     model = Team 
     fields = ['name', 'project', 'start_date', 'due_date', 'group_Institution', 'participants', 'tasks' ,'final_project'] 
     template_name = 'crud/update.html'
@@ -138,7 +138,7 @@ class TeamUpdateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, UpdateView
 
 
 
-class TeamDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView):
+class TeamDeleteView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, DeleteView):
     model = Team
     template_name = 'crud/delete.html'
     success_url = reverse_lazy('team_list')
@@ -151,19 +151,46 @@ class TeamDeleteView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DeleteView
 
 
 
-class JoinTeamView(UpdateView):
-    model = Team 
-    fields = ['participants']
-    template_name = 'backend/team/join_team.html'
-    success_url = ('team_detail')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs) 
-        context['participants']= self.request.user
-        return context
 
-    def save(self):
-        student= self.request.user
-        participants = super().participants
-        participants += student
-        participants.save()
+class JoinTeamView(LoginRequiredMixin, RedirectView):
+    pattern_name = 'team_detail'
+
+
+    def get_redirect_url(self, *args, **kwargs):
+        team = get_object_or_404(Team, pk=kwargs['pk'])
+        team.participants.add(self.request.user.profile())
+        
+        return super().get_redirect_url(*args, **kwargs)
+  
+
+
+class ClaimMission(LoginRequiredMixin, RedirectView):
+    # query_sting = False >>this is false by default     
+    pattern_name = 'mission_list'
+
+    def get_redirect_url(self,  *args, **kwargs):
+        mission = get_object_or_404(TeamProjectMission, pk=kwargs['pk'])
+        mission.attributed_to = self.request.user.profile()
+        mission.save()
+        del kwargs['pk']
+        return super().get_redirect_url(*args, **kwargs)
+
+
+# del pk >>because we dont need a PK so we cancel after we use it 
+
+
+
+
+
+
+    #         def get_context_data(self, **kwargs):
+    # """Insert the single object into the context dict."""
+    # participants = {}
+    # if self.object:
+    #     context[''] = self.object
+    #     context_object_name = self.get_context_object_name(self.object)
+    #     if context_object_name:
+    #         context[context_object_name] = self.object
+    # context.update(kwargs)
+    # return super().get_context_data(**context)
