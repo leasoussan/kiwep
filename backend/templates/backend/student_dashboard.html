@@ -42,7 +42,8 @@ Hello, {{ user.username|default:'Guest' }}!
                                 </thead>
                                 <tbody>
 
-                                    {% for team in user.profile.class_level.team_set.all %}
+                                    {% for team in user.profile.class_level.team_set.all  %}
+                                    {% if request.user.profile not in team.participants.all %}
 
 
                                     <tr>
@@ -51,6 +52,7 @@ Hello, {{ user.username|default:'Guest' }}!
                                         <td>{{ team.project.field }}</td>
                                         <td>{{ team.project.time_to_complet }}</td>
                                     </tr>
+                                    {% endif %}
                                     {% endfor %}
 
                                 </tbody>

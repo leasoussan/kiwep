@@ -6,17 +6,35 @@
 
 <a href="{% url 'join_team' team.id %}">Join The Team </a>
 
+
 {%endif %}
+
+
+
+
+
+<h1>model {{team.teamprojectmission}}</h1>
 <div class="row">
 <div class="col-lg-4">
     <div class="card top-products">
         <div class="card-body">
-            <h5 class="card-title">Team Participants</h5>
+            <h5 class="card-title">Team {{ team.name }}Participants</h5>
             <div class="top-products-list">
                 <div class="product-item">
+                    {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+                    <h3>Current amout of participants: {{team.participants.count}}</h3>
+                    
+                    {% else %}
                     {% for student in team.participants.all %}
-                    <h5><a href="">{{ student.user.first_name }}</a> </h5>
+                    <h5><a href="">{{ student.user.first_name }} {{ student.user.last_name }}</a> </h5>
                     {% endfor %}
+
+                    {%endif %}
+
+                    {% if user.profile.name == 'speaker' %}
+                     <a href="{% url 'add_member_team' team.id %}">add_student</a>
+                    {%  endif %}
+                    
                 </div>
 
             </div>
@@ -27,7 +45,8 @@
 <div class="col-lg-8">
     <div class="card card-transactions">
         <div class="card-body">
-            <h5 class="card-title">Project Description<a href="#" class="card-title-helper blockui-transactions"><i class="material-icons">refresh</i></a></h5>
+            <h5 class="card-title">Project Description</h5>
+            <a href="{% url 'project_detail' team.project.id %}" >{{team.project.name}}</a>
             <div>
                 {{team.project.description}}
             </div>     
@@ -60,7 +79,7 @@
                         {% for projectmission in team.get_available_mission  %}
                         <tr>
                             <td>
-                                <h3>{{projectmission.mission.name}}</h3>
+                                <a href="{% url 'mission_detail' projectmission.id %}">{{projectmission.mission.name}}</a>
                             </td>
 
                             <td>{{mission.stage}}</td>
@@ -99,8 +118,8 @@
                     <tbody>
                         {% for mission in team.missions.all %}
                         <tr>
-                            <td>{{mission.name}}</td>
-                            <td>{{mission_set.missions.attributed_to}}</td>
+                            <td><a href="{% url 'mission_detail' mission.id %}">{{mission.name}}</a> </td>
+                            <td>{{missions.attributed_to}}</td>
                             <td>{{mission.stage}}</td>
                             <td>{{mission.points}}</td>
                             <td>{{mission.due_date}}</td>

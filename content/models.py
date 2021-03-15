@@ -143,6 +143,8 @@ class TeamProjectMission(models.Model):
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_mission", blank = True, null=True)
     completed= models.BooleanField(default=False)
 
+    objects = TeamProjectMissionModelManager()
+
     def __str__(self):
         return f"Missions of Team: {self.team}"
 

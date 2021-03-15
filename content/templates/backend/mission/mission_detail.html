@@ -1,5 +1,11 @@
 {% extends 'baseb.html' %}
 
+{% load static %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'backend/css/overwrite.css' %}">
+{% endblock %}
+
 {% block content %}
 
  {{ mission.name }}
@@ -31,12 +37,13 @@
                         <div class="tab-content tabs-content" id="myTabContent">
                             <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
                                 aria-labelledby="prod-overview-tab">
-                                <div class="content white-bg pt-30">
+                                <div class="content white-bg pt-30 mission_description">
                                     <!-- Cource Overview -->
                                     <div class="course-overview">
-                                        <div class="inner-box">
-                                            <h2>{{project.title}}</h2>
-                                            <p>{{project.description}}</p>
+                                        <div class="inner-box" >
+                                            <div class= "mission_description">
+                                                <h3>About the mission</h3>
+                                            <p>{{mission.description}}</p>
                                             
                                             <h3>What you’ll learn?</h3>
                                             <ul class="review-list">
@@ -51,6 +58,8 @@
                                                 {% endfor %}
                                             </ul>
                                         </div>
+                                    </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -113,31 +122,21 @@
                                 <li class="lectures-feature">
                                     <i class="fa fa-files-o"></i>
                                     <span class="label">Filed:</span>
-                                    <span class="value">{{project.field}}</span>
+                                    <span class="value">{{mission.field}}</span>
                                 </li>
 
-                                <li class="quizzes-feature">
-                                    <i class="fa fa-puzzle-piece"></i>
-                                    <span class="label">Quizzes</span>
-                                    <span class="value">0</span>
-                                </li>
-
-                                <li class="duration-feature">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span class="label">Time to Complete</span>
-                                    <span class="value">{{project.time_to_complet}}</span>
-                                </li>
+                        
 
                                 <li class="students-feature">
                                     <i class="fa fa-users"></i>
                                     <span class="label">Difficuty</sspan>
-                                    <span class="value">{{project.difficulty}}</span>
+                                    <span class="value">{{mission.level}}</span>
                                 </li>
 
                                 <li class="assessments-feature">
                                     <i class="fa fa-check-square-o"></i>
                                     <span class="label">Points</span>
-                                    <span class="value">{{project.points}}</span>
+                                    <span class="value">{{mission.points}}</span>
                                 </li>
                             </ul>
                         </div>

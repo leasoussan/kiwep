@@ -3,7 +3,7 @@ from .models import Mission, TeamProjectMission
 from django.forms import ModelForm
 from .forms import MissionAddForm
 from django.urls import reverse_lazy
-
+from django.views.generic.base import RedirectView
 
 from django.views.generic import (
     CreateView, 
@@ -73,3 +73,22 @@ class MissionDeleteView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, DeleteVi
     model = Mission
     template_name = 'crud/delete.html' 
     success_url = reverse_lazy('mission_list')
+
+
+
+
+
+class ClaimMission(LoginRequiredMixin, RedirectView):
+    # query_sting = False >>this is false by default     
+    pattern_name = 'mission_list'
+
+    def get_redirect_url(self,  *args, **kwargs):
+        mission = get_object_or_404(TeamProjectMission, pk=kwargs['pk'])
+        mission.attributed_to = self.request.user.profile()
+        mission.save()
+        del kwargs['pk']
+        return super().get_redirect_url(*args, **kwargs)
+
+
+# del pk >>because we dont need a PK so we cancel after we use it 
+

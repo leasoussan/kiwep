@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Team, TeamProjectMission, Project
+from .models import Team, TeamProjectMission, Project, Mission
 from django.forms import ModelForm
 from .forms import TeamAddForm, TeamProjectMissionFormSet
 from django.urls import reverse_lazy
@@ -27,13 +27,26 @@ class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
 
 
 
+
+
+
+
+
 class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
     model = Team
     template_name = 'backend/team/team_detail.html'
+    queryset = TeamProjectMission.objects.team_available_mission()
+
 
     def get_object(self):
         pk = self.kwargs.get("pk")
         return get_object_or_404(Team, pk=pk)
+
+
+
+
+
+
 
 
 class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateView):
@@ -41,11 +54,6 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
     form_class = TeamAddForm
     template_name = 'crud/create.html'
     
-    
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs) 
-    #     context['formset']= TeamProjectMissionFormSet(self.request.POST or None)
-    #     return context
 
 
     def form_valid(self, form):
@@ -54,16 +62,16 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
         self.object.completed = False
         self.object.save()
 
-        # formset = TeamProjectMissionFormSet(self.request.POST, instance = self.object)
-        
-        # if formset.is_valid():
-        #     formset.save()
-        #     return super().form_valid(form)
         return super().form_valid(form)
 
     
     def get_success_url(self):
         return reverse_lazy('create_team_missions', kwargs={'id':self.object.id})
+
+
+
+
+
 
 
 
@@ -98,32 +106,12 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
             return redirect('team_detail' , team.id)
         return render(request, 'crud/create_team_missions.html', {'formset': formset})
 
-        # student = team.participants.all()
-#  form.fields['attributed_to'].queryset = student
-# student = team.participants.all()
-
-# class TeamCreateView(LoginRequiredMixin, ProfileCheckPassesTestMixin, CreateView):
-#     model = Team 
-#     form_class = TeamAddForm
-#     template_name = 'crud/create.html'
-    
-
-#     def form_valid(self, form):
-#         self.object = form.save(commit = False)
-#         self.object.manager = self.request.user.profile()
-#         self.object.save()
-        
-#         # return super().form_valid(form)
-#         return redirect('create_team_missions', form.cleaned_data['team.id'])
 
 
 
 
-# # def get_context_data(self):
-# #         # allo to access the team with the team ID 
-# #         # team = team.object.get(id - team_id)
-# #         # when initialising formset = intance = team
-# #         pass
+
+
 
 
 class TeamUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
@@ -138,6 +126,11 @@ class TeamUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView
 
 
 
+
+
+
+
+
 class TeamDeleteView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, DeleteView):
     model = Team
     template_name = 'crud/delete.html'
@@ -146,6 +139,11 @@ class TeamDeleteView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, DeleteView
     def get_object(self):
         pk = self.kwargs.get("pk")
         return get_object_or_404(Team, pk=pk)
+
+
+
+
+
 
 
 
@@ -165,22 +163,23 @@ class JoinTeamView(LoginRequiredMixin, RedirectView):
   
 
 
-class ClaimMission(LoginRequiredMixin, RedirectView):
-    # query_sting = False >>this is false by default     
-    pattern_name = 'mission_list'
-
-    def get_redirect_url(self,  *args, **kwargs):
-        mission = get_object_or_404(TeamProjectMission, pk=kwargs['pk'])
-        mission.attributed_to = self.request.user.profile()
-        mission.save()
-        del kwargs['pk']
-        return super().get_redirect_url(*args, **kwargs)
 
 
-# del pk >>because we dont need a PK so we cancel after we use it 
+class AddTeamMemberView(LoginRequiredMixin, UpdateView):
+    model = Team 
+    fields = ['participants'] 
+    template_name = 'crud/update.html'
+    success_url = ('team_detail')
 
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, **kwargs)
 
+
+    def form_valid(self,form):
+        self.object = form.save()
+        return super().form_valid(form)
 
 
 
