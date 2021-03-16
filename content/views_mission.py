@@ -24,8 +24,8 @@ class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     context_object_name = 'mission_list'
 
 
-    def get_queryset(self):
-        return super().get_queryset().filter(attributed_to = self.request.user.profile())
+    # def get_queryset(self):
+    #     return super().get_queryset().filter(attributed_to = self.request.user.profile())
 
 
 

@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from .models import Project, Team, Mission, Resource, TeamProjectMission
 from accounts.models import Student
 from django.forms import inlineformset_factory
+from django.contrib.admin.widgets import FilteredSelectMultiple
 
 class ProjectAddForm(ModelForm):
     class Meta:
@@ -31,6 +32,31 @@ class TeamAddForm(ModelForm):
             'final_project',
         ] 
     
+class AddMemberTeamForm(ModelForm):
+    class Meta:
+        model = Team
+        fields = ['participants'] 
+        
+        widgets = {
+            'participants': FilteredSelectMultiple(verbose_name='Participants List', is_stacked=False)
+        }
+
+        # class media is built inside django 
+
+    class Media:
+            css = {
+                'all': ('/static/admin/css/widgets.css',),
+            }
+            js = ('/admin/jsi18n',)
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['participants'].queryset = kwargs['instance'].group_Institution.student_set.all()
+
+
+    
+
 
 
 

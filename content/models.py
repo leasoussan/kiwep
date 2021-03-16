@@ -130,9 +130,10 @@ class Team(models.Model):
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
-    def get_available_mission(self):
 
-        return TeamProjectMission.objects.filter(team=self, attributed_to = None)
+    # def get_available_mission(self):
+
+    #     return TeamProjectMission.objects.filter(team=self, attributed_to = None)
 
 
 class TeamProjectMission(models.Model):
@@ -140,7 +141,7 @@ class TeamProjectMission(models.Model):
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
     created_date = models.DateField(auto_now_add=True)
     due_date = models.DateField()
-    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_mission", blank = True, null=True)
+    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_missions", blank = True, null=True)
     completed= models.BooleanField(default=False)
 
     objects = TeamProjectMissionModelManager()

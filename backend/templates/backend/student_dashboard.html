@@ -117,9 +117,9 @@ Hello, {{ user.username|default:'Guest' }}!
 
                             <div class="top-products-list">
 
-                                {% for mission in user.profile.team.my_mission_set.all %}
+                                {% for mymission in user.profile.my_missions.all %}
                                 <div class="product-item">
-                                    <h5>{{ mission.name }}</h5>
+                                  <a href="{% url 'mission_detail' mymission.id%}">       <h5>{{ mymission.mission.name }}</h5>/a>                       
                                     
                                 </div>
                                 {% endfor %}

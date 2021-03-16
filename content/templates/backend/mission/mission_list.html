@@ -3,9 +3,6 @@
 {% block content %}
 
 
-<a href="{% url 'content_manager' %}">content Manager </a>
-
-
 
 
 {% for mission in mission_list %}
@@ -13,7 +10,10 @@
 
 {% endfor %}
 
-<a href="{% url 'create_mission' %}">Add Mission</a>
 
+{% if user.profile.name == 'speaker' %}
+
+<a href="{% url 'create_mission' %}">Add Mission</a>
+{% endif %}
 
 {% endblock %}

@@ -14,10 +14,10 @@ Hello, {{ user.username|default:'Guest' }}!
                     <div class="card-body">
                         <h5 class="card-title">Projects<a href="#" class="card-title-helper blockui-transactions"><i
                                     class="material-icons">refresh</i></a></h5>
-                        <a href="{% url 'create_project' %}">Create Project</a>
-                        <a href="{% url 'project_list' %}">project List</a>
+                                    <button type="button" class="btn btn-outline-danger"><a href="{% url 'create_project' %}">Create Project</a></button>
+                                    <button type="button" class="btn btn-outline-success"><a href="{% url 'project_list' %}">project List</a></button>
                         <div class="table-responsive">
-                            <a href="{% url 'create_project' %}">Create Project</a>
+                            
                         
                             <table class="table table-striped">
                                 <thead>
@@ -56,17 +56,18 @@ Hello, {{ user.username|default:'Guest' }}!
                     <div class="card-body">
                         <div class="stats-info">
                             <h5 class="card-title">TEAMS<span
-                                    class="stats-change stats-change-success">{{user.team_manager.all.count}}</span>
+                                    class="stats-change stats-change-success">{{user.speaker.team_manager.count}}</span>
                             </h5>
-
-                            <a href="{% url 'create_team' %}">Create team</a>
-                            <a href="{% url 'team_list' %}">team List</a>
+                            <button type="button" class="btn btn-outline-danger"> <a href="{% url 'create_team' %}">+ Team</a></button>
+                            <button type="button" class="btn btn-outline-success"><a href="{% url 'team_list' %}">Team List</a></button>
+                           
+                            
 
 
                             {% for team in user.speaker.team_manager.all %}
                             <div class="product-item">
-                                <h5>  <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5>
-                                <span>4,037 downloads</span>
+                            <h5>  <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5>
+                            <p>{{team.participants.count}}  Participants </p>  
                             </div>
                             {% endfor %}
                         </div>
@@ -79,10 +80,13 @@ Hello, {{ user.username|default:'Guest' }}!
                     <div class="card-body">
                         <div class="stats-info">
                             <h5 class="card-title">Missions<span
-                                    class="stats-change stats-change-success">#Missions</span></h5>
+                                    class="stats-change stats-change-success">{{user.mission_owner.count}}</span></h5>
 
-                            <a href="{% url 'create_mission' %}">Create mission</a>
-                            <a href="{% url 'mission_list' %}">Mission List</a>
+                            <button type="button" class="btn btn-outline-danger"> <a href="{% url 'create_mission' %}">+ mission</a></button>
+                            <button type="button" class="btn btn-outline-success"><a href="{% url 'mission_list' %}">Mission List</a></button>
+                           
+                            
+                            
 
 
                             <div class="top-products-list">
@@ -90,7 +94,7 @@ Hello, {{ user.username|default:'Guest' }}!
                                 {% for mission in user.mission_set.all %}
                                 <div class="product-item">
                                     <h5>{{ mission.name }}</h5>
-                                    <span>4,037 downloads</span>
+                                    
                                 </div>
                                 {% endfor %}
                             </div>
@@ -106,18 +110,17 @@ Hello, {{ user.username|default:'Guest' }}!
 
                     <div class="card-body">
                         <div class="stats-info">
-                            <h5 class="card-title">Resource<span class="stats-change stats-change-success">nbr
-                                    of Rsc</span></h5>
-                            <a href="{% url 'create_resource' %}">Create Resource</a>
-                            <a href="{% url 'resource_list' %}">Resource List</a>
-
+                            <h5 class="card-title">Resource<span class="stats-change stats-change-success">{{project.mission_set.resource.count}}</span></h5>
+                                <button type="button" class="btn btn-outline-danger"> <a href="{% url 'create_resource' %}">+ Resource</a></button>
+                                <button type="button" class="btn btn-outline-success"><a href="{% url 'resource_list' %}">Resource List</a></button>
+                                   
                             <div class="top-products-list">
 
                                 {% for resource in user.resource_set.all %}
 
                                 <div class="product-item">
                                     <h5>{{ resource.name }}</h5>
-                                    <span>4,037 downloads</span>
+                              
 
                                 </div>
                                 {% endfor %}

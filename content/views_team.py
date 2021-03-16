@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team, TeamProjectMission, Project, Mission
 from django.forms import ModelForm
-from .forms import TeamAddForm, TeamProjectMissionFormSet
+from .forms import TeamAddForm, TeamProjectMissionFormSet, AddMemberTeamForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
+
 
 from django.views.generic import (
     CreateView, 
@@ -100,10 +101,15 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
         
         formset = TeamProjectMissionFormSet(request.POST, instance = team)
 
-
+        
         if formset.is_valid():
             formset.save()
             return redirect('team_detail' , team.id)
+
+        
+        for form in formset:
+            form.fields['mission'].queryset = missions
+           
         return render(request, 'crud/create_team_missions.html', {'formset': formset})
 
 
@@ -167,29 +173,14 @@ class JoinTeamView(LoginRequiredMixin, RedirectView):
 
 class AddTeamMemberView(LoginRequiredMixin, UpdateView):
     model = Team 
-    fields = ['participants'] 
     template_name = 'crud/update.html'
     success_url = ('team_detail')
+    form_class = AddMemberTeamForm
 
+    def get_success_url(self):
+        return reverse_lazy('team_detail', kwargs={'pk': self.object.id})
 
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        return super().post(request, *args, **kwargs)
-
-
-    def form_valid(self,form):
-        self.object = form.save()
-        return super().form_valid(form)
-
-
-
-    #         def get_context_data(self, **kwargs):
-    # """Insert the single object into the context dict."""
-    # participants = {}
-    # if self.object:
-    #     context[''] = self.object
-    #     context_object_name = self.get_context_object_name(self.object)
-    #     if context_object_name:
-    #         context[context_object_name] = self.object
-    # context.update(kwargs)
-    # return super().get_context_data(**context)
+    def form_invalid(self, form):
+        print("error")
+        print(form.errors)
+        return super().form_invalid(form)

@@ -1,8 +1,16 @@
 {% extends 'baseb.html' %}
 
+
+
+{% block extrahead %}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+
+{% endblock %}
+
 {% block content %}
 
-<form action="post">
+{{form.media}}
+<form method="post">
 {% csrf_token %}
 
 {{form.as_p}}
@@ -10,6 +18,8 @@
 <button type="submit">Save</button>
 
 </form>
+
+
 
 
 

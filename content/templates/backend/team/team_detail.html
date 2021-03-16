@@ -2,6 +2,7 @@
 
 {% block content %}
 
+
 {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
 
 <a href="{% url 'join_team' team.id %}">Join The Team </a>
@@ -13,49 +14,86 @@
 
 
 
-<h1>model {{team.teamprojectmission}}</h1>
+
+
 <div class="row">
-<div class="col-lg-4">
-    <div class="card top-products">
-        <div class="card-body">
-            <h5 class="card-title">Team {{ team.name }}Participants</h5>
-            <div class="top-products-list">
-                <div class="product-item">
-                    {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
-                    <h3>Current amout of participants: {{team.participants.count}}</h3>
-                    
-                    {% else %}
-                    {% for student in team.participants.all %}
-                    <h5><a href="">{{ student.user.first_name }} {{ student.user.last_name }}</a> </h5>
-                    {% endfor %}
+    <div class="col-lg-4">
+        <div class="card top-products">
+            <div class="card-body">
+                <h5 class="card-title">Team {{ team.name }}Participants</h5>
+                <div class="top-products-list">
+                    <div class="product-item">
+                        {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+                        <h3>Current amout of participants: {{team.participants.count}}</h3>
 
-                    {%endif %}
+                        {% else %}
+                        {% for student in team.participants.all %}
+                        <h5><a href="">{{ student.user.first_name }} {{ student.user.last_name }}</a> </h5>
+                        {% endfor %}
 
-                    {% if user.profile.name == 'speaker' %}
-                     <a href="{% url 'add_member_team' team.id %}">add_student</a>
-                    {%  endif %}
-                    
+                        {%endif %}
+
+                        {% if user.profile.name == 'speaker' %}
+                        <a href="{% url 'add_member_team' team.id %}">Edit students</a>
+                        {%  endif %}
+
+                    </div>
+
                 </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="col-lg-8">
+        <div class="card card-transactions">
+            <div class="card-body">
+                <h5 class="card-title">Project Description</h5>
+                <a href="{% url 'project_detail' team.project.id %}">{{team.project.name}}</a>
+                <div>
+                    {{team.project.description}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% if user.profile in team.participants.all or user.profile.name == "speaker" %}
+
+<div class="row">
+    <div class="col-xl">
+        <div class="card">
+            <div class="card-body">
+                <p>Where are you at?</p>
+                <div class="progress">
+                    <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" role="progressbar"
+                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="col-lg-8">
-    <div class="card card-transactions">
-        <div class="card-body">
-            <h5 class="card-title">Project Description</h5>
-            <a href="{% url 'project_detail' team.project.id %}" >{{team.project.name}}</a>
-            <div>
-                {{team.project.description}}
-            </div>     
+{% endif %}
+
+
+
+
+
+{% if user.profile.name == "speaker" %} 
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+               <a href="{% url 'create_mission' %}">Add Missions</a>
+            </div>
         </div>
     </div>
 </div>
 
-</div>
 
+{% endif %}
 <div class="row">
     <div class="col">
         <div class="card">
@@ -75,16 +113,17 @@
                     </thead>
                     <tbody>
 
-                        {% if user.profile in team.participants.all %}
-                        {% for projectmission in team.get_available_mission  %}
+                        {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
+                        {% for projectmission in team.teamprojectmission_set.team_available_mission  %}
                         <tr>
                             <td>
-                                <a href="{% url 'mission_detail' projectmission.id %}">{{projectmission.mission.name}}</a>
+                                <a
+                                    href="{% url 'mission_detail' projectmission.id %}">{{projectmission.mission.name}}</a>
                             </td>
 
-                            <td>{{mission.stage}}</td>
-                            <td>{{mission.points}}</td>
-                            <td>{{mission.due_date}}</td>
+                            <td>{{projectmission.stage}}</td>
+                            <td>{{projectmission.points}}</td>
+                            <td>{{projectmission.due_date}}</td>
                             <td><a href="{% url 'claim_mission' projectmission.id %}">Claim Mission</a></td>
                         </tr>
                         {% endfor %}
@@ -97,6 +136,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="row">
     <div class="col">
@@ -116,14 +156,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for mission in team.missions.all %}
+                    
+                        {% for projectmission in team.teamprojectmission_set.get_attributed_mission %}
                         <tr>
-                            <td><a href="{% url 'mission_detail' mission.id %}">{{mission.name}}</a> </td>
-                            <td>{{missions.attributed_to}}</td>
-                            <td>{{mission.stage}}</td>
-                            <td>{{mission.points}}</td>
-                            <td>{{mission.due_date}}</td>
-                            <td>{{mission.status}}</td>
+                            <td><a href="{% url 'mission_detail' projectmission.id %}">{{projectmission.name}}</a> </td>
+                            <td>{{projectmission.attributed_to}}</td>
+                            <td>{{projectmission.mission.stage}}</td>
+                            <td>{{projectmission.points}}</td>
+                            <td>{{projectmission.due_date}}</td>
+                            <td>{{projectmission.status}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -133,5 +174,7 @@
         </div>
     </div>
 </div>
+
+
 
 {% endblock %}

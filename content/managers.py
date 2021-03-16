@@ -13,7 +13,7 @@ class ProjectModelManager(models.Manager):
     def get_queryset(self):
         return ProjectModelQuerySet(self.model, using = self._db) 
 
-    def speaker_project(self):
+    def speaker_projects(self):
         return self.get_queryset().speaker_projects() 
 
 
@@ -50,16 +50,33 @@ class TeamProjectMissionQuerySet(models.QuerySet):
     def team_available_mission(self):
         return self.filter(attributed_to = None)
 
-    # def mission_attributed_to(self):
-    #     return self.attributed_to()
 
+    def get_attributed_mission(self):
+
+        return self.exclude(attributed_to = None)
+
+
+  
+
+    # def get_user_missions(self):
+    #     return self.filter(attributed_to = request.user)
 
 class TeamProjectMissionModelManager(models.Manager):
     def get_queryset(self):
         return TeamProjectMissionQuerySet(self.model, using=self._db)
 
+
     def team_available_mission(self):
         return self.get_queryset().team_available_mission()
+
+
+
+    def get_attributed_mission(self):
+
+        return self.get_queryset().get_attributed_mission()
+
+    # def get_user_missions(self):
+    #     return self.get_queryset().get_user_missions()
 
 
 # ---------------------------------Mission---Manager__queryset
