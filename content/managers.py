@@ -56,10 +56,14 @@ class TeamProjectMissionQuerySet(models.QuerySet):
         return self.exclude(attributed_to = None)
 
 
+    def is_my_mission(self, user):
+        
+        return self.filter(attributed_to = user)
+
   
 
-    # def get_user_missions(self):
-    #     return self.filter(attributed_to = request.user)
+
+
 
 class TeamProjectMissionModelManager(models.Manager):
     def get_queryset(self):
@@ -75,9 +79,10 @@ class TeamProjectMissionModelManager(models.Manager):
 
         return self.get_queryset().get_attributed_mission()
 
-    # def get_user_missions(self):
-    #     return self.get_queryset().get_user_missions()
 
+    def is_my_mission(self, user):
+        return self.get_queryset().is_my_mission(user)
+    
 
 # ---------------------------------Mission---Manager__queryset
 

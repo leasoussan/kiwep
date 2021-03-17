@@ -2,10 +2,15 @@
 
 {% block content %}
 
- {{ project.name }}
 
 
-<a href="{% url 'project_list' %}">List Project </a>
+<a href="{% url 'project_list' %}">All Projects  </a>
+
+{% if user.profile.name == 'speaker' %}
+
+<a href="{% url 'update_project' project.id %}">Edit Project </a>
+
+{% endif %}
 
 <div>
 

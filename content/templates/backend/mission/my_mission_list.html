@@ -1,0 +1,52 @@
+{% extends 'baseb.html' %}
+
+{% block content %}
+
+
+
+
+
+
+{% if user.profile.name == 'speaker' %}
+
+<a href="{% url 'create_mission' %}">Add Mission</a>
+{% endif %}
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">My Mission board</h5>
+                <table id="zero-conf" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Mission Name</th>
+                            <th>Due Date</th>
+                            <th>Project</th>
+                            <th>status</th>
+                            <th>Other</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mission in my_mission_list %}
+                        <tr>
+                           
+                            <td><a href="{% url 'mission_detail'  mission.pk %}">{{ mission.mission.name }}</a></td>
+                            <td>{{mission.due_date}}</td>
+                            <td>{{mission.team.project}}</td>
+                            <td>{{mission.completed}}</td>
+                            <td>000</td>
+                            <td>xxx</td>
+                               
+                        </tr>
+                            {% endfor %}
+                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

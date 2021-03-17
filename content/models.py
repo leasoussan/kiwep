@@ -143,8 +143,12 @@ class TeamProjectMission(models.Model):
     due_date = models.DateField()
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_missions", blank = True, null=True)
     completed= models.BooleanField(default=False)
+    response_text = models.TextField(blank=True)
+    response_file = models.FileField(null=True, blank=True)
+    accepted = models.BooleanField(default=False)
 
     objects = TeamProjectMissionModelManager()
+
 
     def __str__(self):
         return f"Missions of Team: {self.team}"

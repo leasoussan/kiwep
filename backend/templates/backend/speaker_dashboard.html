@@ -93,7 +93,7 @@ Hello, {{ user.username|default:'Guest' }}!
 
                                 {% for mission in user.mission_set.all %}
                                 <div class="product-item">
-                                    <h5>{{ mission.name }}</h5>
+                                   <a href="{% url 'mission_detail' mission.id %}"><h5>{{ mission.name }}</h5></a> 
                                     
                                 </div>
                                 {% endfor %}

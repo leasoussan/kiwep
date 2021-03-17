@@ -32,11 +32,18 @@ urlpatterns = [
 
     # mission
     path('mission-list/', MissionListView.as_view(), name = "mission_list"),
+    path('my_mission-list/', MyMissionList.as_view(), name = "my_mission_list"),
     path('mission-detail/<int:pk>', MissionDetailView.as_view(), name = "mission_detail"),
+    path('team-mission-detail/<int:pk>', TeamMissionDetailView.as_view(), name = "team_mission_detail"),
+    
     path('create-mission/', MissionCreateView.as_view(), name = "create_mission"),
     path('update-mission/<int:pk>', MissionUpdateView.as_view(), name = "update_mission"),
     path('delete-mission/<int:pk>', MissionDeleteView.as_view(), name = "delete_mission"),
     path('claim-mission/<int:pk>', ClaimMission.as_view(), name = "claim_mission"),
+    path('submit-mission/<int:pk>', StudentSubmitMission.as_view(), name = 'submit_mission'),
+    path('unclaim-mission/<int:pk>', UnclaimMission.as_view(), name = "unclaim_mission"),
+
+   
 
 
     # ressource 

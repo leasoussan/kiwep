@@ -41,11 +41,35 @@
                                         <div class="inner-box" >
                                             <div class= "mission_description">
                                                 <h3>About the mission</h3>
-                                            <p>{{object.description}}</p>
+                                            <p>{{object.mission.description}},{{object.response_text}} </p>
                                             
-                                      
+                                            
+                                    <p></p>
+                                    <p>{{object.response_file}}</p>
                                         </div>
                                     </div>
+
+                                    {% if update %}
+                                    {% if user.profile == object.attributed_to  %}
+
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{form.as_p}}
+                                        <button type="submit">Send</button>
+
+                                    </form>
+                                   
+                                    
+                                    {% endif %}
+                                    
+ 
+                                    {% endif %}
+                                    
+
+{% if user.profile == object.attributed_to %}
+<button><a href="{% url 'submit_mission' object.id %}">Edit Response</a> </button>
+<button><a href="{% url 'unclaim_mission' object.id %}">UnclaimMission</a> </button>
+{% endif %}
 
                                     </div>
                                 </div>

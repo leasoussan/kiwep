@@ -8,7 +8,7 @@
 <a href="{% url 'join_team' team.id %}">Join The Team </a>
 
 
-{%endif %}
+{% endif %}
 
 
 
@@ -156,10 +156,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+                        
                         {% for projectmission in team.teamprojectmission_set.get_attributed_mission %}
                         <tr>
-                            <td><a href="{% url 'mission_detail' projectmission.id %}">{{projectmission.name}}</a> </td>
+                            <td><a href="
+                                {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
+                                {% url 'submit_mission' projectmission.id %}
+                            
+                                {% else %}
+                                {% url 'team_mission_detail' projectmission.id %}
+                                {% endif %}
+                                
+
+                                ">{{projectmission.mission.name}}</a> </td>
                             <td>{{projectmission.attributed_to}}</td>
                             <td>{{projectmission.mission.stage}}</td>
                             <td>{{projectmission.points}}</td>

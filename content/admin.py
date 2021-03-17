@@ -11,7 +11,7 @@ class TeamProjectMissionInlineAdmin(admin.TabularInline):
     model = TeamProjectMission
 
 
-
+admin.site.register(TeamProjectMission)
 
 # model registration 
 

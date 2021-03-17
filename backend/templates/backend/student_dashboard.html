@@ -112,14 +112,14 @@ Hello, {{ user.username|default:'Guest' }}!
                             <h5 class="card-title">My Missions<span
                                     class="stats-change stats-change-success">#Missions</span></h5>
 
-                            <a href="{% url 'mission_list' %}">All Missions List</a>
+                            <a href="{% url 'my_mission_list' %}">Mission Board</a>
 
 
                             <div class="top-products-list">
 
                                 {% for mymission in user.profile.my_missions.all %}
                                 <div class="product-item">
-                                  <a href="{% url 'mission_detail' mymission.id%}">       <h5>{{ mymission.mission.name }}</h5>/a>                       
+                                  <a href="{% url 'team_mission_detail' mymission.id%}">       <h5>{{ mymission.mission.name }}</h5>/a>                       
                                     
                                 </div>
                                 {% endfor %}

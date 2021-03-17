@@ -95,3 +95,10 @@ class ResourceAddForm(ModelForm):
 TeamProjectMissionFormSet = inlineformset_factory(Team, TeamProjectMission, exclude=('team', 'created_date', 'completed' , 'attributed_to'),  extra=1)
 
 
+class SubmitMissionForm(ModelForm):
+    class Meta:
+        model = TeamProjectMission
+        fields = [
+            'response_text',
+            'response_file',
+        ]

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Mission, TeamProjectMission
+from .models import Mission, TeamProjectMission, Team
 from django.forms import ModelForm
-from .forms import MissionAddForm
+from .forms import MissionAddForm, SubmitMissionForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -20,7 +20,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 
 class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     model = TeamProjectMission
-    template_name = 'crud/list_view.html'    
+    template_name = 'content/mission/mission_list.html'    
     context_object_name = 'mission_list'
 
 
@@ -28,6 +28,14 @@ class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     #     return super().get_queryset().filter(attributed_to = self.request.user.profile())
 
 
+class MyMissionList(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
+    model = TeamProjectMission
+    template_name = 'backend/mission/my_mission_list.html'    
+    context_object_name = 'my_mission_list'
+
+
+    def get_queryset(self):
+        return super().get_queryset().filter(attributed_to = self.request.user.profile())
 
 
 
@@ -60,13 +68,16 @@ class MissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateV
 
 class MissionUpdateView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, UpdateView):
     model = Mission
-    fileds = ['name', 
+    fields = ['name', 
             'field', 
             'level',
             'description',
-            'completed',
+           
             'resources',]
     template_name = 'crud/update.html'  
+
+
+
 
 
 class MissionDeleteView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, DeleteView):
@@ -80,7 +91,7 @@ class MissionDeleteView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, DeleteVi
 
 class ClaimMission(LoginRequiredMixin, RedirectView):
     # query_sting = False >>this is false by default     
-    pattern_name = 'mission_list'
+    pattern_name = 'my_mission_list'
 
     def get_redirect_url(self,  *args, **kwargs):
         mission = get_object_or_404(TeamProjectMission, pk=kwargs['pk'])
@@ -92,3 +103,55 @@ class ClaimMission(LoginRequiredMixin, RedirectView):
 
 # del pk >>because we dont need a PK so we cancel after we use it 
 
+
+
+class UnclaimMission(LoginRequiredMixin, RedirectView):
+    # query_sting = False >>this is false by default     
+    pattern_name = 'my_mission_list'
+
+    def get_redirect_url(self,  *args, **kwargs):
+        mission = get_object_or_404(TeamProjectMission, pk=kwargs['pk'])
+        mission.attributed_to = None
+        mission.save()
+        del kwargs['pk']
+        return super().get_redirect_url(*args, **kwargs)
+
+
+
+
+
+class TeamMissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
+    model = TeamProjectMission
+    template_name = 'backend/mission/team_mission_detail.html'    
+    
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(TeamProjectMission, pk=pk)
+
+
+
+
+
+class StudentSubmitMission(UpdateView):
+    model = TeamProjectMission
+    form_class = SubmitMissionForm
+    # fields = [
+    #         'response_text',
+    #         'response_file',
+    #     ]
+    template_name = 'backend/mission/team_mission_detail.html'
+
+
+# on the get contex data im adding  the context that I get in the page. here it mean that when I call this view ill get to add in the kward update 
+# the view -template will get the update in an {% if update%}
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['update']= True 
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('team_detail', kwargs ={'pk': self.object.team.id})
+
+    def form_valid(self, form):
+        return super().form_valid(form)
