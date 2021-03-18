@@ -27,16 +27,6 @@ class MyUserCreationForm(UserCreationForm):
 
     
 
-    # def clean_username(self):
-    #     username = self.cleaned_data.get('username')
-    #     queryset = User.objects.get(username__iexact=username)
-    #     if not queryset.exists():
-    #         raise forms.ValidationError("Invalid name")
-    #     return username
-        
-
-
-    
 
 
 

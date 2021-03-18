@@ -29,7 +29,6 @@ class TeamAddForm(ModelForm):
             'start_date',
             'due_date',
             'group_Institution',
-            'final_project',
         ] 
     
 class AddMemberTeamForm(ModelForm):
