@@ -26,59 +26,37 @@
             </ul>
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    
+                    <table id="zero-conf" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Speaker</th>
+                                <th>field</th>
+                                <th>Time to Complete</th>
+                           
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for project in project_list %}
+                            <tr>
+                                <td>{{project.name}}</td>
+                                <td>{{project.speaker.user.first_name}}</td>
+                                <td>{{project.field}}</td>
+                                <td>{{project.time_to_complet}}</td>
 
-    <!-- Popular Courses Section Start -->
-    <div id="rs-popular-courses" class="rs-popular-courses style1 orange-color pt-100 pb-100 md-pt-70 md-pb-70">
-        <div class="container">
-            
-            <div class="row grid">
-                <div class="col-lg-4 col-md-6 grid-item filter1">
+                            </tr>
+                            {% endfor %}
+                      </tbody>
 
-                    {% for project in project_list %}
-
-
-
-                    <div class="courses-item mb-30">
-                        <div class="img-part">
-                            <img src="assets/images/courses/1.jpg" alt="">
-                        </div>
-                        <div class="content-part">
-                            <ul class="meta-part">
-                                <li><a class="categorie"
-                                        href="{% url 'project_detail' project.pk %}">{{ project.name }}</a></li>
-                            </ul>
-                            <h3 class="title"><a href="course-single.html">{{ project.title }}</a>
-                            </h3>
-                            <div class="bottom-part">
-                                Some info
-                                <div class="btn-part">
-                                    <a href="#"><i class="flaticon-right-arrow"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    {% endfor %}
+                    </table>
                 </div>
-
-
-
-            </div>
-            <div class="pagination-area orange-color text-center mt-30 md-mt-0">
-                <ul class="pagination-part">
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">Next <i class="fa fa-long-arrow-right"></i></a></li>
-                </ul>
             </div>
         </div>
     </div>
-    <!-- Popular Courses Section End -->
-
-
-</div>
-<!-- Main content End -->
-
-
 
 {% endblock %}

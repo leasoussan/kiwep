@@ -67,7 +67,7 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
 
     
     def get_success_url(self):
-        return reverse_lazy('create_team_missions', kwargs={'id':self.object.id})
+        return reverse_lazy('create_team_missions', kwargs={'pk':self.object.id})
 
 
 
@@ -82,7 +82,7 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
     model = TeamProjectMission
     def get(self, request, *args, **kwargs):
         
-        team = Team.objects.get(id = self.kwargs['id'])
+        team = Team.objects.get(id = self.kwargs['pk'])
         missions = team.project.mission.all()
 
         formset = TeamProjectMissionFormSet(instance = team)
@@ -96,7 +96,7 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
 
     def post(self, request, *args, **kwargs):
         
-        team = Team.objects.get(id = self.kwargs['id'])
+        team = Team.objects.get(id = self.kwargs['pk'])
         missions = team.project.mission.all()
         
         formset = TeamProjectMissionFormSet(request.POST, instance = team)

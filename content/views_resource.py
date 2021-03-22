@@ -28,7 +28,7 @@ class ResourceListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView
 class ResourceDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
 
     model = Resource
-    template_name = 'crud/detail_view.html'
+    template_name = 'backend/resource/resource_detail.html'
 
     def get_object(self):
         pk = self.kwargs.get('pk') 

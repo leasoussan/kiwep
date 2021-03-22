@@ -6,6 +6,8 @@ from accounts.models import Speaker, Student, Representative, MyUser
 from backend.models import Field,Level, Group
 from todo.models import Task
 from .managers import *
+# this is like a trans tag - just for the backend 
+from django.utils.translation import ugettext_lazy as _
 
 
 class Resource(models.Model):
@@ -87,6 +89,7 @@ class SkillsAcquired(models.Model):
 
 
 class Project(models.Model):
+
     name = models.CharField(max_length=200)
     title = models.CharField(max_length=300)
     description = models.TextField()
@@ -103,11 +106,17 @@ class Project(models.Model):
     
     objects = ProjectModelManager()
 
+    class Meta:
+        verbose_name = _('project')
+
+        verbose_name_plural = _('projects')
+
     def __str__(self):
         return f"Project Name {self.pk} {self.name}"
 
     def get_absolute_url(self):
         return reverse("project_detail", kwargs={"pk":self.pk})
+
 
 
 class Team(models.Model):

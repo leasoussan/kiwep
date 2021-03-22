@@ -10,7 +10,7 @@
 
 {% if user.profile.name == 'speaker' %}
 
-<a href="{% url 'update_mission' mission.id %}">Edit Mission </a>
+<a href="{% url 'update_mission' mission.pk %}">Edit Mission </a>
 
 {% endif %}
 

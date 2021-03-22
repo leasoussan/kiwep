@@ -21,7 +21,7 @@ urlpatterns = [
     path('team-list/', TeamListView.as_view(), name = "team_list"),
     path('team-detail/<int:pk>', TeamDetailView.as_view(), name = "team_detail"),
     path('create-team/', TeamCreateView.as_view(), name = "create_team"),
-    path('create-team-missions/<int:id>', TeamCreateMissionView.as_view(), name = "create_team_missions"),
+    path('create-team-missions/<int:pk>', TeamCreateMissionView.as_view(), name = "create_team_missions"),
     path('add-member-team/<int:pk>', AddTeamMemberView.as_view(), name = "add_member_team"),
     
     path('join-team/<int:pk>', JoinTeamView.as_view(), name = "join_team"),

@@ -1,10 +1,12 @@
 {% extends 'baseb.html' %}
+{% load i18n %}
+
 
 {% block content %}
 
 
 
-<a href="{% url 'project_list' %}">All Projects  </a>
+<a href="{% url 'project_list' %}">{% trans 'all_projects' %}</a>
 
 {% if user.profile.name == 'speaker' %}
 

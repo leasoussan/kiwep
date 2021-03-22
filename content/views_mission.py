@@ -72,12 +72,13 @@ class MissionUpdateView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, UpdateVi
             'field', 
             'level',
             'description',
-           
             'resources',]
     template_name = 'crud/update.html'  
 
 
-
+def get_object(self):
+    pk = self.kwargs.get['pk']
+    return get_object_or_404(Mission, pk =pk)
 
 
 class MissionDeleteView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, DeleteView):

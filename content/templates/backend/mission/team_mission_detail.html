@@ -8,11 +8,6 @@
 
 {% block content %}
 
-{% if user.profile.name == 'speaker' %}
-
-<a href="{% url 'update_mission' mission.id %}">Edit Mission </a>
-
-{% endif %}
 
 
     <!-- Intro Courses -->
@@ -41,12 +36,15 @@
                                         <div class="inner-box" >
                                             <div class= "mission_description">
                                                 <h3>About the mission</h3>
-                                            <p>{{object.mission.description}},{{object.response_text}} </p>
+                                            <p>{{object.mission.description}} </p>
                                             
-                                            
-                                    <p></p>
+                                          
+                                            <div class="inner-box" >
+                                            <h2>My Response </h2>
+                                    <p>,{{object.response_text}} </p>
                                     <p>{{object.response_file}}</p>
                                         </div>
+                                    </div>
                                     </div>
 
                                     {% if update %}
@@ -75,7 +73,17 @@
                                 </div>
                             </div>
                     
-                           
+                            {% if user.profile.name == 'speaker' %}
+
+                            {% if object.response_file or object.response_text %}
+                        File :{{object.response_file}}
+                        Text: {{object.response_text}} 
+                            {% else %}
+                            
+                            Student didnt answered yet
+                        {% endif %}
+                            {% endif %}
+                            
                            
                             
                         </div>
