@@ -1,1 +1,1 @@
-web: gunicorn kiwep.wsgi
+web: gunicorn kiwep.wsgi --log-file -

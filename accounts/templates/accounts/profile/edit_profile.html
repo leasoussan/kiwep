@@ -1,8 +1,11 @@
 
 {% extends 'baseb.html' %}
+{% load i18n %}
 
 {% block content %}
-<h2>{{ usertype }} Profile EDIT</h2>
+
+
+<h2>{{ usertype }} {% trans 'profile_edit' %}</h2>
 
 <form method="post">
     

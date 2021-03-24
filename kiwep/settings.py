@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 # language add 
 from django.utils.translation import ugettext_lazy as _
 
+# heroku 
+import django_heroku
+
+
 from pathlib import Path
 import os
 
@@ -48,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware', #language adding Middleware after Seesion before common 
     'django.middleware.common.CommonMiddleware',
@@ -149,6 +154,10 @@ LOGOUT_URL = "homepage"
 APPEND_SLASH=False
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
 
 
 
