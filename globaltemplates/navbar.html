@@ -58,9 +58,9 @@
                     <div class="col-lg-2">
                         <div class="logo-cat-wrap">
                             <div class="logo-part">
-                                <a href="#">
-                                    <img src="{% static 'front_end/images/kiwep/kiwep_logo.png' %}" alt="">
-                                </a>
+                               
+                                    <img src="{% static 'front_end/images/kiwep/kiwep_logo.jpg' %}" style="width: 100%px; height: 100pxs;">
+                                
                             </div>
                         </div>
                       </div>
@@ -74,34 +74,25 @@
                                 </div>
                                 <nav class="rs-menu">
                                     <ul class="nav-menu">
-                                        <li class="menu-item-has-children current-menu-item">
-                                            <a href="#">Home</a>
-                                        </li>
+                                     
 
                                         <li class="menu-item-has-children">
                                             <a href="#">About</a>
                                         </li>
 
-                                        <li class="menu-item-has-children">
-                                            <a href="#">Projetcs</a>
-                                            <ul class="sub-menu">
-                                                {% for project in projects %}
-                                                <li><a href="course.html">{{ project.name }}</a> </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </li>
+                                   
 
                                         <li class="menu-item-has-children">
-                                            <a href="#">Institutions</a>
-                                            <ul class="sub-menu">
+                                            <a href="#">Partner Up</a>
+                                            <!-- <ul class="sub-menu">
                                                 Available institutions
-                                            </ul>
+                                            </ul> -->
                                         </li>
 
 
 
                                         <li class="menu-item-has-children">
-                                            <a href="#">Contact</a>
+                                            <a href="#">Contact Us</a>
 
                                         </li>
                                     </ul> <!-- //.nav-menu -->
@@ -133,7 +124,7 @@
         </div>
         <!-- Menu End -->
         <!-- Canvas Menu start -->
-        <nav class="right_menu_togle hidden-md">
+        <!-- <nav class="right_menu_togle hidden-md">
             <div class="close-btn">
                 <span id="nav-close">
                     <div class="line">
@@ -185,7 +176,7 @@
                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                 </ul>
             </div>
-        </nav>
+        </nav> -->
         <!-- Canvas Menu end -->
 
         {% endblock %}

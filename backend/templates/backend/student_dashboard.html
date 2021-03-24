@@ -3,27 +3,13 @@ Hello, {{ user.username|default:'Guest' }}!
 
 
 
-<div>
-    {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}">Logout</a>
-    <a href="{% url 'password_change' %}">Change password</a>
-    {% else %}
-    <a href="{% url 'login' %}">Login</a>
-    {% endif %}
-</div>
-
-Hello, {{ user.username|default:'Guest' }}!
-
 
 <div>
-    Student Dashboard
-
-
 
 
     <div class="main-wrapper">
         <div class="row stats-row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card card-transactions">
                     <div class="card-body">
                         <h5 class="card-title">Available Project<a href="#" class="card-title-helper blockui-transactions"><i
@@ -61,7 +47,7 @@ Hello, {{ user.username|default:'Guest' }}!
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card card-transactions">
                     <div class="card-body">
                         <h5 class="card-title">My Team  Project<a href="#" class="card-title-helper blockui-transactions"><i
@@ -105,7 +91,7 @@ Hello, {{ user.username|default:'Guest' }}!
         </div>
         <div class="row">
 
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-6 col-md-12">
                 <div class="card card-transparent stats-card">
                     <div class="card-body">
                         <div class="stats-info">
@@ -119,7 +105,7 @@ Hello, {{ user.username|default:'Guest' }}!
 
                                 {% for mymission in user.profile.my_missions.all %}
                                 <div class="product-item">
-                                  <a href="{% url 'team_mission_detail' mymission.id%}">       <h5>{{ mymission.mission.name }}</h5>/a>                       
+                                  <a href="{% url 'team_mission_detail' mymission.id%}">       <h5>{{ mymission.mission.name }}</h5></a>                       
                                     
                                 </div>
                                 {% endfor %}
@@ -131,7 +117,7 @@ Hello, {{ user.username|default:'Guest' }}!
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-12">
+            <!-- <div class="col-lg-4 col-md-12">
                 <div class="card card-transparent stats-card">
 
                     <div class="card-body">
@@ -162,7 +148,7 @@ Hello, {{ user.username|default:'Guest' }}!
 
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
     </div>
