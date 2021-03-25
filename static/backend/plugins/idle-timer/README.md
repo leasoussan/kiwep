@@ -7,8 +7,7 @@ jQuery Idle Timer Plugin
 [![Coverage Status](http://img.shields.io/coveralls/thorst/jquery-idletimer.svg)](https://coveralls.io/r/thorst/jquery-idletimer?branch=master)
 
 Demo
---------
-https://thorst.github.io/jquery-idletimer/index.html
+
 
 Download
 --------
