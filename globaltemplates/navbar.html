@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load i18n %}
 
 {% block navbar %}
 
@@ -23,10 +23,36 @@
                                 <i class="fa flaticon-call"></i>
                                 <a href="tel:+(+01)999-999-4444"> +33(0)7 6236 4831</a>
                             </li>
-
+                            <li>
+                             <!-- Language  -->
+                      
+                                    <form action="{% url 'set_language' %}" method="post">
+                                        {% csrf_token %}
+                                        <input name="next" type="hidden" value="{{ redirect_to }}" />
+                                        <div class="input-group ">
+                                            <select class="form-select " name="language" onchange="this.form.submit()">
+                                                {% get_current_language as LANGUAGE_CODE %}
+                                                {% get_available_languages as LANGUAGES %}
+                                                {% for lang in LANGUAGES %}
+                                                    <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                                                        {{ lang.1 }} ({{ lang.0 }})
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                           
+                                        </div>
+                                    </form>
+                                </li>    
 
                         </ul>
+
                     </div>
+
+              
+                
+      
+
+
                     <div class="col-md-7 text-right">
 
 
@@ -34,13 +60,13 @@
                             {% if user.is_authenticated %}
                             <li class="login-register">
                                 <i class="fa fa-sign-in"></i>
-                                <a href="{% url 'dashboard' %}">Dashboard</a>
+                                <a href="{% url 'dashboard' %}">{% trans 'dashboard' %}</a>
                             </li>
 
                             {% else %}
                             <li class="login-register">
 
-                                <a href="{% url 'login' %}">Login</a>/<a href="{% url 'register' %}">Register</a>
+                                <a href="{% url 'login' %}">Login</a>/<a href="{% url 'register' %}">{% trans 'register' %}</a>
                             </li>
                             {% endif %}
                         </ul>
@@ -77,13 +103,13 @@
                                      
 
                                         <li class="menu-item-has-children">
-                                            <a href="#">About</a>
+                                            <a href="#">{% trans 'about' %}</a>
                                         </li>
 
                                    
 
                                         <li class="menu-item-has-children">
-                                            <a href="#">Partner Up</a>
+                                            <a href="#">{% trans 'partner_up' %}</a>
                                             <!-- <ul class="sub-menu">
                                                 Available institutions
                                             </ul> -->
@@ -92,7 +118,7 @@
 
 
                                         <li class="menu-item-has-children">
-                                            <a href="#">Contact Us</a>
+                                            <a href="#">{% trans 'contact_us' %}</a>
 
                                         </li>
                                     </ul> <!-- //.nav-menu -->

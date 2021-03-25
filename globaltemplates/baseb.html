@@ -60,7 +60,7 @@
         <div class="page-sidebar">
             <div class="logo-box"><a href="{% url 'homepage' %}" class="logo-text">KIWEP</a><a href="#"
                     id="sidebar-close"><i class="material-icons">close</i></a> <a href="#" id="sidebar-state"><i
-                        class="material-icons">adjust</i><i
+                        class="material-icons">{% trans 'adjust' %}</i><i
                         class="material-icons compact-sidebar-icon">panorama_fish_eye</i></a>
             </div>
                 <div class="page-sidebar-inner slimscroll">
@@ -69,16 +69,16 @@
                             Apps
                         </li>
                         <li class="active-page">
-                            <a href="{% url 'dashboard' %}" class="active"><i class="material-icons-outlined">dashboard</i>Dashboard</a>
+                            <a href="{% url 'dashboard' %}" class="active"><i class="material-icons-outlined">{% trans 'dashboard' %}</i>{% trans 'dashboard' %}</a>
                         </li>
 
                         <li>
-                            <a href="{% url 'profile' user.id %}"><i class="material-icons-outlined">account_circle</i>Profile</a>
+                            <a href="{% url 'profile' user.id %}"><i class="material-icons-outlined">{% trans 'profile' %}</i>{% trans 'profile' %}</a>
                         </li>
 
 
                         <li>
-                            <a href="{% url 'frontend_list' %}"><i class="material-icons">done</i>Todo</a>
+                            <a href="{% url 'frontend_list' %}"><i class="material-icons">{% trans 'done' %}</i>{% trans 'todo' %}</a>
                         </li>
 
                     </ul>

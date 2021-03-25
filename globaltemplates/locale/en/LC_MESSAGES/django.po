@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-25 13:52+0200\n"
+"POT-Creation-Date: 2021-03-25 18:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,14 +18,98 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: 404.html:11
+msgid "went_wrong"
+msgstr "Somethong went Wrong"
+
+#: 500.html:13
+msgid "internal_server_error"
+msgstr "Internal Server Error"
+
+#: 500.html:17
+msgid "homepage"
+msgstr "Homepage"
+
+#: base.html:169
+msgid "about_us"
+msgstr "About Us"
+
+#: base.html:171 navbar.html:95
+msgid "contact_us"
+msgstr "Contact Us "
+
+#: baseb.html:63
+msgid "adjust"
+msgstr "Adjust"
+
+#: baseb.html:72 navbar.html:37
+msgid "dashboard"
+msgstr "Dashboard"
+
+#: baseb.html:76
+msgid "profile"
+msgstr "Profile"
+
+#: baseb.html:81
+msgid "done"
+msgstr "Fini"
+
+#: baseb.html:81
+msgid "todo"
+msgstr "Todo"
+
 #: baseb.html:96
 msgid "menu"
-msgstr ""
+msgstr "Menu"
 
 #: baseb.html:112
 msgid "logout"
-msgstr ""
+msgstr "Logout"
 
 #: baseb.html:159
 msgid "reports"
-msgstr ""
+msgstr "Reports"
+
+#: homepage.html:35
+msgid "educational_project"
+msgstr "Educational Projects"
+
+#: homepage.html:36
+msgid "the_kiwep_moto"
+msgstr "The Futur of Activated Co-Learning "
+
+#: homepage.html:39
+msgid "institution_registration"
+msgstr "Institution Registration"
+
+#: homepage.html:60
+msgid "increse_your_skills"
+msgstr "Increse Your Skills"
+
+#: homepage.html:81
+msgid "frequently_asked_question"
+msgstr "Frequently Asked Question"
+
+#: homepage.html:87
+msgid "what_are_the_requirements"
+msgstr "Are they any requirements"
+
+#: homepage.html:99
+msgid "can_we_do_projects_with_no_school-attached"
+msgstr "Can we do a project without a Team"
+
+#: homepage.html:110
+msgid "can_i_get_a_mentor"
+msgstr "Can I rent a Mentor"
+
+#: navbar.html:43
+msgid "register"
+msgstr "Register"
+
+#: navbar.html:80
+msgid "about"
+msgstr "About"
+
+#: navbar.html:86
+msgid "partner_up"
+msgstr "Partner Up"

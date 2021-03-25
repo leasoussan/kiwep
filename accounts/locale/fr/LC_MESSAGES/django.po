@@ -20,48 +20,48 @@ msgstr ""
 
 #: templates/accounts/profile/edit_profile.html:8
 msgid "profile_edit"
-msgstr ""
+msgstr "Éditer le Profile"
 
 #: templates/accounts/profile/representative_profile.html:34
 msgid "edit_institution_profile"
-msgstr ""
+msgstr "Éditer le Profile Institution"
 
 #: templates/accounts/profile/representative_profile.html:38
 #: templates/accounts/profile/speaker_profile.html:39
 msgid "active"
-msgstr ""
+msgstr "Actif"
 
 #: templates/accounts/profile/representative_profile.html:49
 msgid "school_info"
-msgstr ""
+msgstr "Information sur L'etablisement"
 
 #: templates/accounts/profile/representative_profile.html:61
 #: templates/accounts/profile/speaker_profile.html:62
 msgid "about"
-msgstr ""
+msgstr "A Props"
 
 #: templates/accounts/profile/representative_profile.html:62
 msgid "bio_description"
-msgstr ""
+msgstr "Bioraphy"
 
 #: templates/accounts/profile/representative_profile.html:64
 #: templates/accounts/profile/speaker_profile.html:65
 msgid "school"
-msgstr ""
+msgstr "Ecole"
 
 #: templates/accounts/profile/representative_profile.html:64
 msgid "education_history"
-msgstr ""
+msgstr "Diplomee de "
 
 #: templates/accounts/profile/representative_profile.html:66
 #: templates/accounts/profile/speaker_profile.html:67
 msgid "my_location"
-msgstr ""
+msgstr "Situee actuelemt"
 
 #: templates/accounts/profile/representative_profile.html:66
 #: templates/accounts/profile/speaker_profile.html:67
 msgid "from"
-msgstr ""
+msgstr "De"
 
 #: templates/accounts/profile/representative_profile.html:77
 #: templates/accounts/profile/speaker_profile.html:78

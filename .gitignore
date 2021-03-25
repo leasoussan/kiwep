@@ -6,3 +6,6 @@ kiwep/local_settings.py
 !**/migrations/__init__.py
 
 media/**
+
+staticfiles/
+
