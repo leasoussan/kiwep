@@ -21,8 +21,10 @@ from pathlib import Path
 import os
 
 
-import dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+# import dj_database_url
+
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -108,6 +110,11 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
+# DATABASES = { 'default' : dj_database_url.config()}
+
+
+
+
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -146,6 +153,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/media/'
@@ -162,6 +170,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 
+# Activate Django-Heroku.
+# django_heroku.settings(locals())
 
 
 
@@ -171,5 +181,3 @@ except ImportError:
     raise Exception('local_seetings is required!')
 
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
