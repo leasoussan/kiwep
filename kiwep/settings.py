@@ -110,7 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-# DATABASES = { 'default' : dj_database_url.config()}
+
+
+DATABASES = { 'default' : dj_database_url.config()}
 
 
 
@@ -151,9 +153,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/media/'
@@ -171,13 +173,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Activate Django-Heroku.
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
 
 
 
 try:    
     from .local_settings import *
 except ImportError:
-    raise Exception('local_seetings is required!')
-
-
+    pass
