@@ -20,6 +20,11 @@ import django_heroku
 from pathlib import Path
 import os
 
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -156,8 +161,6 @@ APPEND_SLASH=False
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
 
 
 
@@ -166,3 +169,7 @@ try:
     from .local_settings import *
 except ImportError:
     raise Exception('local_seetings is required!')
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
