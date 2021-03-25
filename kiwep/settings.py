@@ -21,8 +21,10 @@ from pathlib import Path
 import os
 
 
+
 import dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -107,6 +109,20 @@ AUTH_PASSWORD_VALIDATORS = [
     #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     # },
 ]
+
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+}
+
+
+
+
+
+
+
+
+
+
 
 
 AUTHENTICATION_BACKENDS = (
