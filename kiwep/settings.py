@@ -22,7 +22,11 @@ import os
 
 
 
+<<<<<<< HEAD
 # import dj_database_url
+=======
+import dj_database_url
+>>>>>>> bf852a53481b41e9203445d2e2171382f3b72674
 
 
 
@@ -110,7 +114,11 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
+<<<<<<< HEAD
 # DATABASES = { 'default' : dj_database_url.config()}
+=======
+DATABASES = { 'default' : dj_database_url.config()}
+>>>>>>> bf852a53481b41e9203445d2e2171382f3b72674
 
 
 
@@ -153,7 +161,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+<<<<<<< HEAD
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+=======
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+>>>>>>> bf852a53481b41e9203445d2e2171382f3b72674
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/media/'
