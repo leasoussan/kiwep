@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block content %}
 
-<h2>Login</h2>
+<h2>{% trans 'login'%}</h2>
 
 
 
@@ -16,22 +16,22 @@
                     <div class="auth-form">
                         <div class="row">
                             <div class="col">
-                                <div class="logo-box"><a href="#" class="logo-text">Kiwep Platform</a></div>
+                                <div class="logo-box"><a href="#" class="logo-text">{% trans 'kiwep_platform'%}</a></div>
                               
 
                                     <form method="post">
                                         {% csrf_token %}
                                         {{ form.as_p }}
-                                        <button type="submit" class="btn btn-primary btn-block btn-submit">LogIn</button>
+                                        <button type="submit" class="btn btn-primary btn-block btn-submit">{% trans 'login'%}</button>
                                     </form>
 
 
                                     <div class="auth-options">
                                         <div class="custom-control custom-checkbox form-group">
                                             <input type="checkbox" class="custom-control-input" id="exampleCheck1">
-                                            <label class="custom-control-label" for="exampleCheck1">Remember me</label>
+                                            <label class="custom-control-label" for="exampleCheck1">{% trans 'remeber_me_login'%}</label>
                                         </div>
-                                        <a href="{{ 'password_reset' }}" class="forgot-link">Forgot Password?</a>
+                                        <a href="{{ 'password_reset' }}" class="forgot-link">{% trans 'forgot_password_link'%}</a>
                                     </div>
                               
                             </div>
@@ -49,5 +49,5 @@
 
 
 
-    <a href="{% url 'password_reset' %}">Reset password</a>
+    <a href="{% url 'password_reset' %}">{% trans 'reste_password_link'%}</a>
     {% endblock %}

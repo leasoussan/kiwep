@@ -35,12 +35,12 @@
                                     <div class="course-overview">
                                         <div class="inner-box" >
                                             <div class= "mission_description">
-                                                <h3>About the mission</h3>
+                                                <h3>{% trans 'about_the_mission' %}</h3>
                                             <p>{{object.mission.description}} </p>
                                             
                                           
                                             <div class="inner-box" >
-                                            <h2>My Response </h2>
+                                            <h2>{% trans 'my_response' %}</h2>
                                     <p>,{{object.response_text}} </p>
                                     <p>{{object.response_file}}</p>
                                         </div>
@@ -53,7 +53,7 @@
                                     <form action="" method="post" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         {{form.as_p}}
-                                        <button type="submit">Send</button>
+                                        <button type="submit">{% trans 'send' %}</button>
 
                                     </form>
                                    
@@ -65,8 +65,8 @@
                                     
 
 {% if user.profile == object.attributed_to %}
-<button><a href="{% url 'submit_mission' object.id %}">Edit Response</a> </button>
-<button><a href="{% url 'unclaim_mission' object.id %}">UnclaimMission</a> </button>
+<button><a href="{% url 'submit_mission' object.id %}">{% trans 'edit-response' %}</a> </button>
+<button><a href="{% url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a> </button>
 {% endif %}
 
                                     </div>
@@ -76,11 +76,11 @@
                             {% if user.profile.name == 'speaker' %}
 
                             {% if object.response_file or object.response_text %}
-                        File :{{object.response_file}}
-                        Text: {{object.response_text}} 
+                        {% trans 'file_lable' %} :{{object.response_file}}
+                        {% trans 'text_lable' %}: {{object.response_text}} 
                             {% else %}
                             
-                            Student didnt answered yet
+                            {% trans 'no_answer_yet' %}
                         {% endif %}
                             {% endif %}
                             
@@ -98,7 +98,7 @@
                             <ul>
                                 <li class="lectures-feature">
                                     <i class="fa fa-files-o"></i>
-                                    <span class="label">Filed:</span>
+                                    <span class="label">{% trans 'filed' %}:</span>
                                     <span class="value">{{object.field}}</span>
                                 </li>
 
@@ -106,13 +106,13 @@
 
                                 <li class="students-feature">
                                     <i class="fa fa-users"></i>
-                                    <span class="label">Difficuty</sspan>
+                                    <span class="label">{% trans 'difficulty' %}</span>
                                     <span class="value">{{object.level}}</span>
                                 </li>
 
                                 <li class="assessments-feature">
                                     <i class="fa fa-check-square-o"></i>
-                                    <span class="label">Points</span>
+                                    <span class="label">{% trans 'points' %}</span>
                                     <span class="value">{{object.points}}</span>
                                 </li>
                             </ul>

@@ -12,18 +12,11 @@
         </div>
         <div class="breadcrumbs-text white-color">
             <h1 class="page-title">Course Grid 02</h1>
-            <a href="{% url 'content_manager' %}">content Manager </a>
+          
+          {% trans 'project_list_title' %}
 
-            Project List
-
-
-            <a href="{% url 'create_project' %}">Add Project</a>
-            <ul>
-                <li>
-                    <a class="active" href="index.html">Home</a>
-                </li>
-                <li>Course</li>
-            </ul>
+            <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>
+           
         </div>
     </div>
     <div class="row">
@@ -34,10 +27,10 @@
                     <table id="zero-conf" class="display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Speaker</th>
-                                <th>field</th>
-                                <th>Time to Complete</th>
+                                <th>{% trans 'project_name_table_header' %}</th>
+                                <th>{% trans 'speaker_table_header' %}</th>
+                                <th>{% trans 'field_table_header' %}</th>
+                                <th>{% trans 'time_to_complete_table_header' %}</th>
                            
                             </tr>
                         </thead>

@@ -32,11 +32,11 @@
                                             <a href="#">Videos</a>
                                         </li> -->
                                         <li>
-                                            <a href="{% url 'edit_profile' %}">EDIT PROFILE</a>
+                                            <a href="{% url 'edit_profile' %}">{% trans 'edit_profile'%}</a>
                                         </li>
                                     </ul>
                                     <div class="profile-status">
-                                        <i> Active</i>
+                                        <i> {% trans 'active'%}</i>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                             <div class="col-md-8">
                                 <div class="card">
                                     <div class="card-body">
-                                        SOME ELEMENTS ABOUT THE Speaker
+                                        {% trans 'speaker_info_bio'%}
                                     </div>
                                 </div>
                                 <div class="card">
@@ -59,12 +59,12 @@
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">About</h5>
-                                        <p>Add bio-description into model</p>
+                                        <h5 class="card-title">{% trans 'about'%}</h5>
+                                        <p>{% trans 'about_bio'%}</p>
                                         <ul class="list-unstyled profile-about-list">
-                                            <li><i class="material-icons">school</i><span>Studied Mechanical Engineering at <a href="#">{{user.profile.institution.name}}</a></span></li>
+                                            <li><i class="material-icons">{% trans 'school'%}</i><span>{% trans 'study_hisitory'%}<a href="#">{{user.profile.institution.name}}</a></span></li>
                                         
-                                            <li><i class="material-icons">my_location</i><span>From <a href="#">{{user.city}}</a></span></li>
+                                            <li><i class="material-icons">{% trans 'my_location'%}</i><span>{% trans 'from'%} <a href="#">{{user.city}}</a></span></li>
                     
                                             <li>
                 
@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Contact Info</h5>
+                                        <h5 class="card-title">{% trans 'contact_info'%}</h5>
                                         <ul class="list-unstyled profile-about-list">
                                             <li><i class="material-icons">mail_outline</i><span>{{user.email}}</span></li>
                                             <li><i class="material-icons">home</i><span>Lives in <a href="#">{{user.city}}</a></span></li>

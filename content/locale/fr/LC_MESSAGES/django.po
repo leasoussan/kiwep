@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-22 18:18+0000\n"
+"POT-Creation-Date: 2021-03-25 13:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,6 +30,250 @@ msgstr "Liste des Projets"
 msgid "projects"
 msgstr "Liste des Projets"
 
+#: templates/backend/mission/mission_detail.html:13
+msgid "edit_mission"
+msgstr ""
+
+#: templates/backend/mission/mission_detail.html:43
+#: templates/backend/mission/team_mission_detail.html:38
+msgid "about_the_mission"
+msgstr ""
+
+#: templates/backend/mission/mission_detail.html:69
+#: templates/backend/project/project_detail.html:127
+msgid "field"
+msgstr ""
+
+#: templates/backend/mission/mission_detail.html:77
+#: templates/backend/mission/team_mission_detail.html:109
+msgid "difficulty"
+msgstr ""
+
+#: templates/backend/mission/mission_detail.html:83
+#: templates/backend/mission/team_mission_detail.html:115
+#: templates/backend/project/project_detail.html:95
+#: templates/backend/project/project_detail.html:146
+msgid "points"
+msgstr ""
+
+#: templates/backend/mission/my_mission_list.html:12
+#: templates/backend/team/team_detail.html:90
+msgid "add_mission_link"
+msgstr ""
+
+#: templates/backend/mission/my_mission_list.html:19
+msgid "my_mission_board_title"
+msgstr ""
+
+#: templates/backend/mission/my_mission_list.html:23
+msgid "mission_name_table_title"
+msgstr ""
+
+#: templates/backend/mission/my_mission_list.html:24
+msgid "due_date_table_title"
+msgstr ""
+
+#: templates/backend/mission/my_mission_list.html:25
+msgid "project_name_table_title"
+msgstr ""
+
+#: templates/backend/mission/my_mission_list.html:26
+msgid "status_table_title"
+msgstr ""
+
+#: templates/backend/mission/team_mission_detail.html:43
+msgid "my_response"
+msgstr ""
+
+#: templates/backend/mission/team_mission_detail.html:56
+msgid "send"
+msgstr ""
+
+#: templates/backend/mission/team_mission_detail.html:68
+msgid "edit-response"
+msgstr ""
+
+#: templates/backend/mission/team_mission_detail.html:69
+msgid "unclaim_mission"
+msgstr ""
+
+#: templates/backend/mission/team_mission_detail.html:79
+msgid "file_lable"
+msgstr ""
+
+#: templates/backend/mission/team_mission_detail.html:80
+msgid "text_lable"
+msgstr ""
+
+#: templates/backend/mission/team_mission_detail.html:83
+msgid "no_answer_yet"
+msgstr ""
+
+#: templates/backend/mission/team_mission_detail.html:101
+msgid "filed"
+msgstr ""
+
 #: templates/backend/project/project_detail.html:9
 msgid "all_projects"
 msgstr "Liste des Projets"
+
+#: templates/backend/project/project_detail.html:13
+#, fuzzy
+#| msgid "all_projects"
+msgid "edit_project"
+msgstr "Liste des Projets"
+
+#: templates/backend/project/project_detail.html:39
+msgid "Missions_title"
+msgstr ""
+
+#: templates/backend/project/project_detail.html:53
+msgid "what_you_will_lean"
+msgstr ""
+
+#: templates/backend/project/project_detail.html:59
+msgid "required_skils"
+msgstr ""
+
+#: templates/backend/project/project_detail.html:134
+msgid "time_to_complete"
+msgstr ""
+
+#: templates/backend/project/project_detail.html:140
+msgid "difficulty "
+msgstr ""
+
+#: templates/backend/project/project_list.html:16
+#, fuzzy
+#| msgid "all_projects"
+msgid "project_list_title"
+msgstr "Liste des Projets"
+
+#: templates/backend/project/project_list.html:18
+#, fuzzy
+#| msgid "all_projects"
+msgid "add_project_link"
+msgstr "Liste des Projets"
+
+#: templates/backend/project/project_list.html:30
+msgid "project_name_table_header"
+msgstr ""
+
+#: templates/backend/project/project_list.html:31
+msgid "speaker_table_header"
+msgstr ""
+
+#: templates/backend/project/project_list.html:32
+msgid "field_table_header"
+msgstr ""
+
+#: templates/backend/project/project_list.html:33
+msgid "time_to_complete_table_header"
+msgstr ""
+
+#: templates/backend/resource/resource_detail.html:6
+msgid "list_resource_title"
+msgstr ""
+
+#: templates/backend/resource/resource_detail.html:14
+msgid "resource_lable"
+msgstr ""
+
+#: templates/backend/resource/resource_detail.html:24
+msgid "name_file_lable"
+msgstr ""
+
+#: templates/backend/resource/resource_list.html:5
+msgid "resource_list_title"
+msgstr ""
+
+#: templates/backend/resource/resource_list.html:9
+msgid "resource_name_lable"
+msgstr ""
+
+#: templates/backend/resource/resource_list.html:14
+msgid "add_resource_link"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:9
+msgid "join_the_team"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:24
+msgid "team_title"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:24
+msgid "participants_title"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:28
+msgid "current_amount_participants_lable"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:38
+msgid "edit_student_link"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:51
+msgid "project_description"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:102
+msgid "available_mission_title"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:107
+msgid "mission_title_table_header"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:109
+#: templates/backend/team/team_detail.html:156
+msgid "status_table_header"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:110
+#: templates/backend/team/team_detail.html:154
+msgid "points_table_header"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:111
+#: templates/backend/team/team_detail.html:155
+msgid "due_date_table_header"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:112
+msgid "claim_mission_table_header"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:128
+msgid "claim_mission_link"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:146
+msgid "project_mission_title"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:151
+msgid "project_tite_table_header"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:152
+msgid "attributed_to_table_header"
+msgstr ""
+
+#: templates/backend/team/team_detail.html:153
+msgid "stage_of_project_table_header"
+msgstr ""
+
+#: templates/backend/team/team_list.html:5
+msgid "team_dashboard_title"
+msgstr ""
+
+#: templates/backend/team/team_list.html:8
+msgid "team_name_lable"
+msgstr ""
+
+#: templates/backend/team/team_list.html:13
+msgid "add_team_link"
+msgstr ""

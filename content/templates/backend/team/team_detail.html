@@ -6,7 +6,7 @@
 
 {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
 
-<a href="{% url 'join_team' team.id %}">Join The Team </a>
+<a href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a>
 
 
 {% endif %}
@@ -21,11 +21,11 @@
     <div class="col-lg-4">
         <div class="card top-products">
             <div class="card-body">
-                <h5 class="card-title">Team {{ team.name }}Participants</h5>
+                <h5 class="card-title">{% trans 'team_title' %} {{ team.name }}{% trans 'participants_title' %}</h5>
                 <div class="top-products-list">
                     <div class="product-item">
                         {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
-                        <h3>Current amout of participants: {{team.participants.count}}</h3>
+                        <h3>{% trans 'current_amount_participants_lable' %}: {{team.participants.count}}</h3>
 
                         {% else %}
                         {% for student in team.participants.all %}
@@ -35,7 +35,7 @@
                         {%endif %}
 
                         {% if user.profile.name == 'speaker' %}
-                        <a href="{% url 'add_member_team' team.id %}">Edit students</a>
+                        <a href="{% url 'add_member_team' team.id %}">{% trans 'edit_student_link' %}</a>
                         {%  endif %}
 
                     </div>
@@ -48,7 +48,7 @@
     <div class="col-lg-8">
         <div class="card card-transactions">
             <div class="card-body">
-                <h5 class="card-title">Project Description</h5>
+                <h5 class="card-title">{% trans 'project_description' %}</h5>
                 <a href="{% url 'project_detail' team.project.id %}">{{team.project.name}}</a>
                 <div>
                     {{team.project.description}}
@@ -87,7 +87,7 @@
     <div class="col">
         <div class="card">
             <div class="card-body">
-               <a href="{% url 'create_mission' %}">Add Missions</a>
+               <a href="{% url 'create_mission' %}">{% trans 'add_mission_link' %}</a>
             </div>
         </div>
     </div>
@@ -99,17 +99,17 @@
     <div class="col">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Available Missions</h5>
+                <h5 class="card-title">A{% trans 'available_mission_title' %}</h5>
 
                 <table id="zero-conf" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Title</th>
+                            <th>{% trans 'mission_title_table_header' %}</th>
 
-                            <th>Stage of Project</th>
-                            <th>Points</th>
-                            <th>Due date</th>
-                            <th>Claim Mission</th>
+                            <th>{% trans 'status_table_header' %}</th>
+                            <th>{% trans 'points_table_header' %}</th>
+                            <th>{% trans 'due_date_table_header' %}</th>
+                            <th>{% trans 'claim_mission_table_header' %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,7 +125,7 @@
                             <td>{{projectmission.stage}}</td>
                             <td>{{projectmission.points}}</td>
                             <td>{{projectmission.due_date}}</td>
-                            <td><a href="{% url 'claim_mission' projectmission.id %}">Claim Mission</a></td>
+                            <td><a href="{% url 'claim_mission' projectmission.id %}">{% trans 'claim_mission_link' %}</a></td>
                         </tr>
                         {% endfor %}
                         {% endif %}
@@ -143,17 +143,17 @@
     <div class="col">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Project Mission</h5>
+                <h5 class="card-title">{% trans 'project_mission_title' %}</h5>
                 <p>Here you can follow you peers working and progress on the project</p>
                 <table id="zero-conf" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Attributed to</th>
-                            <th>Stage of Project</th>
-                            <th>Points</th>
-                            <th>Due date</th>
-                            <th>Status</th>
+                            <th>{% trans 'project_tite_table_header' %}</th>
+                            <th>{% trans 'attributed_to_table_header' %}</th>
+                            <th>{% trans 'stage_of_project_table_header' %}</th>
+                            <th>{% trans 'points_table_header' %}</th>
+                            <th>{% trans 'due_date_table_header' %}</th>
+                            <th>{% trans 'status_table_header' %}</th>
                         </tr>
                     </thead>
                     <tbody>

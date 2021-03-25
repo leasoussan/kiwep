@@ -10,7 +10,7 @@
 
 {% if user.profile.name == 'speaker' %}
 
-<a href="{% url 'update_project' project.id %}">Edit Project </a>
+<a href="{% url 'update_project' project.id %}">{% trans 'edit_project' %}</a>
 
 {% endif %}
 
@@ -36,7 +36,7 @@
                             <li class="nav-item tab-btns">
                                 <a class="nav-link tab-btn" id="prod-curriculum-tab" data-toggle="tab"
                                     href="#prod-curriculum" role="tab" aria-controls="prod-curriculum"
-                                    aria-selected="false">Missions</a>
+                                    aria-selected="false">{% trans 'Missions_title' %}</a>
                             </li>
                          
                         </ul>
@@ -50,13 +50,13 @@
                                             <h2>{{project.title}}</h2>
                                             <p>{{project.description}}</p>
                                             
-                                            <h3>What you’ll learn?</h3>
+                                            <h3>{% trans 'what_you_will_lean' %}</h3>
                                             <ul class="review-list">
                                                 {% for skill in skills %}
                                                 <li>skils you ll  learn about </li>
                                                 {% endfor %}
                                             </ul>
-                                            <h3>Requirements</h3>
+                                            <h3>{% trans 'required_skils' %}</h3>
                                             <ul class="review-list">
                                                 {% for required in requirements %}
                                                 <li>skils you ll  need </li>
@@ -92,7 +92,7 @@
                                                                 <a href="https://www.youtube.com/watch?v=kxPCFljwJws"
                                                                     class="popup-videos play-icon"><span
                                                                         class="fa fa-play"><i
-                                                                            class="ripple"></i></span>points</a>
+                                                                            class="ripple"></i></span>{% trans 'points' %}</a>
                                                             </div>
                                                             <div class="pull-right">
                                                                 <div class="minutes">{{mission.points}}</div>
@@ -124,31 +124,26 @@
                             <ul>
                                 <li class="lectures-feature">
                                     <i class="fa fa-files-o"></i>
-                                    <span class="label">Filed:</span>
+                                    <span class="label">{% trans 'field' %}:</span>
                                     <span class="value">{{project.field}}</span>
                                 </li>
 
-                                <li class="quizzes-feature">
-                                    <i class="fa fa-puzzle-piece"></i>
-                                    <span class="label">Quizzes</span>
-                                    <span class="value">0</span>
-                                </li>
 
                                 <li class="duration-feature">
                                     <i class="fa fa-clock-o"></i>
-                                    <span class="label">Time to Complete</span>
+                                    <span class="label">{% trans 'time_to_complete' %}</span>
                                     <span class="value">{{project.time_to_complet}}</span>
                                 </li>
 
                                 <li class="students-feature">
                                     <i class="fa fa-users"></i>
-                                    <span class="label">Difficuty</sspan>
+                                    <span class="label">{% trans 'difficulty ' %}</span>
                                     <span class="value">{{project.difficulty}}</span>
                                 </li>
 
                                 <li class="assessments-feature">
                                     <i class="fa fa-check-square-o"></i>
-                                    <span class="label">Points</span>
+                                    <span class="label">{% trans 'points' %}</span>
                                     <span class="value">{{project.points}}</span>
                                 </li>
                             </ul>

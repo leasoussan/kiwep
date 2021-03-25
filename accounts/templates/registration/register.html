@@ -3,10 +3,10 @@
 
 
 {% block content %}
-<h2>Register </h2>
+<h2>{% trans 'register' %}</h2>
 
 
-<h2>Welcome to Kiwep Registration</h2>
+<h2>{% trans 'welcome_to_kiwep_'%}</h2>
 
 
 <form method="post">
@@ -19,5 +19,5 @@
 
 
 
-<a href="{% url 'login' %}">Back to login</a>
+<a href="{% url 'login' %}">{% trans 'back_to_login' %}</a>
 {% endblock %}

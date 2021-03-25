@@ -7,7 +7,7 @@
 {% if user.profile.name == 'representative' %}
 
 {% include 'backend/representative_dashboard.html' %}
-repre
+
 
 {% elif user.profile.name == 'speaker' %}
 
@@ -20,11 +20,11 @@ repre
 
 {% include 'backend/student_dashboard.html' %}
 
-student
+
 
 {% endif %}
 
-<a href="{% url 'edit_profile' %}">EDIT Profile</a>
+<a href="{% url 'edit_profile' %}">{% trans 'edit_profile'%}</a>
 
     
 

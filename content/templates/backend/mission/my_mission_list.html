@@ -9,21 +9,21 @@
 
 {% if user.profile.name == 'speaker' %}
 
-<a href="{% url 'create_mission' %}">Add Mission</a>
+<a href="{% url 'create_mission' %}">{% trans 'add_mission_link' %}/a>
 {% endif %}
 
 <div class="row">
     <div class="col">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">My Mission board</h5>
+                <h5 class="card-title">{% trans 'my_mission_board_title' %}</h5>
                 <table id="zero-conf" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Mission Name</th>
-                            <th>Due Date</th>
-                            <th>Project</th>
-                            <th>status</th>
+                            <th>{% trans 'mission_name_table_title' %}</th>
+                            <th>{% trans 'due_date_table_title' %}</th>
+                            <th>{% trans 'project_name_table_title' %}</th>
+                            <th>{% trans 'status_table_title' %}</th>
                             <th>Other</th>
                             <th>Comment</th>
                         </tr>

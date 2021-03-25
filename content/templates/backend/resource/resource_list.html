@@ -2,17 +2,16 @@
 {% load i18n %}
 {% block content %}
 
-<a href="{% url 'content_manager' %}">content Manager </a>
-Resource  List 
+{% trans 'resource_list_title' %} 
 
 {% for resource in resource_list %}
 <h2>
-<h1>Resource Name <a href="{% url 'resource_detail' resource.pk %}">{{ resource.name }}</a> </h1>
+<h1>{% trans 'resource_name_lable' %}<a href="{% url 'resource_detail' resource.pk %}">{{ resource.name }}</a> </h1>
 </h2>
 
 {% endfor %}
 
-<a href="{% url 'create_resource' %}">Add Resource</a>
+<a href="{% url 'create_resource' %}">{% trans 'add_resource_link' %}</a>
 
 
 {% endblock %}

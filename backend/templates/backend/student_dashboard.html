@@ -14,18 +14,18 @@ Hello, {{ user.username|default:'Guest' }}!
             <div class="col-lg-12">
                 <div class="card card-transactions">
                     <div class="card-body">
-                        <h5 class="card-title">Available Project<a href="#" class="card-title-helper blockui-transactions"><i
-                                    class="material-icons">refresh</i></a></h5>
+                        <h5 class="card-title">{% trans 'available_projects_title' %}<a href="#" class="card-title-helper blockui-transactions"><i
+                                    class="material-icons">{% trans 'refresh' %}</i></a></h5>
         
 
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Team Name</th>
-                                        <th scope="col">Project Name </th>
-                                        <th scope="col">Field</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">{% trans 'Team_name_title_table_head' %}</th>
+                                        <th scope="col">{% trans 'project_name_table_head' %}</th>
+                                        <th scope="col">{% trans 'field_table_head' %}</th>
+                                        <th scope="col">{% trans 'status_table_head' %}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,17 +52,18 @@ Hello, {{ user.username|default:'Guest' }}!
             <div class="col-lg-12">
                 <div class="card card-transactions">
                     <div class="card-body">
-                        <h5 class="card-title">My Team  Project<a href="#" class="card-title-helper blockui-transactions"><i
+                        <h5 class="card-title">{% trans 'my_team_projects_title' %}<a href="#" class="card-title-helper blockui-transactions"><i
                                     class="material-icons">refresh</i></a></h5>
         
                             <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Team Name</th>
-                                        <th scope="col">Project Name </th>
-                                        <th scope="col">Field</th>
-                                        <th scope="col">Time To Complete</th>
+                                    th scope="col">{% trans 'Team_name_title_table_head' %}</th>
+                                        <th scope="col">{% trans 'project_name_table_head' %}</th>
+                                        <th scope="col">{% trans 'field_table_head' %}</th>
+                                        <th scope="col">{% trans 'status_table_head' %}</th>
+                                        <th scope="col">{% trans 'time_to_complete' %}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,9 +76,9 @@ Hello, {{ user.username|default:'Guest' }}!
                                         <td>{{ team.project.name }}</td>
                                         <td>{{ team.project.field }}</td>
                                         {% if project.completed != 'True' %}
-                                        <td>In Process</td>
+                                        <td>{% trans 'in_process' %}</td>
                                         {% else %}
-                                        <td>Project is Done</td>
+                                        <td>{% trans 'project_is_done' %}</td>
                                         {% endif %}     
                                     </tr>
                                     </tr>
@@ -97,10 +98,10 @@ Hello, {{ user.username|default:'Guest' }}!
                 <div class="card card-transparent stats-card">
                     <div class="card-body">
                         <div class="stats-info">
-                            <h5 class="card-title">My Missions<span
+                            <h5 class="card-title">{% trans 'missions_title' %}<span
                                     class="stats-change stats-change-success">#Missions</span></h5>
 
-                            <a href="{% url 'my_mission_list' %}">Mission Board</a>
+                            <a href="{% url 'my_mission_list' %}">{% trans 'mission_board_link' %}</a>
 
 
                             <div class="top-products-list">

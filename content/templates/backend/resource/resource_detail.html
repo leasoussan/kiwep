@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<a href="{% url 'resource_list' %}">List Resource </a>
+<a href="{% url 'resource_list' %}">{% trans 'list_resource_title' %}</a>
 
 <div class="container">
     <div class="coupon-toggle">
@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="billing-fields">
                     <div class="checkout-title">
-                        <h3>Resrouce {{ resource.name }}</h3>
+                        <h3>{% trans 'resource_lable' %} {{ resource.name }}</h3>
                     </div>
                     <div class="form-content-box">
                         <div class="row">
@@ -21,7 +21,7 @@
                             <img src="{{ resource.get_resourceImg_or_default }}" alt="" style = 'width: 300px; height: 300px;;'>
                         </div>
                         <div>
-                            <a href="{{ resource.upload_file.url }}">name of file </a>
+                            <a href="{{ resource.upload_file.url }}">{% trans 'name_file_lable' %}</a>
                         </div>
                     </div>
 
