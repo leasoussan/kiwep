@@ -1,2 +1,2 @@
-web: gunicorn kiwep.wsgi --log-file -
+web: gunicorn kiwep.wsgi 
 release: python manage.py migrate
