@@ -111,8 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-DEBUG = True
-
 DATABASES = { 'default' : dj_database_url.config()}
 
 
@@ -177,8 +175,16 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 django_heroku.settings(locals())
 
 
+EMAIL_HOST_USER= os.environ.get('EMAIL_HOST_USER')
+
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+DEBUG = os.environ.get('DEBUG')
+
 
 try:    
     from .local_settings import *
 except ImportError:
     pass
+
+
