@@ -111,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+DEBUG = True
 
 DATABASES = { 'default' : dj_database_url.config()}
 
