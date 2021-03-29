@@ -6,7 +6,7 @@ from django.db import transaction
 from .models import Student, Speaker, Representative, MyUser
 
 from django.contrib.auth import get_user_model
-
+from django.utils.translation import ugettext_lazy as _
 
 User = get_user_model()
 
@@ -15,19 +15,22 @@ User = get_user_model()
 # Form to create a basic User 
 class MyUserCreationForm(UserCreationForm):
     USER_TYPE=[
-        ('student','student'),
-        ('speaker', 'speaker'),
-        ('representative', 'representative'), 
+        ('student',_('student')),
+        ('speaker', _('speaker')),
+        ('representative', _('representative')), 
     ]
-    usertype = forms.ChoiceField(choices=USER_TYPE)
+    usertype = forms.ChoiceField(choices=USER_TYPE, label = 'Who are you?')
     
+
     class Meta:
         model = MyUser
-        fields = ['username', 'email', 'password1', 'password2']
-
-    
+        fields = ['username', 'email', 'password1', 'password2', 'language_code']
 
 
+
+        # labels ={
+        #     'language_code': 'Language'
+        # }
 
 
 
@@ -62,7 +65,7 @@ class RepresentativeProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Representative
         exclude = ['user'] 
-
+    
 
 
 

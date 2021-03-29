@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.urls import reverse
 import datetime
-
+from django.utils.translation import ugettext_lazy as _
 
 class Country(models.Model):
     name = models.CharField(max_length=100) 
@@ -31,7 +31,7 @@ class MyUser(AbstractUser):
     profile_pic = models.ImageField(default = 'profile/avatar.png', upload_to='media/profile/', blank = True, null = True)
     joined_date = models.DateField(auto_now_add=True, blank = True, null = True)
     city = models.ForeignKey(City,on_delete=models.CASCADE, null=True, blank=True) 
-
+    language_code = models.CharField(_('language'), choices = settings.LANGUAGES, default = 'en', max_length=50)
 
     def __str__(self):
         return f"{self.id},{str(self.username)}"
@@ -86,7 +86,8 @@ class Student(models.Model):
     class_level = models.ForeignKey('backend.Group', on_delete=models.CASCADE)
     field = models.ForeignKey('backend.Field',  on_delete=models.CASCADE)
     dob = models.DateField()
-  
+
+
     def __str__(self):
         return f"{self.user.username}, {self.user.last_name}"
 

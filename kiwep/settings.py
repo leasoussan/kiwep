@@ -136,7 +136,9 @@ LANGUAGE_CODE = 'en-us'
 LANGUAGES = [
     ('en', _('English')),
     ('fr', _('French')),
+    ('he', _('Hebrew')),
 ]
+# Languages will give option into cookies
 
 TIME_ZONE = 'UTC'
 

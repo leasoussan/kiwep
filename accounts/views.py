@@ -51,6 +51,7 @@ class Register(View):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             usertype=form.cleaned_data['usertype'] 
+            
             user = authenticate(username= username, password = password, usertype =usertype)
             login(request, user)
             send_welcome_signup(user)
