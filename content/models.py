@@ -4,10 +4,14 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from accounts.models import Speaker, Student, Representative, MyUser
 from backend.models import Field,Level, Group
-from todo.models import Task
+
 from .managers import *
 # this is like a trans tag - just for the backend 
 from django.utils.translation import ugettext_lazy as _
+# signals
+from django.dispatch import receiver
+from django.db.models.signals import post_save 
+
 
 
 class Resource(models.Model):
@@ -117,6 +121,15 @@ class Project(models.Model):
     def get_absolute_url(self):
         return reverse("project_detail", kwargs={"pk":self.pk})
 
+# here we are writing a receiver listen to signal and what to do when you hear what to do 
+# 1_ post save + intereste to know all post save
+# 2_ to hear from the Project - the Project is SENDER of the signal 
+# 3
+@receiver(post_save,sender=Project )
+def email_new_project_event(sender, created, instance, **kwargs):
+    if created: 
+        pass
+    # here I can chose what to do 
 
 
 class Team(models.Model):
@@ -129,7 +142,7 @@ class Team(models.Model):
       
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
     missions = models.ManyToManyField(Mission, through = 'TeamProjectMission')        
-
+    project_completed = models.BooleanField(null=True, blank = True)
 
  
     objects = TeamModelManager()

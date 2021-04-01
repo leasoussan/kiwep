@@ -4,6 +4,7 @@ from django.conf import settings
 from django.urls import reverse
 import datetime
 from django.utils.translation import ugettext_lazy as _
+from todo.models import Task, PersonalTask, TeamTask
 
 class Country(models.Model):
     name = models.CharField(max_length=100) 
@@ -98,6 +99,13 @@ class Student(models.Model):
     def name(self):
         return self.__class__.__name__.lower() 
 
+    def tasks(self):
+        personal_tasks = PersonalTask.objects.filter(user = self.user).values_list('task_ptr', flat=True)
+        team_tasks = TeamTask.objects.filter(team__in = self.team_set.all()).values_list('task_ptr', flat=True)
+        tasks = Task.objects.filter(id__in = list(personal_tasks) + list(team_tasks))
+        # we cant add a queryset to queryset ---this is why we make them a list first 
+        return tasks
+    # here before getting a student tasks I will have to do 2 queries that will be filtered in the parent table 
 
 
 class Speaker(models.Model):
@@ -113,3 +121,10 @@ class Speaker(models.Model):
     
     def name(self):
         return self.__class__.__name__.lower() 
+
+    def tasks(self):
+        personal_tasks = PersonalTask.objects.filter(user = self.user).values_list('task_ptr', flat=True)
+        team_tasks = TeamTask.objects.filter(team__in = self.team_manager.all()).values_list('task_ptr', flat=True)
+        tasks = Task.objects.filter(id__in = list(personal_tasks) + list(team_tasks))
+        # we cant add a queryset to queryset ---this is why we make them a list first 
+        return tasks

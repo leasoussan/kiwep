@@ -15,7 +15,8 @@ from django.views.generic import (
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin
-
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 # -------------------PROJECT---List_View/
 
@@ -45,16 +46,11 @@ class ProjectDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailVi
 # -----------------------------PROJECT-----Create_View:
 
 
-class ProjectCreatelView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
+class ProjectCreatelView(SuccessMessageMixin, LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
     model = Project
     form_class = ProjectAddForm
     template_name = 'crud/create.html'
-
-    
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs) 
-    #     context['formset']= ProjectMissionFormSet(self.request.POST or None)
-    #     return context
+    success_message = "Your project was created successfuly"
 
 
     def form_valid(self, form):
@@ -63,12 +59,11 @@ class ProjectCreatelView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Create
         self.object.completed = False
         self.object.save()
 
-        # formset = ProjectMissionFormSet(self.request.POST, instance = self.object)
-        
-        # if formset.is_valid():
-        #     formset.save()
-        #     return super().form_valid(form)
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'You have an error in your form')
+        return super().form_invalid(form)
 
 
 # To Overwrite the Get_absolut_url if I want it to go somewhere else - for ex in the update view 

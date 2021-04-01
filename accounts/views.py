@@ -25,6 +25,7 @@ from .mailer import *
 from.models import Student, Speaker, Representative, MyUser
 from accounts.decorators import check_profile, login_check
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib import messages
 
 # ----------------------------------------------------------------------------------Mixin
 
@@ -101,8 +102,9 @@ class CreateProfile(View):
     def get(self, request , id):
         user_form = UserForm(instance = request.user)
         profile_form = get_user_profile_form(request, id)
-        return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'profile_form': profile_form, 'user_form': user_form})
         
+        return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'profile_form': profile_form, 'user_form': user_form})
+       
 
     def post(self, request,  id=None):
         user_form = UserForm(request.POST, instance = request.user)
@@ -115,6 +117,8 @@ class CreateProfile(View):
             profile.save()
 
             return redirect('dashboard')
+
+        messages.add_message(request, messages.ERROR, 'You have an error in your form')
 
         return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form})
 

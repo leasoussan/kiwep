@@ -3,9 +3,12 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils import translation
 
+
 def send_welcome_signup(user):
-    subject = f'welcome {user}to KIWEP '
-    message = f'Hi {user}, thank you for registering To KIWEP.'
+    wlcm_msg= _('welcome')
+    kiwep = _('to KIWEP')
+    subject = f' {wlcm_msg} {user} {kiwep} ' 
+    message =  _('registration_email_subject')
     translation.activate(user.language_code)
     html_message = render_to_string('emails/welcome.html', {'user':user})
     email_from = settings.EMAIL_HOST_USER 

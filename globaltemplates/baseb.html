@@ -1,4 +1,6 @@
+
 {% load static %}
+{% load bootstrap4 %}
 
 {% load i18n %}
 
@@ -53,6 +55,12 @@
 
 
 <body>
+    <div class = "messages_div">
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
+
 
     {% if request.user.is_authenticated %}
 

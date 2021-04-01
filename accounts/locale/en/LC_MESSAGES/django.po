@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-25 13:49+0200\n"
+"POT-Creation-Date: 2021-03-30 11:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,69 +18,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: forms.py:18
+msgid "student"
+msgstr "etudient    "
+
+#: forms.py:19
+#, fuzzy
+#| msgid "speaker_info_bio"
+msgid "speaker"
+msgstr "Biographie"
+
+#: forms.py:20
+msgid "representative"
+msgstr "Representative"
+
+#: models.py:34
+msgid "language"
+msgstr "Language"
+
 #: templates/accounts/profile/edit_profile.html:8
 msgid "profile_edit"
 msgstr "Edit Profile"
 
-#: templates/accounts/profile/representative_profile.html:34
+#: templates/accounts/profile/representative_profile.html:35
 msgid "edit_institution_profile"
 msgstr "Edit Institution Profile"
 
-#: templates/accounts/profile/representative_profile.html:38
+#: templates/accounts/profile/representative_profile.html:39
 #: templates/accounts/profile/speaker_profile.html:39
 msgid "active"
 msgstr "Active"
 
-#: templates/accounts/profile/representative_profile.html:49
+#: templates/accounts/profile/representative_profile.html:50
 msgid "school_info"
 msgstr "School Info"
 
-#: templates/accounts/profile/representative_profile.html:61
+#: templates/accounts/profile/representative_profile.html:62
 #: templates/accounts/profile/speaker_profile.html:62
 msgid "about"
 msgstr "About"
 
-#: templates/accounts/profile/representative_profile.html:62
+#: templates/accounts/profile/representative_profile.html:63
 msgid "bio_description"
 msgstr "Biographie"
 
-#: templates/accounts/profile/representative_profile.html:64
+#: templates/accounts/profile/representative_profile.html:65
 #: templates/accounts/profile/speaker_profile.html:65
 msgid "school"
 msgstr "School"
 
-#: templates/accounts/profile/representative_profile.html:64
+#: templates/accounts/profile/representative_profile.html:65
 msgid "education_history"
 msgstr "Education"
 
-#: templates/accounts/profile/representative_profile.html:66
+#: templates/accounts/profile/representative_profile.html:67
 #: templates/accounts/profile/speaker_profile.html:67
 msgid "my_location"
 msgstr "Location"
 
-#: templates/accounts/profile/representative_profile.html:66
+#: templates/accounts/profile/representative_profile.html:67
 #: templates/accounts/profile/speaker_profile.html:67
 msgid "from"
 msgstr "From"
 
-#: templates/accounts/profile/representative_profile.html:77
+#: templates/accounts/profile/representative_profile.html:78
 #: templates/accounts/profile/speaker_profile.html:78
 msgid "contact_info"
 msgstr "Contact Information"
 
-#: templates/accounts/profile/representative_profile.html:79
+#: templates/accounts/profile/representative_profile.html:80
 msgid "email"
 msgstr "E-mail"
 
-#: templates/accounts/profile/representative_profile.html:80
+#: templates/accounts/profile/representative_profile.html:81
 msgid "home"
 msgstr "Home"
 
-#: templates/accounts/profile/representative_profile.html:80
+#: templates/accounts/profile/representative_profile.html:81
 msgid "lives_in"
 msgstr "Currently living in: "
 
-#: templates/accounts/profile/representative_profile.html:81
+#: templates/accounts/profile/representative_profile.html:82
 msgid "phone_number"
 msgstr "Phone Number"
 
@@ -101,6 +119,19 @@ msgstr "About"
 msgid "study_hisitory"
 msgstr "Education History"
 
+#: templates/emails/welcome.html:3
+msgid "welcome_message"
+msgstr "Dear User. 
+We are happy to have you On Board"
+
+#: templates/emails/welcome.html:5
+msgid "message_intro_registration"
+msgstr "Here is some more text to have when someone is registering"
+
+#: templates/emails/welcome.html:7
+msgid "hi"
+msgstr "Hi"
+
 #: templates/registration/login.html:5 templates/registration/login.html:25
 msgid "login"
 msgstr "Login"
@@ -115,7 +146,7 @@ msgstr "Remember Me"
 
 #: templates/registration/login.html:34
 msgid "forgot_password_link"
-msgstr ""
+msgstr "Forgot Password?"
 
 #: templates/registration/login.html:52
 msgid "reste_password_link"
