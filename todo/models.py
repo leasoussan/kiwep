@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.dispatch import receiver
+from django.dispatch import receiver
 from django.db.models.signals import post_save
-
+from django.urls import reverse
 
 class Task(models.Model):
     title = models.CharField(max_length=300)
@@ -21,6 +21,8 @@ class PersonalTask(Task):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('task_detail', kwargs={'pk': self.pk})
 
 
 class TeamTask(Task):
@@ -37,7 +39,7 @@ class TeamTask(Task):
 
 class AssignedTask(Task):
     assignee = models.ForeignKey('accounts.Student', on_delete=models.CASCADE)
-    completed = models.BooleanField(default=Fals)
+    completed = models.BooleanField(default=False)
     
     def __str__(self):
         return self.assignee

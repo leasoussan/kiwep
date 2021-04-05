@@ -1,5 +1,5 @@
 from django.urls import path
-from . import api_views
+from . import api_views, views
 
 urlpatterns = [
     path('', api_views.todoOverview, name='my_tasks'),
@@ -13,5 +13,11 @@ urlpatterns = [
     path('frontend_list_view/', api_views.frontend_list_view, name='frontend_list'),
    
 
+
+# todo backend
+
+    path('add-personal-task/', views.PersonalTaskCreateView.as_view(), name = 'add_personal_task'),
+    path('todo_list/', views.MyTasksView.as_view(), name='todo_list'),
+    path('task-detail/<int:pk>', views.PersonalTaskDetailView.as_view() , name = 'task_detail')
 ]
 
