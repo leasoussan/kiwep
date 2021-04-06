@@ -43,10 +43,6 @@ def login_check(user):
 
 
 def speaker_check(user):
-    print(user.get_user_type())
+    # print(user.get_user_type())
     return user.get_user_type() == "speaker"
 
-    # if user.get_user_type() == 'speaker':  
-    #     return True
-    # else:
-    #     return False

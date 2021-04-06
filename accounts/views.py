@@ -118,7 +118,7 @@ class CreateProfile(View):
 
             return redirect('dashboard')
 
-        messages.add_message(request, messages.ERROR, 'You have an error in your form')
+        # messages.add_message(request, messages.ERROR, 'You have an error in your form')
 
         return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form})
 

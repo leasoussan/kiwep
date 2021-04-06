@@ -1,10 +1,10 @@
 from django import forms
 from django.forms import inlineformset_factory
 from django.contrib.admin.widgets import FilteredSelectMultiple
-from .models import Task
+from .models import Task, PersonalTask
 
-# class AddPersonalTaskForm(forms.ModelForm):
-#     model = PersonalTask
-#     fields = [
-#         '__all__'
-#     ]
+class AddPersonalTaskForm(forms.ModelForm):
+    model = PersonalTask
+    fields = [
+        '__all__'
+    ]

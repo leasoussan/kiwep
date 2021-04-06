@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from .models import *
 from django.views.generic import CreateView, ListView, DetailView
 from accounts.mixin import SpeakerStatuPassesTestMixin, ProfileCheckPassesTestMixin
+from .forms import AddPersonalTaskForm
+
+
 
 class PersonalTaskCreateView(ProfileCheckPassesTestMixin, CreateView):
     model = PersonalTask
@@ -42,6 +45,7 @@ class MyTasksView(ProfileCheckPassesTestMixin, ListView):
 class TeamTaskCreateView(SpeakerStatuPassesTestMixin, CreateView):
     model = TeamTask
     template_name = "crud/create.html"
+    form_class = AddPersonalTaskForm
     fields = ['title','details','due_date', 'team']
 
     def form_valid(self,form):
