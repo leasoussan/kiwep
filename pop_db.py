@@ -256,6 +256,20 @@ def pop_resources(n):
 
 
 
+subjects_list= ['Leadership', 'SelfLearner','TeamPLayer' ]
+
+def pop_subjects(subjects_list):
+    for subject in subjects_list:
+        Subjects.objects.get_or_create(name = subject)
+
+
+
+def pop_acquired_skills(n):
+    for skill in range(n):
+        skill = SkillsAcquired.objects.get_or_create(
+            name = 'NewSkills', 
+            subject = random.choice(Subjects.objects.all()),
+            points = 3 )
 
 
 STAGE_CHOICE = ['Start','Middle', 'Final']
@@ -270,7 +284,7 @@ def pop_missions(n):
         resources = random.choices(Resource.objects.all())
         owner = random.choice(MyUser.objects.all())
         points = 3
-        
+        acquried_skill = random.choice(SkillsAcquired.objects.all())
         
         m = Mission(
             name=name, 
@@ -279,7 +293,8 @@ def pop_missions(n):
             stage=stage, 
             description=description,
             owner=owner, 
-            points = points
+            points = points,
+            acquried_skill = acquried_skill 
             )
         m.save()
         m.resources.add(random.choice(list(Resource.objects.all())))
@@ -291,7 +306,7 @@ def pop_missions(n):
 
 def pop_project(n):
     for project in range(n+1):
-        name = "Proejct {n}"
+        name = f"Proejct{project}"
         description = "This Project is about Blbalabal"
         time_to_complet = random.randrange(60, 120, 10)
         field = random.choice(Field.objects.all())
@@ -353,7 +368,7 @@ def pop_team(n):
 
 def pop_mission_projects(n):
     for project in range(n):
-        project = random.choice(Project.objects.all())
+        team = random.choice(Team.objects.all())
         mission = random.choice(Mission.objects.all())
         completed = False
         created_date = '2020-09-08'
@@ -361,7 +376,7 @@ def pop_mission_projects(n):
         attributed_to = random.choice(Student.objects.all())
 
         mp = TeamProjectMission(
-            project=project,
+            team=team,
             mission=mission,
             completed=completed,
             created_date=created_date,
@@ -413,12 +428,15 @@ def pop_mission_projects(n):
 
 # pop_resources(20)
 
+# pop_subjects(subjects_list)
+# pop_acquired_skills(5)
+
 # pop_missions(20)
 
 
 # pop_project(6)
 
-pop_team(4)
+# pop_team(4)
 pop_mission_projects(20)
 
 

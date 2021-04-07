@@ -89,7 +89,13 @@ class ResourceAddForm(ModelForm):
         ]
 
 
-# ProjectMissionFormSet = inlineformset_factory(Project, MissionsProject, fields ='__all__' )
+# ProjectMissionFormSet = inlineformset_factory(
+#     Project, rmSet = inlineformset_factory(
+#     Project, 
+#     Mission, 
+#     fields ='__all__' )
+#     Mission, 
+#     fields ='__all__' )
 
 TeamProjectMissionFormSet = inlineformset_factory(
     Team, 
@@ -98,7 +104,7 @@ TeamProjectMissionFormSet = inlineformset_factory(
         'mission', 
         'due_date', 
         ),
-         extra=1)
+         extra=3)
 
 
 class SubmitMissionForm(ModelForm):

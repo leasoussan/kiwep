@@ -55,6 +55,14 @@ class RequiredSkills(models.Model):
     def __str__(self):
         return f"SubjectRequired sikills {self.subject}, {self.name}"
 
+class SkillsAcquired(models.Model):
+    name  = models.CharField(max_length= 100)
+    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
+    points = models.PositiveIntegerField()
+    
+    def __str__(self):
+        return f"Subject{self.subject}, {self.name}"
+
 
 
 class Mission(models.Model):
@@ -71,7 +79,8 @@ class Mission(models.Model):
     resources = models.ManyToManyField(Resource)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     points = models.PositiveIntegerField()
-    
+    acquried_skill = models.ForeignKey(SkillsAcquired, on_delete=models.CASCADE, blank =True, null =True)
+
     objects = MissionModelManager()
 
     def __str__(self):
@@ -82,14 +91,6 @@ class Mission(models.Model):
 
 
 
-class SkillsAcquired(models.Model):
-    name  = models.CharField(max_length= 100)
-    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
-    points = models.PositiveIntegerField()
-    
-    def __str__(self):
-        return f"Subject{self.subject}, {self.name}"
-
 
 
 class Project(models.Model):
@@ -98,7 +99,7 @@ class Project(models.Model):
     title = models.CharField(max_length=300)
     description = models.TextField()
     required_skills = models.ManyToManyField(RequiredSkills, blank=True)
-    acquried_skils = models.ManyToManyField(SkillsAcquired, blank=True)
+    acquried_skills = models.ManyToManyField(SkillsAcquired, blank=True)
     time_to_complet = models.PositiveIntegerField()
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
     difficulty = models.ForeignKey(Level, on_delete=models.CASCADE) 

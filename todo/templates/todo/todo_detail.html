@@ -1,0 +1,26 @@
+{% extends 'baseb.html' %}
+
+{% load mytags %}
+{% block content %}
+
+
+<h1>
+
+    
+{{object|return_class_name}}
+
+
+{{object.title}}
+
+
+<a href="{% url 'todo_list' %}">Task List</a>
+
+
+{% for student in team.participants.all %}
+{{student.profile.username}}
+{% endfor %}
+</h1>
+
+{% endblock %}
+
+

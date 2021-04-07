@@ -109,7 +109,9 @@ class CreateProfile(View):
     def post(self, request,  id=None):
         user_form = UserForm(request.POST, instance = request.user)
         profile_form = get_user_profile_form(request, id)
-        print(profile_form)
+        # print(profile_form)
+        valuenext= request.POST.get('next')
+
         if profile_form.is_valid() and user_form.is_valid():
             user_form.save()
             profile = profile_form.save(commit=False)

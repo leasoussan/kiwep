@@ -29,7 +29,13 @@ class TeamTask(Task):
     team = models.ForeignKey('content.Team', on_delete=models.CASCADE)
     assignees = models.ManyToManyField('accounts.Student', through= "StudentTeamTask", blank=True)
     def __str__(self):
-        return f'{self.title} of {self.user.first_name}'
+        return f'{self.team} of {self.task.title}'
+
+
+
+    def get_absolute_url(self):
+        return reverse('team_task_detail', kwargs={'pk': self.pk})
+
 
 
 # here we want to listen to a pres save to know what to do- use the signal

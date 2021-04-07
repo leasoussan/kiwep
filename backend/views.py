@@ -9,7 +9,7 @@ User = get_user_model()
 
 
 @login_required
-@user_passes_test(check_profile, login_url= 'create_profile/')
+@user_passes_test(check_profile, login_url= '/accounts/create_profile/')
 def dashboard(request):
     print(request.COOKIES)
     return render(request, "backend/general_dashboard.html" )

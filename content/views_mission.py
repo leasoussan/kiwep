@@ -19,6 +19,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 
 
 class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
+    ''' To See all Missions View'''
     model = TeamProjectMission
     template_name = 'content/mission/mission_list.html'    
     context_object_name = 'mission_list'
@@ -29,6 +30,7 @@ class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
 
 
 class MyMissionList(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
+    ''' See User Missions List'''
     model = TeamProjectMission
     template_name = 'backend/mission/my_mission_list.html'    
     context_object_name = 'my_mission_list'
@@ -40,6 +42,7 @@ class MyMissionList(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
 
 
 class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
+    '''Detail Of General Mission'''
     model = Mission
     template_name = 'backend/mission/mission_detail.html'    
     
@@ -52,6 +55,7 @@ class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailVi
 
 
 class MissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
+    ''' Create Mission - Will Go into General Mission'''
     model = Mission
     form_class = MissionAddForm 
     template_name = 'crud/create.html'  
@@ -67,6 +71,7 @@ class MissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateV
 
 
 class MissionUpdateView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, UpdateView):
+    '''Update a Mission'''
     model = Mission
     fields = ['name', 
             'field', 
@@ -91,6 +96,7 @@ class MissionDeleteView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, DeleteVi
 
 
 class ClaimMission(LoginRequiredMixin, RedirectView):
+    ''' Own a mission -student'''
     # query_sting = False >>this is false by default     
     pattern_name = 'my_mission_list'
 
@@ -107,6 +113,7 @@ class ClaimMission(LoginRequiredMixin, RedirectView):
 
 
 class UnclaimMission(LoginRequiredMixin, RedirectView):
+    ''' Unclaim the mission - willr eturn to the list of available Mission'''
     # query_sting = False >>this is false by default     
     pattern_name = 'my_mission_list'
 
@@ -122,6 +129,8 @@ class UnclaimMission(LoginRequiredMixin, RedirectView):
 
 
 class TeamMissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
+    '''Here to create a team manager - gettinga project and managing participants '''
+
     model = TeamProjectMission
     template_name = 'backend/mission/team_mission_detail.html'    
     
@@ -135,6 +144,7 @@ class TeamMissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, Deta
 
 
 class StudentSubmitMission(UpdateView):
+    ''' An answer can be saved and unsubmited- here is the submit  '''
     model = TeamProjectMission
     form_class = SubmitMissionForm
     # fields = [

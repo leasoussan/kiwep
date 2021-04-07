@@ -17,6 +17,7 @@ def check_profile(user):
     elif user.get_user_type() == 'representative':
         exists =  Representative.objects.filter(user=user).exists()
 
+    print(exists)
     return exists
 
 # we need a True or false answer to be able if user passes test 

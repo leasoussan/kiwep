@@ -11,7 +11,6 @@ class PersonalTaskCreateView(ProfileCheckPassesTestMixin, CreateView):
     template_name = "crud/create.html"
     fields = ['title','details','due_date']
 
-
     def form_valid(self,form):
         self.object = form.save(commit=False)
         self.object.creator = self.request.user
@@ -45,7 +44,7 @@ class MyTasksView(ProfileCheckPassesTestMixin, ListView):
 class TeamTaskCreateView(SpeakerStatuPassesTestMixin, CreateView):
     model = TeamTask
     template_name = "crud/create.html"
-    form_class = AddPersonalTaskForm
+    
     fields = ['title','details','due_date', 'team']
 
     def form_valid(self,form):
@@ -54,6 +53,13 @@ class TeamTaskCreateView(SpeakerStatuPassesTestMixin, CreateView):
         self.object.save()
 
         return super(CreateView, self).form_valid(form)
+
+
+class TeamTaskDetailView(DetailView):
+    model = TeamTask
+    template_name = 'todo/todo_detail.html'
+    context_object_name = 'team_tasks'
+
 
 
 
