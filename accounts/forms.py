@@ -15,9 +15,9 @@ User = get_user_model()
 # Form to create a basic User 
 class MyUserCreationForm(UserCreationForm):
     USER_TYPE=[
-        ('student',_('student')),
-        ('speaker', _('speaker')),
-        ('representative', _('representative')), 
+        ('is_student',_('student')),
+        ('is_speaker', _('speaker')),
+        ('is_representative', _('representative')), 
     ]
     usertype = forms.ChoiceField(choices=USER_TYPE, label = 'Who are you?')
     

@@ -5,22 +5,29 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import user_passes_test, login_required
 
 
-def check_profile(user):
-    exists = False
-    if user.get_user_type() == 'student':
-        exists = Student.objects.filter(user=user).exists()
+def check_profile(user, return_tuple= False):
+    ''' Check if profile exists Boolean'''
+    exists = True
+    if user.is_student and not Student.objects.filter(user=user).exists():
+        exists = False
+        p_type = 'is_student'
 
-    elif user.get_user_type() == 'speaker':  
-        exists =  Speaker.objects.filter(user=user).exists()
+    if user.is_speaker and not Speaker.objects.filter(user=user).exists():   
+        exists =  False
+        p_type = 'is_speaker'
 
-    
-    elif user.get_user_type() == 'representative':
-        exists =  Representative.objects.filter(user=user).exists()
+    if user.is_representative and not Representative.objects.filter(user=user).exists():
+        exists = False
+        p_type = 'is_represnetative'
 
-    print(exists)
+    if return_tuple:
+        return exists, p_type
+
     return exists
 
-# we need a True or false answer to be able if user passes test 
+
+
+
 
 
 
@@ -30,6 +37,18 @@ def login_check(user):
     else:
         return redirect('login.html')
 
+
+
+# def missing_profile_type(user):
+#     ''' Function to check whiche profile is missing '''
+#     if user.is_student and not Student.objects.filter(user=user).exists():
+#         return 'is_student'
+
+#     if user.is_speaker and not Speaker.objects.filter(user=user).exists():   
+#         return 'is_speaker'
+
+#     if user.is_representative and not Representative.objects.filter(user=user).exists():
+#         return 'is_represnetative'
 
 
 # to have a page that is you are login id not needed to use the decorators

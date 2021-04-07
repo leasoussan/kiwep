@@ -51,8 +51,12 @@ class Register(View):
             user = form.save() 
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
+            
             usertype=form.cleaned_data['usertype'] 
             
+            setattr(user, usertype, True)
+            
+            user.save()
             user = authenticate(username= username, password = password, usertype =usertype)
             login(request, user)
             send_welcome_signup(user)
@@ -77,15 +81,15 @@ def get_user_profile_form(request, usertype, edit=False):
 
     data = request.POST or None 
 
-    if  usertype == 'student':
+    if  usertype == 'is_student':
         profile_form = StudentProfileCreationForm(data, instance=instance )
        
 
-    elif usertype  == 'speaker':  
+    elif usertype  == 'is_speaker':  
         profile_form =SpeakerProfileCreationForm(data, instance=instance)
     
 
-    elif usertype == 'representative':
+    elif usertype == 'is_representative':
         profile_form =  RepresentativeProfileCreationForm(data, instance=instance)
     
     return profile_form
@@ -99,15 +103,17 @@ def get_user_profile_form(request, usertype, edit=False):
 
 
 class CreateProfile(View):
-    def get(self, request , id):
+    def get(self, request ):
         user_form = UserForm(instance = request.user)
-        profile_form = get_user_profile_form(request, id)
+        usertype = check_profile(request.user, True)[1]
+        profile_form = get_user_profile_form(request, usertype)
         
-        return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'profile_form': profile_form, 'user_form': user_form})
+        return render(request, 'accounts/profile/edit_profile.html', {'usertype':usertype, 'profile_form': profile_form, 'user_form': user_form})
        
 
-    def post(self, request,  id=None):
+    def post(self, request):
         user_form = UserForm(request.POST, instance = request.user)
+        usertype = check_profile(request.user, True)[1]
         profile_form = get_user_profile_form(request, id)
         # print(profile_form)
         valuenext= request.POST.get('next')
@@ -116,19 +122,20 @@ class CreateProfile(View):
             user_form.save()
             profile = profile_form.save(commit=False)
             profile.user = request.user
+
             profile.save()
 
             return redirect('dashboard')
 
         # messages.add_message(request, messages.ERROR, 'You have an error in your form')
 
-        return render(request, 'accounts/profile/edit_profile.html', {'usertype':id.title(), 'form': profile_form})
+        return render(request, 'accounts/profile/edit_profile.html', {'usertype':usertype, 'form': profile_form})
 
 
 # -----------------------------------------------------------Profile
 
 
-class MyProfileView(LoginRequiredMixin, ProfileCheckPassesTestMixin, View):
+class MyProfileView(ProfileCheckPassesTestMixin, View):
 
     def get(self, request, id):
         user = MyUser.objects.get(id=id)
@@ -143,7 +150,7 @@ class MyProfileView(LoginRequiredMixin, ProfileCheckPassesTestMixin, View):
 # ----------------------------------------------------------------------------
 
     
-class EditProfile(LoginRequiredMixin, ProfileCheckPassesTestMixin, View): 
+class EditProfile(ProfileCheckPassesTestMixin, View): 
    
     def get(self, request):
         user_form = UserForm(instance =request.user)

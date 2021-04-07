@@ -33,6 +33,10 @@ class MyUser(AbstractUser):
     joined_date = models.DateField(auto_now_add=True, blank = True, null = True)
     city = models.ForeignKey(City,on_delete=models.CASCADE, null=True, blank=True) 
     language_code = models.CharField(_('language'), choices = settings.LANGUAGES, default = 'en', max_length=50)
+    is_student = models.BooleanField(default = False)
+    is_speaker = models.BooleanField(default=False)
+    is_representative = models.BooleanField(default=False)
+
 
     def __str__(self):
         return f"{self.id},{str(self.username)}"
@@ -68,7 +72,7 @@ class MyUser(AbstractUser):
 
 class Representative(models.Model):
     user = models.OneToOneField(MyUser, on_delete = models.CASCADE)
-
+    
     def __str__(self):
         return f"{self.user.username}"
 
