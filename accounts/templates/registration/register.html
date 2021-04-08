@@ -14,7 +14,7 @@
 
 <form method="post" style="align-items:center ; width: 40%;">
     {% csrf_token %}
-    {% bootstrap_form form %}
+    {% form.as_p %}
     <input type="submit" value="Signup">
 </form>
 
