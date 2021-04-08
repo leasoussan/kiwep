@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect,get_object_or_404, reverse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.conf import settings 
@@ -61,10 +61,12 @@ class Register(View):
             login(request, user)
             send_welcome_signup(user)
             
-            return redirect('create_profile', form.cleaned_data['usertype'])
+            return redirect(reverse('create_profile'), form.cleaned_data['usertype'])
 
 
         return render(request, 'registration/register.html', {"form":form})      
+
+
 
 
 
@@ -73,6 +75,7 @@ class Register(View):
 
 
 def get_user_profile_form(request, usertype, edit=False): 
+    
     if edit: 
         instance = request.user.profile() 
     else: 
@@ -83,7 +86,7 @@ def get_user_profile_form(request, usertype, edit=False):
 
     if  usertype == 'is_student':
         profile_form = StudentProfileCreationForm(data, instance=instance )
-       
+    
 
     elif usertype  == 'is_speaker':  
         profile_form =SpeakerProfileCreationForm(data, instance=instance)
@@ -97,12 +100,8 @@ def get_user_profile_form(request, usertype, edit=False):
 
 
 
-
-# -----------------------------------------------------------------------------------------------
-
-
-
 class CreateProfile(View):
+    
     def get(self, request ):
         user_form = UserForm(instance = request.user)
         usertype = check_profile(request.user, True)[1]
@@ -114,8 +113,7 @@ class CreateProfile(View):
     def post(self, request):
         user_form = UserForm(request.POST, instance = request.user)
         usertype = check_profile(request.user, True)[1]
-        profile_form = get_user_profile_form(request, id)
-        # print(profile_form)
+        profile_form = get_user_profile_form(request, usertype)
         valuenext= request.POST.get('next')
 
         if profile_form.is_valid() and user_form.is_valid():
@@ -130,6 +128,13 @@ class CreateProfile(View):
         # messages.add_message(request, messages.ERROR, 'You have an error in your form')
 
         return render(request, 'accounts/profile/edit_profile.html', {'usertype':usertype, 'form': profile_form})
+
+
+
+
+
+# -----------------------------------------------------------------------------------------------
+
 
 
 # -----------------------------------------------------------Profile
