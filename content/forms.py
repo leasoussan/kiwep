@@ -101,10 +101,12 @@ TeamProjectMissionFormSet = inlineformset_factory(
     Team, 
     TeamProjectMission, 
     fields=(
-        'mission', 
+        'attributed_to', 
         'due_date', 
         ),
-         extra=3)
+         extra=0)
+
+    
 
 
 class SubmitMissionForm(ModelForm):

@@ -84,12 +84,14 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
         
         team = Team.objects.get(id = self.kwargs['pk'])
         missions = team.project.mission.all()
-
-        formset = TeamProjectMissionFormSet(instance = team)
+        participants= team.participants.all()
+        initial_data = [{'mission': mission.id} for mission in missions ]
+        formset = TeamProjectMissionFormSet(instance = team, initial = initial_data)
         
         for form in formset:
-            form.fields['mission'].queryset = missions
-           
+
+            form.fields['attributed_to'].queryset = participants
+                       
 
         return render(request, 'crud/create_team_missions.html', {'formset': formset})
     

@@ -11,7 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 # signals
 from django.dispatch import receiver
 from django.db.models.signals import post_save 
-
+from django.utils import timezone
 
 
 class Resource(models.Model):
@@ -180,3 +180,12 @@ class TeamProjectMission(models.Model):
 
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
+
+@receiver(post_save, sender=Team)
+def team_mission_attribution(sender, created, instance, *args, **kwargs):
+    if created: 
+        for mission in instance.project.mission.all():
+            TeamProjectMission.objects.create(mission=mission, team=instance,due_date=timezone.now().date() )
+
+# created check if it's new or note
+# instance is team as we have the signal on the team creat missions project so this is the instance we are dealing with 
