@@ -11,6 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 # signals
 from django.dispatch import receiver
 from django.db.models.signals import post_save, m2m_changed
+
 from django.utils import timezone
 
 
@@ -192,7 +193,7 @@ class TeamProjectMission(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
     created_date = models.DateField(auto_now_add=True)
-    due_date = models.DateField(default = timezone.now().date())
+    due_date = models.DateField(default=timezone.now)
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_missions", blank = True, null=True)
     completed= models.BooleanField(default=False)
     response_text = models.TextField(blank=True)
