@@ -10,7 +10,7 @@ from .managers import *
 from django.utils.translation import ugettext_lazy as _
 # signals
 from django.dispatch import receiver
-from django.db.models.signals import post_save 
+from django.db.models.signals import post_save, m2m_changed
 from django.utils import timezone
 
 
@@ -133,6 +133,34 @@ def email_new_project_event(sender, created, instance, **kwargs):
     # here I can chose what to do 
 
 
+            
+# m2m_changed have acition attribute that have to be habndlaed 
+# reverse : if we want to remove a project from a mission - as it's a many to many relation 
+
+@receiver(m2m_changed, sender=Project.mission.through)
+def update_team_mission_attribution(instance, reverse, action , pk_set, **kwargs):
+    if not reverse:
+        if action == 'post_remove':
+            TeamProjectMission.objects.filter(team__in=instance.team_set.all()).filter(mission_id__in=pk_set).delete()
+
+        elif action == 'post_add':
+            project = instance
+            for team in project.team_set.all():
+                for mission in project.mission.filter(id__in= pk_set):
+                    TeamProjectMission.objects.create(mission=mission, team=team )
+
+    # if not created:
+    
+    #     project = instance
+    #     for team in project.team_set.all():
+    #         for mission in project.mission.all():
+    #             TeamProjectMission.objects.get_or_create(mission=mission, team=team )
+    #         proj_missions_ids= project.mission.all().values_list('id', flat=True)
+            
+    #         TeamProjectMission.objects.filter(team=team).exclude(mission_id__in=proj_missions_ids).delete()
+            
+
+
 class Team(models.Model):
     name = models.CharField(max_length=200)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
@@ -164,7 +192,7 @@ class TeamProjectMission(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
     created_date = models.DateField(auto_now_add=True)
-    due_date = models.DateField()
+    due_date = models.DateField(default = timezone.now().date())
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name = "my_missions", blank = True, null=True)
     completed= models.BooleanField(default=False)
     response_text = models.TextField(blank=True)

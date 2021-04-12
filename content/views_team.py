@@ -89,7 +89,6 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
         formset = TeamProjectMissionFormSet(instance = team, initial = initial_data)
         
         for form in formset:
-
             form.fields['attributed_to'].queryset = participants
                        
 
@@ -117,6 +116,12 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
 
 
 
+class TeamEditProjectMission(UpdateView):
+    model = TeamProjectMission
+    fields = '__all__'
+
+    template_name = 'crud/update.html'
+    # success_url = ('team_detail')
 
 
 
@@ -124,9 +129,9 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
 
 class TeamUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
     model = Team 
-    fields = ['name', 'project', 'start_date', 'due_date', 'group_Institution', 'participants', 'tasks' ,'final_project'] 
+    fields = ['name', 'project', 'start_date', 'due_date', 'group_Institution', 'participants' ] 
     template_name = 'crud/update.html'
-    success_url = ('team_detail')
+    # success_url = ('team_detail')
 
 
     def form_valid(self,form):

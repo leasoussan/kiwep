@@ -55,6 +55,12 @@
                            
                             
                         </div>
+                        <div class = "resource">
+                            {% for resource in mission.resources.all %}
+                            <a href="{% url 'resource_detail' resource.id %}">{{resource.name}}</a> 
+                            {% endfor %}
+
+                        </div>
                     </div>
                 </div>
 

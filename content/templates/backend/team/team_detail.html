@@ -8,6 +8,10 @@
 
 <a href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a>
 
+{% elif request.user.profile == team.manager %}
+
+<a href="{% url 'update_team' team.id %}">Edit Team</a>
+
 
 {% endif %}
 
@@ -116,16 +120,25 @@
 
                         {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
                         {% for projectmission in team.teamprojectmission_set.team_available_mission  %}
+
+
                         <tr>
                             <td>
                                 <a
-                                    href="{% url 'mission_detail' projectmission.id %}">{{projectmission.mission.name}}</a>
+                                    href="{% url 'mission_detail' projectmission.mission.id %}">{{projectmission.mission.name}}</a>
                             </td>
 
                             <td>{{projectmission.stage}}</td>
                             <td>{{projectmission.points}}</td>
                             <td>{{projectmission.due_date}}</td>
-                            <td><a href="{% url 'claim_mission' projectmission.id %}">{% trans 'claim_mission_link' %}</a></td>
+
+                            <td>   
+                            {% if user.is_student %}
+                                <td><a href="{% url 'claim_mission' projectmission.id %}">{% trans 'claim_mission_link' %}</a></td>
+                            {% else %}
+                                {% trans 'available_mission' %} 
+                            {% endif %}
+                     
                         </tr>
                         {% endfor %}
                         {% endif %}

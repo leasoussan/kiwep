@@ -29,6 +29,7 @@ class TeamAddForm(ModelForm):
             'start_date',
             'due_date',
             'group_Institution',
+            'participants'
         ] 
     
 class AddMemberTeamForm(ModelForm):
@@ -90,12 +91,9 @@ class ResourceAddForm(ModelForm):
 
 
 # ProjectMissionFormSet = inlineformset_factory(
-#     Project, rmSet = inlineformset_factory(
-#     Project, 
-#     Mission, 
+#     Project, Mission,
 #     fields ='__all__' )
-#     Mission, 
-#     fields ='__all__' )
+  
 
 TeamProjectMissionFormSet = inlineformset_factory(
     Team, 

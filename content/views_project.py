@@ -51,7 +51,7 @@ class ProjectCreatelView(SuccessMessageMixin, LoginRequiredMixin, SpeakerStatuPa
     form_class = ProjectAddForm
     template_name = 'crud/create.html'
     success_message = "Your project was created successfuly"
-
+    # formset = ProjectMissionFormSet()
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
