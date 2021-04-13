@@ -67,15 +67,10 @@ class SkillsAcquired(models.Model):
 
 
 class Mission(models.Model):
-    STAGE_CHOICE = [
-        ('start', 'Start'),
-        ('middle', 'Middle'),
-        ('final', 'Final'),
-    ]
+
     name = models.CharField(max_length=200)
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
-    level = models.ForeignKey(Level, on_delete=models.CASCADE)
-    stage = models.CharField( max_length=10, choices=STAGE_CHOICE, default='start')
+    level = models.ForeignKey(Level, on_delete=models.CASCADE, blank= True, null= True)
     description = models.TextField()
     resources = models.ManyToManyField(Resource)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
@@ -99,10 +94,10 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     title = models.CharField(max_length=300)
     description = models.TextField()
-    required_skills = models.ManyToManyField(RequiredSkills, blank=True)
-    acquried_skills = models.ManyToManyField(SkillsAcquired, blank=True)
+    required_skills = models.ManyToManyField(RequiredSkills)
+    acquried_skills = models.ManyToManyField(SkillsAcquired)
     time_to_complet = models.PositiveIntegerField()
-    field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    field = models.ManyToManyField(Field)
     difficulty = models.ForeignKey(Level, on_delete=models.CASCADE) 
     completed = models.BooleanField(default =False)
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
@@ -150,16 +145,7 @@ def update_team_mission_attribution(instance, reverse, action , pk_set, **kwargs
                 for mission in project.mission.filter(id__in= pk_set):
                     TeamProjectMission.objects.create(mission=mission, team=team )
 
-    # if not created:
-    
-    #     project = instance
-    #     for team in project.team_set.all():
-    #         for mission in project.mission.all():
-    #             TeamProjectMission.objects.get_or_create(mission=mission, team=team )
-    #         proj_missions_ids= project.mission.all().values_list('id', flat=True)
-            
-    #         TeamProjectMission.objects.filter(team=team).exclude(mission_id__in=proj_missions_ids).delete()
-            
+
 
 
 class Team(models.Model):
@@ -168,8 +154,7 @@ class Team(models.Model):
     start_date = models.DateField()
     due_date = models.DateField()
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
-    participants = models.ManyToManyField(Student, blank = True )
-      
+    participants = models.ManyToManyField(Student, blank = True )    
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
     missions = models.ManyToManyField(Mission, through = 'TeamProjectMission')        
     project_completed = models.BooleanField(null=True, blank = True)
@@ -190,6 +175,12 @@ class Team(models.Model):
 
 
 class TeamProjectMission(models.Model):
+    STAGE_CHOICE = [
+        ('start', 'Start'),
+        ('middle', 'Middle'),
+        ('final', 'Final'),
+    ]
+    stage = models.CharField( max_length=10, choices=STAGE_CHOICE, default='start')
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
     created_date = models.DateField(auto_now_add=True)
@@ -199,8 +190,16 @@ class TeamProjectMission(models.Model):
     response_text = models.TextField(blank=True)
     response_file = models.FileField(null=True, blank=True)
     accepted = models.BooleanField(default=False)
-
+    is_collective = models.BooleanField(default=False)
+    is_collective_individual = models.BooleanField(default=False)
     objects = TeamProjectMissionModelManager()
+
+# if is_collective: 
+    # TeamProjectMission.attributed_to =='all'
+# is is_individual:
+    # for participant in team.participants:
+        # TeamProjectMission.attributed_to = participant
+
 
 
     def __str__(self):

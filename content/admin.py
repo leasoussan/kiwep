@@ -56,8 +56,7 @@ admin.site.register(RequiredSkills)
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ("name", "field", "speaker", "completed")
-    # inlines = [SkillsAcquiredInlineAdmin, RequiredSkillsInlineAdmin]
+    list_display = ("name", "speaker", "completed")
 
 
 
