@@ -148,7 +148,7 @@ class StudentSubmitMission(UpdateView):
     model = TeamProjectMission
     form_class = SubmitMissionForm
     # fields = [
-    #         'response_text',
+    #         'response_comment',
     #         'response_file',
     #     ]
     template_name = 'backend/mission/team_mission_detail.html'

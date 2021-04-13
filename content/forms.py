@@ -15,7 +15,7 @@ class ProjectAddForm(ModelForm):
             'field',
             'difficulty',
             'points',
-            'mission'
+            'missions'
         ] 
 
         # exclude = ['completed', 'created_by']
@@ -102,8 +102,7 @@ TeamProjectMissionFormSet = inlineformset_factory(
         'attributed_to', 
         'due_date', 
         'stage',
-        'is_collective',
-        'is_collective_individual',
+       
         ),
          extra=0)
 
@@ -114,6 +113,6 @@ class SubmitMissionForm(ModelForm):
     class Meta:
         model = TeamProjectMission
         fields = [
-            'response_text',
+            'response_comment',
             'response_file',
         ]

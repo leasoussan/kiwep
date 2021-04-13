@@ -82,7 +82,7 @@ class ProjectUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateV
             'time_to_complet',
             'field',
             'difficulty',
-            'mission']
+            'missions']
     template_name = 'crud/update.html'
     
     def get_object(self):

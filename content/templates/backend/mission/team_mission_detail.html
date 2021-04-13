@@ -41,7 +41,7 @@
                                           
                                             <div class="inner-box" >
                                             <h2>{% trans 'my_response' %}</h2>
-                                    <p>,{{object.response_text}} </p>
+                                    <p>,{{object.response_comment}} </p>
                                     <p>{{object.response_file}}</p>
                                         </div>
                                     </div>
@@ -75,9 +75,9 @@
                     
                             {% if user.profile.name == 'speaker' %}
 
-                            {% if object.response_file or object.response_text %}
+                            {% if object.response_file or object.response_comment %}
                         {% trans 'file_lable' %} :{{object.response_file}}
-                        {% trans 'text_lable' %}: {{object.response_text}} 
+                        {% trans 'text_lable' %}: {{object.response_comment}} 
                             {% else %}
                             
                             {% trans 'no_answer_yet' %}

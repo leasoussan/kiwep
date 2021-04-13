@@ -3,9 +3,6 @@ kiwep/local_settings.py
 __pycache__/
 *.pyc
 
-**/migrations/**
-!**/migrations
-!**/migrations/__init__.py
 
 media/**
 

@@ -239,7 +239,7 @@ def pop_student(n):
 
 def pop_resources(n):
     for resource in range(n):
-        name = 'Mesource {n}'
+        name = 'Resource {resource}'
         link = "www.google.com"
         image =  'image/default.png'
         file_rsc = 'null'
@@ -272,14 +272,16 @@ def pop_acquired_skills(n):
             points = 3 )
 
 
-STAGE_CHOICE = ['Start','Middle', 'Final']
+MISSION_TYPE=('s_m', 't_m', 't_s_m')
+RESPONSE_TYPE = ('link', 'video', 'doc', 'power_p', 'image')
 
 def pop_missions(n):
     for mission in range(n):
         name = f'Mission {mission}'
         field =  random.choice(Field.objects.all())  
         level = random.choice(Level.objects.all())
-        stage =  random.choice(STAGE_CHOICE)
+        mission_type = random.choice(MISSION_TYPE)
+        response_type =  random.choice(RESPONSE_TYPE)
         description = 'This mission you have to .....about.......'
         resources = random.choices(Resource.objects.all())
         owner = random.choice(MyUser.objects.all())
@@ -326,23 +328,30 @@ def pop_project(n):
             points = random.randint(1,4)
         ) 
         p.save()
-  
+        project.missions
+        missions = list(Mission.objects.all())
+
+        p.missions.add(*random.sample(missions, 4))
         print(f'Project:{p.id}')
 
     
     print(f"Finished...{n} Projects populated.")
 
 
+
+
+STAGE_CHOICE = ['Start','Middle', 'Final']
+
 def pop_team(n):
     for team in range(n):
-        name = "project {n}"
+        name = "team {team}"
         project = random.choice(Project.objects.all())
         start_date = ('2021-09-09')
         due_date = ('2021-10-10')
         group_Institution = random.choice(Group.objects.all())
         final_project = 'file to upload per participant'
         manager = random.choice(Speaker.objects.all())
-    
+        stage =  random.choice(STAGE_CHOICE)
         t = Team(
             name=name,
             project = project,
