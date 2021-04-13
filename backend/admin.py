@@ -1,7 +1,11 @@
 from django.contrib import admin
-from .models import Field, Institution, InstitutionCategory, Group
+from .models import Field, Institution, InstitutionCategory, Group, Level
 
 
+
+@admin.register(Level)
+class FieldAdmin(admin.ModelAdmin):
+    pass
 
 
 @admin.register(Field)
