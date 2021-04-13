@@ -1,4 +1,5 @@
 {% extends 'baseb.html' %}
+{% load i18n %}
 {% load mytags %}
 {% load crispy_forms_tags %}
 
@@ -6,6 +7,9 @@
 
 
 {{object}}
+
+{% if formset.instance.project.mission.all.exists  %}
+
 
 <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
     <div class="container">
@@ -37,9 +41,11 @@
             </div>
         </div>
     </div>
+{% else %}
+
+{% trans 'This project has no missions yet' %}
 
 
-
-
+{% endif %}
 
 {% endblock %}

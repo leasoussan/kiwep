@@ -170,7 +170,6 @@ class Team(models.Model):
 
 
     # def get_available_mission(self):
-
     #     return TeamProjectMission.objects.filter(team=self, attributed_to = None)
 
 
