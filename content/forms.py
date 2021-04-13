@@ -101,8 +101,9 @@ TeamProjectMissionFormSet = inlineformset_factory(
     fields=(
         'attributed_to', 
         'due_date', 
+        'stage',
         'is_collective',
-        'is_collective_individual'
+        'is_collective_individual',
         ),
          extra=0)
 
