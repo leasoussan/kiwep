@@ -194,10 +194,7 @@ def team_mission_attribution(sender, created, instance, *args, **kwargs):
                 for participant in instance.participants.all():
                     CollectiveProjectMission.objects.create(mission=mission, team=instance,due_date=timezone.now())
 
-            elif mission.mission_type == 't_s_m':
-                for participant in instance.participants.all():
-                    TeamCollectiveMission.objects.create(mission=mission, team=instance,due_date=timezone.now())
-
+            
 
 # created check if it's new or note
 # instance is team as we have the signal on the team creat missions project so this is the instance we are dealing with 
