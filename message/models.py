@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import MyUser
-from content.models import TeamProjectMission, Team
+from content.models import CollectiveProjectMission, Team
 
 # Create your models here.
 
@@ -21,7 +21,7 @@ class TeamCommentsBoard(models.Model):
 
 
 class MissionComments(models.Model):
-    mission = models.ForeignKey(TeamProjectMission, on_delete=models.CASCADE)
+    mission = models.ForeignKey(CollectiveProjectMission, on_delete=models.CASCADE)
     comments = models.ManyToManyField(Comment)  
 
     def __str__(self):

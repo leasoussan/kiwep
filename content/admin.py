@@ -1,5 +1,15 @@
 from django.contrib import admin
-from .models import Resource, Project, Mission, Team, TeamProjectMission, Subjects,SkillsAcquired, RequiredSkills
+from .models import (
+    Resource, 
+    Project, 
+    Mission, 
+    Team, 
+    Subjects,
+    SkillsAcquired, 
+    RequiredSkills,
+    CollectiveProjectMission,
+    IndividualProjectMission, 
+)
 
 
 
@@ -7,11 +17,14 @@ from .models import Resource, Project, Mission, Team, TeamProjectMission, Subjec
 # class MissionsProjectInlineAdmin(admin.TabularInline):
 #     model = MissionsProject
 
-class TeamProjectMissionInlineAdmin(admin.TabularInline):
-    model = TeamProjectMission
+admin.site.register(IndividualProjectMission)
+admin.site.register(CollectiveProjectMission)
 
 
-admin.site.register(TeamProjectMission)
+class CollectiveProjectMissionInlineAdmin(admin.TabularInline):
+    model = CollectiveProjectMission
+
+
 # --------------------------------------------------------------------------
 
 
@@ -76,7 +89,7 @@ class MissionAdmin(admin.ModelAdmin):
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
     list_display = ("name", "group_Institution")
-    inlines =[TeamProjectMissionInlineAdmin]
+    # inlines =[CollectiveProjectMissionInlineAdmin]
 
 
 

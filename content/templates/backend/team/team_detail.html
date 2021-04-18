@@ -103,7 +103,7 @@
     <div class="col">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">A{% trans 'available_mission_title' %}</h5>
+                <h5 class="card-title">{% trans 'available_mission_title' %}</h5>
 
                 <table id="zero-conf" class="display" style="width:100%">
                     <thead>
@@ -119,7 +119,7 @@
                     <tbody>
 
                         {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
-                        {% for projectmission in team.teamprojectmission_set.team_available_mission  %}
+                        {% for projectmission in team.CollectiveProjectMission_set.team_available_mission %}
 
 
                         <tr>
@@ -156,6 +156,114 @@
     <div class="col">
         <div class="card">
             <div class="card-body">
+                <h5 class="card-title">{% trans 'collective_missions' %}</h5>
+
+                <table id="zero-conf" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>{% trans 'mission_title_table_header' %}</th>
+
+                            <th>{% trans 'status_table_header' %}</th>
+                            <th>{% trans 'points_table_header' %}</th>
+                            <th>{% trans 'due_date_table_header' %}</th>
+                            <th>{% trans 'claim_mission_table_header' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
+
+
+                        <tr>
+                            <td>
+                                <a
+                                    href="{% url 'mission_detail' projectmission.mission.id %}">{{studentmission.mission.name}}</a>
+                            </td>
+                            
+
+                            <td>{{studentmission.stage}}</td>
+                            <td>{{studentmission.points}}</td>
+                            <td>{{studentmission.due_date}}</td>
+
+                            <td>   
+                            {% if user.is_student %}
+                                <td><a href="{% url 'claim_mission' studentmission.id %}">{% trans 'claim_mission_link' %}</a></td>
+                            {% else %}
+                                {% trans 'available_mission' %} 
+                            {% endif %}
+                     
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{% trans 'team_indidividual_mission' %}</h5>
+
+                <table id="zero-conf" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>{% trans 'mission_title_table_header' %}</th>
+
+                            <th>{% trans 'status_table_header' %}</th>
+                            <th>{% trans 'points_table_header' %}</th>
+                            <th>{% trans 'due_date_table_header' %}</th>
+                            <th>{% trans 'claim_mission_table_header' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
+                        {% for teamtask in team.IndividualProjectMission_set.get_student_missions %}
+
+
+                        <tr>
+                            <td>
+                                <a
+                                    href="{% url 'mission_detail' teamtask.mission.id %}">{{teamtask.mission.name}}</a>
+                            </td>
+
+                            <td>{{teamtask.stage}}</td>
+                            <td>{{teamtask.points}}</td>
+                            <td>{{teamtask.due_date}}</td>
+
+                            <td>   
+                            {% if user.is_student %}
+                                <td><a href="{% url 'claim_mission' studentmission.id %}">{% trans 'claim_mission_link' %}</a></td>
+                            {% else %}
+                                {% trans 'available_mission' %} 
+                            {% endif %}
+                     
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
                 <h5 class="card-title">{% trans 'project_mission_title' %}</h5>
                 <p>Here you can follow you peers working and progress on the project</p>
                 <table id="zero-conf" class="display" style="width:100%">
@@ -171,7 +279,7 @@
                     </thead>
                     <tbody>
                         
-                        {% for projectmission in team.teamprojectmission_set.get_attributed_mission %}
+                        {% for projectmission in team.CollectiveProjectMission_set.get_attributed_mission %}
                         <tr>
                             <td><a href="
                                 {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}

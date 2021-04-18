@@ -43,10 +43,11 @@ class TeamModelManager(models.Manager):
 
 
 
-# ---------------------------------TeamProjectMission---Manager__queryset
+# ---------------------------------CollectiveProjectMission---Manager__queryset
 
-class TeamProjectMissionQuerySet(models.QuerySet):
+class CollectiveProjectMissionQuerySet(models.QuerySet):
     
+
     def team_available_mission(self):
         return self.filter(attributed_to = None)
 
@@ -65,9 +66,9 @@ class TeamProjectMissionQuerySet(models.QuerySet):
 
 
 
-class TeamProjectMissionModelManager(models.Manager):
+class CollectiveProjectMissionModelManager(models.Manager):
     def get_queryset(self):
-        return TeamProjectMissionQuerySet(self.model, using=self._db)
+        return CollectiveProjectMissionQuerySet(self.model, using=self._db)
 
 
     def team_available_mission(self):
@@ -83,8 +84,42 @@ class TeamProjectMissionModelManager(models.Manager):
     def is_my_mission(self, user):
         return self.get_queryset().is_my_mission(user)
     
+# ---------------------------------------Team Collective Mission Model Manager
 
-# ---------------------------------Mission---Manager__queryset
+class TeamCollectiveMissionQuerySet(models.QuerySet):
+    def get_team_missions(self):
+        return self.filter(mission_type='t_s_m')
+
+
+class TeamCollectiveMissionModelManager(models.Manager):
+    def get_queryset(self):    
+        return TeamCollectiveMissionQuerySet(self.model, using=self._db)
+
+
+
+# def def get_queryset(self):
+#     queryset = super(CLASS_NAME, self).get_queryset()
+#     queryset = queryset # TODO
+#     return queryset
+
+
+
+# ---------------------------------------------------------Student Project Mission Model Manager
+
+class IndividualProjectMissionteam_available_missioQuerySet(models.QuerySet):
+    def get_student_missions(self):
+        return self.filter(mission='s_m')
+
+
+class IndividualProjectMissionModelManager(models.Manager):
+    def get_queryset(self):
+        return IndividualProjectMissionQuerySet(self.model, using=self._db)
+
+
+    def get_student_missions(self):
+        return self.get_queryset().get_student_missions()
+
+# -----------------------------------------------------Mission Manager  QUerySet
 
 class MissionQuerySet(models.QuerySet):
     def speaker_missions(self):

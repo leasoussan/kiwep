@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Mission, TeamProjectMission, Team
+from .models import Mission, CollectiveProjectMission, Team
 from django.forms import ModelForm
 from .forms import MissionAddForm, SubmitMissionForm
 from django.urls import reverse_lazy
@@ -20,7 +20,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 
 class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     ''' To See all Missions View'''
-    model = TeamProjectMission
+    model = CollectiveProjectMission
     template_name = 'content/mission/mission_list.html'    
     context_object_name = 'mission_list'
 
@@ -31,7 +31,7 @@ class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
 
 class MyMissionList(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     ''' See User Missions List'''
-    model = TeamProjectMission
+    model = CollectiveProjectMission
     template_name = 'backend/mission/my_mission_list.html'    
     context_object_name = 'my_mission_list'
 
@@ -101,7 +101,7 @@ class ClaimMission(LoginRequiredMixin, RedirectView):
     pattern_name = 'my_mission_list'
 
     def get_redirect_url(self,  *args, **kwargs):
-        mission = get_object_or_404(TeamProjectMission, pk=kwargs['pk'])
+        mission = get_object_or_404(CollectiveProjectMission, pk=kwargs['pk'])
         mission.attributed_to = self.request.user.profile()
         mission.save()
         del kwargs['pk']
@@ -118,7 +118,7 @@ class UnclaimMission(LoginRequiredMixin, RedirectView):
     pattern_name = 'my_mission_list'
 
     def get_redirect_url(self,  *args, **kwargs):
-        mission = get_object_or_404(TeamProjectMission, pk=kwargs['pk'])
+        mission = get_object_or_404(CollectiveProjectMission, pk=kwargs['pk'])
         mission.attributed_to = None
         mission.save()
         del kwargs['pk']
@@ -131,13 +131,13 @@ class UnclaimMission(LoginRequiredMixin, RedirectView):
 class TeamMissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
     '''Here to create a team manager - gettinga project and managing participants '''
 
-    model = TeamProjectMission
+    model = CollectiveProjectMission
     template_name = 'backend/mission/team_mission_detail.html'    
     
 
     def get_object(self):
         pk = self.kwargs.get('pk')
-        return get_object_or_404(TeamProjectMission, pk=pk)
+        return get_object_or_404(CollectiveProjectMission, pk=pk)
 
 
 
@@ -145,7 +145,7 @@ class TeamMissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, Deta
 
 class StudentSubmitMission(UpdateView):
     ''' An answer can be saved and unsubmited- here is the submit  '''
-    model = TeamProjectMission
+    model = CollectiveProjectMission
     form_class = SubmitMissionForm
     # fields = [
     #         'response_comment',

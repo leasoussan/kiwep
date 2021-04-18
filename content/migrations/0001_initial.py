@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='StudentProjectMission',
+            name='IndividualProjectMission',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('stage', models.CharField(choices=[('start', 'Start'), ('middle', 'Middle'), ('final', 'Final')], default='start', max_length=10)),
@@ -78,11 +78,11 @@ class Migration(migrations.Migration):
                 ('manager', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='team_manager', to='accounts.speaker')),
                 ('participants', models.ManyToManyField(blank=True, to='accounts.Student')),
                 ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='content.project')),
-                ('student_missions', models.ManyToManyField(related_name='my_missions', through='content.StudentProjectMission', to='content.Mission')),
+                ('student_missions', models.ManyToManyField(related_name='my_missions', through='content.IndividualProjectMission', to='content.Mission')),
             ],
         ),
         migrations.CreateModel(
-            name='TeamProjectMission',
+            name='CollectiveProjectMission',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('stage', models.CharField(choices=[('start', 'Start'), ('middle', 'Middle'), ('final', 'Final')], default='start', max_length=10)),
@@ -116,7 +116,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='team',
             name='team_missions',
-            field=models.ManyToManyField(related_name='my_team_missions', through='content.TeamProjectMission', to='content.Mission'),
+            field=models.ManyToManyField(related_name='my_team_missions', through='content.CollectiveProjectMission', to='content.Mission'),
         ),
         migrations.AddField(
             model_name='team',
@@ -124,7 +124,7 @@ class Migration(migrations.Migration):
             field=models.ManyToManyField(related_name='our_mission', through='content.TeamCollectiveMission', to='content.Mission'),
         ),
         migrations.AddField(
-            model_name='studentprojectmission',
+            model_name='IndividualProjectMission',
             name='team',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='content.team'),
         ),

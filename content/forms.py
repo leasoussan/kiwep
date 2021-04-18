@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm 
-from .models import Project, Team, Mission, Resource, TeamProjectMission
+from .models import Project, Team, Mission, Resource, CollectiveProjectMission, IndividualProjectMission
 from accounts.models import Student
 from django.forms import inlineformset_factory
 from django.contrib.admin.widgets import FilteredSelectMultiple
@@ -95,9 +95,9 @@ class ResourceAddForm(ModelForm):
 #     fields ='__all__' )
   
 
-TeamProjectMissionFormSet = inlineformset_factory(
+CollectiveProjectMissionFormSet = inlineformset_factory(
     Team, 
-    TeamProjectMission, 
+    CollectiveProjectMission, 
     fields=(
         'attributed_to', 
         'due_date', 
@@ -109,9 +109,34 @@ TeamProjectMissionFormSet = inlineformset_factory(
     
 
 
+IndividualProjectMissionFormSet = inlineformset_factory(
+    Team, 
+    IndividualProjectMission, 
+    fields=(
+        'attributed_to', 
+        'due_date', 
+        'stage',
+       
+        ),
+         extra=0)
+
+
+# TeamCollectiveMissionFormSet = inlineformset_factory(
+#     Team, 
+#     TeamCollectiveMission
+ 
+#     fields=(
+#         'attributed_to', 
+#         'due_date', 
+#         'stage',
+       
+#         ),
+#          extra=0)
+
+
 class SubmitMissionForm(ModelForm):
     class Meta:
-        model = TeamProjectMission
+        model = CollectiveProjectMission
         fields = [
             'response_comment',
             'response_file',

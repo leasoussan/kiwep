@@ -70,7 +70,7 @@ class Mission(models.Model):
     MISSION_TYPE = [
         ('s_m', 'Student Mission'),
         ('t_m', 'Team Mission'),
-        ('t_s_m', 'Team Student Mission'),
+        # ('t_s_m', 'Team Student Mission'),
    ] 
     RESPONSE_TYPE = [
         ('link', 'Link'),
@@ -149,13 +149,13 @@ def email_new_project_event(sender, created, instance, **kwargs):
 def update_team_mission_attribution(instance, reverse, action , pk_set, **kwargs):
     if not reverse:
         if action == 'post_remove':
-            TeamProjectMission.objects.filter(team__in=instance.team_set.all()).filter(mission_id__in=pk_set).delete()
+            CollectiveProjectMission.objects.filter(team__in=instance.team_set.all()).filter(mission_id__in=pk_set).delete()
 
         elif action == 'post_add':
             project = instance
             for team in project.team_set.all():
                 for mission in project.mission.filter(id__in= pk_set):
-                    TeamProjectMission.objects.create(mission=mission, team=team )
+                    CollectiveProjectMission.objects.create(mission=mission, team=team )
 
 
 
@@ -168,9 +168,8 @@ class Team(models.Model):
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Student, blank = True )    
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
-    student_missions = models.ManyToManyField(Mission, through = 'StudentProjectMission', related_name = "my_missions") 
-    team_missions =  models.ManyToManyField(Mission, through = 'TeamProjectMission', related_name = "my_team_missions",) 
-    team_student_missions = models.ManyToManyField(Mission, through = 'TeamCollectiveMission',  related_name = "our_mission",)
+    individaul_missions = models.ManyToManyField(Mission, through = 'IndividualProjectMission') 
+    team_missions =  models.ManyToManyField(Mission, through = 'CollectiveProjectMission', related_name ='team_missions') 
     
     project_completed = models.BooleanField(null=True, blank = True)
 
@@ -187,81 +186,18 @@ class Team(models.Model):
 @receiver(post_save, sender=Team)
 def team_mission_attribution(sender, created, instance, *args, **kwargs):
     if created: 
-        for mission in instance.project.mission.all():
+        for mission in instance.project.missions.all():
             if mission.mission_type == 's_m':
-                StudentProjectMission.objects.create(mission,team=instance,due_date=timezone.now().date())
+                IndividualProjectMission.objects.create(mission=mission,team=instance,due_date=timezone.now())
             
             elif mission.mission_type == 't_m':
-                for participant in team.participants.all():
-                    TeamProjectMission.objects.create(mission=mission, team=instance,due_date=timezone.now().date() )
+                for participant in instance.participants.all():
+                    CollectiveProjectMission.objects.create(mission=mission, team=instance,due_date=timezone.now())
 
             elif mission.mission_type == 't_s_m':
-                for participant in team.participants.all():
-                    TeamCollectiveMission.objects.create(mission=mission, team=instance,due_date=timezone.now().date() )
+                for participant in instance.participants.all():
+                    TeamCollectiveMission.objects.create(mission=mission, team=instance,due_date=timezone.now())
 
-
-
-
-
-
-class StudentProjectMission(models.Model):
-    STAGE_CHOICE = [
-        ('start', 'Start'),
-        ('middle', 'Middle'),
-        ('final', 'Final'),
-    ]
-    stage = models.CharField( max_length=10, choices=STAGE_CHOICE, default='start')
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
-    created_date = models.DateField(auto_now_add=True)
-    due_date = models.DateField(default=timezone.now)
-    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, blank = True, null=True)
-    completed= models.BooleanField(default=False)
-    response_comment = models.TextField(blank=True)
-    response_file = models.FileField(null=True, blank=True)
-    accepted = models.BooleanField(default=False)
-    
-    objects = TeamProjectMissionModelManager()
-
-
-    def __str__(self):
-        return f"Missions of Team: {self.team}"
-
-
-    def get_absolute_url(self):
-        return reverse("team_detail", kwargs={"pk":self.pk})
-
-
-
-
-
-
-class TeamProjectMission(models.Model):
-    STAGE_CHOICE = [
-        ('start', 'Start'),
-        ('middle', 'Middle'),
-        ('final', 'Final'),
-    ]
-    stage = models.CharField( max_length=10, choices=STAGE_CHOICE, default='start')
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
-    created_date = models.DateField(auto_now_add=True)
-    due_date = models.DateField(default=timezone.now)
-    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, blank = True, null=True)
-    completed= models.BooleanField(default=False)
-    response_comment = models.TextField(blank=True)
-    response_file = models.FileField(null=True, blank=True)
-    accepted = models.BooleanField(default=False)
-    
-    objects = TeamProjectMissionModelManager()
-
-
-    def __str__(self):
-        return f"Missions of Team: {self.team}"
-
-
-    def get_absolute_url(self):
-        return reverse("team_detail", kwargs={"pk":self.pk})
 
 # created check if it's new or note
 # instance is team as we have the signal on the team creat missions project so this is the instance we are dealing with 
@@ -270,7 +206,17 @@ class TeamProjectMission(models.Model):
 
 
 
-class TeamCollectiveMission(models.Model):
+
+
+
+# related name is to change the default access from othermodel_set to the ne realted name.
+# for ex in Team: we have FK to project, by default to access all team with the same project we ll go from 
+# project.team_set.all>>.the related name >> if related name == teams ; then we all do project.teams.all 
+# it's like a tag /lable to call without needing to go backward.
+
+
+
+class IndividualProjectMission(models.Model):
     STAGE_CHOICE = [
         ('start', 'Start'),
         ('middle', 'Middle'),
@@ -281,13 +227,13 @@ class TeamCollectiveMission(models.Model):
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
     created_date = models.DateField(auto_now_add=True)
     due_date = models.DateField(default=timezone.now)
-    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, blank = True, null=True)
+    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE,  related_name = "my_missions", blank = True, null=True)
     completed= models.BooleanField(default=False)
     response_comment = models.TextField(blank=True)
     response_file = models.FileField(null=True, blank=True)
     accepted = models.BooleanField(default=False)
     
-    objects = TeamProjectMissionModelManager()
+    objects = IndividualProjectMissionModelManager()
 
 
     def __str__(self):
@@ -297,7 +243,35 @@ class TeamCollectiveMission(models.Model):
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
-# created check if it's new or note
-# instance is team as we have the signal on the team creat missions project so this is the instance we are dealing with 
 
+
+
+# ex make your resume 
+
+class CollectiveProjectMission(models.Model):
+    STAGE_CHOICE = [
+        ('start', 'Start'),
+        ('middle', 'Middle'),
+        ('final', 'Final'),
+    ]
+    stage = models.CharField( max_length=10, choices=STAGE_CHOICE, default='start')
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
+    created_date = models.DateField(auto_now_add=True)
+    due_date = models.DateField(default=timezone.now)
+    attributed_to = models.ManyToManyField(Student, related_name = "my_team_missions", blank = True)
+    completed= models.BooleanField(default=False)
+    response_comment = models.TextField(blank=True)
+    response_file = models.FileField(null=True, blank=True)
+    accepted = models.BooleanField(default=False)
+    
+    objects = CollectiveProjectMissionModelManager()
+
+
+    def __str__(self):
+        return f"Missions of Team: {self.team}"
+
+
+    def get_absolute_url(self):
+        return reverse("team_detail", kwargs={"pk":self.pk})
 

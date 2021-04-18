@@ -70,7 +70,7 @@
                             <div class="tab-pane fade" id="prod-curriculum" role="tabpanel"
                                 aria-labelledby="prod-curriculum-tab">
                                 <div class="content">
-                                    {% for mission in project.mission.all %}
+                                    {% for mission in project.missions.all %}
                                     <div id="accordion" class="accordion-box">
                                        
                                         <div class="card accordion block">
@@ -96,6 +96,11 @@
                                                             </div>
                                                             <div class="pull-right">
                                                                 <div class="minutes">{{mission.points}}</div>
+                                                            </div>
+                                                            <div class ='mission_type'>
+
+                                                                {{mission.get_mission_type_display}}
+
                                                             </div>
                                                         </div>
                                                     </div>

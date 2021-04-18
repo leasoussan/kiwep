@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from content.admin import  TeamProjectMissionInlineAdmin
+from content.admin import  CollectiveProjectMissionInlineAdmin
 
 
 from .forms import UserForm, MyUserCreationForm
@@ -53,8 +53,8 @@ admin.site.register(MyUser, CustomUserAdmin)
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    inlines = [TeamProjectMissionInlineAdmin]
-
+    # inlines = [CollectiveProjectMissionInlineAdmin]
+    pass
 
 @admin.register(Speaker)
 class SpeakerAdmin(admin.ModelAdmin):
