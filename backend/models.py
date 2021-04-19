@@ -13,11 +13,16 @@ class Level(models.Model):
 
 
 
-class Field(models.Model):
+class Field(models.Model): 
+    SKILLS_TYPE = [
+        ('soft', 'Soft Skills'),
+        ('hard', 'Hard Skills')
+    ]
     name = models.CharField(max_length=100) 
+    skills_type = models.CharField(max_length=50, choices = SKILLS_TYPE)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} is a {self.skills_type} skill'
     
 
 

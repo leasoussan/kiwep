@@ -3,10 +3,8 @@ from .models import (
     Resource, 
     Project, 
     Mission, 
-    Team, 
-    Subjects,
-    SkillsAcquired, 
-    RequiredSkills,
+    Team,
+    Skills,
     CollectiveProjectMission,
     IndividualProjectMission, 
 )
@@ -40,26 +38,14 @@ class ResourceAdmin(admin.ModelAdmin):
 
 
 
-class SubjectInlineAdmin(admin.TabularInline):
-    model = Subjects
+class SkillsInlineAdmin(admin.TabularInline):
+    model = Skills
 
-admin.site.register(Subjects)
-# --------------------------------------------------------------------------
-
-
-class SkillsAcquiredInlineAdmin(admin.TabularInline):
-    model = SkillsAcquired
-
-admin.site.register(SkillsAcquired)
+admin.site.register(Skills)
 
 
 # --------------------------------------------------------------------------
 
-
-class RequiredSkillsInlineAdmin(admin.TabularInline):
-    model = RequiredSkills
-
-admin.site.register(RequiredSkills)
 
 
 # --------------------------------------------------------------------------

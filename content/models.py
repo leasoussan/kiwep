@@ -39,30 +39,15 @@ class Resource(models.Model):
         return default_path
 
 
-
-class Subjects(models.Model):
-    name = models.CharField(max_length= 100)
-
-    
-    def __str__(self):
-        return f"Subject{self.name}"
-
-    
-
-class RequiredSkills(models.Model):
+class Skills(models.Model):
     name  = models.CharField(max_length= 100)
-    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
+    field = models.ManyToManyField(Field, blank = False)
 
-    def __str__(self):
-        return f"SubjectRequired sikills {self.subject}, {self.name}"
-
-class SkillsAcquired(models.Model):
-    name  = models.CharField(max_length= 100)
-    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
-    points = models.PositiveIntegerField()
     
     def __str__(self):
         return f"Subject{self.subject}, {self.name}"
+
+
 
 
 
@@ -70,7 +55,7 @@ class Mission(models.Model):
     MISSION_TYPE = [
         ('s_m', 'Student Mission'),
         ('t_m', 'Team Mission'),
-        # ('t_s_m', 'Team Student Mission'),
+
    ] 
     RESPONSE_TYPE = [
         ('link', 'Link'),
@@ -89,7 +74,7 @@ class Mission(models.Model):
     resources = models.ManyToManyField(Resource)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     points = models.PositiveIntegerField()
-    acquried_skill = models.ForeignKey(SkillsAcquired, on_delete=models.CASCADE, blank =True, null =True)
+    acquried_skill = models.ManyToManyField(Skills, blank =True)
 
 
     objects = MissionModelManager()
@@ -106,8 +91,8 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     title = models.CharField(max_length=300)
     description = models.TextField()
-    required_skills = models.ManyToManyField(RequiredSkills)
-    acquried_skills = models.ManyToManyField(SkillsAcquired)
+    required_skills = models.ManyToManyField(Skills, related_name="required_skills")
+    acquried_skills = models.ManyToManyField(Skills)
     time_to_complet = models.PositiveIntegerField()
     field = models.ManyToManyField(Field)
     difficulty = models.ForeignKey(Level, on_delete=models.CASCADE) 
@@ -175,6 +160,8 @@ class Team(models.Model):
 
  
     objects = TeamModelManager()
+
+
 
     def __str__(self):
         return f"Team Name : {self.name}"
@@ -256,7 +243,7 @@ class CollectiveProjectMission(models.Model):
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
     created_date = models.DateField(auto_now_add=True)
     due_date = models.DateField(default=timezone.now)
-    attributed_to = models.ManyToManyField(Student, related_name = "my_team_missions", blank = True)
+    attributed_to = models.ManyToManyField(Student, through = 'IndividualCollectiveProjectMission' , related_name = "my_team_missions", blank = True)
     completed= models.BooleanField(default=False)
     response_comment = models.TextField(blank=True)
     response_file = models.FileField(null=True, blank=True)
@@ -272,3 +259,22 @@ class CollectiveProjectMission(models.Model):
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
+
+
+
+class IndividualCollectiveProjectMission(models.Model):
+   
+    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")
+    parent_mission = models.ForeignKey(CollectiveProjectMission, on_delete= models.CASCADE)
+    completed= models.BooleanField(default=False)
+    response_comment = models.TextField(blank=True)
+    response_file = models.FileField(null=True, blank=True)
+    accepted = models.BooleanField(default=False)
+  
+
+    def __str__(self):
+        return f"Team Project Mission of Team: {self.team}"
+
+
+    def get_absolute_url(self):
+        return reverse("team_detail", kwargs={"pk":self.pk})

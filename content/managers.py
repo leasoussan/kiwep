@@ -106,7 +106,7 @@ class TeamCollectiveMissionModelManager(models.Manager):
 
 # ---------------------------------------------------------Student Project Mission Model Manager
 
-class IndividualProjectMissionteam_available_missioQuerySet(models.QuerySet):
+class IndividualProjectMissionQuerySet(models.QuerySet):
     def get_student_missions(self):
         return self.filter(mission='s_m')
 

@@ -31,13 +31,14 @@ MyUser = get_user_model()
 
 
 
-fields_list = ['Economics', 'Digital', 'Commercial', 'Artisitic', 'Fashion', 'Other']
+fields_list = ['Economics', 'Digital', 'Commercial', 'Artisitic', 'Fashion', 'Other', 'Leadership', 'SelfLearner','TeamPLayer' ]
+skill_type = ['hard', 'soft']
 
-
-
-def pop_field(fields_list):
+def pop_field(skill_type):
+    skill = random.choice(skill_type)
     for f in fields_list:
-        f = Field.objects.get_or_create(name=f)
+        f = Field.objects.get_or_create(name=f, skills_type=skill)
+
     
         print(f"the Field {f} was created")
 
@@ -238,7 +239,7 @@ def pop_student(n):
 
 
 def pop_resources(n):
-    for resource in range(n):
+    for r in range(n):
         name = 'Resource {resource}'
         link = "www.google.com"
         image =  'image/default.png'
@@ -256,26 +257,19 @@ def pop_resources(n):
 
 
 
-subjects_list= ['Leadership', 'SelfLearner','TeamPLayer' ]
-
-def pop_subjects(subjects_list):
-    for subject in subjects_list:
-        Subjects.objects.get_or_create(name = subject)
+skills_list = ['Develop', 'writing', 'elaborating', 'research', 'Communicating']
 
 
-def pop_required_skills(n):
-    for skills in range(n):
-        skills = RequiredSkills.objects.get_or_create(
-            name = "Required Skills",
-            subject = random.choice(Subjects.objects.all()),
-        )
+def pop_skills(n):
+    skill = random.choice(skills_list)
+    for skill in skills_list:
+        skill = Skills(name = skill)
+        skill.save()
+        
+        skill.field.add(random.choice(list(Field.objects.all())))
+        
 
-def pop_acquired_skills(n):
-    for skill in range(n):
-        skill = SkillsAcquired.objects.get_or_create(
-            name = 'NewSkills', 
-            subject = random.choice(Subjects.objects.all()),
-            points = 3 )
+
 
 
 MISSION_TYPE=('s_m', 't_m', 't_s_m')
@@ -292,7 +286,6 @@ def pop_missions(n):
         resources = random.choices(Resource.objects.all())
         owner = random.choice(MyUser.objects.all())
         points = 3
-        acquried_skill = random.choice(SkillsAcquired.objects.all())
         mission_type = random.choice(MISSION_TYPE)
         response_type = random.choice(RESPONSE_TYPE)
 
@@ -304,12 +297,13 @@ def pop_missions(n):
             description=description,
             owner=owner, 
             points = points,
-            acquried_skill = acquried_skill ,
+           
             mission_type = mission_type,
             response_type = response_type
             )
         m.save()
         m.resources.add(random.choice(list(Resource.objects.all())))
+        m.acquried_skill.add(random.choice(Skills.objects.all())) 
         print(f'mission:{m.id} was created')
 
     print(f"Finished...{n} Mission populated.")
@@ -343,8 +337,8 @@ def pop_project(n):
         # project.required_skills
         # project.field
         field = list(Field.objects.all())
-        required_skills= list(RequiredSkills.objects.all())
-        acquried_skills = list(SkillsAcquired.objects.all())
+        required_skills= list(Skills.objects.all())
+        acquried_skills = list(Skills.objects.all())
         missions = list(Mission.objects.all())
         p.field.add(*random.sample(field, 2))
         p.acquried_skills.add(*random.sample(acquried_skills,2))
@@ -401,7 +395,7 @@ def pop_student_mission_project(n):
         completed = False
         created_date = '2020-09-08'
         due_date = '2020-10-10'
-        attributed_to = random.choice(Student.objects.all())
+        
 
         mp = IndividualProjectMission(
             team=team,
@@ -409,38 +403,15 @@ def pop_student_mission_project(n):
             completed=completed,
             created_date=created_date,
             due_date=due_date,
-            attributed_to=attributed_to
-
+           
         )
         mp.save()
+        mp.attributed_to.add(random.choice(Student.objects.all()))
+
         print(f'mp:{mp.id}')
 
 
 # -------------------------------------------------
-def pop_mission_projects(n):
-    for project in range(n):
-        team = random.choice(Team.objects.all())
-        mission = random.choice(Mission.objects.all())
-        completed = False
-        created_date = '2020-09-08'
-        due_date = '2020-10-10'
-        attributed_to = random.choice(Student.objects.all())
-
-        mp = CollectiveProjectMission(
-            team=team,
-            mission=mission,
-            completed=completed,
-            created_date=created_date,
-            due_date=due_date,
-            attributed_to=attributed_to
-
-        )
-        mp.save()
-        print(f'mp:{mp.id}')
-
-
-# ----------------------------------------------------------------------
-
 def pop_mission_collective_projects(n):
     for project in range(n):
         team = random.choice(Team.objects.all())
@@ -448,68 +419,70 @@ def pop_mission_collective_projects(n):
         completed = False
         created_date = '2020-09-08'
         due_date = '2020-10-10'
-        attributed_to = random.choice(Student.objects.all())
+   
 
-        mp = TeamCollectiveMission(
+        cm = CollectiveProjectMission(
             team=team,
             mission=mission,
             completed=completed,
             created_date=created_date,
             due_date=due_date,
-            attributed_to=attributed_to
+         
 
         )
-        mp.save()
-        print(f'mp:{mp.id}')
+        cm.save()
+        cm.attributed_to.add(random.choice(Student.objects.all()))
+        print(f'mp:{cm.id}')
+
+
+# ----------------------------------------------------------------------
 
 # ----------------------------------------------------
 
-pop_field(fields_list)
+# pop_field(fields_list)
    
 
 
-pop_institution_category_list(institution_category_list)
+# pop_institution_category_list(institution_category_list)
 
 
-pop_country()
+# pop_country()
   
 
-pop_city()
+# pop_city()
 
-pop_representative(2)
-
-
-pop_institution(2)
+# pop_representative(2)
 
 
-groups = ['3rd', '4th', '5th', '6th']
-
-pop_level(4)
-pop_group(groups)
+# pop_institution(2)
 
 
-pop_speaker(5)
+# groups = ['3rd', '4th', '5th', '6th']
+
+# pop_level(4)
+# pop_group(groups)
+
+
+# pop_speaker(5)
     
 
-pop_student(30)
+# pop_student(30)
 
 
 
 
-pop_resources(20)
+# pop_resources(20)
 
-pop_subjects(subjects_list)
-pop_required_skills(5)
-pop_acquired_skills(5)
+# pop_skills(skills_list)
 
-pop_missions(20)
+# pop_missions(20)
 
 
-pop_project(6)
+# pop_project(6)
 
-pop_team(4)
-pop_mission_projects(20)
+# pop_team(4)
+# pop_mission_projects(20)
 
 
-pop_student_mission_project(10)
+# pop_student_mission_project(10)
 pop_mission_collective_projects(10)
