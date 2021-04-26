@@ -75,6 +75,8 @@ class Register(View):
 
 
 def get_user_profile_form(request, usertype, edit=False): 
+    """ This function allows is to check which profile is requested, 
+    and to know what page/authorization to direct it to"""
     
     if edit: 
         instance = request.user.profile() 
@@ -101,6 +103,8 @@ def get_user_profile_form(request, usertype, edit=False):
 
 
 class CreateProfile(View):
+    """ Any one who creats an accounts will be directed to create a Profile, 
+    and wont be able to do any actions unless this is done"""
     
     def get(self, request ):
         user_form = UserForm(instance = request.user)

@@ -22,6 +22,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 
 
 class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
+    """ Team List View will Show a user Teams list"""
     model = Team
     template_name = 'crud/list_view.html'
     context_object_name = 'team_list'
@@ -34,6 +35,8 @@ class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
 
 
 class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
+    """ Global Team Details """
+    
     model = Team
     template_name = 'backend/team/team_detail.html'
     queryset = IndividualProjectMission.objects.team_available_mission()
@@ -51,6 +54,7 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
 
 
 class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateView):
+    """Create a Team View """
     model = Team 
     form_class = TeamAddForm
     template_name = 'crud/create.html'
@@ -79,7 +83,7 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
 
 
 class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
-    
+    """ Once a Team IS created the missions have to be set, Deadline, attribution etc...."""
     def get(self, request, *args, **kwargs):
         
         team = Team.objects.get(id = self.kwargs['pk'])
@@ -122,6 +126,7 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
 
 
 class TeamEditIndividualProjectMission(UpdateView):
+    """ """
     model = IndividualProjectMission
     fields = '__all__'
 

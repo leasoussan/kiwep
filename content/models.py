@@ -87,6 +87,7 @@ class Mission(models.Model):
 
 
 class Project(models.Model):
+    """ Model Of Project - independent of a Team - a project is reusable to each team his own """
 
     name = models.CharField(max_length=200)
     title = models.CharField(max_length=300)
@@ -146,6 +147,8 @@ def update_team_mission_attribution(instance, reverse, action , pk_set, **kwargs
 
 
 class Team(models.Model):
+    """ a Team Model is to manage a Project per Team- Creating a team is allowing the Speaker to  
+    Manage one or few people on a Project"""
     name = models.CharField(max_length=200)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     start_date = models.DateField()
@@ -191,6 +194,8 @@ def team_mission_attribution(sender, created, instance, *args, **kwargs):
 # it's like a tag /lable to call without needing to go backward.
 
 class IndividualProjectMission(models.Model):
+    """ an Individuall Mission is a Mission that has to be done by one team Member, 
+    so this mission can be claimed """
     STAGE_CHOICE = [
         ('start', 'Start'),
         ('middle', 'Middle'),
@@ -224,8 +229,8 @@ class IndividualProjectMission(models.Model):
 
 class CollectiveProjectMission(models.Model):
     """
-    This mission is collective for all participants and is able to be managed by each participants 
-     """
+    This mission has to be done by each participants of a team. 
+    Therefore each participants will have this mission attributed to him """
     STAGE_CHOICE = [
         ('start', 'Start'),
         ('middle', 'Middle'),
@@ -271,7 +276,8 @@ def assign_collective_mission(instance, reverse, action , pk_set, **kwargs):
 
 
 class IndividualCollectiveProjectMission(models.Model):
-    """ Her is about the model   """
+    """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
+
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")
     parent_mission = models.ForeignKey(CollectiveProjectMission, on_delete= models.CASCADE)
     completed= models.BooleanField(default=False)

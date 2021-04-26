@@ -27,6 +27,7 @@ class City(models.Model):
 
 
 class MyUser(AbstractUser):
+    """ Basic User is the base of all users- using Django Implementation"""
     email = models.EmailField()
     phone_number = models.CharField(max_length=30, blank = True, null = True)
     profile_pic = models.ImageField(default = 'profile/avatar.png', upload_to='media/profile/', blank = True, null = True)
@@ -71,6 +72,7 @@ class MyUser(AbstractUser):
 
 
 class Representative(models.Model):
+    """ A Representative Profile if to be managing an Institution """
     user = models.OneToOneField(MyUser, on_delete = models.CASCADE)
     
     def __str__(self):
@@ -87,6 +89,7 @@ class Representative(models.Model):
 
 
 class Student(models.Model):
+    """ Student Profile """
     user = models.OneToOneField(MyUser, on_delete = models.CASCADE)
     class_level = models.ForeignKey('backend.Group', on_delete=models.CASCADE)
     field = models.ForeignKey('backend.Field',  on_delete=models.CASCADE)
@@ -115,6 +118,7 @@ class Student(models.Model):
 
 
 class Speaker(models.Model):
+    """ Speaker is anyone teaching a Course/ Lecturer"""
     user = models.OneToOneField(MyUser, on_delete = models.CASCADE)
     institution = models.ManyToManyField('backend.Institution')    
     group = models.ManyToManyField('backend.Group')

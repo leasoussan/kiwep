@@ -5,6 +5,7 @@ from accounts.models import *
 
 
 class Level(models.Model):
+    """ Level refers to a Poject Level, or Mission Level"""
     name = models.CharField(max_length=100)
     rating = models.PositiveIntegerField()
 
@@ -14,6 +15,7 @@ class Level(models.Model):
 
 
 class Field(models.Model): 
+    """ Fileds are area of subjects that an Institution, a Project, a Mission or a resource are part of"""
     SKILLS_TYPE = [
         ('soft', 'Soft Skills'),
         ('hard', 'Hard Skills')
@@ -27,6 +29,7 @@ class Field(models.Model):
 
 
 class InstitutionCategory(models.Model):
+    """ Type of Institution, as School, university, organization etc..."""
     name = models.CharField(max_length=100) 
     fields = models.ForeignKey(Field, on_delete=models.CASCADE)
 
@@ -36,6 +39,8 @@ class InstitutionCategory(models.Model):
 
 
 class Institution(models.Model):
+    """ Details of Institution """
+
     representative = models.OneToOneField(Representative, on_delete=models.CASCADE)
     name = models.CharField(max_length = 100)
     category = models.ForeignKey(InstitutionCategory, on_delete=models.CASCADE)
@@ -56,6 +61,7 @@ class Institution(models.Model):
 
 
 class Group(models.Model):
+    """ Group is reference to a Classroom, or group of people part of same level one group can have few teams"""
     name = models.CharField(max_length = 100)
     number_of_participants = models.PositiveIntegerField()
    

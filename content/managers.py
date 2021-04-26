@@ -3,12 +3,15 @@ from .models import *
 # ----------------------------------------------Project---Manager__queryset
 
 class ProjectModelQuerySet(models.QuerySet):
+    """ QUERYSET are Connected to a Manager to make specific requests"""
+
     def speaker_projects(self):
         return self.filter(speaker= self.request.user)
 
 
 
 class ProjectModelManager(models.Manager):
+    """ Managers are a way to get specifi data from a Model with the help of a queryset """
 
     def get_queryset(self):
         return ProjectModelQuerySet(self.model, using = self._db) 
@@ -23,6 +26,7 @@ class ProjectModelManager(models.Manager):
 
 
 class TeamModelQuerySet(models.QuerySet):
+    """ QUERYSET are Connected to a Manager to make specific requests"""
 
 
     def get_speaker_teams(self):
@@ -31,6 +35,7 @@ class TeamModelQuerySet(models.QuerySet):
     
 
 class TeamModelManager(models.Manager):
+    """ Managers are a way to get specifi data from a Model with the help of a queryset """
 
     def get_queryset(self):
         return TeamModelQuerySet(self.model, using =self._db)
@@ -46,6 +51,8 @@ class TeamModelManager(models.Manager):
 # ---------------------------------CollectiveProjectMission---Manager__queryset
 
 class CollectiveProjectMissionQuerySet(models.QuerySet):
+    """ QUERYSET are Connected to a Manager to make specific requests"""
+
     pass
   
 
@@ -53,6 +60,8 @@ class CollectiveProjectMissionQuerySet(models.QuerySet):
 
 
 class CollectiveProjectMissionModelManager(models.Manager):
+    """ Managers are a way to get specifi data from a Model with the help of a queryset """
+
     def get_queryset(self):
         return CollectiveProjectMissionQuerySet(self.model, using=self._db)
     
@@ -64,6 +73,8 @@ class CollectiveProjectMissionModelManager(models.Manager):
 # ---------------------------------------------------------Individual Project Mission Model Manager
 
 class IndividualProjectMissionQuerySet(models.QuerySet):
+    """ QUERYSET are Connected to a Manager to make specific requests"""
+
     def get_attributed_mission(self):
         return self.exclude(attributed_to = None)
 
@@ -80,6 +91,8 @@ class IndividualProjectMissionQuerySet(models.QuerySet):
     
 
 class IndividualProjectMissionModelManager(models.Manager):
+    """ Managers are a way to get specifi data from a Model with the help of a queryset """
+
     def get_queryset(self):
         return IndividualProjectMissionQuerySet(self.model, using=self._db)
 
@@ -106,6 +119,8 @@ class IndividualProjectMissionModelManager(models.Manager):
 # -----------------------------------------------------Mission Manager  QUerySet
 
 class MissionQuerySet(models.QuerySet):
+    """ QUERYSET are Connected to a Manager to make specific requests"""
+
     def speaker_missions(self):
         return self.filter(owner = self.request.user)
 
@@ -113,7 +128,8 @@ class MissionQuerySet(models.QuerySet):
 
 
 class MissionModelManager(models.Manager):
-    
+    """ Managers are a way to get specifi data from a Model with the help of a queryset """
+
     def get_queryset(self):
         return MissionQuerySet(self.model, using = self._db)
 
@@ -125,11 +141,14 @@ class MissionModelManager(models.Manager):
 # ---------------------------------Resource ---Manager__queryset
 
 class ResourceQuerySet(models.QuerySet):
+    """ QUERYSET are Connected to a Manager to make specific requests"""
+
     def get_speaker_resources(self):
         return self.filter(owner = self.request.user)
 
 
 class ResourceModelManager(models.Manager):
+    """ Managers are a way to get specifi data from a Model with the help of a queryset """
 
     def get_queryset(self):
         return ResourceQuerySet(self.model, using=self._db)
