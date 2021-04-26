@@ -104,10 +104,12 @@ CollectiveProjectMissionFormSet = inlineformset_factory(
         'stage',
        
         ),
-         extra=0)
+         extra=0,
 
-    
-
+    widgets = {
+            'attributed_to': FilteredSelectMultiple(verbose_name='Team Participants', is_stacked=False)
+        }
+)
 
 IndividualProjectMissionFormSet = inlineformset_factory(
     Team, 

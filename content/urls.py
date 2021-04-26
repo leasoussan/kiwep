@@ -23,7 +23,9 @@ urlpatterns = [
     path('create-team/', TeamCreateView.as_view(), name = "create_team"),
     path('create-team-missions/<int:pk>', TeamCreateMissionView.as_view(), name = "create_team_missions"),
     
-    path('update-team-mission/<int:pk>', TeamEditProjectMission.as_view(), name = "update_team_mission"),#update single mission
+    path('update-team-mission/<int:pk>', TeamEditIndividualProjectMission.as_view(), name = "update_team_mission"),#update single mission
+
+    path('update-team-mission/<int:pk>', TeamEditCollectiveProjectMission.as_view(), name = "update_team_mission"),#update single mission
 
     path('add-member-team/<int:pk>', AddTeamMemberView.as_view(), name = "add_member_team"),
     

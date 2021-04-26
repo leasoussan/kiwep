@@ -112,6 +112,8 @@ class Student(models.Model):
     # here before getting a student tasks I will have to do 2 queries that will be filtered in the parent table 
 
 
+
+
 class Speaker(models.Model):
     user = models.OneToOneField(MyUser, on_delete = models.CASCADE)
     institution = models.ManyToManyField('backend.Institution')    
@@ -132,3 +134,6 @@ class Speaker(models.Model):
         tasks = Task.objects.filter(id__in = list(personal_tasks) + list(team_tasks))
         # we cant add a queryset to queryset ---this is why we make them a list first 
         return tasks
+
+
+

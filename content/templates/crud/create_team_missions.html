@@ -8,7 +8,7 @@
 
 {{object}}
 
-{% if formset.instance.project.missions.all.exists  %}
+{% if formsets.0.instance.project.missions.all.exists  %}
 
 
 <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
@@ -24,15 +24,22 @@
 
                         {{form|crispy }}
                         {% endif %}
-                        {% if formset %}
-                        {{formset.management_form}}
-                        {% for subform in formset %}
-                        {{subform.instance.mission.name}}
-                        {{subform|crispy}}
+
+                        {% for formset in formsets %}
+
+                            {% if formset %}
+                            {{formset.management_form}}
+
+                            {% for subform in formset %}
+                            {{subform.instance.mission.name}}
+                            {{subform|crispy}}
 
 
-                        {% endfor %}
-                        {% endif %}
+                            {% endfor %}
+                            {% endif %}
+
+                        {% endfor %} 
+
                         <button class="btn-shop orange-color" type="submit" value="Save">SAVE</button>
                     </form>
                 </table>

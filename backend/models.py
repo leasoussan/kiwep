@@ -20,7 +20,7 @@ class Field(models.Model):
     ]
     name = models.CharField(max_length=100) 
     skills_type = models.CharField(max_length=50, choices = SKILLS_TYPE)
-
+    
     def __str__(self):
         return f'{self.name} is a {self.skills_type} skill'
     
