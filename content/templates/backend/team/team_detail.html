@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 
 {% block content %}
@@ -85,7 +85,7 @@
 
 
 
-{% if user.profile.name == "speaker" %} 
+{% if user.profile.name == "speaker" %}
 
 <div class="row">
     <div class="col">
@@ -132,13 +132,13 @@
                             <td>{{projectmission.points}}</td>
                             <td>{{projectmission.due_date}}</td>
 
-                            <td>   
+                            <td>
                             {% if user.is_student %}
                                 <td><a href="{% url 'claim_mission' projectmission.id %}">{% trans 'claim_mission_link' %}</a></td>
                             {% else %}
-                                {% trans 'available_mission' %} 
+                                {% trans 'available_mission' %}
                             {% endif %}
-                     
+
                         </tr>
                         {% endfor %}
                         {% endif %}
@@ -179,19 +179,19 @@
                                 <a
                                     href="{% url 'mission_detail' projectmission.mission.id %}">{{studentmission.mission.name}}</a>
                             </td>
-                            
+
 
                             <td>{{studentmission.stage}}</td>
                             <td>{{studentmission.points}}</td>
                             <td>{{studentmission.due_date}}</td>
 
-                            <td>   
+                            <td>
                             {% if user.is_student %}
                                 <td><a href="{% url 'claim_mission' studentmission.id %}">{% trans 'claim_mission_link' %}</a></td>
                             {% else %}
-                                {% trans 'available_mission' %} 
+                                {% trans 'available_mission' %}
                             {% endif %}
-                     
+
                         </tr>
                         {% endfor %}
                         {% endif %}
@@ -238,13 +238,13 @@
                             <td>{{teamtask.points}}</td>
                             <td>{{teamtask.due_date}}</td>
 
-                            <td>   
+                            <td>
                             {% if user.is_student %}
                                 <td><a href="{% url 'claim_mission' studentmission.id %}">{% trans 'claim_mission_link' %}</a></td>
                             {% else %}
-                                {% trans 'available_mission' %} 
+                                {% trans 'available_mission' %}
                             {% endif %}
-                     
+
                         </tr>
                         {% endfor %}
                         {% endif %}
@@ -278,17 +278,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                         {% for projectmission in team.CollectiveProjectMission_set.get_attributed_mission %}
                         <tr>
                             <td><a href="
                                 {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
                                 {% url 'submit_mission' projectmission.id %}
-                            
+
                                 {% else %}
                                 {% url 'team_mission_detail' projectmission.id %}
                                 {% endif %}
-                                
+
 
                                 ">{{projectmission.mission.name}}</a> </td>
                             <td>{{projectmission.attributed_to}}</td>

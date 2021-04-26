@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% load mytags %}
 {% load crispy_forms_tags %}
@@ -13,12 +13,12 @@
 
 <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
     <div class="container">
-        
+
         <div class="cart-wrap">
                 <table class="cart-table">
-                    
+
                     <form action="", method="POST">
-                        
+
                         {% csrf_token %}
                         {% if form %}
 
@@ -36,8 +36,8 @@
                         <button class="btn-shop orange-color" type="submit" value="Save">SAVE</button>
                     </form>
                 </table>
-            
-            
+
+
             </div>
         </div>
     </div>

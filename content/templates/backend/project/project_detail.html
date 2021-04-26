@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 
 
@@ -38,7 +38,7 @@
                                     href="#prod-curriculum" role="tab" aria-controls="prod-curriculum"
                                     aria-selected="false">{% trans 'Missions_title' %}</a>
                             </li>
-                         
+
                         </ul>
                         <div class="tab-content tabs-content" id="myTabContent">
                             <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
@@ -49,7 +49,7 @@
                                         <div class="inner-box">
                                             <h2>{{project.title}}</h2>
                                             <p>{{project.description}}</p>
-                                            
+
                                             <h3>{% trans 'what_you_will_lean' %}</h3>
                                             <ul class="review-list">
                                                 {% for skill in skills %}
@@ -66,13 +66,13 @@
                                     </div>
                                 </div>
                             </div>
-                           
+
                             <div class="tab-pane fade" id="prod-curriculum" role="tabpanel"
                                 aria-labelledby="prod-curriculum-tab">
                                 <div class="content">
                                     {% for mission in project.missions.all %}
                                     <div id="accordion" class="accordion-box">
-                                       
+
                                         <div class="card accordion block">
                                             <div class="card-header" id="headingOne">
                                                 <h5 class="mb-0">
@@ -85,7 +85,7 @@
                                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                                                 data-parent="#accordion">
                                                 <div class="card-body acc-content current">
-                                                    
+
                                                     <div class="content">
                                                         <div class="clearfix">
                                                             <div class="pull-left">
@@ -104,19 +104,19 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                 
+
                                                 </div>
                                             </div>
                                         </div>
-                                    
-                                
+
+
                                     </div>
                                     {% endfor %}
                                 </div>
                             </div>
-                            
-                           
-                            
+
+
+
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                 <!-- Video Column -->
                 <div class="video-column col-lg-4">
                     <div class="inner-column">
-                       
+
                         <div class="course-features-info">
                             <ul>
                                 <li class="lectures-feature">
@@ -161,7 +161,7 @@
     </section>
     <!-- End intro Courses -->
 
-   
+
 </div>
 <!-- Main content End -->
 

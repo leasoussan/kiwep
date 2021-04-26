@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<a href="{% url 'content_manager' %}">content Manager </a>
-Resource  List 
+ <a href="{% url 'content_manager' %}">content Manager </a>
+Resource  List
 
 {% for resource in resource_list %}
 <h2>

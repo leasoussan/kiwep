@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
 
@@ -10,14 +10,14 @@
 
 
     <div class="connect-container align-content-stretch d-flex flex-wrap">
-        <div class="container-fluid">
+        <div class="container-fluid signup_in">
             <div class="row">
                 <div class="col-lg-5">
                     <div class="auth-form">
                         <div class="row">
                             <div class="col">
                                 <div class="logo-box"><a href="#" class="logo-text">{% trans 'kiwep_platform'%}</a></div>
-                              
+
 
                                     <form method="post">
                                         {% csrf_token %}
@@ -33,7 +33,7 @@
                                         </div>
                                         <a href="{{ 'password_reset' }}" class="forgot-link">{% trans 'forgot_password_link'%}</a>
                                     </div>
-                              
+
                             </div>
                         </div>
                     </div>
