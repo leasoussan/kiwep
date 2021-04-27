@@ -1,5 +1,6 @@
 {% extends 'baseb.html' %}
 {% load i18n %}
+{% load mytags %}
 
 {% block content %}
 
@@ -223,7 +224,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{% trans 'project_mission_title' %}</h5>
-                <p>Here you can follow you peers working and progress on the project</p>
+                <p>Here you can follow talen missions </p>
                 <table id="zero-conf" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -289,8 +290,41 @@
                         </tr>
                     </thead>
                     <tbody>
+                        student_missions
+                        {% for projectmission in team.individualprojectmission_set.all|student_missions:user.student %}
                         
-                        {% for projectmission in team.individualprojectmission_set.is_my_mission %}
+                        
+                     
+                        
+                        <tr>
+                            <td><a href="
+                                {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
+                                {% url 'submit_mission' projectmission.id %}
+                            
+                                {% else %}
+                                {% url 'team_mission_detail' projectmission.id %}
+                                {% endif %}
+                                
+
+                                ">{{projectmission.mission.name}}</a> </td>
+                            <td>{{projectmission.mission_type}}</td>
+                            <td>{{projectmission.mission.stage}}</td>
+                            <td>{{projectmission.points}}</td>
+                            <td>{{projectmission.due_date}}</td>
+                            <td>{{projectmission.status}}</td>
+                        </tr>
+
+
+
+
+                        {% endfor %}
+
+                      <tr><td>here</td> </tr>
+                        {% for projectmission in user.student.individual_team_mission.all|collective_student_missions:team %}
+                        
+                        
+                     
+                        
                         <tr>
                             <td><a href="
                                 {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
@@ -319,5 +353,5 @@
                 {% endif %}
 
 
-
+            
 {% endblock %}

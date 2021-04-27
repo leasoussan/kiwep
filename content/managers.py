@@ -51,10 +51,7 @@ class TeamModelManager(models.Manager):
 # ---------------------------------CollectiveProjectMission---Manager__queryset
 
 class CollectiveProjectMissionQuerySet(models.QuerySet):
-    """ QUERYSET are Connected to a Manager to make specific requests"""
-
     pass
-  
 
 
 
@@ -80,7 +77,7 @@ class IndividualProjectMissionQuerySet(models.QuerySet):
 
 
     def is_my_mission(self, user):
-        return self.filter(attributed_to = self.request.user)
+        return self.filter(attributed_to = user)
 
     def get_student_missions(self):
         return self.filter(mission='s_m')

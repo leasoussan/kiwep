@@ -7,6 +7,7 @@ from .models import (
     Skills,
     CollectiveProjectMission,
     IndividualProjectMission, 
+    IndividualCollectiveProjectMission
 )
 
 
@@ -15,12 +16,21 @@ from .models import (
 # class MissionsProjectInlineAdmin(admin.TabularInline):
 #     model = MissionsProject
 
-admin.site.register(IndividualProjectMission)
-admin.site.register(CollectiveProjectMission)
 
+class IndividualCollectiveProjectMissionInlineAdmin(admin.TabularInline):
+    model = IndividualCollectiveProjectMission
+
+
+class CollectiveProjectMissionAdmin(admin.ModelAdmin):
+    inlines = [IndividualCollectiveProjectMissionInlineAdmin]
+    
 
 class CollectiveProjectMissionInlineAdmin(admin.TabularInline):
     model = CollectiveProjectMission
+    
+
+admin.site.register(IndividualProjectMission)
+admin.site.register(CollectiveProjectMission, CollectiveProjectMissionAdmin)
 
 
 # --------------------------------------------------------------------------

@@ -287,7 +287,7 @@ class IndividualCollectiveProjectMission(models.Model):
   
 
     def __str__(self):
-        return f"Team Project Mission of Team: {self.team}"
+        return f"Team Project Mission of Team: {self.parent_mission.team}"
 
 
     def get_absolute_url(self):
