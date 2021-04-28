@@ -25,7 +25,7 @@ def student_missions(mission_qs, student):
 def collective_student_missions(mission_qs, team):
 
     """ """
-    
+    print(mission_qs.filter(parent_mission__team=team))
     return mission_qs.filter(parent_mission__team=team)
 
 

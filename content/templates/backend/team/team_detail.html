@@ -26,6 +26,7 @@
     <div class="col-lg-4">
         <div class="card top-products">
             <div class="card-body">
+                {{team.id}}
                 <h5 class="card-title">{% trans 'team_title' %} {{ team.name }}{% trans 'participants_title' %}</h5>
                 <div class="top-products-list">
                     <div class="product-item">
@@ -320,27 +321,27 @@
                         {% endfor %}
 
                       <tr><td>here</td> </tr>
-                        {% for projectmission in user.student.individual_team_mission.all|collective_student_missions:team %}
+                        {% for collectiveindividualmission in user.student.individual_team_mission.all|collective_student_missions:team %}
                         
                         
                      
                         
                         <tr>
                             <td><a href="
-                                {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
-                                {% url 'submit_mission' projectmission.id %}
+                                {% if user.profile == collectiveindividualmission.attributed_to and not collectiveindividualmission.response_file %}
+                                {% url 'submit_mission' collectiveindividualmission.id %}
                             
                                 {% else %}
-                                {% url 'team_mission_detail' projectmission.id %}
+                                {% url 'team_mission_detail' collectiveindividualmission.id %}
                                 {% endif %}
                                 
 
-                                ">{{projectmission.mission.name}}</a> </td>
-                            <td>{{projectmission.mission_type}}</td>
-                            <td>{{projectmission.mission.stage}}</td>
-                            <td>{{projectmission.points}}</td>
-                            <td>{{projectmission.due_date}}</td>
-                            <td>{{projectmission.status}}</td>
+                                ">{{collectiveindividualmission.parent_mission.mission.name}}</a> </td>
+                            <td>{{collectiveindividualmission.parent_mission.mission_type}}</td>
+                            <td>{{collectiveindividualmission.parent_mission.mission.stage}}</td>
+                            <td>{{collectiveindividualmission.parent_mission.points}}</td>
+                            <td>{{collectiveindividualmission.parent_mission.due_date}}</td>
+                            <td>{{collectiveindividualmission.parent_mission.status}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
