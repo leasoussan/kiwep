@@ -4,41 +4,55 @@ body {
   color: #7d7d83;
 }
 
-
+/* .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index:100;
+  padding: 70px 0 0 10px;
+} */
 a {
-  font-size: 20px;
+  /* font-size: 20px; */
 }
  a:visited {
-  color: black;
-
+  color: #fffefc;
+  text-decoration: none;
+}
+.btn {
+  border: none;
+  margin:5px;
+  background-image: linear-gradient(to left, #abf5ce, #198754);
+  border-radius: 10px;
 }
  a:hover {
   color: #fffefc;
-
-
-  /* background-color: #eeeeef;
-  padding: 14px 25px;
+}
+#title_kiwep {
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 5px;  */
-
+  color: #fffefc;
 }
 
 button {
   border: none;
-  background-color: #f7d493;
-  border-radius: 10px;
   margin:5px;
-
+  background-image: linear-gradient(to left, #abf5ce, #198754);
+  border-radius: 10px;
 }
 button:hover {
-  background-color: #eca255;
-
+  background-image: linear-gradient(to right, #9aedc1, #198754);
+  border-radius: 10px;
 }
- #center_nav {
+.btn:hover {
+  background-image: linear-gradient(to right, #9aedc1, #198754);
+  border-radius: 10px;
+}
+#a_link{
+  color:#fffefc;
+}
+ /* #center_nav {
   margin-left: 450px;
-}
+} */
 #footer_rights {
   display: flex;
   justify-content: center;
@@ -48,20 +62,21 @@ button:hover {
 }
 
 #side_panel {
-  background-color:#425940;
+  background-image: linear-gradient(to left, #abf5ce, #198754);
+  border-radius: 10px;
   color:#f8fafa;
-  border:15px solid white;
   height: 900px;
-
 }
 #main_panel{
   background:#f8fafa;
   color: #7d7d83;
-  border:15px solid white;
-  border-left: 2px solid #7d7d83;
+  border:1px solid (0,0,0,.125);
+  border-radius: 10px;
   height: 900px;
 }
-
+main .card {
+  margin-bottom: 20px;
+}
 
 .footer_social{
   padding: 15px;
@@ -70,7 +85,7 @@ button:hover {
 i {
   color: 425940;
 }
-.signup_in {
+/* .signup_in {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .19);
   padding: 50px 30px;
   border-radius: 10px;
@@ -81,7 +96,7 @@ i {
   align-items: center;
   justify-content: center;
   background-color: #f6f5f7;
-}
+} */
 
 .title_signin {
   text-align: center;
@@ -110,6 +125,12 @@ ul {
 .color_example4 {
   background-color: #425940;
   height: 870px;
+}
+.input-group{
+  margin-right: -70px;
+}
+.launguage {
+  margin-right: 10px;
 }
 Red : df5f46
 Orange : eca255

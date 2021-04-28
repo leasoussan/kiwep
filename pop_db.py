@@ -439,48 +439,48 @@ def pop_mission_collective_projects(n):
 
 # ----------------------------------------------------
 
-# pop_field(fields_list)
-#
-#
-#
-# pop_institution_category_list(institution_category_list)
+pop_field(fields_list)
 
 
-# pop_country()
-#
-#
-# pop_city()
-#
-# pop_representative(2)
-#
-#
-# pop_institution(2)
+
+pop_institution_category_list(institution_category_list)
+
+
+pop_country()
+
+
+pop_city()
+
+pop_representative(2)
+
+
+pop_institution(2)
 
 
 groups = ['3rd', '4th', '5th', '6th']
 
-# pop_level(4)
-# pop_group(groups)
-#
-#
-# pop_speaker(5)
-#
-#
-# pop_student(30)
-#
-#
-#
-#
-# pop_resources(20)
-#
-# pop_skills(skills_list)
-#
-# pop_missions(20)
-#
-#
-# pop_project(6)
-#
-# pop_team(4)
+pop_level(4)
+pop_group(groups)
+
+
+pop_speaker(5)
+
+
+pop_student(30)
+
+
+
+
+pop_resources(20)
+
+pop_skills(skills_list)
+
+pop_missions(20)
+
+
+pop_project(6)
+
+pop_team(4)
 # pop_mission_projects(20)
 
 
