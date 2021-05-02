@@ -10,12 +10,7 @@
         </button>
         <div class="collapse navbar-collapse text-center" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 " id="center_nav">
-              <!-- <button type="button" name="button"> -->
-                <li class="nav-item" style="padding-right:5px;">
-                    <a class="nav-link active" href="#">About us</a>
-                </li>
-                <!-- </button><br> -->
-                <!-- <button type="button" name="button"> -->
+
                 <li class="nav-item">
                    <a class="nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                      <i class="far fa-envelope fa-2x"></i>
@@ -29,6 +24,10 @@
                 <!-- </button> -->
 
             </ul>
+            <form class="d-flex"  style="margin: 0 auto;">
+                <input class="form-control me-2" style="border-radius: 35px; height: 45px; width: 400px;" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit"  style="border-radius: 35px;">Search</button>
+          </form>
             <span class="navbar-text">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0"  id = "right-side-nav" style="text-align:center;">
                 <li class="nav-item launguage">
@@ -65,10 +64,10 @@
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link active btn" href="{% url 'login' %}">{% trans 'login'%}</a>
+                    <a class="nav-link active btn" style="color: #f6f6f6;" href="{% url 'login' %}">{% trans 'login'%}</a>
                 </li>
                 <li>
-                    <a class="nav-link  btn" href="{% url 'register' %}">{% trans 'register' %}</a>
+                    <a class="nav-link active btn" style="color: #f6f6f6;" href="{% url 'register' %}">{% trans 'register' %}</a>
                 </li>
                 {% endif %}
               </ul>

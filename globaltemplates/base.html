@@ -33,11 +33,21 @@
     </div>
   </div> -->
   <div class="row">
-    <div class="col-md-2 mb-4" id ="side_panel">
+    <div class="col-md-2 mb-4" id ="side_panel" style="background: #9fce9c;">
 
       <ul class="nav nav-pills flex-column" style="text-align:left;">
         <li>
           <a class="nav-link" style="color: #fffefc; font-size:50px;text-align:center;" href="{% url 'dashboard' %}">{% trans 'KIWEP' %}</a></li>
+          <div class="row" >
+            <div class="col" >
+              <div class="jumbotron" style="height: 50px;" >
+                <div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
         <button type="button" name="button">
         <li class="nav-item">
           <a class="nav-link" id="a_link" href="{% url 'dashboard'%}">{% trans 'Dashboard' %}</a>
@@ -45,30 +55,40 @@
         </button>
         <button type="button" name="button">
         <li class="nav-item">
-          <a class="nav-link" id="a_link" href="{% url 'team_list' %}">{% trans 'My Teams' %}</a>
+          <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans 'My Teams' %}</a>
         </li>
         </button>
         <button type="button" name="button">
         <li class="nav-item">
-          <a class="nav-link" id="a_link" href="{% url 'my_mission_list' %}">{% trans 'My missions' %}</a>
+          <a class="nav-link" id="a_link"  href="{% url 'mission_list' %}">{% trans 'My missions' %}</a>
         </li>
         </button>
         <button type="button" name="button">
         <li class="nav-item">
-          <a class="nav-link" id="a_link" href="{% url 'todo_list'%}">{% trans 'TODO' %}</a>
+          <a class="nav-link" id="a_link"  href="{% url 'todo_list'%}">{% trans 'TODO' %}</a>
         </li>
         </button>
-        <button type="button" id="a_link" name="button">
+        <button type="button" name="button">
         <li class="nav-item">
           <a class="nav-link" id="a_link" href="{% url 'project_list' %}">{% trans 'Availiable Projects' %}</a>
         </li>
         </button>
+
       </ul>
     </div>
 
     <!-- wider column -->
     <div class="col-md-10 mb-4" id = "main_panel">
       {% include 'navbar.html' %}
+      <div class="row" >
+        <div class="col" >
+          <div class="jumbotron" style="height: 65px;" >
+            <div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     {% block content %}
 
     {% endblock %}
@@ -113,7 +133,7 @@
       <div class="footer-bottom">
           <div class="container-fluid">
               <div class="row" id="footer_rights">
-                  <div class="col-md-3 mb-4"">
+                  <div class="col-md-3 mb-4">
                       <div class="copyright">
                           <p>&copy; 2020 All Rights Reserved. Developed By Kiwep</p>
 

@@ -10,4 +10,4 @@ staticfiles/
 
 .vscode/
 
-/pop_db.py
+!pop_db.py
