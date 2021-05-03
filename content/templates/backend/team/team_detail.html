@@ -13,6 +13,8 @@
 
 <a href="{% url 'update_team' team.id %}">Edit Team</a>
 
+{% else %}
+<a href="{% url 'leave_team' team.id %}">Leave Team </a>
 
 {% endif %}
 
@@ -48,6 +50,7 @@
 
                 </div>
             </div>
+           
         </div>
     </div>
 
@@ -60,6 +63,10 @@
                     {{team.project.description}}
                 </div>
             </div>
+          
+        </div>
+        <div>
+           <button><a href="#">Comment Team Board</a></button>
         </div>
     </div>
 

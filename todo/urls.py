@@ -14,7 +14,7 @@ urlpatterns = [
    
 
 
-# todo backend
+# todo FrontView
 
     path('add-personal-task/', views.PersonalTaskCreateView.as_view(), name = 'add_personal_task'),
     path('add-team-task/', views.TeamTaskCreateView.as_view(), name = 'add_team_task'),

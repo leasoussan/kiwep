@@ -29,7 +29,7 @@
                                     href="#prod-overview" role="tab" aria-controls="prod-overview"
                                     aria-selected="true">heer</a>
                             </li>
-                           
+                            
                          
                         </ul>
                         <div class="tab-content tabs-content" id="myTabContent">
@@ -55,10 +55,10 @@
                                 </div>
                             </div>
                     
-                           
-                           
-                            
                         </div>
+
+                       
+
                         <div class = "resource">
                             {% for resource in mission.resources.all %}
                             <a href="{% url 'resource_detail' resource.id %}">{{resource.name}}</a> 
