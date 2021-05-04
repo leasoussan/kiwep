@@ -69,3 +69,17 @@ class Group(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class StudentSoftSkillRating(models.Model):
+    student = models.ForeignKey('accounts.Student', on_delete=models.CASCADE)
+    skill = models.ForeignKey('content.Skills', on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField()
+    team = models.ForeignKey('content.Team', on_delete=models.CASCADE)
+    comment = models.TextField()
+
+
+    def __str__(self):
+        return f'{self.student}, {self.rating}'
+        

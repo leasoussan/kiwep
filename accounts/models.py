@@ -6,6 +6,8 @@ import datetime
 from django.utils.translation import ugettext_lazy as _
 from todo.models import Task, PersonalTask, TeamTask
 
+
+
 class Country(models.Model):
     name = models.CharField(max_length=100) 
     
@@ -101,7 +103,7 @@ class Student(models.Model):
     class_level = models.ForeignKey('backend.Group', on_delete=models.CASCADE)
     field = models.ForeignKey('backend.Field',  on_delete=models.CASCADE)
     dob = models.DateField()
-
+    softs_skills = models.ManyToManyField('content.Skills', through = 'backend.StudentSoftSkillRating', related_name= "student_skills_scores" )
 
     def __str__(self):
         return f"{self.user.username}, {self.user.last_name}"

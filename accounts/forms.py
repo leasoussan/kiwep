@@ -51,7 +51,7 @@ class UserForm(forms.ModelForm):
 class StudentProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Student
-        exclude = ['user'] 
+        exclude = ['user', 'softs_skills'] 
 
 
 

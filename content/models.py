@@ -53,8 +53,8 @@ class Skills(models.Model):
 
 class Mission(models.Model):
     MISSION_TYPE = [
-        ('s_m', 'Student Mission'),
-        ('t_m', 'Team Mission'),
+        ('s_m', 'Individual Mission'),
+        ('t_m', 'Collective Mission'),
 
    ] 
     RESPONSE_TYPE = [
@@ -99,7 +99,7 @@ class Project(models.Model):
     difficulty = models.ForeignKey(Level, on_delete=models.CASCADE) 
     completed = models.BooleanField(default =False)
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-    missions = models.ManyToManyField(Mission, blank =True)
+    missions = models.ManyToManyField(Mission, through= 'ProjectMission',  blank =True)
     points = models.PositiveIntegerField()
     
     
@@ -127,21 +127,41 @@ def email_new_project_event(sender, created, instance, **kwargs):
     # here I can chose what to do 
 
 
-            
-# m2m_changed have acition attribute that have to be handled 
-# reverse : if we want to remove a project from a mission (and not mission form a project) - as it's a many to many relation 
+            #TODO 
+# # m2m_changed have acition attribute that have to be handled 
+# # reverse : if we want to remove a project from a mission (and not mission form a project) - as it's a many to many relation 
 
-@receiver(m2m_changed, sender=Project.missions.through)
-def update_team_mission_attribution(instance, reverse, action , pk_set, **kwargs):
-    if not reverse:
-        if action == 'post_remove':
-            CollectiveProjectMission.objects.filter(team__in=instance.team_set.all()).filter(mission_id__in=pk_set).delete()
+# @receiver(m2m_changed, sender=Project.missions.through)
+# def update_team_mission_attribution(instance, reverse, action , pk_set, **kwargs):
+#     if not reverse:
+#         if action == 'post_remove':
+#             CollectiveProjectMission.objects.filter(team__in=instance.team_set.all()).filter(mission_id__in=pk_set).delete()
 
-        elif action == 'post_add':
-            project = instance
-            for team in project.team_set.all():
-                for mission in project.mission.filter(id__in= pk_set):
-                    CollectiveProjectMission.objects.create(mission=mission, team=team )
+#         elif action == 'post_add':
+#             project = instance
+#             for team in project.team_set.all():
+#                 for mission in project.mission.filter(id__in= pk_set):
+#                     CollectiveProjectMission.objects.create(mission=mission, team=team )
+
+
+
+
+# yhis is up to the speaker to decide on this mission the amounts of % of this prohect mission - keep Flexible and editable
+
+class ProjectMission(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    mission = models.ForeignKey(Mission, on_delete=models.CASCADE)
+    percentage = models.DecimalField(max_digits=4, decimal_places=2)
+    hard_skills = models.ManyToManyField(Skills, through='HardSkillsRating', blank = True)
+
+
+# Teacher decides how much the mission distribution of points there is in the mission- according to skills ni the mission 
+# could be 100% of one skill and few % if many skills
+#   
+class HardSkillsRating(models.Model):
+    skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
+    project_mission = models.ForeignKey(ProjectMission, on_delete=models.CASCADE)
+    percentage = models.DecimalField(max_digits=4, decimal_places=2)
 
 
 
