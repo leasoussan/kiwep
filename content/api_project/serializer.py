@@ -9,11 +9,17 @@ class ProjectCreateUpdateSerializer(ModelSerializer):
         fields = [
             'id',
             'name',
+            'title',
             'description',
+            'required_skills',
+            'acquried_skills',
             'time_to_complet',
             'field',
             'difficulty',
-            'mission'
+            'completed',
+            'speaker',
+            'missions',
+            'points',
         ] 
 
 
@@ -24,11 +30,17 @@ class ProjectListSerializer(ModelSerializer):
         fields = [
             'id',
             'name',
+            'title',
             'description',
+            'required_skills',
+            'acquried_skills',
             'time_to_complet',
             'field',
             'difficulty',
-            'mission'
+            'completed',
+            'speaker',
+            'missions',
+            'points',
         ] 
 
 
@@ -39,9 +51,15 @@ class ProjectDetailSerializer(ModelSerializer):
         fields = [
             'id',
             'name',
+            'title',
             'description',
+            'required_skills',
+            'acquried_skills',
             'time_to_complet',
             'field',
             'difficulty',
-            'mission'
+            'completed',
+            'speaker',
+            'missions',
+            'points',
         ] 
