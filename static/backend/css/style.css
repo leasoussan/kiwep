@@ -5,8 +5,41 @@ body {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+
+a {
+  font-size: 20px;
+}
+ a:visited {
+  color: black;
+
+}
+ a:hover {
+  color: #fffefc;
+
+
+  /* background-color: #eeeeef;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;  */
+
+=======
+/* .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index:100;
+  padding: 70px 0 0 10px;
+} */
+a {
+  /* font-size: 20px; */
+=======
  a:visited
   text-decoration: none;
+>>>>>>> frontend
 }
 .nav-link {
   color: #fffefc;
@@ -39,6 +72,9 @@ button:hover {
   background-color: #425940;
   border-radius: 10px;
   color: #fffefc;
+<<<<<<< HEAD
+>>>>>>> frontend
+=======
 }
 #a_link{
   color:#fffefc;
@@ -54,20 +90,46 @@ a {
  a:visited {
   color: black;
 
-}
- a:hover {
-  color: #fffefc;
-
-
-  /* background-color: #eeeeef;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 5px;  */
-
+>>>>>>> frontend
 }
 
+button {
+  border: none;
+<<<<<<< HEAD
+  background-color: #f7d493;
+  border-radius: 10px;
+  margin:5px;
+
+}
+button:hover {
+  background-color: #eca255;
+
+<<<<<<< HEAD
+}
+ #center_nav {
+  margin-left: 450px;
+}
+=======
+  margin:5px;
+  background-image: linear-gradient(to left, #abf5ce, #198754);
+  border-radius: 10px;
+}
+button:hover {
+  background-image: linear-gradient(to right, #9aedc1, #198754);
+  border-radius: 10px;
+}
+.btn:hover {
+  background-image: linear-gradient(to right, #9aedc1, #198754);
+  border-radius: 10px;
+}
+#a_link{
+  color:#fffefc;
+}
+ /* #center_nav {
+  margin-left: 450px;
+} */
+>>>>>>> frontend
+=======
 button {
   border: none;
   background-color: #f7d493;
@@ -83,6 +145,7 @@ button:hover {
   margin-left: 450px;
 >>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
 }
+>>>>>>> frontend
 #footer_rights {
   display: flex;
   justify-content: center;
@@ -93,27 +156,51 @@ button:hover {
 
 #side_panel {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
   background-color: #9fce9c;
   border-radius: 10px;
   color:#f8fafa;
 =======
+>>>>>>> frontend
   background-color:#425940;
   color:#f8fafa;
   border:15px solid white;
   height: 900px;
 
+<<<<<<< HEAD
+=======
+  background-image: linear-gradient(to left, #abf5ce, #198754);
+  border-radius: 10px;
+  color:#f8fafa;
+  height: 900px;
+>>>>>>> frontend
+=======
 >>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
+>>>>>>> frontend
 }
 #main_panel{
   background:#f8fafa;
   color: #7d7d83;
 <<<<<<< HEAD
+<<<<<<< HEAD
+  border:15px solid white;
+  border-left: 2px solid #7d7d83;
+  height: 900px;
+}
+
+=======
+=======
+>>>>>>> frontend
   border:1px solid (0,0,0,.125);
   border-radius: 10px;
 }
 main .card {
   margin-bottom: 20px;
 }
+<<<<<<< HEAD
+>>>>>>> frontend
+=======
 
 =======
   border:15px solid white;
@@ -121,6 +208,7 @@ main .card {
   height: 900px;
 }
 
+>>>>>>> frontend
 
 >>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
 .footer_social{
@@ -131,10 +219,17 @@ i {
   color: 425940;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+.signup_in {
+=======
+/* .signup_in {
+>>>>>>> frontend
+=======
 /* .signup_in {
 =======
 .signup_in {
 >>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
+>>>>>>> frontend
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .19);
   padding: 50px 30px;
   border-radius: 10px;
@@ -146,10 +241,17 @@ i {
   justify-content: center;
   background-color: #f6f5f7;
 <<<<<<< HEAD
+<<<<<<< HEAD
+}
+=======
+} */
+>>>>>>> frontend
+=======
 } */
 =======
 }
 >>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
+>>>>>>> frontend
 
 .title_signin {
   text-align: center;
@@ -180,12 +282,19 @@ ul {
   height: 870px;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> frontend
 .input-group{
   margin-right: -70px;
 }
 .launguage {
   margin-right: 10px;
 }
+<<<<<<< HEAD
+>>>>>>> frontend
+=======
 input {
   border-radius: 10px;
 }
@@ -201,6 +310,7 @@ input {
 }
 =======
 >>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
+>>>>>>> frontend
 Red : df5f46
 Orange : eca255
 Yellow: f7d493
