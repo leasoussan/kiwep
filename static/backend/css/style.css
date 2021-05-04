@@ -4,6 +4,7 @@ body {
   color: #7d7d83;
 }
 
+<<<<<<< HEAD
 
 a {
   font-size: 20px;
@@ -23,10 +24,40 @@ a {
   display: inline-block;
   border-radius: 5px;  */
 
+=======
+/* .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index:100;
+  padding: 70px 0 0 10px;
+} */
+a {
+  /* font-size: 20px; */
+}
+ a:visited {
+  color: #fffefc;
+  text-decoration: none;
+}
+.btn {
+  border: none;
+  margin:5px;
+  background-image: linear-gradient(to left, #abf5ce, #198754);
+  border-radius: 10px;
+}
+ a:hover {
+  color: #fffefc;
+}
+#title_kiwep {
+  text-align: center;
+  color: #fffefc;
+>>>>>>> frontend
 }
 
 button {
   border: none;
+<<<<<<< HEAD
   background-color: #f7d493;
   border-radius: 10px;
   margin:5px;
@@ -39,6 +70,26 @@ button:hover {
  #center_nav {
   margin-left: 450px;
 }
+=======
+  margin:5px;
+  background-image: linear-gradient(to left, #abf5ce, #198754);
+  border-radius: 10px;
+}
+button:hover {
+  background-image: linear-gradient(to right, #9aedc1, #198754);
+  border-radius: 10px;
+}
+.btn:hover {
+  background-image: linear-gradient(to right, #9aedc1, #198754);
+  border-radius: 10px;
+}
+#a_link{
+  color:#fffefc;
+}
+ /* #center_nav {
+  margin-left: 450px;
+} */
+>>>>>>> frontend
 #footer_rights {
   display: flex;
   justify-content: center;
@@ -48,20 +99,37 @@ button:hover {
 }
 
 #side_panel {
+<<<<<<< HEAD
   background-color:#425940;
   color:#f8fafa;
   border:15px solid white;
   height: 900px;
 
+=======
+  background-image: linear-gradient(to left, #abf5ce, #198754);
+  border-radius: 10px;
+  color:#f8fafa;
+  height: 900px;
+>>>>>>> frontend
 }
 #main_panel{
   background:#f8fafa;
   color: #7d7d83;
+<<<<<<< HEAD
   border:15px solid white;
   border-left: 2px solid #7d7d83;
   height: 900px;
 }
 
+=======
+  border:1px solid (0,0,0,.125);
+  border-radius: 10px;
+  height: 900px;
+}
+main .card {
+  margin-bottom: 20px;
+}
+>>>>>>> frontend
 
 .footer_social{
   padding: 15px;
@@ -70,7 +138,11 @@ button:hover {
 i {
   color: 425940;
 }
+<<<<<<< HEAD
 .signup_in {
+=======
+/* .signup_in {
+>>>>>>> frontend
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .19);
   padding: 50px 30px;
   border-radius: 10px;
@@ -81,7 +153,11 @@ i {
   align-items: center;
   justify-content: center;
   background-color: #f6f5f7;
+<<<<<<< HEAD
 }
+=======
+} */
+>>>>>>> frontend
 
 .title_signin {
   text-align: center;
@@ -111,6 +187,15 @@ ul {
   background-color: #425940;
   height: 870px;
 }
+<<<<<<< HEAD
+=======
+.input-group{
+  margin-right: -70px;
+}
+.launguage {
+  margin-right: 10px;
+}
+>>>>>>> frontend
 Red : df5f46
 Orange : eca255
 Yellow: f7d493

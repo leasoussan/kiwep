@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% load mytags %}
 
@@ -142,13 +142,13 @@
                             <td>{{projectmission.points}}</td>
                             <td>{{projectmission.due_date}}</td>
 
-                            <td>   
+                            <td>
                             {% if user.is_student %}
                                 <td><a href="{% url 'claim_mission' projectmission.id %}">{% trans 'claim_mission_link' %}</a></td>
                             {% else %}
-                                {% trans 'available_mission' %} 
+                                {% trans 'available_mission' %}
                             {% endif %}
-                     
+
                         </tr>
                         {% endfor %}
                         {% endif %}
@@ -196,13 +196,13 @@
                             <td>{{projectmission.points}}</td>
                             <td>{{projectmission.due_date}}</td>
 
-                            <td>   
+                            <td>
                             {% if user.is_student %}
                                 <td><a href="{% url 'claim_mission' projectmission.id %}">{% trans 'claim_mission_link' %}</a></td>
                             {% else %}
-                                {% trans 'available_mission' %} 
+                                {% trans 'available_mission' %}
                             {% endif %}
-                     
+
                         </tr>
                         {% endfor %}
                         {% endif %}
@@ -308,11 +308,11 @@
                             <td><a href="
                                 {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
                                 {% url 'submit_mission' projectmission.id %}
-                            
+
                                 {% else %}
                                 {% url 'team_mission_detail' projectmission.id %}
                                 {% endif %}
-                                
+
 
                                 ">{{projectmission.mission.name}}</a> </td>
                             <td>{{projectmission.mission_type}}</td>
@@ -361,5 +361,5 @@
                 {% endif %}
 
 
-            
+
 {% endblock %}

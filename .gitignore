@@ -9,3 +9,5 @@ media/**
 staticfiles/
 
 .vscode/
+
+/pop_db.py

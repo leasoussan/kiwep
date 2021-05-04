@@ -18,10 +18,17 @@
   </head>
   <body>
 
+<<<<<<< HEAD
     {% include 'navbar.html' %}
 
 <main role="main" class="container-fluid">
   <div class="row" >
+=======
+
+
+<main role="main" class="container-fluid">
+  <!-- <div class="row" >
+>>>>>>> frontend
     <div class="col" >
       <div class="jumbotron" style="margin-bottom:30px;" >
         <div>
@@ -31,6 +38,7 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
   </div>
   <div class="row">
     <div class="col-md-3 mb-4" id ="side_panel">
@@ -60,12 +68,53 @@
           <a class="nav-link" href="{% url 'project_list' %}">{% trans 'Availiable Projects' %}</a>
         </li>
         </button><br>
+=======
+  </div> -->
+  <div class="row">
+    <div class="col-md-2 mb-4" id ="side_panel">
+
+      <ul class="nav nav-pills flex-column" style="text-align:left;">
+        <li>
+          <a class="nav-link" style="color: #fffefc; font-size:50px;text-align:center;" href="{% url 'dashboard' %}">{% trans 'KIWEP' %}</a></li>
+        <button type="button" name="button">
+        <li class="nav-item">
+          <a class="nav-link" id="a_link" href="{% url 'dashboard'%}">{% trans 'Dashboard' %}</a>
+        </li>
+        </button>
+        <button type="button" name="button">
+        <li class="nav-item">
+          <a class="nav-link" id="a_link" href="{% url 'team_list' %}">{% trans 'My Teams' %}</a>
+        </li>
+        </button>
+        <button type="button" name="button">
+        <li class="nav-item">
+          <a class="nav-link" id="a_link" href="{% url 'my_mission_list' %}">{% trans 'My missions' %}</a>
+        </li>
+        </button>
+        <button type="button" name="button">
+        <li class="nav-item">
+          <a class="nav-link" id="a_link" href="{% url 'todo_list'%}">{% trans 'TODO' %}</a>
+        </li>
+        </button>
+        <button type="button" id="a_link" name="button">
+        <li class="nav-item">
+          <a class="nav-link" id="a_link" href="{% url 'project_list' %}">{% trans 'Availiable Projects' %}</a>
+        </li>
+        </button>
+>>>>>>> frontend
       </ul>
     </div>
 
     <!-- wider column -->
+<<<<<<< HEAD
     <div class="col-md-9 mb-4" id = "main_panel">
     {% block content %}
+=======
+    <div class="col-md-10 mb-4" id = "main_panel">
+      {% include 'navbar.html' %}
+    {% block content %}
+
+>>>>>>> frontend
     {% endblock %}
     </div>
     </div>

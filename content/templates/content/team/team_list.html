@@ -2,8 +2,10 @@
 
 {% block content %}
 
+
+
 <a href="{% url 'content_manager' %}">content Manager </a>
-My Teams 
+My Teams
 
 {% for team in team_list %}
 <h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1>
