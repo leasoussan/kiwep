@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseb.html' %}
 {% load i18n %}
 {% load static %}
 
@@ -55,10 +55,10 @@
                                 </div>
                             </div>
 
+
+
+
                         </div>
-
-
-
                         <div class = "resource">
                             {% for resource in mission.resources.all %}
                             <a href="{% url 'resource_detail' resource.id %}">{{resource.name}}</a>

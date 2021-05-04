@@ -5,7 +5,111 @@
 <div>
   <h2 style ="text-align:center;">{% trans 'welcome'%} {{user.first_name}}</h2><br>
 
+<main "container-fluid">
+  <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{% trans 'available_projects_title' %}</h5>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">{% trans 'Team_name_title_table_head' %}</th>
+                        <th scope="col">{% trans 'project_name_table_head' %}</th>
+                        <th scope="col">{% trans 'field_table_head' %}</th>
+                        <th scope="col">{% trans 'status_table_head' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
 
+                    {% for team in user.profile.class_level.team_set.all  %}
+                    {% if request.user.profile not in team.participants.all %}
+
+
+                    <tr>
+                        <td> <a href="{% url 'team_detail'  team.id %}">{{team.name}}</a> </td>
+                        <td>{{ team.project.name }}</td>
+                        <td>{{ team.project.field }}</td>
+                        <td>{{ team.project.time_to_complet }}</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{% trans 'missions_title' %}</h5>
+
+        <a href="{% url 'my_mission_list' %}">{% trans 'mission_board_link' %}</a>
+        {% for mymission in user.profile.my_missions.all %}
+        <div class="product-item">
+          <a href="{% url 'team_mission_detail' mymission.id%}">       <h5>{{ mymission.mission.name }}</h5></a>
+
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{% trans 'my_team_projects_title' %}</h5>
+        <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th  scope="col">{% trans 'Team_name_title_table_head' %}</th>
+                    <th scope="col">{% trans 'project_name_table_head' %}</th>
+                    <th scope="col">{% trans 'field_table_head' %}</th>
+                    <th scope="col">{% trans 'status_table_head' %}</th>
+                    <th scope="col">{% trans 'time_to_complete' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for team in user.profile.team_set.all %}
+
+
+                <tr>
+                    <td> <a href="{% url 'team_detail'  team.id %}">{{team.name}}</a> </td>
+                    <td>{{ team.project.name }}</td>
+                    <td>{{ team.project.field }}</td>
+                    {% if project.completed != 'True' %}
+                    <td>{% trans 'in_process' %}</td>
+                    {% else %}
+                    <td>{% trans 'project_is_done' %}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</main>
+</div>
+
+
+
+
+
+
+
+
+
+<!--
     <div class="main-wrapper">
         <div class="row stats-row">
             <div class="col-lg-12">
@@ -114,7 +218,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
 <!-- was commented out -->
             <!-- <div class="col-lg-4 col-md-12">
                 <div class="card card-transparent stats-card">
@@ -150,8 +254,8 @@
             </div> -->
 <!-- end commented out -->
 
-        </div>
+        <!-- </div>
 
     </div>
 
-</div>
+</div> -->
