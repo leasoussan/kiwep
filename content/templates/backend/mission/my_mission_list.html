@@ -1,8 +1,6 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
-
-
 
 
 
@@ -31,22 +29,22 @@
                     <tbody>
                         {% for mission in my_mission_list %}
                         <tr>
-                           
+
                             <td><a href="{% url 'mission_detail'  mission.pk %}">{{ mission.mission.name }}</a></td>
                             <td>{{mission.due_date}}</td>
                             <td>{{mission.team.project}}</td>
                             <td>{{mission.completed}}</td>
                             <td>000</td>
                             <td>xxx</td>
-                               
+
                         </tr>
                             {% endfor %}
-                      
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-</div>
+</div> 
 
 {% endblock %}

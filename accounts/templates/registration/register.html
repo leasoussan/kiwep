@@ -1,26 +1,23 @@
-{% extends 'baseb.html' %}
+{% extends 'homepage.html' %}
+{% load static %}
 {% load i18n %}
-
-
-
-
-
 {% block content %}
-<h2>{% trans 'register' %}</h2>
-
-
-<h2>{% trans 'welcome_to_kiwep_'%}</h2>
-
-
-<form method="post" style="align-items:center ; width: 40%;">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Signup">
-</form>
 
 
 
+<div class="container-fluid">
+  <div class="card">
+    <h5 class="card-header" style="text-align:center;">{% trans 'sign up' %}</h5>
+    <div class="card-body" style="margin-top:50px; margin-bottom:50px;">
+      <form method="post" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Signup"><br><br>
+        <button class="btn" type="button" name="button"><a href="{% url 'login' %}" style="text-decoration: none; color:#f6f6f6;">{% trans 'back_to_login' %}</a></button>
+      </form>
 
+    </div>
+</div>
+</div>
 
-<a href="{% url 'login' %}">{% trans 'back_to_login' %}</a>
 {% endblock %}

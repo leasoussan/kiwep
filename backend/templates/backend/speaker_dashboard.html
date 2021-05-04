@@ -1,14 +1,53 @@
 {% load i18n %}
 
-{% trans 'hello'%}, {{ user.username|default:'Guest' }}!
+<!-- {% trans 'hello'%}, {{ user.username|default:'Guest' }}! -->
 
 
 <div>
-  
-  <h2>{% trans 'welcome'%} {{user.first_name}} {% trans 'to_your_dashboard'%}</h2>
 
-  
+  <!-- <h2>{% trans 'welcome'%} {{user.first_name}} {% trans 'to_your_dashboard'%}</h2> -->
 
+    <h2 style ="text-align:center;">{% trans 'welcome'%} {{user.first_name}}</h2><br>
+
+<!-- <main role="main" class="container-fluid">
+        <div class="card">
+          <h5 class="card-header">Featured</h5>
+          <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn">Go somewhere</a>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+</div>
+</main> -->
 
     <div class="main-wrapper">
         <div class="row stats-row">
@@ -20,19 +59,19 @@
                                     <button type="button" class="btn btn-outline-danger"><a href="{% url 'create_project' %}">{% trans 'create_project'%}</a></button>
                                     <button type="button" class="btn btn-outline-success"><a href="{% url 'project_list' %}">{% trans 'projects_list'%}</a></button>
                         <div class="table-responsive">
-                            
-                        
+
+
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">{% trans 'id_table_head' %}</a> </th>
+                                        <th scope="col">{% trans 'id_table_head' %}</th>
                                         <th scope="col">{% trans 'name_table_head' %}</th>
                                         <th scope="col">{% trans 'group_table_head' %}</th>
                                         <th scope="col">{% trans 'status_table_head' %}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   
+
                                     {% for project in user.profile.project_set.all %}
 
 
@@ -63,14 +102,14 @@
                             </h5>
                             <button type="button" class="btn btn-outline-danger"> <a href="{% url 'create_team' %}">+ {% trans 'create_team' %}</a></button>
                             <button type="button" class="btn btn-outline-success"><a href="{% url 'team_list' %}">{% trans 'team_list' %}</a></button>
-                           
-                            
+
+
 
 
                             {% for team in user.speaker.team_manager.all %}
                             <div class="product-item">
                             <h5>  <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5>
-                            <p>{{team.participants.count}}  {% trans 'participants' %} </p>  
+                            <p>{{team.participants.count}}  {% trans 'participants' %} </p>
                             </div>
                             {% endfor %}
                         </div>
@@ -87,17 +126,17 @@
 
                             <button type="button" class="btn btn-outline-danger"> <a href="{% url 'create_mission' %}">+ {% trans 'create_mission' %}</a></button>
                             <button type="button" class="btn btn-outline-success"><a href="{% url 'mission_list' %}">{% trans 'mission_list' %}</a></button>
-                           
-                            
-                            
+
+
+
 
 
                             <div class="top-products-list">
 
                                 {% for mission in user.mission_set.all %}
                                 <div class="product-item">
-                                   <a href="{% url 'mission_detail' mission.id %}"><h5>{{ mission.name }}</h5></a> 
-                                    
+                                   <a href="{% url 'mission_detail' mission.id %}"><h5>{{ mission.name }}</h5></a>
+
                                 </div>
                                 {% endfor %}
                             </div>
@@ -116,14 +155,14 @@
                             <h5 class="card-title">{% trans 'Resource_title' %}<span class="stats-change stats-change-success">{{project.mission_set.resource.count}}</span></h5>
                                 <button type="button" class="btn btn-outline-danger"> <a href="{% url 'create_resource' %}">+ {% trans 'create_resource' %}</a></button>
                                 <button type="button" class="btn btn-outline-success"><a href="{% url 'resource_list' %}">{% trans 'resource_list' %}</a></button>
-                                   
+
                             <div class="top-products-list">
 
                                 {% for resource in user.resource_set.all %}
 
                                 <div class="product-item">
                                     <h5>{{ resource.name }}</h5>
-                              
+
 
                                 </div>
                                 {% endfor %}
@@ -137,7 +176,4 @@
 
     </div>
 
-</div>
-
-</div>
 </div>

@@ -1,5 +1,5 @@
 
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 
 {% block content %}
@@ -8,10 +8,10 @@
 <h2>{{ usertype }} {% trans 'profile_edit' %}</h2>
 
 <form method="post">
-    
+
     {% csrf_token %}
     {{ user_form.as_p }}
-  
+
 
     {{ profile_form.as_p }}
     <input type="hidden" name="next" value="{{ request.GET.next }}"/>

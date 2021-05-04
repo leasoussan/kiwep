@@ -2,189 +2,85 @@
 {% load i18n %}
 
 {% block navbar %}
-
-
-</div>
-<!--Full width header Start-->
-<div class="full-width-header header-style1 home1-modifiy home12-modifiy">
-    <!--Header Start-->
-    <header id="rs-header" class="rs-header">
-        <!-- Topbar Area Start -->
-        <div class="topbar-area home11-topbar">
-            <div class="container">
-                <div class="row y-middle">
-                    <div class="col-md-5">
-                        <ul class="topbar-contact">
-                            <li>
-                                <i class="flaticon-email"></i>
-                                <a href="mailto:support@rstheme.com">support@kiwep.co</a>
-                            </li>
-                            <li>
-                                <i class="fa flaticon-call"></i>
-                                <a href="tel:+(+01)999-999-4444"> +33(0)7 6236 4831</a>
-                            </li>
-                            <li>
-                             <!-- Language  -->
-                      
-                                    <form action="{% url 'set_language' %}" method="post">
-                                        {% csrf_token %}
-                                        <input name="next" type="hidden" value="{{ redirect_to }}" />
-                                        <div class="input-group ">
-                                            <select class="form-select " name="language" onchange="this.form.submit()">
-                                                {% get_current_language as LANGUAGE_CODE %}
-                                                {% get_available_languages as LANGUAGES %}
-                                                {% for lang in LANGUAGES %}
-                                                    <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected="selected"{% endif %}>
-                                                        {{ lang.1 }} ({{ lang.0 }})
-                                                    </option>
-                                                {% endfor %}
-                                            </select>
-                                           
-                                        </div>
-                                    </form>
-                                </li>    
-
+<nav class="navbar navbar-expand-lg navbar-light" >
+    <div class="container-fluid">
+        <!-- <a class="navbar-brand" href="{% url 'homepage' %}">{% trans 'KIWEP' %}</a> -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 " id="center_nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="fas fa-bars fa-2x"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          {% if user.is_authenticated %}
+                          <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+                          <li><a class="dropdown-item" href="{% url 'homepage' %}">Homepage</a></li>
+                          {% else %}
+                          <li><a class="dropdown-item" href="{% url 'logout' %}">Homepage</a></li>
+                          {% endif %}
+                          <li><a class="dropdown-item" href="#">Contact us</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
+                    </li>
 
-                    </div>
+                <!-- </button> -->
 
-              
-     
+            </ul>
+            <form class="d-flex"  style="margin: 0 auto;">
+                <input class="form-control me-2" style="border-radius: 35px; height: 45px; width: 400px;" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit"  style="border-radius: 35px;">Search</button>
+          </form>
+            <span class="navbar-text">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0"  id = "right-side-nav" style="text-align:center;">
+                <li class="nav-item launguage">
+                  <form action="{% url 'set_language' %}" method="post">
+                      {% csrf_token %}
+                      <!-- <i class="fas fa-globe"></i> -->
+                      <input name="next" type="hidden" value="{{ redirect_to }}" />
 
-
-                    <div class="col-md-7 text-right">
-
-
-                        <ul class="topbar-right">
-                            {% if user.is_authenticated %}
-                            <li class="login-register">
-                                <i class="fa fa-sign-in"></i>
-                                <a href="{% url 'dashboard' %}">{% trans 'dashboard' %}</a>
-                            </li>
-
-                            {% else %}
-                            <li class="login-register">
-
-                                <a href="{% url 'login' %}">Login</a>/<a href="{% url 'register' %}">{% trans 'register' %}</a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- Topbar Area End -->
-
-        <!-- Menu Start -->
-        <div class="menu-area menu-sticky">
-            <div class="container">
-                <div class="row y-middle">
-                    <div class="col-lg-2">
-                        <div class="logo-cat-wrap">
-                            <div class="logo-part">
-                               
-                                    <img src="{% static 'front_end/images/kiwep/kiwep_logo.jpg' %}" style="width: 100%px; height: 100pxs;">
-                                
-                            </div>
-                        </div>
+                      <div class="input-group ">
+                          <select class="form-select " name="language" onchange="this.form.submit()">
+                              {% get_current_language as LANGUAGE_CODE %}
+                              {% get_available_languages as LANGUAGES %}
+                              {% for lang in LANGUAGES %}
+                                  <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                                      {{ lang.1 }} ({{ lang.0 }})
+                                  </option>
+                              {% endfor %}
+                          </select>
                       </div>
-                    <div class="col-lg-8 text-right">
-                        <div class="rs-menu-area">
-                            <div class="main-menu">
-                                <div class="mobile-menu">
-                                    <a class="rs-menu-toggle">
-                                        <i class="fa fa-bars"></i>
-                                    </a>
-                                </div>
-                                <nav class="rs-menu">
-                                    <ul class="nav-menu">
-                                     
+                  </form>
+                </li>
 
-                                        <li class="menu-item-has-children">
-                                            <a href="#">{% trans 'about' %}</a>
-                                        </li>
+                <li class="nav-item dropdown">
+                  {% if user.is_authenticated %}
+                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <img src="{% static 'backend/images/avatars/profile-image-1.png' %}"
+                                alt="profile image" style = "width:40px; height:40px;">
+                                <span>{{user.username}}</span>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
+                  </ul>
 
-                          
-
-                                        <li class="menu-item-has-children">
-                                            <a href="#">{% trans 'partner_up' %}</a>
-                                            <!-- <ul class="sub-menu">
-                                                Available institutions
-                                            </ul> -->
-                                        </li>
-
-
-
-                                        <li class="menu-item-has-children">
-                                            <a href="#">{% trans 'contact_us' %}</a>
-
-                                        </li>
-                                    </ul> <!-- //.nav-menu -->
-                                </nav>
-                            </div> <!-- //.main-menu -->
-                        </div>
-                    </div>
-                    
-                    </div>
-                </div>
-            </div>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active btn" style="color: #f6f6f6;" href="{% url 'login' %}">{% trans 'login'%}</a>
+                </li>
+                <li>
+                    <a class="nav-link active btn" style="color: #f6f6f6;" href="{% url 'register' %}">{% trans 'register' %}</a>
+                </li>
+                {% endif %}
+              </ul>
+            </span>
         </div>
-        <!-- Menu End -->
-        <!-- Canvas Menu start -->
-        <!-- <nav class="right_menu_togle hidden-md">
-            <div class="close-btn">
-                <span id="nav-close">
-                    <div class="line">
-                        <span class="line1"></span><span class="line2"></span>
-                    </div>
-                </span>
-            </div>
-            <div class="canvas-logo">
-                                           <a href="{% url 'homepage' %}" class="btn btn-primary">{% trans 'homepage' %}</a>
-            </div>
-            <div class="offcanvas-text">
-                <p>We denounce with righteous indige nationality and dislike men who are so beguiled and demo by the
-                    charms of pleasure of the moment data com so blinded by desire.</p>
-            </div>
-            <div class="offcanvas-gallery">
-                <div class="gallery-img">
-                    <a class="image-popup" href="assets/images/gallery/1.jpg"><img src="assets/images/gallery/1.jpg"
-                            alt=""></a>
-                </div>
-                <div class="gallery-img">
-                    <a class="image-popup" href="assets/images/gallery/2.jpg"><img src="assets/images/gallery/2.jpg"
-                            alt=""></a>
-                </div>
-                <div class="gallery-img">
-                    <a class="image-popup" href="assets/images/gallery/3.jpg"><img src="assets/images/gallery/3.jpg"
-                            alt=""></a>
-                </div>
-                <div class="gallery-img">
-                    <a class="image-popup" href="assets/images/gallery/4.jpg"><img src="assets/images/gallery/4.jpg"
-                            alt=""></a>
-                </div>
-                <div class="gallery-img">
-                    <a class="image-popup" href="assets/images/gallery/5.jpg"><img src="assets/images/gallery/5.jpg"
-                            alt=""></a>
-                </div>
-                <div class="gallery-img">
-                    <a class="image-popup" href="assets/images/gallery/6.jpg"><img src="assets/images/gallery/6.jpg"
-                            alt=""></a>
-                </div>
-            </div>
-            <div class="map-img">
-                <img src="assets/images/map.jpg" alt="">
-            </div>
-            <div class="canvas-contact">
-                <ul class="social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-            </div>
-        </nav> -->
-        <!-- Canvas Menu end -->
+      </div>
+</nav>
+{% endblock %}
 
-        {% endblock %}
+<!--style = "background-color:#f7d493; color: #7d7d83; border:15px solid white;border-radius: 5px; font-size: 20px;"  -->

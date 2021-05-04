@@ -6,7 +6,10 @@ from django.http import Http404
 
 
 class ProfileCheckPassesTestMixin(UserPassesTestMixin):
-    '''test_furn : get a boolean True or False'''
+
+    '''The ProfileCheck is to see if User created a profile after registration
+     test_func : get a boolean True or False'''
+    
     def test_func(self):
         return check_profile(self.request.user)
     
@@ -26,7 +29,8 @@ class ProfileCheckPassesTestMixin(UserPassesTestMixin):
 
 
 class SpeakerStatuPassesTestMixin(UserPassesTestMixin):
-    
+    """ Checking if the user is a Speaker"""
+
     def test_func(self):
        return speaker_check(self.request.user) and check_profile(self.request.user)
     

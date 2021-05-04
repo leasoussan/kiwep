@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
 
@@ -42,25 +42,25 @@
 
     <script type="text/JavaScript">
 
-    
+
         // Key Component:
     //     "activeItem" =null until an edit button is clicked.
-    //     will contain Object of item created 
+    //     will contain Object of item created
     //     "list_snaposhot" = will contain previouse state of list.
-    //     Used for rmoving extra rows on list update 
+    //     Used for rmoving extra rows on list update
 
     //     Process:
     //     1_ fetch data and build rows "buildlist()"
     //     2_ Create item on form submit
     //     3_ Edit item click - prefill form and change submit url
-    //     4_ Delete Item _ send item id to delete URL 
+    //     4_ Delete Item _ send item id to delete URL
     //     5_ cross out complet task- event handle update item
 
-    //     Note: 
+    //     Note:
     //     --add even handler to "edit", "delet", "title"
-    //     -- render with strike trough item complete 
+    //     -- render with strike trough item complete
     //     --remove extrat data on re-rendering
-    //     -- CSRF token 
+    //     -- CSRF token
 
         function getCookie(name) {
         let cookieValue = null;
@@ -84,27 +84,27 @@
         var list_snapshot = []
 
         buildList()
-     
+
 
         function buildList(){
             var wrapper = document.getElementById('list_wrapper')
             // wrapper.innerHTML =''
-            
 
-    
+
+
 
             var url = "{% url 'task_list' %}"
-            
+
             fetch(url)
             .then((resp) => resp.json())
             .then(function(data){
                 console.log('Data:', data)
-                
 
-                // here we ant to loop  throug every item and show it 
-                // we will first creat a list and loop - then creat elements into html 
+
+                // here we ant to loop  throug every item and show it
+                // we will first creat a list and loop - then creat elements into html
                 var list = data
-              
+
                 for (var i in list){
 
 
@@ -113,19 +113,19 @@
 					}catch(err){
 
 					}
-                
+
                     var title = `<span class="title due_date"> ${list[i].title} ${list[i].due_date}</span>`
                     if (list[i].completed == true){
                         title = `<strike class="title due_date"> ${list[i].title} ${list[i].due_date}</strike>`
 
                     }
-                    
+
 
                     var item = `
                             <div id="data-row-${i}" class="task_wrapper flex_wrapper">
-                            
+
                                 <div style="flex:7" >
-                                    ${title} 
+                                    ${title}
                                 </div>
                                 <div style="flex:1">
                                     <button class="btn btn-sm btn-outline-info edit">Edit </button>
@@ -133,16 +133,16 @@
                                 <div style="flex:1">
                                     <button class="btn btn-sm btn-outline-dark delete">-</button>
                                 </div>
-                               
+
                             </div>
-                            
+
                         `
-                        
+
                     wrapper.innerHTML += item
 
-                    
+
                 }
-                
+
 
                 if(list_snapshot.length > list.length){
                     for (var i = list.length; i < list_snapshot.length; i++){
@@ -153,15 +153,15 @@
 
 
                 list_snapshot = list
-                
-                // this is added to see and get data in edit item 
-             
+
+                // this is added to see and get data in edit item
+
 				for (var i in list){
 					var editBtn = document.getElementsByClassName('edit')[i]
 					var deleteBtn = document.getElementsByClassName('delete')[i]
 					var title = document.getElementsByClassName('title due_date')[i]
-                   
-                    
+
+
                     editBtn.addEventListener('click', (function(item){
                         return function(){
                             editItem(item)
@@ -171,7 +171,7 @@
                     deleteBtn.addEventListener('click', (function(item){
 						return function(){
 							deleteItem(item)
-						    }   
+						    }
 					})(list[i]))
 
 
@@ -182,9 +182,9 @@
 					})(list[i]))
 
 
-                }    
+                }
             })
-            
+
         }
 
         // we create now event listener to save creted item
@@ -192,7 +192,7 @@
         form.addEventListener('submit', function(e) {
             e.preventDefault()
             var url = "{% url 'task_create' %}"
-         
+
             if (activeItem != null){
 				var url = `http://127.0.0.1:8000/todo/task_update/${activeItem.id}/`
 				activeItem = null
@@ -201,7 +201,7 @@
 
             var title = document.getElementById('title').value
             var due_date = document.getElementById('due_date').value
-    
+
             fetch(url,{
                 method :'POST',
                 headers: {
@@ -215,9 +215,9 @@
                 document.getElementById('form').reset()
             })
         })
-    
-        
-        // new function to edit item and populat in the form 
+
+
+        // new function to edit item and populat in the form
         function editItem(item){
             console.log('Item clicked', item)
             activeItem = item
@@ -229,11 +229,11 @@
     //   function to delet
         function deleteItem(item){
             console.log('Item Deleted')
-           
-            
+
+
             const url = "{% url 'task_delete' pk=000 %}".replace(000, item.id)
-            
-         
+
+
             fetch(url , {
                 method: 'DELETE',
                 headers: {
@@ -257,7 +257,7 @@
             console.log(item.completed)
             url = "{% url 'task_update' pk=000 %}".replace(000, item.id)
 			fetch(url , {
-				method:'POST', 
+				method:'POST',
 				headers:{
 					'Content-type':'application/json',
 					'X-CSRFToken':csrftoken,

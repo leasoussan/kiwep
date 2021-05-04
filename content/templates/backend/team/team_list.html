@@ -1,8 +1,8 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
 
-     <th>{% trans 'team_dashboard_title' %}</th>
+      <th>{% trans 'team_dashboard_title' %}</th>
 
 {% for team in team_list %}
 <h1>{% trans 'team_name_lable' %}<a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1>

@@ -45,7 +45,7 @@ class Skills(models.Model):
 
     
     def __str__(self):
-        return f"Subject{self.subject}, {self.name}"
+        return f"Subject{self.name}"
 
 
 
@@ -61,8 +61,8 @@ class Mission(models.Model):
         ('link', 'Link'),
         ('video', 'Video'),
         ('doc', 'Document'),
-        ('power_p' ,'Power Point' ),
-        ('image' ,'image' ),
+        ('power_p', 'Power Point'),
+        ('image', 'image'),
     ]
 
     mission_type = models.CharField(max_length=200, choices= MISSION_TYPE, default='s_m' )
@@ -177,13 +177,12 @@ class Team(models.Model):
     participants = models.ManyToManyField(Student, blank = True )    
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
     individual_missions = models.ManyToManyField(Mission, through = 'IndividualProjectMission') 
-    team_missions =  models.ManyToManyField(Mission, through = 'CollectiveProjectMission', related_name ='team_missions') 
+    team_missions = models.ManyToManyField(Mission, through = 'CollectiveProjectMission', related_name ='team_missions')
     
     project_completed = models.BooleanField(null=True, blank = True)
 
  
     objects = TeamModelManager()
-
 
 
     def __str__(self):

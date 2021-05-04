@@ -15,7 +15,6 @@ gunicorn==20.0.4
 idna==2.10
 Markdown==3.3.3
 Pillow==8.1.0
-psycopg2==2.8.6
 psycopg2-binary==2.8.6
 python-dateutil==2.8.1
 python-gettext==4.0

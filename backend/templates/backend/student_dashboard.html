@@ -1,12 +1,9 @@
 {% load i18n %}
 
-Hello, {{ user.username|default:'Guest' }}!
-
-
-
-
+<!-- Hello, {{ user.username|default:'Guest' }}! -->
 
 <div>
+  <h2 style ="text-align:center;">{% trans 'welcome'%} {{user.first_name}}</h2><br>
 
 
     <div class="main-wrapper">
@@ -16,7 +13,7 @@ Hello, {{ user.username|default:'Guest' }}!
                     <div class="card-body">
                         <h5 class="card-title">{% trans 'available_projects_title' %}<a href="#" class="card-title-helper blockui-transactions"><i
                                     class="material-icons">{% trans 'refresh' %}</i></a></h5>
-        
+
 
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -54,7 +51,7 @@ Hello, {{ user.username|default:'Guest' }}!
                     <div class="card-body">
                         <h5 class="card-title">{% trans 'my_team_projects_title' %}<a href="#" class="card-title-helper blockui-transactions"><i
                                     class="material-icons">refresh</i></a></h5>
-        
+
                             <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -79,8 +76,7 @@ Hello, {{ user.username|default:'Guest' }}!
                                         <td>{% trans 'in_process' %}</td>
                                         {% else %}
                                         <td>{% trans 'project_is_done' %}</td>
-                                        {% endif %}     
-                                    </tr>
+                                        {% endif %}
                                     </tr>
                                     {% endfor %}
 
@@ -108,8 +104,8 @@ Hello, {{ user.username|default:'Guest' }}!
 
                                 {% for mymission in user.profile.my_missions.all %}
                                 <div class="product-item">
-                                  <a href="{% url 'team_mission_detail' mymission.id%}">       <h5>{{ mymission.mission.name }}</h5></a>                       
-                                    
+                                  <a href="{% url 'team_mission_detail' mymission.id%}">       <h5>{{ mymission.mission.name }}</h5></a>
+
                                 </div>
                                 {% endfor %}
                             </div>
@@ -119,7 +115,7 @@ Hello, {{ user.username|default:'Guest' }}!
 
                 </div>
             </div>
-
+<!-- was commented out -->
             <!-- <div class="col-lg-4 col-md-12">
                 <div class="card card-transparent stats-card">
 
@@ -127,7 +123,7 @@ Hello, {{ user.username|default:'Guest' }}!
                         <div class="stats-info">
                             <h5 class="card-title">Resource<span class="stats-change stats-change-success">nbr
                                     of Rsc</span></h5>
-                          
+
                             <a href="{% url 'resource_list' %}">Resource List</a>
 
 
@@ -152,11 +148,10 @@ Hello, {{ user.username|default:'Guest' }}!
                     </div>
                 </div>
             </div> -->
+<!-- end commented out -->
+
         </div>
 
     </div>
 
-</div>
-
-</div>
 </div>
