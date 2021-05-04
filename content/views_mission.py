@@ -46,6 +46,7 @@ class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailVi
     model = Mission
     template_name = 'backend/mission/mission_detail.html'    
     
+    
 
     def get_object(self):
         pk = self.kwargs.get('pk')

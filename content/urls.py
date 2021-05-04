@@ -30,6 +30,8 @@ urlpatterns = [
     path('add-member-team/<int:pk>', AddTeamMemberView.as_view(), name = "add_member_team"),
     
     path('join-team/<int:pk>', JoinTeamView.as_view(), name = "join_team"),
+    path('leave-team/<int:pk>', LeaveTeamView.as_view(), name = "leave_team"),
+
     path('update-team/<int:pk>', TeamUpdateView.as_view(), name = "update_team"),
     path('delete-team/<int:pk>', TeamDeleteView.as_view(), name = "delete_team"),
 

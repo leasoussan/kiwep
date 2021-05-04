@@ -30,7 +30,6 @@ def check_profile(user, return_tuple= False):
 
 
 
-
 def login_check(user):
     if user.is_authenticated:
         return redirect('homepage.html') 

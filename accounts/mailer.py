@@ -30,3 +30,13 @@ def XXX(message):
     email_from = settings.EMAIL_HOST_USER 
     recipient_list = [message.email, ] 
     send_mail(subject, text, email_from, recipient_list ,fail_silently = False) 
+
+
+def new_team_member(user):
+    subject = f'Welcome to the '  
+    text = f'Welcome to team  ! good luck on your project '
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [message.email,]
+    send_mail(subject, text, email_form, recipient_list, fail_silently=False)
+
+# Fail_silently = True when deployed 

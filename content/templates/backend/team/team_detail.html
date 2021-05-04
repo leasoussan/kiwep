@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load mytags %}
 
 {% block content %}
 
@@ -12,6 +13,8 @@
 
 <a href="{% url 'update_team' team.id %}">Edit Team</a>
 
+{% else %}
+<a href="{% url 'leave_team' team.id %}">Leave Team </a>
 
 {% endif %}
 
@@ -25,6 +28,7 @@
     <div class="col-lg-4">
         <div class="card top-products">
             <div class="card-body">
+                {{team.id}}
                 <h5 class="card-title">{% trans 'team_title' %} {{ team.name }}{% trans 'participants_title' %}</h5>
                 <div class="top-products-list">
                     <div class="product-item">
@@ -46,6 +50,7 @@
 
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -58,6 +63,10 @@
                     {{team.project.description}}
                 </div>
             </div>
+
+        </div>
+        <div>
+           <button><a href="#">Comment Team Board</a></button>
         </div>
     </div>
 
@@ -195,7 +204,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{% trans 'project_mission_title' %}</h5>
-                <p>Here you can follow you peers working and progress on the project</p>
+                <p>Here you can follow talen missions </p>
                 <table id="zero-conf" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -259,12 +268,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        student_missions
+                        {% for projectmission in team.individualprojectmission_set.all|student_missions:user.student %}
 
 
-                        {% for projectmission in team.CollectiveProjectMission_set.get_attributed_mission %}
 
-
-                        {% for projectmission in team.individualprojectmission_set.is_my_mission %}
 
                         <tr>
                             <td><a href="
@@ -283,6 +291,35 @@
                             <td>{{projectmission.due_date}}</td>
                             <td>{{projectmission.status}}</td>
                         </tr>
+
+
+
+
+                        {% endfor %}
+
+                      <tr><td>here</td> </tr>
+                        {% for collectiveindividualmission in user.student.individual_team_mission.all|collective_student_missions:team %}
+
+
+
+
+                        <tr>
+                            <td><a href="
+                                {% if user.profile == collectiveindividualmission.attributed_to and not collectiveindividualmission.response_file %}
+                                {% url 'submit_mission' collectiveindividualmission.id %}
+
+                                {% else %}
+                                {% url 'team_mission_detail' collectiveindividualmission.id %}
+                                {% endif %}
+
+
+                                ">{{collectiveindividualmission.parent_mission.mission.name}}</a> </td>
+                            <td>{{collectiveindividualmission.parent_mission.mission_type}}</td>
+                            <td>{{collectiveindividualmission.parent_mission.mission.stage}}</td>
+                            <td>{{collectiveindividualmission.parent_mission.points}}</td>
+                            <td>{{collectiveindividualmission.parent_mission.due_date}}</td>
+                            <td>{{collectiveindividualmission.parent_mission.status}}</td>
+                        </tr>
                         {% endfor %}
                         {% endfor %}
                     </tbody>
@@ -295,5 +332,5 @@
 
       {% endif %}
 
-
+            
 {% endblock %}
