@@ -45,7 +45,7 @@ class Skills(models.Model):
 
     
     def __str__(self):
-        return f"Subject{self.subject}, {self.name}"
+        return f"Subject{self.name}"
 
 
 
