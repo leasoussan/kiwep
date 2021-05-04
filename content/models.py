@@ -41,7 +41,7 @@ class Resource(models.Model):
 
 class Skills(models.Model):
     name  = models.CharField(max_length= 100)
-    field = models.ManyToManyField(Field, blank = False)
+    field = models.ManyToManyField(Field)
 
     
     def __str__(self):
@@ -87,6 +87,7 @@ class Mission(models.Model):
 
 
 class Project(models.Model):
+    """ Model Of Project - independent of a Team - a project is reusable to each team his own """
 
     name = models.CharField(max_length=200)
     title = models.CharField(max_length=300)
@@ -146,6 +147,8 @@ def update_team_mission_attribution(instance, reverse, action , pk_set, **kwargs
 
 
 class Team(models.Model):
+    """ a Team Model is to manage a Project per Team- Creating a team is allowing the Speaker to  
+    Manage one or few people on a Project"""
     name = models.CharField(max_length=200)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     start_date = models.DateField()
@@ -153,7 +156,7 @@ class Team(models.Model):
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Student, blank = True )    
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
-    individaul_missions = models.ManyToManyField(Mission, through = 'IndividualProjectMission') 
+    individual_missions = models.ManyToManyField(Mission, through = 'IndividualProjectMission') 
     team_missions =  models.ManyToManyField(Mission, through = 'CollectiveProjectMission', related_name ='team_missions') 
     
     project_completed = models.BooleanField(null=True, blank = True)
@@ -178,29 +181,21 @@ def team_mission_attribution(sender, created, instance, *args, **kwargs):
                 IndividualProjectMission.objects.create(mission=mission,team=instance,due_date=timezone.now())
             
             elif mission.mission_type == 't_m':
-                for participant in instance.participants.all():
-                    CollectiveProjectMission.objects.create(mission=mission, team=instance,due_date=timezone.now())
+                CollectiveProjectMission.objects.create(mission=mission, team=instance,due_date=timezone.now())
 
             
 
 # created check if it's new or note
 # instance is team as we have the signal on the team creat missions project so this is the instance we are dealing with 
 
-
-
-
-
-
-
-
 # related name is to change the default access from othermodel_set to the ne realted name.
 # for ex in Team: we have FK to project, by default to access all team with the same project we ll go from 
 # project.team_set.all>>.the related name >> if related name == teams ; then we all do project.teams.all 
 # it's like a tag /lable to call without needing to go backward.
 
-
-
 class IndividualProjectMission(models.Model):
+    """ an Individuall Mission is a Mission that has to be done by one team Member, 
+    so this mission can be claimed """
     STAGE_CHOICE = [
         ('start', 'Start'),
         ('middle', 'Middle'),
@@ -233,6 +228,9 @@ class IndividualProjectMission(models.Model):
 # ex make your resume 
 
 class CollectiveProjectMission(models.Model):
+    """
+    This mission has to be done by each participants of a team. 
+    Therefore each participants will have this mission attributed to him """
     STAGE_CHOICE = [
         ('start', 'Start'),
         ('middle', 'Middle'),
@@ -260,10 +258,26 @@ class CollectiveProjectMission(models.Model):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
 
+@receiver(m2m_changed, sender=CollectiveProjectMission.attributed_to)
+def assign_collective_mission(instance, reverse, action , pk_set, **kwargs):
+
+    if not reverse:
+    # instance is a collectiveprojectmission pk_set of Students - only true if we are inside the IF 
+    # reverse is indication of the relation of what we are saving 
+        if action == 'post_remove':
+            IndividualCollectiveProjectMission.objects.filter(attributed_to__in= instance.assigned_to.filter(id__in=pk_set)).delete()
+
+        elif action == 'post_add':
+            for pk in pk_set:
+                IndividualCollectiveProjectMission.objects.create(parent_mission=instance, attributed_to_id=pk)
+                
+
+
 
 
 class IndividualCollectiveProjectMission(models.Model):
-   
+    """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
+
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")
     parent_mission = models.ForeignKey(CollectiveProjectMission, on_delete= models.CASCADE)
     completed= models.BooleanField(default=False)

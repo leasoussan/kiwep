@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Team, CollectiveProjectMission, Project, Mission
+from .models import Team, CollectiveProjectMission, Project, Mission, IndividualProjectMission
 from django.forms import ModelForm
-from .forms import TeamAddForm, CollectiveProjectMissionFormSet, AddMemberTeamForm
+from .forms import TeamAddForm, CollectiveProjectMissionFormSet, AddMemberTeamForm, IndividualProjectMissionFormSet
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -22,6 +22,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 
 
 class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
+    """ Team List View will Show a user Teams list"""
     model = Team
     template_name = 'crud/list_view.html'
     context_object_name = 'team_list'
@@ -34,9 +35,11 @@ class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
 
 
 class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
+    """ Global Team Details """
+    
     model = Team
     template_name = 'backend/team/team_detail.html'
-    queryset = CollectiveProjectMission.objects.team_available_mission()
+    queryset = IndividualProjectMission.objects.team_available_mission()
 
 
     def get_object(self):
@@ -51,6 +54,7 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
 
 
 class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateView):
+    """Create a Team View """
     model = Team 
     form_class = TeamAddForm
     template_name = 'crud/create.html'
@@ -79,26 +83,29 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
 
 
 class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
-    model = CollectiveProjectMission
+    """ Once a Team IS created the missions have to be set, Deadline, attribution etc...."""
     def get(self, request, *args, **kwargs):
         
         team = Team.objects.get(id = self.kwargs['pk'])
         participants= team.participants.all()
-   
-        formset = CollectiveProjectMissionFormSet(instance = team)
-        formset_student = IndividualProjectMissionFormSet(instance =team)
 
-        for form in formset:
-            form.fields['attributed_to'].queryset = participants
+        
+        formset_collective = CollectiveProjectMissionFormSet(instance = team)
+        formset_individual = IndividualProjectMissionFormSet(instance =team)
+        formsets =  [formset_individual, formset_collective]
+        
+        for formset in formsets:
+            for form in formset:
+                form.fields['attributed_to'].queryset = participants
                                
 
-        return render(request, 'crud/create_team_missions.html', {'formset': formset})
+        return render(request, 'crud/create_team_missions.html', {'formsets': [formset_individual, formset_collective]})
     
 
     def post(self, request, *args, **kwargs):
         
         team = Team.objects.get(id = self.kwargs['pk'])
-        missions = team.project.mission.all()
+        missions = team.project.missions.all()
         
         formset = CollectiveProjectMissionFormSet(request.POST, instance = team)
 
@@ -115,14 +122,25 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
 
 
 
+# prefix='collective' We might need to add a Prefix if using few formset- might have been changed by DJANGO 
 
-class TeamEditProjectMission(UpdateView):
-    model = CollectiveProjectMission
+
+class TeamEditIndividualProjectMission(UpdateView):
+    """ """
+    model = IndividualProjectMission
     fields = '__all__'
 
     template_name = 'crud/update.html'
     # success_url = ('team_detail')
 
+
+
+class TeamEditCollectiveProjectMission(UpdateView):
+    model = CollectiveProjectMission
+    fields = '__all__'
+
+    template_name = 'crud/update.html'
+    # success_url = ('team_detail')
 
 
 

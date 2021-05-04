@@ -4,6 +4,7 @@ body {
   color: #7d7d83;
 }
 
+<<<<<<< HEAD
  a:visited
   text-decoration: none;
 }
@@ -45,6 +46,42 @@ button:hover {
 }
 #center_nav {
   margin-right: 450px;
+=======
+
+a {
+  font-size: 20px;
+}
+ a:visited {
+  color: black;
+
+}
+ a:hover {
+  color: #fffefc;
+
+
+  /* background-color: #eeeeef;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;  */
+
+}
+
+button {
+  border: none;
+  background-color: #f7d493;
+  border-radius: 10px;
+  margin:5px;
+
+}
+button:hover {
+  background-color: #eca255;
+
+}
+ #center_nav {
+  margin-left: 450px;
+>>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
 }
 #footer_rights {
   display: flex;
@@ -55,13 +92,22 @@ button:hover {
 }
 
 #side_panel {
+<<<<<<< HEAD
   background-color: #9fce9c;
   border-radius: 10px;
   color:#f8fafa;
+=======
+  background-color:#425940;
+  color:#f8fafa;
+  border:15px solid white;
+  height: 900px;
+
+>>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
 }
 #main_panel{
   background:#f8fafa;
   color: #7d7d83;
+<<<<<<< HEAD
   border:1px solid (0,0,0,.125);
   border-radius: 10px;
 }
@@ -69,6 +115,14 @@ main .card {
   margin-bottom: 20px;
 }
 
+=======
+  border:15px solid white;
+  border-left: 2px solid #7d7d83;
+  height: 900px;
+}
+
+
+>>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
 .footer_social{
   padding: 15px;
   color: #7d7d83;
@@ -76,7 +130,11 @@ main .card {
 i {
   color: 425940;
 }
+<<<<<<< HEAD
 /* .signup_in {
+=======
+.signup_in {
+>>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .19);
   padding: 50px 30px;
   border-radius: 10px;
@@ -87,7 +145,11 @@ i {
   align-items: center;
   justify-content: center;
   background-color: #f6f5f7;
+<<<<<<< HEAD
 } */
+=======
+}
+>>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
 
 .title_signin {
   text-align: center;
@@ -117,6 +179,7 @@ ul {
   background-color: #425940;
   height: 870px;
 }
+<<<<<<< HEAD
 .input-group{
   margin-right: -70px;
 }
@@ -136,6 +199,8 @@ input {
   justify-content: content;
   align-items: center;
 }
+=======
+>>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
 Red : df5f46
 Orange : eca255
 Yellow: f7d493

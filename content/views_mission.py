@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Mission, CollectiveProjectMission, Team
+from .models import Mission, CollectiveProjectMission, Team, IndividualProjectMission
 from django.forms import ModelForm
 from .forms import MissionAddForm, SubmitMissionForm
 from django.urls import reverse_lazy
@@ -31,7 +31,7 @@ class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
 
 class MyMissionList(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     ''' See User Missions List'''
-    model = CollectiveProjectMission
+    model = IndividualProjectMission
     template_name = 'backend/mission/my_mission_list.html'    
     context_object_name = 'my_mission_list'
 
@@ -101,7 +101,7 @@ class ClaimMission(LoginRequiredMixin, RedirectView):
     pattern_name = 'my_mission_list'
 
     def get_redirect_url(self,  *args, **kwargs):
-        mission = get_object_or_404(CollectiveProjectMission, pk=kwargs['pk'])
+        mission = get_object_or_404(IndividualProjectMission, pk=kwargs['pk'])
         mission.attributed_to = self.request.user.profile()
         mission.save()
         del kwargs['pk']
@@ -113,7 +113,7 @@ class ClaimMission(LoginRequiredMixin, RedirectView):
 
 
 class UnclaimMission(LoginRequiredMixin, RedirectView):
-    ''' Unclaim the mission - willr eturn to the list of available Mission'''
+    ''' Unclaim the mission - will return to the list of available Mission'''
     # query_sting = False >>this is false by default     
     pattern_name = 'my_mission_list'
 
@@ -166,3 +166,5 @@ class StudentSubmitMission(UpdateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+

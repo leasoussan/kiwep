@@ -42,8 +42,17 @@
                                             <div class= "mission_description">
                                                 <h3>{% trans 'about_the_mission' %}</h3>
                                             <p>{{object.description}}</p>
+<<<<<<< HEAD
 
 
+=======
+                                            <h3>Mission Type: </h3>
+                                            <p>{{object.get_mission_type_display}}  </p>
+
+                                            <h3>The Mission response should be sent as:</h3>
+                                            <p> {{object.get_response_type_display}}</p>
+                                      
+>>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
                                         </div>
                                     </div>
 
