@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
 
@@ -29,8 +29,8 @@
                                     href="#prod-overview" role="tab" aria-controls="prod-overview"
                                     aria-selected="true">heer</a>
                             </li>
-                            
-                         
+
+
                         </ul>
                         <div class="tab-content tabs-content" id="myTabContent">
                             <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
@@ -47,21 +47,21 @@
 
                                             <h3>The Mission response should be sent as:</h3>
                                             <p> {{object.get_response_type_display}}</p>
-                                      
+
                                         </div>
                                     </div>
 
                                     </div>
                                 </div>
                             </div>
-                    
+
                         </div>
 
-                       
+
 
                         <div class = "resource">
                             {% for resource in mission.resources.all %}
-                            <a href="{% url 'resource_detail' resource.id %}">{{resource.name}}</a> 
+                            <a href="{% url 'resource_detail' resource.id %}">{{resource.name}}</a>
                             {% endfor %}
 
                         </div>
@@ -71,7 +71,7 @@
                 <!-- Video Column -->
                 <div class="video-column col-lg-4">
                     <div class="inner-column">
-                       
+
                         <div class="course-features-info">
                             <ul>
                                 <li class="lectures-feature">
@@ -80,7 +80,7 @@
                                     <span class="value">{{object.field}}</span>
                                 </li>
 
-                        
+
 
                                 <li class="students-feature">
                                     <i class="fa fa-users"></i>
@@ -103,7 +103,7 @@
     </section>
     <!-- End intro Courses -->
 
-   
+
 </div>
 <!-- Main content End -->
 

@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
 
@@ -24,8 +24,8 @@
                                     href="#prod-overview" role="tab" aria-controls="prod-overview"
                                     aria-selected="true">heer</a>
                             </li>
-                           
-                         
+
+
                         </ul>
                         <div class="tab-content tabs-content" id="myTabContent">
                             <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
@@ -37,8 +37,8 @@
                                             <div class= "mission_description">
                                                 <h3>{% trans 'about_the_mission' %}</h3>
                                             <p>{{object.mission.description}} </p>
-                                            
-                                          
+
+
                                             <div class="inner-box" >
                                             <h2>{% trans 'my_response' %}</h2>
                                     <p>,{{object.response_comment}} </p>
@@ -56,13 +56,13 @@
                                         <button type="submit">{% trans 'send' %}</button>
 
                                     </form>
-                                   
-                                    
+
+
                                     {% endif %}
-                                    
- 
+
+
                                     {% endif %}
-                                    
+
 
 {% if user.profile == object.attributed_to %}
 <button><a href="{% url 'submit_mission' object.id %}">{% trans 'edit-response' %}</a> </button>
@@ -72,20 +72,20 @@
                                     </div>
                                 </div>
                             </div>
-                    
+
                             {% if user.profile.name == 'speaker' %}
 
                             {% if object.response_file or object.response_comment %}
                         {% trans 'file_lable' %} :{{object.response_file}}
-                        {% trans 'text_lable' %}: {{object.response_comment}} 
+                        {% trans 'text_lable' %}: {{object.response_comment}}
                             {% else %}
-                            
+
                             {% trans 'no_answer_yet' %}
                         {% endif %}
                             {% endif %}
-                            
-                           
-                            
+
+
+
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                 <!-- Video Column -->
                 <div class="video-column col-lg-4">
                     <div class="inner-column">
-                       
+
                         <div class="course-features-info">
                             <ul>
                                 <li class="lectures-feature">
@@ -102,7 +102,7 @@
                                     <span class="value">{{object.field}}</span>
                                 </li>
 
-                        
+
 
                                 <li class="students-feature">
                                     <i class="fa fa-users"></i>
@@ -125,7 +125,7 @@
     </section>
     <!-- End intro Courses -->
 
-   
+
 </div>
 <!-- Main content End -->
 

@@ -1,29 +1,67 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
 
+<!-- <div class="color_example1">
+
+</div> -->
 
 <!-- Main content Start -->
-<div class="main-content">
-    <!-- Breadcrumbs Start -->
-    <div class="rs-breadcrumbs breadcrumbs-overlay">
-        <div class="breadcrumbs-img">
-            <img src="assets/images/breadcrumbs/2.jpg" alt="Breadcrumbs Image">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+
+
+    <h5 class="card-header" style="text-align:center;">{% trans 'project_list_title' %}</h5>
+
+          <table class="table table-bordered table-hover table-responsive-md">
+            <thead>
+                <tr>
+                  <th scope="col">{% trans 'project_name_table_header' %}</th>
+                  <th scope="col">{% trans 'speaker_table_header' %}</th>
+                  <th scope="col">{% trans 'field_table_header' %}</th>
+                  <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
+                </tr>
+            </thead>
+              <tbody>
+                {% for project in project_list %}
+                <tr>
+                  <th scope="row"><a href="{% url 'project_detail' project.id %}">{{project.name}}</th>
+                  <td>{{project.speaker.user.first_name}}</td>
+                  <td>{{project.field}}</td>
+                  <td>{{project.time_to_complet}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+
+            </tbody>
+          </table>
         </div>
+  </div>
+  </div>
+
+
+    <!-- Breadcrumbs Start -->
+    <!-- <div class="rs-breadcrumbs breadcrumbs-overlay">
         <div class="breadcrumbs-text white-color">
             <h1 class="page-title">Course Grid 02</h1>
-          
+
           {% trans 'project_list_title' %}
 
             <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>
-           
+
         </div>
     </div>
     <div class="row">
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    
+
                     <table id="zero-conf" class="display" style="width:100%">
                         <thead>
                             <tr>
@@ -31,7 +69,7 @@
                                 <th>{% trans 'speaker_table_header' %}</th>
                                 <th>{% trans 'field_table_header' %}</th>
                                 <th>{% trans 'time_to_complete_table_header' %}</th>
-                           
+
                             </tr>
                         </thead>
                         <tbody>
@@ -49,7 +87,7 @@
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
 
 {% endblock %}

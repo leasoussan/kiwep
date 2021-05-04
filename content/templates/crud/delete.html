@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
@@ -9,8 +9,8 @@
         <h3 class="error-message">DELETE</h3>
         <form action="" method="POST">
             {% csrf_token %}
-        
-        
+
+
             <button type="submit" value="delete">Delete</button>
         </form>
 

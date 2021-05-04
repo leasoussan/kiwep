@@ -10,10 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-# language add 
+# language add
 from django.utils.translation import ugettext_lazy as _
 
-# heroku 
+# heroku
 import django_heroku
 
 
@@ -62,13 +62,13 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware', #language adding Middleware after Seesion before common 
+    'django.middleware.locale.LocaleMiddleware', #language adding Middleware after Seesion before common
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
 ]
 
 ROOT_URLCONF = 'kiwep.urls'
@@ -159,7 +159,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = "dashboard"
@@ -183,9 +183,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 DEBUG = os.environ.get('DEBUG')
 
 
-try:    
+try:
     from .local_settings import *
 except ImportError:
     pass
-
-

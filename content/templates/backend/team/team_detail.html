@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% load mytags %}
 
@@ -50,7 +50,7 @@
 
                 </div>
             </div>
-           
+
         </div>
     </div>
 
@@ -63,7 +63,7 @@
                     {{team.project.description}}
                 </div>
             </div>
-          
+
         </div>
         <div>
            <button><a href="#">Comment Team Board</a></button>
@@ -90,24 +90,6 @@
 
 {% endif %}
 
-
-
-
-<!-- 
-{% if user.profile.name == "speaker" %} 
-
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-               <a href="{% url 'create_mission' %}">{% trans 'add_mission_link' %}</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-{% endif %} -->
 
 <div class="row">
     <div class="col">
@@ -142,13 +124,13 @@
                             <td>{{projectmission.points}}</td>
                             <td>{{projectmission.due_date}}</td>
 
-                            <td>   
+                            <td>
                             {% if user.is_student %}
                                 <td><a href="{% url 'claim_mission' projectmission.id %}">{% trans 'claim_mission_link' %}</a></td>
                             {% else %}
-                                {% trans 'available_mission' %} 
-                            {% endif %}
-                     
+                                {% trans 'available_mission' %}
+                          {% endif %}
+
                         </tr>
                         {% endfor %}
                         {% endif %}
@@ -191,22 +173,20 @@
                                 <a
                                     href="{% url 'mission_detail' projectmission.mission.id %}">{{projectmission.mission.name}}</a>
                             </td>
-
                             <td>{{projectmission.stage}}</td>
                             <td>{{projectmission.points}}</td>
                             <td>{{projectmission.due_date}}</td>
-
-                            <td>   
+                      {% endfor %}
+                            <td>
                             {% if user.is_student %}
                                 <td><a href="{% url 'claim_mission' projectmission.id %}">{% trans 'claim_mission_link' %}</a></td>
                             {% else %}
-                                {% trans 'available_mission' %} 
+                                {% trans 'available_mission' %}
                             {% endif %}
-                     
-                        </tr>
-                        {% endfor %}
-                        {% endif %}
 
+                        </tr>
+
+                        {% endif %}
                     </tbody>
 
                 </table>
@@ -214,14 +194,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -245,19 +217,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                         {% for projectmission in team.individualprojectmission_set.get_attributed_mission %}
                         <tr>
                             <td><a href="
                                 {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
                                 {% url 'submit_mission' projectmission.id %}
-                            
+
                                 {% else %}
                                 {% url 'team_mission_detail' projectmission.id %}
                                 {% endif %}
-                                
-
-                                ">{{projectmission.mission.name}}</a> </td>
+                            ">{{projectmission.mission.name}}</a> </td>
                             <td>{{projectmission.attributed_to}}</td>
                             <td>{{projectmission.mission.stage}}</td>
                             <td>{{projectmission.points}}</td>
@@ -300,19 +270,19 @@
                     <tbody>
                         student_missions
                         {% for projectmission in team.individualprojectmission_set.all|student_missions:user.student %}
-                        
-                        
-                     
-                        
+
+
+
+
                         <tr>
                             <td><a href="
                                 {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
                                 {% url 'submit_mission' projectmission.id %}
-                            
+
                                 {% else %}
                                 {% url 'team_mission_detail' projectmission.id %}
                                 {% endif %}
-                                
+
 
                                 ">{{projectmission.mission.name}}</a> </td>
                             <td>{{projectmission.mission_type}}</td>
@@ -329,19 +299,19 @@
 
                       <tr><td>here</td> </tr>
                         {% for collectiveindividualmission in user.student.individual_team_mission.all|collective_student_missions:team %}
-                        
-                        
-                     
-                        
+
+
+
+
                         <tr>
                             <td><a href="
                                 {% if user.profile == collectiveindividualmission.attributed_to and not collectiveindividualmission.response_file %}
                                 {% url 'submit_mission' collectiveindividualmission.id %}
-                            
+
                                 {% else %}
                                 {% url 'team_mission_detail' collectiveindividualmission.id %}
                                 {% endif %}
-                                
+
 
                                 ">{{collectiveindividualmission.parent_mission.mission.name}}</a> </td>
                             <td>{{collectiveindividualmission.parent_mission.mission_type}}</td>
@@ -351,6 +321,7 @@
                             <td>{{collectiveindividualmission.parent_mission.status}}</td>
                         </tr>
                         {% endfor %}
+                        {% endfor %}
                     </tbody>
 
                 </table>
@@ -358,8 +329,8 @@
         </div>
     </div>
 </div>
-                {% endif %}
 
+      {% endif %}
 
             
 {% endblock %}

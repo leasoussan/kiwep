@@ -1,28 +1,78 @@
-{% extends 'baseb.html' %}
+{% extends 'homepage.html' %}
+{% load static %}
 {% load i18n %}
 {% block content %}
 
-<h2>{% trans 'login'%}</h2>
+<div class="container-fluid">
+  <div class="card">
+    <h5 class="card-header" style="text-align:center;">{% trans 'login in to your kiwep account!'%}</h5>
+    <div class="card-body" style="margin-top:50px; margin-bottom:50px;">
+      <form method="post" style="text-align: center;">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-block btn-submit">{% trans 'login'%}</button>
+      </form>
+      <div style="text-align:center; margin-bottom:50px; margin-top:50px;" >
+
+          <ul>
+            <li><div class="custom-control custom-checkbox form-group">
+                <input type="checkbox" class="custom-control-input" id="exampleCheck1">
+                <label class="custom-control-label" for="exampleCheck1">{% trans 'remeber_me_login'%}</label>
+            </div></li>
+            <li><a href="{{ 'password_reset' }}" class="forgot-link">{% trans 'forgot_password_link'%}</a></li>
+            <li><a  class="forgot-link" href="{% url 'password_reset' %}">{% trans 'reste_password_link'%}</a></li>
+          </ul>
+      </div>
+    </div>
+</div>
+
+
+  <!-- <div class="row g-3 align-items-center" style="display: flex;
+  justify-content: content;
+  align-items: center; margin-top:50px;">
+
+        <form method="post" style="text-align: center;">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-block btn-submit">{% trans 'login'%}</button>
+        </form>
+        <div style="text-align:center; margin-bottom:80px;" >
+
+            <ul>
+              <li><div class="custom-control custom-checkbox form-group">
+                  <input type="checkbox" class="custom-control-input" id="exampleCheck1">
+                  <label class="custom-control-label" for="exampleCheck1">{% trans 'remeber_me_login'%}</label>
+              </div></li>
+              <li><a href="{{ 'password_reset' }}" class="forgot-link">{% trans 'forgot_password_link'%}</a></li>
+              <li><a  class="forgot-link" href="{% url 'password_reset' %}">{% trans 'reste_password_link'%}</a></li>
+            </ul>
+        </div>
+
+  </div> -->
+</div>
 
 
 
+
+
+<!--
 <body class="auth-page sign-in">
 
 
     <div class="connect-container align-content-stretch d-flex flex-wrap">
-        <div class="container-fluid">
+        <div class="container-fluid signup_in">
             <div class="row">
                 <div class="col-lg-5">
                     <div class="auth-form">
                         <div class="row">
                             <div class="col">
                                 <div class="logo-box"><a href="#" class="logo-text">{% trans 'kiwep_platform'%}</a></div>
-                              
+
 
                                     <form method="post">
                                         {% csrf_token %}
                                         {{ form.as_p }}
-                                        <button type="submit" class="btn btn-primary btn-block btn-submit">{% trans 'login'%}</button>
+                                        <button type="submit" class="btn btn-block btn-submit">{% trans 'login'%}</button>
                                     </form>
 
 
@@ -31,23 +81,27 @@
                                             <input type="checkbox" class="custom-control-input" id="exampleCheck1">
                                             <label class="custom-control-label" for="exampleCheck1">{% trans 'remeber_me_login'%}</label>
                                         </div>
-                                        <a href="{{ 'password_reset' }}" class="forgot-link">{% trans 'forgot_password_link'%}</a>
+                                        <ul>
+                                          <li><a href="{{ 'password_reset' }}" class="forgot-link">{% trans 'forgot_password_link'%}</a></li>
+                                          <li><a  class="forgot-link" href="{% url 'password_reset' %}">{% trans 'reste_password_link'%}</a></li>
+
+                                        </ul>
                                     </div>
-                              
+
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 d-none d-lg-block d-xl-block">
+                </div> -->
+                <!-- <div class="col-lg-6 d-none d-lg-block d-xl-block">
                     <div class="auth-image">
                         <img src="#" alt="">
                     </div>
-                </div>
-            </div>
+                </div> -->
+            <!-- </div>
         </div>
-    </div>
+    </div>  -->
 
 
 
-    <a href="{% url 'password_reset' %}">{% trans 'reste_password_link'%}</a>
+
     {% endblock %}

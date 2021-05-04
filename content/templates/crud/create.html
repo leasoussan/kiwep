@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load mytags %}
 {% load crispy_forms_tags %}
 
@@ -12,9 +12,9 @@
         <h2>Create new {{view.model|return_class_name}}</h2>
         <div class="cart-wrap">
                 <table class="cart-table">
-                    
+
                     <form action="", method="POST">
-                        
+
                         {% csrf_token %}
                         {% if form %}
                         {{form|crispy }}
@@ -31,8 +31,8 @@
                         <button class="btn-shop orange-color" type="submit" value="Save">SAVE</button>
                     </form>
                 </table>
-            
-            
+
+
             </div>
         </div>
     </div>
