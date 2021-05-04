@@ -145,7 +145,7 @@ class CreateProfile(View):
 
 
 class MyProfileView(ProfileCheckPassesTestMixin, View):
-
+    """ This view is to show the User Profile view"""
     def get(self, request, id):
         user = MyUser.objects.get(id=id)
         profile_view = user.profile
@@ -160,7 +160,7 @@ class MyProfileView(ProfileCheckPassesTestMixin, View):
 
     
 class EditProfile(ProfileCheckPassesTestMixin, View): 
-   
+    """ Edit Profile """
     def get(self, request):
         user_form = UserForm(instance =request.user)
         profile_form = get_user_profile_form(request, request.user.get_user_type(), edit =True) 
@@ -191,10 +191,12 @@ class MyLoginView(LoginView):
 
 
 class ProfileView(View):
+    """ View to show profile view - not logged in User"""
     'profile_view'
     pass
 
 
 
 def page_404(request):
+    """ 404 Page Not Found"""
     return render(request, '404.html')
