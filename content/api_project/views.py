@@ -7,13 +7,27 @@ from rest_framework.generics import (
     RetrieveUpdateAPIView,
 )
 
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
 from content.models import Project 
 from .serializer import (
     ProjectListSerializer, 
     ProjectDetailSerializer, 
-    ProjectCreateUpdateSerializer
-,
+    ProjectCreateUpdateSerializer,
 )
+
+
+@api_view(['GET'])
+def projectOverview(request):
+    project_urls = {
+        'List': '/project_list/',
+        'Detail View': '/project_detail/<str:pk>/',
+        'Create': '/project_create/',
+        'Update': '/project_update/<str:pk>/',
+        'Delete': '/project_delete/<str:pk>/',
+    }
+    return Response(project_urls)
 
 
 

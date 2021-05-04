@@ -32,9 +32,9 @@ urlpatterns = [
   
 
      # to add the api module 
-    path('api/content/', include('content.api.urls')),
+    path('api_project/content/', include('content.api_project.urls')),
 
 ]
 
-urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

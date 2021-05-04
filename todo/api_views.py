@@ -21,7 +21,7 @@ def todoOverview(request):
         'Detail View': '/task_detail/<str:pk>/',
         'Create': '/task_create/',
         'Update': '/task_update/<str:pk>/',
-        'List': '/task_delete/<str:pk>/',
+        'Delete': '/task_delete/<str:pk>/',
     }
     return Response(todo_urls)
 
