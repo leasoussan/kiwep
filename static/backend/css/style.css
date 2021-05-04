@@ -24,7 +24,7 @@ button {
 }
 
 button:hover {
-  background-image: linear-gradient(to right, #425940, #9fce9c);
+  background-color: #425940;
   border-radius: 10px;
 }
 .btn {
@@ -35,7 +35,7 @@ button:hover {
   color: #fffefc;
 }
 .btn:hover {
-  background-image: linear-gradient(to right, #425940, #9fce9c);
+  background-color: #425940;
   border-radius: 10px;
   color: #fffefc;
 }

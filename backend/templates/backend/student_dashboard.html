@@ -1,12 +1,9 @@
 {% load i18n %}
 
-Hello, {{ user.username|default:'Guest' }}!
-
-
-
-
+<!-- Hello, {{ user.username|default:'Guest' }}! -->
 
 <div>
+  <h2 style ="text-align:center;">{% trans 'welcome'%} {{user.first_name}}</h2><br>
 
 
     <div class="main-wrapper">
@@ -81,7 +78,6 @@ Hello, {{ user.username|default:'Guest' }}!
                                         <td>{% trans 'project_is_done' %}</td>
                                         {% endif %}
                                     </tr>
-                                    </tr>
                                     {% endfor %}
 
                                 </tbody>
@@ -154,11 +150,8 @@ Hello, {{ user.username|default:'Guest' }}!
             </div> -->
 <!-- end commented out -->
 
-        <!-- </div>
+        </div>
 
     </div>
 
-</div>
-
-</div>
 </div>
