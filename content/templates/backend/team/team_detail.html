@@ -82,29 +82,6 @@
 {% endif %}
 
 
-
-
-<<<<<<< HEAD
-
-{% if user.profile.name == "speaker" %}
-=======
-<!-- 
-{% if user.profile.name == "speaker" %} 
->>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
-
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-               <a href="{% url 'create_mission' %}">{% trans 'add_mission_link' %}</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-{% endif %} -->
-
 <div class="row">
     <div class="col">
         <div class="card">
@@ -143,7 +120,7 @@
                                 <td><a href="{% url 'claim_mission' projectmission.id %}">{% trans 'claim_mission_link' %}</a></td>
                             {% else %}
                                 {% trans 'available_mission' %}
-                            {% endif %}
+                          {% endif %}
 
                         </tr>
                         {% endfor %}
@@ -187,15 +164,10 @@
                                 <a
                                     href="{% url 'mission_detail' projectmission.mission.id %}">{{projectmission.mission.name}}</a>
                             </td>
-<<<<<<< HEAD
-
-=======
->>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
-
                             <td>{{projectmission.stage}}</td>
                             <td>{{projectmission.points}}</td>
                             <td>{{projectmission.due_date}}</td>
-
+                      {% endfor %}
                             <td>
                             {% if user.is_student %}
                                 <td><a href="{% url 'claim_mission' projectmission.id %}">{% trans 'claim_mission_link' %}</a></td>
@@ -204,9 +176,8 @@
                             {% endif %}
 
                         </tr>
-                        
-                        {% endif %}
 
+                        {% endif %}
                     </tbody>
 
                 </table>
@@ -214,14 +185,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -245,34 +208,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                         {% for projectmission in team.individualprojectmission_set.get_attributed_mission %}
                         <tr>
                             <td><a href="
                                 {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
                                 {% url 'submit_mission' projectmission.id %}
-                            
+
                                 {% else %}
                                 {% url 'team_mission_detail' projectmission.id %}
                                 {% endif %}
-                                
-
-<<<<<<< HEAD
-                            <td>
-                            {% if user.is_student %}
-                                <td><a href="{% url 'claim_mission' studentmission.id %}">{% trans 'claim_mission_link' %}</a></td>
-                            {% else %}
-                                {% trans 'available_mission' %}
-                            {% endif %}
-
-=======
-                                ">{{projectmission.mission.name}}</a> </td>
+                            ">{{projectmission.mission.name}}</a> </td>
                             <td>{{projectmission.attributed_to}}</td>
                             <td>{{projectmission.mission.stage}}</td>
                             <td>{{projectmission.points}}</td>
                             <td>{{projectmission.due_date}}</td>
                             <td>{{projectmission.status}}</td>
->>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -308,13 +259,13 @@
                         </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
+
 
                         {% for projectmission in team.CollectiveProjectMission_set.get_attributed_mission %}
-=======
-                        
+
+
                         {% for projectmission in team.individualprojectmission_set.is_my_mission %}
->>>>>>> 37f3f1198e328ebe911e8d824b06cecaa2644d74
+
                         <tr>
                             <td><a href="
                                 {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
@@ -333,6 +284,7 @@
                             <td>{{projectmission.status}}</td>
                         </tr>
                         {% endfor %}
+                        {% endfor %}
                     </tbody>
 
                 </table>
@@ -340,8 +292,8 @@
         </div>
     </div>
 </div>
-                {% endif %}
 
+      {% endif %}
 
 
 {% endblock %}
