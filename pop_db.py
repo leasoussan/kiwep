@@ -238,6 +238,10 @@ def pop_student(n):
 
 
 
+
+
+
+
 def pop_resources(n):
     for r in range(n):
         name = 'Resource {resource}'
@@ -286,8 +290,7 @@ def pop_missions(n):
         resources = random.choices(Resource.objects.all())
         owner = random.choice(MyUser.objects.all())
         points = 3
-        mission_type = random.choice(MISSION_TYPE)
-        response_type = random.choice(RESPONSE_TYPE)
+    
 
         m = Mission(
             name=name,
@@ -317,25 +320,22 @@ def pop_project(n):
         description = "This Project is about Blbalabal"
         time_to_complet = random.randrange(60, 120, 10)
         difficulty = random.choice(Level.objects.all())
-        completed = False
         speaker = random.choice(Speaker.objects.all())
 
 
         p = Project(
             name = name,
+            title =title,
             description = description,
             time_to_complet = time_to_complet,
             difficulty = difficulty,
-            completed = completed,
+            completed = False,
             speaker = speaker,
             title = "title",
             points = random.randint(1,4)
         )
         p.save()
-        # project.missions
-        # project.acquried_skill
-        # project.required_skills
-        # project.field
+      
         field = list(Field.objects.all())
         required_skills= list(Skills.objects.all())
         acquried_skills = list(Skills.objects.all())
@@ -349,6 +349,13 @@ def pop_project(n):
 
 
     print(f"Finished...{n} Projects populated.")
+
+
+
+
+def pop_project_mission():
+    pass
+
 
 
 

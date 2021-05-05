@@ -99,7 +99,7 @@ class Project(models.Model):
     difficulty = models.ForeignKey(Level, on_delete=models.CASCADE) 
     completed = models.BooleanField(default =False)
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-    missions = models.ManyToManyField(Mission, through= 'ProjectMission',  blank =True)
+    missions = models.ManyToManyField(Mission, through= 'ProjectMissionRating',  blank =True)
     points = models.PositiveIntegerField()
     
     
@@ -148,7 +148,7 @@ def email_new_project_event(sender, created, instance, **kwargs):
 
 # yhis is up to the speaker to decide on this mission the amounts of % of this prohect mission - keep Flexible and editable
 
-class ProjectMission(models.Model):
+class ProjectMissionRating(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)
     percentage = models.DecimalField(max_digits=4, decimal_places=2)
@@ -160,7 +160,7 @@ class ProjectMission(models.Model):
 #   
 class HardSkillsRating(models.Model):
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
-    project_mission = models.ForeignKey(ProjectMission, on_delete=models.CASCADE)
+    project_mission = models.ForeignKey(ProjectMissionRating, on_delete=models.CASCADE)
     percentage = models.DecimalField(max_digits=4, decimal_places=2)
 
 
