@@ -1,8 +1,50 @@
 {% load i18n %}
 
+
+<main role="main" class="container-fluid">
+        <div class="card">
+          <h5 class="card-header">About us</h5>
+          <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn">Go somewhere</a>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+</div>
+</main>
+
+<!-- <h4 style="margin-right:300px;">{% trans 'welcome'%} {{user.first_name}}</h4> -->
 <!-- Hello, {{ user.username|default:'Guest' }}! -->
 
-<div>
+<!-- <div>
   <h2 style ="text-align:center;">{% trans 'welcome'%} {{user.first_name}}</h2><br>
 
 <main "container-fluid">
@@ -57,7 +99,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-12">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">{% trans 'my_team_projects_title' %}</h5>
@@ -99,163 +141,4 @@
 </div>
 
 </main>
-</div>
-
-
-
-
-
-
-
-
-
-<!--
-    <div class="main-wrapper">
-        <div class="row stats-row">
-            <div class="col-lg-12">
-                <div class="card card-transactions">
-                    <div class="card-body">
-                        <h5 class="card-title">{% trans 'available_projects_title' %}<a href="#" class="card-title-helper blockui-transactions"><i
-                                    class="material-icons">{% trans 'refresh' %}</i></a></h5>
-
-
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">{% trans 'Team_name_title_table_head' %}</th>
-                                        <th scope="col">{% trans 'project_name_table_head' %}</th>
-                                        <th scope="col">{% trans 'field_table_head' %}</th>
-                                        <th scope="col">{% trans 'status_table_head' %}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    {% for team in user.profile.class_level.team_set.all  %}
-                                    {% if request.user.profile not in team.participants.all %}
-
-
-                                    <tr>
-                                        <td> <a href="{% url 'team_detail'  team.id %}">{{team.name}}</a> </td>
-                                        <td>{{ team.project.name }}</td>
-                                        <td>{{ team.project.field }}</td>
-                                        <td>{{ team.project.time_to_complet }}</td>
-                                    </tr>
-                                    {% endif %}
-                                    {% endfor %}
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="card card-transactions">
-                    <div class="card-body">
-                        <h5 class="card-title">{% trans 'my_team_projects_title' %}<a href="#" class="card-title-helper blockui-transactions"><i
-                                    class="material-icons">refresh</i></a></h5>
-
-                            <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                    <th  scope="col">{% trans 'Team_name_title_table_head' %}</th>
-                                        <th scope="col">{% trans 'project_name_table_head' %}</th>
-                                        <th scope="col">{% trans 'field_table_head' %}</th>
-                                        <th scope="col">{% trans 'status_table_head' %}</th>
-                                        <th scope="col">{% trans 'time_to_complete' %}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    {% for team in user.profile.team_set.all %}
-
-
-                                    <tr>
-                                        <td> <a href="{% url 'team_detail'  team.id %}">{{team.name}}</a> </td>
-                                        <td>{{ team.project.name }}</td>
-                                        <td>{{ team.project.field }}</td>
-                                        {% if project.completed != 'True' %}
-                                        <td>{% trans 'in_process' %}</td>
-                                        {% else %}
-                                        <td>{% trans 'project_is_done' %}</td>
-                                        {% endif %}
-                                    </tr>
-                                    {% endfor %}
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-
-            <div class="col-lg-6 col-md-12">
-                <div class="card card-transparent stats-card">
-                    <div class="card-body">
-                        <div class="stats-info">
-                            <h5 class="card-title">{% trans 'missions_title' %}<span
-                                    class="stats-change stats-change-success">#Missions</span></h5>
-
-                            <a href="{% url 'my_mission_list' %}">{% trans 'mission_board_link' %}</a>
-
-
-                            <div class="top-products-list">
-
-                                {% for mymission in user.profile.my_missions.all %}
-                                <div class="product-item">
-                                  <a href="{% url 'team_mission_detail' mymission.id%}">       <h5>{{ mymission.mission.name }}</h5></a>
-
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div> -->
-<!-- was commented out -->
-            <!-- <div class="col-lg-4 col-md-12">
-                <div class="card card-transparent stats-card">
-
-                    <div class="card-body">
-                        <div class="stats-info">
-                            <h5 class="card-title">Resource<span class="stats-change stats-change-success">nbr
-                                    of Rsc</span></h5>
-
-                            <a href="{% url 'resource_list' %}">Resource List</a>
-
-
-                            <div class="top-products-list">
-
-                                {% for mission in user.my_mission.all %}
-                                {% for resource in mission.resources.all %}
-
-                                <div class="product-item">
-
-                                    {{resource.name}}
-
-
-
-
-                                </div>
-                                {% endfor %}
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> -->
-<!-- end commented out -->
-
-        <!-- </div>
-
-    </div>
-
 </div> -->

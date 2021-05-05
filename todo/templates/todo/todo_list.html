@@ -6,14 +6,51 @@
 {% block content %}
 
 
-{% if personal_task %}
-{% for task in personal_task %}
-{{task.title}}
-{% endfor %}
 
-{% else %}
-<h2>You dont have personal tasks at the moment</h2>
 
-{% endif %}
+
+<main class= "container-fluid">
+  <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+
+        <h5 class="card-title">My tasks</h5>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th scope="col">Todo</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <td>
+                  {% if personal_task %}
+                  {% for task in personal_task %}
+                  <h5 class="card-title">{{task.title}}</h5>
+                  {% endfor %}
+                </td>
+
+                </tr>
+                <tr>
+                  {% else %}
+
+                      <td colspan="2">You dont have personal tasks at the moment</td>
+                  {% endif %}
+
+                </tr>
+
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+
+
 
 {% endblock %}

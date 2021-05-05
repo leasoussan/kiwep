@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% block content %}
 
 {% for mission in mission_list %}
@@ -7,7 +9,46 @@
 
 {% endfor %}
 
+<main class= "container-fluid">
+  <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{% trans 'available_projects_title' %}</h5>
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th scope="col">My Team</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <td>
+                  {% for mission in mission_list %}
+                <h1>Mission Name <a href="{% url 'mission_detail'  mission.pk %}">{{ mission.name }}</a></h1>
+                {% endfor %}
+                </td>
 
+                </tr>
+                <tr>
+
+                  <td colspan="2"><a href="{% url 'create_mission' %}">Add Mission</a></td>
+                </tr>
+                <tr>
+
+                  <td colspan="2"><a href="{% url 'content_manager' %}">content Manager </a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+{% endblock %}
+<!--
 <table class="table table-hover table-striped">
   <thead>
     <tr>
@@ -15,7 +56,7 @@
       <th scope="col">My Team</th>
     </tr>
   </thead>
-  <tbody">
+  <tbody>
     <tr>
       <th scope="row" style="text-align:center;">1</th>
       <td>{% for mission in mission_list %}
@@ -35,6 +76,4 @@
     </tr>
   </tbody>
 
-</table>
-
-{% endblock %}
+</table> -->

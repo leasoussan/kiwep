@@ -21,11 +21,6 @@
 
 
 
-
-
-
-<<<<<<< HEAD
-=======
 <div class="row">
     <div class="col-lg-4">
         <div class="card top-products">
@@ -93,11 +88,10 @@
 {% endif %}
 
 
-<<<<<<< HEAD
 
 
-<!-- 
-{% if user.profile.name == "speaker" %} 
+<!--
+{% if user.profile.name == "speaker" %}
 
 <div class="row">
     <div class="col">
@@ -112,8 +106,7 @@
 
 {% endif %} -->
 
-=======
->>>>>>> frontend
+
 <div class="row">
     <div class="col">
         <div class="card">
@@ -196,10 +189,7 @@
                                 <a
                                     href="{% url 'mission_detail' projectmission.mission.id %}">{{projectmission.mission.name}}</a>
                             </td>
-<<<<<<< HEAD
 
-=======
->>>>>>> frontend
                             <td>{{projectmission.stage}}</td>
                             <td>{{projectmission.points}}</td>
                             <td>{{projectmission.due_date}}</td>
@@ -255,7 +245,7 @@
                                 {% url 'team_mission_detail' projectmission.id %}
                                 {% endif %}
 <<<<<<< HEAD
-                                
+
 
                                 ">{{projectmission.mission.name}}</a> </td>
 =======
@@ -304,10 +294,10 @@
                         student_missions
                         {% for projectmission in team.individualprojectmission_set.all|student_missions:user.student %}
 <<<<<<< HEAD
-                        
-                        
-                     
-                        
+
+
+
+
 =======
 
 
@@ -361,7 +351,7 @@
                             <td>{{collectiveindividualmission.parent_mission.status}}</td>
                         </tr>
                         {% endfor %}
-                        
+
                     </tbody>
 
                 </table>
