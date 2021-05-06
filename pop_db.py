@@ -206,6 +206,46 @@ def pop_speaker(n):
 
 
 
+skills_list = ['Develop', 'writing', 'elaborating', 'research', 'Communicating']
+
+
+def pop_skills(n):
+    skill = random.choice(skills_list)
+    for skill in skills_list:
+        skill = Skills(name = skill)
+        skill.save()
+
+        skill.field.add(random.choice(list(Field.objects.all())))
+
+
+
+
+def pop_student_soft_skills_rating(n):
+    for  soft in skills:
+        student = random.choice(Student.objects.all())
+        skill = random.choice(Skills.objects.all())
+        rating = random.randint(1,10)
+        team =  random.choice(Team.objects.all())
+        comment = "You did well, with time we all can do better:)"
+   
+        soft = StudentSoftSkillRating(
+            student=student,
+            skill = skill,
+            rating = rating,
+            team=team, 
+            comment = comment
+        )
+
+        soft.save()
+
+    print(f'Student Rating Board:{student_profile.id}')
+
+    
+
+
+
+
+
 
 def pop_student(n):
     for i in range(n):
@@ -219,6 +259,7 @@ def pop_student(n):
             phone_number = '+972 500000000',
             profile_pic = 'media/profile/avatar.png',
             city = City.objects.get(name='Tel-aviv'),
+            
             )
         user.save()
 
@@ -227,6 +268,7 @@ def pop_student(n):
             field = random.choice(Field.objects.all()),
             dob= '1987-09-09',
             user = user,
+            softs_skills = 
         )
         student_profile.save()
 
@@ -259,18 +301,6 @@ def pop_resources(n):
     print(f"Finished...{n} Resource populated.")
 
 
-
-
-skills_list = ['Develop', 'writing', 'elaborating', 'research', 'Communicating']
-
-
-def pop_skills(n):
-    skill = random.choice(skills_list)
-    for skill in skills_list:
-        skill = Skills(name = skill)
-        skill.save()
-
-        skill.field.add(random.choice(list(Field.objects.all())))
 
 
 
