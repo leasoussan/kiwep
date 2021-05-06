@@ -268,7 +268,7 @@ def pop_student(n):
             field = random.choice(Field.objects.all()),
             dob= '1987-09-09',
             user = user,
-            softs_skills = 
+           
         )
         student_profile.save()
 
@@ -343,10 +343,12 @@ def pop_missions(n):
 
 
 
+
+
 def pop_project(n):
     for project in range(n+1):
-        name = f"Project{project}"
-        title = "This is to mprove your skiils"
+        name = "Kiwep {n}"
+        title = "Welcome to Kiwep Project "
         description = "This Project is about Blbalabal"
         time_to_complet = random.randrange(60, 120, 10)
         difficulty = random.choice(Level.objects.all())
@@ -361,8 +363,7 @@ def pop_project(n):
             difficulty = difficulty,
             completed = False,
             speaker = speaker,
-            title = "title",
-            points = random.randint(1,4)
+            points = random.randint(1,4),
         )
         p.save()
       
@@ -383,12 +384,24 @@ def pop_project(n):
 
 
 
-def pop_project_mission():
+def pop_project_mission_rating():
+    project = Project.objects.get(name="Kiwep")
+    for project_mission in project.mission:
+        
+        p_rating = ProjectMissionRating(
+        project = project,
+        mission = project_mission,
+        pourcentage = (random.randint(10,100)/100),
+        )
+
+        p_rating.save()
+        p_rating.hard_skills.add(random.choice(Skills.objects.all()))
+
+        print(f'populated kiwep with hard skills rating')
+
+
+def hard_skills_rating():
     pass
-
-
-
-
 
 STAGE_CHOICE = ['Start','Middle', 'Final']
 
@@ -516,9 +529,10 @@ pop_missions(20)
 
 
 pop_project(6)
-
+pop_project_mission_rating()
 pop_team(4)
-# pop_mission_projects(20)
+pop_student_soft_skills_rating(20)
+pop_mission_projects(20)
 
 
 pop_student_mission_project(10)
