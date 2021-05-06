@@ -16,14 +16,14 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                           {% if user.is_authenticated %}
-                          <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
-                          <li><a class="dropdown-item" href="{% url 'homepage' %}">Homepage</a></li>
+                          <li><a class="nav-link" style="" href="{% url 'dashboard' %}">Dashboard</a></li>
+                          <li><a class="nav-link" href="{% url 'homepage' %}">Homepage</a></li>
                           {% else %}
-                          <li><a class="dropdown-item" href="{% url 'logout' %}">Homepage</a></li>
+                          <li><a class="nav-link" href="{% url 'logout' %}">Homepage</a></li>
                           {% endif %}
-                          <li><a class="dropdown-item" href="#">Contact us</a></li>
+                          <li><a class="nav-link" href="#">Contact us</a></li>
                           <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          <li><a class="nav-link" href="#">Something else here</a></li>
                         </ul>
                     </li>
 
@@ -31,7 +31,12 @@
                 <!-- </button> -->
 
             </ul>
-            <ul><li style="margin: 0 auto;"><h4 style="margin-right:300px;">{% trans 'welcome'%} {{user.first_name}}</h4></li></ul>
+
+            <ul>
+                {% if user.is_authenticated %}
+              <li style="margin: 0 auto;"><h4 style="margin-right:300px;">{% trans 'welcome'%} {{user.first_name}}</h4></li>
+                {% endif %}
+            </ul>
 
 
             <span class="navbar-text">
@@ -64,7 +69,10 @@
                                 <span>{{user.username}}</span>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
+                    <li>
+                    <a class="nav-link active btn" href="{% url 'profile' %}">{% trans 'profile' %}</a>
+                      </li>
+                    <li><a class="nav-link active" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
                   </ul>
 
                 </li>
