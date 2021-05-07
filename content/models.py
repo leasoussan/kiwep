@@ -151,7 +151,7 @@ def email_new_project_event(sender, created, instance, **kwargs):
 class ProjectMissionRating(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)
-    percentage = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+    percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
     hard_skills = models.ManyToManyField(Skills, through='HardSkillsRating', blank = True)
 
 
@@ -161,7 +161,7 @@ class ProjectMissionRating(models.Model):
 class HardSkillsRating(models.Model):
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
     project_mission = models.ForeignKey(ProjectMissionRating, on_delete=models.CASCADE)
-    percentage = models.DecimalField(max_digits=4, decimal_places=2)
+    percentage = models.DecimalField(max_digits=4, decimal_places=2,  blank=True, null=True)
 
 
 
