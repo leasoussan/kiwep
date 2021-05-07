@@ -70,7 +70,7 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
-                    <a class="nav-link active btn" href="{% url 'profile' %}">{% trans 'profile' %}</a>
+                    <a class="nav-link active btn" href="{% url 'profile' user.id  %}">{% trans 'profile'  %}</a>
                       </li>
                     <li><a class="nav-link active" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
                   </ul>

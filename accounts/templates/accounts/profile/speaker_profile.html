@@ -1,19 +1,24 @@
 {% load i18n %}
 <body class="app-profile">
-        
 
-            
+
+
                 <div class="main-wrapper">
-                    <div class="profile-header">
-                        <div class="row">
-                            <div class="col">
-                                <div class="profile-img">
-                                    <img src="{{ 'user.profilepic_or_default' }}">
-                                </div>
-                                <div class="profile-name">
-                                    <h3>{{user.username}}</h3>
-                                    <span>{{ user.get_user_type }}</span>
-                                </div>
+                  <div class="profile-header">
+                      <div class="row">
+                          <div class="col-md-8">
+                            <div class="card" style="width: 18rem;">
+                              <img src="{{ 'user.profilepic_or_default' }}" class="card-img-top" alt="...">
+                                  <div class="card-body">
+                                    <h3 class="card-title">{{user.username}} <span>{{ user.get_user_type }}</span></h3>
+                                    <div class="profile-status">
+                                        <i> Active</i>
+                                    </div>
+
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                      <a style="color:black;" href="{% url 'edit_profile' %}">{% trans 'edit_profile'%}</a>
+                                  </div>
+                            </div>
                                 <div class="profile-menu">
                                     <ul>
                                         <!-- <li>
@@ -32,11 +37,37 @@
                                             <a href="#">Videos</a>
                                         </li> -->
                                         <li>
-                                            <a href="{% url 'edit_profile' %}">{% trans 'edit_profile'%}</a>
+
                                         </li>
                                     </ul>
-                                    <div class="profile-status">
-                                        <i> {% trans 'active'%}</i>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{% trans 'about'%}</h5>
+                                        <p>{% trans 'about_bio'%}</p>
+                                        <ul class="list-unstyled profile-about-list">
+                                            <li><i class="material-icons details_icon">{% trans 'school'%}</i><span>{% trans 'study_hisitory'%}<a href="#">{{user.profile.institution.name}}</a></span></li>
+
+                                            <li><i class="material-icons details_icon">{% trans 'my_location'%}</i><span>{% trans 'from'%} <a href="#">{{user.city}}</a></span></li>
+
+                                            <li>
+
+                                                <!-- <button class="btn btn-block btn-secondary m-t-lg">Message</button> -->
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{% trans 'contact_info'%}</h5>
+                                        <ul class="list-unstyled profile-about-list">
+                                            <li><i class="material-icons details_icon">mail_outline</i><span>{{user.email}}</span></li>
+                                            <li><i class="material-icons details_icon">home</i><span>Lives in <a href="#">{{user.city}}</a></span></li>
+                                            <li><i class="material-icons details_icon">local_phone</i><span>{{user.phone_number}}</span></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -52,43 +83,16 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-body">
-                                        
+
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{% trans 'about'%}</h5>
-                                        <p>{% trans 'about_bio'%}</p>
-                                        <ul class="list-unstyled profile-about-list">
-                                            <li><i class="material-icons">{% trans 'school'%}</i><span>{% trans 'study_hisitory'%}<a href="#">{{user.profile.institution.name}}</a></span></li>
-                                        
-                                            <li><i class="material-icons">{% trans 'my_location'%}</i><span>{% trans 'from'%} <a href="#">{{user.city}}</a></span></li>
-                    
-                                            <li>
-                
-                                                <!-- <button class="btn btn-block btn-secondary m-t-lg">Message</button> -->
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{% trans 'contact_info'%}</h5>
-                                        <ul class="list-unstyled profile-about-list">
-                                            <li><i class="material-icons">mail_outline</i><span>{{user.email}}</span></li>
-                                            <li><i class="material-icons">home</i><span>Lives in <a href="#">{{user.city}}</a></span></li>
-                                            <li><i class="material-icons">local_phone</i><span>{{user.phone_number}}</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
-            
-            
-     
+
+
+
 
 </body>
