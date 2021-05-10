@@ -3,17 +3,50 @@
 {% block content %}
 
 
-<a href="{% url 'content_manager' %}">content Manager </a>
+
+
+<main class= "container-fluid">
+  <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">My Teams</h5>
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                  <tr>
+                    {% for mission in mission_list %}
+                      <th scope="col"><h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1></th>
+                    {% endfor %}
+                  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <td>
+                  <a href="{% url 'create_mission' %}">Add Mission </a>
+                </td>
+
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
 
 
 
 
-{% for mission in mission_list %}
+<!-- {% for mission in mission_list %}
 <h1>----- Name <a href="#">AAA</a></h1>
 
 {% endfor %}
 
-<a href="{% url 'create_mission' %}">Add Mission</a>
+<a href="{% url 'create_mission' %}">Add Mission</a> -->
+
+
 
 
 {% endblock %}
