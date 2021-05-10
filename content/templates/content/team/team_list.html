@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block content %}
 
 
@@ -7,13 +7,44 @@
 <a href="{% url 'content_manager' %}">content Manager </a>
 My Teams
 
-{% for team in team_list %}
+<!-- {% for team in team_list %}
 <h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1>
 
-{% endfor %}
+{% endfor %} -->
 
 
-<a href="{% url 'create_team' %}">Add Team </a>
+
+
+<main class= "container-fluid">
+  <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">My Teams</h5>
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                  <tr>
+                    {% for team in team_list %}
+                      <th scope="col"><h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1></th>
+                    {% endfor %}
+                  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <td>
+                  <a href="{% url 'create_team' %}">Add Team </a>
+                </td>
+
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
 
 
 {% endblock %}

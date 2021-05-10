@@ -21,9 +21,6 @@
 
 
 
-
-
-
 <div class="row">
     <div class="col-lg-4">
         <div class="card top-products">
@@ -89,6 +86,25 @@
 </div>
 
 {% endif %}
+
+
+
+
+<!--
+{% if user.profile.name == "speaker" %}
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+               <a href="{% url 'create_mission' %}">{% trans 'add_mission_link' %}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endif %} -->
 
 
 <div class="row">
@@ -222,6 +238,10 @@
                                 {% else %}
                                 {% url 'team_mission_detail' projectmission.id %}
                                 {% endif %}
+
+
+                                ">{{projectmission.mission.name}}</a> </td>
+
                             ">{{projectmission.mission.name}}</a> </td>
                             <td>{{projectmission.attributed_to}}</td>
                             <td>{{projectmission.mission.stage}}</td>
@@ -265,7 +285,6 @@
                     <tbody>
                         student_missions
                         {% for projectmission in team.individualprojectmission_set.all|student_missions:user.student %}
-
 
 
 
@@ -316,7 +335,7 @@
                             <td>{{collectiveindividualmission.parent_mission.status}}</td>
                         </tr>
                         {% endfor %}
-                        
+
                     </tbody>
 
                 </table>
