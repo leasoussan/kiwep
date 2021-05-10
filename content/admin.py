@@ -7,8 +7,10 @@ from .models import (
     Skills,
     CollectiveProjectMission,
     IndividualProjectMission, 
-    IndividualCollectiveProjectMission
+    IndividualCollectiveProjectMission,
+    ProjectMissionRating
 )
+
 
 
 
@@ -32,6 +34,10 @@ class CollectiveProjectMissionInlineAdmin(admin.TabularInline):
 admin.site.register(IndividualProjectMission)
 admin.site.register(CollectiveProjectMission, CollectiveProjectMissionAdmin)
 
+
+
+class ProjectMissionRatingInlineAdmin(admin.TabularInline):
+    model = ProjectMissionRating
 
 # --------------------------------------------------------------------------
 
@@ -66,7 +72,7 @@ admin.site.register(Skills)
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ("name", "speaker", "completed")
-
+    inlines = [ProjectMissionRatingInlineAdmin]
 
 
 

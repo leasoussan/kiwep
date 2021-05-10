@@ -306,7 +306,7 @@ def pop_resources(n):
 
 
 
-MISSION_TYPE=('s_m', 't_m', 't_s_m')
+MISSION_TYPE=('s_m', 't_m')
 RESPONSE_TYPE = ('link', 'video', 'doc', 'power_p', 'image')
 
 def pop_missions(n):

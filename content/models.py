@@ -10,7 +10,7 @@ from .managers import *
 from django.utils.translation import ugettext_lazy as _
 # signals
 from django.dispatch import receiver
-from django.db.models.signals import post_save, m2m_changed
+from django.db.models.signals import post_save, m2m_changed, pre_delete
 
 from django.utils import timezone
 
@@ -127,24 +127,6 @@ def email_new_project_event(sender, created, instance, **kwargs):
     # here I can chose what to do 
 
 
-            #TODO 
-# # m2m_changed have acition attribute that have to be handled 
-# # reverse : if we want to remove a project from a mission (and not mission form a project) - as it's a many to many relation 
-
-# @receiver(m2m_changed, sender=Project.missions.through)
-# def update_team_mission_attribution(instance, reverse, action , pk_set, **kwargs):
-#     if not reverse:
-#         if action == 'post_remove':
-#             CollectiveProjectMission.objects.filter(team__in=instance.team_set.all()).filter(mission_id__in=pk_set).delete()
-
-#         elif action == 'post_add':
-#             project = instance
-#             for team in project.team_set.all():
-#                 for mission in project.mission.filter(id__in= pk_set):
-#                     CollectiveProjectMission.objects.create(mission=mission, team=team )
-
-
-
 
 # yhis is up to the speaker to decide on this mission the amounts of % of this prohect mission - keep Flexible and editable
 
@@ -153,7 +135,7 @@ class ProjectMissionRating(models.Model):
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)
     percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
     hard_skills = models.ManyToManyField(Skills, through='HardSkillsRating', blank = True)
-
+    
 
 # Teacher decides how much the mission distribution of points there is in the mission- according to skills ni the mission 
 # could be 100% of one skill and few % if many skills
@@ -162,6 +144,51 @@ class HardSkillsRating(models.Model):
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
     project_mission = models.ForeignKey(ProjectMissionRating, on_delete=models.CASCADE)
     percentage = models.DecimalField(max_digits=4, decimal_places=2,  blank=True, null=True)
+
+
+
+
+
+
+# m2m_changed have acition attribute that have to be handled 
+# reverse : if we want to remove a project from a mission (and not mission form a project) - as it's a many to many relation 
+
+@receiver(post_save, sender='content.ProjectMissionRating')
+def update_team_mission_attribution(sender, created, instance, *args,  **kwargs):
+    if created:         
+        mission = instance.mission
+        for team in instance.project.team_set.all():
+            if instance.mission.mission_type == 't_m':
+                CollectiveProjectMission.objects.create(mission=mission, team=team)
+
+            elif instance.mission.mission_type == 's_m':         
+                IndividualProjectMission.objects.create(mission=mission, team=team) 
+
+
+#TODO This part should be changed to a DEACTIVATE and not delete, that we could keep track on what has been done
+@receiver(pre_delete, sender='content.ProjectMissionRating')
+def update_team_delete_mission(sender, instance, *args,  **kwargs):
+    mission = instance.mission
+    for team in instance.project.team_set.all():
+        if instance.mission.mission_type == 't_m':
+            CollectiveProjectMission.objects.get(mission=mission, team=team).delete()
+
+        elif instance.mission.mission_type == 's_m':
+            IndividualProjectMission.objects.get(mission=mission, team=team).delete() 
+
+    
+    
+    
+    # if not reverse:
+    #     if action == 'post_remove':
+    #         CollectiveProjectMission.objects.filter(team__in=instance.team_set.all()).filter(mission_id__in=pk_set).delete()
+
+    #     elif action == 'post_add':
+    #         project = instance
+    #         for team in project.team_set.all():
+    #             for mission in project.mission.filter(id__in= pk_set):
+    #                 CollectiveProjectMission.objects.create(mission=mission, team=team )
+
 
 
 
@@ -192,6 +219,8 @@ class Team(models.Model):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
 
+
+# When team is created we are initiating the mission of the team 
 @receiver(post_save, sender=Team)
 def team_mission_attribution(sender, created, instance, *args, **kwargs):
     if created: 
