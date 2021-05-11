@@ -41,6 +41,7 @@ class Comment(models.Model):
 
 
 class TeamCommentsBoard(models.Model):
+    title = models.CharField(max_length=100)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     comments = models.ManyToManyField(Comment)
     

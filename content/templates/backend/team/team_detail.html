@@ -328,4 +328,18 @@
       {% endif %}
 
 
+ 
+{#     <h1>Comments Board</h1>   #}
+ 
+      {% comment %}
+ {% for board in team.teamcommentsboard_set.all %}
+    <a href="{% url 'board_detail' board.id %}">board.</a>
+    {% for comment %}
+ {{comment.team.}}   
+ {{comment.comments.comment_text}}
+
+ {% endfor %}
+
+ {% endcomment %}
+
 {% endblock %}

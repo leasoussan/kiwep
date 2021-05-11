@@ -101,7 +101,7 @@ class Project(models.Model):
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
     missions = models.ManyToManyField(Mission, through= 'ProjectMissionRating',  blank =True)
     points = models.PositiveIntegerField()
-    
+    is_template = models.BooleanField(default=False)
     
     objects = ProjectModelManager()
 

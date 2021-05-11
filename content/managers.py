@@ -6,9 +6,10 @@ class ProjectModelQuerySet(models.QuerySet):
     """ QUERYSET are Connected to a Manager to make specific requests"""
 
     def speaker_projects(self):
-        return self.filter(speaker= self.request.user)
+        return self.filter(speaker= self.request.user, is_template=False)
 
-
+    def get_template_projects(self):
+        return self.filter(is_template=True)
 
 class ProjectModelManager(models.Manager):
     """ Managers are a way to get specifi data from a Model with the help of a queryset """
@@ -20,6 +21,8 @@ class ProjectModelManager(models.Manager):
         return self.get_queryset().speaker_projects() 
 
 
+    def get_template_projects(self):
+        return self.get_queryset().get_template_projects()
    
 
 # ----------------------------------------------Team---Manager__queryset

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from message.admin import TeamCommentsInlineAdmin
 from .models import (
     Resource, 
     Project, 
@@ -8,28 +9,44 @@ from .models import (
     CollectiveProjectMission,
     IndividualProjectMission, 
     IndividualCollectiveProjectMission,
-    ProjectMissionRating
+    ProjectMissionRating, 
+    ProjectMissionRating,
+    HardSkillsRating
 )
 
 
 
+admin.site.register(ProjectMissionRating)
+admin.site.register(HardSkillsRating)
 
-# inline views
-# class MissionsProjectInlineAdmin(admin.TabularInline):
-#     model = MissionsProject
 
 
 class IndividualCollectiveProjectMissionInlineAdmin(admin.TabularInline):
+    """ This Inline Tabular will show the form into a FK relation Admin View"""
     model = IndividualCollectiveProjectMission
 
 
+class CollectiveProjectMissionInlineAdmin(admin.TabularInline):
+    model = CollectiveProjectMission
+
+
+
+class IndividualProjectMissionInlineAdmin(admin.TabularInline):
+    model = IndividualProjectMission    
+
+
+class ProjectMissionRatingInlineAdmin(admin.TabularInline):
+    model = ProjectMissionRating    
+
+
+
+
+
 class CollectiveProjectMissionAdmin(admin.ModelAdmin):
+    """ Inlinve Admin view to show on other Admin Models"""
     inlines = [IndividualCollectiveProjectMissionInlineAdmin]
     
 
-class CollectiveProjectMissionInlineAdmin(admin.TabularInline):
-    model = CollectiveProjectMission
-    
 
 admin.site.register(IndividualProjectMission)
 admin.site.register(CollectiveProjectMission, CollectiveProjectMissionAdmin)
@@ -83,6 +100,7 @@ class ProjectAdmin(admin.ModelAdmin):
 @admin.register(Mission)
 class MissionAdmin(admin.ModelAdmin):
     list_display = ("name", "field")
+    inlines = [ProjectMissionRatingInlineAdmin]
 
 
 # --------------------------------------------------------------------------
@@ -91,7 +109,7 @@ class MissionAdmin(admin.ModelAdmin):
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
     list_display = ("name", "group_Institution")
-    # inlines =[CollectiveProjectMissionInlineAdmin]
+    inlines =[IndividualProjectMissionInlineAdmin, CollectiveProjectMissionInlineAdmin, TeamCommentsInlineAdmin]
 
 
 
