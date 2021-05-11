@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseb.html' %}
 {% load i18n %}
 {% load static %}
 
@@ -29,13 +29,8 @@
                                     href="#prod-overview" role="tab" aria-controls="prod-overview"
                                     aria-selected="true">heer</a>
                             </li>
-<<<<<<< HEAD
-                            
-                         
-=======
 
 
->>>>>>> frontend
                         </ul>
                         <div class="tab-content tabs-content" id="myTabContent">
                             <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
@@ -52,26 +47,22 @@
 
                                             <h3>The Mission response should be sent as:</h3>
                                             <p> {{object.get_response_type_display}}</p>
-<<<<<<< HEAD
-                                      
-=======
 
->>>>>>> frontend
                                         </div>
                                     </div>
 
                                     </div>
                                 </div>
                             </div>
+
 <<<<<<< HEAD
-                    
 =======
-
->>>>>>> frontend
                         </div>
+>>>>>>> a02f3016754487bc0f70d287a088ebacf14e7a7c
 
 
 
+                        </div>
                         <div class = "resource">
                             {% for resource in mission.resources.all %}
                             <a href="{% url 'resource_detail' resource.id %}">{{resource.name}}</a>
