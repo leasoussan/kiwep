@@ -16,6 +16,7 @@ class ProjectAddForm(ModelForm):
             'field',
             'difficulty',
             'points',
+            'is_template'
 
         ] 
 
@@ -67,24 +68,37 @@ class AddMemberTeamForm(ModelForm):
 
 
     
-
-
-
-
-
 class MissionAddForm(ModelForm):
-    class Meta:
-        model = Mission
+    pass
 
-        fields = [
-            'name', 
-            'field', 
-            'level',
-            'description',
-            'resources',
-            'points',
-            'response_type',
-        ]
+
+
+mission_fields = (
+        'name',
+        'response_type',
+        'stage',
+        'field',
+        'level',
+        'description',
+        'resources',
+        'points',
+        'acquired_skill',
+        'due_date',
+    )
+
+
+
+class IndividualMissionAddForm(ModelForm):
+    class Meta:
+        model = IndividualMission
+        fields = mission_fields
+
+
+
+class CollectiveMissionAddForm(ModelForm):
+    class Meta:
+        model = CollectiveMission
+        fields = mission_fields
 
 
 class ResourceAddForm(ModelForm):
@@ -101,37 +115,18 @@ class ResourceAddForm(ModelForm):
         ]
 
 
-# ProjectMissionFormSet = inlineformset_factory(
-#     Project, Mission,
-#     fields ='__all__' )
-  
 
 CollectiveMissionFormSet = inlineformset_factory(
     Project,
     CollectiveMission,
-    fields=(
-        'attributed_to', 
-        'due_date', 
-        'stage',
-       
-        ),
-         extra=0,
-
-    widgets = {
-            'attributed_to': FilteredSelectMultiple(verbose_name='Team Participants', is_stacked=False)
-        }
-)
+    fields=mission_fields,
+    extra=1)
 
 IndividualMissionFormSet = inlineformset_factory(
     Project,
     IndividualMission,
-    fields=(
-        'attributed_to', 
-        'due_date', 
-        'stage',
-       
-        ),
-         extra=0)
+    fields=mission_fields,
+         extra=1)
 
 
 

@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Project
 from django.forms import ModelForm
-from .forms import ProjectAddForm, IndividualMissionFormSet, CollectiveMissionFormSet
+from .forms import ProjectAddForm, IndividualMissionFormSet, CollectiveMissionFormSet, IndividualMissionAddForm, \
+    CollectiveMissionAddForm
 from django.urls import reverse_lazy
 
 from django.views.generic import (
@@ -36,23 +37,31 @@ class ProjectListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView)
 class ProjectDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
     model = Project
     template_name = 'backend/project/project_detail.html'
-    
+
+
     def get_object(self):
         pk = self.kwargs.get("pk")
         return get_object_or_404(Project, pk=pk)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['individual_form'] = IndividualMissionAddForm()
+        context['collective_form'] = CollectiveMissionAddForm()
+        return context
 
 
 
 # -----------------------------PROJECT-----Create_View:
 
 
-class ProjectCreatelView(SuccessMessageMixin, LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
+class ProjectCreateView(SuccessMessageMixin, LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
     model = Project
     form_class = ProjectAddForm
     template_name = 'crud/create.html'
     success_message = "Your project was created successfuly"
     # formset = ProjectMissionFormSet()
+
+
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -87,27 +96,30 @@ class CreateProjectMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, 
 
         formset_collective = CollectiveMissionFormSet(instance=project)
         formset_individual = IndividualMissionFormSet(instance=project)
-        formsets = [formset_individual, formset_collective]
+        formsets = {'individual':formset_individual, 'collective': formset_collective}
 
-        return render(request, 'crud/create_team_missions.html', {'formsets': [formset_individual, formset_collective]})
+
+        return render(request, 'crud/create_missions.html', {'formsets': formsets})
 
     def post(self, request, *args, **kwargs):
 
         project = Project.objects.get(id=self.kwargs['pk'])
 
-        individual_missions = project.individualmission_set.all()
-        collective_missions = missions = project.collectivemission_set.all()
+        individual_missions = IndividualMissionFormSet(request.POST, instance=project)
 
-        formset = CollectiveMissionFormSet(request.POST, instance=project)
+        collective_missions = CollectiveMissionFormSet(request.POST, instance=project)
 
-        if formset.is_valid():
-            formset.save()
+        if individual_missions.is_valid():
+            individual_missions.save()
             return redirect('project_detail', project.id)
 
-        return render(request, 'crud/create_team_missions.html', {'formset': formset})
+        return render(request, 'crud/create_project_missions.html', {'formset': individual_missions})
 
 
 # prefix='collective' We might need to add a Prefix if using few formset- might have been changed by DJANGO
+
+
+
 
 
 

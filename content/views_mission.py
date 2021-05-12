@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Mission, CollectiveMission, Team, IndividualMission
 from django.forms import ModelForm
-from .forms import MissionAddForm, SubmitMissionForm
+from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -11,14 +11,15 @@ from django.views.generic import (
     ListView, 
     DetailView, 
     UpdateView, 
-    DeleteView
+    DeleteView,
+    View,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin
 
 
 
-class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
+class IndividualMissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     ''' To See all Missions View'''
     model = IndividualMission
     template_name = 'content/mission/mission_list.html'    
@@ -29,21 +30,56 @@ class MissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     #     return super().get_queryset().filter(attributed_to = self.request.user.profile())
 
 
-class MyMissionList(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
-    ''' See User Missions List'''
+class AddIndividualMissionView(ProfileCheckPassesTestMixin, View):
+    ''' Add an Individual Mission '''
     model = IndividualMission
-    template_name = 'backend/mission/my_mission_list.html'    
-    context_object_name = 'my_mission_list'
+
+    def get(self, request, *args, **kwargs):
+        return redirect('homepage')
+
+    def post(self, request, *args, **kwargs):
+        form = IndividualMissionAddForm(request.POST)
+
+        if form.is_valid():
+            mission = form.save(commit=False)
+            mission.project_id= kwargs['project_id']
+            mission.owner = self.request.user
+            mission.save()
+        return redirect('project_detail', kwargs['project_id'])
 
 
-    def get_queryset(self):
-        return super().get_queryset().filter(attributed_to = self.request.user.profile())
+
+
+
+
+class AddCollectiveMissionView(ProfileCheckPassesTestMixin, View):
+    ''' See User Missions List'''
+    model = CollectiveMission
+
+    def get(self, request, *args, **kwargs):
+        return redirect('homepage')
+
+    def post(self, request, *args, **kwargs):
+        form = AddCollectiveMissionView(request.POST)
+
+        if form.is_valid():
+            collective_mission = form.save(commit=False)
+            collective_mission.project_id = kwargs['project_id']
+            collective_mission.owner = self.request.user
+            collective_mission.save()
+
+        return redirect('project_detail', kwargs['project_id'])
 
 
 
 
 
-class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
+
+
+
+
+
+class MissionDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
     '''Detail Of General Mission'''
     model = Mission
     template_name = 'backend/mission/mission_detail.html'    
@@ -54,7 +90,8 @@ class MissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailVi
         pk = self.kwargs.get('pk')
         return get_object_or_404(Mission, pk=pk)
 
-
+class MyMissionList(View):
+    pass
 
 
 class MissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
@@ -66,6 +103,7 @@ class MissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateV
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
+        self.object.project = self.project
         self.object.owner = self.request.user
         self.object.save()
         return super().form_valid(form)

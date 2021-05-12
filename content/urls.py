@@ -6,14 +6,15 @@ from content.views_resource import *
 from .views import * 
 
 
+
 urlpatterns = [
 
     path('', homepage_view, name = 'homepage'),
     # project
     path('project-list/', ProjectListView.as_view(), name = "project_list"),
     path('project-detail/<int:pk>', ProjectDetailView.as_view(), name = "project_detail"),
-    path('create-project/', ProjectCreatelView.as_view(), name = "create_project"),
-    path('create-project-mission/', CreateProjectMissionView.as_view(), name="create_project_mission"),
+    path('create-project/', ProjectCreateView.as_view(), name ="create_project"),
+    path('create-project-mission/<int:pk>', CreateProjectMissionView.as_view(), name="create_project_mission"),
     path('update-project/<int:pk>', ProjectUpdateView.as_view(), name = "update_project"),
     path('delete-project/<int:pk>', ProjectDeleteView.as_view(), name = "delete_project"),
 
@@ -39,12 +40,13 @@ urlpatterns = [
 
 
     # mission
-    path('mission-list/', MissionListView.as_view(), name = "mission_list"),
+    path('mission-list/', IndividualMissionListView.as_view(), name = "mission_list"),
     path('my_mission-list/', MyMissionList.as_view(), name = "my_mission_list"),
     path('mission-detail/<int:pk>', MissionDetailView.as_view(), name = "mission_detail"),
     path('team-mission-detail/<int:pk>', TeamMissionDetailView.as_view(), name = "team_mission_detail"),
     
-    path('create-mission/', MissionCreateView.as_view(), name = "create_mission"),
+    path('create-individual-mission/<int:project_id>', AddIndividualMissionView.as_view(), name = "create_individual_mission"),
+    path('create-collective-mission/<int:project_id>', AddCollectiveMissionView.as_view(), name = "create_collective_mission"),
     path('update-mission/<int:pk>', MissionUpdateView.as_view(), name = "update_mission"),
     path('delete-mission/<int:pk>', MissionDeleteView.as_view(), name = "delete_mission"),
     path('claim-mission/<int:pk>', ClaimMission.as_view(), name = "claim_mission"),
@@ -65,5 +67,4 @@ urlpatterns = [
     # development link - to view
     path('content-manager/', content_manager, name="content_manager"),
 ]
-
 
