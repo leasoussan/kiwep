@@ -53,17 +53,17 @@ class TeamModelManager(models.Manager):
 
 # ---------------------------------CollectiveProjectMission---Manager__queryset
 
-class CollectiveProjectMissionQuerySet(models.QuerySet):
+class CollectiveMissionQuerySet(models.QuerySet):
     pass
 
 
 
 
-class CollectiveProjectMissionModelManager(models.Manager):
+class CollectiveMissionModelManager(models.Manager):
     """ Managers are a way to get specifi data from a Model with the help of a queryset """
 
     def get_queryset(self):
-        return CollectiveProjectMissionQuerySet(self.model, using=self._db)
+        return CollectiveMissionQuerySet(self.model, using=self._db)
     
 
 
@@ -72,7 +72,7 @@ class CollectiveProjectMissionModelManager(models.Manager):
 
 # ---------------------------------------------------------Individual Project Mission Model Manager
 
-class IndividualProjectMissionQuerySet(models.QuerySet):
+class IndividualMissionQuerySet(models.QuerySet):
     """ QUERYSET are Connected to a Manager to make specific requests"""
 
     def get_attributed_mission(self):
@@ -90,11 +90,11 @@ class IndividualProjectMissionQuerySet(models.QuerySet):
 
     
 
-class IndividualProjectMissionModelManager(models.Manager):
+class IndividualMissionModelManager(models.Manager):
     """ Managers are a way to get specifi data from a Model with the help of a queryset """
 
     def get_queryset(self):
-        return IndividualProjectMissionQuerySet(self.model, using=self._db)
+        return IndividualMissionQuerySet(self.model, using=self._db)
 
 
     def team_available_mission(self):

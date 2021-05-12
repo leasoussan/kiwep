@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Project
 from django.forms import ModelForm
-from .forms import ProjectAddForm
+from .forms import ProjectAddForm, IndividualMissionFormSet, CollectiveMissionFormSet
 from django.urls import reverse_lazy
 
 from django.views.generic import (
@@ -10,7 +10,8 @@ from django.views.generic import (
     ListView, 
     DetailView, 
     UpdateView, 
-    DeleteView
+    DeleteView,
+    View,
 )
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -65,11 +66,50 @@ class ProjectCreatelView(SuccessMessageMixin, LoginRequiredMixin, SpeakerStatuPa
         messages.error(self.request, 'You have an error in your form')
         return super().form_invalid(form)
 
+    def get_success_url(self):
+        return reverse_lazy('create_project_mission', kwargs ={'pk':self.object.id} )
+
+
+
 
 # To Overwrite the Get_absolut_url if I want it to go somewhere else - for ex in the update view 
 
     # def get_success_url(self):
     #     return ('content/project_list')
+
+
+class CreateProjectMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
+    """ Once a Team IS created the missions have to be set, Deadline, attribution etc...."""
+
+    def get(self, request, *args, **kwargs):
+
+        project = Project.objects.get(id=self.kwargs['pk'])
+
+        formset_collective = CollectiveMissionFormSet(instance=project)
+        formset_individual = IndividualMissionFormSet(instance=project)
+        formsets = [formset_individual, formset_collective]
+
+        return render(request, 'crud/create_team_missions.html', {'formsets': [formset_individual, formset_collective]})
+
+    def post(self, request, *args, **kwargs):
+
+        project = Project.objects.get(id=self.kwargs['pk'])
+
+        individual_missions = project.individualmission_set.all()
+        collective_missions = missions = project.collectivemission_set.all()
+
+        formset = CollectiveMissionFormSet(request.POST, instance=project)
+
+        if formset.is_valid():
+            formset.save()
+            return redirect('project_detail', project.id)
+
+        return render(request, 'crud/create_team_missions.html', {'formset': formset})
+
+
+# prefix='collective' We might need to add a Prefix if using few formset- might have been changed by DJANGO
+
+
 
 
 # -----------------------------PROJECT-----UpdateView:

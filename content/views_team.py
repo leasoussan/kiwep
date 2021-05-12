@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Team, CollectiveProjectMission, Project, Mission, IndividualProjectMission
+from .models import Team, CollectiveMission, Project, Mission, IndividualMission
 from django.forms import ModelForm
-from .forms import TeamAddForm, CollectiveProjectMissionFormSet, AddMemberTeamForm, IndividualProjectMissionFormSet
+from .forms import TeamAddForm, CollectiveMissionFormSet, AddMemberTeamForm, IndividualMissionFormSet
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -39,7 +39,7 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
     
     model = Team
     template_name = 'backend/team/team_detail.html'
-    queryset = IndividualProjectMission.objects.team_available_mission()
+    queryset = IndividualMission.objects.team_available_mission()
 
 
     def get_object(self):
@@ -59,7 +59,10 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
     form_class = TeamAddForm
     template_name = 'crud/create.html'
     
-
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -90,8 +93,8 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
         participants= team.participants.all()
 
         
-        formset_collective = CollectiveProjectMissionFormSet(instance = team)
-        formset_individual = IndividualProjectMissionFormSet(instance =team)
+        formset_collective = CollectiveMissionFormSet(instance = team)
+        formset_individual = IndividualMissionFormSet(instance =team)
         formsets =  [formset_individual, formset_collective]
         
         for formset in formsets:
@@ -107,7 +110,7 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
         team = Team.objects.get(id = self.kwargs['pk'])
         missions = team.project.missions.all()
         
-        formset = CollectiveProjectMissionFormSet(request.POST, instance = team)
+        formset = CollectiveMissionFormSet(request.POST, instance = team)
 
         
         if formset.is_valid():
@@ -127,7 +130,7 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
 
 class TeamEditIndividualProjectMission(UpdateView):
     """ """
-    model = IndividualProjectMission
+    model = IndividualMission
     fields = '__all__'
 
     template_name = 'crud/update.html'
@@ -136,7 +139,7 @@ class TeamEditIndividualProjectMission(UpdateView):
 
 
 class TeamEditCollectiveProjectMission(UpdateView):
-    model = CollectiveProjectMission
+    model = CollectiveMission
     fields = '__all__'
 
     template_name = 'crud/update.html'

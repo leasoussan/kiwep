@@ -1,9 +1,10 @@
 from django import forms
 from django.forms import ModelForm 
-from .models import Project, Team, Mission, Resource, CollectiveProjectMission, IndividualProjectMission
+from .models import Project, Team, Mission, Resource, CollectiveMission, IndividualMission, IndividualCollectiveMission
 from accounts.models import Student
 from django.forms import inlineformset_factory
 from django.contrib.admin.widgets import FilteredSelectMultiple
+from django.db.models import Q
 
 class ProjectAddForm(ModelForm):
     class Meta:
@@ -11,16 +12,24 @@ class ProjectAddForm(ModelForm):
         fields = [
             'name',
             'description',
-            'time_to_complet',
+            'time_to_complete',
             'field',
             'difficulty',
             'points',
-            'missions'
+
         ] 
 
         # exclude = ['completed', 'created_by']
 
 class TeamAddForm(ModelForm):
+    """def__init__: Is to say that we are calling the for super() with it's packed data
+    then we go into the project fields, qnd change the quesry set to filter our Q request and dispose it to us"""
+
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['project'].queryset = Project.objects.filter(Q(is_template=True) | Q(speaker=user.profile()))
+
+
     class Meta:
         model = Team
         fields = [
@@ -29,10 +38,12 @@ class TeamAddForm(ModelForm):
             'start_date',
             'due_date',
             'group_Institution',
-            'participants'
-        ] 
+            'participants',
+        ]
+
     
 class AddMemberTeamForm(ModelForm):
+    """ Speaker can add team memebers"""
     class Meta:
         model = Team
         fields = ['participants'] 
@@ -71,8 +82,7 @@ class MissionAddForm(ModelForm):
             'level',
             'description',
             'resources',
-            'points', 
-            'mission_type',
+            'points',
             'response_type',
         ]
 
@@ -96,9 +106,9 @@ class ResourceAddForm(ModelForm):
 #     fields ='__all__' )
   
 
-CollectiveProjectMissionFormSet = inlineformset_factory(
-    Team, 
-    CollectiveProjectMission, 
+CollectiveMissionFormSet = inlineformset_factory(
+    Project,
+    CollectiveMission,
     fields=(
         'attributed_to', 
         'due_date', 
@@ -112,9 +122,9 @@ CollectiveProjectMissionFormSet = inlineformset_factory(
         }
 )
 
-IndividualProjectMissionFormSet = inlineformset_factory(
-    Team, 
-    IndividualProjectMission, 
+IndividualMissionFormSet = inlineformset_factory(
+    Project,
+    IndividualMission,
     fields=(
         'attributed_to', 
         'due_date', 
@@ -124,22 +134,12 @@ IndividualProjectMissionFormSet = inlineformset_factory(
          extra=0)
 
 
-# TeamCollectiveMissionFormSet = inlineformset_factory(
-#     Team, 
-#     TeamCollectiveMission
- 
-#     fields=(
-#         'attributed_to', 
-#         'due_date', 
-#         'stage',
-       
-#         ),
-#          extra=0)
+
 
 
 class SubmitMissionForm(ModelForm):
     class Meta:
-        model = CollectiveProjectMission
+        model = IndividualCollectiveMission
         fields = [
             'response_comment',
             'response_file',

@@ -3,7 +3,13 @@ from django.urls import reverse
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from accounts.models import Speaker, Student, Representative, MyUser
-from backend.models import Field,Level, Group
+from backend.models import Field, Level, Group
+from django.db import models
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+
+from django.contrib.contenttypes.fields import GenericRelation
+
 
 from .managers import *
 # this is like a trans tag - just for the backend 
@@ -17,10 +23,10 @@ from django.utils import timezone
 
 class Resource(models.Model):
     name = models.CharField(max_length=200) 
-    link =  models.CharField(max_length=200)
-    image = models.ImageField(default = 'image/default.png', upload_to='images/') 
+    link = models.CharField(max_length=200)
+    image = models.ImageField(default = 'image/default.png', upload_to='images/')
     file_rsc = models.FileField(null=True, blank=True)
-    text =  models.TextField() 
+    text = models.TextField()
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE,  blank=True, null =True)
     
@@ -40,50 +46,12 @@ class Resource(models.Model):
 
 
 class Skills(models.Model):
-    name  = models.CharField(max_length= 100)
+    name = models.CharField(max_length= 100)
     field = models.ManyToManyField(Field)
 
     
     def __str__(self):
         return f"Subject{self.name}"
-
-
-
-
-
-class Mission(models.Model):
-    MISSION_TYPE = [
-        ('s_m', 'Individual Mission'),
-        ('t_m', 'Collective Mission'),
-
-   ] 
-    RESPONSE_TYPE = [
-        ('link', 'Link'),
-        ('video', 'Video'),
-        ('doc', 'Document'),
-        ('power_p', 'Power Point'),
-        ('image', 'image'),
-    ]
-
-    mission_type = models.CharField(max_length=200, choices= MISSION_TYPE, default='s_m' )
-    response_type = models.CharField(max_length=200, choices=RESPONSE_TYPE, default=None)
-    name = models.CharField(max_length=200)
-    field = models.ForeignKey(Field, on_delete=models.CASCADE)
-    level = models.ForeignKey(Level, on_delete=models.CASCADE, blank= True, null= True)
-    description = models.TextField()
-    resources = models.ManyToManyField(Resource)
-    owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    points = models.PositiveIntegerField()
-    acquried_skill = models.ManyToManyField(Skills, blank =True)
-
-
-    objects = MissionModelManager()
-
-    def __str__(self):
-        return f"Mission Name : {self.name}"
-
-    def get_absolute_url(self):
-        return reverse("mission_detail", kwargs={"pk":self.pk})
 
 
 class Project(models.Model):
@@ -93,16 +61,15 @@ class Project(models.Model):
     title = models.CharField(max_length=300)
     description = models.TextField()
     required_skills = models.ManyToManyField(Skills, related_name="required_skills")
-    acquried_skills = models.ManyToManyField(Skills)
-    time_to_complet = models.PositiveIntegerField()
+    acquired_skills = models.ManyToManyField(Skills)
+    time_to_complete = models.PositiveIntegerField()
     field = models.ManyToManyField(Field)
-    difficulty = models.ForeignKey(Level, on_delete=models.CASCADE) 
-    completed = models.BooleanField(default =False)
+    difficulty = models.ForeignKey(Level, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-    missions = models.ManyToManyField(Mission, through= 'ProjectMissionRating',  blank =True)
     points = models.PositiveIntegerField()
     is_template = models.BooleanField(default=False)
-    
+
     objects = ProjectModelManager()
 
     class Meta:
@@ -111,83 +78,138 @@ class Project(models.Model):
         verbose_name_plural = _('projects')
 
     def __str__(self):
-        return f"Project Name {self.pk} {self.name}"
+        name = f"Project Name {self.pk} {self.name} "
+        if self.is_template:
+            name += "Template"
+        return name
 
     def get_absolute_url(self):
-        return reverse("project_detail", kwargs={"pk":self.pk})
+        return reverse("project_detail", kwargs={"pk": self.pk})
 
-# here we are writing a receiver listen to signal and what to do when you hear what to do 
-# 1_ post save + intereste to know all post save
-# 2_ to hear from the Project - the Project is SENDER of the signal 
-# 3
-@receiver(post_save,sender=Project )
-def email_new_project_event(sender, created, instance, **kwargs):
-    if created: 
-        pass
-    # here I can chose what to do 
+class Mission(models.Model):
+    STAGE_CHOICE = [
+        ('start', 'Start'),
+        ('middle', 'Middle'),
+        ('final', 'Final'),
+    ]
 
-
-
-# yhis is up to the speaker to decide on this mission the amounts of % of this prohect mission - keep Flexible and editable
-
-class ProjectMissionRating(models.Model):
+    RESPONSE_TYPE = [
+        ('link', 'Link'),
+        ('video', 'Video'),
+        ('doc', 'Document'),
+        ('power_p', 'Power Point'),
+        ('image', 'image'),
+    ]
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    mission = models.ForeignKey(Mission, on_delete=models.CASCADE)
-    percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
-    hard_skills = models.ManyToManyField(Skills, through='HardSkillsRating', blank = True)
-    
+    stage = models.CharField(max_length=10, choices=STAGE_CHOICE, default='start')
+    response_type = models.CharField(max_length=200, choices=RESPONSE_TYPE, default=None)
+    name = models.CharField(max_length=200)
+    field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    level = models.ForeignKey(Level, on_delete=models.CASCADE, blank= True, null= True)
+    description = models.TextField()
+    resources = models.ManyToManyField(Resource)
+    owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    points = models.PositiveIntegerField()
+    acquired_skill = models.ManyToManyField(Skills, blank =True)
+    created_date = models.DateField(auto_now_add=True)
+    due_date = models.DateField(default=timezone.now)
+    completed = models.BooleanField(default=False)
 
-# Teacher decides how much the mission distribution of points there is in the mission- according to skills ni the mission 
+    # objects = MissionModelManager()
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return f"Mission Name : {self.name}"
+
+    def get_absolute_url(self):
+        return reverse("mission_detail", kwargs={"pk":self.pk})
+
+
+
+
+class MissionValue(models.Model):
+    percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+    hard_skills = models.ManyToManyField(Skills, through='HardSkillsRating', blank=True)
+    content_type = models.ForeignKey(ContentType, default=None, null=True, on_delete=models.SET_NULL, related_name='activity_logs')
+    object_id = models.PositiveIntegerField()
+    object = GenericForeignKey(ct_field="content_type", fk_field="object_id")
+
+# Teacher decides how much the mission distribution of points there is in the mission- according to skills ni the mission
 # could be 100% of one skill and few % if many skills
-#   
+#
 class HardSkillsRating(models.Model):
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
-    project_mission = models.ForeignKey(ProjectMissionRating, on_delete=models.CASCADE)
-    percentage = models.DecimalField(max_digits=4, decimal_places=2,  blank=True, null=True)
+    project_mission = models.ForeignKey(MissionValue, on_delete=models.CASCADE)
+    percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+
+
+class IndividualMission(Mission):
+    """ an Individuall Mission is a Mission that has to be done by one team Member,
+        so this mission can be claimed """
+
+    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE,  related_name = "my_missions", blank = True, null=True)
+    completed= models.BooleanField(default=False)
+    response_comment = models.TextField(blank=True)
+    response_file = models.FileField(null=True, blank=True)
+    accepted = models.BooleanField(default=False)
+    hard_skill_rating = GenericRelation(MissionValue)
+
+    objects = IndividualMissionModelManager()
+
+
+    def __str__(self):
+        return f"Missions of Team: {self.project.team}"
+
+
+    def get_absolute_url(self):
+        return reverse("team_detail", kwargs={"pk":self.pk})
 
 
 
 
 
 
-# m2m_changed have acition attribute that have to be handled 
-# reverse : if we want to remove a project from a mission (and not mission form a project) - as it's a many to many relation 
+class CollectiveMission(Mission):
+    """
+    This mission has to be done by each participants of a team.
+    Therefore each participants will have this mission attributed to him """
+    attributed_to = models.ManyToManyField(Student, through='IndividualCollectiveMission',
+                                           related_name="my_team_missions", blank=True)
+    hard_skill_rating = GenericRelation(MissionValue)
+    objects = CollectiveMissionModelManager()
 
-@receiver(post_save, sender='content.ProjectMissionRating')
-def update_team_mission_attribution(sender, created, instance, *args,  **kwargs):
-    if created:         
-        mission = instance.mission
-        for team in instance.project.team_set.all():
-            if instance.mission.mission_type == 't_m':
-                CollectiveProjectMission.objects.create(mission=mission, team=team)
+    def __str__(self):
+        return f"Missions of Team: {self.project.team}"
 
-            elif instance.mission.mission_type == 's_m':         
-                IndividualProjectMission.objects.create(mission=mission, team=team) 
+    def get_absolute_url(self):
+        return reverse("team_detail", kwargs={"pk": self.pk})
 
 
-#TODO This part should be changed to a DEACTIVATE and not delete, that we could keep track on what has been done
-@receiver(pre_delete, sender='content.ProjectMissionRating')
-def update_team_delete_mission(sender, instance, *args,  **kwargs):
-    mission = instance.mission
-    for team in instance.project.team_set.all():
-        if instance.mission.mission_type == 't_m':
-            CollectiveProjectMission.objects.get(mission=mission, team=team).delete()
 
-        elif instance.mission.mission_type == 's_m':
-            IndividualProjectMission.objects.get(mission=mission, team=team).delete() 
 
-    
-    
-    
-    # if not reverse:
-    #     if action == 'post_remove':
-    #         CollectiveProjectMission.objects.filter(team__in=instance.team_set.all()).filter(mission_id__in=pk_set).delete()
 
-    #     elif action == 'post_add':
-    #         project = instance
-    #         for team in project.team_set.all():
-    #             for mission in project.mission.filter(id__in= pk_set):
-    #                 CollectiveProjectMission.objects.create(mission=mission, team=team )
+class IndividualCollectiveMission(Mission):
+    """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
+
+    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")
+    parent_mission = models.ForeignKey(CollectiveMission, on_delete= models.CASCADE)
+    completed = models.BooleanField(default=False)
+    response_comment = models.TextField(blank=True)
+    response_file = models.FileField(null=True, blank=True)
+    accepted = models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return f"Team Project Mission of Team: {self.parent_mission.project.team}"
+
+
+    def get_absolute_url(self):
+        return reverse("team_detail", kwargs={"pk":self.pk})
+
+
+
 
 
 
@@ -197,15 +219,13 @@ class Team(models.Model):
     """ a Team Model is to manage a Project per Team- Creating a team is allowing the Speaker to  
     Manage one or few people on a Project"""
     name = models.CharField(max_length=200)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.OneToOneField(Project, on_delete=models.CASCADE)
     start_date = models.DateField()
     due_date = models.DateField()
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Student, blank = True )    
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
-    individual_missions = models.ManyToManyField(Mission, through = 'IndividualProjectMission') 
-    team_missions = models.ManyToManyField(Mission, through = 'CollectiveProjectMission', related_name ='team_missions')
-    
+
     project_completed = models.BooleanField(null=True, blank = True)
 
  
@@ -219,124 +239,3 @@ class Team(models.Model):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
 
-
-# When team is created we are initiating the mission of the team 
-@receiver(post_save, sender=Team)
-def team_mission_attribution(sender, created, instance, *args, **kwargs):
-    if created: 
-        for mission in instance.project.missions.all():
-            if mission.mission_type == 's_m':
-                IndividualProjectMission.objects.create(mission=mission,team=instance,due_date=timezone.now())
-            
-            elif mission.mission_type == 't_m':
-                CollectiveProjectMission.objects.create(mission=mission, team=instance,due_date=timezone.now())
-
-            
-
-# created check if it's new or note
-# instance is team as we have the signal on the team creat missions project so this is the instance we are dealing with 
-
-# related name is to change the default access from othermodel_set to the ne realted name.
-# for ex in Team: we have FK to project, by default to access all team with the same project we ll go from 
-# project.team_set.all>>.the related name >> if related name == teams ; then we all do project.teams.all 
-# it's like a tag /lable to call without needing to go backward.
-
-class IndividualProjectMission(models.Model):
-    """ an Individuall Mission is a Mission that has to be done by one team Member, 
-    so this mission can be claimed """
-    STAGE_CHOICE = [
-        ('start', 'Start'),
-        ('middle', 'Middle'),
-        ('final', 'Final'),
-    ]
-    stage = models.CharField( max_length=10, choices=STAGE_CHOICE, default='start')
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
-    created_date = models.DateField(auto_now_add=True)
-    due_date = models.DateField(default=timezone.now)
-    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE,  related_name = "my_missions", blank = True, null=True)
-    completed= models.BooleanField(default=False)
-    response_comment = models.TextField(blank=True)
-    response_file = models.FileField(null=True, blank=True)
-    accepted = models.BooleanField(default=False)
-    
-    objects = IndividualProjectMissionModelManager()
-
-
-    def __str__(self):
-        return f"Missions of Team: {self.team}"
-
-
-    def get_absolute_url(self):
-        return reverse("team_detail", kwargs={"pk":self.pk})
-
-
-
-
-# ex make your resume 
-
-class CollectiveProjectMission(models.Model):
-    """
-    This mission has to be done by each participants of a team. 
-    Therefore each participants will have this mission attributed to him """
-    STAGE_CHOICE = [
-        ('start', 'Start'),
-        ('middle', 'Middle'),
-        ('final', 'Final'),
-    ]
-    stage = models.CharField( max_length=10, choices=STAGE_CHOICE, default='start')
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    mission = models.ForeignKey(Mission, on_delete=models.CASCADE)        
-    created_date = models.DateField(auto_now_add=True)
-    due_date = models.DateField(default=timezone.now)
-    attributed_to = models.ManyToManyField(Student, through = 'IndividualCollectiveProjectMission' , related_name = "my_team_missions", blank = True)
-    completed= models.BooleanField(default=False)
-    response_comment = models.TextField(blank=True)
-    response_file = models.FileField(null=True, blank=True)
-    accepted = models.BooleanField(default=False)
-    
-    objects = CollectiveProjectMissionModelManager()
-
-
-    def __str__(self):
-        return f"Missions of Team: {self.team}"
-
-
-    def get_absolute_url(self):
-        return reverse("team_detail", kwargs={"pk":self.pk})
-
-
-@receiver(m2m_changed, sender=CollectiveProjectMission.attributed_to)
-def assign_collective_mission(instance, reverse, action , pk_set, **kwargs):
-
-    if not reverse:
-    # instance is a collectiveprojectmission pk_set of Students - only true if we are inside the IF 
-    # reverse is indication of the relation of what we are saving 
-        if action == 'post_remove':
-            IndividualCollectiveProjectMission.objects.filter(attributed_to__in= instance.assigned_to.filter(id__in=pk_set)).delete()
-
-        elif action == 'post_add':
-            for pk in pk_set:
-                IndividualCollectiveProjectMission.objects.create(parent_mission=instance, attributed_to_id=pk)
-                
-
-
-
-
-class IndividualCollectiveProjectMission(models.Model):
-    """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
-
-    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")
-    parent_mission = models.ForeignKey(CollectiveProjectMission, on_delete= models.CASCADE)
-    completed= models.BooleanField(default=False)
-    response_comment = models.TextField(blank=True)
-    response_file = models.FileField(null=True, blank=True)
-    accepted = models.BooleanField(default=False)
-  
-
-    def __str__(self):
-        return f"Team Project Mission of Team: {self.parent_mission.team}"
-
-
-    def get_absolute_url(self):
-        return reverse("team_detail", kwargs={"pk":self.pk})
