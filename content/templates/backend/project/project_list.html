@@ -12,44 +12,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
+      <h5 class="card-header" style="text-align:center;">{% trans 'project list title' %}</h5>
+      <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>
 
-    <div id="getApi"></div>
-    <h5 class="card-header" style="text-align:center;">{% trans 'project_list_title' %}</h5>
+        <div id="getData"></div>
 
-          <!-- <table class="table table-bordered table-hover table-responsive-md">
-            <thead>
-                <tr>
-                  <th scope="col">{% trans 'project_name_table_header' %}</th>
-                  <th scope="col">{% trans 'speaker_table_header' %}</th>
-                  <th scope="col">{% trans 'field_table_header' %}</th>
-                  <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
-                </tr>
-            </thead>
-              <tbody>
-                {% for project in project_list %}
-                <tr>
-                  <th scope="row"><a href="{% url 'project_detail' project.id %}">{{project.name}}</th>
-                  <td>{{project.speaker.user.first_name}}</td>
-                  <td>{{project.field}}</td>
-                  <td>{{project.time_to_complet}}</td>
-                </tr>
-                {% endfor %}
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-
-            </tbody>
-          </table> -->
         </div>
   </div>
   </div>
 
 
-    <!-- Breadcrumbs Start -->
-    <!-- <div class="rs-breadcrumbs breadcrumbs-overlay">
+    <!--   Breadcrumbs Start -->
+  <!-- <div class="rs-breadcrumbs breadcrumbs-overlay">
         <div class="breadcrumbs-text white-color">
             <h1 class="page-title">Course Grid 02</h1>
 
@@ -89,8 +63,8 @@
                     </table>
                 </div>
             </div>
-        </div> -->
-    <!-- </div> -->
+        </div>
+    </div> -->
 
 {% endblock %}
 <script src="{% static  'backend/js/project_api.js'%}" type="text/javascript"></script>
