@@ -5,12 +5,14 @@ from .models import *
 class ProjectModelQuerySet(models.QuerySet):
     """ QUERYSET are Connected to a Manager to make specific requests"""
 
-
-    def speaker_projects(self):
-        return self.filter(speaker= self.request.user, is_template=False)
-
-    def get_template_projects(self):
+    def personal_templates(self):
         return self.filter(is_template=True)
+
+    def personal_projects(self):
+        return self.filter(is_template=False)
+
+    def global_template_projects(self):
+        return self.filter(is_template=True, is_global=True)
 
 class ProjectModelManager(models.Manager):
     """ Managers are a way to get specifi data from a Model with the help of a queryset """
@@ -18,8 +20,11 @@ class ProjectModelManager(models.Manager):
     def get_queryset(self):
         return ProjectModelQuerySet(self.model, using = self._db) 
 
-    def speaker_projects(self):
-        return self.get_queryset().speaker_projects() 
+    def personal_templates(self):
+        return self.get_queryset().personal_templates()
+
+    def personal_projects(self):
+        return self.get_queryset().personal_projects()
 
 
     def get_template_projects(self):

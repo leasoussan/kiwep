@@ -11,6 +11,8 @@ urlpatterns = [
 
     path('', homepage_view, name = 'homepage'),
     # project
+
+    path('chose-project-detail/<int:pk>', ChoseProjectView.as_view(), name = "chose_project_detail"),
     path('project-list/', ProjectListView.as_view(), name = "project_list"),
     path('project-detail/<int:pk>', ProjectDetailView.as_view(), name = "project_detail"),
     path('create-project/', ProjectCreateView.as_view(), name ="create_project"),

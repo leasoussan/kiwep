@@ -136,7 +136,7 @@ class MissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
 
 def get_object(self):
     pk = self.kwargs.get['pk']
-    return get_object_or_404(Mission, pk =pk)
+    return get_object_or_404(Mission, pk=pk)
 
 
 class MissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):

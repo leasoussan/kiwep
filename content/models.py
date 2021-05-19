@@ -69,6 +69,8 @@ class Project(models.Model):
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
     points = models.PositiveIntegerField()
     is_template = models.BooleanField(default=False)
+    is_global = models.BooleanField(default=False)
+    is_premium = models.BooleanField(default=False)
 
     objects = ProjectModelManager()
 

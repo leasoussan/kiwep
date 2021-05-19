@@ -3,20 +3,8 @@ from django.db.models.signals import post_save, m2m_changed, pre_delete
 from .models import *
 
 
+@receiver(pre_save, sender = 'content.CollectiveMission')
 
- here we are writing a receiver listen to signal and what to do when you hear what to do
-# 1_ post save + intereste to know all post save
-# 2_ to hear from the Project - the Project is SENDER of the signal
-# 3
-@receiver(post_save,sender=Project )
-def email_new_project_event(sender, created, instance, **kwargs):
-    if created:
-        pass
-    # here I can chose what to do
-
-
-
-# yhis is up to the speaker to decide on this mission the amounts of % of this prohect mission - keep Flexible and editable
 
 
 

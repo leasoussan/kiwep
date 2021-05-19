@@ -11,13 +11,13 @@ from .forms import (
 from django.urls import reverse_lazy
 
 from django.views.generic import (
-    CreateView, 
-    DetailView, 
-    ListView, 
-    DetailView, 
-    UpdateView, 
+    CreateView,
+    DetailView,
+    ListView,
+    DetailView,
+    UpdateView,
     DeleteView,
-    View,
+    View, RedirectView,
 )
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -30,29 +30,40 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 
 
-class ChoseProjectView(SpeakerStatuPassesTestMixin, View):
-    """This View will make himself a speaker to the project -
+class ChoseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
+    """Select a project will make you own a version of the project
+    This View will make himself a speaker to the project -
     as a copy to enable using it after with a team and make changes"""
 
-    def get(self, request):
-        offered_projects =  Project.objects.exclud(speaker=request.user.profile)
+    # query_sting = False >>this is false by default
+    pattern_name = 'project_list'
 
-    def post(self, request):
-        form = ChoseProjectForm(request.POST)
-        if selected:
-            object.speaker = request.user.profile
-            pass
+    def get_redirect_url(self,  *args, **kwargs):
+        project = get_object_or_404(Project, pk=kwargs['pk'])
+        project.id = None
+        project.is_template = False
+        project.is_global= False
+        project.is_premium= False
+        project.speaker = self.request.user.profile()
+        project.save()
+        del kwargs['pk']
+        return super().get_redirect_url(*args, **kwargs)
 
 
 
 
-
-class ProjectListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
+class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
     model = Project
     template_name = 'backend/project/project_list.html'
     context_object_name = 'project_list'
 
-    
+
+    def get_queryset(self):
+        queryset = self.request.user.profile().project_set.personal_templates()
+        queryset2 = super().get_queryset().global_template_projects()
+        return queryset.union(queryset2)
+
+
 
 
 
