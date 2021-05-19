@@ -86,6 +86,10 @@ class Project(models.Model):
     def get_absolute_url(self):
         return reverse("project_detail", kwargs={"pk": self.pk})
 
+
+
+
+
 class Mission(models.Model):
     STAGE_CHOICE = [
         ('start', 'Start'),

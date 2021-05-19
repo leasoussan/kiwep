@@ -78,8 +78,8 @@
 
 
                             <div>
-                                {% for mission in project.individualmission_set.all %}
-                                     <h2><a href="{% url 'mission_detail' mission.id %}">{{mission.name}}</a></h2>
+                                {% for mission in project.individualmission_set.all  %}
+                                    <h3><a style="color: black"  href="{% url 'individual_mission_detail' mission.id %}">{{mission.name}}</a></h3>
 
                                     <div class="pull-right">
                                         {{mission.points}}
@@ -92,9 +92,9 @@
                                 {% endfor %}
                             </div>
                             <div>Collective Missions
-                                {% for mission in project.collectivelmission_set.all %}
+                                {% for mission in project.collectivemission_set.all %}
 
- <h2><a href="{% url 'mission_detail' mission.id %}"></a>{{mission.name}}</h2>
+                                    <h2><a style="color: black" href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a></h2>
 
 
 

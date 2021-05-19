@@ -2,44 +2,46 @@
 {% load i18n %}
 {% block content %}
 
-      <th>{% trans 'team_dashboard_title' %}</th>
+    <th>{% trans 'team_dashboard_title' %}</th>
 
 
 
-My Teams
+    My Teams
 
 
 
+    <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
+    <main class= "container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">My Teams</h5>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        {% trans 'team_name' %}
+                                    </th>
 
-<main class= "container-fluid">
-  <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">My Teams</h5>
-        <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                  <tr>
-                    {% for team in team_list %}
-                      <th scope="col"><h1>Team Name <a href="{% url 'team_detail' team.id %}"></a> {{ team.name }}</h1></th>
-                    {% endfor %}
-                  </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <td>
-                  <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
-                </td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for team in team_list %}
+                                    <tr>
 
-                </tr>
-              </tbody>
-            </table>
+                                        <th scope="col"><a href="{% url 'team_detail' team.id %}"></a> {{ team.name }}</th>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-  </div>
-</main>
+    </main>
 
 {% endblock %}

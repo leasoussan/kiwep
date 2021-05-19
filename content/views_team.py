@@ -38,7 +38,7 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
     """ Global Team Details """
     
     model = Team
-    template_name = '/backend/team/team_detail.html'
+    template_name = 'backend/team/team_detail.html'
     queryset = IndividualMission.objects.team_available_mission()
 
 

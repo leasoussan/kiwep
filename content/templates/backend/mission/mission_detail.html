@@ -1,4 +1,4 @@
-{% extends 'baseb.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
 
@@ -10,13 +10,14 @@
 
 {% if user.profile.name == 'speaker' %}
 
-<a href="{% url 'update_mission' mission.pk %}">{% trans 'edit_mission' %}</a>
-
+{# <a href="{% url 'update_mission' mission.pk %}">{% trans 'edit_mission' %}</a> #}
 {% endif %}
 
 
     <!-- Intro Courses -->
     <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
+
+
         <div class="container">
             <div class="row clearfix">
                 <!-- Content Column -->
@@ -29,6 +30,7 @@
                                     href="#prod-overview" role="tab" aria-controls="prod-overview"
                                     aria-selected="true">heer</a>
                             </li>
+
 
 
                         </ul>
@@ -55,10 +57,7 @@
                                 </div>
                             </div>
 
-<<<<<<< HEAD
-=======
-                        </div>
->>>>>>> a02f3016754487bc0f70d287a088ebacf14e7a7c
+
 
 
 

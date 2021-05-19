@@ -6,6 +6,16 @@ from django.forms import inlineformset_factory
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.db.models import Q
 
+class ChoseProjectForm(ModelForm):
+    """ to make a copy of an existing project (for a speaker) to then be able to create team """
+    class Meta:
+        model = Project
+        fields = [
+            'name',
+            'field',
+        ]
+
+
 class ProjectAddForm(ModelForm):
     class Meta:
         model = Project

@@ -5,6 +5,7 @@ from .models import *
 class ProjectModelQuerySet(models.QuerySet):
     """ QUERYSET are Connected to a Manager to make specific requests"""
 
+
     def speaker_projects(self):
         return self.filter(speaker= self.request.user, is_template=False)
 

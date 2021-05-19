@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Mission, CollectiveMission, Team, IndividualMission
 from django.forms import ModelForm
-from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm
+from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -60,7 +60,7 @@ class AddCollectiveMissionView(ProfileCheckPassesTestMixin, View):
         return redirect('homepage')
 
     def post(self, request, *args, **kwargs):
-        form = AddCollectiveMissionView(request.POST)
+        form = CollectiveMissionAddForm(request.POST)
 
         if form.is_valid():
             collective_mission = form.save(commit=False)
@@ -79,22 +79,36 @@ class AddCollectiveMissionView(ProfileCheckPassesTestMixin, View):
 
 
 
-class MissionDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
+class IndividualMissionDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
     '''Detail Of General Mission'''
-    model = Mission
+    model = IndividualMission
     template_name = 'backend/mission/mission_detail.html'    
     
     
 
     def get_object(self):
         pk = self.kwargs.get('pk')
-        return get_object_or_404(Mission, pk=pk)
+        return get_object_or_404(IndividualMission, pk=pk)
+
+
+
+
+
+class CollectiveMissionDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
+    '''Detail Of General Mission'''
+    model = CollectiveMission
+    template_name = 'backend/mission/mission_detail.html'
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(CollectiveMission, pk=pk)
+
 
 class MyMissionList(View):
     pass
 
 
-class MissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
+class MissionCreateView(SpeakerStatuPassesTestMixin, CreateView):
     ''' Create Mission - Will Go into General Mission'''
     model = Mission
     form_class = MissionAddForm 
@@ -109,7 +123,7 @@ class MissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateV
         return super().form_valid(form)
 
 
-class MissionUpdateView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, UpdateView):
+class MissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
     '''Update a Mission'''
     model = Mission
     fields = ['name', 
@@ -125,7 +139,7 @@ def get_object(self):
     return get_object_or_404(Mission, pk =pk)
 
 
-class MissionDeleteView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, DeleteView):
+class MissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
     model = Mission
     template_name = 'crud/delete.html' 
     success_url = reverse_lazy('mission_list')
@@ -134,7 +148,7 @@ class MissionDeleteView(LoginRequiredMixin,SpeakerStatuPassesTestMixin, DeleteVi
 
 
 
-class ClaimMission(LoginRequiredMixin, RedirectView):
+class ClaimMission(ProfileCheckPassesTestMixin, RedirectView):
     ''' Own a mission -student'''
     # query_sting = False >>this is false by default     
     pattern_name = 'my_mission_list'
@@ -151,7 +165,7 @@ class ClaimMission(LoginRequiredMixin, RedirectView):
 
 
 
-class UnclaimMission(LoginRequiredMixin, RedirectView):
+class UnclaimMission(ProfileCheckPassesTestMixin, RedirectView):
     ''' Unclaim the mission - will return to the list of available Mission'''
     # query_sting = False >>this is false by default     
     pattern_name = 'my_mission_list'
@@ -167,7 +181,7 @@ class UnclaimMission(LoginRequiredMixin, RedirectView):
 
 
 
-class TeamMissionDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
+class TeamMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
     '''Here to create a team manager - gettinga project and managing participants '''
 
     model = CollectiveMission

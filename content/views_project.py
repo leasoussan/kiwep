@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Project
 from django.forms import ModelForm
-from .forms import ProjectAddForm, IndividualMissionFormSet, CollectiveMissionFormSet, IndividualMissionAddForm, \
-    CollectiveMissionAddForm
+from .forms import (
+    ProjectAddForm,
+    IndividualMissionFormSet,
+    CollectiveMissionFormSet,
+    IndividualMissionAddForm,
+    CollectiveMissionAddForm,
+    )
 from django.urls import reverse_lazy
 
 from django.views.generic import (
@@ -21,6 +26,26 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 # -------------------PROJECT---List_View/
+
+
+
+
+class ChoseProjectView(SpeakerStatuPassesTestMixin, View):
+    """This View will make himself a speaker to the project -
+    as a copy to enable using it after with a team and make changes"""
+
+    def get(self, request):
+        offered_projects =  Project.objects.exclud(speaker=request.user.profile)
+
+    def post(self, request):
+        form = ChoseProjectForm(request.POST)
+        if selected:
+            object.speaker = request.user.profile
+            pass
+
+
+
+
 
 class ProjectListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     model = Project
@@ -88,7 +113,7 @@ class ProjectCreateView(SuccessMessageMixin, LoginRequiredMixin, SpeakerStatuPas
 
 
 class CreateProjectMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
-    """ Once a Team IS created the missions have to be set, Deadline, attribution etc...."""
+    """ Once a Project IS created the missions have to be set, Deadline, attribution etc...."""
 
     def get(self, request, *args, **kwargs):
 
@@ -131,10 +156,10 @@ class ProjectUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateV
     model = Project
     fields = ['name',
             'description',
-            'time_to_complet',
+            'time_to_complete',
             'field',
             'difficulty',
-            'missions']
+            ]
     template_name = 'crud/update.html'
     
     def get_object(self):
