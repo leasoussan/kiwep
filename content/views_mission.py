@@ -22,7 +22,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 class IndividualMissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
     ''' To See all Missions View'''
     model = IndividualMission
-    template_name = 'content/mission/mission_list.html'    
+    template_name = 'backend/mission/mission_list.html'
     context_object_name = 'mission_list'
 
 

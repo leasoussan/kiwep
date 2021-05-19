@@ -3,22 +3,10 @@
 {% block content %}
 
       <th>{% trans 'team_dashboard_title' %}</th>
-<!--
-{% for team in team_list %}
-<h1>{% trans 'team_name_lable' %}<a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1>
-
-{% endfor %}
- -->
 
 
 
-<a href="{% url 'content_manager' %}">content Manager </a>
 My Teams
-
-<!-- {% for team in team_list %}
-<h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1>
-
-{% endfor %} -->
 
 
 
@@ -34,7 +22,7 @@ My Teams
               <thead>
                   <tr>
                     {% for team in team_list %}
-                      <th scope="col"><h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1></th>
+                      <th scope="col"><h1>Team Name <a href="{% url 'team_detail' team.id %}"></a> {{ team.name }}</h1></th>
                     {% endfor %}
                   </tr>
               </thead>

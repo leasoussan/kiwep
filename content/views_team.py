@@ -24,7 +24,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     """ Team List View will Show a user Teams list"""
     model = Team
-    template_name = 'crud/list_view.html'
+    template_name = 'backend/team/team_list.html'
     context_object_name = 'team_list'
 
 
@@ -38,7 +38,7 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
     """ Global Team Details """
     
     model = Team
-    template_name = 'backend/team/team_detail.html'
+    template_name = '/backend/team/team_detail.html'
     queryset = IndividualMission.objects.team_available_mission()
 
 
@@ -74,7 +74,7 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
 
     
     def get_success_url(self):
-        return reverse_lazy('create_team_missions', kwargs={'pk':self.object.id})
+        return reverse_lazy('team_detail', kwargs={'pk':self.object.id})
 
 
 
@@ -92,17 +92,9 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
         team = Team.objects.get(id = self.kwargs['pk'])
         participants= team.participants.all()
 
-        
-        formset_collective = CollectiveMissionFormSet(instance = team)
-        formset_individual = IndividualMissionFormSet(instance =team)
-        formsets =  [formset_individual, formset_collective]
-        
-        for formset in formsets:
-            for form in formset:
-                form.fields['attributed_to'].queryset = participants
-                               
 
-        return render(request, 'crud/create_team_missions.html', {'formsets': [formset_individual, formset_collective]})
+
+        return render(request, 'crud/create_team_missions.html', {'participants': participants})
     
 
     def post(self, request, *args, **kwargs):
