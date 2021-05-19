@@ -24,6 +24,7 @@ const displayProducts = (list) => {
 
   const diva = document.getElementById('getData');
   console.log(diva)
+
 	const table = document.createElement("table");
   table.className = "table table-striped"
   let row = document.createElement("tr");
@@ -78,6 +79,17 @@ const displayProducts = (list) => {
 }
   fetchData()
 
+let but = document.getElementById("createProject")
+console.log(but)
+let create_buttom = document.createElement("button")
+let create_project = document.createElement("a")
+let textButton = document.createTextNode(' Create project ')
+create_project.setAttribute("href", "/create-project/" )
+but.appendChild(create_buttom)
+create_buttom.appendChild(create_project)
+create_project.appendChild(textButton)
+create_project.className ="btn"
+
 
 
 
@@ -112,3 +124,15 @@ const fetchCreateData = (data) => {
 // 	}
 // }
 // fetchCreateData()
+
+
+// const fetchProjectDetails = (data) => {
+//   fetch('/api_project/project_detail/')
+//   .then(res => res.json())
+//   .then(data => {
+//     console.log(data)
+//   })
+//
+// }
+
+// fetchProjectDetails()

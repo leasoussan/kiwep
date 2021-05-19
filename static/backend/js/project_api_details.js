@@ -12,3 +12,5 @@ const displayProjectDetails = (list) => {
   const div = document.getElementById("project_detail")
   console.log(div)
 }
+
+fetchProjectDetails(id)
