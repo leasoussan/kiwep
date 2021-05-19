@@ -16,12 +16,15 @@ const fetchData = (data) => {
 // fetch('/api_project/project_update/{id}/')
         .then(res => res.json())
         .then(data =>
+          // {
+          //   console.log(data)
+          // })
           displayProducts(data))
 }
 
 
 const displayProducts = (list) => {
-
+// if (list.comleted == false){
   const diva = document.getElementById('getData');
   console.log(diva)
 
@@ -76,38 +79,22 @@ const displayProducts = (list) => {
      link.setAttribute("href", url )
      link.setAttribute("style", "color:black;")
 	}
+// } else {
+
 }
+
   fetchData()
 
-let but = document.getElementById("createProject")
-console.log(but)
-let create_buttom = document.createElement("button")
-let create_project = document.createElement("a")
-let textButton = document.createTextNode(' Create project ')
-create_project.setAttribute("href", "/create-project/" )
-but.appendChild(create_buttom)
-create_buttom.appendChild(create_project)
-create_project.appendChild(textButton)
-create_project.className ="btn"
-
-
-
-
-const fetchCreateData = (data) => {
-    fetch('/api_project/project_create/',
-      {
-          method: 'POST',
-          headers: {
-              'Content-type': 'application/json'
-          },
-          body: JSON.stringify(data)
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-        })
-}
-
+// let but = document.getElementById("createProject")
+// console.log(but)
+// let create_buttom = document.createElement("button")
+// let create_project = document.createElement("a")
+// let textButton = document.createTextNode(' Create project ')
+// create_project.setAttribute("href", "/create_project/" )
+// but.appendChild(create_buttom)
+// create_buttom.appendChild(create_project)
+// create_project.appendChild(textButton)
+// create_project.className ="btn"
 
 
 // const displayProjects = (list) =>{

@@ -7,17 +7,17 @@
 
 
 
-<a href="{% url 'project_list' %}">{% trans 'all_projects' %}</a>
+<button type="button" class="btn" name="button"><a href="{% url 'project_list' %}" style="color:#fffefc;">{% trans 'all projects' %}</a></button>
 
 {% if user.profile.name == 'speaker' %}
 
-<a href="{% url 'update_project' project.id %}">{% trans 'edit_project' %}</a>
+<button type="button" class="btn" name="button"><a href="{% url 'update_project' project.id %}" style="color:#fffefc;">{% trans 'edit project' %}</a></button>
 
 {% endif %}
 
 <div>
 
-<div id="project_detail">hhhhhh</div>
+<div id="project_detail"></div>
 
 </div>
 <!-- Intro Courses -->
