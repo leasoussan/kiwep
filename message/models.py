@@ -1,7 +1,7 @@
 from django.urls import reverse
 from django.db import models
 from accounts.models import MyUser
-from content.models import CollectiveProjectMission, Team
+from content.models import IndividualCollectiveMission, Team
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 
@@ -50,7 +50,7 @@ class TeamCommentsBoard(models.Model):
 
 
 class CollectiveMissionComments(models.Model):
-    mission = models.ForeignKey(CollectiveProjectMission, on_delete=models.CASCADE)
+    mission = models.ForeignKey(IndividualCollectiveMission, on_delete=models.CASCADE)
     comments = models.ManyToManyField(Comment)
     vote = GenericRelation(Rating)
 

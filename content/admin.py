@@ -6,55 +6,41 @@ from .models import (
     Mission, 
     Team,
     Skills,
-    CollectiveProjectMission,
-    IndividualProjectMission, 
-    IndividualCollectiveProjectMission,
-    ProjectMissionRating, 
-    ProjectMissionRating,
+    CollectiveMission,
+    IndividualMission,
+    MissionValue,
     HardSkillsRating
 )
 
 
 
-admin.site.register(ProjectMissionRating)
+admin.site.register(MissionValue)
 admin.site.register(HardSkillsRating)
 
 
 
-class IndividualCollectiveProjectMissionInlineAdmin(admin.TabularInline):
-    """ This Inline Tabular will show the form into a FK relation Admin View"""
-    model = IndividualCollectiveProjectMission
 
-
-class CollectiveProjectMissionInlineAdmin(admin.TabularInline):
-    model = CollectiveProjectMission
+class CollectiveMissionInlineAdmin(admin.TabularInline):
+    model = CollectiveMission
 
 
 
-class IndividualProjectMissionInlineAdmin(admin.TabularInline):
-    model = IndividualProjectMission    
+class IndividualMissionInlineAdmin(admin.TabularInline):
+    model = IndividualMission
 
 
-class ProjectMissionRatingInlineAdmin(admin.TabularInline):
-    model = ProjectMissionRating    
+class MissionValueInlineAdmin(admin.TabularInline):
+    model = MissionValue
 
 
 
 
 
-class CollectiveProjectMissionAdmin(admin.ModelAdmin):
-    """ Inlinve Admin view to show on other Admin Models"""
-    inlines = [IndividualCollectiveProjectMissionInlineAdmin]
-    
-
-
-admin.site.register(IndividualProjectMission)
-admin.site.register(CollectiveProjectMission, CollectiveProjectMissionAdmin)
 
 
 
 class ProjectMissionRatingInlineAdmin(admin.TabularInline):
-    model = ProjectMissionRating
+    model = HardSkillsRating
 
 # --------------------------------------------------------------------------
 
@@ -88,8 +74,8 @@ admin.site.register(Skills)
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ("name", "speaker", "completed")
-    inlines = [ProjectMissionRatingInlineAdmin]
+    list_display = ("name", "speaker", "completed", "is_template")
+
 
 
 
@@ -97,10 +83,16 @@ class ProjectAdmin(admin.ModelAdmin):
 # --------------------------------------------------------------------------
 
 
-@admin.register(Mission)
-class MissionAdmin(admin.ModelAdmin):
+@admin.register(IndividualMission)
+class IndividualMissionAdmin(admin.ModelAdmin):
     list_display = ("name", "field")
-    inlines = [ProjectMissionRatingInlineAdmin]
+
+
+
+@admin.register(CollectiveMission)
+class CollectiveMissionAdmin(admin.ModelAdmin):
+    list_display = ("name", "field")
+
 
 
 # --------------------------------------------------------------------------
@@ -109,7 +101,6 @@ class MissionAdmin(admin.ModelAdmin):
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
     list_display = ("name", "group_Institution")
-    inlines =[IndividualProjectMissionInlineAdmin, CollectiveProjectMissionInlineAdmin, TeamCommentsInlineAdmin]
 
 
 

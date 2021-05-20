@@ -93,15 +93,7 @@
 <!--
 {% if user.profile.name == "speaker" %}
 
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-               <a href="{% url 'create_mission' %}">{% trans 'add_mission_link' %}</a>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 {% endif %} -->
@@ -240,9 +232,8 @@
                                 {% endif %}
 
 
-                                ">{{projectmission.mission.name}}</a> </td>
 
-                            ">{{projectmission.mission.name}}</a> </td>
+                            <td>{{projectmission.mission.name}}</a> </td>
                             <td>{{projectmission.attributed_to}}</td>
                             <td>{{projectmission.mission.stage}}</td>
                             <td>{{projectmission.points}}</td>
