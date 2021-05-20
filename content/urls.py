@@ -20,11 +20,29 @@ urlpatterns = [
     path('update-project/<int:pk>', ProjectUpdateView.as_view(), name = "update_project"),
     path('delete-project/<int:pk>', ProjectDeleteView.as_view(), name = "delete_project"),
 
+    # mission
+    path('mission-list/', IndividualMissionListView.as_view(), name="mission_list"),
+    path('my_mission-list/', MyMissionList.as_view(), name="my_mission_list"),
+    path('individual-mission-detail/<int:pk>', IndividualMissionDetailView.as_view(), name="individual_mission_detail"),
+    path('collective-mission-detail/<int:pk>', CollectiveMissionDetailView.as_view(), name="collective_mission_detail"),
+    path('team-mission-detail/<int:pk>', TeamMissionDetailView.as_view(), name="team_mission_detail"),
 
-    # team 
+    path('create-individual-mission/<int:project_id>', AddIndividualMissionView.as_view(),
+         name="create_individual_mission"),
+    path('create-collective-mission/<int:project_id>', AddCollectiveMissionView.as_view(),
+         name="create_collective_mission"),
+    path('update-individual-mission/<int:pk>', IndividualMissionUpdateView.as_view(), name="update_individual_mission"),
+    path('update-collective-mission/<int:pk>', CollectiveMissionUpdateView.as_view(), name="update_collective_mission"),
+    path('delete-mission/<int:pk>', MissionDeleteView.as_view(), name="delete_mission"),
+    path('claim-mission/<int:pk>', ClaimMission.as_view(), name="claim_mission"),
+    path('submit-mission/<int:pk>', StudentSubmitMission.as_view(), name='submit_mission'),
+    path('unclaim-mission/<int:pk>', UnclaimMission.as_view(), name="unclaim_mission"),
+
+    # team
     path('team-list/', TeamListView.as_view(), name = "team_list"),
     path('team-detail/<int:pk>', TeamDetailView.as_view(), name = "team_detail"),
     path('create-team/', TeamCreateView.as_view(), name = "create_team"),
+    path('chose-project-team/<int:pk>/<int:team_pk>', ChooseTeamProjectView.as_view(), name = "chose_team_project"),
     path('create-team-missions/<int:pk>', TeamCreateMissionView.as_view(), name = "create_team_missions"),
     
     path('update-team-mission/<int:pk>', TeamEditIndividualProjectMission.as_view(), name = "update_team_mission"),#update single mission
@@ -41,22 +59,7 @@ urlpatterns = [
 
 
 
-    # mission
-    path('mission-list/', IndividualMissionListView.as_view(), name = "mission_list"),
-    path('my_mission-list/', MyMissionList.as_view(), name = "my_mission_list"),
-    path('individual-mission-detail/<int:pk>', IndividualMissionDetailView.as_view(), name = "individual_mission_detail"),
-    path('collective-mission-detail/<int:pk>', CollectiveMissionDetailView.as_view(), name="collective_mission_detail"),
-    path('team-mission-detail/<int:pk>', TeamMissionDetailView.as_view(), name = "team_mission_detail"),
-    
-    path('create-individual-mission/<int:project_id>', AddIndividualMissionView.as_view(), name = "create_individual_mission"),
-    path('create-collective-mission/<int:project_id>', AddCollectiveMissionView.as_view(), name = "create_collective_mission"),
-    path('update-mission/<int:pk>', MissionUpdateView.as_view(), name = "update_mission"),
-    path('delete-mission/<int:pk>', MissionDeleteView.as_view(), name = "delete_mission"),
-    path('claim-mission/<int:pk>', ClaimMission.as_view(), name = "claim_mission"),
-    path('submit-mission/<int:pk>', StudentSubmitMission.as_view(), name = 'submit_mission'),
-    path('unclaim-mission/<int:pk>', UnclaimMission.as_view(), name = "unclaim_mission"),
 
-   
 
 
     # ressource 

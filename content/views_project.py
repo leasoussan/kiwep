@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Project
+from .models import Project, Team
 from django.forms import ModelForm
 from .forms import (
     ProjectAddForm,
@@ -52,6 +52,35 @@ class ChoseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
 
 
 
+
+class ChooseTeamProjectView(SpeakerStatuPassesTestMixin, RedirectView):
+    """Select a project will make you own a version of the project
+    This View will make himself a speaker to the project -
+    as a copy to enable using it after with a team and make changes"""
+
+    # query_sting = False >>this is false by default
+    pattern_name = 'team_detail'
+
+    def get_redirect_url(self,  *args, **kwargs):
+        project = get_object_or_404(Project, pk=kwargs['pk'])
+        team = get_object_or_404(Team, pk=kwargs['team_pk'])
+        project.id = None
+        project.is_template = False
+        project.is_global= False
+        project.is_premium= False
+        project.speaker = self.request.user.profile()
+        project.save()
+        team.project = project
+        team.save()
+        kwargs['pk'] = team.pk
+        del kwargs['team_pk']
+        return super().get_redirect_url(*args, **kwargs)
+
+
+
+
+
+
 class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
     model = Project
     template_name = 'backend/project/project_list.html'
@@ -99,6 +128,11 @@ class ProjectCreateView(SuccessMessageMixin, LoginRequiredMixin, SpeakerStatuPas
 
 
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pass
+
+
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.speaker = self.request.user.profile()
@@ -112,7 +146,7 @@ class ProjectCreateView(SuccessMessageMixin, LoginRequiredMixin, SpeakerStatuPas
         return super().form_invalid(form)
 
     def get_success_url(self):
-        return reverse_lazy('create_project_mission', kwargs ={'pk':self.object.id} )
+        return reverse_lazy('project_detail', kwargs ={'pk':self.object.id} )
 
 
 
@@ -197,3 +231,5 @@ class ProjectDeleteView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, DeleteV
 
 # author = Project.objects.get(name=)
 # formset = BookFormSet(instance=author)
+
+

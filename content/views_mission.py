@@ -79,7 +79,7 @@ class AddCollectiveMissionView(ProfileCheckPassesTestMixin, View):
 
 
 
-class IndividualMissionDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
+class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
     '''Detail Of General Mission'''
     model = IndividualMission
     template_name = 'backend/mission/mission_detail.html'    
@@ -94,7 +94,7 @@ class IndividualMissionDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixi
 
 
 
-class CollectiveMissionDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
+class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
     '''Detail Of General Mission'''
     model = CollectiveMission
     template_name = 'backend/mission/mission_detail.html'
@@ -108,24 +108,12 @@ class MyMissionList(View):
     pass
 
 
-class MissionCreateView(SpeakerStatuPassesTestMixin, CreateView):
-    ''' Create Mission - Will Go into General Mission'''
-    model = Mission
-    form_class = MissionAddForm 
-    template_name = 'crud/create.html'  
 
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.project = self.project
-        self.object.owner = self.request.user
-        self.object.save()
-        return super().form_valid(form)
 
-
-class MissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
-    '''Update a Mission'''
-    model = Mission
+class IndividualMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
+    '''Update an Individual Mission'''
+    model = IndividualMission
     fields = ['name', 
             'field', 
             'level',
@@ -136,7 +124,27 @@ class MissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
 
 def get_object(self):
     pk = self.kwargs.get['pk']
-    return get_object_or_404(Mission, pk=pk)
+    return get_object_or_404(IndividualMission, pk=pk)
+
+
+
+class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
+    '''Update a Collective Mission'''
+    model = CollectiveMission
+    fields = ['name',
+            'field',
+            'level',
+            'description',
+            'resources',
+            'attributed_to']
+    template_name = 'crud/update.html'
+
+
+def get_object(self):
+    pk = self.kwargs.get['pk']
+    return get_object_or_404(CollectiveMission, pk=pk)
+
+
 
 
 class MissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):

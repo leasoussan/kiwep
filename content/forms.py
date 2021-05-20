@@ -24,24 +24,19 @@ class ProjectAddForm(ModelForm):
         # exclude = ['completed', 'created_by']
 
 class TeamAddForm(ModelForm):
-    """def__init__: Is to say that we are calling the for super() with it's packed data
-    then we go into the project fields, qnd change the quesry set to filter our Q request and dispose it to us"""
-
-    def __init__(self, user, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['project'].queryset = Project.objects.filter(Q(is_template=True) | Q(speaker=user.profile()))
-
 
     class Meta:
         model = Team
         fields = [
             'name',
-            'project',
             'start_date',
             'due_date',
             'group_Institution',
             'participants',
         ]
+
+
+
 
     
 class AddMemberTeamForm(ModelForm):

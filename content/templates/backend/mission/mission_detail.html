@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
-
+{% load mytags %}
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'backend/css/overwrite.css' %}">
 {% endblock %}
 
 {% block content %}
 
-{% if user.profile.name == 'speaker' %}
 
-{# <a href="{% url 'update_mission' mission.pk %}">{% trans 'edit_mission' %}</a> #}
+ {% if user.profile.name == 'speaker' %}
+
+<a href="{{ object.get_update_url }}">{% trans 'edit_mission' %}</a>
 {% endif %}
 
 
