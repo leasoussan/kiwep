@@ -24,13 +24,21 @@ li a:hover {
   border-radius: 10px;
   border:1px solid #7d7d83;
 }
+#search_btn {
+  border-radius: 10px;
+  border:1px solid #7d7d83;
+  height: 40px;
+  background-color:#f7d493;
+  /* width:210px; */
+}
 .nav-link {
   color: #fffefc;
   text-decoration: none;
   text-align: center;
 }
  a:hover {
-  color: #fffefc;
+  color: #425940;
+
   text-decoration: none;
 }
 #title_kiwep {
@@ -62,6 +70,9 @@ button:hover {
   border-radius: 10px;
   color: #fffefc;
 
+}
+.btn a   {
+  color: #fffefc;
 }
  /* a:hover {
   color:  #425940;

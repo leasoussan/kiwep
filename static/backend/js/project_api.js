@@ -113,13 +113,17 @@ const displayProducts = (list) => {
 // fetchCreateData()
 
 
-// const fetchProjectDetails = (data) => {
-//   fetch('/api_project/project_detail/')
-//   .then(res => res.json())
-//   .then(data => {
-//     console.log(data)
-//   })
-//
-// }
+
 
 // fetchProjectDetails()
+let myDiv = document.getElementById('addTask')
+console.log(myDiv)
+const fetchTask = (data) => {
+  fetch('/todo/task_create/')
+  .then(res => res.json())
+  .then(data => {
+    console.log(data)
+  })
+
+}
+fetchTask()
