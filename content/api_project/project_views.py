@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from content.models import Project 
-from .serializer import (
+from .project_serializer import (
     ProjectListSerializer, 
     ProjectDetailSerializer, 
     ProjectCreateUpdateSerializer,
@@ -36,7 +36,7 @@ class ProjectCreateAPIView(CreateAPIView):
     serializer_class = ProjectCreateUpdateSerializer
 
     def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
+        serializer.save()
     
 
 class ProjectDetailAPIView(RetrieveAPIView):
@@ -52,7 +52,7 @@ class ProjectUpdateAPIView(RetrieveUpdateAPIView):
     serializer_class = ProjectCreateUpdateSerializer
     
     def perform_update(self, serializer):
-        serializer.save(created_by=self.request.user)
+        serializer.save()
     
 
 
