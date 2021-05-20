@@ -42,8 +42,16 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
     queryset = IndividualMission.objects.team_available_mission()
 
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if not self.object.project and self.request.user.get_user_type() == 'speaker':
+            context['templates'] = Project.objects.global_template_projects()
+            context['old_projects'] = self.request.user.profile().project_set.all()
+        return context
+
     def get_object(self):
         pk = self.kwargs.get("pk")
+
         return get_object_or_404(Team, pk=pk)
 
 
@@ -59,10 +67,7 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
     form_class = TeamAddForm
     template_name = 'crud/create.html'
     
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
-        return kwargs
+
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -85,7 +90,7 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
 
 
 
-class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
+class TeamCreateMissionView(SpeakerStatuPassesTestMixin, View):
     """ Once a Team IS created the missions have to be set, Deadline, attribution etc...."""
     def get(self, request, *args, **kwargs):
         

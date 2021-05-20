@@ -129,11 +129,6 @@ class Mission(models.Model):
     def __str__(self):
         return f"Mission Name : {self.name}"
 
-    def get_absolute_url(self):
-        return reverse("mission_detail", kwargs={"pk":self.pk})
-
-
-
 
 class MissionValue(models.Model):
     percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
@@ -173,9 +168,9 @@ class IndividualMission(Mission):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
 
-
-
-
+    def get_update_url(self):
+        """ To """
+        return reverse('update_individual_mission', kwargs={"pk":self.pk})
 
 class CollectiveMission(Mission):
     """
@@ -192,6 +187,9 @@ class CollectiveMission(Mission):
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk": self.pk})
 
+    def get_update_url(self):
+        """ To get the link to the update"""
+        return reverse('update_collective_mission', kwargs={"pk":self.pk})
 
 
 
@@ -218,14 +216,11 @@ class IndividualCollectiveMission(Mission):
 
 
 
-
-
-
 class Team(models.Model):
     """ a Team Model is to manage a Project per Team- Creating a team is allowing the Speaker to  
     Manage one or few people on a Project"""
     name = models.CharField(max_length=200)
-    project = models.OneToOneField(Project, on_delete=models.CASCADE)
+    project = models.OneToOneField(Project, on_delete=models.CASCADE, null=True)
     start_date = models.DateField()
     due_date = models.DateField()
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
