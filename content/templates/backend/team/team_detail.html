@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load mytags %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -68,6 +69,8 @@
                                 Chose a Project For the Team
                             </button>
                         {% endif %}
+                     {% else %}
+                       <a style="color: black" href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a>
                     {% endif %}
                 </div>
 
@@ -132,22 +135,22 @@
                         <tbody>
 
                         {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
-                            {% for projectmission in team.individualprojectmission_set.team_available_mission %}
+                            {% for mission in team.project.individualmission_set.available_mission %}
 
 
                                 <tr>
                                     <td>
                                         <a
-                                                href="{% url 'mission_detail' projectmission.mission.id %}">{{projectmission.mission.name}}</a>
+                                                href="{% url 'individual_mission_detail' mission.id %}">{{mission.name}}</a>
                                     </td>
 
-                                    <td>{{projectmission.stage}}</td>
-                                    <td>{{projectmission.points}}</td>
-                                    <td>{{projectmission.due_date}}</td>
+                                    <td>{{mission.stage}}</td>
+                                    <td>{{mission.points}}</td>
+                                    <td>{{mission.due_date}}</td>
 
                                     <td>
                                         {% if user.is_student %}
-                                            <td><a href="{% url 'claim_mission' projectmission.id %}">{% trans 'claim_mission_link' %}</a></td>
+                                            <td><a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a></td>
                                         {% else %}
                                             {% trans 'available_mission' %}
                                         {% endif %}
@@ -186,17 +189,17 @@
                         <tbody>
 
                         {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
-                            {% for projectmission in team.collectiveprojectmission_set.all %}
+                            {% for mission in team.collectivemission_set.all %}
 
 
                                 <tr>
                                 <td>
                                     <a
-                                            href="{% url 'mission_detail' projectmission.mission.id %}">{{projectmission.mission.name}}</a>
+                                            href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a>
                                 </td>
-                                <td>{{projectmission.stage}}</td>
-                                <td>{{projectmission.points}}</td>
-                                <td>{{projectmission.due_date}}</td>
+                                <td>{{mission.stage}}</td>
+                                <td>{{mission.points}}</td>
+                                <td>{{mission.due_date}}</td>
                             {% endfor %}
 
 
@@ -400,7 +403,12 @@
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">
-                         <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>
+<form method="post" action="{% url 'create_team_project' team.id %}">
+    {% csrf_token %}
+         {{ project_form|crispy }}
+    <button type="submit">Save </button>
+</form>
+
                     </div>
                     <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
                         {% for project in templates  %}
@@ -409,7 +417,7 @@
                     </div>
                     <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">
                         {% for project in old_projects  %}
-                        <h2>{{ project.name }}</h2>
+                        <h2>{{ project.name }} <a href="{% url 'duplicate_create_project' project.id team.id %}">Duplicate this Project</a> </h2>
                         {% endfor %}
                     </div>
                 </div>

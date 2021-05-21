@@ -1,5 +1,7 @@
+from django.utils import timezone
+
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Project, Team
+from .models import Project, Team, IndividualMission, CollectiveMission
 from django.forms import ModelForm
 from .forms import (
     ProjectAddForm,
@@ -30,7 +32,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 
 
-class ChoseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
+class ChooseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
     """Select a project will make you own a version of the project
     This View will make himself a speaker to the project -
     as a copy to enable using it after with a team and make changes"""
@@ -99,7 +101,7 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
 
 # ----------------PROJECT------Detail_View/
 
-class ProjectDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailView):
+class ProjectDetailView(ProfileCheckPassesTestMixin, DetailView):
     model = Project
     template_name = 'backend/project/project_detail.html'
 
@@ -119,7 +121,7 @@ class ProjectDetailView(LoginRequiredMixin,ProfileCheckPassesTestMixin, DetailVi
 # -----------------------------PROJECT-----Create_View:
 
 
-class ProjectCreateView(SuccessMessageMixin, LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
+class ProjectCreateView(SuccessMessageMixin, SpeakerStatuPassesTestMixin, CreateView):
     model = Project
     form_class = ProjectAddForm
     template_name = 'crud/create.html'
@@ -151,13 +153,73 @@ class ProjectCreateView(SuccessMessageMixin, LoginRequiredMixin, SpeakerStatuPas
 
 
 
+class ProjectTeamCreateView(ProjectCreateView):
+    """This View inherite form ProjectCreateView
+     we add here the team that it connecte right away with it and save it with a team """
+
+    def form_valid(self, form):
+        super().form_valid(form)
+        pk = self.kwargs.get("pk")
+        team= get_object_or_404(Team, pk=pk)
+        team.project = self.object
+        team.save()
+        return super().form_valid(form)
+
 # To Overwrite the Get_absolut_url if I want it to go somewhere else - for ex in the update view 
 
     # def get_success_url(self):
     #     return ('content/project_list')
 
+def clean_missions(project_id, *querysets):
 
-class CreateProjectMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
+    for qs in querysets:
+        objects = []
+        if qs.model not in [IndividualMission, CollectiveMission]:
+            print('Function clean mission should be only used on mission query set ')
+            return
+        for mission in qs:
+            mission.id=None
+            mission.project_id = project_id
+            mission.created_date = None
+            mission.due_date = timezone.now()
+            mission.completed=False
+            if qs.model == IndividualMission:
+                mission.attributed_to = None
+                mission.response_comment = ''
+                mission.response_file = None
+                mission.accepted = False
+
+            objects.append(mission)
+        qs.model.objects.bulk_create(objects)
+
+
+
+
+
+class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
+    """Here we Inherite from a Detail View, where we take an Old Project
+    clean the data and make a new copy"""
+
+    pattern_name = 'update_project'
+
+    def get_redirect_url(self, *args, **kwargs):
+        project = get_object_or_404(Project, pk=kwargs['pk'])
+        pk = self.kwargs.get("team_id")
+        team = get_object_or_404(Team, pk=pk)
+        i_missions = project.individualmission_set.all()
+        c_missions = project.collectivemission_set.all()
+        project.id =  None
+
+        project.save()
+        clean_missions(project.id, i_missions, c_missions)
+        team.project = project
+        team.save()
+        kwargs['pk'] = project.pk
+        del kwargs['team_id']
+        return super().get_redirect_url(*args, **kwargs)
+
+
+class CreateProjectMissionView(SpeakerStatuPassesTestMixin, View):
     """ Once a Project IS created the missions have to be set, Deadline, attribution etc...."""
 
     def get(self, request, *args, **kwargs):
