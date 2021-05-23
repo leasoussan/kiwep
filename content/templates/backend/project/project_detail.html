@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
+
 {% load crispy_forms_filters %}
 
-=======
 {% load static %}
->>>>>>> add5770bc99ff338cde77c101525c62677dfeafd
+
 {% load i18n %}
 
 
@@ -12,7 +11,7 @@
 
 
 
-<<<<<<< HEAD
+
     <a href="{% url 'project_list' %}">{% trans 'all_projects' %}</a>
 
     {% if user.profile.name == 'speaker' %}
@@ -21,54 +20,6 @@
 
     {% endif %}
 
-    <div>
-
-
-
-    </div>
-    <!-- Intro Courses -->
-    <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
-        <div class="container">
-            <div class="row clearfix">
-                <!-- Content Column -->
-                <div class="col-lg-8 md-mb-50">
-                    <!-- Intro Info Tabs-->
-                    <div class="intro-info-tabs">
-                        <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
-                            <li class="nav-item tab-btns">
-                                <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                   href="#prod-overview" role="tab" aria-controls="prod-overview"
-                                   aria-selected="true">{{project.name}}</a>
-                            </li>
-
-
-                        </ul>
-                        <div class="tab-content tabs-content" id="myTabContent">
-                            <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
-                                 aria-labelledby="prod-overview-tab">
-                                <div class="content white-bg pt-30">
-                                    <!-- Cource Overview -->
-                                    <div class="course-overview">
-                                        <div class="inner-box">
-                                            <h2>{{project.title}}</h2>
-                                            <p>{{project.description}}</p>
-
-                                            <h3>{% trans 'what_you_will_lean' %}</h3>
-                                            <ul class="review-list">
-                                                {% for skill in project.acquired_skills.all %}
-                                                    Some details about the Acquired Skills
-                                                    <li>{{skill.name}}</li>
-                                                {% endfor %}
-                                            </ul>
-                                            <h3>{% trans 'required_skils' %}</h3>
-                                            <ul class="review-list">
-                                                Some details about the required
-                                                {% for skill in project.required_skills.all %}
-                                                    <li>{{skill.name}}</li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
-=======
 
   <div class="container-fluid">
     <!-- <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a> -->
@@ -164,33 +115,9 @@
                     </div>
 
 
-                    <!-- <div class="tab-content tabs-content" id="myTabContent">
-                        <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
-                            aria-labelledby="prod-overview-tab">
-                            <div class="content white-bg pt-30">
-
-                                <div class="course-overview">
-                                    <div class="inner-box">
-
-
-                                        <h3>{% trans 'what_you_will_lean' %}</h3>
-                                        <ul class="review-list">
-                                            {% for skill in project.acquired_skills.all %}
-                                            Some details about the Acquired Skills
-                                            <li>{{skill.name}}</li>
-                                            {% endfor %}
-                                        </ul>
-                                        <h3>{% trans 'required_skils' %}</h3>
-                                        <ul class="review-list">
-                                            Some details about the required
-                                            {% for skill in project.required_skills.all %}
-                                            <li>{{skill.name}}</li>
-                                            {% endfor %}
-                                        </ul>
->>>>>>> add5770bc99ff338cde77c101525c62677dfeafd
-                                    </div>
-                                </div>
-                            </div>
+</div>
+  </div>
+    </div>
 
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
                                 Add Individual Mission
@@ -238,64 +165,9 @@
 
                         </div>
 
-<<<<<<< HEAD
-
-                    </div>
-                </div>
-
-                <!-- Video Column -->
-                <div class="video-column col-lg-4">
-                    <div class="inner-column">
-
-                        <div class="course-features-info">
-                            <ul>
-                                <li class="lectures-feature">
-                                    <i class="fa fa-files-o"></i>
-                                    <span class="label">{% trans 'field' %}:</span>
-                                    <span class="value">{{project.field}}</span>
-                                </li>
 
 
-                                <li class="duration-feature">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span class="label">{% trans 'time_to_complete' %}</span>
-                                    <span class="value">{{project.time_to_complet}}</span>
-                                </li>
 
-                                <li class="students-feature">
-                                    <i class="fa fa-users"></i>
-                                    <span class="label">{% trans 'difficulty ' %}</span>
-                                    <span class="value">{{project.difficulty}}</span>
-                                </li>
-
-                                <li class="assessments-feature">
-                                    <i class="fa fa-check-square-o"></i>
-                                    <span class="label">{% trans 'points' %}</span>
-                                    <span class="value">{{project.points}}</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-=======
-                    </div>-->
-
-
->>>>>>> add5770bc99ff338cde77c101525c62677dfeafd
-                </div>
-
-            </div>
-        </div>
-
-
-<<<<<<< HEAD
-        </div>
-        </div>
-    </section>
-    <!-- End intro Courses -->
-
-
-    </div>
     <!-- Main content End -->
 
     <!-- Modal -->
@@ -307,7 +179,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="POST" action='{% url 'create_individual_mission'  project.id %}'>
-=======
+
    <!-- Video Column -->
    <div class="col-md-3">
      <div class="card" style="width: 18rem;">
@@ -335,7 +207,7 @@
       </ul>
   </div>
 </div>
->>>>>>> add5770bc99ff338cde77c101525c62677dfeafd
+
 
                     {% csrf_token %}
 
@@ -350,10 +222,10 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 
 
-=======
+
+
 
 
 
@@ -364,12 +236,12 @@
 
 
 <!-- Main content End -->
->>>>>>> add5770bc99ff338cde77c101525c62677dfeafd
 
 
 
 
-<<<<<<< HEAD
+
+
     <!-- Modal -->
     <div class="modal fade" id="CollectiveMissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -395,9 +267,7 @@
         </div>
     </div>
 
-{% endblock %}
-=======
+
 {% endblock %}
 <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
 <!-- <script src="{% static  'backend/js/project_api.js'%}" type="text/javascript"></script> -->
->>>>>>> add5770bc99ff338cde77c101525c62677dfeafd
