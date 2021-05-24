@@ -4,7 +4,6 @@
 
 
 
-
 {% if user.profile.name == 'speaker' %}
 
 <a href="{% url 'create_mission' %}">{% trans 'add_mission_link' %}/a>
@@ -15,7 +14,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{% trans 'my_mission_board_title' %}</h5>
-                <table id="zero-conf" class="display" style="width:100%">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>{% trans 'mission_name_table_title' %}</th>
@@ -45,6 +44,6 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
 
 {% endblock %}

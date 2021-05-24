@@ -12,10 +12,12 @@ urlpatterns = [
     path('', homepage_view, name = 'homepage'),
     # project
 
-    path('chose-project-detail/<int:pk>', ChoseProjectView.as_view(), name = "chose_project_detail"),
+    path('chose-project-detail/<int:pk>', ChooseProjectView.as_view(), name = "chose_project_detail"),
     path('project-list/', ProjectListView.as_view(), name = "project_list"),
     path('project-detail/<int:pk>', ProjectDetailView.as_view(), name = "project_detail"),
     path('create-project/', ProjectCreateView.as_view(), name ="create_project"),
+    path('duplicate-project/<int:pk>/<int:team_id>/', DuplicateProjectCreateView.as_view(), name="duplicate_create_project"),
+
     path('create-project-mission/<int:pk>', CreateProjectMissionView.as_view(), name="create_project_mission"),
     path('update-project/<int:pk>', ProjectUpdateView.as_view(), name = "update_project"),
     path('delete-project/<int:pk>', ProjectDeleteView.as_view(), name = "delete_project"),
@@ -43,7 +45,7 @@ urlpatterns = [
     path('team-detail/<int:pk>', TeamDetailView.as_view(), name = "team_detail"),
     path('create-team/', TeamCreateView.as_view(), name = "create_team"),
     path('chose-project-team/<int:pk>/<int:team_pk>', ChooseTeamProjectView.as_view(), name = "chose_team_project"),
-    path('create-team-missions/<int:pk>', TeamCreateMissionView.as_view(), name = "create_team_missions"),
+    path('create-team-project/<int:pk>', ProjectTeamCreateView.as_view(), name = "create_team_project"),
     
     path('update-team-mission/<int:pk>', TeamEditIndividualProjectMission.as_view(), name = "update_team_mission"),#update single mission
 

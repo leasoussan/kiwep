@@ -151,7 +151,6 @@ class IndividualMission(Mission):
         so this mission can be claimed """
 
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE,  related_name = "my_missions", blank = True, null=True)
-    completed= models.BooleanField(default=False)
     response_comment = models.TextField(blank=True)
     response_file = models.FileField(null=True, blank=True)
     accepted = models.BooleanField(default=False)

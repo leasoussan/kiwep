@@ -19,7 +19,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 
 
 
-class IndividualMissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
+class IndividualMissionListView(ProfileCheckPassesTestMixin, ListView):
     ''' To See all Missions View'''
     model = IndividualMission
     template_name = 'backend/mission/mission_list.html'
@@ -102,6 +102,9 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
     def get_object(self):
         pk = self.kwargs.get('pk')
         return get_object_or_404(CollectiveMission, pk=pk)
+
+
+
 
 
 class MyMissionList(View):

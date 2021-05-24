@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team, CollectiveMission, Project, Mission, IndividualMission
 from django.forms import ModelForm
-from .forms import TeamAddForm, CollectiveMissionFormSet, AddMemberTeamForm, IndividualMissionFormSet
+from .forms import TeamAddForm, CollectiveMissionFormSet, AddMemberTeamForm, IndividualMissionFormSet, ProjectAddForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -32,19 +32,19 @@ class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
 
 
 
-
-
 class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
     """ Global Team Details """
     
     model = Team
     template_name = 'backend/team/team_detail.html'
-    queryset = IndividualMission.objects.team_available_mission()
+    queryset = IndividualMission.objects.available_mission()
 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         if not self.object.project and self.request.user.get_user_type() == 'speaker':
+            context['project_form'] = ProjectAddForm()
             context['templates'] = Project.objects.global_template_projects()
             context['old_projects'] = self.request.user.profile().project_set.all()
         return context

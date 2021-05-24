@@ -91,7 +91,7 @@ class IndividualMissionQuerySet(models.QuerySet):
     def get_student_missions(self):
         return self.filter(mission='s_m')
 
-    def team_available_mission(self):
+    def available_mission(self):
         return self.filter(attributed_to = None)
 
     
@@ -103,8 +103,8 @@ class IndividualMissionModelManager(models.Manager):
         return IndividualMissionQuerySet(self.model, using=self._db)
 
 
-    def team_available_mission(self):
-        return self.get_queryset().team_available_mission()
+    def available_mission(self):
+        return self.get_queryset().available_mission()
 
     def get_student_missions(self):
         return self.get_queryset().get_student_missions()

@@ -53,10 +53,15 @@ INSTALLED_APPS = [
     'content',
 
     #3rd Parties
-    'rest_framework',
+    'rest_framework.authtoken',
      'crispy_forms',
      'bootstrap4',
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
