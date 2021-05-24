@@ -31,16 +31,31 @@
                                 {% for team in team_list %}
                                     <tr>
 
-                                        <th scope="col"><a style = "color: black" href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </th>
+<main class= "container-fluid">
+  <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">My Teams</h5>
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                  <tr>
+                    {% for team in team_list %}
+                      <th scope="col"><h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1></th>
+                    {% endfor %}
+                  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <td>
+                  <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
+                </td>
 
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </tr>
+              </tbody>
+            </table>
+
         </div>
     </main>
 
