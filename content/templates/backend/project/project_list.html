@@ -4,13 +4,9 @@
 {% block content %}
 
 
-<!-- <div class="color_example1">
-
-</div> -->
 
 <!-- Main content Start -->
 <div class="container-fluid">
-  <!-- <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a> -->
   <div class="row">
     <div class="col">
       <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'project list' %}</h5>
@@ -21,7 +17,7 @@
           <button type="button" class="btn" name="button"><a href="{% url 'create_project' %}" style="color:#fffefc;">Add project</a></button>
         </div>
 
-<<<<<<< HEAD
+
     <h5 class="card-header" style="text-align:center;">{% trans 'available_project_list' %}</h5>
 
           <table class="table table-bordered table-hover table-responsive-md">
@@ -49,46 +45,31 @@
 
             </tbody>
           </table>
-=======
->>>>>>> 8998654a0a4f23616f19f42fb17a6c518b846f99
+
         </div>
   </div>
-  </div>
 
 
-<<<<<<< HEAD
+
    <div class="rs-breadcrumbs">
+ <div class="col">
+      <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'my_project list' %}</h5>
 
-            <h1 class="page-title"> {% trans 'my_project_list' %}</h1>
-=======
-    <!--   Breadcrumbs Start -->
-  <!-- <div class="rs-breadcrumbs breadcrumbs-overlay">
-        <div class="breadcrumbs-text white-color">
-            <h1 class="page-title">Course Grid 02</h1>
->>>>>>> 8998654a0a4f23616f19f42fb17a6c518b846f99
+    <table class="table table-bordered table-hover table-responsive-md">
+            <thead>
+                <tr>
 
-
-
-            <a style = "color: black" href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>
-
-        </div>
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-
-                    <table id="zero-conf" class="display" style="width:100%">
-                        <thead>
-                            <tr>
                                 <th> {% trans 'project_name_table_header' %}</th>
                                 <th>{% trans 'speaker_table_header' %}</th>
                                 <th>{% trans 'field_table_header' %}</th>
                                 <th>{% trans 'time_to_complete_table_header' %}</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for project in user.profile.project_set.personal_projects %}
+
+
+                </tr>
+            </thead>
+              <tbody>
+                {% for project in user.profile.project_set.personal_projects %}
                             <tr>
                                 <td><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
                                 <td>{{project.speaker.user.first_name}}</td>
@@ -96,19 +77,14 @@
                                 <td>{{project.time_to_complete}}</td>
 
                             </tr>
-                            {% endfor %}
-                      </tbody>
+                {% endfor %}
 
-                    </table>
-                </div>
-<<<<<<< HEAD
-=======
-            </div>
-        </div>
-    </div> -->
->>>>>>> 8998654a0a4f23616f19f42fb17a6c518b846f99
 
-            </div>
-        </div>
+</tbody>
+    </table>
+ </div>
+   </div>
+</div>
+
 {% endblock %}
 <script src="{% static  'backend/js/project_api.js'%}" type="text/javascript"></script>
