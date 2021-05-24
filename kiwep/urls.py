@@ -26,13 +26,13 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('backend.urls')),
     path('', include('content.urls')),
-    
+
     path('message/', include('message.urls')),
     path('todo/', include('todo.urls')),
-  
 
-     # to add the api module 
-    path('api_project/content/', include('content.api_project.urls')),
+
+     # to add the api module
+    path('api_project/', include('content.api_project.urls')),
 
 ]
 

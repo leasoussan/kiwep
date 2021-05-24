@@ -5,6 +5,7 @@
 
 
 
+
 <main class= "container-fluid">
   <div class="row">
   <div class="col-sm-6">
@@ -15,7 +16,7 @@
             <table class="table table-striped">
               <thead>
                   <tr>
-                    {% for mission in mission_list %}
+                    {% for team in team_list %}
                       <th scope="col"><h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1></th>
                     {% endfor %}
                   </tr>
