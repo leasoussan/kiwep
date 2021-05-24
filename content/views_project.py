@@ -126,7 +126,7 @@ class ProjectCreateView(SuccessMessageMixin, SpeakerStatuPassesTestMixin, Create
     form_class = ProjectAddForm
     template_name = 'crud/create.html'
     success_message = "Your project was created successfuly"
-    # formset = ProjectMissionFormSet()
+
 
 
 
