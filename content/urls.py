@@ -1,9 +1,9 @@
 from django.urls import path
-from content.views_project import * 
-from content.views_team import * 
+from content.views_project import *
+from content.views_team import *
 from content.views_mission import *
 from content.views_resource import *
-from .views import * 
+from .views import *
 
 
 
@@ -46,13 +46,13 @@ urlpatterns = [
     path('create-team/', TeamCreateView.as_view(), name = "create_team"),
     path('chose-project-team/<int:pk>/<int:team_pk>', ChooseTeamProjectView.as_view(), name = "chose_team_project"),
     path('create-team-project/<int:pk>', ProjectTeamCreateView.as_view(), name = "create_team_project"),
-    
+
     path('update-team-mission/<int:pk>', TeamEditIndividualProjectMission.as_view(), name = "update_team_mission"),#update single mission
 
     path('update-team-mission/<int:pk>', TeamEditCollectiveProjectMission.as_view(), name = "update_team_mission"),#update single mission
 
     path('add-member-team/<int:pk>', AddTeamMemberView.as_view(), name = "add_member_team"),
-    
+
     path('join-team/<int:pk>', JoinTeamView.as_view(), name = "join_team"),
     path('leave-team/<int:pk>', LeaveTeamView.as_view(), name = "leave_team"),
 
@@ -64,7 +64,7 @@ urlpatterns = [
 
 
 
-    # ressource 
+    # ressource
     path('resource-list/', ResourceListView.as_view(), name = "resource_list"),
     path('resource-detail/<int:pk>', ResourceDetailView.as_view(), name = "resource_detail"),
     path('create-resource/', ResourceCreateView.as_view(), name = "create_resource"),
@@ -75,4 +75,3 @@ urlpatterns = [
     # development link - to view
     path('content-manager/', content_manager, name="content_manager"),
 ]
-

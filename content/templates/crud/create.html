@@ -30,7 +30,7 @@
                         {% endfor %}
                         {% endif %}
                         <button class="btn" type="submit" value="Save">Save</button>
-                        <button class="btn" type="submit" ><a href="{% url 'project_list' %}" style="color:#fffefc;">Back</a></button>
+                        <button class="btn" type="submit" ><a href="{% url 'homepage' %}" style="color:#fffefc;">Back</a></button>
                     </form>
                 </table>
 
@@ -39,9 +39,5 @@
         </div>
     </div>
 
-
-
-
-
-{% endblock %}
-<script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
+    {% endblock %}
+    <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>

@@ -12,7 +12,7 @@ console.log('Is this page working?')
 // }
 // catchAPI()
 const fetchData = (data) => {
-    fetch('/api_project/project_list/')
+    fetch('/api_project/content/project_list/')
 // fetch('/api_project/project_update/{id}/')
         .then(res => res.json())
         .then(data =>
