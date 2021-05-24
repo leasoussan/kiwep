@@ -27,8 +27,8 @@ class ProjectModelManager(models.Manager):
         return self.get_queryset().personal_projects()
 
 
-    def get_template_projects(self):
-        return self.get_queryset().get_template_projects()
+    def global_template_projects(self):
+        return self.get_queryset().global_template_projects()
    
 
 # ----------------------------------------------Team---Manager__queryset
