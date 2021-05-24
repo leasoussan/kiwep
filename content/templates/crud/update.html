@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
+{% load static %}
 
 
 {% block extrahead %}
@@ -15,11 +16,13 @@
 
 {{form.as_p}}
 
-<button type="submit">Save</button>
+<button class="btn" type="submit">Save</button>
+<button class="btn" type="submit"><a href="{% url 'project_detail' project.id %}" style="color:#fffefc;">Back</a></button>
+
 
 </form>
 
-
+<!--  -->
 
 
 
