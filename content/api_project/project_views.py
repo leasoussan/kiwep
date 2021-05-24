@@ -1,5 +1,5 @@
 from rest_framework.generics import (
-    ListAPIView, 
+    ListAPIView,
     RetrieveAPIView,
     UpdateAPIView,
     DestroyAPIView,
@@ -10,10 +10,10 @@ from rest_framework.generics import (
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from content.models import Project 
-from .serializer import (
-    ProjectListSerializer, 
-    ProjectDetailSerializer, 
+from content.models import Project
+from .project_serializer import (
+    ProjectListSerializer,
+    ProjectDetailSerializer,
     ProjectCreateUpdateSerializer,
 )
 
@@ -36,13 +36,13 @@ class ProjectCreateAPIView(CreateAPIView):
     serializer_class = ProjectCreateUpdateSerializer
 
     def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
-    
+        serializer.save()
+
 
 class ProjectDetailAPIView(RetrieveAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectDetailSerializer
-    
+
     # if we want to change the lookup in url
     # lookup_url_kwarg = "What I want to "/
 
@@ -50,20 +50,18 @@ class ProjectDetailAPIView(RetrieveAPIView):
 class ProjectUpdateAPIView(RetrieveUpdateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectCreateUpdateSerializer
-    
+
     def perform_update(self, serializer):
-        serializer.save(created_by=self.request.user)
-    
+        serializer.save()
+
 
 
 class ProjectDeleteAPIView(DestroyAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectDetailSerializer
-    
+
 
 
 class ProjectListAPIView(ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectListSerializer
-
-

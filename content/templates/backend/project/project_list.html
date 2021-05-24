@@ -21,22 +21,47 @@
           <button type="button" class="btn" name="button"><a href="{% url 'create_project' %}" style="color:#fffefc;">Add project</a></button>
         </div>
 
+    <!-- <h5 class="card-header" style="text-align:center;">{% trans 'available_project_list' %}</h5>
+
+          <table class="table table-bordered table-hover table-responsive-md">
+            <thead>
+                <tr>
+                  <th scope="col">{% trans 'project_name_table_header' %}</th>
+                  <th scope="col">{% trans 'speaker_table_header' %}</th>
+                  <th scope="col">{% trans 'field_table_header' %}</th>
+                  <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
+                  <th scope="col">{% trans 'select_project' %}</th>
+
+                </tr>
+            </thead>
+              <tbody>
+                {% for project in project_list %}
+                <tr>
+                  <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
+                  <td>{{project.speaker.user.first_name}}</td>
+                  <td>{{project.field}}</td>
+                  <td>{{project.time_to_complet}}</td>
+                  <td> <a href="{% url 'chose_project_detail' project.id %}">Select Project </a> </td>
+                </tr>
+                {% endfor %}
+
+
+            </tbody>
+          </table> -->
         </div>
   </div>
   </div>
 
 
-    <!--   Breadcrumbs Start -->
-  <!-- <div class="rs-breadcrumbs breadcrumbs-overlay">
-        <div class="breadcrumbs-text white-color">
-            <h1 class="page-title">Course Grid 02</h1>
+   <div class="rs-breadcrumbs">
 
-          {% trans 'project_list_title' %}
+            <h1 class="page-title"> {% trans 'my_project_list' %}</h1>
 
-            <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>
+
+
+            <a style = "color: black" href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>
 
         </div>
-    </div>
     <div class="row">
         <div class="col">
             <div class="card">
@@ -45,7 +70,7 @@
                     <table id="zero-conf" class="display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>{% trans 'project_name_table_header' %}</th>
+                                <th> {% trans 'project_name_table_header' %}</th>
                                 <th>{% trans 'speaker_table_header' %}</th>
                                 <th>{% trans 'field_table_header' %}</th>
                                 <th>{% trans 'time_to_complete_table_header' %}</th>
@@ -53,12 +78,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for project in project_list %}
+                            {% for project in user.profile.project_set.personal_projects %}
                             <tr>
-                                <td><a href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
+                                <td><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
-                                <td>{{project.time_to_complet}}</td>
+                                <td>{{project.time_to_complete}}</td>
 
                             </tr>
                             {% endfor %}
@@ -66,9 +91,8 @@
 
                     </table>
                 </div>
+
             </div>
         </div>
-    </div> -->
-
 {% endblock %}
 <script src="{% static  'backend/js/project_api.js'%}" type="text/javascript"></script>

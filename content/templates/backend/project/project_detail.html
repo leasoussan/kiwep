@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load crispy_forms_filters %}
+
 {% load i18n %}
 
 
@@ -128,30 +129,96 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
+                                Add Individual Mission
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CollectiveMissionModal">
+                                Add Collective Mission
+                            </button>
+
+
+
+
+                            <div>
+                                {% for mission in project.individualmission_set.all  %}
+                                    <h3><a style="color: black"  href="{% url 'individual_mission_detail' mission.id %}">{{mission.name}}</a></h3>
+
+                                    <div class="pull-right">
+                                        {{mission.points}}
+                                    </div>
+                                    <div class='mission_type'>
+
+                                        {{mission.get_mission_type_display}}
+
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div>Collective Missions
+                                {% for mission in project.collectivemission_set.all %}
+
+                                    <h2><a style="color: black" href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a></h2>
+
+
+
+                                    <div class="pull-right">
+                                        {{mission.points}}
+                                    </div>
+                                    <div class='mission_type'>
+
+                                        {{mission.get_mission_type_display}}
+
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+
+
                         </div>
 
 
-                        <div>
-                            {% for mission in project.missions.all %}
-                            <h3>{{mission.name}}</h3>
-
-
-                            <div class="pull-right">
-                                {{mission.points}}
-                            </div>
-                            <div class='mission_type'>
-
-                                {{mission.get_mission_type_display}}
-
-                            </div>
-                            {% endfor %}
-                        </div>
-
-                    </div>-->
-
-
+                    </div>
                 </div>
+
+                <!-- Video Column -->
+                <div class="video-column col-lg-4">
+                    <div class="inner-column">
+
+                        <div class="course-features-info">
+                            <ul>
+                                <li class="lectures-feature">
+                                    <i class="fa fa-files-o"></i>
+                                    <span class="label">{% trans 'field' %}:</span>
+                                    <span class="value">{{project.field}}</span>
+                                </li>
+
+
+                                <li class="duration-feature">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span class="label">{% trans 'time_to_complete' %}</span>
+                                    <span class="value">{{project.time_to_complet}}</span>
+                                </li>
+
+                                <li class="students-feature">
+                                    <i class="fa fa-users"></i>
+                                    <span class="label">{% trans 'difficulty ' %}</span>
+                                    <span class="value">{{project.difficulty}}</span>
+                                </li>
+
+                                <li class="assessments-feature">
+                                    <i class="fa fa-check-square-o"></i>
+                                    <span class="label">{% trans 'points' %}</span>
+                                    <span class="value">{{project.points}}</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
+        </div>
+
 
    <!-- Video Column -->
    <div class="col-md-3">
@@ -180,19 +247,25 @@
       </ul>
   </div>
 </div>
+</section>
 
+                    <form>
+
+                    {% csrf_token %}
+
+                    <div class="modal-body">
+                        {{individual_form|crispy}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
 
-
-</section>
-</div>
-<!-- End intro Courses -->
-
-
-
-<!-- Main content End -->
 
 
 

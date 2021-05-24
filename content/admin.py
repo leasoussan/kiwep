@@ -1,43 +1,46 @@
 from django.contrib import admin
+from message.admin import TeamCommentsInlineAdmin
 from .models import (
     Resource, 
     Project, 
     Mission, 
     Team,
     Skills,
-    CollectiveProjectMission,
-    IndividualProjectMission, 
-    IndividualCollectiveProjectMission,
-    ProjectMissionRating
+    CollectiveMission,
+    IndividualMission,
+    MissionValue,
+    HardSkillsRating
 )
 
 
 
-
-# inline views
-# class MissionsProjectInlineAdmin(admin.TabularInline):
-#     model = MissionsProject
+admin.site.register(MissionValue)
+admin.site.register(HardSkillsRating)
 
 
-class IndividualCollectiveProjectMissionInlineAdmin(admin.TabularInline):
-    model = IndividualCollectiveProjectMission
 
 
-class CollectiveProjectMissionAdmin(admin.ModelAdmin):
-    inlines = [IndividualCollectiveProjectMissionInlineAdmin]
-    
+class CollectiveMissionInlineAdmin(admin.TabularInline):
+    model = CollectiveMission
 
-class CollectiveProjectMissionInlineAdmin(admin.TabularInline):
-    model = CollectiveProjectMission
-    
 
-admin.site.register(IndividualProjectMission)
-admin.site.register(CollectiveProjectMission, CollectiveProjectMissionAdmin)
+
+class IndividualMissionInlineAdmin(admin.TabularInline):
+    model = IndividualMission
+
+
+class MissionValueInlineAdmin(admin.TabularInline):
+    model = MissionValue
+
+
+
+
+
 
 
 
 class ProjectMissionRatingInlineAdmin(admin.TabularInline):
-    model = ProjectMissionRating
+    model = HardSkillsRating
 
 # --------------------------------------------------------------------------
 
@@ -71,8 +74,8 @@ admin.site.register(Skills)
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ("name", "speaker", "completed")
-    inlines = [ProjectMissionRatingInlineAdmin]
+    list_display = ("name", "speaker", "completed", "is_template")
+
 
 
 
@@ -80,9 +83,16 @@ class ProjectAdmin(admin.ModelAdmin):
 # --------------------------------------------------------------------------
 
 
-@admin.register(Mission)
-class MissionAdmin(admin.ModelAdmin):
+@admin.register(IndividualMission)
+class IndividualMissionAdmin(admin.ModelAdmin):
     list_display = ("name", "field")
+
+
+
+@admin.register(CollectiveMission)
+class CollectiveMissionAdmin(admin.ModelAdmin):
+    list_display = ("name", "field")
+
 
 
 # --------------------------------------------------------------------------
@@ -91,7 +101,6 @@ class MissionAdmin(admin.ModelAdmin):
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
     list_display = ("name", "group_Institution")
-    # inlines =[CollectiveProjectMissionInlineAdmin]
 
 
 
