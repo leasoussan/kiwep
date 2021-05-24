@@ -116,14 +116,21 @@ const displayProducts = (list) => {
 
 
 // fetchProjectDetails()
-let myDiv = document.getElementById('addTask')
-console.log(myDiv)
-const fetchTask = (data) => {
-  fetch('/todo/task_create/')
-  .then(res => res.json())
-  .then(data => {
-    console.log(data)
-  })
 
-}
-fetchTask()
+//  TASK-CREATE
+// let myDiv = document.getElementById('addTask')
+// console.log(myDiv)
+// const fetchTask = (data) => {
+//   fetch('/todo/task_create/', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(data),
+//   })
+//   .then(res => res.json())
+//   .then(data1 => {
+//     console.log(data1)
+//   })
+// }
+// fetchTask()
