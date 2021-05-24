@@ -2,6 +2,7 @@
 {% load i18n %}
 {% block content %}
 
+<<<<<<< HEAD
     <th>{% trans 'team_dashboard_title' %}</th>
 
 
@@ -24,6 +25,10 @@
                                     <th>
                                         {% trans 'team_name' %}
                                     </th>
+=======
+<th>{% trans 'team_dashboard_title' %}</th>
+
+>>>>>>> b553d2c6d98b71c98639f5c32136f7b2cfb7106e
 
                                 </tr>
                                 </thead>
@@ -33,6 +38,7 @@
 
                                         <th scope="col"><a style = "color: black" href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </th>
 
+<<<<<<< HEAD
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -43,5 +49,43 @@
             </div>
         </div>
     </main>
+=======
+
+<main class= "container-fluid">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">My Teams</h5>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                {% if team in team_list %}
+                {% for team in team_list %}
+                <th scope="col"><h1>Team Name <a href="{% url 'team_detail' team.id %}"></a> {{ team.name }}</h1></th>
+                {% endfor %}
+                {% else %}
+                You dont have any team yet
+                {% endif%}
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>
+                  <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
+                </td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+>>>>>>> b553d2c6d98b71c98639f5c32136f7b2cfb7106e
 
 {% endblock %}

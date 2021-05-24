@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
+<<<<<<< HEAD
 {% load crispy_forms_filters %}
 
+=======
+{% load static %}
+>>>>>>> b553d2c6d98b71c98639f5c32136f7b2cfb7106e
 {% load i18n %}
 
 
@@ -8,6 +12,7 @@
 
 
 
+<<<<<<< HEAD
     <a href="{% url 'project_list' %}">{% trans 'all_projects' %}</a>
 
     {% if user.profile.name == 'speaker' %}
@@ -63,6 +68,126 @@
                                                 {% endfor %}
                                             </ul>
                                         </div>
+=======
+
+  <div class="container-fluid">
+    <!-- <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a> -->
+
+
+<div id="project_detail"></div>
+
+</div>
+<!-- Intro Courses -->
+<section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
+    <div class="container">
+        <div class="row clearfix">
+            <!-- Content Column -->
+            <div class="col-md-9 md-mb-50">
+                <!-- Intro Info Tabs-->
+                <div class="intro-info-tabs">
+                    <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
+                        <li class="nav-item tab-btns">
+                            <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
+                                href="#prod-overview" role="tab" aria-controls="prod-overview"
+                                aria-selected="true">{{project.name}}</a>
+                        </li>
+                        <li class="nav-item tab-btns">
+                            <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
+                                href="{% url 'project_list' %}" role="tab" aria-controls="prod-overview"
+                                aria-selected="true">{% trans 'all projects' %}</a>
+                        </li>
+                        {% if user.profile.name == 'speaker' %}
+                        <li class="nav-item tab-btns">
+                            <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
+                                href="{% url 'update_project' project.id %}" role="tab" aria-controls="prod-overview"
+                                aria-selected="true">{% trans 'edit project' %}</a>
+                        </li>
+                        {% endif %}
+
+
+                    </ul>
+                    <div class="row">
+                      <div class="col">
+                        <div class="card">
+
+
+                        <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{{project.title}}</h5>
+                        <div class="card-body">
+                           <p class="card-text" style="text-align:center; ">{{project.description}}</p>
+                       </div>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="card">
+
+
+                        <h5 class="card-header" style="text-align:center;background-color:f7d493;">{% trans 'what you will learn' %}</h5>
+                        <div class="card-body">
+                          {% for skill in project.acquired_skills.all %}
+                           <p class="card-text" style="text-align:center;">{{skill.name}}</p>
+                           {% endfor %}
+                       </div>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="card">
+
+
+                        <h5 class="card-header" style="text-align:center; background-color:f7d493;">{% trans 'required skills' %}</h5>
+                        <div class="card-body">
+                          {% for skill in project.required_skills.all %}
+                           <p class="card-text" style="text-align:center;">{{skill.name}}</p>
+                           {% endfor %}
+                       </div>
+                      </div>
+                    </div>
+                    </div>
+                    <h5 class="card-header" style="text-align:center;background-color:f7d493;">{% trans 'missions'%}</h5>
+
+                    <div class="row">
+                      <div class="col">
+                        <div class="card">
+
+                        {% for mission in project.missions.all %}
+                        <h5 class="card-header" style="text-align:center;">{{mission.name}}</h5>
+                        <div class="card-body">
+                           <p class="card-text" style="text-align:center;">{{mission.points}}</p>
+                           {{mission.get_mission_type_display}}
+                       </div>
+                       {% endfor %}
+                      </div>
+                    </div>
+                    </div>
+
+
+                    <!-- <div class="tab-content tabs-content" id="myTabContent">
+                        <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
+                            aria-labelledby="prod-overview-tab">
+                            <div class="content white-bg pt-30">
+
+                                <div class="course-overview">
+                                    <div class="inner-box">
+
+
+                                        <h3>{% trans 'what_you_will_lean' %}</h3>
+                                        <ul class="review-list">
+                                            {% for skill in project.acquired_skills.all %}
+                                            Some details about the Acquired Skills
+                                            <li>{{skill.name}}</li>
+                                            {% endfor %}
+                                        </ul>
+                                        <h3>{% trans 'required_skils' %}</h3>
+                                        <ul class="review-list">
+                                            Some details about the required
+                                            {% for skill in project.required_skills.all %}
+                                            <li>{{skill.name}}</li>
+                                            {% endfor %}
+                                        </ul>
+>>>>>>> b553d2c6d98b71c98639f5c32136f7b2cfb7106e
                                     </div>
                                 </div>
                             </div>
@@ -113,6 +238,7 @@
 
                         </div>
 
+<<<<<<< HEAD
 
                     </div>
                 </div>
@@ -151,12 +277,18 @@
                         </div>
 
                     </div>
+=======
+                    </div>-->
+
+
+>>>>>>> b553d2c6d98b71c98639f5c32136f7b2cfb7106e
                 </div>
 
             </div>
         </div>
 
 
+<<<<<<< HEAD
         </div>
         </div>
     </section>
@@ -175,6 +307,35 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="POST" action='{% url 'create_individual_mission'  project.id %}'>
+=======
+   <!-- Video Column -->
+   <div class="col-md-3">
+     <div class="card" style="width: 18rem;">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <i class="fa fa-files-o"></i>
+            <span class="label">{% trans 'field' %}:</span>
+            <span class="value">{{project.field}}</span>
+        </li>
+        <li class="list-group-item">
+            <i class="fa fa-clock-o"></i>
+          <span class="label">{% trans 'time_to_complete' %}</span>
+          <span class="value">{{project.time_to_complet}}</span>
+      </li>
+        <li class="list-group-item">
+          <i class="fa fa-users"></i>
+          <span class="label">{% trans 'difficulty ' %}</span>
+          <span class="value">{{project.difficulty}}</span>
+        </li>
+        <li class="list-group-item">
+          <i class="fa fa-check-square-o"></i>
+          <span class="label">{% trans 'points' %}</span>
+          <span class="value">{{project.points}}</span>
+        </li>
+      </ul>
+  </div>
+</div>
+>>>>>>> b553d2c6d98b71c98639f5c32136f7b2cfb7106e
 
                     {% csrf_token %}
 
@@ -189,12 +350,26 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+
+
+=======
+
+
+
+</section>
+</div>
+<!-- End intro Courses -->
+
+
+
+<!-- Main content End -->
+>>>>>>> b553d2c6d98b71c98639f5c32136f7b2cfb7106e
 
 
 
 
-
-
+<<<<<<< HEAD
     <!-- Modal -->
     <div class="modal fade" id="CollectiveMissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -221,3 +396,8 @@
     </div>
 
 {% endblock %}
+=======
+{% endblock %}
+<script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
+<!-- <script src="{% static  'backend/js/project_api.js'%}" type="text/javascript"></script> -->
+>>>>>>> b553d2c6d98b71c98639f5c32136f7b2cfb7106e
