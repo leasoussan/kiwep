@@ -3,18 +3,24 @@
 {% load static %}
 {% load mytags %}
 {% block extrahead %}
-<link rel="stylesheet" href="{% static 'backend/css/overwrite.css' %}">
+    <link rel="stylesheet" href="{% static 'backend/css/overwrite.css' %}">
 {% endblock %}
 
 {% block content %}
 
+{# TODO#:Fix position of buttons#}
 
- {% if user.profile.name == 'speaker' %}
+    {% if user.profile.name == 'speaker' %}
+        <div class="">
+        <button> <a href="{{ object.get_update_url }}">{% trans 'edit_mission' %}</a></button>
+    {% endif %}
 
-<a href="{{ object.get_update_url }}">{% trans 'edit_mission' %}</a>
-{% endif %}
+
+    <a href="{% url 'project_detail' object.id %}"> <button>Back to Project</button></a>
 
 
+
+</div>
     <!-- Intro Courses -->
     <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
 
@@ -28,8 +34,8 @@
                         <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
                             <li class="nav-item tab-btns">
                                 <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                    href="#prod-overview" role="tab" aria-controls="prod-overview"
-                                    aria-selected="true">heer</a>
+                                   href="#prod-overview" role="tab" aria-controls="prod-overview"
+                                   aria-selected="true">{%  trans 'the_mission' %}</a>
                             </li>
 
 
@@ -37,22 +43,25 @@
                         </ul>
                         <div class="tab-content tabs-content" id="myTabContent">
                             <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
-                                aria-labelledby="prod-overview-tab">
+                                 aria-labelledby="prod-overview-tab">
                                 <div class="content white-bg pt-30 mission_description">
                                     <!-- Cource Overview -->
                                     <div class="course-overview">
                                         <div class="inner-box" >
                                             <div class= "mission_description">
                                                 <h3>{% trans 'about_the_mission' %}</h3>
-                                            <p>{{object.description}}</p>
-                                            <h3>Mission Type: </h3>
-                                            <p>{{object.get_mission_type_display}}  </p>
+                                                <p>{{object.description}}</p>
+                                                <h3>Mission Type: </h3>
+                                                <p>{{object.get_mission_type_display}}  </p>
 
-                                            <h3>The Mission response should be sent as:</h3>
-                                            <p> {{object.get_response_type_display}}</p>
+                                                <h4>The Mission response should be sent as:</h4>
+                                                <p> {{object.get_response_type_display}}</p>
+
+
+                                            </div>
+
 
                                         </div>
-                                    </div>
 
                                     </div>
                                 </div>
@@ -65,7 +74,7 @@
                         </div>
                         <div class = "resource">
                             {% for resource in mission.resources.all %}
-                            <a href="{% url 'resource_detail' resource.id %}">{{resource.name}}</a>
+                                <a href="{% url 'resource_detail' resource.id %}">{{resource.name}}</a>
                             {% endfor %}
 
                         </div>
@@ -88,7 +97,7 @@
 
                                 <li class="students-feature">
                                     <i class="fa fa-users"></i>
-                                <span class="label">{% trans 'difficulty' %}</span>
+                                    <span class="label">{% trans 'difficulty' %}</span>
                                     <span class="value">{{object.level}}</span>
                                 </li>
 
@@ -108,8 +117,8 @@
     <!-- End intro Courses -->
 
 
-</div>
-<!-- Main content End -->
+    </div>
+    <!-- Main content End -->
 
 
 

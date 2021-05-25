@@ -69,8 +69,8 @@
                                 Chose a Project For the Team
                             </button>
                         {% endif %}
-                     {% else %}
-                       <a style="color: black" href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a>
+                    {% else %}
+                        <a style="color: black" href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a>
                     {% endif %}
                 </div>
 
@@ -173,7 +173,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{% trans 'colelctive_mission_title' %}</h5>
+                    <h5 class="card-title">{% trans 'collective_mission_title' %}</h5>
 
                     <table id="zero-conf" class="display" style="width:100%">
                         <thead>
@@ -189,7 +189,7 @@
                         <tbody>
 
                         {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
-                            {% for mission in team.collectivemission_set.all %}
+                            {% for mission in team.project.collectivemission_set.all %}
 
 
                                 <tr>
@@ -222,39 +222,30 @@
         <div class="col">
         <div class="card">
         <div class="card-body">
-        <h5 class="card-title">{% trans 'project_mission_title' %}</h5>
+        <h5 class="card-title">{% trans 'project_mission_log_title' %}</h5>
         <p>Here you can follow talen missions </p>
         <table id="zero-conf" class="display" style="width:100%">
         <thead>
         <tr>
-            <th>{% trans 'project_title_table_header' %}</th>
+            <th>{% trans 'mission_title_table_header' %}</th>
             <th>{% trans 'attributed_to_table_header' %}</th>
             <th>{% trans 'stage_of_project_table_header' %}</th>
             <th>{% trans 'points_table_header' %}</th>
             <th>{% trans 'due_date_table_header' %}</th>
             <th>{% trans 'status_table_header' %}</th>
         </tr>
+
         </thead>
         <tbody>
 
-        {% for projectmission in team.individualprojectmission_set.get_attributed_mission %}
+        {% for mission in team.project.individualmission_set.get_attributed_mission %}
             <tr>
-            <td><a href="
-                                {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
-                                {% url 'submit_mission' projectmission.id %}
-
-                                {% else %}
-                                {% url 'team_mission_detail' projectmission.id %}
-                                {% endif %}
-
-
-
-                            <td>{{projectmission.mission.name}}</a> </td>
-                            <td>{{projectmission.attributed_to}}</td>
-                            <td>{{projectmission.mission.stage}}</td>
-                            <td>{{projectmission.points}}</td>
-                            <td>{{projectmission.due_date}}</td>
-                            <td>{{projectmission.status}}</td>
+                            <td>{{mission.name}}</td>
+                            <td>{{mission.attributed_to}}</td>
+                            <td>{{mission.stage}}</td>
+                            <td>{{mission.points}}</td>
+                            <td>{{mission.due_date}}</td>
+                <td><a href="{% url 'submit_mission' mission.id  %}">See mission</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -264,100 +255,97 @@
         </div>
     </div>
 </div>
-                {% endif %}
+             {% endif %}
 
 
 
-<!-- STUDENT VIEW HIS MISSION LIST  -->
+<!-- ------------------------------------------------------------------STUDENT VIEW HIS MISSION LIST  -->
 
 {% if user.profile.name == "student" %}
 
 <div class="row">
     <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{% trans 'project_mission_title' %}</h5>
-                <p>My assigned missions</p>
-                <table id="zero-conf" class="display" style="width:100%">
-                    <thead>
-                    <tr>
-                        <th>{% trans 'project_tite_table_header' %}</th>
-                        <th>{% trans 'mission_type' %}</th>
-                        <th>{% trans 'stage_of_project_table_header' %}</th>
-                        <th>{% trans 'points_table_header' %}</th>
-                        <th>{% trans 'due_date_table_header' %}</th>
-                        <th>{% trans 'status_table_header' %}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    student_missions
-                    {% for projectmission in team.individualprojectmission_set.all|student_missions:user.student %}
+    <div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{% trans 'project_mission_title' %}</h5>
+        <p>My assigned missions</p>
+        <table id="zero-conf" class="display" style="width:100%">
+            <thead>
+            <tr>
+                <th>{% trans 'project_tite_table_header' %}</th>
+                <th>{% trans 'mission_type' %}</th>
+                <th>{% trans 'stage_of_project_table_header' %}</th>
+                <th>{% trans 'points_table_header' %}</th>
+                <th>{% trans 'due_date_table_header' %}</th>
+                <th>{% trans 'status_table_header' %}</th>
+            </tr>
+            </thead>
+            <tbody>
 
+            {% for mission in team.project.individualmission_set|student_missions:user.student %}
 
+              <tr>
+                    <td><a href="
+                                {% if user.profile == mission.attributed_to and not mission.response_file %}
 
-                        <tr>
-                            <td><a href="
-                                {% if user.profile == projectmission.attributed_to and not projectmission.response_file %}
-                                {% url 'submit_mission' projectmission.id %}
+                                {% url 'submit_mission' mission.id %}
 
                                 {% else %}
-                                {% url 'team_mission_detail' projectmission.id %}
+                                {% url 'individual_mission_detail' mission.id %}
                                 {% endif %}
 
 
-                                ">{{projectmission.mission.name}}</a> </td>
-                            <td>{{projectmission.mission_type}}</td>
-                            <td>{{projectmission.mission.stage}}</td>
-                            <td>{{projectmission.points}}</td>
-                            <td>{{projectmission.due_date}}</td>
-                            <td>{{projectmission.status}}</td>
-                        </tr>
+                                ">{{mission.name}}</a> </td>
+                    <td>{{mission.description}}</td>
+                    <td>{{mission.stage}}</td>
+                    <td>{{mission.points}}</td>
+                    <td>{{mission.due_date}}</td>
+                    <td>{{mission.status}}</td>
+                </tr>
 
 
 
 
-                    {% endfor %}
+            {% endfor %}
 
-                    <tr><td>here</td> </tr>
-                    {% for collectiveindividualmission in user.student.individual_team_mission.all|collective_student_missions:team %}
+            <tr><td>here</td> </tr>
 
-
-
-
-                        <tr>
-                            <td><a href="
+{#            {% for collectiveindividualmission in user.student.team_set.project.collectivemission_set.all|collective_student_missions:team.project %}#}
+            <tr>
+                <td><a href="
                                 {% if user.profile == collectiveindividualmission.attributed_to and not collectiveindividualmission.response_file %}
                                 {% url 'submit_mission' collectiveindividualmission.id %}
 
                                 {% else %}
-                                {% url 'team_mission_detail' collectiveindividualmission.id %}
+{#                                {% url 'collective_mission_detail' collectivemission.id %}#}
                                 {% endif %}
 
 
                                 ">{{collectiveindividualmission.parent_mission.mission.name}}</a> </td>
-                            <td>{{collectiveindividualmission.parent_mission.mission_type}}</td>
-                            <td>{{collectiveindividualmission.parent_mission.mission.stage}}</td>
-                            <td>{{collectiveindividualmission.parent_mission.points}}</td>
-                            <td>{{collectiveindividualmission.parent_mission.due_date}}</td>
-                            <td>{{collectiveindividualmission.parent_mission.status}}</td>
-                        </tr>
-                    {% endfor %}
+                <td>{{collectiveindividualmission.parent_mission.mission_type}}</td>
+                <td>{{collectiveindividualmission.parent_mission.mission.stage}}</td>
+                <td>{{collectiveindividualmission.parent_mission.points}}</td>
+                <td>{{collectiveindividualmission.parent_mission.due_date}}</td>
+                <td>{{collectiveindividualmission.parent_mission.status}}</td>
+            </tr>
+            {#                    {% endfor %}#}
 
-                    </tbody>
+            </tbody>
 
-                </table>
-            </div>
-        </div>
-    </div>
+        </table>
     </div>
 
 {% endif %}
 
+</div>
+</div>
 
 
-{#     <h1>Comments Board</h1>   #}
 
-{% comment %}
+
+    {#     <h1>Comments Board</h1>   #}
+
+    {% comment %}
  {% for board in team.teamcommentsboard_set.all %}
     <a href="{% url 'board_detail' board.id %}">board.</a>
     {% for comment %}
@@ -368,68 +356,10 @@
 
  {% endcomment %}
 
-
-
-
-
-
-<!-- Modal -->
-
-
-
-
-
-<div class="modal fade" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Projects </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-create-tab" data-bs-toggle="pill" data-bs-target="#pills-create-project"
-                                type="button" role="tab" aria-controls="pills-create" aria-selected="true">New Project</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-template-tab" data-bs-toggle="pill" data-bs-target="#pills-template"
-                                type="button" role="tab" aria-controls="pills-template" aria-selected="false">Chose Templates</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-duplicate-tab" data-bs-toggle="pill" data-bs-target="#pills-duplicate"
-                                type="button" role="tab" aria-controls="pills-duplicate" aria-selected="false">Duplicate</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">
-<form method="post" action="{% url 'create_team_project' team.id %}">
-    {% csrf_token %}
-         {{ project_form|crispy }}
-    <button type="submit">Save </button>
-</form>
-
-                    </div>
-                    <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
-                        {% for project in templates  %}
-                        <h2>{{ project.name }}</h2>
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">
-                        {% for project in old_projects  %}
-                        <h2>{{ project.name }} <a href="{% url 'duplicate_create_project' project.id team.id %}">Duplicate this Project</a> </h2>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Start</button>
-            </div>
-        </div>
-
-    </div>
 </div>
+
+
+
 
 
 

@@ -27,7 +27,7 @@ urlpatterns = [
     path('my_mission-list/', IndividualMissionListView.as_view(), name="my_mission_list"),
     path('individual-mission-detail/<int:pk>', IndividualMissionDetailView.as_view(), name="individual_mission_detail"),
     path('collective-mission-detail/<int:pk>', CollectiveMissionDetailView.as_view(), name="collective_mission_detail"),
-    path('team-mission-detail/<int:pk>', TeamMissionDetailView.as_view(), name="team_mission_detail"),
+    # path('team-mission-detail/<int:pk>', TeamMissionDetailView.as_view(), name="team_mission_detail"),
 
     path('create-individual-mission/<int:project_id>', AddIndividualMissionView.as_view(),
          name="create_individual_mission"),
@@ -47,7 +47,7 @@ urlpatterns = [
     path('chose-project-team/<int:pk>/<int:team_pk>', ChooseTeamProjectView.as_view(), name = "chose_team_project"),
     path('create-team-project/<int:pk>', ProjectTeamCreateView.as_view(), name = "create_team_project"),
 
-    path('update-team-mission/<int:pk>', TeamEditIndividualProjectMission.as_view(), name = "update_team_mission"),#update single mission
+    path('update-mission/<int:pk>', TeamEditIndividualProjectMission.as_view(), name = "update_individual_mission"),#update single mission
 
     path('update-team-mission/<int:pk>', TeamEditCollectiveProjectMission.as_view(), name = "update_team_mission"),#update single mission
 

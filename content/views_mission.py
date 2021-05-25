@@ -183,27 +183,27 @@ class UnclaimMission(ProfileCheckPassesTestMixin, RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-
-
-
-class TeamMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
-    '''Here to create a team manager - gettinga project and managing participants '''
-
-    model = CollectiveMission
-    template_name = 'backend/mission/team_mission_detail.html'    
-    
-
-    def get_object(self):
-        pk = self.kwargs.get('pk')
-        return get_object_or_404(CollectiveMission, pk=pk)
-
+#
+#
+#
+# class TeamCollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
+#     '''Here to create a team manager - gettinga project and managing participants '''
+#
+#     model = CollectiveMission
+#     template_name = 'backend/mission/team_mission_detail.html'
+#
+#
+#     def get_object(self):
+#         pk = self.kwargs.get('pk')
+#         return get_object_or_404(CollectiveMission, pk=pk)
+#
 
 
 
 
 class StudentSubmitMission(UpdateView):
     ''' An answer can be saved and unsubmited- here is the submit  '''
-    model = CollectiveMission
+    model = IndividualMission
     form_class = SubmitMissionForm
     # fields = [
     #         'response_comment',
