@@ -1,15 +1,12 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
+{% load mytags %}
 
 
-{% block extrahead %}
-<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
-
-{% endblock %}
 
 {% block content %}
-
+{{ object }}
 {{form.media}}
 <form method="post">
 {% csrf_token %}
@@ -17,13 +14,12 @@
 {{form.as_p}}
 
 <button class="btn" type="submit">Save</button>
-<button class="btn" type="submit"><a href="{% url 'project_detail' project.id %}" style="color:#fffefc;">Back</a></button>
+<button class="btn" type="submit"><a href="#" style="color:#fffefc;">Back</a></button>
 
 
 </form>
 
-<!--  -->
-
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 
 
 {% endblock %}

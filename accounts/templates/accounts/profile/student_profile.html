@@ -16,7 +16,8 @@
                             <li><i class="material-icons details_icon">school</i><span>Studied Mechanical Engineering at <a href="#">{{user.profile.institution.name}}</a></span></li>
 
                             <li><i class="material-icons details_icon">my_location</i><span>From <a href="#">{{user.city}}</a></span></li>
-
+                            <li>Part of {{ user.profile.class_level.institution.name }} </li>
+                            <li>Group Name: {{ user.profile.class_level.name }} </li>
                             <li>
 
                                 <!-- <button class="btn btn-block btn-secondary m-t-lg">Message</button> -->
