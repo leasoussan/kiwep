@@ -27,8 +27,6 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
-# -------------------PROJECT---List_View/
-
 
 
 
