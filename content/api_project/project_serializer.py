@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from content.models import Project 
+from content.models import Project
 
 
 class ProjectCreateUpdateSerializer(ModelSerializer):
@@ -12,15 +12,17 @@ class ProjectCreateUpdateSerializer(ModelSerializer):
             'title',
             'description',
             'required_skills',
-            'acquried_skills',
-            'time_to_complet',
+            'acquired_skills',
+            'time_to_complete',
             'field',
             'difficulty',
             'completed',
             'speaker',
-            'missions',
             'points',
-        ] 
+            'is_template',
+            'is_global',
+            'is_premium',
+        ]
 
 
 
@@ -33,15 +35,17 @@ class ProjectListSerializer(ModelSerializer):
             'title',
             'description',
             'required_skills',
-            'acquried_skills',
-            'time_to_complet',
+            'acquired_skills',
+            'time_to_complete',
             'field',
             'difficulty',
             'completed',
             'speaker',
-            'missions',
             'points',
-        ] 
+            'is_template',
+            'is_global',
+            'is_premium',
+        ]
 
 
 
@@ -54,12 +58,14 @@ class ProjectDetailSerializer(ModelSerializer):
             'title',
             'description',
             'required_skills',
-            'acquried_skills',
-            'time_to_complet',
+            'acquired_skills',
+            'time_to_complete',
             'field',
             'difficulty',
             'completed',
             'speaker',
-            'missions',
             'points',
-        ] 
+            'is_template',
+            'is_global',
+            'is_premium',
+        ]

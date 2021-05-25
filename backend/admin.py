@@ -13,17 +13,19 @@ class FieldAdmin(admin.ModelAdmin):
     pass
 
 
+
+
 @admin.register(InstitutionCategory)
 class InstitutionCategoryAdmin(admin.ModelAdmin):
     pass
 
 
+
+
+
 @admin.register(Institution)
 class InstitutionAdmin(admin.ModelAdmin):
     pass
-
-
-
 
 
 @admin.register(Group)

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Team, CollectiveProjectMission, Project, Mission, IndividualProjectMission
+from .models import Team, CollectiveMission, Project, Mission, IndividualMission
 from django.forms import ModelForm
-from .forms import TeamAddForm, CollectiveProjectMissionFormSet, AddMemberTeamForm, IndividualProjectMissionFormSet
+from .forms import TeamAddForm, CollectiveMissionFormSet, AddMemberTeamForm, IndividualMissionFormSet, ProjectAddForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -24,10 +24,8 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     """ Team List View will Show a user Teams list"""
     model = Team
-    template_name = 'crud/list_view.html'
+    template_name = 'backend/team/team_list.html'
     context_object_name = 'team_list'
-
-
 
 
 
@@ -39,11 +37,21 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
     
     model = Team
     template_name = 'backend/team/team_detail.html'
-    queryset = IndividualProjectMission.objects.team_available_mission()
+    queryset = IndividualMission.objects.available_mission()
 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if not self.object.project and self.request.user.get_user_type() == 'speaker':
+            context['project_form'] = ProjectAddForm()
+            context['templates'] = Project.objects.global_template_projects()
+            context['old_projects'] = self.request.user.profile().project_set.all()
+        return context
 
     def get_object(self):
         pk = self.kwargs.get("pk")
+
         return get_object_or_404(Team, pk=pk)
 
 
@@ -71,7 +79,7 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
 
     
     def get_success_url(self):
-        return reverse_lazy('create_team_missions', kwargs={'pk':self.object.id})
+        return reverse_lazy('team_detail', kwargs={'pk':self.object.id})
 
 
 
@@ -82,24 +90,16 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
 
 
 
-class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
+class TeamCreateMissionView(SpeakerStatuPassesTestMixin, View):
     """ Once a Team IS created the missions have to be set, Deadline, attribution etc...."""
     def get(self, request, *args, **kwargs):
         
         team = Team.objects.get(id = self.kwargs['pk'])
         participants= team.participants.all()
 
-        
-        formset_collective = CollectiveProjectMissionFormSet(instance = team)
-        formset_individual = IndividualProjectMissionFormSet(instance =team)
-        formsets =  [formset_individual, formset_collective]
-        
-        for formset in formsets:
-            for form in formset:
-                form.fields['attributed_to'].queryset = participants
-                               
 
-        return render(request, 'crud/create_team_missions.html', {'formsets': [formset_individual, formset_collective]})
+
+        return render(request, 'crud/create_team_missions.html', {'participants': participants})
     
 
     def post(self, request, *args, **kwargs):
@@ -107,7 +107,7 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
         team = Team.objects.get(id = self.kwargs['pk'])
         missions = team.project.missions.all()
         
-        formset = CollectiveProjectMissionFormSet(request.POST, instance = team)
+        formset = CollectiveMissionFormSet(request.POST, instance = team)
 
         
         if formset.is_valid():
@@ -127,7 +127,7 @@ class TeamCreateMissionView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Vie
 
 class TeamEditIndividualProjectMission(UpdateView):
     """ """
-    model = IndividualProjectMission
+    model = IndividualMission
     fields = '__all__'
 
     template_name = 'crud/update.html'
@@ -136,7 +136,7 @@ class TeamEditIndividualProjectMission(UpdateView):
 
 
 class TeamEditCollectiveProjectMission(UpdateView):
-    model = CollectiveProjectMission
+    model = CollectiveMission
     fields = '__all__'
 
     template_name = 'crud/update.html'

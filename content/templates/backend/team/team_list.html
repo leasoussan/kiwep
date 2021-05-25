@@ -2,46 +2,46 @@
 {% load i18n %}
 {% block content %}
 
-<th>{% trans 'team_dashboard_title' %}</th>
+    <th>{% trans 'team_dashboard_title' %}</th>
 
 
 
+    My Teams
 
 
-<main class= "container-fluid">
-  <div class="row">
+
+    <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
+    <main class= "container-fluid">
+    <div class="row">
     <div class="col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">My Teams</h5>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-              <tr>
-                {% if team in team_list %}
-                {% for team in team_list %}
-                <th scope="col"><h1>Team Name <a href="{% url 'team_detail' team.id %}"></a> {{ team.name }}</h1></th>
-                {% endfor %}
-                {% else %}
-                You dont have any team yet
-                {% endif%}
+    <div class="card">
+    <div class="card-body">
+    <h5 class="card-title">My Teams</h5>
+    <div class="table-responsive">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+        <th>
+            {% trans 'team_name' %}
+        </th>
 
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>
-                  <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
-                </td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for team in team_list %}
+        <th scope="col"><h1>Team Name <a href="{% url 'team_detail' team.id %}"></a> {{ team.name }}</h1></th>
+    {% endfor %}
 
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <tr>
+    </tr>
+    </tbody>
+    </table>
     </div>
-  </div>
-</main>
+    </div>
+    </div>
+    </div>
+    </div>
+    </main>
+
 
 {% endblock %}

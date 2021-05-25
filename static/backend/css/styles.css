@@ -75,10 +75,17 @@ button:hover {
 .btn a   {
   color: #fffefc;
 }
+.profile_card {
+  margin:10px;
+  border-radius: 10px;
+}
  /* a:hover {
   color:  #425940;
 } */
-
+.main-wrapper{
+  background-color:#f7d493;
+  border-radius: 10px;
+}
 #footer_rights {
   display: flex;
   justify-content: center;

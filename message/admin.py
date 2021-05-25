@@ -7,6 +7,11 @@ from .models import *
 class CommentAdmin(admin.ModelAdmin):
     pass
 
+
+
+class TeamCommentsInlineAdmin(admin.TabularInline):
+    model = TeamCommentsBoard
+
 @admin.register(TeamCommentsBoard)
 class TeamCommentAdmin(admin.ModelAdmin):
     pass
