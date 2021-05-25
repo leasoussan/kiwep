@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from content.models import Project 
+from content.models import Project
 
 
 class ProjectCreateUpdateSerializer(ModelSerializer):
@@ -22,7 +22,7 @@ class ProjectCreateUpdateSerializer(ModelSerializer):
             'is_template',
             'is_global',
             'is_premium',
-        ] 
+        ]
 
 
 
@@ -45,7 +45,7 @@ class ProjectListSerializer(ModelSerializer):
             'is_template',
             'is_global',
             'is_premium',
-        ] 
+        ]
 
 
 
@@ -68,4 +68,4 @@ class ProjectDetailSerializer(ModelSerializer):
             'is_template',
             'is_global',
             'is_premium',
-        ] 
+        ]

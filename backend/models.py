@@ -14,28 +14,28 @@ class Level(models.Model):
 
 
 
-class Field(models.Model): 
+class Field(models.Model):
     """ Fileds are area of subjects that an Institution, a Project, a Mission or a resource are part of"""
     SKILLS_TYPE = [
         ('soft', 'Soft Skills'),
         ('hard', 'Hard Skills')
     ]
-    name = models.CharField(max_length=100) 
+    name = models.CharField(max_length=100)
     skills_type = models.CharField(max_length=50, choices = SKILLS_TYPE)
-    
+
     def __str__(self):
         return f'{self.name} is a {self.skills_type} skill'
-    
+
 
 
 class InstitutionCategory(models.Model):
     """ Type of Institution, as School, university, organization etc..."""
-    name = models.CharField(max_length=100) 
+    name = models.CharField(max_length=100)
     fields = models.ForeignKey(Field, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
-    
+
 
 
 class Institution(models.Model):
@@ -53,8 +53,8 @@ class Institution(models.Model):
     phone_number = models.CharField(max_length = 100)
     email = models.EmailField()
     website = models.URLField()
-    description = models.TextField() 
-    
+    description = models.TextField()
+
     def __str__(self):
         return self.name
 
@@ -64,7 +64,7 @@ class Group(models.Model):
     """ Group is reference to a Classroom, or group of people part of same level one group can have few teams"""
     name = models.CharField(max_length = 100)
     number_of_participants = models.PositiveIntegerField()
-   
+
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -82,4 +82,3 @@ class StudentSoftSkillRating(models.Model):
 
     def __str__(self):
         return f'{self.student}, {self.rating}'
-        
