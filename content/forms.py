@@ -1,4 +1,5 @@
 from django import forms
+from django.http import Http404
 from django.forms import ModelForm 
 from .models import Project, Team, Mission, Resource, CollectiveMission, IndividualMission, IndividualCollectiveMission
 from accounts.models import Student
@@ -63,7 +64,12 @@ class AddMemberTeamForm(ModelForm):
         self.fields['participants'].queryset = kwargs['instance'].group_Institution.student_set.all()
 
 
-    
+
+
+
+
+
+
 class MissionAddForm(ModelForm):
     pass
 
@@ -95,6 +101,42 @@ class CollectiveMissionAddForm(ModelForm):
     class Meta:
         model = CollectiveMission
         fields = mission_fields
+
+
+
+
+
+class CollectiveMissionAssign(forms.Form):
+
+    participants = forms.ModelMultipleChoiceField(queryset=Student.objects.all())
+
+    def __init__(self, **kwargs):
+        team = kwargs['team']
+        if not team.project:
+            raise Http404("You dont Have a Projects")
+
+        super().__init__()
+        self.fields['participants'].queryset = team.participants.all()
+
+
+
+
+    def save(self, collective_mission):
+        # if self.is_valid():
+            for participant in self.cleaned_data['participants']:
+                mission= IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,  attributed_to = participant )
+                
+                
+
+
+
+
+
+
+
+
+
+
 
 
 class ResourceAddForm(ModelForm):

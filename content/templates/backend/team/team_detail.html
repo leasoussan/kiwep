@@ -183,7 +183,7 @@
                             <th>{% trans 'status_table_header' %}</th>
                             <th>{% trans 'points_table_header' %}</th>
                             <th>{% trans 'due_date_table_header' %}</th>
-                            <th>{% trans 'claim_mission_table_header' %}</th>
+                            <th>{% trans 'assign_mission' %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -200,6 +200,7 @@
                                 <td>{{mission.stage}}</td>
                                 <td>{{mission.points}}</td>
                                 <td>{{mission.due_date}}</td>
+                                <td><a href="{% url 'assign_collective_mission_detail' mission.id %}">{% trans 'assign_mission' %}</a></td>
                             {% endfor %}
 
 

@@ -1,15 +1,15 @@
 from django.contrib import admin
 from message.admin import TeamCommentsInlineAdmin
 from .models import (
-    Resource, 
-    Project, 
-    Mission, 
+    Resource,
+    Project,
+    Mission,
     Team,
     Skills,
     CollectiveMission,
     IndividualMission,
     MissionValue,
-    HardSkillsRating
+    HardSkillsRating, IndividualCollectiveMission
 )
 
 
@@ -34,7 +34,7 @@ class MissionValueInlineAdmin(admin.TabularInline):
 
 
 
-
+admin.site.register(IndividualCollectiveMission)
 
 
 
