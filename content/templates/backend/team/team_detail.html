@@ -390,7 +390,14 @@
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">
-                         <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>
+
+                       <form method="post" action="{% url 'create_team_project' team.id %}">
+{% csrf_token %}
+                           {{ project_form|crispy }}
+                           <button type="submit">Save</button>
+                       </form>
+
+{#                         <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>#}
                     </div>
                     <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
                         {% for project in templates  %}
