@@ -13,7 +13,7 @@
 {{object.title}}
 
 
-<a href="{% url 'todo_list' %}">Task List</a>
+<a href="{% url 'todo_list' %}">{% trans 'tasks_list_title' %}</a>
 
 
 {% for student in team.participants.all %}

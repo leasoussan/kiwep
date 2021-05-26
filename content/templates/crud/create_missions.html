@@ -6,9 +6,6 @@
 {% block content %}
 
 
-{{object}}
-
-
 <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
     <div class="container">
 
@@ -42,7 +39,7 @@
 
                         {% endfor %}
 
-                        <button class="btn-shop orange-color" type="submit" value="Save">SAVE</button>
+                        <button class="btn-shop orange-color" type="submit" value="Save">{% trans 'save_button' %}</button>
                     </form>
                 </table>
 

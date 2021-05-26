@@ -58,7 +58,7 @@
     <div class="col-sm-4-lg-10">
     <div class="card">
     <div class="card-body">
-    <h5 class="card-title">My Teams</h5>
+    <h5 class="card-title">{% trans 'my_teams_title' %}</h5>
     <div class="table-responsive">
     <table class="table table-striped">
     <thead>
@@ -73,7 +73,7 @@
     </thead>
     <tbody>
     {% for team in team_list %}
-        <th ><h5>Team Name <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5></th>
+        <th ><h5>{% trans 'team_name_title' %}<a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5></th>
         <th>{{ team.participants.count }}</th>
         <th>{{team.project.time_to_complete}}</th>
         <th>{{teamp.project.field}}</th>

@@ -123,13 +123,7 @@ msgstr "Bienvenue sur la plateforme KIWEP !"
 
 #: templates/emails/welcome.html:5
 msgid "message_intro_registration"
-msgstr "Chers utilisateurs/utilisatrice Kiwep, 
-Nous sommes ravis de t'accueillir sur la plateforme KIWEP : nous avons hâte de mieux te connaître et de t'aider à grandir au fur et à mesure des projets que tu vas réaliser sur la plateforme. 
-Nous te souhaitons de vivre plein de belles aventures ! 
-A très vite, 
-L'équipe KIWEP 🥝
-PS : Nous te demandons un petit service : nous donner ton avis sur KIWEP dès que tu as 5 minutes en cliquant sur le lien suivant. 
-"
+msgstr "Chers utilisateurs/utilisatrice Kiwep, Nous sommes ravis de t'accueillir sur la plateforme KIWEP : nous avons hâte de mieux te connaître et de t'aider à grandir au fur et à mesure des projets que tu vas réaliser sur la plateforme. Nous te souhaitons de vivre plein de belles aventures ! A très vite, L'équipe KIWEP 🥝 PS : Nous te demandons un petit service : nous donner ton avis sur KIWEP dès que tu as 5 minutes en cliquant sur le lien suivant. "
 
 #: templates/emails/welcome.html:7
 msgid "hi"

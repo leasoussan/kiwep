@@ -121,8 +121,7 @@ msgstr "Education History"
 
 #: templates/emails/welcome.html:3
 msgid "welcome_message"
-msgstr "Dear User. 
-We are happy to have you On Board"
+msgstr "Dear User. We are happy to have you On Board"
 
 #: templates/emails/welcome.html:5
 msgid "message_intro_registration"
