@@ -131,55 +131,55 @@ msgstr "Bonjour"
 
 #: templates/registration/login.html:5 templates/registration/login.html:25
 msgid "login"
-msgstr "Se Connec"
+msgstr "Se Connecter"
 
 #: templates/registration/login.html:19
 msgid "kiwep_platform"
-msgstr ""
+msgstr "A la platforme de Kiwep."
 
 #: templates/registration/login.html:32
 msgid "remeber_me_login"
-msgstr ""
+msgstr "Se souvenir de mon Identifiant."
 
 #: templates/registration/login.html:34
 msgid "forgot_password_link"
-msgstr ""
+msgstr "Mot de passe Oubliee?"
 
 #: templates/registration/login.html:52
 msgid "reste_password_link"
-msgstr ""
+msgstr "Reste Mot de Passe."
 
 #: templates/registration/password_change_done.html:5
 msgid "password_change"
-msgstr ""
+msgstr "Mot de Passe Sauvragrdee!"
 
 #: templates/registration/password_change_done.html:7
 #: templates/registration/password_change_form.html.html:14
 #: templates/registration/password_reset_form.html:15
 msgid "back_to_dashboard"
-msgstr ""
+msgstr "Retours au Dashboard"
 
 #: templates/registration/password_change_form.html.html:6
 msgid "change_password"
-msgstr ""
+msgstr "Changer de Mot de Pass"
 
 #: templates/registration/password_reset_done.html:7
 msgid "password_reset_done"
-msgstr ""
+msgstr "Mot de Passe Sauvragrdee!"
 
 #: templates/registration/password_reset_done.html:9
 #: templates/registration/register.html:22
 msgid "back_to_login"
-msgstr ""
+msgstr "Retours au Login"
 
 #: templates/registration/password_reset_form.html:7
 msgid "send_passsword_reste_link"
-msgstr ""
+msgstr "Recevoir Un lien pour Reset votre Mot de Passe"
 
 #: templates/registration/register.html:6
 msgid "register"
-msgstr ""
+msgstr "S'enrengistrer"
 
 #: templates/registration/register.html:9
 msgid "welcome_to_kiwep_"
-msgstr ""
+msgstr "Bienvenue a Kiwep!"

@@ -14,7 +14,7 @@
 
 
                       <ul class="list-unstyled profile-about-list">
-                            <span>{% trans 'study_hisitory'%}:
+                            <span>{% trans 'study_hisitory' %}:
                             <a href="#">{{user.profile.institution.name}}</a>
                           </span>
 
@@ -22,7 +22,7 @@
                       </ul>
                       </div><br>
 
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <p class="card-text">{% trans 'what_would_you_like_to_know' %}</p>
 
                     </div>
               </div>
@@ -33,7 +33,7 @@
                   <div class="card profile_card">
                       <div class="card-body">
                           <h3 class="card-title">{{user.username}} <span>{{ user.get_user_type }}</span></h3>
-                          <i> Active</i>
+                          <i> {% trans 'active' %}</i>
                       </div>
                       <div>
                         <button type="button" name="button" class="btn" ><a href="{% url 'edit_profile' %}">{% trans 'edit_profile'%}</a></button>
@@ -43,8 +43,8 @@
                       <div class="card-body">
                           <h5 class="card-title">{% trans 'contact_info'%}</h5>
                           <ul class="list-unstyled profile-about-list">
-                              <li><i class="material-icons details_icon">mail_outline</i><span>{{user.email}}</span></li>
-                              <li><i class="material-icons details_icon">home</i><span>Lives in <a href="#">{{user.city}}</a></span></li>
+                              <li><i class="material-icons details_icon">{% trans "email" %}</i><span>{{user.email}}</span></li>
+                              <li><i class="material-icons details_icon">home</i><span>{% trans 'live_in' %}<a href="#">{{user.city}}</a></span></li>
                               <li><i class="material-icons details_icon">local_phone</i><span>{{user.phone_number}}</span></li>
                           </ul>
                       </div>

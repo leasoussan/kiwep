@@ -20,7 +20,7 @@ msgstr ""
 
 #: forms.py:18
 msgid "student"
-msgstr "etudient    "
+msgstr "Etudient    "
 
 #: forms.py:19
 #, fuzzy
@@ -51,7 +51,7 @@ msgstr "Active"
 
 #: templates/accounts/profile/representative_profile.html:50
 msgid "school_info"
-msgstr "School Info"
+msgstr "Education Info"
 
 #: templates/accounts/profile/representative_profile.html:62
 #: templates/accounts/profile/speaker_profile.html:62
