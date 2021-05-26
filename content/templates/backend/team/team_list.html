@@ -2,61 +2,97 @@
 {% load i18n %}
 {% block content %}
 
-    <th>{% trans 'team_dashboard_title' %}</th>
 
-
-
-    My Teams
-
-
+    {% if user.profile.name == "speaker" %}
 
     <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
+
+
+
     <main class= "container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">My Teams</h5>
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>
-                                        {% trans 'team_name' %}
-                                    </th>
 
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for team in team_list %}
-                                    <tr>
-
-<main class= "container-fluid">
-  <div class="row">
-  <div class="col-sm-6">
+    <div class="row">
+    <div class="col-sm-4-lg-10">
     <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">My Teams</h5>
-        <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                  <tr>
-                    {% for team in team_list %}
-                      <th scope="col"><h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1></th>
-                    {% endfor %}
-                  </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <td>
-                  <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
-                </td>
+    <div class="card-body">
+    <h5 class="card-title">My Teams</h5>
+    <div class="table-responsive">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+        <th>{% trans 'team_name_title' %}</th>
+        <th>{% trans 'number_of_participants' %}</th>
+        <th>{% trans 'duration_of_the_project' %}</th>
+        <th>{% trans 'field' %}</th>
+        <th>{% trans 'edit' %}</th>
+    </tr>
+    </thead>
+    <tbody>
 
-                </tr>
-              </tbody>
-            </table>
+    {% for team in team_list %}
+        <tr>
+        <th ><h4>Team Name <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h4></th>
+        <th>{{ team.participants.count }}</th>
+        <th>{{team.project.time_to_complete}}</th>
+        <th>{{teamp.project.field}}</th>
+        <th><a href="{% url 'update_team' team.id %}">  {% trans 'edit' %}</a></th>
 
-        </div>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </main>
 
+
+
+ {% elif user.profile.name == "student"  %}
+
+    <main class= "container-fluid">
+
+       <div class="row">
+    <div class="col-sm-4-lg-10">
+    <div class="card">
+    <div class="card-body">
+    <h5 class="card-title">My Teams</h5>
+    <div class="table-responsive">
+    <table class="table table-striped">
+    <thead>
+
+    <tr>
+        <th>{% trans 'team_name_title' %}</th>
+        <th>{% trans 'number_of_participants' %}</th>
+        <th>{% trans 'duration_of_the_project' %}</th>
+        <th>{% trans 'field' %}</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for team in team_list %}
+        <th ><h5>Team Name <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5></th>
+        <th>{{ team.participants.count }}</th>
+        <th>{{team.project.time_to_complete}}</th>
+        <th>{{teamp.project.field}}</th>
+
+
+
+    {% endfor %}
+
+    <tr>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </main>
+
+
+     {% endif %}
 {% endblock %}

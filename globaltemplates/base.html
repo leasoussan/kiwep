@@ -44,30 +44,30 @@
         <button type="button" name="button">
         <li class="nav-item">
             {% if user.profile.name == 'student' %}
-          <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans 'my teams' %}</a>
+          <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans 'my_teams_sidebar' %}</a>
           {% else %}
-            <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans 'teams' %}</a>
+            <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans 'teams_sidebar' %}</a>
             {% endif %}
         </li>
         </button>
         <button type="button" name="button">
         <li class="nav-item">
           {% if user.profile.name == 'student' %}
-          <a class="nav-link" id="a_link"  href="{% url 'my_mission_list' %}">{% trans 'my missions' %}</a>
+          <a class="nav-link" id="a_link"  href="{% url 'my_mission_list' %}">{% trans 'my_missions_sidebar' %}</a>
           {% endif %}
         </li>
         </button>
         <button type="button" name="button">
         <li class="nav-item">
-          <a class="nav-link" id="a_link"  href="{% url 'todo_list'%}">{% trans 'todo' %}</a>
+          <a class="nav-link" id="a_link"  href="{% url 'todo_list'%}">{% trans 'todo_sidebar' %}</a>
         </li>
         </button>
         <button type="button" name="button">
         <li class="nav-item">
           {% if user.profile.name == 'speaker' %}
-          <a class="nav-link" id="a_link" href="{% url 'project_list' %}">{% trans 'projects' %}</a>
+          <a class="nav-link" id="a_link" href="{% url 'project_list' %}">{% trans 'projects_sidebar' %}</a>
           {% else %}
-          <a class="nav-link" id="a_link" href="{% url 'project_list' %}">{% trans 'availiable projects' %}</a>
+          <a class="nav-link" id="a_link" href="{% url 'student_available_project_list' %}">{% trans 'availiable_projects_sidebar' %}</a>
           {% endif %}
         </li>
         </button><br>
@@ -79,6 +79,7 @@
 
       </ul>
     </div>
+
 
     <!-- wider column -->
     <div class="col-md-10 mb-4" id = "main_panel">

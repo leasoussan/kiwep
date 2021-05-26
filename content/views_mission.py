@@ -22,12 +22,12 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 class IndividualMissionListView(ProfileCheckPassesTestMixin, ListView):
     ''' To See all Missions View'''
     model = IndividualMission
-    template_name = 'backend/mission/mission_list.html'
+    template_name = 'backend/mission/my_mission_list.html'
     context_object_name = 'mission_list'
 
 
-    # def get_queryset(self):
-    #     return super().get_queryset().filter(attributed_to = self.request.user.profile())
+    def get_queryset(self):
+        return super().get_queryset().filter(attributed_to = self.request.user.profile())
 
 
 class AddIndividualMissionView(ProfileCheckPassesTestMixin, View):
@@ -103,12 +103,6 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
         pk = self.kwargs.get('pk')
         return get_object_or_404(CollectiveMission, pk=pk)
 
-
-
-
-
-class MyMissionList(View):
-    pass
 
 
 
@@ -189,27 +183,27 @@ class UnclaimMission(ProfileCheckPassesTestMixin, RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
+#
+#
+#
+# class TeamCollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
+#     '''Here to create a team manager - gettinga project and managing participants '''
+#
+#     model = CollectiveMission
+#     template_name = 'backend/mission/team_mission_detail.html'
+#
+#
+#     def get_object(self):
+#         pk = self.kwargs.get('pk')
+#         return get_object_or_404(CollectiveMission, pk=pk)
+#
 
 
 
-class TeamMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
-    '''Here to create a team manager - gettinga project and managing participants '''
 
-    model = CollectiveMission
-    template_name = 'backend/mission/team_mission_detail.html'    
-    
-
-    def get_object(self):
-        pk = self.kwargs.get('pk')
-        return get_object_or_404(CollectiveMission, pk=pk)
-
-
-
-
-
-class StudentSubmitMission(UpdateView):
+class StudentSubmitMission(LoginRequiredMixin, UpdateView):
     ''' An answer can be saved and unsubmited- here is the submit  '''
-    model = CollectiveMission
+    model = IndividualMission
     form_class = SubmitMissionForm
     # fields = [
     #         'response_comment',

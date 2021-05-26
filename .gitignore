@@ -11,3 +11,9 @@ staticfiles/
 .vscode/
 
 !pop_db.py
+
+
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
+

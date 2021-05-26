@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% load mytags %}
+
 {% load static %}
 {% load crispy_forms_tags %}
-
+{% load mytags %}
 {% block content %}
 
 
@@ -11,6 +11,7 @@
  <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
     <div class="container">
          <h2>Create new {{view.model|return_class_name}}</h2>
+
         <div class="cart-wrap">
                 <table class="cart-table">
 
@@ -30,7 +31,7 @@
                         {% endfor %}
                         {% endif %}
                         <button class="btn" type="submit" value="Save">Save</button>
-                        <button class="btn" type="submit" ><a href="{% url 'project_list' %}" style="color:#fffefc;">Back</a></button>
+                        <button class="btn" type="submit" ><a href="{% url 'homepage' %}" style="color:#fffefc;">Back</a></button>
                     </form>
                 </table>
 
@@ -39,9 +40,5 @@
         </div>
     </div>
 
-
-
-
-
-{% endblock %}
-<script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
+    {% endblock %}
+    <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>

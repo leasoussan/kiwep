@@ -155,11 +155,9 @@ class TeamUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView
     def form_valid(self,form):
         return super().form_valid(form)
 
-
-
-
-
-
+    def get_object(self):
+        pk = self.kwargs.get("pk")
+        return get_object_or_404(Team, pk=pk)
 
 
 class TeamDeleteView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, DeleteView):

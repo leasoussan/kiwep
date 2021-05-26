@@ -27,8 +27,6 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
-# -------------------PROJECT---List_View/
-
 
 
 
@@ -90,11 +88,19 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
 
 
     def get_queryset(self):
-        queryset = self.request.user.profile().project_set.personal_templates()
-        queryset2 = super().get_queryset().global_template_projects()
-        return queryset.union(queryset2)
+
+            queryset = self.request.user.profile().project_set.personal_templates()
+            queryset2 = super().get_queryset().global_template_projects()
+            return queryset.union(queryset2)
 
 
+
+
+
+class StudentAvailableProjectList(ProfileCheckPassesTestMixin, ListView):
+    model = Project
+    template_name = 'backend/project/project_list.html'
+    context_object_name = "available_projects"
 
 
 
@@ -126,14 +132,12 @@ class ProjectCreateView(SuccessMessageMixin, SpeakerStatuPassesTestMixin, Create
     form_class = ProjectAddForm
     template_name = 'crud/create.html'
     success_message = "Your project was created successfuly"
-    # formset = ProjectMissionFormSet()
 
 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        pass
-
+        return context
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -197,8 +201,7 @@ def clean_missions(project_id, *querysets):
 
 
 class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
-    """Here we Inherite from a Detail View, where we take an Old Project
-    clean the data and make a new copy"""
+    """"""
 
     pattern_name = 'update_project'
 

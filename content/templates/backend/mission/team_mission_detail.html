@@ -2,15 +2,22 @@
 {% load i18n %}
 {% load static %}
 {% load mytags %}
-{% block extrahead %}
-<link rel="stylesheet" href="{% static 'backend/css/overwrite.css' %}">
-{% endblock %}
+
 
 {% block content %}
 
 
 
-    <!-- Intro Courses -->
+    {% if user.profile.name == 'speaker' %}
+        <div class="">
+        <button> <a href="{{ object.get_update_url }}">{% trans 'edit_mission' %}</a></button>
+    {% endif %}
+
+
+    <a href="{% url 'project_detail' object.id %}"> <button>Back to Project</button></a>
+
+
+
     <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
         <div class="container">
             <div class="row clearfix">
@@ -21,53 +28,53 @@
                         <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
                             <li class="nav-item tab-btns">
                                 <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                    href="#prod-overview" role="tab" aria-controls="prod-overview"
-                                    aria-selected="true">heer</a>
+                                   href="#prod-overview" role="tab" aria-controls="prod-overview"
+                                   aria-selected="true">{% trans 'the_mission' %}</a>
                             </li>
 
 
                         </ul>
                         <div class="tab-content tabs-content" id="myTabContent">
                             <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
-                                aria-labelledby="prod-overview-tab">
+                                 aria-labelledby="prod-overview-tab">
                                 <div class="content white-bg pt-30 mission_description">
                                     <!-- Cource Overview -->
                                     <div class="course-overview">
                                         <div class="inner-box" >
                                             <div class= "mission_description">
                                                 <h3>{% trans 'about_the_mission' %}</h3>
-                                            <p>{{object.mission.description}} </p>
+                                                <p>{{object.mission.description}} </p>
 
 
-                                            <div class="inner-box" >
-                                            <h2>{% trans 'my_response' %}</h2>
-                                    <p>,{{object.response_comment}} </p>
-                                    <p>{{object.response_file}}</p>
+                                                <div class="inner-box" >
+                                                    <h2>{% trans 'my_response' %}</h2>
+                                                    <p>,{{object.response_comment}} </p>
+                                                    <p>{{object.response_file}}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    </div>
 
-                                    {% if update %}
-                                    {% if user.profile == object.attributed_to  %}
+                                        {% if update %}
+                                            {% if user.profile == object.attributed_to  %}
 
-                                    <form action="" method="post" enctype="multipart/form-data">
-                                        {% csrf_token %}
-                                        {{form.as_p}}
-                                        <button type="submit">{% trans 'send' %}</button>
+                                                <form action="" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    {{form.as_p}}
+                                                    <button type="submit">{% trans 'send' %}</button>
 
-                                    </form>
+                                                </form>
 
 
-                                    {% endif %}
+                                            {% endif %}
 
 
-                                    {% endif %}
+                                        {% endif %}
 
 
-{% if user.profile == object.attributed_to %}
-<button><a href="{% url 'submit_mission' object.id %}">{% trans 'edit-response' %}</a> </button>
-<button><a href="{% url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a> </button>
-{% endif %}
+                                        {% if user.profile == object.attributed_to %}
+                                            <button><a href="{% url 'submit_mission' object.id %}">{% trans 'edit-response' %}</a> </button>
+                                            <button><a href="{% url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a> </button>
+                                        {% endif %}
 
                                     </div>
                                 </div>
@@ -75,13 +82,13 @@
 
                             {% if user.profile.name == 'speaker' %}
 
-                            {% if object.response_file or object.response_comment %}
-                        {% trans 'file_lable' %} :{{object.response_file}}
-                        {% trans 'text_lable' %}: {{object.response_comment}}
-                            {% else %}
+                                {% if object.response_file or object.response_comment %}
+                                    {% trans 'file_lable' %} :{{object.response_file}}
+                                    {% trans 'text_lable' %}: {{object.response_comment}}
+                                {% else %}
 
-                            {% trans 'no_answer_yet' %}
-                        {% endif %}
+                                    {% trans 'no_answer_yet' %}
+                                {% endif %}
                             {% endif %}
 
 
@@ -123,13 +130,12 @@
             </div>
         </div>
     </section>
-    <!-- End intro Courses -->
-
-
-</div>
-<!-- Main content End -->
 
 
 
+    </div>
 
+    {% block extrahead %}
+        <link rel="stylesheet" href="{% static 'backend/css/overwrite.css' %}">
+    {% endblock %}
 {% endblock %}
