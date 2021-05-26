@@ -1,97 +1,146 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load mytags %}
 {% block content %}
-
 
 
     <!-- Main content Start -->
     <div class="container-fluid">
-        <div>
+
+        {% if user.profile.name == "speaker" %}
+<div>
 
             <button type="button" class="btn" name="button"><a href="{% url 'create_project' %}" style="color:#fffefc;">Add project</a></button>
         </div>
 
 
-        <div class="row">
-            <div class="col">
-                <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'available_project_list' %}</h5>
 
-                {#<div id="createProject">#}
-                {#<div> #}
+            <div class="row">
+                <div class="col">
+                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'available_project_list' %}</h5>
 
-                <table class="table table-bordered table-hover table-responsive-md">
-                    <thead>
-                    <tr>
-                        <th scope="col">{% trans 'project_name_table_header' %}</th>
-                        <th scope="col">{% trans 'speaker_table_header' %}</th>
-                        <th scope="col">{% trans 'field_table_header' %}</th>
-                        <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
-                        <th scope="col">{% trans 'select_project' %}</th>
+                    {#<div id="createProject">#}
+                    {#<div> #}
 
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for project in project_list %}
+                    <table class="table table-bordered table-hover table-responsive-md">
+                        <thead>
                         <tr>
-                            <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
-                            <td>{{project.speaker.user.first_name}}</td>
-                            <td>{{project.field}}</td>
-                            <td>{{project.time_to_complet}}</td>
-                            <td> <a href="{% url 'chose_project_detail' project.id %}">Select Project </a> </td>
+                            <th scope="col">{% trans 'project_name_table_header' %}</th>
+                            <th scope="col">{% trans 'speaker_table_header' %}</th>
+                            <th scope="col">{% trans 'field_table_header' %}</th>
+                            <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
+                            <th scope="col">{% trans 'select_project' %}</th>
+
+
                         </tr>
-                    {% endfor %}
+                        </thead>
+                        <tbody>
+                        {% for project in project_list %}
+                            <tr>
+                                <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
+                                <td>{{project.speaker.user.first_name}}</td>
+                                <td>{{project.field}}</td>
+                                <td>{{project.time_to_complet}}</td>
+                                <td> <a href="{% url 'chose_project_detail' project.id %}">Select Project </a> </td>
+                            </tr>
+                        {% endfor %}
 
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col">
+                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'my_project_list' %}</h5>
+                    <table class="table table-bordered table-hover table-responsive-md">
+
+
+
+                        <thead>
+                        <tr>
+                            <th>{% trans 'project_name_table_header' %}</th>
+                            <th>{% trans 'speaker_table_header' %}</th>
+                            <th>{% trans 'field_table_header' %}</th>
+                            <th>{% trans 'time_to_complete_table_header' %}</th>
+                            <th>{% trans 'edit_duplicate_project_table_header' %}</th>
+                        </tr>
+
+                        </thead>
+                        <tbody>
+                        {% for project in user.profile.project_set.personal_projects %}
+
+                            <tr>
+                                <td><a href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
+                                <td>{{project.speaker.user.first_name}}</td>
+                                <td>{{project.field}}</td>
+                                <td>{{project.time_to_complet}}</td>
+                                <td><a href="{% url 'update_project' project.id %}">Edit</a> <a href="{#   url 'duplicate_create_project' project.id team.id  #}">Duplicate</a></a> </td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+
 
             </div>
-        </div>
 
 
 
-        <div class="row">
-            <div class="col">
-                <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'my_project_list' %}</h5>
-                <table class="table table-bordered table-hover table-responsive-md">
+<div>
+
+        {% elif user.profile.name == "student" %}
 
 
+            <div class="row">
+                <div class="col">
+                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'available_project_list' %}</h5>
 
-                    <thead>
-                    <tr>
-                                            <th>{% trans 'project_name_table_header' %}</th>
-                                            <th>{% trans 'speaker_table_header' %}</th>
-                                            <th>{% trans 'field_table_header' %}</th>
-                                            <th>{% trans 'time_to_complete_table_header' %}</th>
-                                            <th>{% trans 'edit_duplicate_project_table_header' %}</th>
-                                        </tr>
+                    {#<div id="createProject">#}
+                    {#<div> #}
 
-                                        </thead>
-                                        <tbody>
-                                        {% for project in user.profile.project_set.personal_projects %}
+                    <table class="table table-bordered table-hover table-responsive-md">
+                        <thead>
+                        <tr>
+                            <th scope="col">{% trans 'project_name_table_header' %}</th>
+                            <th scope="col">{% trans 'speaker_table_header' %}</th>
+                            <th scope="col">{% trans 'field_table_header' %}</th>
+                            <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
+                            <th scope="col">{% trans 'check_team' %}</th>
 
-                                            <tr>
-                                                <td><a href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
-                                                <td>{{project.speaker.user.first_name}}</td>
-                                                <td>{{project.field}}</td>
-                                                <td>{{project.time_to_complet}}</td>
-                                                <td><a href="{% url 'update_project' project.id %}">Edit</a> <a href="{#   url 'duplicate_create_project' project.id team.id  #}">Duplicate</a></a> </td>
-                                            </tr>
 
-                                        {% endfor %}
-                                        </tbody>
+                        </tr>
+                        </thead>
 
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <tbody>
+                        {% for project in available_projects %}
+                            <tr>
+                                <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
+                                <td>{{project.speaker.user.first_name}}</td>
+                                <td>{{project.field}}</td>
+                                <td>{{project.time_to_complet}}</td>
+                                <td> Check Team </a> </td>
+                            </tr>
+                        {% endfor %}
 
-                </table>
+
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
-        </div>
+
+        {% endif %}
+
+</div>
     </div>
 
 
