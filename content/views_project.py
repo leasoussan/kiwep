@@ -193,8 +193,7 @@ def clean_missions(project_id, *querysets):
 
 
 class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
-    """Here we Inherite from a Detail View, where we take an Old Project
-    clean the data and make a new copy"""
+    """"""
 
     pattern_name = 'update_project'
 

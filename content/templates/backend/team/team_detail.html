@@ -360,6 +360,61 @@
 
 
 
+<!-- Modal -->
+
+
+
+
+
+<div class="modal fade" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Projects </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-create-tab" data-bs-toggle="pill" data-bs-target="#pills-create-project"
+                                type="button" role="tab" aria-controls="pills-create" aria-selected="true">New Project</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-template-tab" data-bs-toggle="pill" data-bs-target="#pills-template"
+                                type="button" role="tab" aria-controls="pills-template" aria-selected="false">Chose Templates</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-duplicate-tab" data-bs-toggle="pill" data-bs-target="#pills-duplicate"
+                                type="button" role="tab" aria-controls="pills-duplicate" aria-selected="false">Duplicate</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">
+                         <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>
+                    </div>
+                    <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
+                        {% for project in templates  %}
+                        <h2>{{ project.name }}</h2>
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">
+                        {% for project in old_projects  %}
+                        <h2>{{ project.name }}</h2>
+                            <a href="{% url 'duplicate_create_project' project.id team.id %}">COPY</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Start</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 

@@ -201,7 +201,7 @@ class UnclaimMission(ProfileCheckPassesTestMixin, RedirectView):
 
 
 
-class StudentSubmitMission(UpdateView):
+class StudentSubmitMission(LoginRequiredMixin, UpdateView):
     ''' An answer can be saved and unsubmited- here is the submit  '''
     model = IndividualMission
     form_class = SubmitMissionForm
