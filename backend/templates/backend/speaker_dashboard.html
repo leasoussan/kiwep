@@ -1,49 +1,48 @@
 {% load i18n %}
 
-<!-- {% trans 'hello'%}, {{ user.username|default:'Guest' }}! -->
-
 
 <div>
 
-   <h2>{% trans 'welcome'%} {{user.first_name}} {% trans 'to_your_dashboard'%}</h2>
+    <h2>{% trans 'welcome'%} {{user.first_name}} {% trans 'to_your_dashboard'%}</h2>
 
 
-<main role="main" class="container-fluid">
-        <div class="card">
-          <h5 class="card-header">Featured</h5>
-          <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn">Go somewhere</a>
-          </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn">Go somewhere</a>
+    <main role="main" class="container-fluid">
+
+  <div class="row">
+
+        <div class="col-md-4 col-sm-10 col-lg-4">
+            <div class="card" style="width: 18rem;">
+{#                <img class="card-img-top" src="..." alt="Card image cap" style="height: 12rem">#}
+                <div class="card-body">
+                    <h5 class="card-title">{% trans 'current_teams_dashboard_title' %}</h5>
+
+
+                    <a href="{% url 'team_list' %}" class="btn btn-primary">#</a>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn">Go somewhere</a>
+
+          <div class="col-md-4 col-sm-10 col-lg-4">
+            <div class="card" style="width: 18rem;">
+{#                <img class="card-img-top" src="..." alt="Card image cap" style="height: 12rem">#}
+                <div class="card-body">
+                    <h5 class="card-title">{% trans 'selected_project_dashboard_title' %}</h5>
+
+
+                    <a href="{% url 'team_list' %}" class="btn btn-primary">#</a>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn">Go somewhere</a>
+            <div class="col-md-4 col-sm-10 col-lg-4">
+            <div class="card" style="width: 18rem;">
+{#                <img class="card-img-top" src="..." alt="Card image cap" style="height: 12rem">#}
+                <div class="card-body">
+                    <h5 class="card-title">{% trans 'groups_dasboard_title' %}</h5>
+
+
+                    <a href="#" class="btn btn-primary">#</a>
+                </div>
             </div>
-          </div>
         </div>
-</div>
-</main>
+        </div>
+    </main>
