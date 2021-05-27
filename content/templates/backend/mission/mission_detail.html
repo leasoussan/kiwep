@@ -19,6 +19,9 @@
     <a href="{% url 'project_detail' object.id %}"> <button>B{% trans 'back_to_project_button' %}</button></a>
 
 
+    <a href="{% url 'project_detail' object.id %}"> <button>B{% trans 'back_to_project_button' %}</button></a>
+
+
 
 </div>
     <!-- Intro Courses -->
@@ -50,7 +53,7 @@
                                         <div class="inner-box" >
                                             <div class= "mission_description">
                                                 <h3>{% trans 'about_the_mission' %}</h3>
-                                                <p>{{object.name}}</p>
+                                   <p>{{object.description}}</p>
                                                 <h3>{% trans 'mission_type_title' %}:</h3>
                                                 <p>{{object.get_mission_type_display}}  </p>
 
@@ -116,6 +119,7 @@
 
                     </div>
                 </div>
+
 
     <!-- Main content End -->
 

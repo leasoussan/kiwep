@@ -5,13 +5,22 @@
 
 
     {% if user.profile.name == "speaker" %}
+<<<<<<< Updated upstream
+=======
+
+    <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
+>>>>>>> Stashed changes
 
     <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
 
 
-
     <main class= "container-fluid">
 
+<<<<<<< Updated upstream
+    <main class= "container-fluid">
+
+=======
+>>>>>>> Stashed changes
     <div class="row">
     <div class="col-sm-4-lg-10">
     <div class="card">
@@ -54,10 +63,84 @@
  {% elif user.profile.name == "student"  %}
 
     <main class= "container-fluid">
+<<<<<<< Updated upstream
 
        <div class="row">
     <div class="col-sm-4-lg-10">
     <div class="card">
+=======
+<<<<<<< HEAD
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">My Teams</h5>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        {% trans 'team_name' %}
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for team in team_list %}
+                                    <tr>
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+                                        <th scope="col"><a href="{% url 'team_detail' team.id %}"></a> {{ team.name }}</th>
+=======
+                                        <th scope="col"><a style = "color: black" href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </th>
+>>>>>>> 36a6f2630617225876dfcb53454e0067fa59d7de
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+=======
+<main class= "container-fluid">
+  <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">My Teams</h5>
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                  <tr>
+                    {% for team in team_list %}
+                      <th scope="col"><h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1></th>
+                    {% endfor %}
+                  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <td>
+                  <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
+                </td>
+
+                </tr>
+              </tbody>
+            </table>
+<<<<<<< HEAD
+>>>>>>> ce755830262f8364c8d6bc35e80882083dfac3aa
+=======
+>>>>>>> add5770bc99ff338cde77c101525c62677dfeafd
+>>>>>>> 36a6f2630617225876dfcb53454e0067fa59d7de
+        </div>
+=======
+
+       <div class="row">
+    <div class="col-sm-4-lg-10">
+    <div class="card">
+>>>>>>> Stashed changes
     <div class="card-body">
     <h5 class="card-title">{% trans 'my_teams_title' %}</h5>
     <div class="table-responsive">
@@ -92,6 +175,10 @@
     </div>
     </div>
     </div>
+<<<<<<< Updated upstream
+=======
+>>>>>>> 0e537b237458d0c4ac8b9d44947c770c58c4fd76
+>>>>>>> Stashed changes
     </main>
 
 
