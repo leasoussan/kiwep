@@ -8,7 +8,6 @@
     <!-- Main content Start -->
     <div class="container-fluid">
 
-<<<<<<< Updated upstream
         {% if user.profile.name == "speaker" %}
 <div>
 
@@ -46,67 +45,6 @@
                                 <td> <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select_project' %}</a> </td>
                             </tr>
                         {% endfor %}
-=======
-    <!-- Main content Start -->
-    <div class="container-fluid">
-
-        {% if user.profile.name == "speaker" %}
-<div>
-
-
-            <button type="button" class="btn" name="button"><a href="{% url 'create_project' %}" style="color:#fffefc;">Add project</a></button>
-        </div>
-
-
-
-
-
-    <h5 class="card-header" style="text-align:center;">{% trans 'available_project_list' %}</h5>
-
-          <table class="table table-bordered table-hover table-responsive-md">
-            <thead>
-                <tr>
-                  <th scope="col">{% trans 'project_name_table_header' %}</th>
-                  <th scope="col">{% trans 'speaker_table_header' %}</th>
-                  <th scope="col">{% trans 'field_table_header' %}</th>
-                  <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
-                  <th scope="col">{% trans 'select_project' %}</th>
-
-                </tr>
-            </thead>
-              <tbody>
-                {% for project in project_list %}
-                <tr>
-                  <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
-                  <td>{{project.speaker.user.first_name}}</td>
-                  <td>{{project.field}}</td>
-                  <td>{{project.time_to_complet}}</td>
-                  <td> <a href="{% url 'chose_project_detail' project.id %}">Select Project </a> </td>
-                </tr>
-                {% endfor %}
-
-
-            </tbody>
-          </table>
-
-
-        </div>
-  </div>
-  </div>
-
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'available_project_list' %}</h5>
-
-
-                    {#<div id="createProject">#}
-                    {#<div> #}
-
-   <div class="rs-breadcrumbs">
-
-            <h1 class="page-title"> {% trans 'my_project_list' %}</h1>
-
->>>>>>> Stashed changes
 
 
                         </tbody>
@@ -117,85 +55,6 @@
 
 
 
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'my_project_list' %}</h5>
-                    <table class="table table-bordered table-hover table-responsive-md">
-
-
-<<<<<<< Updated upstream
-
-                        <thead>
-                        <tr>
-                            <th>{% trans 'project_name_table_header' %}</th>
-                            <th>{% trans 'speaker_table_header' %}</th>
-                            <th>{% trans 'field_table_header' %}</th>
-                            <th>{% trans 'time_to_complete_table_header' %}</th>
-                            <th>{% trans 'edit_duplicate_project_table_header' %}</th>
-                        </tr>
-
-                        </thead>
-                        <tbody>
-                        {% for project in user.profile.project_set.personal_projects %}
-
-                            <tr>
-                                <td><a href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
-                                <td>{{project.speaker.user.first_name}}</td>
-                                <td>{{project.field}}</td>
-                                <td>{{project.time_to_complet}}</td>
-                                <td><a href="{% url 'update_project' project.id %}">Edit</a> <a href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a></a> </td>
-                            </tr>
-
-                        {% endfor %}
-                        </tbody>
-=======
-        </div> -->
-    <!-- <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-=======
-                    <table class="table table-bordered table-hover table-responsive-md">
-                        <thead>
-                        <tr>
-                            <th scope="col">{% trans 'project_name_table_header' %}</th>
-                            <th scope="col">{% trans 'speaker_table_header' %}</th>
-                            <th scope="col">{% trans 'field_table_header' %}</th>
-                            <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
-                            <th scope="col">{% trans 'select_project' %}</th>
-
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for project in project_list %}
-                            <tr>
-                                <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
-                                <td>{{project.speaker.user.first_name}}</td>
-                                <td>{{project.field}}</td>
-                                <td>{{project.time_to_complet}}</td>
-                                <td> <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select_project' %}</a> </td>
-                            </tr>
-                        {% endfor %}
-
->>>>>>> Stashed changes
-
-                        </tbody>
-                    </table>
-
-                </div>
-<<<<<<< Updated upstream
-
-
-
-=======
->>>>>>> Stashed changes
-            </div>
-
-
-
-<<<<<<< Updated upstream
-=======
             <div class="row">
                 <div class="col">
                     <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'my_project_list' %}</h5>
@@ -232,7 +91,10 @@
 
 
 
->>>>>>> Stashed changes
+            </div>
+
+
+
 <div>
 
         {% elif user.profile.name == "student" %}
@@ -276,17 +138,10 @@
                 </div>
             </div>
 
-<<<<<<< Updated upstream
         {% endif %}
 
 </div>
     </div>
-=======
-        </div> -->
-
-
-        {% endif %}
->>>>>>> Stashed changes
 
 
 {% endblock %}
