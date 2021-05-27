@@ -41,7 +41,7 @@
                                 <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
-                                <td>{{project.time_to_complet}}</td>
+                                <td>{{project.time_to_complete}}</td>
                                 <td> <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select_project' %}</a> </td>
                             </tr>
                         {% endfor %}
