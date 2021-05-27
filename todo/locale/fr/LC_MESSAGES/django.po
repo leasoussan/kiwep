@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-26 23:31+0300\n"
+"POT-Creation-Date: 2021-05-27 13:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: templates/todo/todo_detail.html:16
+#: todo/templates/todo/todo_detail.html:16
 msgid "tasks_list_title"
 msgstr "Liste des TO-DO"
 
-#: templates/todo/todo_list.html:18
+#: todo/templates/todo/todo_list.html:18
 msgid "my_tasks_button"
 msgstr "Mes To-Do"
 
-#: templates/todo/todo_list.html:24
+#: todo/templates/todo/todo_list.html:24
 msgid "to_do_title"
 msgstr "To Do"
 
-#: templates/todo/todo_list.html:40
+#: todo/templates/todo/todo_list.html:40
 msgid "you_dont_have_personal_task_message"
 msgstr ""
 "Vous n'avez pas de taches a effeter pour le moment; Veuillez prendre une "

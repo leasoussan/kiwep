@@ -17,20 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: todo/templates/todo/todo_detail.html:16
-msgid "tasks_list_title"
-msgstr "Tasks List"
-
-#: todo/templates/todo/todo_list.html:18
-msgid "my_tasks_button"
-msgstr "My Tasks"
-
-#: todo/templates/todo/todo_list.html:24
-msgid "to_do_title"
-msgstr "To DO List:"
-
-#: todo/templates/todo/todo_list.html:40
-msgid "you_dont_have_personal_task_message"
+#: kiwep/settings.py:143
+msgid "English"
 msgstr ""
-"You Dont have any personnal tasks at this moment; please take a small rest:)"
+
+#: kiwep/settings.py:144
+msgid "French"
+msgstr ""
+
+#: kiwep/settings.py:145
+msgid "Hebrew"
+msgstr ""

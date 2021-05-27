@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-27 00:16+0300\n"
+"POT-Creation-Date: 2021-05-27 13:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,88 +18,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/backend/general_dashboard.html:28
+#: backend/templates/backend/general_dashboard.html:35
 msgid "edit_profile"
 msgstr "Edit Profile"
 
-#: templates/backend/speaker_dashboard.html:6
-#: templates/backend/student_dashboard.html:5
-#: templates/backend/student_dashboard.html:47
-#: templates/backend/student_dashboard.html:51
+#: backend/templates/backend/speaker_dashboard.html:6
+#: backend/templates/backend/student_dashboard.html:6
 msgid "welcome"
 msgstr "Welcome"
 
-#: templates/backend/speaker_dashboard.html:6
-#: templates/backend/student_dashboard.html:5
-#, fuzzy
-#| msgid "to_your_dashboard"
-msgid "to_your_dashboard_title_welcome_to"
-msgstr "To to Dashboard"
-
-#: templates/backend/speaker_dashboard.html:17
-#: templates/backend/student_dashboard.html:16
+#: backend/templates/backend/speaker_dashboard.html:17
+#: backend/templates/backend/student_dashboard.html:17
 msgid "current_teams_dashboard_title"
 msgstr "Current Teams"
 
-#: templates/backend/speaker_dashboard.html:29
-#: templates/backend/student_dashboard.html:28
+#: backend/templates/backend/speaker_dashboard.html:29
+#: backend/templates/backend/student_dashboard.html:29
 #, fuzzy
 #| msgid "my_team_projects_title"
 msgid "selected_project_dashboard_title"
 msgstr "My Projects Team"
 
-#: templates/backend/speaker_dashboard.html:40
-#: templates/backend/student_dashboard.html:39
+#: backend/templates/backend/speaker_dashboard.html:39
+#: backend/templates/backend/student_dashboard.html:39
 msgid "groups_dasboard_title"
 msgstr "Groups"
 
-#: templates/backend/student_dashboard.html:58
-msgid "available_projects_title"
-msgstr "Available Projects"
+#, fuzzy
+#~| msgid "to_your_dashboard"
+#~ msgid "to_your_dashboard_title_welcome_to"
+#~ msgstr "To to Dashboard"
 
-#: templates/backend/student_dashboard.html:63
-#: templates/backend/student_dashboard.html:113
-msgid "Team_name_title_table_head"
-msgstr "Team Name"
+#~ msgid "available_projects_title"
+#~ msgstr "Available Projects"
 
-#: templates/backend/student_dashboard.html:64
-#: templates/backend/student_dashboard.html:114
-msgid "project_name_table_head"
-msgstr "Project Name"
+#~ msgid "Team_name_title_table_head"
+#~ msgstr "Team Name"
 
-#: templates/backend/student_dashboard.html:65
-#: templates/backend/student_dashboard.html:115
-msgid "field_table_head"
-msgstr "Field"
+#~ msgid "project_name_table_head"
+#~ msgstr "Project Name"
 
-#: templates/backend/student_dashboard.html:66
-#: templates/backend/student_dashboard.html:116
-msgid "status_table_head"
-msgstr "Status"
+#~ msgid "field_table_head"
+#~ msgstr "Field"
 
-#: templates/backend/student_dashboard.html:93
-msgid "missions_title"
-msgstr "Mission"
+#~ msgid "status_table_head"
+#~ msgstr "Status"
 
-#: templates/backend/student_dashboard.html:95
-msgid "mission_board_link"
-msgstr "Mission Board"
+#~ msgid "missions_title"
+#~ msgstr "Mission"
 
-#: templates/backend/student_dashboard.html:108
-msgid "my_team_projects_title"
-msgstr "My Projects Team"
+#~ msgid "mission_board_link"
+#~ msgstr "Mission Board"
 
-#: templates/backend/student_dashboard.html:117
-msgid "time_to_complete"
-msgstr "Time to Complete"
+#~ msgid "my_team_projects_title"
+#~ msgstr "My Projects Team"
 
-#: templates/backend/student_dashboard.html:130
-msgid "in_process"
-msgstr "In Process"
+#~ msgid "time_to_complete"
+#~ msgstr "Time to Complete"
 
-#: templates/backend/student_dashboard.html:132
-msgid "project_is_done"
-msgstr "Project Completed"
+#~ msgid "in_process"
+#~ msgstr "In Process"
+
+#~ msgid "project_is_done"
+#~ msgstr "Project Completed"
 
 #~ msgid "hello"
 #~ msgstr "Hello"
