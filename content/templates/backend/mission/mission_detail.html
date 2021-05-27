@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-
+{{ object }}
 {# TODO#:Fix position of buttons#}
 
     {% if user.profile.name == 'speaker' %}
@@ -50,7 +50,7 @@
                                         <div class="inner-box" >
                                             <div class= "mission_description">
                                                 <h3>{% trans 'about_the_mission' %}</h3>
-                                                <p>{{object.description}}</p>
+                                                <p>{{object.name}}</p>
                                                 <h3>{% trans 'mission_type_title' %}:</h3>
                                                 <p>{{object.get_mission_type_display}}  </p>
 
@@ -68,7 +68,12 @@
                             </div>
 
 
-
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
                         </div>
@@ -111,13 +116,7 @@
 
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- End intro Courses -->
 
-
-    </div>
     <!-- Main content End -->
 
 
