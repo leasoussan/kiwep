@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 {% load crispy_forms_filters %}
 
 =======
@@ -13,8 +14,23 @@
 {% load static %}
 
 >>>>>>> 36a6f2630617225876dfcb53454e0067fa59d7de
-{% load i18n %}
+=======
+<<<<<<< Updated upstream
+=======
 
+>>>>>>> Stashed changes
+
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% load mytags %}
+
+<<<<<<< Updated upstream
+{% load static %}
+=======
+>>>>>>> Stashed changes
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
+{% load i18n %}
 
 {% block content %}
 
@@ -22,29 +38,50 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 36a6f2630617225876dfcb53454e0067fa59d7de
     <a href="{% url 'project_list' %}">{% trans 'all_projects' %}</a>
+=======
+<<<<<<< Updated upstream
+    <div class="container-fluid">
+        <!-- <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a> -->
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
+
+
+        <div id="project_detail"></div>
+
+    </div>
+=======
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <div>
+=======
+    <a href="{% url 'project_list' %}">{% trans 'all_projects' %}</a>
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
 
     {% if user.profile.name == 'speaker' %}
 
         <a href="{% url 'update_project' project.id %}">{% trans 'edit_project' %}</a>
 
     {% endif %}
+    {##}
+    {##}
+    {#    <div class="container-fluid">#}
+    {#        <!-- <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a> -->#}
+    {##}
+    {#        <div id="project_detail"></div>#}
+    {##}
 
-<<<<<<< HEAD
-    <div>
-
-
-
-    </div>
+>>>>>>> Stashed changes
     <!-- Intro Courses -->
     <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
         <div class="container">
             <div class="row clearfix">
                 <!-- Content Column -->
-                <div class="col-lg-8 md-mb-50">
+                <div class="col-md-9 md-mb-50">
                     <!-- Intro Info Tabs-->
                     <div class="intro-info-tabs">
                         <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
@@ -53,9 +90,22 @@
                                    href="#prod-overview" role="tab" aria-controls="prod-overview"
                                    aria-selected="true">{{project.name}}</a>
                             </li>
+                            <li class="nav-item tab-btns">
+                                <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
+                                   href="{% url 'project_list' %}" role="tab" aria-controls="prod-overview"
+                                   aria-selected="true">{% trans 'all projects' %}</a>
+                            </li>
+                            {% if user.profile.name == 'speaker' %}
+                                <li class="nav-item tab-btns">
+                                    <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
+                                       href="{% url 'update_project' project.id %}" role="tab" aria-controls="prod-overview"
+                                       aria-selected="true">{% trans 'edit project' %}</a>
+                                </li>
+                            {% endif %}
 
 
                         </ul>
+<<<<<<< HEAD
                         <div class="tab-content tabs-content" id="myTabContent">
                             <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
                                  aria-labelledby="prod-overview-tab">
@@ -212,6 +262,51 @@
   </div>
     </div>
 >>>>>>> 36a6f2630617225876dfcb53454e0067fa59d7de
+=======
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+
+
+                                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{{project.title}}</h5>
+                                    <div class="card-body">
+                                        <p class="card-text" style="text-align:center; ">{{project.description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+<<<<<<< Updated upstream
+
+
+                                    <h5 class="card-header" style="text-align:center;background-color:f7d493;">{% trans 'what you will learn' %}</h5>
+                                    <div class="card-body">
+                                        {% for skill in project.acquired_skills.all %}
+                                            <p class="card-text" style="text-align:center;">{{skill.name}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+
+
+                                    <h5 class="card-header" style="text-align:center; background-color:f7d493;">{% trans 'required skills' %}</h5>
+                                    <div class="card-body">
+                                        {% for skill in project.required_skills.all %}
+                                            <p class="card-text" style="text-align:center;">{{skill.name}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
 
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
                                 Add Individual Mission
@@ -220,45 +315,67 @@
                                 Add Collective Mission
                             </button>
 
+=======
+>>>>>>> Stashed changes
 
 
-
-                            <div>
-                                {% for mission in project.individualmission_set.all  %}
-                                    <h3><a style="color: black"  href="{% url 'individual_mission_detail' mission.id %}">{{mission.name}}</a></h3>
-
-                                    <div class="pull-right">
-                                        {{mission.points}}
+                                    <h5 class="card-header" style="text-align:center;background-color:f7d493;">{% trans 'what you will learn' %}</h5>
+                                    <div class="card-body">
+                                        {% for skill in project.acquired_skills.all %}
+                                            <p class="card-text" style="text-align:center;">{{skill.name}}</p>
+                                        {% endfor %}
                                     </div>
-                                    <div class='mission_type'>
-
-                                        {{mission.get_mission_type_display}}
-
-                                    </div>
-                                {% endfor %}
+                                </div>
                             </div>
-                            <div>Collective Missions
-                                {% for mission in project.collectivemission_set.all %}
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
 
-                                    <h2><a style="color: black" href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a></h2>
 
-
-
-                                    <div class="pull-right">
-                                        {{mission.points}}
+                                    <h5 class="card-header" style="text-align:center; background-color:f7d493;">{% trans 'required skills' %}</h5>
+                                    <div class="card-body">
+                                        {% for skill in project.required_skills.all %}
+                                            <p class="card-text" style="text-align:center;">{{skill.name}}</p>
+                                        {% endfor %}
                                     </div>
-                                    <div class='mission_type'>
-
-                                        {{mission.get_mission_type_display}}
-
-                                    </div>
-                                {% endfor %}
+                                </div>
                             </div>
+                        </div>
+                        <h5 class="card-header" style="text-align:center;background-color:f7d493;">{% trans 'missions'%}</h5>
 
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
 
-
+                                    {% for mission in project.missions.all %}
+                                        <h5 class="card-header" style="text-align:center;">{{mission.name}}</h5>
+                                        <div class="card-body">
+                                            <p class="card-text" style="text-align:center;">{{mission.points}}</p>
+                                            {{mission.get_mission_type_display}}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
 
+
+
+                    </div>
+
+
+
+
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
+                        Add Individual Mission
+                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CollectiveMissionModal">
+                        Add Collective Mission
+                    </button>
+
+
+
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -273,25 +390,151 @@
 
 
 >>>>>>> ce755830262f8364c8d6bc35e80882083dfac3aa
+=======
+
+                    <div>
+                        {% for mission in project.individualmission_set.all  %}
+                            <h3><a style="color: black"  href="{% url 'individual_mission_detail' mission.id %}">{{mission.name}}</a></h3>
+
+                            <div class="pull-right">
+                                {{mission.points}}
+                            </div>
+                            <div class='mission_type'>
+
+                                {{mission.get_mission_type_display}}
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div>Collective Missions
+                        {% for mission in project.collectivemission_set.all %}
+
+                            <h2><a style="color: black" href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a></h2>
+
+<<<<<<< Updated upstream
+=======
+
+
+                            <div class="pull-right">
+                                {{mission.points}}
+                            </div>
+                            <div class='mission_type'>
+
+                                {{mission.get_mission_type_display}}
+
+                            </div>
+                        {% endfor %}
+                    </div>
+>>>>>>> Stashed changes
+
+    </div>
+
+<<<<<<< Updated upstream
+
+                        <div class="video-column col-lg-4">
+                            <div class="inner-column">
+
+                                <div class="course-features-info">
+                                    <ul>
+                                        <li class="lectures-feature">
+                                            <i class="fa fa-files-o"></i>
+                                            <span class="label">{% trans 'field' %}:</span>
+                                            <span class="value">{{project.field}}</span>
+                                        </li>
+
+
+                                        <li class="duration-feature">
+                                            <i class="fa fa-clock-o"></i>
+                                            <span class="label">{% trans 'time_to_complete' %}</span>
+                                            <span class="value">{{project.time_to_complet}}</span>
+                                        </li>
+
+                                        <li class="students-feature">
+                                            <i class="fa fa-users"></i>
+                                            <span class="label">{% trans 'difficulty ' %}</span>
+                                            <span class="value">{{project.difficulty}}</span>
+                                        </li>
+
+                                        <li class="assessments-feature">
+                                            <i class="fa fa-check-square-o"></i>
+                                            <span class="label">{% trans 'points' %}</span>
+                                            <span class="value">{{project.points}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+=======
+
+
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
                 </div>
 
-            </div>
-        </div>
+>>>>>>> Stashed changes
 
+                            </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         </div>
         </div>
+=======
+<<<<<<< Updated upstream
+=======
+            <div class="col-md-3">
+                <div class="inner-column">
+>>>>>>> Stashed changes
+
+                    <div class="course-features-info">
+                        <ul>
+                            <li class="lectures-feature">
+                                <i class="fa fa-files-o"></i>
+                                <span class="label">{% trans 'field' %}:</span>
+                                <span class="value">{{project.field}}</span>
+                            </li>
+
+
+                            <li class="duration-feature">
+                                <i class="fa fa-clock-o"></i>
+                                <span class="label">{% trans 'time_to_complete' %}</span>
+                                <span class="value">{{project.time_to_complet}}</span>
+                            </li>
+
+                            <li class="students-feature">
+                                <i class="fa fa-users"></i>
+                                <span class="label">{% trans 'difficulty ' %}</span>
+                                <span class="value">{{project.difficulty}}</span>
+                            </li>
+
+                            <li class="assessments-feature">
+                                <i class="fa fa-check-square-o"></i>
+                                <span class="label">{% trans 'points' %}</span>
+                                <span class="value">{{project.points}}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                </div>
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
     </section>
-    <!-- End intro Courses -->
 
+<<<<<<< Updated upstream
+                        </div>
+                    </div>
 
+<<<<<<< HEAD
     </div>
 =======
 >>>>>>> 36a6f2630617225876dfcb53454e0067fa59d7de
     <!-- Main content End -->
+=======
+      <!-- Modal -->
+=======
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
 
     <!-- Modal -->
+
+>>>>>>> Stashed changes
     <div class="modal fade" id="IndividualMissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -300,6 +543,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="POST" action='{% url 'create_individual_mission'  project.id %}'>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -337,6 +581,8 @@
 =======
 
 >>>>>>> 36a6f2630617225876dfcb53454e0067fa59d7de
+=======
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
 
                     {% csrf_token %}
 
@@ -353,6 +599,7 @@
     </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
@@ -362,30 +609,39 @@
 
 
 >>>>>>> 36a6f2630617225876dfcb53454e0067fa59d7de
+=======
+<<<<<<< Updated upstream
+
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
 
 
 
-</section>
-</div>
-<!-- End intro Courses -->
 
 
+=======
 
+<<<<<<< HEAD
 <!-- Main content End -->
 <<<<<<< HEAD
 >>>>>>> ce755830262f8364c8d6bc35e80882083dfac3aa
 =======
 >>>>>>> 36a6f2630617225876dfcb53454e0067fa59d7de
+=======
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
 
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 
 >>>>>>> 36a6f2630617225876dfcb53454e0067fa59d7de
+=======
+>>>>>>> Stashed changes
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
     <!-- Modal -->
     <div class="modal fade" id="CollectiveMissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -412,6 +668,7 @@
     </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 {% endblock %}
 =======
 {% endblock %}
@@ -421,6 +678,23 @@
 =======
 
 {% endblock %}
+=======
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
+
+{% endblock %}
+
+
+
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed
 <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
+<<<<<<< Updated upstream
 <!-- <script src="{% static  'backend/js/project_api.js'%}" type="text/javascript"></script> -->
+<<<<<<< HEAD
 >>>>>>> 36a6f2630617225876dfcb53454e0067fa59d7de
+=======
+=======
+>>>>>>> Stashed changes
+>>>>>>> f34295f8c57493e4d88a108cdb0b835d0f2929ed

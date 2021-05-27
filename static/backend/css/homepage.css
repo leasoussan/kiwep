@@ -3,3 +3,29 @@ body {
   background-color: #f6f6f6 important!;
   color: #7d7d83;
 }
+
+
+#main {
+  display: flex;
+  flex-direction: row;
+  background-color: 9fce9c;
+  width: 85%;
+  justify-content: center;
+
+  padding-top: 40px;
+}
+
+#homepage_try_us{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  margin-bottom: 100px;
+  height: 50vh;
+  color: #0b2e13;
+  align-self: right;
+
+}
+
+#container_try_us{
+
+}

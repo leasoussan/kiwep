@@ -1,33 +1,33 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Mission, CollectiveMission, Team, IndividualMission
 from django.forms import ModelForm
-from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm
+from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm, CollectiveMissionAssign
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
 from django.views.generic import (
-    CreateView, 
-    DetailView, 
-    ListView, 
-    DetailView, 
-    UpdateView, 
+    CreateView,
+    DetailView,
+    ListView,
+    DetailView,
+    UpdateView,
     DeleteView,
-    View,
+    View, FormView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin
 
 
 
-class IndividualMissionListView(LoginRequiredMixin,ProfileCheckPassesTestMixin, ListView):
+class IndividualMissionListView(ProfileCheckPassesTestMixin, ListView):
     ''' To See all Missions View'''
     model = IndividualMission
-    template_name = 'backend/mission/mission_list.html'
+    template_name = 'backend/mission/my_mission_list.html'
     context_object_name = 'mission_list'
 
 
-    # def get_queryset(self):
-    #     return super().get_queryset().filter(attributed_to = self.request.user.profile())
+    def get_queryset(self):
+        return super().get_queryset().filter(attributed_to = self.request.user.profile())
 
 
 class AddIndividualMissionView(ProfileCheckPassesTestMixin, View):
@@ -103,9 +103,6 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
         pk = self.kwargs.get('pk')
         return get_object_or_404(CollectiveMission, pk=pk)
 
-
-class MyMissionList(View):
-    pass
 
 
 
@@ -186,27 +183,27 @@ class UnclaimMission(ProfileCheckPassesTestMixin, RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
+#
+#
+#
+# class TeamCollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
+#     '''Here to create a team manager - gettinga project and managing participants '''
+#
+#     model = CollectiveMission
+#     template_name = 'backend/mission/team_mission_detail.html'
+#
+#
+#     def get_object(self):
+#         pk = self.kwargs.get('pk')
+#         return get_object_or_404(CollectiveMission, pk=pk)
+#
 
 
 
-class TeamMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
-    '''Here to create a team manager - gettinga project and managing participants '''
 
-    model = CollectiveMission
-    template_name = 'backend/mission/team_mission_detail.html'    
-    
-
-    def get_object(self):
-        pk = self.kwargs.get('pk')
-        return get_object_or_404(CollectiveMission, pk=pk)
-
-
-
-
-
-class StudentSubmitMission(UpdateView):
+class StudentSubmitMission(LoginRequiredMixin, UpdateView):
     ''' An answer can be saved and unsubmited- here is the submit  '''
-    model = CollectiveMission
+    model = IndividualMission
     form_class = SubmitMissionForm
     # fields = [
     #         'response_comment',
@@ -229,3 +226,40 @@ class StudentSubmitMission(UpdateView):
         return super().form_valid(form)
 
 
+
+
+
+class AssignCollectiveMissionView(SpeakerStatuPassesTestMixin, FormView):
+    model = CollectiveMission
+    form_class = CollectiveMissionAssign
+    success_url = 'collective_mission_detail'
+    template_name = "crud/create.html"
+
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        print(pk, "pk print")
+        return get_object_or_404(CollectiveMission, pk=pk)
+
+
+    def get_form_kwargs(self):
+        """Return the keyword arguments for instantiating the form."""
+        collective_mission = self.get_object()
+        kwargs = super().get_form_kwargs()
+        kwargs['team'] = collective_mission.project.team
+        print(kwargs, "kwargs")
+        return kwargs
+
+
+    def form_valid(self, form):
+        """If the form is valid, redirect to the supplied URL."""
+        collective_mission = self.get_object()
+        form.save(collective_mission)
+        print(collective_mission, "collective m")
+        return super().form_valid(form)
+
+
+    def form_invalid(self, form):
+        print(form['participants'],  'my form errors')
+
+        return super().form_invalid(form)
