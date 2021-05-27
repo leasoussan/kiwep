@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="PostgreSQL - kiwep@localhost">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.21">
+    <root id="1">
+      <ServerVersion>13.2</ServerVersion>
+      <StartupTime>1621947936</StartupTime>
+    </root>
+    <database id="2" parent="1" name="artizen">
+      <ObjectId>25222</ObjectId>
+      <Owner>postgres</Owner>
+    </database>
+    <database id="3" parent="1" name="kiwep">
+      <ObjectId>27050</ObjectId>
+      <Owner>postgres</Owner>
+      <Current>1</Current>
+    </database>
+    <database id="4" parent="1" name="landf">
+      <ObjectId>25799</ObjectId>
+      <Owner>postgres</Owner>
+    </database>
+    <database id="5" parent="1" name="landf_app">
+      <ObjectId>28241</ObjectId>
+      <Owner>postgres</Owner>
+    </database>
+    <database id="6" parent="1" name="postgres">
+      <ObjectId>13450</ObjectId>
+      <Comment>default administrative connection database</Comment>
+      <Owner>postgres</Owner>
+    </database>
+    <database id="7" parent="1" name="torquay">
+      <ObjectId>16385</ObjectId>
+      <Owner>postgres</Owner>
+    </database>
+    <database id="8" parent="1" name="torquay_hotel">
+      <ObjectId>16851</ObjectId>
+      <Owner>postgres</Owner>
+    </database>
+    <schema id="9" parent="3" name="information_schema">
+      <ObjectId>13166</ObjectId>
+      <StateNumber>292</StateNumber>
+      <Owner>postgres</Owner>
+    </schema>
+    <schema id="10" parent="3" name="pg_catalog">
+      <ObjectId>11</ObjectId>
+      <Comment>system catalog schema</Comment>
+      <StateNumber>285</StateNumber>
+      <Owner>postgres</Owner>
+    </schema>
+    <schema id="11" parent="3" name="public">
+      <ObjectId>123587</ObjectId>
+      <StateNumber>41167</StateNumber>
+      <Owner>postgres</Owner>
+      <Current>1</Current>
+    </schema>
+  </database-model>
+</dataSource>
