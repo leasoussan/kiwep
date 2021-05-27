@@ -41,7 +41,7 @@
                                 <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
-                                <td>{{project.time_to_complet}}</td>
+                                <td>{{project.time_to_complete}}</td>
                                 <td> <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select_project' %}</a> </td>
                             </tr>
                         {% endfor %}
@@ -79,7 +79,7 @@
                                 <td><a href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
-                                <td>{{project.time_to_complet}}</td>
+                                <td>{{project.time_to_complete}}</td>
                                 <td><a href="{% url 'update_project' project.id %}">Edit</a> <a href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a></a> </td>
                             </tr>
 
@@ -126,7 +126,7 @@
                                 <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
-                                <td>{{project.time_to_complet}}</td>
+                                <td>{{project.time_to_complete}}</td>
                                 <td> Check Team </a> </td>
                             </tr>
                         {% endfor %}
