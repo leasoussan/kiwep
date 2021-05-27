@@ -2,7 +2,7 @@ kiwep/local_settings.py
 
 __pycache__/
 *.pyc
-
+.idea
 
 media/**
 
