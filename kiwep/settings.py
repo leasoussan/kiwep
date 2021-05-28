@@ -117,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-
+# this is to gonfig the Database connection on Heroku
 DATABASES = { 'default' : dj_database_url.config()}
 
 
