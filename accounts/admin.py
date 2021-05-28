@@ -14,7 +14,7 @@ class CustomUserAdmin(UserAdmin):
     """ Basic User """
     add_form = MyUserCreationForm
     form = UserForm
-    model = get_user_model
+    model = get_user_model()
     list_display = ['id', 'email', 'username',]
 
     
