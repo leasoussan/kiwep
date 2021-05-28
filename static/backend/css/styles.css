@@ -149,6 +149,57 @@ h5 {
 .details_icon {
   margin-right:10px;
 }
+
+/* HEADERS FOR TABLES */
+.card-header {
+  text-align:center;
+  background-color:#425940;
+  color:#fffefc;
+}
+/* ADD BUTTON */
+
+.add_button {
+  background-color: #f7d493;
+  border: 1px solid #7d7d83;
+}
+.add_button a {
+  color:black;
+}
+
+.add_button:hover {
+  background-color: #f7d493;
+}
+.add_button a:hover {
+  color:#fffefc;
+}
+/* END  ADD BUTTON */
+/* TEAM DETAIL */
+.student_list {
+  margin-top: 25px;
+}
+
+
+.team_style a{
+  color:#fffefc;
+}
+.team_style:hover {
+  background-color: #f7d493;
+  color:black;
+  border-radius:5px;
+  border: 1px solid #7d7d83;
+}
+.team_style a:hover {
+  color:black;
+}
+/* END TEAM DETAIL */
+/* Button MODAL */
+a .btn_modal {
+  color:#fffefc;
+}
+.header_missions {
+  background-color: #f7d493;
+  color:#fffefc;
+}
 Red : df5f46
 Orange : eca255
 Yellow: f7d493
