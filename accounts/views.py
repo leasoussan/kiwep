@@ -86,15 +86,15 @@ def get_user_profile_form(request, usertype, edit=False):
 
     data = request.POST or None 
     print(usertype)
-    if  usertype == 'student':
+    if  usertype == 'is_student':
         profile_form = StudentProfileCreationForm(data, instance=instance )
     
 
-    elif usertype  == 'speaker':
+    elif usertype  == 'is_speaker':
         profile_form =SpeakerProfileCreationForm(data, instance=instance)
     
 
-    elif usertype == 'representative':
+    elif usertype == 'is_representative':
         profile_form =  RepresentativeProfileCreationForm(data, instance=instance)
     
     return profile_form
