@@ -137,45 +137,38 @@
 
 
     </div>
-
-
-                        <div class="video-column col-lg-4">
-                            <div class="inner-column">
-
-                                <div class="course-features-info">
-                                    <ul>
-                                        <li class="lectures-feature">
-                                            <i class="fa fa-files-o"></i>
-                                            <span class="label">{% trans 'field' %}:</span>
-                                            <span class="value">{{project.field}}</span>
-                                        </li>
-
-
-                                        <li class="duration-feature">
-                                            <i class="fa fa-clock-o"></i>
-                                            <span class="label">{% trans 'time_to_complete' %}</span>
-                                            <span class="value">{{project.time_to_complet}}</span>
-                                        </li>
-
-                                        <li class="students-feature">
-                                            <i class="fa fa-users"></i>
-                                            <span class="label">{% trans 'difficulty ' %}</span>
-                                            <span class="value">{{project.difficulty}}</span>
-                                        </li>
-
-                                        <li class="assessments-feature">
-                                            <i class="fa fa-check-square-o"></i>
-                                            <span class="label">{% trans 'points' %}</span>
-                                            <span class="value">{{project.points}}</span>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
+    </div>
 
 
 
-                        </div>
+    <div class="col-md-3">
+    <div class="card" style="width: 18rem;margin-top:40px;">
+     <ul class="list-group list-group-flush">
+       <li class="list-group-item">
+           <i class="fa fa-files-o"></i>
+           <span class="label">{% trans 'field' %}:</span>
+           <span class="value">{{project.field}}</span>
+       </li>
+       <li class="list-group-item">
+           <i class="fa fa-clock-o"></i>
+         <span class="label">{% trans 'time_to_complete' %}</span>
+         <span class="value">{{project.time_to_complet}}</span>
+     </li>
+       <li class="list-group-item">
+         <i class="fa fa-users"></i>
+         <span class="label">{% trans 'difficulty ' %}</span>
+         <span class="value">{{project.difficulty}}</span>
+       </li>
+       <li class="list-group-item">
+         <i class="fa fa-check-square-o"></i>
+         <span class="label">{% trans 'points' %}</span>
+         <span class="value">{{project.points}}</span>
+       </li>
+     </ul>
+ </div>
+
+
+                        
                     </div>
 
       <!-- Modal -->

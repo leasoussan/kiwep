@@ -11,17 +11,16 @@
         {% if user.profile.name == "speaker" %}
 <div>
 
-            <button type="button" class="btn" name="button"><a href="{% url 'create_project' %}" style="color:#fffefc;">Add project</a></button>
+            <button type="button" class="btn add_button" name="button"><a href="{% url 'create_project' %}" >{% trans 'add project' %}</a></button>
         </div>
 
-
-
             <div class="row">
-                <div class="col">
-                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'available_project_list' %}</h5>
+                <div class="col-sm-4-lg-10">
+                  <div class="card">
+                    <h5 class="card-header">{% trans 'available_project_list' %}</h5>
 
-                    {#<div id="createProject">#}
-                    {#<div> #}
+                    <!-- {#<div id="createProject">#}
+                    {#<div> #} -->
 
                     <table class="table table-bordered table-hover table-responsive-md">
                         <thead>
@@ -50,14 +49,16 @@
                         </tbody>
                     </table>
 
-                </div>
             </div>
+            </div>
+            </div>
+
 
 
 
             <div class="row">
                 <div class="col">
-                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'my_project_list' %}</h5>
+                    <h5 class="card-header">{% trans 'my_project_list' %}</h5>
                     <table class="table table-bordered table-hover table-responsive-md">
 
 
@@ -127,7 +128,7 @@
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
                                 <td>{{project.time_to_complet}}</td>
-                                <td> Check Team </a> </td>
+                                <td> Check Team  </td>
                             </tr>
                         {% endfor %}
 

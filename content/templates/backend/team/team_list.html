@@ -5,24 +5,26 @@
 
     {% if user.profile.name == "speaker" %}
 
-    <a href="{% url 'create_team' %}">{% trans 'add_team_link' %}</a>
 
 
-
+    <div class="container-fluid">
+      <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add team' %}</a>
+      </button>
+    </div>
     <main class= "container-fluid">
 
     <div class="row">
     <div class="col-sm-4-lg-10">
     <div class="card">
-    <div class="card-body">
-    <h5 class="card-title">My Teams</h5>
+    <!-- <div class="card-body"> -->
+    <h5 class="card-header">My Teams</h5>
     <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-hover">
     <thead>
     <tr>
-        <th>{% trans 'team_name_title' %}</th>
-        <th>{% trans 'number_of_participants' %}</th>
-        <th>{% trans 'duration_of_the_project' %}</th>
+        <th>{% trans 'team name' %}</th>
+        <th>{% trans 'participants' %}</th>
+        <th>{% trans 'duration' %}</th>
         <th>{% trans 'field' %}</th>
         <th>{% trans 'edit' %}</th>
     </tr>
@@ -31,7 +33,7 @@
 
     {% for team in team_list %}
         <tr>
-        <th ><h4>Team Name <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h4></th>
+        <th><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
         <th>{{ team.participants.count }}</th>
         <th>{{team.project.time_to_complete}}</th>
         <th>{{teamp.project.field}}</th>
@@ -41,7 +43,7 @@
     {% endfor %}
     </tbody>
     </table>
-    </div>
+    <!-- </div> -->
     </div>
     </div>
     </div>
@@ -91,8 +93,10 @@
     </div>
     </div>
     </div>
+    <button type="button" name="button">  Add </button>
     </main>
 
-
      {% endif %}
+
+
 {% endblock %}
