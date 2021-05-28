@@ -54,7 +54,7 @@ msgstr "Language"
 msgid "profile_edit"
 msgstr "Edit Profile"
 
-#: accounts/templates/accounts/profile/representative_profile.html:35
+#: accounts/templates/accounts/pwelcome_to_kiweprofile/representative_profile.html:35
 msgid "edit_institution_profile"
 msgstr "Edit Institution Profile"
 
@@ -234,11 +234,3 @@ msgstr "Sent Passwor Reset"
 msgid "sign up"
 msgstr "Sign UP"
 
-#~ msgid "about_bio"
-#~ msgstr "About"
-
-#~ msgid "register"
-#~ msgstr "Register"
-
-#~ msgid "welcome_to_kiwep_"
-#~ msgstr "Welcome To KIWEP"

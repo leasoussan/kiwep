@@ -237,12 +237,3 @@ msgstr "Recevoir Un lien pour Reset votre Mot de Passe"
 #: accounts/templates/registration/register.html:10
 msgid "sign up"
 msgstr "S'enrengistrer"
-
-#~ msgid "about_bio"
-#~ msgstr "A propos"
-
-#~ msgid "register"
-#~ msgstr "S'enrengistrer"
-
-#~ msgid "welcome_to_kiwep_"
-#~ msgstr "Bienvenue a Kiwep!"
