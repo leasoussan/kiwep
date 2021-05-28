@@ -1,20 +1,30 @@
-.card_round{
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: orange;
-    align-self: center;
-    justify-items: center;
-    justify-content: center;
 
 
-}
 
 
 .container-fluid{
     display: flex;
     flex-direction: row;
     margin-top: 50px;
+}
+
+
+.card_round{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #eca255;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.number_tag{
+    width: 70px;
+    height: 70px;
+    font-family:"Aharoni CLM" ;
+    font-size: 3rem;
 }
