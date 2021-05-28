@@ -38,13 +38,15 @@
 
         <button type="button" name="button">
         <li class="nav-item">
-          <a class="nav-link" id="a_link" href="{% url 'dashboard'%}">{% trans 'dashboard' %}</a>
+          <a class="nav-link" id="a_link" href="{% url 'dashboard'%}">{% trans 'home' %}</a>
         </li>
         </button>
         <button type="button" name="button">
         <li class="nav-item">
             {% if user.profile.name == 'student' %}
-          <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans ' my teams' %}</a>
+
+          <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans 'my_projects' %}</a>
+
           {% else %}
             <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans 'teams' %}</a>
             {% endif %}
@@ -56,12 +58,14 @@
           <a class="nav-link" id="a_link"  href="{% url 'my_mission_list' %}">{% trans 'my missions' %}</a>
           {% endif %}
         </li>
+            {% if user.profile.name == 'student' %}
         </button>
         <button type="button" name="button">
         <li class="nav-item">
           <a class="nav-link" id="a_link"  href="{% url 'todo_list'%}">{% trans 'todo' %}</a>
         </li>
         </button>
+          {% endif %}
         <button type="button" name="button">
         <li class="nav-item">
           {% if user.profile.name == 'speaker' %}
