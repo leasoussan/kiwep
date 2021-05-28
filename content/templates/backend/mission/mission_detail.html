@@ -7,16 +7,19 @@
 {% endblock %}
 
 {% block content %}
-
+{{ object }}
 {# TODO#:Fix position of buttons#}
 
     {% if user.profile.name == 'speaker' %}
         <div class="">
-        <button> <a href="{{ object.get_update_url }}">{% trans 'edit_mission' %}</a></button>
+        <button> <a href="{{ object.get_update_url }}">{% trans 'edit_mission_button' %}</a></button>
     {% endif %}
 
 
-    <a href="{% url 'project_detail' object.id %}"> <button>Back to Project</button></a>
+    <a href="{% url 'project_detail' object.id %}"> <button>B{% trans 'back_to_project_button' %}</button></a>
+
+
+    <a href="{% url 'project_detail' object.id %}"> <button>B{% trans 'back_to_project_button' %}</button></a>
 
 
 
@@ -50,11 +53,11 @@
                                         <div class="inner-box" >
                                             <div class= "mission_description">
                                                 <h3>{% trans 'about_the_mission' %}</h3>
-                                                <p>{{object.description}}</p>
-                                                <h3>Mission Type: </h3>
+                                   <p>{{object.description}}</p>
+                                                <h3>{% trans 'mission_type_title' %}:</h3>
                                                 <p>{{object.get_mission_type_display}}  </p>
 
-                                                <h4>The Mission response should be sent as:</h4>
+                                                <h4>{% trans 'resposne_type_title:' %}:</h4>
                                                 <p> {{object.get_response_type_display}}</p>
 
 
@@ -68,7 +71,12 @@
                             </div>
 
 
-
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
                         </div>
@@ -97,13 +105,13 @@
 
                                 <li class="students-feature">
                                     <i class="fa fa-users"></i>
-                                    <span class="label">{% trans 'difficulty' %}</span>
+                                    <span class="label">{% trans 'difficulty_title' %}</span>
                                     <span class="value">{{object.level}}</span>
                                 </li>
 
                                 <li class="assessments-feature">
                                     <i class="fa fa-check-square-o"></i>
-                                    <span class="label">{% trans 'points' %}</span>
+                                    <span class="label">{% trans 'points_title' %}</span>
                                     <span class="value">{{object.points}}</span>
                                 </li>
                             </ul>
@@ -111,13 +119,8 @@
 
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- End intro Courses -->
 
 
-    </div>
     <!-- Main content End -->
 
 

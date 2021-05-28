@@ -40,8 +40,8 @@
                                 <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
-                                <td>{{project.time_to_complet}}</td>
-                                <td> <a href="{% url 'chose_project_detail' project.id %}">Select Project </a> </td>
+                                <td>{{project.time_to_complete}}</td>
+                                <td> <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select_project' %}</a> </td>
                             </tr>
                         {% endfor %}
 
@@ -80,8 +80,8 @@
                                 <td><a href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
-                                <td>{{project.time_to_complet}}</td>
-                                <td><a href="{% url 'update_project' project.id %}">Edit</a> <a href="{#   url 'duplicate_create_project' project.id team.id  #}">Duplicate</a></a> </td>
+                                <td>{{project.time_to_complete}}</td>
+                                <td><a href="{% url 'update_project' project.id %}">Edit</a> <a href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a></a> </td>
                             </tr>
 
                         {% endfor %}
@@ -127,8 +127,13 @@
                                 <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
+<<<<<<< HEAD
                                 <td>{{project.time_to_complet}}</td>
                                 <td> Check Team  </td>
+=======
+                                <td>{{project.time_to_complete}}</td>
+                                <td> Check Team </a> </td>
+>>>>>>> e3ec483adb316f49c756433b69198b481e148df3
                             </tr>
                         {% endfor %}
 

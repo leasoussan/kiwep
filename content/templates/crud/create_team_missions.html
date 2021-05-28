@@ -6,7 +6,6 @@
 {% block content %}
 
 
-{{object}}
 
 {% if formsets.0.instance.project.missions.all.exists  %}
 
@@ -40,7 +39,7 @@
 
                         {% endfor %} 
 
-                        <button class="btn-shop orange-color" type="submit" value="Save">SAVE</button>
+                        <button class="btn-shop orange-color" type="submit" value="Save">{% trans 'save_button' %}</button>
                     </form>
                 </table>
 

@@ -1,144 +1,48 @@
 {% load i18n %}
 
 
-<main role="main" class="container-fluid">
-        <div class="card">
-          <h5 class="card-header">About us</h5>
-          <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn">Go somewhere</a>
-          </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-</div>
-</main>
+<div>
 
-<!-- <h4 style="margin-right:300px;">{% trans 'welcome'%} {{user.first_name}}</h4> -->
-<!-- Hello, {{ user.username|default:'Guest' }}! -->
+    <h2>{% trans 'welcome'%} {{user.first_name}} </h2>
 
-<!-- <div>
-  <h2 style ="text-align:center;">{% trans 'welcome'%} {{user.first_name}}</h2><br>
 
-<main "container-fluid">
+    <main role="main" class="container-fluid">
+
   <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{% trans 'available_projects_title' %}</h5>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">{% trans 'Team_name_title_table_head' %}</th>
-                        <th scope="col">{% trans 'project_name_table_head' %}</th>
-                        <th scope="col">{% trans 'field_table_head' %}</th>
-                        <th scope="col">{% trans 'status_table_head' %}</th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                    {% for team in user.profile.class_level.team_set.all  %}
-                    {% if request.user.profile not in team.participants.all %}
+        <div class="col-md-4 col-sm-10 col-lg-4">
+            <div class="card_round" style="width: 18rem;">
+{#                <img class="card-img-top" src="..." alt="Card image cap" style="height: 12rem">#}
+
+                    <h5 class="card-title">{% trans 'current_teams_dashboard_title' %}</h5>
 
 
-                    <tr>
-                        <td> <a href="{% url 'team_detail'  team.id %}">{{team.name}}</a> </td>
-                        <td>{{ team.project.name }}</td>
-                        <td>{{ team.project.field }}</td>
-                        <td>{{ team.project.time_to_complet }}</td>
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
+                    <a href="{% url 'team_list' %}" class="btn btn-primary">#</a>
+                </div>
+            </div>
 
-                </tbody>
-            </table>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{% trans 'missions_title' %}</h5>
 
-        <a href="{% url 'my_mission_list' %}">{% trans 'mission_board_link' %}</a>
-        {% for mymission in user.profile.my_missions.all %}
-        <div class="product-item">
-          <a href="{% url 'team_mission_detail' mymission.id%}">       <h5>{{ mymission.mission.name }}</h5></a>
+          <div class="col-md-4 col-sm-10 col-lg-4">
+            <div class="card_round" style="width: 18rem;">
+{#                <img class="card-img-top" src="..." alt="Card image cap" style="height: 12rem">#}
+
+                    <h5 class="card-title">{% trans 'selected_project_dashboard_title' %}</h5>
+
+
+                    <a href="{% url 'team_list' %}" class="btn btn-primary">#</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-10 col-lg-4">
+            <div class="card_round" style="width: 18rem;">
+
+                    <h5 class="card-title">{% trans 'groups_dasboard_title' %}</h5>
+
+
+                    <a href="#" class="btn btn-primary">#</a>
+                </div>
+            </div>
 
         </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{% trans 'my_team_projects_title' %}</h5>
-        <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                <th  scope="col">{% trans 'Team_name_title_table_head' %}</th>
-                    <th scope="col">{% trans 'project_name_table_head' %}</th>
-                    <th scope="col">{% trans 'field_table_head' %}</th>
-                    <th scope="col">{% trans 'status_table_head' %}</th>
-                    <th scope="col">{% trans 'time_to_complete' %}</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                {% for team in user.profile.team_set.all %}
-
-
-                <tr>
-                    <td> <a href="{% url 'team_detail'  team.id %}">{{team.name}}</a> </td>
-                    <td>{{ team.project.name }}</td>
-                    <td>{{ team.project.field }}</td>
-                    {% if project.completed != 'True' %}
-                    <td>{% trans 'in_process' %}</td>
-                    {% else %}
-                    <td>{% trans 'project_is_done' %}</td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-
-            </tbody>
-        </table>
-    </div>
-      </div>
-    </div>
-  </div>
-
+    </main>
 </div>
-
-</main>
-</div> -->

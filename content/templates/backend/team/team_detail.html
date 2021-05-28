@@ -121,17 +121,13 @@
 
     <!--
 {% if user.profile.name == "speaker" %}
-
-
-
-
 {% endif %} -->
 
 
     <div class="row">
         <div class="col">
             <div class="card">
-              <h5 class="card-header">{% trans 'available mission' %}</h5>
+              <h5 class="card-header header_missions">{% trans 'available mission' %}</h5>
                 <div class="card-body">
 
 
@@ -215,6 +211,7 @@
                                 <td>{{mission.stage}}</td>
                                 <td>{{mission.points}}</td>
                                 <td>{{mission.due_date}}</td>
+                                <td><a href="{% url 'assign_collective_mission_detail' mission.id %}">{% trans 'assign_mission' %}</a></td>
                             {% endfor %}
 
 
@@ -265,18 +262,18 @@
                         {% endfor %}
                     </tbody>
 
-                </table>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-             {% endif %}
+    {% endif %}
 
 
 
-<!-- ------------------------------------------------------------------STUDENT VIEW HIS MISSION LIST  -->
+    <!-- ------------------------------------------------------------------STUDENT VIEW HIS MISSION LIST  -->
 
-{% if user.profile.name == "student" %}
+    {% if user.profile.name == "student" %}
 
 <div class="row">
     <div class="col">
@@ -298,60 +295,53 @@
             </thead>
             <tbody>
 
-            {% for mission in team.project.individualmission_set|student_missions:user.student %}
+                {% for mission in team.project.individualmission_set|student_missions:user.student %}
 
-              <tr>
-                    <td><a href="
+                    <tr>
+                        <td><a href="
                                 {% if user.profile == mission.attributed_to and not mission.response_file %}
-
                                 {% url 'submit_mission' mission.id %}
-
                                 {% else %}
                                 {% url 'individual_mission_detail' mission.id %}
                                 {% endif %}
-
-
                                 ">{{mission.name}}</a> </td>
-                    <td>{{mission.description}}</td>
-                    <td>{{mission.stage}}</td>
-                    <td>{{mission.points}}</td>
-                    <td>{{mission.due_date}}</td>
-                    <td>{{mission.status}}</td>
-                </tr>
+                        <td>{{mission.description}}</td>
+                        <td>{{mission.stage}}</td>
+                        <td>{{mission.points}}</td>
+                        <td>{{mission.due_date}}</td>
+                        <td>{{mission.status}}</td>
+                    </tr>
 
 
 
 
-            {% endfor %}
+                {% endfor %}
 
-            <tr><td>here</td> </tr>
+                <tr><td>here</td> </tr>
 
-{#            {% for collectiveindividualmission in user.student.team_set.project.collectivemission_set.all|collective_student_missions:team.project %}#}
-            <tr>
-                <td><a href="
+                {#            {% for collectiveindividualmission in user.student.team_set.project.collectivemission_set.all|collective_student_missions:team.project %}#}
+                <tr>
+                    <td><a href="
                                 {% if user.profile == collectiveindividualmission.attributed_to and not collectiveindividualmission.response_file %}
                                 {% url 'submit_mission' collectiveindividualmission.id %}
-
                                 {% else %}
 {#                                {% url 'collective_mission_detail' collectivemission.id %}#}
                                 {% endif %}
-
-
                                 ">{{collectiveindividualmission.parent_mission.mission.name}}</a> </td>
-                <td>{{collectiveindividualmission.parent_mission.mission_type}}</td>
-                <td>{{collectiveindividualmission.parent_mission.mission.stage}}</td>
-                <td>{{collectiveindividualmission.parent_mission.points}}</td>
-                <td>{{collectiveindividualmission.parent_mission.due_date}}</td>
-                <td>{{collectiveindividualmission.parent_mission.status}}</td>
-            </tr>
-            {#                    {% endfor %}#}
+                    <td>{{collectiveindividualmission.parent_mission.mission_type}}</td>
+                    <td>{{collectiveindividualmission.parent_mission.mission.stage}}</td>
+                    <td>{{collectiveindividualmission.parent_mission.points}}</td>
+                    <td>{{collectiveindividualmission.parent_mission.due_date}}</td>
+                    <td>{{collectiveindividualmission.parent_mission.status}}</td>
+                </tr>
+                {#                    {% endfor %}#}
 
-            </tbody>
+                </tbody>
 
-        </table>
-    </div>
+            </table>
+        </div>
 
-{% endif %}
+    {% endif %}
 
 </div>
 </div>
@@ -425,14 +415,13 @@
                         {% endfor %}
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Start</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Start</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 

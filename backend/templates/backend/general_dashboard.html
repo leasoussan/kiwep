@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load i18n %}
 
 {% block content %}
+
+
+    {% block extrahead %}
+          <link href="{% static 'backend/css/dashboard.css' %}" rel="stylesheet" >
+    {% endblock extrahead %}
+
 
 
 {% if user.profile.name == 'representative' %}

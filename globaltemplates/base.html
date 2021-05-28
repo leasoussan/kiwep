@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load mytags %}
 {% load i18n %}
   <head>
     <meta charset="utf-8">
@@ -71,15 +71,16 @@
           {% endif %}
         </li>
         </button><br>
-        <form  >
-          <li class="nav-item"><input class="form-control me-2 input_search" style="height: 40px; margin-bottom: 15px;" type="search" placeholder="Search" aria-label="Search"></li>
-        <li class="nav-item" id="a_link" style="text-align:center;"><button class="form-control me-2" id="search_btn" type="button" name="button" >Search</button></li>
 
-      </form>
+{#          TODO: searchForm #}
+          <form >
+{#          <li class="nav-item"><input class="form-control me-2 input_search" style="height: 40px; margin-bottom: 15px;" type="search" placeholder="Search" aria-label="Search"></li>#}
+{#        <li class="nav-item" id="a_link" style="text-align:center;"><button class="form-control me-2" id="search_btn" type="button" name="button" >Search</button></li>#}
+{##}
+{#      </form>#}
 
       </ul>
     </div>
-
 
     <!-- wider column -->
     <div class="col-md-10 mb-4" id = "main_panel">

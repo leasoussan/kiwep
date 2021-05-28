@@ -53,7 +53,7 @@
                                 <div class="card">
 
 
-                                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{{project.title}}</h5>
+                                    <h5 class="card-header">{{project.title}}</h5>
                                     <div class="card-body">
                                         <p class="card-text" style="text-align:center; ">{{project.description}}</p>
                                     </div>
@@ -65,7 +65,7 @@
                                 <div class="card">
 
 
-                                    <h5 class="card-header" style="text-align:center;background-color:f7d493;">{% trans 'what you will learn' %}</h5>
+                                    <h5 class="card-header" style="text-align:center;background-color:#f7d493;">{% trans 'what you will learn' %}</h5>
                                     <div class="card-body">
                                         {% for skill in project.acquired_skills.all %}
                                             <p class="card-text" style="text-align:center;">{{skill.name}}</p>
@@ -138,9 +138,6 @@
 
     </div>
     </div>
-
-
-
     <div class="col-md-3">
     <div class="card" style="width: 18rem;margin-top:40px;">
      <ul class="list-group list-group-flush">
@@ -168,7 +165,7 @@
  </div>
 
 
-                        
+
                     </div>
 
       <!-- Modal -->
@@ -232,4 +229,3 @@
 
 
 <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
-<!-- <script src="{% static  'backend/js/project_api.js'%}" type="text/javascript"></script> -->
