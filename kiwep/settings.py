@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'message',
     'content',
 
-    # 3rd Parties
+    #3rd Parties
     'rest_framework',
     'crispy_forms',
     'bootstrap4',
@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',  # language adding Middleware after Seesion before common
+    'django.middleware.locale.LocaleMiddleware', #language adding Middleware after Seesion before common
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -95,8 +95,8 @@ AUTH_USER_MODEL = 'accounts.MyUser'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+     {
+         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -157,13 +157,13 @@ LOGOUT_REDIRECT_URL = "homepage"
 
 LOGOUT_URL = "homepage"
 
-APPEND_SLASH = False
+APPEND_SLASH=False
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_USER= os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 DEBUG = os.environ.get('DEBUG')
 
@@ -171,4 +171,3 @@ try:
     from .local_settings import *
 except ImportError:
     pass
-
