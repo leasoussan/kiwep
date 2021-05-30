@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'content',
 
     #3rd Parties
-    'rest_framework.authtoken',
+    'rest_framework',
      'crispy_forms',
      'bootstrap4',
 ]
