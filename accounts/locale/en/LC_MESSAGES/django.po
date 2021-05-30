@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-30 11:00+0300\n"
+"POT-Creation-Date: 2021-05-27 13:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,171 +18,219 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: forms.py:18
+#: accounts/forms.py:18
 msgid "student"
-msgstr "etudient    "
+msgstr "Etudient    "
 
-#: forms.py:19
+#: accounts/forms.py:19
 #, fuzzy
 #| msgid "speaker_info_bio"
 msgid "speaker"
 msgstr "Biographie"
 
-#: forms.py:20
+#: accounts/forms.py:20
 msgid "representative"
 msgstr "Representative"
 
-#: models.py:34
+#: accounts/mailer.py:8
+#, fuzzy
+#| msgid "welcome_message"
+msgid "welcome"
+msgstr "Dear User. We are happy to have you On Board"
+
+#: accounts/mailer.py:9
+msgid "to KIWEP"
+msgstr "To Kiwep"
+
+#: accounts/mailer.py:11
+msgid "registration_email_subject"
+msgstr "Email"
+
+#: accounts/models.py:46
 msgid "language"
 msgstr "Language"
 
-#: templates/accounts/profile/edit_profile.html:8
+#: accounts/templates/accounts/profile/edit_profile.html:8
 msgid "profile_edit"
 msgstr "Edit Profile"
 
-#: templates/accounts/profile/representative_profile.html:35
+#: accounts/templates/accounts/pwelcome_to_kiweprofile/representative_profile.html:35
 msgid "edit_institution_profile"
 msgstr "Edit Institution Profile"
 
-#: templates/accounts/profile/representative_profile.html:39
-#: templates/accounts/profile/speaker_profile.html:39
+#: accounts/templates/accounts/profile/representative_profile.html:39
+#: accounts/templates/accounts/profile/speaker_profile.html:36
 msgid "active"
 msgstr "Active"
 
-#: templates/accounts/profile/representative_profile.html:50
+#: accounts/templates/accounts/profile/representative_profile.html:50
 msgid "school_info"
-msgstr "School Info"
+msgstr "Education Info"
 
-#: templates/accounts/profile/representative_profile.html:62
-#: templates/accounts/profile/speaker_profile.html:62
+#: accounts/templates/accounts/profile/representative_profile.html:62
+#: accounts/templates/accounts/profile/speaker_profile.html:12
+#: accounts/templates/accounts/profile/student_profile.html:12
 msgid "about"
 msgstr "About"
 
-#: templates/accounts/profile/representative_profile.html:63
+#: accounts/templates/accounts/profile/representative_profile.html:63
 msgid "bio_description"
 msgstr "Biographie"
 
-#: templates/accounts/profile/representative_profile.html:65
-#: templates/accounts/profile/speaker_profile.html:65
+#: accounts/templates/accounts/profile/representative_profile.html:65
 msgid "school"
 msgstr "School"
 
-#: templates/accounts/profile/representative_profile.html:65
+#: accounts/templates/accounts/profile/representative_profile.html:65
 msgid "education_history"
 msgstr "Education"
 
-#: templates/accounts/profile/representative_profile.html:67
-#: templates/accounts/profile/speaker_profile.html:67
+#: accounts/templates/accounts/profile/representative_profile.html:67
 msgid "my_location"
 msgstr "Location"
 
-#: templates/accounts/profile/representative_profile.html:67
-#: templates/accounts/profile/speaker_profile.html:67
+#: accounts/templates/accounts/profile/representative_profile.html:67
+#: accounts/templates/accounts/profile/speaker_profile.html:21
+#: accounts/templates/accounts/profile/student_profile.html:18
 msgid "from"
 msgstr "From"
 
-#: templates/accounts/profile/representative_profile.html:78
-#: templates/accounts/profile/speaker_profile.html:78
+#: accounts/templates/accounts/profile/representative_profile.html:78
+#: accounts/templates/accounts/profile/speaker_profile.html:44
+#: accounts/templates/accounts/profile/student_profile.html:47
 msgid "contact_info"
 msgstr "Contact Information"
 
-#: templates/accounts/profile/representative_profile.html:80
+#: accounts/templates/accounts/profile/representative_profile.html:80
 msgid "email"
 msgstr "E-mail"
 
-#: templates/accounts/profile/representative_profile.html:81
+#: accounts/templates/accounts/profile/representative_profile.html:81
 msgid "home"
 msgstr "Home"
 
-#: templates/accounts/profile/representative_profile.html:81
+#: accounts/templates/accounts/profile/representative_profile.html:81
 msgid "lives_in"
 msgstr "Currently living in: "
 
-#: templates/accounts/profile/representative_profile.html:82
+#: accounts/templates/accounts/profile/representative_profile.html:82
 msgid "phone_number"
 msgstr "Phone Number"
 
-#: templates/accounts/profile/speaker_profile.html:35
-#: templates/accounts/profile/student_profile.html:36
-msgid "edit_profile"
-msgstr "Edit Profile"
-
-#: templates/accounts/profile/speaker_profile.html:50
-msgid "speaker_info_bio"
-msgstr "Biographie"
-
-#: templates/accounts/profile/speaker_profile.html:63
-msgid "about_bio"
-msgstr "About"
-
-#: templates/accounts/profile/speaker_profile.html:65
+#: accounts/templates/accounts/profile/speaker_profile.html:17
 msgid "study_hisitory"
 msgstr "Education History"
 
-#: templates/emails/welcome.html:3
-msgid "welcome_message"
-msgstr "Dear User. 
-We are happy to have you On Board"
+#: accounts/templates/accounts/profile/speaker_profile.html:25
+msgid "what_would_you_like_to_know"
+msgstr "What Would you like to Know"
 
-#: templates/emails/welcome.html:5
+#: accounts/templates/accounts/profile/speaker_profile.html:39
+msgid "edit_profile"
+msgstr "Edit Profile"
+
+#: accounts/templates/accounts/profile/speaker_profile.html:47
+#: accounts/templates/accounts/profile/student_profile.html:50
+#, fuzzy
+#| msgid "lives_in"
+msgid "live_in"
+msgstr "Currently living in: "
+
+#: accounts/templates/accounts/profile/speaker_profile.html:60
+#: accounts/templates/accounts/profile/student_profile.html:63
+msgid "speaker_info_bio"
+msgstr "Biographie"
+
+#: accounts/templates/accounts/profile/student_profile.html:16
+msgid "Studing"
+msgstr "Currently Studying"
+
+#: accounts/templates/accounts/profile/student_profile.html:19
+msgid "part_of_lable"
+msgstr "Part of:"
+
+#: accounts/templates/accounts/profile/student_profile.html:20
+msgid "group_name_lable"
+msgstr "Group Level:"
+
+#: accounts/templates/accounts/profile/student_profile.html:42
+#, fuzzy
+#| msgid "edit_profile"
+msgid "edit_profile_button"
+msgstr "Edit Profile"
+
+#: accounts/templates/emails/welcome.html:3
+msgid "welcome_message"
+msgstr "Dear User. We are happy to have you On Board"
+
+#: accounts/templates/emails/welcome.html:5
 msgid "message_intro_registration"
 msgstr "Here is some more text to have when someone is registering"
 
-#: templates/emails/welcome.html:7
+#: accounts/templates/emails/welcome.html:7
 msgid "hi"
 msgstr "Hi"
 
-#: templates/registration/login.html:5 templates/registration/login.html:25
+#: accounts/templates/registration/login.html:8
+msgid "login in to your kiwep account!"
+msgstr "Login to your Kiwep Account"
+
+#: accounts/templates/registration/login.html:13
+#: accounts/templates/registration/login.html:37
+#: accounts/templates/registration/login.html:75
 msgid "login"
 msgstr "Login"
 
-#: templates/registration/login.html:19
-msgid "kiwep_platform"
-msgstr "KIWEP Platform"
-
-#: templates/registration/login.html:32
+#: accounts/templates/registration/login.html:20
+#: accounts/templates/registration/login.html:44
+#: accounts/templates/registration/login.html:82
 msgid "remeber_me_login"
 msgstr "Remember Me"
 
-#: templates/registration/login.html:34
+#: accounts/templates/registration/login.html:22
+#: accounts/templates/registration/login.html:46
+#: accounts/templates/registration/login.html:85
 msgid "forgot_password_link"
 msgstr "Forgot Password?"
 
-#: templates/registration/login.html:52
+#: accounts/templates/registration/login.html:23
+#: accounts/templates/registration/login.html:47
+#: accounts/templates/registration/login.html:86
 msgid "reste_password_link"
 msgstr "Reset Password"
 
-#: templates/registration/password_change_done.html:5
+#: accounts/templates/registration/login.html:69
+msgid "kiwep_platform"
+msgstr "KIWEP Platform"
+
+#: accounts/templates/registration/password_change_done.html:5
 msgid "password_change"
 msgstr "Your Password reset is Done"
 
-#: templates/registration/password_change_done.html:7
-#: templates/registration/password_change_form.html.html:14
-#: templates/registration/password_reset_form.html:15
+#: accounts/templates/registration/password_change_done.html:7
+#: accounts/templates/registration/password_change_form.html.html:14
+#: accounts/templates/registration/password_reset_form.html:15
 msgid "back_to_dashboard"
 msgstr "Back to Dashboard"
 
-#: templates/registration/password_change_form.html.html:6
+#: accounts/templates/registration/password_change_form.html.html:6
 msgid "change_password"
 msgstr "Change Password"
 
-#: templates/registration/password_reset_done.html:7
+#: accounts/templates/registration/password_reset_done.html:7
 msgid "password_reset_done"
 msgstr "Password Reset Done"
 
-#: templates/registration/password_reset_done.html:9
-#: templates/registration/register.html:22
+#: accounts/templates/registration/password_reset_done.html:9
+#: accounts/templates/registration/register.html:16
 msgid "back_to_login"
 msgstr "Back to Login"
 
-#: templates/registration/password_reset_form.html:7
+#: accounts/templates/registration/password_reset_form.html:7
 msgid "send_passsword_reste_link"
 msgstr "Sent Passwor Reset"
 
-#: templates/registration/register.html:6
-msgid "register"
-msgstr "Register"
+#: accounts/templates/registration/register.html:10
+msgid "sign up"
+msgstr "Sign UP"
 
-#: templates/registration/register.html:9
-msgid "welcome_to_kiwep_"
-msgstr "Welcome To KIWEP"

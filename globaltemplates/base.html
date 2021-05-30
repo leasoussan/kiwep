@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load mytags %}
 {% load i18n %}
   <head>
     <meta charset="utf-8">
@@ -38,48 +38,51 @@
 
         <button type="button" name="button">
         <li class="nav-item">
-          <a class="nav-link" id="a_link" href="{% url 'dashboard'%}">{% trans 'dashboard' %}</a>
+          <a class="nav-link" id="a_link" href="{% url 'dashboard'%}">{% trans 'home' %}</a>
         </li>
         </button>
         <button type="button" name="button">
         <li class="nav-item">
             {% if user.profile.name == 'student' %}
-          <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans 'my_teams_sidebar' %}</a>
+          <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans 'my_projects' %}</a>
           {% else %}
-            <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans 'teams_sidebar' %}</a>
+            <a class="nav-link" id="a_link"  href="{% url 'team_list' %}">{% trans 'teams' %}</a>
             {% endif %}
         </li>
         </button>
         <button type="button" name="button">
         <li class="nav-item">
           {% if user.profile.name == 'student' %}
-          <a class="nav-link" id="a_link"  href="{% url 'my_mission_list' %}">{% trans 'my_missions_sidebar' %}</a>
+          <a class="nav-link" id="a_link"  href="{% url 'my_mission_list' %}">{% trans 'my missions' %}</a>
           {% endif %}
         </li>
+            {% if user.profile.name == 'student' %}
         </button>
         <button type="button" name="button">
         <li class="nav-item">
-          <a class="nav-link" id="a_link"  href="{% url 'todo_list'%}">{% trans 'todo_sidebar' %}</a>
+          <a class="nav-link" id="a_link"  href="{% url 'todo_list'%}">{% trans 'todo' %}</a>
         </li>
         </button>
+          {% endif %}
         <button type="button" name="button">
         <li class="nav-item">
           {% if user.profile.name == 'speaker' %}
-          <a class="nav-link" id="a_link" href="{% url 'project_list' %}">{% trans 'projects_sidebar' %}</a>
+          <a class="nav-link" id="a_link" href="{% url 'project_list' %}">{% trans 'projects' %}</a>
           {% else %}
-          <a class="nav-link" id="a_link" href="{% url 'student_available_project_list' %}">{% trans 'availiable_projects_sidebar' %}</a>
+          <a class="nav-link" id="a_link" href="{% url 'student_available_project_list' %}">{% trans 'open_projects' %}</a>
           {% endif %}
         </li>
         </button><br>
-        <form  >
-          <li class="nav-item"><input class="form-control me-2 input_search" style="height: 40px; margin-bottom: 15px;" type="search" placeholder="Search" aria-label="Search"></li>
-        <li class="nav-item" id="a_link" style="text-align:center;"><button class="form-control me-2" id="search_btn" type="button" name="button" >Search</button></li>
 
-      </form>
+{#          TODO: searchForm #}
+          <form >
+{#          <li class="nav-item"><input class="form-control me-2 input_search" style="height: 40px; margin-bottom: 15px;" type="search" placeholder="Search" aria-label="Search"></li>#}
+{#        <li class="nav-item" id="a_link" style="text-align:center;"><button class="form-control me-2" id="search_btn" type="button" name="button" >Search</button></li>#}
+{##}
+{#      </form>#}
 
       </ul>
     </div>
-
 
     <!-- wider column -->
     <div class="col-md-10 mb-4" id = "main_panel">

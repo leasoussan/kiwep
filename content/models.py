@@ -193,7 +193,7 @@ class CollectiveMission(Mission):
 
 
 
-class IndividualCollectiveMission(Mission):
+class IndividualCollectiveMission(models.Model):
     """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
 
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")

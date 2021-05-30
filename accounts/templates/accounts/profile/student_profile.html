@@ -13,11 +13,11 @@
                       <div class="">
 
                         <ul class="list-unstyled profile-about-list">
-                            <li><i class="material-icons details_icon">school</i><span>Studied Mechanical Engineering at <a href="#">{{user.profile.institution.name}}</a></span></li>
+                            <li><i class="material-icons details_icon">school</i><span>{% trans 'Studing' %} --------- at <a href="#">{{user.profile.institution.name}}</a></span></li>
 
-                            <li><i class="material-icons details_icon">my_location</i><span>From <a href="#">{{user.city}}</a></span></li>
-                            <li>Part of {{ user.profile.class_level.institution.name }} </li>
-                            <li>Group Name: {{ user.profile.class_level.name }} </li>
+                            <li><i class="material-icons details_icon">my_location</i><span>{% trans 'from' %} <a href="#">{{user.city}}</a></span></li>
+                            <li>{% trans 'part_of_lable' %} {{ user.profile.class_level.institution.name }} </li>
+                            <li>{% trans 'group_name_lable' %} {{ user.profile.class_level.name }} </li>
                             <li>
 
                                 <!-- <button class="btn btn-block btn-secondary m-t-lg">Message</button> -->
@@ -25,7 +25,7 @@
                         </ul>
                       </div><br>
 
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <p class="card-text">what would you like to know?</p>
 
                     </div>
               </div>
@@ -39,7 +39,7 @@
                           <i> Active</i>
                       </div>
                       <div>
-                        <button type="button" name="button" class="btn" ><a href="{% url 'edit_profile' %}">{% trans 'edit_profile'%}</a></button>
+                        <button type="button" name="button" class="btn" ><a href="{% url 'edit_profile' %}">{% trans 'edit_profile_button'%}</a></button>
                   </div>
                   </div>
                   <div class="card profile_card">
@@ -47,7 +47,7 @@
                           <h5 class="card-title">{% trans 'contact_info'%}</h5>
                           <ul class="list-unstyled profile-about-list">
                               <li><i class="material-icons details_icon">mail_outline</i><span>{{user.email}}</span></li>
-                              <li><i class="material-icons details_icon">home</i><span>Lives in <a href="#">{{user.city}}</a></span></li>
+                              <li><i class="material-icons details_icon">home</i><span>{% trans 'live_in' %}<a href="#">{{user.city}}</a></span></li>
                               <li><i class="material-icons details_icon">local_phone</i><span>{{user.phone_number}}</span></li>
                           </ul>
                       </div>

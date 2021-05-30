@@ -26,10 +26,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for mission in my_mission_list %}
+                        {% for mission in mission_list %}
                         <tr>
-
-                            <td><a href="{% url 'mission_detail'  mission.pk %}">{{ mission.mission.name }}</a></td>
+                            <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
                             <td>{{mission.due_date}}</td>
                             <td>{{mission.team.project}}</td>
                             <td>{{mission.completed}}</td>

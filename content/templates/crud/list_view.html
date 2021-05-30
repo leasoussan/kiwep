@@ -11,22 +11,20 @@
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">My Teams</h5>
+        <h5 class="card-title">My {{ model.name }}</h5>
         <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                   <tr>
                     {% for team in team_list %}
-                      <th scope="col"><h1>Team Name <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1></th>
+                      <th scope="col"><h1>{% trans 'team_name' %} <a href="{% url 'team_detail' %}"></a> {{ team.name }}</h1></th>
                     {% endfor %}
                   </tr>
               </thead>
               <tbody>
                 <tr>
-                <td>
-                  <a href="{% url 'create_mission' %}">Add Mission </a>
-                </td>
 
+Something is missing?
                 </tr>
               </tbody>
             </table>

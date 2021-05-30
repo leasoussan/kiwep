@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-25 17:15+0200\n"
+"POT-Creation-Date: 2021-05-27 13:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,132 +18,117 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/backend/general_dashboard.html:27
+#: backend/templates/backend/general_dashboard.html:35
 msgid "edit_profile"
 msgstr "Edit Profile"
 
-#: templates/backend/speaker_dashboard.html:3
-msgid "hello"
-msgstr "Hello"
-
-#: templates/backend/speaker_dashboard.html:8
+#: backend/templates/backend/speaker_dashboard.html:6
+#: backend/templates/backend/student_dashboard.html:6
 msgid "welcome"
 msgstr "Welcome"
 
-#: templates/backend/speaker_dashboard.html:8
-msgid "to_your_dashboard"
-msgstr "Go to Dashboard"
+#: backend/templates/backend/speaker_dashboard.html:17
+#: backend/templates/backend/student_dashboard.html:17
+msgid "current_teams_dashboard_title"
+msgstr "Current Teams"
 
-#: templates/backend/speaker_dashboard.html:18
-msgid "projects_title"
-msgstr "Projects"
-
-#: templates/backend/speaker_dashboard.html:20
-msgid "create_project"
-msgstr "Create Project"
-
-#: templates/backend/speaker_dashboard.html:21
-msgid "projects_list"
-msgstr "Projects Liste"
-
-#: templates/backend/speaker_dashboard.html:28
-msgid "id_table_head"
-msgstr "ID"
-
-#: templates/backend/speaker_dashboard.html:29
-msgid "name_table_head"
-msgstr "Name"
-
-#: templates/backend/speaker_dashboard.html:30
-msgid "group_table_head"
-msgstr "Group"
-
-#: templates/backend/speaker_dashboard.html:31
-#: templates/backend/student_dashboard.html:28
-#: templates/backend/student_dashboard.html:65
-msgid "status_table_head"
-msgstr "Status"
-
-#: templates/backend/speaker_dashboard.html:61
-msgid "team_title"
-msgstr "Team"
-
-#: templates/backend/speaker_dashboard.html:64
-msgid "create_team"
-msgstr "Create Team"
-
-#: templates/backend/speaker_dashboard.html:65
-msgid "team_list"
-msgstr "Team List"
-
-#: templates/backend/speaker_dashboard.html:73
-msgid "participants"
-msgstr "Participants"
-
-#: templates/backend/speaker_dashboard.html:85
-#: templates/backend/student_dashboard.html:101
-msgid "missions_title"
-msgstr "Mission"
-
-#: templates/backend/speaker_dashboard.html:88
-msgid "create_mission"
-msgstr "Create Mission"
-
-#: templates/backend/speaker_dashboard.html:89
-msgid "mission_list"
-msgstr "Missions List"
-
-#: templates/backend/speaker_dashboard.html:116
-msgid "Resource_title"
-msgstr "Resource"
-
-#: templates/backend/speaker_dashboard.html:117
-msgid "create_resource"
-msgstr "Create Resource"
-
-#: templates/backend/speaker_dashboard.html:118
-msgid "resource_list"
-msgstr "Resource List"
-
-#: templates/backend/student_dashboard.html:17
-msgid "available_projects_title"
-msgstr "Available Projects"
-
-#: templates/backend/student_dashboard.html:18
-msgid "refresh"
-msgstr "Refresh"
-
-#: templates/backend/student_dashboard.html:25
-#: templates/backend/student_dashboard.html:62
-msgid "Team_name_title_table_head"
-msgstr "Team Name"
-
-#: templates/backend/student_dashboard.html:26
-#: templates/backend/student_dashboard.html:63
-msgid "project_name_table_head"
-msgstr "Project Name"
-
-#: templates/backend/student_dashboard.html:27
-#: templates/backend/student_dashboard.html:64
-msgid "field_table_head"
-msgstr "Field"
-
-#: templates/backend/student_dashboard.html:55
-msgid "my_team_projects_title"
+#: backend/templates/backend/speaker_dashboard.html:29
+#: backend/templates/backend/student_dashboard.html:29
+#, fuzzy
+#| msgid "my_team_projects_title"
+msgid "selected_project_dashboard_title"
 msgstr "My Projects Team"
 
-#: templates/backend/student_dashboard.html:66
-msgid "time_to_complete"
-msgstr "Time to Complete"
+#: backend/templates/backend/speaker_dashboard.html:39
+#: backend/templates/backend/student_dashboard.html:39
+msgid "groups_dasboard_title"
+msgstr "Groups"
 
-#: templates/backend/student_dashboard.html:79
-msgid "in_process"
-msgstr "In Process"
+#, fuzzy
+#~| msgid "to_your_dashboard"
+#~ msgid "to_your_dashboard_title_welcome_to"
+#~ msgstr "To to Dashboard"
 
-#: templates/backend/student_dashboard.html:81
-msgid "project_is_done"
-msgstr "Project Completed"
+#~ msgid "available_projects_title"
+#~ msgstr "Available Projects"
 
-#: templates/backend/student_dashboard.html:104
-msgid "mission_board_link"
-msgstr "Mission Board"
+#~ msgid "Team_name_title_table_head"
+#~ msgstr "Team Name"
+
+#~ msgid "project_name_table_head"
+#~ msgstr "Project Name"
+
+#~ msgid "field_table_head"
+#~ msgstr "Field"
+
+#~ msgid "status_table_head"
+#~ msgstr "Status"
+
+#~ msgid "missions_title"
+#~ msgstr "Mission"
+
+#~ msgid "mission_board_link"
+#~ msgstr "Mission Board"
+
+#~ msgid "my_team_projects_title"
+#~ msgstr "My Projects Team"
+
+#~ msgid "time_to_complete"
+#~ msgstr "Time to Complete"
+
+#~ msgid "in_process"
+#~ msgstr "In Process"
+
+#~ msgid "project_is_done"
+#~ msgstr "Project Completed"
+
+#~ msgid "hello"
+#~ msgstr "Hello"
+
+#~ msgid "projects_title"
+#~ msgstr "Projects"
+
+#~ msgid "create_project"
+#~ msgstr "Create Project"
+
+#~ msgid "projects_list"
+#~ msgstr "Projects Liste"
+
+#~ msgid "id_table_head"
+#~ msgstr "ID"
+
+#~ msgid "name_table_head"
+#~ msgstr "Name"
+
+#~ msgid "group_table_head"
+#~ msgstr "Group"
+
+#~ msgid "team_title"
+#~ msgstr "Team"
+
+#~ msgid "create_team"
+#~ msgstr "Create Team"
+
+#~ msgid "team_list"
+#~ msgstr "Team List"
+
+#~ msgid "participants"
+#~ msgstr "Participants"
+
+#~ msgid "create_mission"
+#~ msgstr "Create Mission"
+
+#~ msgid "mission_list"
+#~ msgstr "Missions List"
+
+#~ msgid "Resource_title"
+#~ msgstr "Resource"
+
+#~ msgid "create_resource"
+#~ msgstr "Create Resource"
+
+#~ msgid "resource_list"
+#~ msgstr "Resource List"
+
+#~ msgid "refresh"
+#~ msgstr "Refresh"

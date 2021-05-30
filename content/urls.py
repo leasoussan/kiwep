@@ -14,7 +14,7 @@ urlpatterns = [
 
     path('chose-project-detail/<int:pk>', ChooseProjectView.as_view(), name = "chose_project_detail"),
     path('project-list/', ProjectListView.as_view(), name = "project_list"),
-    path('student-available-project-list/', StudentAvailableProjectList.as_view(), name = "student_available_project_list"),
+    path('student-available-project-list/', StudentAvailableProjectList.as_view(), name="student_available_project_list"),
     path('project-detail/<int:pk>', ProjectDetailView.as_view(), name = "project_detail"),
     path('create-project/', ProjectCreateView.as_view(), name ="create_project"),
     path('duplicate-project/<int:pk>/<int:team_id>/', DuplicateProjectCreateView.as_view(), name="duplicate_create_project"),
@@ -28,7 +28,7 @@ urlpatterns = [
     path('my_mission-list/', IndividualMissionListView.as_view(), name="my_mission_list"),
     path('individual-mission-detail/<int:pk>', IndividualMissionDetailView.as_view(), name="individual_mission_detail"),
     path('collective-mission-detail/<int:pk>', CollectiveMissionDetailView.as_view(), name="collective_mission_detail"),
-    # path('team-mission-detail/<int:pk>', TeamMissionDetailView.as_view(), name="team_mission_detail"),
+    path('assign-collective-mission-detail/<int:pk>', AssignCollectiveMissionView.as_view(), name="assign_collective_mission_detail"),
 
     path('create-individual-mission/<int:project_id>', AddIndividualMissionView.as_view(),
          name="create_individual_mission"),
