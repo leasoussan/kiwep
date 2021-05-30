@@ -134,3 +134,11 @@ const displayProducts = (list) => {
 //   })
 // }
 // fetchTask()
+
+
+// TASK -LIST
+let myDiv = document.getElementById('addTask')
+console.log(myDiv)
+const fetchTaskList = (data) => {
+  fetch('/todo/task_list/')
+}
