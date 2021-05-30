@@ -25,6 +25,7 @@
                         </div>
                         <div class="checkout-title">
                             <a4>  <a href="{{ resource.link }}">{% trans 'resource_link' %}</a></a4>
+
                         </div>
 
                         <div class="form-content-box">
@@ -32,8 +33,10 @@
                                 <h2>{{resource.text}}</h2>
                             </div>
                             <div>
-                                <img src="{{ resource.get_resourceImg_or_default }}" alt="" style = 'width: 300px; height: 300px;;'>
+
+                                <img class="item_img"  src="{{ resource.get_resourceImg_or_default }}" alt="{{ resource.title }}" style = 'width: 300px; height: 300px;;'>
                             </div>
+                            {{ resource.get_resourceImg_or_default }}
                             <div>
                                 <a href="{{ resource.upload_file.url }}">{% trans 'name_file_lable' %}</a>
                             </div>
