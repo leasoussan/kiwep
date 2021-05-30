@@ -1,36 +1,50 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load mytags %}
 {% block content %}
 
+ OBJECT{{ object.mission_set.get_mission_type }}
+    <a href="{% url 'resource_list' %}">{% trans 'list_resource_title' %}</a>
 
-<a href="{% url 'resource_list' %}">{% trans 'list_resource_title' %}</a>
+    <a href="{% url 'update_resource' resource.id %}">{% trans 'update_resource' %}</a>
+    {{ resource.mission_set }}
 
-<div class="container">
-    <div class="coupon-toggle">
-        <div id="accordion" class="accordion">
-            <div class="card">
-                <div class="billing-fields">
-                    <div class="checkout-title">
-                        <h3>{% trans 'resource_lable' %} {{ resource.name }}</h3>
+    {% if mission in resource.mission_set.individualmission_set.all %}
+    <a href="{% url  'individual_mission_detail' mission.id %}">Back to </a>
+    {% elif mission in  resource.mission_set.collectivemission_set.all %}
+    <a href="{% url  'collective_mission_detail' mission.id %}">{% trans 'back_to_mission' %}"</a>
+{% endif %}
+
+    <div class="container">
+        <div class="coupon-toggle">
+            <div id="accordion" class="accordion">
+                <div class="card">
+                    <div class="billing-fields">
+                        <div class="checkout-title">
+                            <h3>{% trans 'resource_lable' %} {{ resource.name }}</h3>
+                        </div>
+                        <div class="checkout-title">
+                            <a4>  <a href="{{ resource.link }}">{% trans 'resource_link' %}</a></a4>
+                        </div>
+
+                        <div class="form-content-box">
+                            <div class="row">
+                                <h2>{{resource.text}}</h2>
+                            </div>
+                            <div>
+                                <img src="{{ resource.get_resourceImg_or_default }}" alt="" style = 'width: 300px; height: 300px;;'>
+                            </div>
+                            <div>
+                                <a href="{{ resource.upload_file.url }}">{% trans 'name_file_lable' %}</a>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="form-content-box">
-                        <div class="row">
-                            <h2>{{resource.text}}</h2>
-                        </div>
-                        <div>
-                            <img src="{{ resource.get_resourceImg_or_default }}" alt="" style = 'width: 300px; height: 300px;;'>
-                        </div>
-                        <div>
-                            <a href="{{ resource.upload_file.url }}">{% trans 'name_file_lable' %}</a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
 
 
 

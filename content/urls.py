@@ -23,6 +23,9 @@ urlpatterns = [
     path('update-project/<int:pk>', ProjectUpdateView.as_view(), name = "update_project"),
     path('delete-project/<int:pk>', ProjectDeleteView.as_view(), name = "delete_project"),
 
+
+
+
     # mission
     path('mission-list/', IndividualMissionListView.as_view(), name="mission_list"),
     path('my_mission-list/', IndividualMissionListView.as_view(), name="my_mission_list"),
@@ -40,6 +43,9 @@ urlpatterns = [
     path('claim-mission/<int:pk>', ClaimMission.as_view(), name="claim_mission"),
     path('submit-mission/<int:pk>', StudentSubmitMission.as_view(), name='submit_mission'),
     path('unclaim-mission/<int:pk>', UnclaimMission.as_view(), name="unclaim_mission"),
+
+
+
 
     # team
     path('team-list/', TeamListView.as_view(), name = "team_list"),

@@ -149,7 +149,7 @@
        <li class="list-group-item">
            <i class="fa fa-clock-o"></i>
          <span class="label">{% trans 'time_to_complete' %}</span>
-         <span class="value">{{project.time_to_complet}}</span>
+         <span class="value">{{project.time_to_complete}}</span>
      </li>
        <li class="list-group-item">
          <i class="fa fa-users"></i>
@@ -173,7 +173,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add Individual Mission</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Individual Mission</h5> #TODO: translate on translation branch
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="POST" action='{% url 'create_individual_mission'  project.id %}'>
