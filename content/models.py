@@ -5,11 +5,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from accounts.models import Speaker, Student, Representative, MyUser
 from backend.models import Field, Level, Group
 from django.db import models
+from django.contrib import messages
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-
+from django.db.models.signals import pre_save
 from django.contrib.contenttypes.fields import GenericRelation
-
+import datetime
 
 from .managers import *
 # this is like a trans tag - just for the backend 
@@ -22,14 +23,14 @@ from django.utils import timezone
 
 
 class Resource(models.Model):
-    name = models.CharField(max_length=200) 
+    name = models.CharField(max_length=200)
     link = models.CharField(max_length=200)
     image = models.ImageField(default = 'image/default.png', upload_to='images/')
     file_rsc = models.FileField(null=True, blank=True)
     text = models.TextField()
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE,  blank=True, null =True)
-    
+
     objects = ResourceModelManager()
 
     def __str__(self):
@@ -49,7 +50,7 @@ class Skills(models.Model):
     name = models.CharField(max_length= 100)
     field = models.ManyToManyField(Field)
 
-    
+
     def __str__(self):
         return f"Subject{self.name}"
 
@@ -223,12 +224,12 @@ class Team(models.Model):
     start_date = models.DateField()
     due_date = models.DateField()
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
-    participants = models.ManyToManyField(Student, blank = True )    
+    participants = models.ManyToManyField(Student, blank = True )
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
 
     project_completed = models.BooleanField(null=True, blank = True)
 
- 
+
     objects = TeamModelManager()
 
 
@@ -239,3 +240,8 @@ class Team(models.Model):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
 
+def check_date(sender, instance, *args, **kwargs):
+        if instance.start_date > instance.due_date:
+            raise ValueError('Start date must be less than end date')
+
+pre_save.connect(check_date, sender=Team)
