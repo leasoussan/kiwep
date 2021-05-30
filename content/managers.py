@@ -5,11 +5,6 @@ from .models import *
 class ProjectModelQuerySet(models.QuerySet):
     """ QUERYSET are Connected to a Manager to make specific requests"""
 
-
-
-
-
-
     def personal_templates(self):
         return self.filter(is_template=True)
 

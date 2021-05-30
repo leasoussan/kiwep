@@ -50,16 +50,17 @@ class Register(View):
         form = MyUserCreationForm(request.POST)
 
         if form.is_valid():
-            user = form.save() 
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            
+
+            user = form.save(commit=False)
+            user.backend = "django.contrib.auth.backends.ModelBackend"
+
+
             usertype=form.cleaned_data['usertype'] 
             
             setattr(user, usertype, True)
             
             user.save()
-            user = authenticate(username= username, password = password, usertype =usertype)
+            # user = authenticate(username= username, password = password, usertype =usertype)
             login(request, user)
             send_welcome_signup(user)
             
@@ -188,26 +189,23 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
 
 
 # ------------------------------------------------------------------------------------------------------------
-
-
-class MyLoginView(LoginView):
-    form_class = LoginForm
-    template_name = 'accounts/registration/login.html'
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect('homepage')
-        return super().get(self, request, *args, **kwargs)
-
+#
+# class MyLoginView(LoginView):
+#
+#     def get(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             return redirect('homepage')
+#         return super().get(self, request, *args, **kwargs)
 
 
 # ------------------------------------------------------------------------------------------------------------
 
 #
-#
-# class MyLoginView(auth_views.LoginView):
-#     form_class = LoginForm
-#     template_name = 'accounts/registration/login.html'
-#
+
+class MyLoginView(auth_views.LoginView):
+    form_class = LoginForm
+    template_name = 'registration/login.html'
+
 
 # ------------------------------------------------------------------------------------------------------------
 
