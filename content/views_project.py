@@ -222,6 +222,10 @@ class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
+
+
+
+
 class CreateProjectMissionView(SpeakerStatuPassesTestMixin, View):
     """ Once a Project IS created the missions have to be set, Deadline, attribution etc...."""
 
