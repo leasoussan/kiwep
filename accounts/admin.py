@@ -14,12 +14,12 @@ class CustomUserAdmin(UserAdmin):
     """ Basic User """
     add_form = MyUserCreationForm
     form = UserForm
+
     model = get_user_model()
     list_display = ['id', 'email', 'username',]
 
-    
-
 admin.site.register(MyUser, CustomUserAdmin)
+
 
 
 
@@ -47,3 +47,5 @@ class CityAdmin(admin.ModelAdmin):
 @admin.register(Country)
 class CountryAdmin(admin.ModelAdmin):
     pass
+
+

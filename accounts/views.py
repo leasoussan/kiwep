@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect,get_object_or_404, reverse
+from django.contrib.auth import views as auth_views
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.conf import settings 
@@ -14,6 +15,7 @@ from .forms import (
     SpeakerProfileCreationForm, 
     RepresentativeProfileCreationForm,
     UserForm,
+    LoginForm,
  
 )
 from django.urls import reverse_lazy
@@ -64,7 +66,7 @@ class Register(View):
             return redirect(reverse('create_profile'), form.cleaned_data['usertype'])
 
 
-        return render(request, 'registration/register.html', {"form":form})      
+        return render(request, 'registration/register.html', {"form":form})
 
 
 
@@ -72,6 +74,9 @@ class Register(View):
 
 
 # -----------------------------------------------------------------------------------------------
+
+
+
 
 
 def get_user_profile_form(request, usertype, edit=False): 
@@ -100,6 +105,7 @@ def get_user_profile_form(request, usertype, edit=False):
     return profile_form
 
 
+# ------------------------------------------------------------------------------------------------------------
 
 
 class CreateProfile(View):
@@ -181,13 +187,29 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
 
 
 
+# ------------------------------------------------------------------------------------------------------------
 
 
 class MyLoginView(LoginView):
+    form_class = LoginForm
+    template_name = 'accounts/registration/login.html'
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('homepage')
         return super().get(self, request, *args, **kwargs)
+
+
+
+# ------------------------------------------------------------------------------------------------------------
+
+#
+#
+# class MyLoginView(auth_views.LoginView):
+#     form_class = LoginForm
+#     template_name = 'accounts/registration/login.html'
+#
+
+# ------------------------------------------------------------------------------------------------------------
 
 
 class ProfileView(View):

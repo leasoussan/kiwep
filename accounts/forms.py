@@ -1,5 +1,5 @@
 
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.conf import settings
 from django import forms
 from django.db import transaction 
@@ -9,6 +9,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
 User = get_user_model()
+
 
 
 
@@ -27,10 +28,15 @@ class MyUserCreationForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2', 'language_code']
 
 
-
         # labels ={
         #     'language_code': 'Language'
         # }
+
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label='Email / Username')
+
 
 
 
@@ -44,6 +50,28 @@ class UserForm(forms.ModelForm):
             'phone_number',
             'profile_pic', 
             'city']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Form To create Profile 
