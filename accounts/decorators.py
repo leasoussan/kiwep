@@ -39,7 +39,7 @@ def login_check(user):
 
 
 # def missing_profile_type(user):
-#     ''' Function to check whiche profile is missing '''
+#     ''' Function to check which profile is missing '''
 #     if user.is_student and not Student.objects.filter(user=user).exists():
 #         return 'is_student'
 
@@ -64,4 +64,13 @@ def login_check(user):
 def speaker_check(user):
     # print(user.get_user_type())
     return user.get_user_type() == "speaker"
+
+
+
+
+def student_check(user):
+    # print(user.get_user_type())
+    return user.get_user_type() == "student"
+
+
 
