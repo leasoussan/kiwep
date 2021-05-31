@@ -19,20 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: content/models.py:78
-#, fuzzy
-#| msgid "all_projects"
+
 msgid "project"
 msgstr "All Projects"
 
 #: content/models.py:80
-#, fuzzy
-#| msgid "all_projects"
+
 msgid "projects"
 msgstr "All Projects"
 
 #: content/templates/backend/mission/mission_detail.html:15
-#, fuzzy
-#| msgid "edit_mission"
+
 msgid "edit_mission_button"
 msgstr "Edit Mission"
 
@@ -44,8 +41,7 @@ msgstr "Back To Projects"
 
 #: content/templates/backend/mission/mission_detail.html:41
 #: content/templates/backend/mission/team_mission_detail.html:32
-#, fuzzy
-#| msgid "about_the_mission"
+
 msgid "the_mission"
 msgstr "About the Mission:"
 
@@ -61,8 +57,7 @@ msgid "mission_type_title"
 msgstr "Mission Name:"
 
 #: content/templates/backend/mission/mission_detail.html:60
-#, fuzzy
-#| msgid "resource_list_title"
+
 msgid "resposne_type_title:"
 msgstr "Resources"
 
@@ -75,14 +70,12 @@ msgid "field"
 msgstr "Field"
 
 #: content/templates/backend/mission/mission_detail.html:108
-#, fuzzy
-#| msgid "difficulty"
+
 msgid "difficulty_title"
 msgstr "Difficulty"
 
 #: content/templates/backend/mission/mission_detail.html:114
-#, fuzzy
-#| msgid "participants_title"
+
 msgid "points_title"
 msgstr "Participants"
 
@@ -229,8 +222,7 @@ msgstr "Difficulty"
 
 #: content/templates/backend/project/project_list.html:21
 #: content/templates/backend/project/project_list.html:105
-#, fuzzy
-#| msgid "all_projects"
+
 msgid "available_project_list"
 msgstr "All Projects"
 
@@ -265,20 +257,17 @@ msgid "select_project"
 msgstr "All Projects"
 
 #: content/templates/backend/project/project_list.html:60
-#, fuzzy
-#| msgid "all_projects"
+
 msgid "my_project_list"
 msgstr "All Projects"
 
 #: content/templates/backend/project/project_list.html:71
-#, fuzzy
-#| msgid "stage_of_project_table_header"
+
 msgid "edit_duplicate_project_table_header"
 msgstr "Stage of Production"
 
 #: content/templates/backend/project/project_list.html:117
-#, fuzzy
-#| msgid "join_the_team"
+
 msgid "check_team"
 msgstr "Joint The Team"
 
@@ -366,27 +355,23 @@ msgid "claim_mission_link"
 msgstr "Claim Mission"
 
 #: content/templates/backend/team/team_detail.html:155
-#, fuzzy
-#| msgid "available_mission_title"
+
 msgid "available_mission"
 msgstr "Available Mission"
 
 #: content/templates/backend/team/team_detail.html:176
-#, fuzzy
-#| msgid "project_mission_title"
+
 msgid "collective_mission_title"
 msgstr "Missions for this project"
 
 #: content/templates/backend/team/team_detail.html:186
 #: content/templates/backend/team/team_detail.html:203
-#, fuzzy
-#| msgid "edit_mission"
+
 msgid "assign_mission"
 msgstr "Edit Mission"
 
 #: content/templates/backend/team/team_detail.html:227
-#, fuzzy
-#| msgid "project_mission_title"
+
 msgid "project_mission_log_title"
 msgstr "Missions for this project"
 
@@ -408,8 +393,7 @@ msgid "project_tite_table_header"
 msgstr "Project Title"
 
 #: content/templates/backend/team/team_detail.html:281
-#, fuzzy
-#| msgid "Missions_title"
+
 msgid "mission_type"
 msgstr "Missions"
 
@@ -418,29 +402,25 @@ msgid "add_team_link"
 msgstr "Add Team"
 
 #: content/templates/backend/team/team_list.html:18
-#, fuzzy
-#| msgid "team_title"
+
 msgid "my)teams"
 msgstr "Team"
 
 #: content/templates/backend/team/team_list.html:23
 #: content/templates/backend/team/team_list.html:68
-#, fuzzy
-#| msgid "team_name_lable"
+
 msgid "team_name_title"
 msgstr "Team"
 
 #: content/templates/backend/team/team_list.html:24
 #: content/templates/backend/team/team_list.html:69
-#, fuzzy
-#| msgid "current_amount_participants_lable"
+
 msgid "number_of_participants"
 msgstr "Current amount of participants"
 
 #: content/templates/backend/team/team_list.html:25
 #: content/templates/backend/team/team_list.html:70
-#, fuzzy
-#| msgid "all_projects"
+
 msgid "duration_of_the_project"
 msgstr "All Projects"
 
@@ -467,8 +447,7 @@ msgid "delete_button"
 msgstr "Delete"
 
 #: content/templates/crud/list_view.html:20
-#, fuzzy
-#| msgid "team_name_lable"
+
 msgid "team_name"
 msgstr "Team"
 
@@ -479,17 +458,3 @@ msgstr "Update"
 #: content/templates/crud/update.html:17
 msgid "back_button"
 msgstr "Back"
-
-#~ msgid "duplicate"
-#~ msgstr "Duplicate"
-
-#, fuzzy
-#~| msgid "due_date_table_title"
-#~ msgid "create_new_title"
-#~ msgstr "Due Date"
-
-#~ msgid "project_description"
-#~ msgstr "Project Description"
-
-#~ msgid "team_dashboard_title"
-#~ msgstr "Team"

@@ -84,7 +84,7 @@
                                 <td>{{project.field}}</td>
                                 <td>{{project.time_to_complete}}</td>
                                 <td><a href="{% url 'update_project' project.id %}">Edit</a> <a href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a></a> </td>
-                                  <td>{{project.team.name}}</td>
+                                  <td>{% firstof project.team.name 'No Team attached' %}</td>
                             </tr>
 
                         {% endfor %}

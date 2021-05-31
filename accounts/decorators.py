@@ -18,7 +18,7 @@ def check_profile(user, return_tuple= False):
 
     if user.is_representative and not Representative.objects.filter(user=user).exists():
         exists = False
-        p_type = 'is_represnetative'
+        p_type = 'is_representative'
 
     if return_tuple:
         return exists, p_type
