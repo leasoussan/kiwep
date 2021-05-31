@@ -20,7 +20,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 
 class ResourceListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     model = Resource
-    template_name = 'crud/list_view.html'
+    template_name = 'backend/resource/resource_list.html'
     context_object_name = 'resource_list'
 
 
@@ -61,7 +61,7 @@ class ResourceUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Update
             'link',
             'text',
             'image']
-    success_url = ('resource_detail')
+    # success_url = ('resource_detail')
 
     def get_object(self):
         pk = self.kwargs.get('pk')
