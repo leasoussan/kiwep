@@ -74,7 +74,6 @@ class Register(View):
 # -----------------------------------------------------------------------------------------------
 
 
-<<<<<<< HEAD
 def get_user_profile_form(request, edit=False):
     """ This function allows is to check which profile is requested, 
     and to know what page/authorization to direct it to"""
@@ -88,21 +87,7 @@ def get_user_profile_form(request, edit=False):
     data = request.POST or None 
 
     if user.is_student:
-=======
-def get_user_profile_form(request, usertype, edit=False):
-    """ This function allows is to check which profile is requested,
-    and to know what page/authorization to direct it to"""
 
-    if edit:
-        instance = request.user.profile()
-    else:
-        instance = None
-
-
-    data = request.POST or None
-    print(usertype)
-    if usertype == 'is_student':
->>>>>>> ecbd72cb0216a95f146b41b563dd9cee7e0642ce
         profile_form = StudentProfileCreationForm(data, instance=instance )
 
 
@@ -123,20 +108,12 @@ class CreateProfile(View):
     and wont be able to do any actions unless this is done"""
 
     def get(self, request ):
-<<<<<<< HEAD
+
         user_form = UserForm(instance =request.user)
         profile_form = get_user_profile_form(request)
         
         return render(request, 'accounts/profile/edit_profile.html', {'profile_form': profile_form, 'user_form': user_form})
-       
-=======
-        user_form = UserForm(instance = request.user)
-        usertype = check_profile(request.user, True)[1]
-        profile_form = get_user_profile_form(request, usertype)
 
-        return render(request, 'accounts/profile/edit_profile.html', {'usertype':usertype, 'profile_form': profile_form, 'user_form': user_form})
-
->>>>>>> ecbd72cb0216a95f146b41b563dd9cee7e0642ce
 
     def post(self, request):
         user_form = UserForm(request.POST, instance = request.user)
@@ -186,23 +163,18 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
     """ Edit Profile """
     def get(self, request):
         user_form = UserForm(instance =request.user)
-<<<<<<< HEAD
+
         profile_form = get_user_profile_form(request, edit =True)
         
-=======
-        profile_form = get_user_profile_form(request, request.user.get_user_type(), edit =True)
 
->>>>>>> ecbd72cb0216a95f146b41b563dd9cee7e0642ce
         return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'profile_form': profile_form})
 
 
     def post(self, request):
         user_form = UserForm(request.POST, instance = request.user)
-<<<<<<< HEAD
+
         profile_form = get_user_profile_form(request, edit =True)
-=======
-        profile_form = get_user_profile_form(request, request.user.get_user_type(), edit =True)
->>>>>>> ecbd72cb0216a95f146b41b563dd9cee7e0642ce
+
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
