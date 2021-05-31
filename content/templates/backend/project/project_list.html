@@ -70,6 +70,8 @@
                             <th>{% trans 'field_table_header' %}</th>
                             <th>{% trans 'time_to_complete_table_header' %}</th>
                             <th>{% trans 'edit_duplicate_project_table_header' %}</th>
+                            <th>{% trans 'current_team' %}</th>
+
                         </tr>
 
                         </thead>
@@ -82,6 +84,7 @@
                                 <td>{{project.field}}</td>
                                 <td>{{project.time_to_complete}}</td>
                                 <td><a href="{% url 'update_project' project.id %}">Edit</a> <a href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a></a> </td>
+                                  <td>{{project.team.name}}</td>
                             </tr>
 
                         {% endfor %}
