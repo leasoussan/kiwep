@@ -58,22 +58,22 @@
     <div class="col-sm-4-lg-10">
     <div class="card">
     <div class="card-body">
-    <h5 class="card-title">My Teams</h5>
+    <h5 class="card-header">My Teams</h5>
     <div class="table-responsive">
     <table class="table table-striped">
     <thead>
 
     <tr>
-        <th>{% trans 'team_name_title' %}</th>
-        <th>{% trans 'number_of_participants' %}</th>
-        <th>{% trans 'duration_of_the_project' %}</th>
+        <th>{% trans 'team name' %}</th>
+        <th>{% trans 'number of participants' %}</th>
+        <th>{% trans 'duration of the project' %}</th>
         <th>{% trans 'field' %}</th>
 
     </tr>
     </thead>
     <tbody>
     {% for team in team_list %}
-        <th ><h5>Team Name <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5></th>
+        <th ><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
         <th>{{ team.participants.count }}</th>
         <th>{{team.project.time_to_complete}}</th>
         <th>{{teamp.project.field}}</th>
