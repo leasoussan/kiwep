@@ -83,10 +83,9 @@ def get_user_profile_form(request, usertype, edit=False):
     else: 
         instance = None
 
-
     data = request.POST or None 
     print(usertype)
-    if  usertype == 'is_student':
+    if usertype == 'is_student':
         profile_form = StudentProfileCreationForm(data, instance=instance )
     
 

@@ -5,10 +5,8 @@
 
     {% if user.profile.name == "speaker" %}
 
-
-
     <div class="container-fluid">
-      <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add team' %}</a>
+      <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add_team' %}</a>
       </button>
     </div>
     <main class= "container-fluid">
@@ -22,7 +20,7 @@
     <table class="table table-hover">
     <thead>
     <tr>
-        <th>{% trans 'team name' %}</th>
+        <th>{% trans 'team_name' %}</th>
         <th>{% trans 'participants' %}</th>
         <th>{% trans 'duration' %}</th>
         <th>{% trans 'field' %}</th>
@@ -93,7 +91,7 @@
     </div>
     </div>
     </div>
-    <button type="button" name="button">  Add </button>
+
     </main>
 
      {% endif %}
