@@ -5,97 +5,102 @@
 
     {% if user.profile.name == "speaker" %}
 
-    <div class="container-fluid">
-      <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add_team' %}</a>
-      </button>
-    </div>
-    <main class= "container-fluid">
+        <div class="container-fluid">
+            <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add_team' %}</a>
+            </button>
+        </div>
+        <main class= "container-fluid">
 
-    <div class="row">
-    <div class="col-sm-4-lg-10">
-    <div class="card">
-    <!-- <div class="card-body"> -->
-    <h5 class="card-header">My Teams</h5>
-    <div class="table-responsive">
-    <table class="table table-hover">
-    <thead>
-    <tr>
-        <th>{% trans 'team_name' %}</th>
-        <th>{% trans 'participants' %}</th>
-        <th>{% trans 'duration' %}</th>
-        <th>{% trans 'field' %}</th>
-        <th>{% trans 'edit' %}</th>
-    </tr>
-    </thead>
-    <tbody>
-
-    {% for team in team_list %}
-        <tr>
-        <th><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
-        <th>{{ team.participants.count }}</th>
-        <th>{{team.project.time_to_complete}}</th>
-        <th>{{teamp.project.field}}</th>
-        <th><a href="{% url 'update_team' team.id %}">  {% trans 'edit' %}</a></th>
-
-    </tr>
-    {% endfor %}
-    </tbody>
-    </table>
-    <!-- </div> -->
-    </div>
-    </div>
-    </div>
-    </div>
-    </main>
+            <div class="row">
+                <div class="col-sm-4-lg-10">
+                    <div class="card">
+                        <!-- <div class="card-body"> -->
+                        <h5 class="card-header">My Teams</h5>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>{% trans 'team_name' %}</th>
+                                    <th>{% trans 'project_name' %}</th>
+                                    <th>{% trans 'participants' %}</th>
+                                    <th>{% trans 'duration' %}</th>
+                                    <th>{% trans 'field' %}</th>
+                                    <th>{% trans 'edit' %}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
 
 
- {% elif user.profile.name == "student"  %}
+                                {% for team in team_list %}
+                                    <tr>
 
-    <main class= "container-fluid">
+                                        <th><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
+                                        {% if team.project %}
+                                        <th><a href="{% url 'project_detail' team.project.id %}">{{ team.project.name }}</a></th>
+                                        {% endif %}
+                                        <th>{{ team.participants.count }}</th>
+                                        <th>{{team.project.time_to_complete}}</th>
+                                        <th>{{team.project.field}}</th>
+                                        <th><a href="{% url 'update_team' team.id %}">{% trans 'edit' %}</a></th>
 
-       <div class="row">
-    <div class="col-sm-4-lg-10">
-    <div class="card">
-    <div class="card-body">
-    <h5 class="card-title">My Teams</h5>
-    <div class="table-responsive">
-    <table class="table table-striped">
-    <thead>
-
-    <tr>
-        <th>{% trans 'team_name_title' %}</th>
-        <th>{% trans 'number_of_participants' %}</th>
-        <th>{% trans 'duration_of_the_project' %}</th>
-        <th>{% trans 'field' %}</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    {% for team in team_list %}
-        <th ><h5>Team Name <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5></th>
-        <th>{{ team.participants.count }}</th>
-        <th>{{team.project.time_to_complete}}</th>
-        <th>{{teamp.project.field}}</th>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
 
 
+    {% elif user.profile.name == "student"  %}
 
-    {% endfor %}
+        <main class= "container-fluid">
 
-    <tr>
-    </tr>
-    </tbody>
-    </table>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+            <div class="row">
+                <div class="col-sm-4-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">My Teams</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
 
-    </main>
+                                    <tr>
+                                        <th>{% trans 'team_name_title' %}</th>
+                                        <th>{% trans 'number_of_participants' %}</th>
+                                        <th>{% trans 'duration_of_the_project' %}</th>
+                                        <th>{% trans 'field' %}</th>
 
-     {% endif %}
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team in team_list %}
+                                        <th ><h5>Team Name <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5></th>
+                                        <th>{{ team.participants.count }}</th>
+                                        <th>{{team.project.time_to_complete}}</th>
+                                        <th>{{teamp.project.field}}</th>
+
+
+                                    {% endfor %}
+
+                                    <tr>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    {% endif %}
 
 
 {% endblock %}
