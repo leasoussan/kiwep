@@ -75,6 +75,7 @@ button:hover {
 .btn a   {
   color: #fffefc;
 }
+
 .profile_card {
   margin:10px;
   border-radius: 10px;
@@ -86,14 +87,30 @@ button:hover {
   background-color:#f7d493;
   border-radius: 10px;
 }
+/* FOOTER */
 #footer_rights {
   display: flex;
   justify-content: center;
   align-items: center;
   /* flex-direction: row; */
   font-size: 13px;
-  color:#425940;
+  color:#f8fafa;
+  margin-top: 20px;
+  /* background-color: #f8fafa; */
 }
+.footer_social{
+  padding: 15px;
+  color: black;
+}
+#footer_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#f8fafa;
+  margin-top:10px;
+  color:#1f7968;
+}
+/* END FOOTER */
 
 #side_panel {
   background-color: #9fce9c;
@@ -112,12 +129,10 @@ main .card {
   margin-bottom: 20px;
 }
 
-.footer_social{
-  padding: 15px;
-  color: #425940;
-}
+
+
 i {
-  color: 425940;
+  color: #1f7968;
 }
 
 .title_signin {
@@ -200,6 +215,56 @@ a .btn_modal {
   background-color: #f7d493;
   color:#fffefc;
 }
+/* LOGIN/REGISTER */
+
+.button_login {
+  border-radius:0px;
+  background-color:#fd7e14;
+
+}
+.button_login:hover {
+  border-radius:0px;
+  background-color:#fd7e14;
+}
+.button_register {
+  border-radius:0px;
+  background-color:#1f7968
+}
+.button_register:hover {
+  border-radius:0px;
+  background-color:#1f7968
+}
+.login_register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+/* END LOGIN/REGISTER */
+/* DASHBOARD */
+.card_round {
+  background-color: #fd7e14;
+  color: black;
+  width: 18rem;
+  height: 30vh;
+
+}
+#homepage_try_us{
+ display: flex;
+ flex-direction: column;
+ margin: 10px;
+ margin-bottom: 100px;
+ height: 50vh;
+ color: #0b2e13;
+ align-self: right;
+}
+#main {
+  display: flex;
+  flex-direction: row;
+  background-color: 9fce9c;
+    justify-content: center;
+  }
+/* ENDDASHBOARD */
 Red : df5f46
 Orange : eca255
 Yellow: f7d493
