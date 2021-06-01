@@ -74,27 +74,28 @@ class Register(View):
 # -----------------------------------------------------------------------------------------------
 
 
-def get_user_profile_form(request, usertype, edit=False):
-    """ This function allows is to check which profile is requested,
+def get_user_profile_form(request, edit=False):
+    """ This function allows is to check which profile is requested, 
     and to know what page/authorization to direct it to"""
+    user = request.user
 
     if edit:
-        instance = request.user.profile()
-    else:
+        instance = user.profile()
+    else: 
         instance = None
 
+    data = request.POST or None 
 
-    data = request.POST or None
-    print(usertype)
-    if usertype == 'is_student':
+    if user.is_student:
+
         profile_form = StudentProfileCreationForm(data, instance=instance )
 
 
-    elif usertype  == 'is_speaker':
+    elif user.is_speaker:
         profile_form =SpeakerProfileCreationForm(data, instance=instance)
 
 
-    elif usertype == 'is_representative':
+    elif user.is_representative:
         profile_form =  RepresentativeProfileCreationForm(data, instance=instance)
 
     return profile_form
@@ -107,17 +108,16 @@ class CreateProfile(View):
     and wont be able to do any actions unless this is done"""
 
     def get(self, request ):
-        user_form = UserForm(instance = request.user)
-        usertype = check_profile(request.user, True)[1]
-        profile_form = get_user_profile_form(request, usertype)
 
-        return render(request, 'accounts/profile/edit_profile.html', {'usertype':usertype, 'profile_form': profile_form, 'user_form': user_form})
+        user_form = UserForm(instance =request.user)
+        profile_form = get_user_profile_form(request)
+        
+        return render(request, 'accounts/profile/edit_profile.html', {'profile_form': profile_form, 'user_form': user_form})
 
 
     def post(self, request):
         user_form = UserForm(request.POST, instance = request.user)
-        usertype = check_profile(request.user, True)[1]
-        profile_form = get_user_profile_form(request, usertype)
+        profile_form = get_user_profile_form(request)
         valuenext= request.POST.get('next')
 
         if profile_form.is_valid() and user_form.is_valid():
@@ -131,7 +131,7 @@ class CreateProfile(View):
 
         # messages.add_message(request, messages.ERROR, 'You have an error in your form')
 
-        return render(request, 'accounts/profile/edit_profile.html', {'usertype':usertype, 'form': profile_form})
+        return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'form': profile_form})
 
 
 
@@ -163,14 +163,18 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
     """ Edit Profile """
     def get(self, request):
         user_form = UserForm(instance =request.user)
-        profile_form = get_user_profile_form(request, request.user.get_user_type(), edit =True)
+
+        profile_form = get_user_profile_form(request, edit =True)
+        
 
         return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'profile_form': profile_form})
 
 
     def post(self, request):
         user_form = UserForm(request.POST, instance = request.user)
-        profile_form = get_user_profile_form(request, request.user.get_user_type(), edit =True)
+
+        profile_form = get_user_profile_form(request, edit =True)
+
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()

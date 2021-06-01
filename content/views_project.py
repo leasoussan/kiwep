@@ -89,9 +89,9 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
 
     def get_queryset(self):
 
-            queryset = self.request.user.profile().project_set.personal_templates()
-            queryset2 = super().get_queryset().global_template_projects()
-            return queryset.union(queryset2)
+        queryset = self.request.user.profile().project_set.personal_templates()
+        queryset2 = super().get_queryset().global_template_projects()
+        return queryset.union(queryset2)
 
 
 
@@ -102,7 +102,8 @@ class StudentAvailableProjectList(ProfileCheckPassesTestMixin, ListView):
     template_name = 'backend/project/project_list.html'
     context_object_name = "available_projects"
 
-
+    # def get_queryset(self):
+    #     pass
 
 
 # ----------------PROJECT------Detail_View/

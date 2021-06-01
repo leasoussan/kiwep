@@ -55,9 +55,9 @@ class MyUser(AbstractUser):
     # get_usertype
     def get_user_type(self):
         user_type = {
-        'representative':Representative,
-        'speaker': Speaker,
-        'student' : Student,
+        'is_representative':Representative,
+        'is_speaker': Speaker,
+        'is_student' : Student,
         }
 
         for key, value in user_type.items():
