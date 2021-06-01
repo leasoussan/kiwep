@@ -5,6 +5,7 @@
 
     {% if user.profile.name == "speaker" %}
 
+
         <div class="container-fluid">
             <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add_team' %}</a>
             </button>
@@ -37,7 +38,7 @@
 
                                         <th><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
                                         {% if team.project %}
-                                        <th><a href="{% url 'project_detail' team.project.id %}">{{ team.project.name }}</a></th>
+                                            <th><a href="{% url 'project_detail' team.project.id %}">{{ team.project.name }}</a></th>
                                         {% endif %}
                                         <th>{{ team.participants.count }}</th>
                                         <th>{{team.project.time_to_complete}}</th>
@@ -65,31 +66,35 @@
                 <div class="col-sm-4-lg-10">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">My Teams</h5>
+                            <h5 class="card-title">{% trans 'my_teams' %}</h5>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
 
                                     <tr>
                                         <th>{% trans 'team_name_title' %}</th>
-                                        <th>{% trans 'number_of_participants' %}</th>
+                                        <th>{% trans 'team_project_title' %}</th>
+                                        <th>{% trans 'nbr_participants' %}</th>
                                         <th>{% trans 'duration_of_the_project' %}</th>
-                                        <th>{% trans 'field' %}</th>
-
+                                        <th>{% trans 'due_date' %}</th>
                                     </tr>
                                     </thead>
+
                                     <tbody>
+
                                     {% for team in team_list %}
-                                        <th ><h5>Team Name <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5></th>
-                                        <th>{{ team.participants.count }}</th>
-                                        <th>{{team.project.time_to_complete}}</th>
-                                        <th>{{teamp.project.field}}</th>
+                                        <tr>
+                                            <th ><h5>Team Name <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> </h5></th>
+                                            <th>{{ team.project.title }}</th>
+                                            <th>{{ team.participants.count }}</th>
+                                            <th>{{team.project.time_to_complete}}</th>
+                                            <th>{{team.due_date }}</th>
 
-
+                                        </tr>
                                     {% endfor %}
 
-                                    <tr>
-                                    </tr>
+
+
                                     </tbody>
                                 </table>
                             </div>

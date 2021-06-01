@@ -1,21 +1,17 @@
-body {
-  font-family: 'RocknRoll One', sans-serif;
-  background-color: #f6f6f6 important!;
-  color: #7d7d83;
-}
+
 
 
 #main {
   display: flex;
   flex-direction: row;
   background-color: 9fce9c;
-  width: 85%;
-  justify-content: center;
+    justify-content: center;
+  } */
+  /* width: 85%; */
+  /* padding-top: 40px; */
 
-  padding-top: 40px;
-}
 
-#homepage_try_us{
+ #homepage_try_us{
   display: flex;
   flex-direction: column;
   margin: 10px;
@@ -23,9 +19,5 @@ body {
   height: 50vh;
   color: #0b2e13;
   align-self: right;
-
-}
-
-#container_try_us{
 
 }

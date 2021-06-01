@@ -28,6 +28,9 @@ class ProfileCheckPassesTestMixin(UserPassesTestMixin):
 
 
 
+
+
+
 class SpeakerStatuPassesTestMixin(UserPassesTestMixin):
     """ Checking if the user is a Speaker"""
 
@@ -43,6 +46,12 @@ class SpeakerStatuPassesTestMixin(UserPassesTestMixin):
     
     def handle_no_permission(self):
         return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
+
+
+
+
+
+
 
 
 class StudentStatuPassesTestMixin(UserPassesTestMixin):
@@ -64,6 +73,18 @@ class StudentStatuPassesTestMixin(UserPassesTestMixin):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 class InstitutionStatuPassesTestMixin(UserPassesTestMixin):
     """ Checking if the user is a Speaker"""
 
@@ -80,3 +101,15 @@ class InstitutionStatuPassesTestMixin(UserPassesTestMixin):
         return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
 
 
+
+
+
+def speaker_check(user):
+
+    return user.get_user_type() == "is_speaker"
+
+
+
+def student_check(user):
+
+    return user.get_user_type() == "is_student"
