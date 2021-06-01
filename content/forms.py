@@ -32,7 +32,6 @@ class TeamAddForm(ModelForm):
         fields = [
             'name',
             'start_date',
-            'due_date',
             'group_Institution',
             'participants',
         ]
@@ -42,20 +41,8 @@ class TeamAddForm(ModelForm):
         input_formats=('%d-%m-%Y',)
     )
 
-    due_date = forms.DateField(
-        widget=forms.DateInput(format='%d/%m/%Y'),
-        input_formats=('%d-%m-%Y',)
-    )
 
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     start_date = cleaned_data.get("start_date")
-    #     end_date = cleaned_data.get("end_date")
-    #     if end_date < start_date:
-    #         raise forms.ValidationError("End date should be greater than start date.")
-    #
-    #     return self.cleaned_data
-    
+
 class AddMemberTeamForm(ModelForm):
     """ Speaker can add team memebers"""
     class Meta:
