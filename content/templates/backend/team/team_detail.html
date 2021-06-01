@@ -15,12 +15,11 @@
 
         <button type="button" class="btn add_button"name="button"><a href="{% url 'update_team' team.id %}">{% trans 'edit team' %}</a></button>
 
-    {% else %}
+    {% elif request.user.profile in team.participants.all %}
         <button type="button" class="btn add_button" name="button"><a href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a></button>
 
+
     {% endif %}
-
-
 
 
     <div class="row">
@@ -295,6 +294,8 @@
                 </thead>
                 <tbody>
 
+                {% if team.project %}
+
                 {% for mission in team.project.individualmission_set|student_missions:user.student %}
 
                     <tr>
@@ -316,8 +317,7 @@
 
 
                 {% endfor %}
-
-                <tr><td>here</td> </tr>
+                {% endif %}
 
                 {#            {% for collectiveindividualmission in user.student.team_set.project.collectivemission_set.all|collective_student_missions:team.project %}#}
                 <tr>

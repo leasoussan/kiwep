@@ -28,7 +28,8 @@ class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     context_object_name = 'team_list'
 
 
-
+    def get_queryset(self):
+        return self.request.user.profile().team_set.all()
 
 
 
