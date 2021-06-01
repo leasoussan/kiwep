@@ -222,7 +222,6 @@ class Team(models.Model):
     name = models.CharField(max_length=200)
     project = models.OneToOneField(Project, on_delete=models.CASCADE, null=True)
     start_date = models.DateField()
-    due_date = models.DateField()
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Student, blank = True )
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")

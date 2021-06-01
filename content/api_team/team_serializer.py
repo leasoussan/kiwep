@@ -11,7 +11,6 @@ class TeamCreateUpdateSerializer(ModelSerializer):
             'name',
             'project',
             'start_date',
-            'due_date',
             'group_Institution',
             'participants',
             'manager',
