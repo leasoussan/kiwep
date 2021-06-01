@@ -43,7 +43,7 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        if not self.object.project and self.request.user.get_user_type() == 'speaker':
+        if not self.object.project and self.request.user.is_speaker:
             context['project_form'] = ProjectAddForm()
             context['templates'] = Project.objects.global_template_projects()
             context['old_projects'] = self.request.user.profile().project_set.all()
