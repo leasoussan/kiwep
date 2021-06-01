@@ -37,12 +37,12 @@
                     <li class="nav-item tab-btns">
                         <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                            href="{% url 'update_project' project.id %}" role="tab" aria-controls="prod-overview"
-                           aria-selected="true">{% trans 'edit project' %}</a>
+                           aria-selected="true">{% trans 'edit_project' %}</a>
                     </li>
                     <li class="nav-item tab-btns">
                         <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                            href="{% url 'project_list' %}" role="tab" aria-controls="prod-overview"
-                           aria-selected="true">{% trans 'all projects' %}</a>
+                           aria-selected="true">{% trans 'all_projects' %}</a>
                     </li>
                 {% endif %}
 
@@ -65,7 +65,7 @@
                     <div class="card">
 
 
-                        <h5 class="card-header" style="text-align:center;background-color:#f7d493;">{% trans 'what you will learn' %}</h5>
+                        <h5 class="card-header" style="text-align:center;background-color:#f7d493;">{% trans 'acquired_skills' %}</h5>
                         <div class="card-body">
                             {% for skill in project.acquired_skills.all %}
                                 <p class="card-text" style="text-align:center;">{{skill.name}}</p>
@@ -79,7 +79,7 @@
                     <div class="card">
 
 
-                        <h5 class="card-header" style="text-align:center; background-color:f7d493;">{% trans 'required skills' %}</h5>
+                        <h5 class="card-header" style="text-align:center; background-color:f7d493;">{% trans 'required_skills' %}</h5>
                         <div class="card-body">
                             {% for skill in project.required_skills.all %}
                                 <p class="card-text" style="text-align:center;">{{skill.name}}</p>
@@ -203,7 +203,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add Collective Mission </h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">{% trans 'add_collective_mission' %}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="POST" action="{% url 'create_collective_mission' project.id %}">

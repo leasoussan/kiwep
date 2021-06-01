@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-30 22:04+0300\n"
+"POT-Creation-Date: 2021-06-02 00:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models.py:79 templates/backend/team/team_detail.html:288
+#: models.py:79 templates/backend/team/team_detail.html:73
+#: templates/backend/team/team_detail.html:289
 #, fuzzy
 #| msgid "all_projects"
 msgid "project"
@@ -43,49 +44,47 @@ msgid "add_ressource"
 msgstr "Ajouter une Ressource"
 
 #: templates/backend/mission/mission_detail.html:22
-#: templates/backend/mission/mission_detail.html:25
 #: templates/backend/mission/team_mission_detail.html:17
 msgid "back_to_project_button"
 msgstr "Retour au Projets"
 
-#: templates/backend/mission/mission_detail.html:44
+#: templates/backend/mission/mission_detail.html:42
 #: templates/backend/mission/team_mission_detail.html:32
 #, fuzzy
 #| msgid "about_the_mission"
 msgid "the_mission"
 msgstr "A propos de la Mission"
 
-#: templates/backend/mission/mission_detail.html:58
+#: templates/backend/mission/mission_detail.html:56
 #: templates/backend/mission/team_mission_detail.html:45
 msgid "about_the_mission"
 msgstr "A propos de la Mission"
 
-#: templates/backend/mission/mission_detail.html:60
+#: templates/backend/mission/mission_detail.html:58
 #, fuzzy
 #| msgid "mission_name_table_title"
 msgid "mission_type_title"
 msgstr "Nom de La Mission"
 
-#: templates/backend/mission/mission_detail.html:63
+#: templates/backend/mission/mission_detail.html:61
 #, fuzzy
 #| msgid "resource_list_title"
 msgid "resposne_type_title:"
 msgstr "Liste des Resources"
 
-#: templates/backend/mission/mission_detail.html:97
-#: templates/backend/project/project_detail.html:146
-#: templates/backend/team/team_list.html:28
-#: templates/backend/team/team_list.html:72
+#: templates/backend/mission/mission_detail.html:95
+#: templates/backend/project/project_detail.html:147
+#: templates/backend/team/team_list.html:29
 msgid "field"
 msgstr "Domaine"
 
-#: templates/backend/mission/mission_detail.html:105
+#: templates/backend/mission/mission_detail.html:103
 #, fuzzy
 #| msgid "difficulty"
 msgid "difficulty_title"
 msgstr "Difficulte"
 
-#: templates/backend/mission/mission_detail.html:111
+#: templates/backend/mission/mission_detail.html:109
 #, fuzzy
 #| msgid "participants_title"
 msgid "points_title"
@@ -101,23 +100,29 @@ msgid "my_mission_board_title"
 msgstr "Mes Missions"
 
 #: templates/backend/mission/my_mission_list.html:20
-#: templates/backend/mission/team_missions_list.html:23
-msgid "mission_name_table_title"
-msgstr "Nom de La Mission"
+#, fuzzy
+#| msgid "about_the_mission"
+msgid "mission name"
+msgstr "A propos de la Mission"
 
 #: templates/backend/mission/my_mission_list.html:21
-#: templates/backend/mission/team_missions_list.html:24
-msgid "due_date_table_title"
-msgstr "Date du Rendu:"
+#, fuzzy
+#| msgid "date"
+msgid "due date"
+msgstr "Date"
 
 #: templates/backend/mission/my_mission_list.html:22
-#: templates/backend/mission/team_missions_list.html:25
-msgid "project_name_table_title"
-msgstr "Project"
+#, fuzzy
+#| msgid "all_projects"
+msgid "project name"
+msgstr "Liste des Projets"
 
 #: templates/backend/mission/my_mission_list.html:23
-#: templates/backend/mission/team_missions_list.html:26
-msgid "status_table_title"
+#: templates/backend/team/team_detail.html:135
+#: templates/backend/team/team_detail.html:190
+#: templates/backend/team/team_detail.html:248
+#: templates/backend/team/team_detail.html:294
+msgid "status"
 msgstr "Statut"
 
 #: templates/backend/mission/team_mission_detail.html:13
@@ -161,11 +166,11 @@ msgid "difficulty"
 msgstr "Difficulte"
 
 #: templates/backend/mission/team_mission_detail.html:122
-#: templates/backend/project/project_detail.html:161
-#: templates/backend/team/team_detail.html:140
-#: templates/backend/team/team_detail.html:195
-#: templates/backend/team/team_detail.html:245
-#: templates/backend/team/team_detail.html:291
+#: templates/backend/project/project_detail.html:162
+#: templates/backend/team/team_detail.html:136
+#: templates/backend/team/team_detail.html:191
+#: templates/backend/team/team_detail.html:246
+#: templates/backend/team/team_detail.html:292
 msgid "points"
 msgstr "Points"
 
@@ -175,52 +180,80 @@ msgstr "Points"
 msgid "team_mission_board_title"
 msgstr "Mes Missions"
 
+#: templates/backend/mission/team_missions_list.html:23
+msgid "mission_name_table_title"
+msgstr "Nom de La Mission"
+
+#: templates/backend/mission/team_missions_list.html:24
+msgid "due_date_table_title"
+msgstr "Date du Rendu:"
+
+#: templates/backend/mission/team_missions_list.html:25
+msgid "project_name_table_title"
+msgstr "Project"
+
+#: templates/backend/mission/team_missions_list.html:26
+msgid "status_table_title"
+msgstr "Statut"
+
 #: templates/backend/project/project_detail.html:16
 #, fuzzy
 #| msgid "all_projects"
 msgid "add_project_link"
 msgstr "Liste des Projets"
 
-#: templates/backend/project/project_detail.html:39
+#: templates/backend/project/project_detail.html:40
 #, fuzzy
 #| msgid "all_projects"
-msgid "all projects"
+msgid "edit_project"
 msgstr "Liste des Projets"
 
 #: templates/backend/project/project_detail.html:45
 #, fuzzy
 #| msgid "all_projects"
-msgid "edit project"
+msgid "all_projects"
 msgstr "Liste des Projets"
 
 #: templates/backend/project/project_detail.html:68
 #, fuzzy
-#| msgid "what_you_will_lean"
-msgid "what you will learn"
-msgstr "Ce que vous aller decouvrire!"
+#| msgid "required_skils"
+msgid "acquired_skills"
+msgstr "Les Connaissances qui vous seraient utiles"
 
 #: templates/backend/project/project_detail.html:82
 #, fuzzy
 #| msgid "required_skils"
-msgid "required skills"
+msgid "required_skills"
 msgstr "Les Connaissances qui vous seraient utiles"
 
-#: templates/backend/project/project_detail.html:151
+#: templates/backend/project/project_detail.html:96
+#, fuzzy
+#| msgid "available_mission_title"
+msgid "add_individual_mission"
+msgstr "Mission A Prendre"
+
+#: templates/backend/project/project_detail.html:99
+#: templates/backend/project/project_detail.html:206
+#, fuzzy
+#| msgid "project_mission_title"
+msgid "add_collective_mission"
+msgstr "Project Missions"
+
+#: templates/backend/project/project_detail.html:152
 msgid "time_to_complete"
 msgstr "Temps pour Completer:"
 
-#: templates/backend/project/project_detail.html:156
+#: templates/backend/project/project_detail.html:157
 msgid "difficulty "
 msgstr "Difficulte"
 
 #: templates/backend/project/project_list.html:14
 #, fuzzy
 #| msgid "all_projects"
-msgid "add project"
+msgid "add_project"
 msgstr "Liste des Projets"
 
 #: templates/backend/project/project_list.html:20
-#: templates/backend/project/project_list.html:106
 #, fuzzy
 #| msgid "all_projects"
 msgid "available_project_list"
@@ -270,15 +303,20 @@ msgid "edit_table_header"
 msgstr "Domaine"
 
 #: templates/backend/project/project_list.html:84
-#: templates/backend/team/team_list.html:29
-#: templates/backend/team/team_list.html:40
+#: templates/backend/team/team_list.html:30
+#: templates/backend/team/team_list.html:47
 msgid "edit"
 msgstr "Editer"
 
 #: templates/backend/project/project_list.html:84
-#: templates/backend/team/team_detail.html:393
 msgid "duplicate"
 msgstr "Dupliquer"
+
+#: templates/backend/project/project_list.html:106
+#, fuzzy
+#| msgid "all_projects"
+msgid "available_project"
+msgstr "Liste des Projets"
 
 #: templates/backend/project/project_list.html:118
 #, fuzzy
@@ -286,15 +324,33 @@ msgstr "Dupliquer"
 msgid "check_team"
 msgstr "Joindre L'equipe"
 
-#: templates/backend/resource/resource_detail.html:6
+#: templates/backend/resource/resource_detail.html:7
 msgid "list_resource_title"
 msgstr "List des Ressources"
 
-#: templates/backend/resource/resource_detail.html:14
+#: templates/backend/resource/resource_detail.html:9
+#, fuzzy
+#| msgid "add_resource_link"
+msgid "update_resource"
+msgstr "Ajouter une Ressource"
+
+#: templates/backend/resource/resource_detail.html:15
+#, fuzzy
+#| msgid "about_the_mission"
+msgid "back_to_mission"
+msgstr "A propos de la Mission"
+
+#: templates/backend/resource/resource_detail.html:24
 msgid "resource_lable"
 msgstr "Ressources"
 
-#: templates/backend/resource/resource_detail.html:24
+#: templates/backend/resource/resource_detail.html:27
+#, fuzzy
+#| msgid "add_resource_link"
+msgid "resource_link"
+msgstr "Ajouter une Ressource"
+
+#: templates/backend/resource/resource_detail.html:41
 msgid "name_file_lable"
 msgstr "Name"
 
@@ -317,110 +373,139 @@ msgstr "Joindre L'equipe"
 #: templates/backend/team/team_detail.html:16
 #, fuzzy
 #| msgid "edit"
-msgid "edit team"
+msgid "edit_team"
 msgstr "Editer"
 
 #: templates/backend/team/team_detail.html:19
-msgid "leave team"
+#, fuzzy
+#| msgid "leave team"
+msgid "leave_team"
 msgstr "Quitter l'equipe"
 
-#: templates/backend/team/team_detail.html:31
-#: templates/backend/team/team_list.html:26
+#: templates/backend/team/team_detail.html:30
+#: templates/backend/team/team_list.html:27
 #, fuzzy
 #| msgid "participants_title"
 msgid "participants"
 msgstr "Les Participants"
 
-#: templates/backend/team/team_detail.html:40
+#: templates/backend/team/team_detail.html:39
 msgid "current_amount_participants_lable"
 msgstr "Nombre de participants dans ce projet"
 
-#: templates/backend/team/team_detail.html:55
-msgid "add students"
+#: templates/backend/team/team_detail.html:54
+#, fuzzy
+#| msgid "add students"
+msgid "add_students"
 msgstr "Ajouter Un Etudient"
 
-#: templates/backend/team/team_detail.html:130
-#: templates/backend/team/team_detail.html:165
+#: templates/backend/team/team_detail.html:78
+#, fuzzy
+#| msgid "join_the_team"
+msgid "choose_project_team"
+msgstr "Joindre L'equipe"
+
+#: templates/backend/team/team_detail.html:126
+#: templates/backend/team/team_detail.html:161
 #, fuzzy
 #| msgid "available_mission_title"
 msgid "available mission"
 msgstr "Mission A Prendre"
 
-#: templates/backend/team/team_detail.html:137
-#: templates/backend/team/team_detail.html:192
-#: templates/backend/team/team_detail.html:242
-#: templates/backend/team/team_detail.html:289
+#: templates/backend/team/team_detail.html:133
+#: templates/backend/team/team_detail.html:188
+#: templates/backend/team/team_detail.html:243
+#: templates/backend/team/team_detail.html:290
 #, fuzzy
 #| msgid "about_the_mission"
 msgid "mission"
 msgstr "A propos de la Mission"
 
-#: templates/backend/team/team_detail.html:139
-#: templates/backend/team/team_detail.html:194
+#: templates/backend/team/team_detail.html:137
+#: templates/backend/team/team_detail.html:192
 #: templates/backend/team/team_detail.html:247
 #: templates/backend/team/team_detail.html:293
-msgid "status"
-msgstr "Statut"
-
-#: templates/backend/team/team_detail.html:141
-#: templates/backend/team/team_detail.html:196
-#: templates/backend/team/team_detail.html:246
-#: templates/backend/team/team_detail.html:292
 msgid "date"
 msgstr "Date"
 
-#: templates/backend/team/team_detail.html:142
-#: templates/backend/team/team_detail.html:197
+#: templates/backend/team/team_detail.html:138
+#: templates/backend/team/team_detail.html:193
 #, fuzzy
 #| msgid "unclaim_mission"
 msgid "claim mission"
 msgstr "quitter la Mission"
 
-#: templates/backend/team/team_detail.html:163
+#: templates/backend/team/team_detail.html:159
 msgid "claim_mission_link"
 msgstr "Prendre"
 
-#: templates/backend/team/team_detail.html:185
+#: templates/backend/team/team_detail.html:181
 #, fuzzy
 #| msgid "project_mission_title"
 msgid "collective mission"
 msgstr "Project Missions"
 
-#: templates/backend/team/team_detail.html:214
+#: templates/backend/team/team_detail.html:211
 #, fuzzy
 #| msgid "edit_mission"
 msgid "assign_mission"
 msgstr "Editer"
 
-#: templates/backend/team/team_detail.html:236
-#: templates/backend/team/team_detail.html:281
+#: templates/backend/team/team_detail.html:213
+#, fuzzy
+#| msgid "edit_mission"
+msgid "request_mission"
+msgstr "Editer"
+
+#: templates/backend/team/team_detail.html:237
+#: templates/backend/team/team_detail.html:282
 #, fuzzy
 #| msgid "project_mission_title"
-msgid "project mission"
+msgid "project_mission"
 msgstr "Project Missions"
 
-#: templates/backend/team/team_detail.html:243
+#: templates/backend/team/team_detail.html:244
 #, fuzzy
 #| msgid "attributed_to_table_header"
-msgid "attributed to"
+msgid "attributed_to"
 msgstr "Attribuee a:"
 
-#: templates/backend/team/team_detail.html:244
-#: templates/backend/team/team_detail.html:290
+#: templates/backend/team/team_detail.html:245
+#: templates/backend/team/team_detail.html:291
 #, fuzzy
 #| msgid "all_projects"
-msgid "stage of project"
+msgid "stage_of_project"
 msgstr "Liste des Projets"
 
-#: templates/backend/team/team_detail.html:391
+#: templates/backend/team/team_detail.html:261
+#, fuzzy
+#| msgid "about_the_mission"
+msgid "see_mission"
+msgstr "A propos de la Mission"
+
+#: templates/backend/team/team_detail.html:285
+#, fuzzy
+#| msgid "about_the_mission"
+msgid "my_missions"
+msgstr "A propos de la Mission"
+
+#: templates/backend/team/team_detail.html:399
 #, fuzzy
 #| msgid "all_projects"
-msgid "new_project"
+msgid "new project"
 msgstr "Liste des Projets"
 
-#: templates/backend/team/team_detail.html:392
-msgid "choose_templates"
+#: templates/backend/team/team_detail.html:400
+#, fuzzy
+#| msgid "choose_templates"
+msgid "choose templates"
 msgstr "Choisir un Template"
+
+#: templates/backend/team/team_detail.html:401
+#, fuzzy
+#| msgid "duplicate"
+msgid "dublicate"
+msgstr "Dupliquer"
 
 #: templates/backend/team/team_list.html:11
 #, fuzzy
@@ -428,33 +513,58 @@ msgstr "Choisir un Template"
 msgid "add_team"
 msgstr "Ajouter une Equipe"
 
+#: templates/backend/team/team_list.html:20
+#: templates/backend/team/team_list.html:69
+#, fuzzy
+#| msgid "team_title"
+msgid "my_teams"
+msgstr "Equipe"
+
 #: templates/backend/team/team_list.html:25 templates/crud/list_view.html:20
 #, fuzzy
 #| msgid "team_name_lable"
 msgid "team_name"
 msgstr "Nom de l'Equipe"
 
-#: templates/backend/team/team_list.html:27
+#: templates/backend/team/team_list.html:26
+#, fuzzy
+#| msgid "all_projects"
+msgid "project_name"
+msgstr "Liste des Projets"
+
+#: templates/backend/team/team_list.html:28
 msgid "duration"
 msgstr "Duree"
 
-#: templates/backend/team/team_list.html:69
+#: templates/backend/team/team_list.html:75
 #, fuzzy
 #| msgid "team_name_lable"
 msgid "team_name_title"
 msgstr "Nom de l'Equipe"
 
-#: templates/backend/team/team_list.html:70
+#: templates/backend/team/team_list.html:76
 #, fuzzy
-#| msgid "current_amount_participants_lable"
-msgid "number_of_participants"
-msgstr "Nombre de participants dans ce projet"
+#| msgid "all_projects"
+msgid "team_project_title"
+msgstr "Liste des Projets"
 
-#: templates/backend/team/team_list.html:71
+#: templates/backend/team/team_list.html:77
+#, fuzzy
+#| msgid "participants_title"
+msgid "nbr_participants"
+msgstr "Les Participants"
+
+#: templates/backend/team/team_list.html:78
 #, fuzzy
 #| msgid "all_projects"
 msgid "duration_of_the_project"
 msgstr "Liste des Projets"
+
+#: templates/backend/team/team_list.html:79
+#, fuzzy
+#| msgid "date"
+msgid "due_date"
+msgstr "Date"
 
 #: templates/crud/create_missions.html:42
 #: templates/crud/create_team_missions.html:42
@@ -474,6 +584,21 @@ msgid "delete_button"
 msgstr "Effacer"
 
 #, fuzzy
+#~| msgid "all_projects"
+#~ msgid "all projects"
+#~ msgstr "Liste des Projets"
+
+#, fuzzy
+#~| msgid "what_you_will_lean"
+#~ msgid "what you will learn"
+#~ msgstr "Ce que vous aller decouvrire!"
+
+#, fuzzy
+#~| msgid "current_amount_participants_lable"
+#~ msgid "number_of_participants"
+#~ msgstr "Nombre de participants dans ce projet"
+
+#, fuzzy
 #~| msgid "stage_of_project_table_header"
 #~ msgid "edit_duplicate_project_table_header"
 #~ msgstr "Stage de la Production"
@@ -482,11 +607,6 @@ msgstr "Effacer"
 #~| msgid "team_name_lable"
 #~ msgid "team name"
 #~ msgstr "Nom de l'Equipe"
-
-#, fuzzy
-#~| msgid "all_projects"
-#~ msgid "all_projects"
-#~ msgstr "Liste des Projets"
 
 #~ msgid "team_title"
 #~ msgstr "Equipe"
@@ -527,11 +647,6 @@ msgstr "Effacer"
 #~| msgid "Missions_title"
 #~ msgid "mission_type"
 #~ msgstr "Titre de la Mission"
-
-#, fuzzy
-#~| msgid "team_title"
-#~ msgid "my)teams"
-#~ msgstr "Equipe"
 
 #~ msgid "update_button"
 #~ msgstr "Editer"

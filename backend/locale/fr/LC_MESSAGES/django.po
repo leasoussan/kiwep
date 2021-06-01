@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-30 21:59+0300\n"
+"POT-Creation-Date: 2021-06-01 23:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,27 +22,37 @@ msgstr ""
 msgid "edit_profile"
 msgstr "Editer Votre Profile"
 
-#: templates/backend/speaker_dashboard.html:6
+#: templates/backend/speaker_dashboard.html:8
 #: templates/backend/student_dashboard.html:6
 msgid "welcome"
 msgstr "Welcome"
 
-#: templates/backend/speaker_dashboard.html:17
+#: templates/backend/speaker_dashboard.html:19
+#, fuzzy
+#| msgid "create_team"
+msgid "current teams"
+msgstr "Creer une Equipe"
+
+#: templates/backend/speaker_dashboard.html:31
+#, fuzzy
+#| msgid "create_project"
+msgid "selected project"
+msgstr "Creer un Project"
+
+#: templates/backend/speaker_dashboard.html:41
+#: templates/backend/student_dashboard.html:39
+msgid "groups_dasboard_title"
+msgstr "Mes Groups"
+
 #: templates/backend/student_dashboard.html:17
 msgid "current_teams_dashboard_title"
 msgstr "Mes Equipes"
 
-#: templates/backend/speaker_dashboard.html:29
 #: templates/backend/student_dashboard.html:29
 #, fuzzy
 #| msgid "my_team_projects_title"
 msgid "selected_project_dashboard_title"
 msgstr "Mes Equipes"
-
-#: templates/backend/speaker_dashboard.html:39
-#: templates/backend/student_dashboard.html:39
-msgid "groups_dasboard_title"
-msgstr "Mes Groups"
 
 #, fuzzy
 #~| msgid "to_your_dashboard"
@@ -88,9 +98,6 @@ msgstr "Mes Groups"
 #~ msgid "projects_title"
 #~ msgstr "Titre Du Projet"
 
-#~ msgid "create_project"
-#~ msgstr "Creer un Project"
-
 #~ msgid "projects_list"
 #~ msgstr "Liste de Projets"
 
@@ -105,9 +112,6 @@ msgstr "Mes Groups"
 
 #~ msgid "team_title"
 #~ msgstr "Equipe"
-
-#~ msgid "create_team"
-#~ msgstr "Creer une Equipe"
 
 #~ msgid "team_list"
 #~ msgstr "List des Equipes"

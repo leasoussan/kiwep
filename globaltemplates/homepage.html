@@ -1,5 +1,4 @@
 {% load static %}
-
 {% load i18n %}
 <head>
     <meta charset="utf-8">
@@ -51,8 +50,8 @@
     <div class="card-body" >
       <form method="post" style="text-align:center;">
 
-        <button class="btn btn-outline-success button_login"type="submit"><a href="{% url 'login' %}">Log in</a></button>
-        <button class="btn btn-outline-success button_register" type="submit"><a href="{% url 'register'%}">Sign up</a></button>
+        <button class="btn btn-outline-success button_login"type="submit"><a href="{% url 'login' %}">{% trans 'log_in' %}</a></button>
+        <button class="btn btn-outline-success button_register" type="submit"><a href="{% url 'register'%}">{% trans 'signup' %}</a></button>
 
       </form>
 
