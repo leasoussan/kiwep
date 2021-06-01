@@ -6,6 +6,7 @@ import datetime
 from django.utils.translation import ugettext_lazy as _
 from todo.models import Task, PersonalTask, TeamTask
 
+from .managers import *
 
 
 class Country(models.Model):
@@ -38,7 +39,7 @@ class City(models.Model):
 
 class MyUser(AbstractUser):
     """ Basic User is the base of all users- using Django Implementation"""
-    email = models.EmailField()
+    email = models.EmailField(_('email address'), unique=True)
     phone_number = models.CharField(max_length=30, blank = True, null = True)
     profile_pic = models.ImageField(default = 'profile/avatar.png', upload_to='media/profile/', blank = True, null = True)
     joined_date = models.DateField(auto_now_add=True, blank = True, null = True)
@@ -49,8 +50,15 @@ class MyUser(AbstractUser):
     is_representative = models.BooleanField(default=False)
 
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = MyUserManager()
+
+
+
     def __str__(self):
-        return f"{self.id},{str(self.username)}"
+        return f"{self.id},{str(self.username)}, {self.email}"
 
     # get_usertype
     def get_user_type(self):
