@@ -1,14 +1,12 @@
-
 {% load i18n %}
-{% load static%}
 
 
 <div>
 
-    <!-- <h2>{% trans 'welcome'%} {{user.first_name}} </h2> -->
+    <h2>{% trans 'welcome'%} {{user.first_name}} </h2>
 
 
-     <main role="main" class="container-fluid">
+    <main role="main" class="container-fluid">
 
   <div class="row">
 
@@ -16,7 +14,7 @@
             <div class="card_round" style="width: 18rem;">
 {#                <img class="card-img-top" src="..." alt="Card image cap" style="height: 12rem">#}
 
-                    <h5 class="card-title">{% trans 'current teams' %}</h5>
+                    <h5 class="card-title">{% trans 'current_teams_dashboard_title' %}</h5>
 
 
                     <a href="{% url 'team_list' %}" class="btn btn-primary number_tag">#</a>
@@ -28,7 +26,7 @@
             <div class="card_round" style="width: 18rem;">
 {#                <img class="card-img-top" src="..." alt="Card image cap" style="height: 12rem">#}
 
-                    <h5 class="card-title">{% trans 'selected project' %}</h5>
+                    <h5 class="card-title">{% trans 'selected_project_dashboard_title' %}</h5>
 
 
                     <a href="{% url 'team_list' %}" class="btn btn-primary number_tag">#</a>
@@ -38,7 +36,7 @@
             <div class="col-md-4 col-sm-10 col-lg-4">
             <div class="card_round" style="width: 18rem;">
 
-                    <h5 class="card-body">{% trans 'groups_dasboard_title' %}</h5>
+                    <h5 class="card-title">{% trans 'groups_dasboard_title' %}</h5>
 
 
                     <a href="#" class="btn btn-primary number_tag">#</a>
@@ -46,5 +44,4 @@
             </div>
 
         </div>
-    </main>
-  </div>
+    </main></div>
