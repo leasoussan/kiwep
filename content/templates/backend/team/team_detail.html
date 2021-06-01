@@ -6,7 +6,7 @@
 
 {% block content %}
 
-
+{% if user.profile.name == "is_student" %}
     {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
 
       <button type="button" class="btn add_button"name="button"><a href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a></button>
@@ -19,7 +19,7 @@
       <button type="button" class="btn add_button" name="button"><a href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a></button>
 
     {% endif %}
-
+{% endif %}
 
 
 
@@ -374,34 +374,36 @@
 <!-- Modal -->
 
 
-
-
-
-<div class="modal" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Projects </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body modal-open">
-              <ul class="nav nav-pills">
-
-  <li><a class="btn btn_modal" href="#" data-bs-toggle="pill" data-bs-target="#pills-create-project">{% trans 'new project' %}</a></li>
-  <li ><a class="btn btn_modal"href="#" data-bs-toggle="pill" data-bs-target="#pills-template" >{% trans 'choose templates' %}</a></li>
-  <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'dublicate' %}</a></li>
-</ul>
-
+            <div class="modal-body">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-create-tab" data-bs-toggle="pill" data-bs-target="#pills-create-project"
+                                type="button" role="tab" aria-controls="pills-create" aria-selected="true">New Project</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-template-tab" data-bs-toggle="pill" data-bs-target="#pills-template"
+                                type="button" role="tab" aria-controls="pills-template" aria-selected="false">Chose Templates</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-duplicate-tab" data-bs-toggle="pill" data-bs-target="#pills-duplicate"
+                                type="button" role="tab" aria-controls="pills-duplicate" aria-selected="false">Duplicate</button>
+                    </li>
+                </ul>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">
+                    <div class="tab-pane fade show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">
+<form method="post" action="{% url 'create_team_project' team.id %}">
+    {% csrf_token %}
+         {{ project_form|crispy }}
+    <button type="submit">Save </button>
+</form>
 
-                       <form method="post" action="{% url 'create_team_project' team.id %}">
-{% csrf_token %}
-                           {{ project_form|crispy }}
-                           <button type="submit">Save</button>
-                       </form>
-
-{#                         <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>#}
                     </div>
                     <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
                         {% for project in templates  %}
@@ -410,22 +412,17 @@
                     </div>
                     <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">
                         {% for project in old_projects  %}
-                        <h2>{{ project.name }}</h2>
-                            <a href="{% url 'duplicate_create_project' project.id team.id %}">COPY</a>
+                        <h2>{{ project.name }} <a href="{% url 'duplicate_create_project' project.id team.id %}">Duplicate this Project</a> </h2>
                         {% endfor %}
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Start</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+
             </div>
         </div>
     </div>
-
-
-
-
+</div>
 
 
 {% endblock %}

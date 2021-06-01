@@ -127,13 +127,10 @@
                                 <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
-<<<<<<< HEAD
-                                <td>{{project.time_to_complet}}</td>
-                                <td> Check Team  </td>
-=======
+
                                 <td>{{project.time_to_complete}}</td>
-                                <td> Check Team </a> </td>
->>>>>>> e3ec483adb316f49c756433b69198b481e148df3
+                                <td>{% trans 'check_team' %}</a> </td>
+
                             </tr>
                         {% endfor %}
 
