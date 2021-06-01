@@ -15,7 +15,6 @@
     <div class="container-fluid">
         <!-- <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a> -->
 
-
         <div id="project_detail"></div>
 
     </div>
@@ -34,7 +33,7 @@
                        aria-selected="true">{{project.name}}</a>
                 </li>
 
-                {% if user.profile.name == 'is_speaker' %}
+                {% if user.is_speaker %}
                     <li class="nav-item tab-btns">
                         <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                            href="{% url 'update_project' project.id %}" role="tab" aria-controls="prod-overview"
@@ -91,7 +90,7 @@
             </div>
 
 
-                {% if user.profile.name == 'is_speaker' %}
+                {% if user.is_speaker %}
 
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
                    {% trans 'add_individual_mission' %}

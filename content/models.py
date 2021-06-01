@@ -114,7 +114,7 @@ class Mission(models.Model):
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
     level = models.ForeignKey(Level, on_delete=models.CASCADE, blank= True, null= True)
     description = models.TextField()
-    resources = models.OneToOneField(Resource, on_delete=models.CASCADE)
+    resources = models.ForeignKey(Resource, on_delete=models.CASCADE)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     points = models.PositiveIntegerField()
     acquired_skill = models.ManyToManyField(Skills, blank =True)
