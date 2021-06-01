@@ -6,119 +6,119 @@
 
 {% block content %}
 
+    {% if user.profile.name == "is_student" %}
+        {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
 
-    {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+            <button type="button" class="btn add_button"name="button"><a href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a></button>
 
-        <button type="button" class="btn add_button"name="button"><a href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a></button>
+        {% elif request.user.profile == team.manager %}
 
-    {% elif request.user.profile == team.manager %}
+            <button type="button" class="btn add_button"name="button"><a href="{% url 'update_team' team.id %}">{% trans 'edit team' %}</a></button>
 
-        <button type="button" class="btn add_button"name="button"><a href="{% url 'update_team' team.id %}">{% trans 'edit team' %}</a></button>
+        {% else %}
+            <button type="button" class="btn add_button" name="button"><a href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a></button>
 
-    {% else %}
-        <button type="button" class="btn add_button" name="button"><a href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a></button>
-
+        {% endif %}
     {% endif %}
 
 
 
-
     <div class="row">
-        <div class="col-lg-6">
-            <div class="card top-products">
-                <div class="card-body">
-                    <!-- {{team.id}} -->
-                    <h3 class="card-header">{% trans 'participants' %}<span style= "margin-left:200px;"></span>
-                        {% if user.profile.name == 'speaker' %}
-                            <a  href="{% url 'add_member_team' team.id %}"><i style="color:#fffefc;"class="fas fa-user-plus team_style"></i></a>
+    <div class="col-lg-6">
+        <div class="card top-products">
+            <div class="card-body">
+                <!-- {{team.id}} -->
+                <h3 class="card-header">{% trans 'participants' %}<span style= "margin-left:200px;"></span>
+                    {% if user.profile.name == 'speaker' %}
+                        <a  href="{% url 'add_member_team' team.id %}"><i style="color:#fffefc;"class="fas fa-user-plus team_style"></i></a>
 
-                        {%  endif %}
-                    </h3>
-                    <div class="top-products-list">
-                        <div class="product-item">
-                            {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
-                                <h3>{% trans 'current_amount_participants_lable' %}: {{team.participants.count}}</h3>
+                    {%  endif %}
+                </h3>
+                <div class="top-products-list">
+                    <div class="product-item">
+                        {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+                            <h3>{% trans 'current_amount_participants_lable' %}: {{team.participants.count}}</h3>
 
-                            {% else %}
-                                {% for student in team.participants.all %}
-                                    <div class="student_list">
-                                        <ol>
-                                            <li><a href="">{{ student.user.first_name }} {{ student.user.last_name }}</a></li>
-                                        </ol>
-                                    </div>
-                                {% endfor %}
+                        {% else %}
+                            {% for student in team.participants.all %}
+                                <div class="student_list">
+                                    <ol>
+                                        <li><a href="">{{ student.user.first_name }} {{ student.user.last_name }}</a></li>
+                                    </ol>
+                                </div>
+                            {% endfor %}
 
 
-                            {%endif %}
+                        {%endif %}
 
-                            <!-- {% if user.profile.name == 'speaker' %}
+                        <!-- {% if user.profile.name == 'speaker' %}
                               <button type="button" class="btn" name="button"><a href="{% url 'add_member_team' team.id %}">{% trans 'add students' %}</a></button>
                             {%  endif %} -->
 
-                        </div>
-
                     </div>
-                </div>
 
+                </div>
             </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-lg-6">
+    <div class="card card-transactions">
+
+        <div class="card-body">
+
+            {% if not team.project %}
+
+                <h3 class="card-header">Project</h3>
+
+                {% if user.profile.name == 'speaker' %}
+                    <div class="student_list">
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ChoseProject">
+                            Chose a Project For the Team
+                        </button>
+                    </div>
+                    <!-- Button trigger modal -->
+
+                {% endif %}
+            {% else %}
+                <h3 class="card-header team_style"><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a></h3>
+            {% endif %}
         </div>
 
 
-        <div class="col-lg-6">
-            <div class="card card-transactions">
-
-                 <div class="card-body">
-
-                    {% if not team.project %}
-
-                        <h3 class="card-header">Project</h3>
-
-                        {% if user.profile.name == 'speaker' %}
-                            <div class="student_list">
-                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ChoseProject">
-                                    Chose a Project For the Team
-                                </button>
-                            </div>
-                            <!-- Button trigger modal -->
-
-                        {% endif %}
-                    {% else %}
-                        <h3 class="card-header team_style"><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a></h3>
-                    {% endif %}
-                </div>
 
 
-
-
-{#            #TODO: comment back #}
-{#            </div>#}
-{#            <div>#}
-{#                <button><a href="#">Comment Team Board</a></button>#}
-{#            </div>#}
-{#        </div>#}
+        {#            #TODO: comment back #}
+        {#            </div>#}
+        {#            <div>#}
+        {#                <button><a href="#">Comment Team Board</a></button>#}
+        {#            </div>#}
+        {#        </div>#}
 
     </div>
 
 
-{#    #TODO: Progress bar#}
+    {#    #TODO: Progress bar#}
 
-{#    {% if user.profile in team.participants.all or user.profile.name == "speaker" %}#}
-{##}
-{#        <div class="row">#}
-{#            <div class="col-xl">#}
-{#                <div class="card">#}
-{#                    <div class="card-body">#}
-{#                        <p>Where are you at?</p>#}
-{#                        <div class="progress">#}
-{#                            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" role="progressbar"#}
-{#                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#    {% endif %}#}
+    {#    {% if user.profile in team.participants.all or user.profile.name == "speaker" %}#}
+    {##}
+    {#        <div class="row">#}
+    {#            <div class="col-xl">#}
+    {#                <div class="card">#}
+    {#                    <div class="card-body">#}
+    {#                        <p>Where are you at?</p>#}
+    {#                        <div class="progress">#}
+    {#                            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" role="progressbar"#}
+    {#                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {##}
+    {#    {% endif %}#}
 
 
 
@@ -379,15 +379,15 @@
 
 
 
+    <div class="modal fade" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
-
-    <div class="modal" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Projects </h5>
+                <h5 class="modal-title" id="staticBackdropLabel">{% trans 'projects_' %} </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
             <div class="modal-body modal-open">
                 <ul class="nav nav-pills">
 
@@ -396,41 +396,52 @@
                     <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'duplicate' %}</a></li>
                 </ul>
 
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">
 
-                        <form method="post" action="{% url 'create_team_project' team.id %}">
-                            {% csrf_token %}
-                            {{ project_form|crispy }}
-                            <button type="submit">Save</button>
-                        </form>
+                <div class="modal-body">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-create-tab" data-bs-toggle="pill" data-bs-target="#pills-create-project"
+                                    type="button" role="tab" aria-controls="pills-create" aria-selected="true">New Project</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-template-tab" data-bs-toggle="pill" data-bs-target="#pills-template"
+                                    type="button" role="tab" aria-controls="pills-template" aria-selected="false">Chose Templates</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-duplicate-tab" data-bs-toggle="pill" data-bs-target="#pills-duplicate"
+                                    type="button" role="tab" aria-controls="pills-duplicate" aria-selected="false">Duplicate</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">
+                            <form method="post" action="{% url 'create_team_project' team.id %}">
+                                {% csrf_token %}
+                                {{ project_form|crispy }}
+                                <button type="submit">Save </button>
+                            </form>
 
 
+                        </div>
+                        <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
+                            {% for project in templates  %}
+                                <h2>{{ project.name }}</h2>
+                            {% endfor %}
+                        </div>
+                        <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">
+                            {% for project in old_projects  %}
 
-                    </div>
-                    <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
-                        {% for project in templates  %}
-                            <h2>{{ project.name }}</h2>
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">
-                        {% for project in old_projects  %}
-                            <h2>{{ project.name }}</h2>
-                            <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
-                        {% endfor %}
+                                <h2>{{ project.name }} <a href="{% url 'duplicate_create_project' project.id team.id %}">Duplicate this Project</a> </h2>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
-                    <button type="button" class="btn btn-primary">Start</button>
+
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
 
 
 {% endblock %}

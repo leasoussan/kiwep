@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect,get_object_or_404, reverse
+from django.contrib.auth import views as auth_views
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.conf import settings
@@ -14,6 +15,9 @@ from .forms import (
     SpeakerProfileCreationForm,
     RepresentativeProfileCreationForm,
     UserForm,
+
+    LoginForm,
+ 
 
 )
 from django.urls import reverse_lazy
@@ -54,10 +58,11 @@ class Register(View):
 
             usertype=form.cleaned_data['usertype']
 
+
             setattr(user, usertype, True)
 
             user.save()
-            user = authenticate(username= username, password = password, usertype =usertype)
+            # user = authenticate(username= username, password = password, usertype =usertype)
             login(request, user)
             send_welcome_signup(user)
 
@@ -74,7 +79,8 @@ class Register(View):
 # -----------------------------------------------------------------------------------------------
 
 
-def get_user_profile_form(request, edit=False):
+def get_user_profile_form(request, usertype, edit=False): 
+
     """ This function allows is to check which profile is requested, 
     and to know what page/authorization to direct it to"""
     user = request.user
@@ -101,6 +107,7 @@ def get_user_profile_form(request, edit=False):
     return profile_form
 
 
+# ------------------------------------------------------------------------------------------------------------
 
 
 class CreateProfile(View):
@@ -184,6 +191,24 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
 
 
 
+
+# ------------------------------------------------------------------------------------------------------------
+#
+# class MyLoginView(LoginView):
+#
+#     def get(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             return redirect('homepage')
+#         return super().get(self, request, *args, **kwargs)
+
+
+# ------------------------------------------------------------------------------------------------------------
+
+#
+#
+# class MyLoginView(auth_views.LoginView):
+#     form_class = LoginForm
+#     template_name = 'registration/login.html'
 
 
 
