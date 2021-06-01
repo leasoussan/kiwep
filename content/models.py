@@ -238,9 +238,8 @@ class Team(models.Model):
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
+# def check_date(sender, instance, *args, **kwargs):
+#         if instance.start_date > instance.due_date:
+#             raise ValueError('Start date must be less than end date')
 
-def check_date(sender, instance, *args, **kwargs):
-        if instance.start_date > instance.due_date:
-            raise ValueError('Start date must be less than end date')
-
-pre_save.connect(check_date, sender=Team)
+# pre_save.connect(check_date, sender=Team)

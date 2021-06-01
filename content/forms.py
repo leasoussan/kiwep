@@ -7,6 +7,9 @@ from django.forms import inlineformset_factory
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.db.models import Q
 
+import django.forms
+import django.forms.utils
+import django.forms.widgets
 
 
 class ProjectAddForm(ModelForm):
@@ -37,9 +40,12 @@ class TeamAddForm(ModelForm):
         ]
 
     start_date = forms.DateField(
-        widget=forms.DateInput(format='%d/%m/%Y'),
-        input_formats=('%d-%m-%Y',)
+        widget=django.forms.DateInput(
+            format='%d/%m/%Y',
+            attrs={'placeholder':'dd-mm-yyyy'}),
+        input_formats=('%d-%m-%Y',),
     )
+
 
 
 
