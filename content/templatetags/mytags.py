@@ -17,7 +17,7 @@ def return_class_name(value):
 def student_missions(mission_qs, student):
 
     """ """
-    return mission_qs.filter(attributed_to =student)
+    return mission_qs.filter(attributed_to=student)
 
 
 

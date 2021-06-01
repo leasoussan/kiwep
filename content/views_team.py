@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team, CollectiveMission, Project, Mission, IndividualMission
 from django.forms import ModelForm
@@ -28,9 +29,18 @@ class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
     context_object_name = 'team_list'
 
 
+    def get_queryset(self):
+        try:
+            if self.request.user.is_student:
 
+                return self.request.user.profile().team_set.all()
 
+            elif self.request.user.is_speaker:
 
+                return self.request.user.profile().team_manager.all()
+        except:
+            print("you have no team YO!")
+            raise Http404
 
 class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
     """ Global Team Details """
@@ -43,7 +53,7 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        if not self.object.project and self.request.user.get_user_type() == 'speaker':
+        if not self.object.project and self.request.user.is_speaker:
             context['project_form'] = ProjectAddForm()
             context['templates'] = Project.objects.global_template_projects()
             context['old_projects'] = self.request.user.profile().project_set.all()

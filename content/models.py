@@ -24,8 +24,8 @@ from django.utils import timezone
 
 class Resource(models.Model):
     name = models.CharField(max_length=200)
-    link = models.CharField(max_length=200)
-    image = models.ImageField(default = 'image/default.png', upload_to='images/')
+    link = models.URLField(max_length=200)
+    image = models.ImageField(default = 'media/image/default.png', upload_to='images/')
     file_rsc = models.FileField(null=True, blank=True)
     text = models.TextField()
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
@@ -40,7 +40,7 @@ class Resource(models.Model):
         return reverse("resource_detail", kwargs={"pk":self.pk})
 
 
-    def get_resourceImg_or_default(self, default_path= 'images/default.png'):
+    def get_resourceImg_or_default(self, default_path= 'media/images/default.png'):
         if self.image:
             return self.image.url
         return default_path
@@ -114,7 +114,7 @@ class Mission(models.Model):
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
     level = models.ForeignKey(Level, on_delete=models.CASCADE, blank= True, null= True)
     description = models.TextField()
-    resources = models.ManyToManyField(Resource)
+    resources = models.ForeignKey(Resource, on_delete=models.CASCADE)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     points = models.PositiveIntegerField()
     acquired_skill = models.ManyToManyField(Skills, blank =True)
