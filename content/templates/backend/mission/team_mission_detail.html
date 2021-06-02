@@ -8,7 +8,7 @@
 
 
 
-    {% if user.profile.name == 'speaker' %}
+    {% if user.is_speaker %}
         <div class="">
         <button> <a href="{{ object.get_update_url }}">{% trans 'edit_mission' %}</a></button>
     {% endif %}
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
 
-                            {% if user.profile.name == 'speaker' %}
+                            {% if user.is_speaker %}
 
                                 {% if object.response_file or object.response_comment %}
                                     {% trans 'file_lable' %} :{{object.response_file}}
