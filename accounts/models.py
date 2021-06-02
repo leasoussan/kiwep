@@ -6,6 +6,7 @@ import datetime
 from django.utils.translation import ugettext_lazy as _
 from todo.models import Task, PersonalTask, TeamTask
 
+from .managers import *
 
 
 class Country(models.Model):
@@ -49,8 +50,15 @@ class MyUser(AbstractUser):
     is_representative = models.BooleanField(default=False)
 
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = MyUserManager()
+
+
+
     def __str__(self):
-        return f"{self.id},{str(self.username)}"
+        return f"{self.id},{str(self.username)}, {self.email}"
 
     # get_usertype
     def get_user_type(self):
