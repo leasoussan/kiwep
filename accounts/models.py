@@ -39,7 +39,7 @@ class City(models.Model):
 
 class MyUser(AbstractUser):
     """ Basic User is the base of all users- using Django Implementation"""
-    email = models.EmailField(_('email address'), unique=True)
+    email = models.EmailField()
     phone_number = models.CharField(max_length=30, blank = True, null = True)
     profile_pic = models.ImageField(default = 'profile/avatar.png', upload_to='media/profile/', blank = True, null = True)
     joined_date = models.DateField(auto_now_add=True, blank = True, null = True)

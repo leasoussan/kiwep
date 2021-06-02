@@ -99,6 +99,8 @@
 
     </div>
 
+    {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
+
 
     {#    #TODO: Progress bar#}
 
@@ -119,7 +121,6 @@
     {#        </div>#}
     {##}
     {#    {% endif %}#}
-
 
 
 
@@ -393,7 +394,7 @@
 
                     <li><a class="btn btn_modal" href="#" data-bs-toggle="pill" data-bs-target="#pills-create-project">{% trans 'new project' %}</a></li>
                     <li ><a class="btn btn_modal"href="#" data-bs-toggle="pill" data-bs-target="#pills-template" >{% trans 'choose templates' %}</a></li>
-                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'duplicate' %}</a></li>
+                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'dublicate' %}</a></li>
                 </ul>
 
 
@@ -422,6 +423,7 @@
                             </form>
 
 
+
                         </div>
                         <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
                             {% for project in templates  %}
@@ -431,12 +433,13 @@
                         <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">
                             {% for project in old_projects  %}
 
-                                <h2>{{ project.name }} <a href="{% url 'duplicate_create_project' project.id team.id %}">Duplicate this Project</a> </h2>
+                                <h2>{{ project.name }} <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'duplicate_this_project' %}</a> </h2>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
+
 
                 </div>
             </div>
