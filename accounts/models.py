@@ -34,7 +34,7 @@ class City(models.Model):
 
 
 
-
+# email had to be cahnged to login with email
 
 class MyUser(AbstractUser):
     """ Basic User is the base of all users- using Django Implementation"""
