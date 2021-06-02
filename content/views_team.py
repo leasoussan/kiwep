@@ -155,7 +155,7 @@ class TeamEditCollectiveProjectMission(UpdateView):
 
 class TeamUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
     model = Team 
-    fields = ['name', 'project', 'start_date', 'due_date', 'group_Institution', 'participants' ] 
+    fields = ['name', 'project', 'start_date', 'group_Institution', 'participants' ]
     template_name = 'crud/update.html'
     # success_url = ('team_detail')
 
