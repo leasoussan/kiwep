@@ -98,7 +98,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kiwep.wsgi.application'
 AUTH_USER_MODEL = 'accounts.MyUser'
-AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+# AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
 
 
 # Password validation
