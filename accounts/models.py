@@ -50,7 +50,7 @@ class MyUser(AbstractUser):
     is_representative = models.BooleanField(default=False)
 
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
     objects = MyUserManager()
