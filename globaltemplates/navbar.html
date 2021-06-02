@@ -16,7 +16,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {% if user.is_authenticated %}
-                                <li><a class="nav-link" style="" href="{% url 'dashboard' %}">{% trans 'dasshboard' %}</a></li>
+                                <li><a class="nav-link" style="" href="{% url 'dashboard' %}">{% trans 'dashboard' %}</a></li>
                                 <li><a class="nav-link" href="{% url 'homepage' %}">{% trans 'home_page' %}</a></li>
                             {% else %}
                                 <li><a class="nav-link" href="{% url 'logout' %}">{% trans 'home_page' %}</a></li>

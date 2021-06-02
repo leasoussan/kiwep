@@ -3,11 +3,17 @@
 {% block content %}
 
 
-    {% if user.profile.name == "speaker" %}
 
 
+<<<<<<< HEAD
         <div class="container-fluid">
             <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add team' %}</a>
+=======
+    {% if user.is_speaker %}
+
+   <div class="container-fluid">
+            <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add_team' %}</a>
+>>>>>>> functions_calls
             </button>
         </div>
         <main class= "container-fluid">
@@ -16,7 +22,7 @@
                 <div class="col-sm-4-lg-10">
                     <div class="card">
                         <!-- <div class="card-body"> -->
-                        <h5 class="card-header">My Teams</h5>
+                        <h5 class="card-header">{% trans "my_teams" %}</h5>
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -29,12 +35,12 @@
                                     <th>{% trans 'edit' %}</th>
                                 </tr>
                                 </thead>
-                                <tbody>
 
-
+                                    <tbody>
 
                                 {% for team in team_list %}
                                     <tr>
+
 
                                         <th><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
                                         {% if team.project %}
@@ -44,12 +50,11 @@
                                         <th>{{team.project.time_to_complete}}</th>
                                         <th>{{team.project.field}}</th>
                                         <th><a href="{% url 'update_team' team.id %}">{% trans 'edit' %}</a></th>
-
                                     </tr>
                                 {% endfor %}
                                 </tbody>
                             </table>
-                            <!-- </div> -->
+
                         </div>
                     </div>
                 </div>
@@ -58,7 +63,7 @@
 
 
 
-    {% elif user.profile.name == "student"  %}
+    {% elif user.is_student %}
 
         <main class= "container-fluid">
 
@@ -106,6 +111,7 @@
         </main>
 
     {% endif %}
+
 
 
 {% endblock %}

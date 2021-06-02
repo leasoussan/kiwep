@@ -8,10 +8,10 @@
     <!-- Main content Start -->
     <div class="container-fluid">
 
-        {% if user.profile.name == "speaker" %}
+        {% if user.is_speaker %}
 <div>
 
-            <button type="button" class="btn add_button" name="button"><a href="{% url 'create_project' %}" >{% trans 'add project' %}</a></button>
+            <button type="button" class="btn add_button" name="button"><a href="{% url 'create_project' %}" >{% trans 'add_project' %}</a></button>
         </div>
 
             <div class="row">
@@ -37,7 +37,7 @@
                         <tbody>
                         {% for project in project_list %}
                             <tr>
-                                <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
+                                <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</a></th>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
                                 <td>{{project.time_to_complete}}</td>
@@ -60,10 +60,21 @@
 
         {% elif user.profile.name == "student" %}
 
+<<<<<<< HEAD
         <div class="row">
             <div class="col">
                 <h5 class="card-header">{% trans 'my project' %}</h5>
                 <table class="table table-bordered table-hover table-responsive-md">
+=======
+                        <thead>
+                        <tr>
+                            <th>{% trans 'project_name_table_header' %}</th>
+                            <th>{% trans 'speaker_table_header' %}</th>
+                            <th>{% trans 'field_table_header' %}</th>
+                            <th>{% trans 'time_to_complete_table_header' %}</th>
+                            <th>{% trans 'edit_table_header' %}</th>
+                        </tr>
+>>>>>>> functions_calls
 
 
 
@@ -119,14 +130,15 @@
                         <tbody>
                         {% for project in available_projects %}
                             <tr>
-                                <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</th>
+                                <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</a></th>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
+
 
                                 <td>{{project.time_to_complete}}</td>
 
 
-                                <td>{% trans 'check_team' %}</a> </td>
+                                <td><a>{% trans 'check_team' %}</a> </td>
 
 
                             </tr>

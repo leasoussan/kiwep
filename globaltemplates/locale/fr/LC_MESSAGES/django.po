@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-27 13:13+0300\n"
+"POT-Creation-Date: 2021-06-02 00:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,139 +18,96 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: globaltemplates/404.html:11
+#: 404.html:11
 msgid "went_wrong"
 msgstr "Il ya eu une erreur"
 
-#: globaltemplates/404.html:16 globaltemplates/500.html:17
+#: 404.html:16 500.html:17
 msgid "homepage"
 msgstr "Page d'Accueil"
 
-#: globaltemplates/500.html:13
+#: 500.html:13
 msgid "internal_server_error"
 msgstr "Erreur De Fonctionalitee"
 
-#: globaltemplates/base.html:28 globaltemplates/navbar.html:7
+#: base.html:29 navbar.html:7
 msgid "KIWEP"
 msgstr "KIWEP"
 
-#: globaltemplates/base.html:41
-msgid "dashboard"
-msgstr "Tableu de Bord"
+#: base.html:42
+#, fuzzy
+#| msgid "home_"
+msgid "home"
+msgstr "Page d'Accueil"
 
-#: globaltemplates/base.html:47
-msgid "my teams"
-msgstr "Mes Equipes"
+#: base.html:49
+msgid "my_projects"
+msgstr "Projects"
 
-#: globaltemplates/base.html:49
+#: base.html:52
 msgid "teams"
 msgstr "Equipes"
 
-#: globaltemplates/base.html:56
-#, fuzzy
-#| msgid "my_missions_sidebar"
-msgid "my missions"
+#: base.html:59
+msgid "my_missions"
 msgstr "Mes Missions"
 
-#: globaltemplates/base.html:62
+#: base.html:66
 msgid "todo"
 msgstr "A Faire"
 
-#: globaltemplates/base.html:68
-#, fuzzy
-#| msgid "projects_sidebar"
+#: base.html:73
 msgid "projects"
 msgstr "Projects"
 
-#: globaltemplates/base.html:70
-#, fuzzy
-#| msgid "educational_project"
-msgid "open_projects"
-msgstr "Projet Educationel"
+#: base.html:75
+msgid "availiable_projects"
+msgstr "Projets Disponible"
 
-#: globaltemplates/homepage.html:35
-#, fuzzy
-#| msgid "welcome"
-msgid "welcome_to_kiwep"
-msgstr "Bienvenue"
+#: homepage.html:49
+msgid "kiwep"
+msgstr "Kiwep"
 
-#: globaltemplates/homepage.html:53
-msgid "love_learn_by_project_sentence"
-msgstr "Parceque nous y croient l'apprentisage par Projet"
+#: homepage.html:53
+msgid "log_in"
+msgstr "Se Connecter"
 
-#: globaltemplates/navbar.html:37
+#: homepage.html:54
+msgid "signup"
+msgstr "S'enrengistrer"
+
+#: navbar.html:19
+msgid "dashboard"
+msgstr "Tableau de Bord"
+
+#: navbar.html:20 navbar.html:22
+msgid "home_page"
+msgstr "Page d'Accueil"
+
+#: navbar.html:24
+msgid "contact_us"
+msgstr "Nous Contacter"
+
+#: navbar.html:26
+msgid "other"
+msgstr "Autre"
+
+#: navbar.html:37
 msgid "welcome"
 msgstr "Bienvenue"
 
-#: globaltemplates/navbar.html:73
+#: navbar.html:88
 msgid "profile"
 msgstr "Profil"
 
-#: globaltemplates/navbar.html:75
+#: navbar.html:90
 msgid "logout"
 msgstr "Se Deconnecter"
 
-#: globaltemplates/navbar.html:81
+#: navbar.html:96
 msgid "login"
 msgstr "Se Connecter"
 
-#: globaltemplates/navbar.html:84
+#: navbar.html:99
 msgid "register"
 msgstr "Enrengistrement"
-
-#~ msgid "my_teams_sidebar"
-#~ msgstr "Mes Equipes"
-
-#~ msgid "teams_sidebar"
-#~ msgstr "Equipes"
-
-#~ msgid "todo_sidebar"
-#~ msgstr "To Do"
-
-#~ msgid "availiable_projects_sidebar"
-#~ msgstr "Projets Disponible"
-
-#~ msgid "about_us"
-#~ msgstr "A Propos de Nous"
-
-#~ msgid "contact_us"
-#~ msgstr "Nous Contacter"
-
-#~ msgid "adjust"
-#~ msgstr "Ajuster"
-
-#~ msgid "done"
-#~ msgstr "Terminee"
-
-#~ msgid "menu"
-#~ msgstr "Menu"
-
-#~ msgid "reports"
-#~ msgstr "Raports"
-
-#~ msgid "the_kiwep_moto"
-#~ msgstr "Le futur d'apprentisage"
-
-#~ msgid "institution_registration"
-#~ msgstr "Enregistrement Institution"
-
-#~ msgid "increse_your_skills"
-#~ msgstr "Augmenter vos competences"
-
-#~ msgid "frequently_asked_question"
-#~ msgstr "Question Fréquemment Posée"
-
-#~ msgid "what_are_the_requirements"
-#~ msgstr "Quel sont les exigences"
-
-#~ msgid "can_we_do_projects_with_no_school-attached"
-#~ msgstr "Peux on faire un projet sans que une ecole y soit attache "
-
-#~ msgid "can_i_get_a_mentor"
-#~ msgstr "Est ce possible d'avoir un Coach"
-
-#~ msgid "about"
-#~ msgstr "A propos"
-
-#~ msgid "partner_up"
-#~ msgstr "Demande de partenaria"

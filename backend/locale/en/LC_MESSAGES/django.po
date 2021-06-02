@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-27 13:13+0300\n"
+"POT-Creation-Date: 2021-06-01 23:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: backend/templates/backend/general_dashboard.html:35
+#: templates/backend/general_dashboard.html:35
 msgid "edit_profile"
 msgstr "Edit Profile"
 
-#: backend/templates/backend/speaker_dashboard.html:6
-#: backend/templates/backend/student_dashboard.html:6
+#: templates/backend/speaker_dashboard.html:8
+#: templates/backend/student_dashboard.html:6
 msgid "welcome"
 msgstr "Welcome"
 
-#: backend/templates/backend/speaker_dashboard.html:17
-#: backend/templates/backend/student_dashboard.html:17
+#: templates/backend/speaker_dashboard.html:19
+#, fuzzy
+#| msgid "create_team"
+msgid "current teams"
+msgstr "Create Team"
+
+#: templates/backend/speaker_dashboard.html:31
+#, fuzzy
+#| msgid "create_project"
+msgid "selected project"
+msgstr "Create Project"
+
+#: templates/backend/speaker_dashboard.html:41
+#: templates/backend/student_dashboard.html:39
+msgid "groups_dasboard_title"
+msgstr "Groups"
+
+#: templates/backend/student_dashboard.html:17
 msgid "current_teams_dashboard_title"
 msgstr "Current Teams"
 
-#: backend/templates/backend/speaker_dashboard.html:29
-#: backend/templates/backend/student_dashboard.html:29
+#: templates/backend/student_dashboard.html:29
 #, fuzzy
 #| msgid "my_team_projects_title"
 msgid "selected_project_dashboard_title"
 msgstr "My Projects Team"
-
-#: backend/templates/backend/speaker_dashboard.html:39
-#: backend/templates/backend/student_dashboard.html:39
-msgid "groups_dasboard_title"
-msgstr "Groups"
 
 #, fuzzy
 #~| msgid "to_your_dashboard"
@@ -88,9 +98,6 @@ msgstr "Groups"
 #~ msgid "projects_title"
 #~ msgstr "Projects"
 
-#~ msgid "create_project"
-#~ msgstr "Create Project"
-
 #~ msgid "projects_list"
 #~ msgstr "Projects Liste"
 
@@ -105,9 +112,6 @@ msgstr "Groups"
 
 #~ msgid "team_title"
 #~ msgstr "Team"
-
-#~ msgid "create_team"
-#~ msgstr "Create Team"
 
 #~ msgid "team_list"
 #~ msgstr "Team List"
