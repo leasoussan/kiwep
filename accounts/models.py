@@ -55,7 +55,7 @@ class MyUser(AbstractUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
-    objects = MyUserManager()
+    
 
 
 
