@@ -79,6 +79,4 @@ urlpatterns = [
     path('delete-resource/<int:pk>', ResourceDeleteView.as_view(), name = "delete_resource"),
 
 
-    # development link - to view
-    path('content-manager/', content_manager, name="content_manager"),
 ]
