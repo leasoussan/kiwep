@@ -135,7 +135,12 @@
                             <th>{% trans 'status' %}</th>
                             <th>{% trans 'points' %}</th>
                             <th>{% trans 'date' %}</th>
-                            <th>{% trans 'claim mission' %}</th>
+                            <th>{% if user.is_speaker %}
+                                {% trans 'mission_status' %}
+                            {% else %}
+                                {% trans 'claim_mission' %}
+                            {% endif %}</th>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -186,11 +191,14 @@
                         <thead>
                         <tr>
                             <th>{% trans 'mission' %}</th>
-
                             <th>{% trans 'status' %}</th>
                             <th>{% trans 'points' %}</th>
                             <th>{% trans 'date' %}</th>
-                            <th>{% trans 'claim mission' %}</th>
+                            <th>{% if user.is_speaker %}
+                                {% trans 'mission_status' %}
+                            {% else %}
+                                {% trans 'claim_mission' %}
+                            {% endif %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -201,13 +209,13 @@
 
                                 <tr>
                                 <td>
-                                    <a
-                                            href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a>
+                                    <a href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a>
                                 </td>
                                 <td>{{mission.stage}}</td>
                                 <td>{{mission.points}}</td>
                                 <td>{{mission.due_date}}</td>
-                               <td> {% if user.is_teacher %}
+
+                                <td> {% if user.is_speaker %}
                                     <td><a href="{% url 'assign_collective_mission_detail' mission.id %}">{% trans 'assign_mission' %}</a></td>
                                 {% else %}
                                     <button type="submit">{% trans 'request_mission' %}</button>
