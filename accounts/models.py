@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from accounts.managers import MyUserManager
 from todo.models import Task, PersonalTask, TeamTask
 
+from .managers import *
 
 
 class Country(models.Model):
@@ -55,12 +56,12 @@ class MyUser(AbstractUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
-    
+
 
 
 
     def __str__(self):
-        return f"{self.id},{str(self.username)}"
+        return f"{self.id},{str(self.username)}, {self.email}"
 
     # get_usertype
     def get_user_type(self):
