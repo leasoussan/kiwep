@@ -222,7 +222,6 @@ class Team(models.Model):
     name = models.CharField(max_length=200)
     project = models.OneToOneField(Project, on_delete=models.CASCADE, null=True)
     start_date = models.DateField()
-    due_date = models.DateField()
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Student, blank = True )
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
@@ -239,9 +238,8 @@ class Team(models.Model):
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
+# def check_date(sender, instance, *args, **kwargs):
+#         if instance.start_date > instance.due_date:
+#             raise ValueError('Start date must be less than end date')
 
-def check_date(sender, instance, *args, **kwargs):
-        if instance.start_date > instance.due_date:
-            raise ValueError('Start date must be less than end date')
-
-pre_save.connect(check_date, sender=Team)
+# pre_save.connect(check_date, sender=Team)
