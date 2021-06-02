@@ -389,7 +389,7 @@
 
                     <li><a class="btn btn_modal" href="#" data-bs-toggle="pill" data-bs-target="#pills-create-project">{% trans 'new project' %}</a></li>
                     <li ><a class="btn btn_modal"href="#" data-bs-toggle="pill" data-bs-target="#pills-template" >{% trans 'choose templates' %}</a></li>
-                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'dublicate' %}</a></li>
+                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'duplicate' %}</a></li>
                 </ul>
 
                 <div class="tab-content" id="pills-tabContent">
@@ -401,7 +401,7 @@
                             <button type="submit">Save</button>
                         </form>
 
-                        {#                         <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>#}
+                        {#                         <a href="{% url 'create_project' %}">{% trans 'add project' %}</a>#}
                     </div>
                     <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
                         {% for project in templates  %}
@@ -410,8 +410,12 @@
                     </div>
                     <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">
                         {% for project in old_projects  %}
-                            <h2>{{ project.name }}</h2>
-                            <a href="{% url 'duplicate_create_project' project.id team.id %}">COPY</a>
+                        <ul>
+                          <li>
+                            <p style="color:black;">{{ project.name }}</p>
+                            <a class="btn" href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy '%}</a>
+                          </li><hr>
+                        </ul>
                         {% endfor %}
                     </div>
                 </div>

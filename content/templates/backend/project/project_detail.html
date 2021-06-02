@@ -33,17 +33,11 @@
                                    href="#prod-overview" role="tab" aria-controls="prod-overview"
                                    aria-selected="true">{{project.name}}</a>
                             </li>
-                            {% if user.profile.name == 'student' %}
                             <li class="nav-item tab-btns">
                                 <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                   href="{% url 'student_available_project_list' %}" role="tab" aria-controls="prod-overview"
+                                   href="{% url 'project_list' %}" role="tab" aria-controls="prod-overview"
                                    aria-selected="true">{% trans 'all projects' %}</a>
-                            {% else %}
-                            <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                               href="{% url 'project_list' %}" role="tab" aria-controls="prod-overview"
-                               aria-selected="true">{% trans 'all projects' %}</a>
                             </li>
-                            {% endif %}
                             {% if user.profile.name == 'speaker' %}
                                 <li class="nav-item tab-btns">
                                     <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
@@ -58,6 +52,7 @@
                             <div class="col">
                                 <div class="card">
 
+
                                     <h5 class="card-header">{{project.title}}</h5>
                                     <div class="card-body">
                                         <p class="card-text" style="text-align:center; ">{{project.description}}</p>
@@ -65,89 +60,83 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
 
 
-                        <h5 class="card-header" style="text-align:center;background-color:#f7d493;">{% trans 'what you will learn' %}</h5>
-                        <div class="card-body">
-                            {% for skill in project.acquired_skills.all %}
-                                <p class="card-text" style="text-align:center;">{{skill.name}}</p>
-                            {% endfor %}
+                                    <h5 class="card-header" style="text-align:center;background-color:#f7d493;">{% trans 'what you will learn' %}</h5>
+                                    <div class="card-body">
+                                        {% for skill in project.acquired_skills.all %}
+                                            <p class="card-text" style="text-align:center;">{{skill.name}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
 
 
-                        <h5 class="card-header" style="text-align:center; background-color:f7d493;">{% trans 'required skills' %}</h5>
-                        <div class="card-body">
-                            {% for skill in project.required_skills.all %}
-                                <p class="card-text" style="text-align:center;">{{skill.name}}</p>
-                            {% endfor %}
+                                    <h5 class="card-header" style="text-align:center; background-color:f7d493;">{% trans 'required skills' %}</h5>
+                                    <div class="card-body">
+                                        {% for skill in project.required_skills.all %}
+                                            <p class="card-text" style="text-align:center;">{{skill.name}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-                              <div class="add_mission">
-                            <button type="button" class=" btn add_button1" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
+
+
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
                                 Add Individual Mission
                             </button>
-                            <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#CollectiveMissionModal">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CollectiveMissionModal">
                                 Add Collective Mission
-                            </button><br><br>
+                            </button>
+
+
+
+
+                            <div>
+                                {% for mission in project.individualmission_set.all  %}
+                                    <h3><a style="color: black"  href="{% url 'individual_mission_detail' mission.id %}">{{mission.name}}</a></h3>
+
+                                    <div class="pull-right">
+                                        {{mission.points}}
+                                    </div>
+                                    <div class='mission_type'>
+
+                                        {{mission.get_mission_type_display}}
+
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div>Collective Missions
+                                {% for mission in project.collectivemission_set.all %}
+
+                                    <h2><a style="color: black" href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a></h2>
+
+
+
+                                    <div class="pull-right">
+                                        {{mission.points}}
+                                    </div>
+                                    <div class='mission_type'>
+
+                                        {{mission.get_mission_type_display}}
+
+                                    </div>
+                                {% endfor %}
                             </div>
 
-                          <div class="row">
-                          <div class="col-md-6">
-
-                                  {% for mission in project.individualmission_set.all  %}
-                                    <div class="card">
-                                  <h5 class="card-header">Individual mission </h5>
-                                      <div class="card-body">
-                                        <ul> <a  href="{% url 'individual_mission_detail' mission.id %}">
-                                          <li><h5>{{mission.name}}<br>
-                                          points: {{mission.points}}<br>
-                                          {{mission.get_mission_type_display}}</h5></li><hr>
-                                        </a></ul>
-                                      </div>
-                                      {% endfor %}
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                              {% for mission in project.collectivemission_set.all %}
-                                <div class="card">
-                                  <h5 class="card-header">Collective mission</h5>
-                                  <div class="card-body">
-                                    <ul><a href="{% url 'individual_mission_detail' mission.id %}">
-                                      <li>
-                                        <h5>{{mission.name}}<br>
-                                      points: {{mission.points}}<br>
-                                      {{mission.get_mission_type_display}}</h5>
-                                    </li><hr>
-                                    </a></ul>
-
-                                  </div>
-                                  {% endfor %}
-                                </div>
-                              </div>
-                              </div>
 
 
 
-
-
-
-
-        </div>
+    </div>
     </div>
     <div class="col-md-3">
     <div class="card" style="width: 18rem;margin-top:40px;">
@@ -174,12 +163,12 @@
        </li>
      </ul>
  </div>
-</div>
-</div>
-</div>
-</section>
 
-    <!-- Modal -->
+
+
+                    </div>
+
+      <!-- Modal -->
     <div class="modal fade" id="IndividualMissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
