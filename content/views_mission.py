@@ -220,7 +220,7 @@ class StudentSubmitMission(LoginRequiredMixin, UpdateView):
         return context
 
     def get_success_url(self):
-        return reverse_lazy('team_detail', kwargs ={'pk': self.object.project.team.id})
+        return reverse_lazy('team_detail', kwargs ={'pk': self.object.team.id})
 
     def form_valid(self, form):
         return super().form_valid(form)
