@@ -4,6 +4,8 @@ from django.conf import settings
 from django.urls import reverse
 import datetime
 from django.utils.translation import ugettext_lazy as _
+
+from accounts.managers import MyUserManager
 from todo.models import Task, PersonalTask, TeamTask
 
 from .managers import *
@@ -35,7 +37,7 @@ class City(models.Model):
 
 
 
-
+# email had to be cahnged to login with email
 
 class MyUser(AbstractUser):
     """ Basic User is the base of all users- using Django Implementation"""
@@ -48,6 +50,7 @@ class MyUser(AbstractUser):
     is_student = models.BooleanField(default = False)
     is_speaker = models.BooleanField(default=False)
     is_representative = models.BooleanField(default=False)
+
 
 
     USERNAME_FIELD = 'username'

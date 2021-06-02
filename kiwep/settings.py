@@ -130,8 +130,8 @@ EMAIL_PORT = 587
 LANGUAGE_CODE = 'en-us'
 LANGUAGES = [
     ('en', _('English')),
-    ('fr', _('French')),
-    ('he', _('Hebrew')),
+    # ('fr', _('French')),
+    # ('he', _('Hebrew')),
 ]
 # Languages will give option into cookies
 

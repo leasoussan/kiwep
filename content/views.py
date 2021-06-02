@@ -10,10 +10,6 @@ def homepage_view(request):
     return render(request, 'homepage.html')
 
 
-
-def content_manager(request):
-   return render(request, 'content/crud_manager.html')
-
 # def date_message(request):
 #     context = {}
 #     form = TeamAddForm(request.POST or None)
