@@ -6,6 +6,8 @@ from .forms import TeamAddForm, CollectiveMissionFormSet, AddMemberTeamForm, Ind
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
+from django.contrib import messages
+
 
 from django.views.generic import (
     CreateView, 
@@ -91,6 +93,12 @@ class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateVie
     def get_success_url(self):
         return reverse_lazy('team_detail', kwargs={'pk':self.object.id})
 
+    # def time_message(self, request):
+    #     if Team.start_date > Team.due_date:
+    #         messages.warning(request, 'Start date must be less than end date')
+    #         return render(request, "create_team_mission.html")
+
+
 
 
 
@@ -157,7 +165,7 @@ class TeamEditCollectiveProjectMission(UpdateView):
 
 class TeamUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
     model = Team 
-    fields = ['name', 'project', 'start_date', 'due_date', 'group_Institution', 'participants' ] 
+    fields = ['name', 'project', 'start_date', 'group_Institution', 'participants' ]
     template_name = 'crud/update.html'
     # success_url = ('team_detail')
 

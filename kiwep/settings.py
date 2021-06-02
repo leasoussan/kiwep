@@ -16,25 +16,16 @@ from django.utils.translation import ugettext_lazy as _
 # heroku
 import django_heroku
 
-
 from pathlib import Path
 import os
 
-
-
 import dj_database_url
-
-
-
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
 
 
 # Application definition
@@ -56,8 +47,8 @@ INSTALLED_APPS = [
 
     #3rd Parties
     'rest_framework',
-     'crispy_forms',
-     'bootstrap4',
+    'crispy_forms',
+    'bootstrap4',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -123,11 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # this is to gonfig the Database connection on Heroku and create confing var
-DATABASES = { 'default' : dj_database_url.config()}
-
-
-
-
+DATABASES = {'default': dj_database_url.config()}
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -136,10 +123,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-
-
-
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -160,7 +143,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -170,7 +152,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
@@ -182,22 +164,17 @@ LOGIN_REDIRECT_URL = "dashboard"
 
 LOGOUT_REDIRECT_URL = "homepage"
 
-
 LOGOUT_URL = "homepage"
-
 
 APPEND_SLASH=False
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 EMAIL_HOST_USER= os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 DEBUG = os.environ.get('DEBUG')
-
 
 try:
     from .local_settings import *

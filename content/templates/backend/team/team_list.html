@@ -5,15 +5,13 @@
 
 
 
-<<<<<<< HEAD
-        <div class="container-fluid">
-            <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add team' %}</a>
-=======
+
     {% if user.is_speaker %}
 
    <div class="container-fluid">
             <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add_team' %}</a>
->>>>>>> functions_calls
+
+
             </button>
         </div>
         <main class= "container-fluid">
@@ -27,8 +25,8 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>{% trans 'team name' %}</th>
-                                    <th>{% trans 'project name' %}</th>
+                                    <th>{% trans 'team_name' %}</th>
+                                    <th>{% trans 'project_name' %}</th>
                                     <th>{% trans 'participants' %}</th>
                                     <th>{% trans 'duration' %}</th>
                                     <th>{% trans 'field' %}</th>
@@ -93,9 +91,10 @@
                                             <th>{{ team.project.title }}</th>
                                             <th>{{ team.participants.count }}</th>
                                             <th>{{team.project.time_to_complete}}</th>
-                                            <th>{{team.due_date }}</th>
+                                            <th>DUE DATE</th>
 
                                         </tr>
+
                                     {% endfor %}
 
 

@@ -142,7 +142,12 @@
                             <th>{% trans 'status' %}</th>
                             <th>{% trans 'points' %}</th>
                             <th>{% trans 'date' %}</th>
-                            <th>{% trans 'claim mission' %}</th>
+                            <th>{% if user.is_speaker %}
+                                {% trans 'mission_status' %}
+                            {% else %}
+                                {% trans 'claim_mission' %}
+                            {% endif %}</th>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -193,11 +198,14 @@
                         <thead>
                         <tr>
                             <th>{% trans 'mission' %}</th>
-
                             <th>{% trans 'status' %}</th>
                             <th>{% trans 'points' %}</th>
                             <th>{% trans 'date' %}</th>
-                            <th>{% trans 'claim mission' %}</th>
+                            <th>{% if user.is_speaker %}
+                                {% trans 'mission_status' %}
+                            {% else %}
+                                {% trans 'claim_mission' %}
+                            {% endif %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -208,14 +216,16 @@
 
                                 <tr>
                                 <td>
-                                    <a
-                                            href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a>
+                                    <a href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a>
                                 </td>
                                 <td>{{mission.stage}}</td>
                                 <td>{{mission.points}}</td>
                                 <td>{{mission.due_date}}</td>
-                               <td> {% if user.is_teacher %}
-                                    <td><a href="{% url 'assign_collective_mission_detail' mission.id %}">{% trans 'assign_mission' %}</a>
+
+
+                                <td> {% if user.is_speaker %}
+                                    <td><a href="{% url 'assign_collective_mission_detail' mission.id %}">{% trans 'assign_mission' %}</a></td>
+
                                 {% else %}
                                     <button type="submit">{% trans 'request_mission' %}</button>
                                 {% endif %}
@@ -404,7 +414,7 @@
 
                     <li><a class="btn btn_modal" href="#" data-bs-toggle="pill" data-bs-target="#pills-create-project">{% trans 'new project' %}</a></li>
                     <li ><a class="btn btn_modal"href="#" data-bs-toggle="pill" data-bs-target="#pills-template" >{% trans 'choose templates' %}</a></li>
-                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'duplicate' %}</a></li>
+                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'dublicate' %}</a></li>
                 </ul>
 
 
@@ -432,7 +442,7 @@
                                 <button type="submit">Save </button>
                             </form>
 
-                        {#                         <a href="{% url 'create_project' %}">{% trans 'add project' %}</a>#}
+                        {#                         <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>#}
                     </div>
                     <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
                         {% for project in templates  %}
@@ -441,12 +451,8 @@
                     </div>
                     <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">
                         {% for project in old_projects  %}
-                        <ul>
-                          <li>
-                            <p style="color:black;">{{ project.name }}</p>
-                            <a class="btn" href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy '%}</a>
-                          </li><hr>
-                        </ul>
+                            <h2>{{ project.name }}</h2>
+                            <a href="{% url 'duplicate_create_project' project.id team.id %}">COPY</a>
                         {% endfor %}
                     </div>
                 </div>
