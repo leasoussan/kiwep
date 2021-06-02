@@ -65,35 +65,37 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="card">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
 
 
-                                    <h5 class="card-header" style="text-align:center;background-color:#f7d493;">{% trans 'what you will learn' %}</h5>
-                                    <div class="card-body">
-                                        {% for skill in project.acquired_skills.all %}
-                                            <p class="card-text" style="text-align:center;">{{skill.name}}</p>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
+                        <h5 class="card-header" style="text-align:center;background-color:#f7d493;">{% trans 'what you will learn' %}</h5>
+                        <div class="card-body">
+                            {% for skill in project.acquired_skills.all %}
+                                <p class="card-text" style="text-align:center;">{{skill.name}}</p>
+                            {% endfor %}
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="card">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
 
 
-                                    <h5 class="card-header" style="text-align:center; background-color:f7d493;">{% trans 'required skills' %}</h5>
-                                    <div class="card-body">
-                                        {% for skill in project.required_skills.all %}
-                                            <p class="card-text" style="text-align:center;">{{skill.name}}</p>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
+                        <h5 class="card-header" style="text-align:center; background-color:f7d493;">{% trans 'required skills' %}</h5>
+                        <div class="card-body">
+                            {% for skill in project.required_skills.all %}
+                                <p class="card-text" style="text-align:center;">{{skill.name}}</p>
+                            {% endfor %}
                         </div>
-
+                    </div>
+                </div>
+            </div>
 
                               <div class="add_mission">
                             <button type="button" class=" btn add_button1" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
@@ -145,7 +147,7 @@
 
 
 
-    </div>
+        </div>
     </div>
     <div class="col-md-3">
     <div class="card" style="width: 18rem;margin-top:40px;">
@@ -177,7 +179,7 @@
 </div>
 </section>
 
-      <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="IndividualMissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

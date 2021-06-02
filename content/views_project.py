@@ -274,6 +274,7 @@ class ProjectUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateV
             'time_to_complete',
             'field',
             'difficulty',
+            'is_template'
             ]
     template_name = 'crud/update.html'
     

@@ -31,7 +31,6 @@ class TeamAddForm(ModelForm):
         fields = [
             'name',
             'start_date',
-            'due_date',
             'group_Institution',
             'participants',
         ]
