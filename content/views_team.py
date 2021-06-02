@@ -63,7 +63,6 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
 
     def get_object(self):
         pk = self.kwargs.get("pk")
-
         return get_object_or_404(Team, pk=pk)
 
 

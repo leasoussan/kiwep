@@ -163,6 +163,10 @@ class ResourceAddForm(ModelForm):
 
     link= forms.URLField()
 
+
+
+
+
 CollectiveMissionFormSet = inlineformset_factory(
     Project,
     CollectiveMission,

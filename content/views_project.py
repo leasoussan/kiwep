@@ -8,8 +8,8 @@ from .forms import (
     IndividualMissionFormSet,
     CollectiveMissionFormSet,
     IndividualMissionAddForm,
-    CollectiveMissionAddForm,
-    )
+    CollectiveMissionAddForm, ResourceAddForm,
+)
 from django.urls import reverse_lazy
 
 from django.views.generic import (
@@ -121,6 +121,7 @@ class ProjectDetailView(ProfileCheckPassesTestMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['individual_form'] = IndividualMissionAddForm()
         context['collective_form'] = CollectiveMissionAddForm()
+        context['resources_form'] = ResourceAddForm()
         return context
 
 
