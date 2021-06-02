@@ -9,48 +9,48 @@
     <div class="container-fluid">
 
         {% if user.is_speaker %}
-<div>
+            <div>
 
-            <button type="button" class="btn add_button" name="button"><a href="{% url 'create_project' %}" >{% trans 'add_project' %}</a></button>
-        </div>
+                <button type="button" class="btn add_button" name="button"><a href="{% url 'create_project' %}" >{% trans 'add_project' %}</a></button>
+            </div>
 
             <div class="row">
                 <div class="col-sm-4-lg-10">
-                  <div class="card">
-                    <h5 class="card-header">{% trans 'available_project_list' %}</h5>
+                    <div class="card">
+                        <h5 class="card-header">{% trans 'available_project_list' %}</h5>
 
-                    <!-- {#<div id="createProject">#}
+                        <!-- {#<div id="createProject">#}
                     {#<div> #} -->
 
-                    <table class="table table-bordered table-hover table-responsive-md">
-                        <thead>
-                        <tr>
-                            <th scope="col">{% trans 'project_name_table_header' %}</th>
-                            <th scope="col">{% trans 'speaker_table_header' %}</th>
-                            <th scope="col">{% trans 'field_table_header' %}</th>
-                            <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
-                            <th scope="col">{% trans 'select_project' %}</th>
-
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for project in project_list %}
+                        <table class="table table-bordered table-hover table-responsive-md">
+                            <thead>
                             <tr>
-                                <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</a></th>
-                                <td>{{project.speaker.user.first_name}}</td>
-                                <td>{{project.field}}</td>
-                                <td>{{project.time_to_complete}}</td>
-                                <td> <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select_project' %}</a> </td>
+                                <th scope="col">{% trans 'project_name_table_header' %}</th>
+                                <th scope="col">{% trans 'speaker_table_header' %}</th>
+                                <th scope="col">{% trans 'field_table_header' %}</th>
+                                <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
+                                <th scope="col">{% trans 'select_project' %}</th>
+
+
                             </tr>
-                        {% endfor %}
+                            </thead>
+                            <tbody>
+                            {% for project in project_list %}
+                                <tr>
+                                    <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</a></th>
+                                    <td>{{project.speaker.user.first_name}}</td>
+                                    <td>{{project.field}}</td>
+                                    <td>{{project.time_to_complete}}</td>
+                                    <td> <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select_project' %}</a> </td>
+                                </tr>
+                            {% endfor %}
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
 
-            </div>
-            </div>
+                    </div>
+                </div>
             </div>
 
 
@@ -60,13 +60,6 @@
                 <div class="col">
                     <h5 class="card-header">{% trans 'my_project_list' %}</h5>
                     <table class="table table-bordered table-hover table-responsive-md">
-
-
-
-        <div class="row">
-            <div class="col">
-                <h5 class="card-header">{% trans 'my project' %}</h5>
-                <table class="table table-bordered table-hover table-responsive-md">
 
                         <thead>
                         <tr>
@@ -93,18 +86,14 @@
                         {% endfor %}
                         </tbody>
 
+
                     </table>
                 </div>
 
-
-
             </div>
+            <div>
 
-
-
-<div>
-
-        {% elif user.profile.name == "student" %}
+        {% elif user.is_student %}
 
 
             <div class="row">
@@ -154,7 +143,7 @@
 
         {% endif %}
 
-</div>
+        </div>
     </div>
 
 
