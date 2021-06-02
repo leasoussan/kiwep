@@ -1,5 +1,5 @@
 body {
-  font-family:  'Helvetica', 'sans-serif';
+  font-family: 'RocknRoll One', sans-serif;
   background-color: #f6f6f6;
   color: #7d7d83;
 }
@@ -39,11 +39,8 @@ li a:hover {
 }
  a:hover {
   color: #425940;
+
   text-decoration: none;
-}
-a .btn:hover {
-  background-color: #425940;
-  color: #fffefc;
 }
 #title_kiwep {
   text-align: center;
@@ -180,10 +177,6 @@ h5 {
   background-color: #f7d493;
   border: 1px solid #7d7d83;
 }
-.add_button1 {
-  background-color: #9fce9c;
-  border: 1px solid #7d7d83;
-}
 .add_button a {
   color:black;
 }
@@ -272,11 +265,6 @@ a .btn_modal {
     justify-content: center;
   }
 /* ENDDASHBOARD */
-
-/* ADD INDIVIDUAL AND COLLECTIVE MISSIONS */
-.add_mission {
-  text-align:center;
-}
 Red : df5f46
 Orange : eca255
 Yellow: f7d493

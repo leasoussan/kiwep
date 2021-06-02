@@ -10,8 +10,25 @@
     {{ object }}
     {# TODO#:Fix position of buttons#}
 
+    {% if user.profile.name == 'speaker' %}
+        <div class="">
+        <button> <a href="{{ object.get_update_url }}">{% trans 'edit_mission_button' %}</a></button>
+        <button> <a href="{% url 'create_resource' %}">{% trans 'add_ressource' %}</a></button>
+
+
+    {% endif %}
+
+
+<a href="{% url 'project_detail' object.id %}"> <button>B{% trans 'back_to_project_button' %}</button></a>
+
+
+
+
+</div>
     <!-- Intro Courses -->
     <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
+
+
         <div class="container">
             <div class="row clearfix">
                 <!-- Content Column -->
@@ -22,31 +39,12 @@
                             <li class="nav-item tab-btns">
                                 <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                                    href="#prod-overview" role="tab" aria-controls="prod-overview"
-                                   aria-selected="true">{%  trans 'mission' %}</a>
+                                   aria-selected="true">{%  trans 'the_mission' %}</a>
                             </li>
-                            {% if user.profile.name == 'speaker' %}
-                            <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                               href="{{ object.get_update_url }}" role="tab" aria-controls="prod-overview"
-                               aria-selected="true">{% trans 'edit' %}</a></li>
-                            <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                  href="{% url 'create_resource' %}" role="tab" aria-controls="prod-overview"
-                                  aria-selected="true">{% trans 'add resource' %}</a></li>
-                            {% endif %}
-                            <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                  href="{% url 'project_detail' object.id %}" role="tab" aria-controls="prod-overview"
-                                  aria-selected="true">{% trans 'back ' %}</a></li>
-                        </ul>
-                        <div class="row">
-                            <div class="col">
-                                <div class="card">
-                                    <h5 class="card-header">{{project.title}}</h5>
-                                    <div class="card-body">
-                                        <p class="card-text" style="text-align:center; ">{{project.description}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
+
+
+                        </ul>
                         <div class="tab-content tabs-content" id="myTabContent">
                             <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
                                  aria-labelledby="prod-overview-tab">
@@ -85,7 +83,7 @@
         {% endfor %}
         HERE
     </div>
-    </div>
+    </div
     <!-- Video Column -->
     <div class="video-column col-lg-4">
     <div class="inner-column">

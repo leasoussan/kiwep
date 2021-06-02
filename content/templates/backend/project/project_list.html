@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-sm-4-lg-10">
                   <div class="card">
-                    <h5 class="card-header">{% trans 'available project' %}</h5>
+                    <h5 class="card-header">{% trans 'available_project_list' %}</h5>
 
                     <!-- {#<div id="createProject">#}
                     {#<div> #} -->
@@ -25,11 +25,11 @@
                     <table class="table table-bordered table-hover table-responsive-md">
                         <thead>
                         <tr>
-                            <th scope="col">{% trans 'project name' %}</th>
-                            <th scope="col">{% trans 'speaker' %}</th>
-                            <th scope="col">{% trans 'field' %}</th>
-                            <th scope="col">{% trans 'time to complete' %}</th>
-                            <th scope="col">{% trans 'select project' %}</th>
+                            <th scope="col">{% trans 'project_name_table_header' %}</th>
+                            <th scope="col">{% trans 'speaker_table_header' %}</th>
+                            <th scope="col">{% trans 'field_table_header' %}</th>
+                            <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
+                            <th scope="col">{% trans 'select_project' %}</th>
 
 
                         </tr>
@@ -41,7 +41,7 @@
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
                                 <td>{{project.time_to_complete}}</td>
-                                <td> <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select project' %}</a> </td>
+                                <td> <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select_project' %}</a> </td>
                             </tr>
                         {% endfor %}
 
@@ -56,60 +56,60 @@
 
 
 
+            <div class="row">
+                <div class="col">
+                    <h5 class="card-header">{% trans 'my_project_list' %}</h5>
+                    <table class="table table-bordered table-hover table-responsive-md">
 
 
-        {% elif user.profile.name == "student" %}
 
-<<<<<<< HEAD
         <div class="row">
             <div class="col">
                 <h5 class="card-header">{% trans 'my project' %}</h5>
                 <table class="table table-bordered table-hover table-responsive-md">
-=======
+
                         <thead>
                         <tr>
                             <th>{% trans 'project_name_table_header' %}</th>
                             <th>{% trans 'speaker_table_header' %}</th>
                             <th>{% trans 'field_table_header' %}</th>
                             <th>{% trans 'time_to_complete_table_header' %}</th>
-                            <th>{% trans 'edit_table_header' %}</th>
-                        </tr>
->>>>>>> functions_calls
 
-
-
-                    <thead>
-                    <tr>
-                        <th>{% trans 'project' %}</th>
-                        <th>{% trans 'speaker' %}</th>
-                        <th>{% trans 'field' %}</th>
-                        <th>{% trans 'time to complete' %}</th>
-                        <th>{% trans 'edit duplicate project' %}</th>
-                        <th>{% trans 'duplicate project' %}</th>
-                    </tr>
-
-                    </thead>
-                    <tbody>
-                    {% for project in user.profile.project_set.personal_projects %}
-
-                        <tr>
-                            <td><a href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
-                            <td>{{project.speaker.user.first_name}}</td>
-                            <td>{{project.field}}</td>
-                            <td>{{project.time_to_complete}}</td>
-                            <td><a href="{% url 'update_project' project.id %}">Edit</a></td>
-                            <td><a href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a></td>
+                            <th>{% trans 'edit_duplicate_project_table_header' %}</th>
                         </tr>
 
-                    {% endfor %}
-                    </tbody>
+                        </thead>
+                        <tbody>
+                        {% for project in user.profile.project_set.personal_projects %}
 
-                </table>
+                            <tr>
+                                <td><a href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
+                                <td>{{project.speaker.user.first_name}}</td>
+                                <td>{{project.field}}</td>
+                                <td>{{project.time_to_complete}}</td>
+                                <td><a href="{% url 'update_project' project.id %}">Edit</a> <a href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a></a> </td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+
             </div>
-        </div>
+
+
+
+<div>
+
+        {% elif user.profile.name == "student" %}
+
+
             <div class="row">
                 <div class="col">
-                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'available project for' %} {{user.first_name}}</h5>
+                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'available project' %}</h5>
 
                     {#<div id="createProject">#}
                     {#<div> #}
@@ -117,11 +117,11 @@
                     <table class="table table-bordered table-hover table-responsive-md">
                         <thead>
                         <tr>
-                            <th scope="col">{% trans 'project name' %}</th>
-                            <th scope="col">{% trans 'speaker' %}</th>
-                            <th scope="col">{% trans 'field' %}</th>
-                            <th scope="col">{% trans 'time_to_complete' %}</th>
-                            <th scope="col">{% trans 'check team' %}</th>
+                            <th scope="col">{% trans 'project_name_table_header' %}</th>
+                            <th scope="col">{% trans 'speaker_table_header' %}</th>
+                            <th scope="col">{% trans 'field_table_header' %}</th>
+                            <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
+                            <th scope="col">{% trans 'check_team' %}</th>
 
 
                         </tr>
@@ -139,6 +139,7 @@
 
 
                                 <td><a>{% trans 'check_team' %}</a> </td>
+
 
 
                             </tr>
