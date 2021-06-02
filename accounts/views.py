@@ -79,7 +79,7 @@ class Register(View):
 # -----------------------------------------------------------------------------------------------
 
 
-def get_user_profile_form(request, usertype, edit=False): 
+def get_user_profile_form(request, edit=False):
 
     """ This function allows is to check which profile is requested, 
     and to know what page/authorization to direct it to"""

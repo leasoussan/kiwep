@@ -41,6 +41,7 @@ class City(models.Model):
 
 class MyUser(AbstractUser):
     """ Basic User is the base of all users- using Django Implementation"""
+
     email = models.EmailField()
     phone_number = models.CharField(max_length=30, blank = True, null = True)
     profile_pic = models.ImageField(default = 'profile/avatar.png', upload_to='media/profile/', blank = True, null = True)
@@ -56,7 +57,7 @@ class MyUser(AbstractUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
-    objects = MyUserManager()
+
 
 
 
