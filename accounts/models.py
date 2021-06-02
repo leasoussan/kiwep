@@ -49,6 +49,16 @@ class MyUser(AbstractUser):
     is_representative = models.BooleanField(default=False)
 
 
+<<<<<<< Updated upstream
+=======
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = []
+
+    objects = MyUserManager()
+
+
+
+>>>>>>> Stashed changes
     def __str__(self):
         return f"{self.id},{str(self.username)}"
 
