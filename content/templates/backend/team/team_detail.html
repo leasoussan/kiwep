@@ -125,7 +125,7 @@
 
 
     <!--
-{% if user.profile.name == "speaker" %}
+{% if user.is_speakers %}
 {% endif %} -->
 
 
@@ -278,7 +278,7 @@
 
     <!-- ------------------------------------------------------------------STUDENT VIEW HIS MISSION LIST  -->
 
-    {% if user.profile.name == "student" %}
+    {% if user.is_student %}
 
         <div class="row">
         <div class="col">

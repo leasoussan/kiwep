@@ -11,19 +11,19 @@
 
 
 
-{% if user.profile.name == 'representative' %}
+{% if user.is_representative %}
 
 {% include 'backend/representative_dashboard.html' %}
 
 
-{% elif user.profile.name == 'speaker' %}
+{% elif user.is_speaker %}
 
 {% include 'backend/speaker_dashboard.html' %}
 
 
 
 
-{% elif user.profile.name  == 'student' %}
+{% elif user.is_student %}
 
 {% include 'backend/student_dashboard.html' %}
 
