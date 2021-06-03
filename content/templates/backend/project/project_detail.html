@@ -21,10 +21,17 @@
     {#    </div>#}
     <!-- Intro Courses -->
     <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
+<<<<<<< HEAD
         <div class="container col-lg-12">
             <div class="row clearfix col-lg-8" >
                 <!-- Content Column -->
                 <div class="col-md-10 missions_list_team">
+=======
+        <div class="container">
+            <div class="row clearfix">
+                <!-- Content Column -->
+                <div class="col-md-9 md-mb-50">
+>>>>>>> 265a0e9cd5514daafddd35330cdc96d032d4f40a
                     <!-- Intro Info Tabs-->
                     <div class="intro-info-tabs">
                         <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
@@ -33,6 +40,7 @@
                                    href="#prod-overview" role="tab" aria-controls="prod-overview"
                                    aria-selected="true">{{project.name}}</a>
                             </li>
+<<<<<<< HEAD
                             {% if user.is_student %}
                                 <li class="nav-item tab-btns">
                                     <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
@@ -45,6 +53,14 @@
                                 </li>
                             {% endif %}
                             {% if user.is_speaker %}
+=======
+                            <li class="nav-item tab-btns">
+                                <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
+                                   href="{% url 'project_list' %}" role="tab" aria-controls="prod-overview"
+                                   aria-selected="true">{% trans 'all projects' %}</a>
+                            </li>
+                            {% if user.profile.name == 'speaker' %}
+>>>>>>> 265a0e9cd5514daafddd35330cdc96d032d4f40a
                                 <li class="nav-item tab-btns">
                                     <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                                        href="{% url 'update_project' project.id %}" role="tab" aria-controls="prod-overview"
@@ -54,11 +70,18 @@
 
 
                         </ul>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 265a0e9cd5514daafddd35330cdc96d032d4f40a
                         <div class="row">
                             <div class="col">
                                 <div class="card">
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 265a0e9cd5514daafddd35330cdc96d032d4f40a
                                     <h5 class="card-header">{{project.title}}</h5>
                                     <div class="card-body">
                                         <p class="card-text" style="text-align:center; ">{{project.description}}</p>
@@ -66,7 +89,10 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 265a0e9cd5514daafddd35330cdc96d032d4f40a
                         <div class="row">
                             <div class="col">
                                 <div class="card">
@@ -94,6 +120,7 @@
                                     </div>
                                 </div>
                             </div>
+<<<<<<< HEAD
                         </div>
 
 
@@ -207,10 +234,12 @@
         </div>
         </div>
 
+
     </section>
 
 
-    <!-- Modal -->
+
+
     <div class="modal fade" id="IndividualMissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
