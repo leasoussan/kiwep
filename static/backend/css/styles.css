@@ -277,6 +277,21 @@ a .btn_modal {
 .add_mission {
   text-align:center;
 }
+
+.add_resource{
+   text-align:center;
+}
+
+
+.missions_list_team{
+  display:flex;
+  flex-direction: row;
+}
+.list-group{
+  width: 150px;
+}
+
+
 Red : df5f46
 Orange : eca255
 Yellow: f7d493
