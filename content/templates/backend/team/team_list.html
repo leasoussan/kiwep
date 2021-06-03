@@ -3,7 +3,7 @@
 {% block content %}
 
 
-    {% if user.profile.name == "speaker" %}
+    {% if user.speaker %}
 
     <div class="container-fluid">
       <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add_team' %}</a>
@@ -50,7 +50,7 @@
 
 
 
- {% elif user.profile.name == "student"  %}
+ {% elif ueser.id_student  %}
 
     <main class= "container-fluid">
 
