@@ -282,6 +282,10 @@ a .btn_modal {
    /* text-align:center; */
 }
 
+/* MISSION DESCRIPTION */
+.mission_description {
+  color:black;
+}
 
 .missions_list_team{
   display:flex;
