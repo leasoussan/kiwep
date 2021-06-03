@@ -89,43 +89,44 @@
         </div>
 
 
+{##TODO: Comment Board#}
+{##}
+{#            </div>#}
+{#            <div>#}
+{#                <button><a href="#">Comment Team Board</a></button>#}
+{#            </div>#}
+{#        </div>#}
 
-        {##}
-        {##}
-        {#            </div>#}
-        {#            <div>#}
-        {#                <button><a href="#">Comment Team Board</a></button>#}
-        {#            </div>#}
-        {#        </div>#}
 
     </div>
 
 
-    {#    #TODO: Progress bar#}
+{#    #TODO: Progress bar#}
 
-    {#    {% if user.profile in team.participants.all or user.profile.name == "speaker" %}#}
-    {##}
-    {#        <div class="row">#}
-    {#            <div class="col-xl">#}
-    {#                <div class="card">#}
-    {#                    <div class="card-body">#}
-    {#                        <p>Where are you at?</p>#}
-    {#                        <div class="progress">#}
-    {#                            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" role="progressbar"#}
-    {#                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>#}
-    {#                        </div>#}
-    {#                    </div>#}
-    {#                </div>#}
-    {#            </div>#}
-    {#        </div>#}
-    {##}
-    {#    {% endif %}#}
+{#    {% if user.profile in team.participants.all or user.profile.name == "speaker" %}#}
+{##}
+{#        <div class="row">#}
+{#            <div class="col-xl">#}
+{#                <div class="card">#}
+{#                    <div class="card-body">#}
+{#                        <p>Where are you at?</p>#}
+{#                        <div class="progress">#}
+{#                            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" role="progressbar"#}
+{#                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    {% endif %}#}
+
 
 
 
 
     <!--
-{% if user.profile.name == "speaker" %}
+{% if user.is_speaker %}
 {% endif %} -->
 
 
@@ -391,6 +392,7 @@
             </div>
             <div class="modal-body modal-open">
                 <ul class="nav nav-pills">
+
 
                     <li><a class="btn btn_modal" href="#" data-bs-toggle="pill" data-bs-target="#pills-create-project">{% trans 'new_project' %}</a></li>
                     <li ><a class="btn btn_modal"href="#" data-bs-toggle="pill" data-bs-target="#pills-template" >{% trans 'choose_templates' %}</a></li>
