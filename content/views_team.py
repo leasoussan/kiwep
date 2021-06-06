@@ -44,7 +44,7 @@ class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
             print("you have no team YO!")
             raise Http404
 
-class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView):
+class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
     """ Global Team Details """
     
     model = Team
@@ -72,7 +72,7 @@ class TeamDetailView(LoginRequiredMixin, ProfileCheckPassesTestMixin, DetailView
 
 
 
-class TeamCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,  CreateView):
+class TeamCreateView(SpeakerStatuPassesTestMixin,  CreateView):
     """Create a Team View """
     model = Team 
     form_class = TeamAddForm
@@ -142,7 +142,7 @@ class TeamCreateMissionView(SpeakerStatuPassesTestMixin, View):
 # prefix='collective' We might need to add a Prefix if using few formset- might have been changed by DJANGO 
 
 
-class TeamEditIndividualProjectMission(UpdateView):
+class TeamEditIndividualProjectMission(SpeakerStatuPassesTestMixin, UpdateView):
     """ """
     model = IndividualMission
     fields = '__all__'
@@ -152,7 +152,7 @@ class TeamEditIndividualProjectMission(UpdateView):
 
 
 
-class TeamEditCollectiveProjectMission(UpdateView):
+class TeamEditCollectiveProjectMission(SpeakerStatuPassesTestMixin, UpdateView):
     model = CollectiveMission
     fields = '__all__'
 
