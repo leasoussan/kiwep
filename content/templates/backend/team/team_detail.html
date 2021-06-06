@@ -51,7 +51,7 @@
 
                         {%endif %}
 
-                        <!-- {% if user.profile.name == 'speaker' %}
+                        <!-- {% if user.is_speaker %}
                               <button type="button" class="btn" name="button"><a href="{% url 'add_member_team' team.id %}">{% trans 'add students' %}</a></button>
                             {%  endif %} -->
 
@@ -73,10 +73,10 @@
 
                     <h3 class="card-header">Project</h3>
 
-                    {% if user.profile.name == 'speaker' %}
+                    {% if user.is_speaker  %}
                         <div class="student_list">
                             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ChoseProject">
-                                Chose a Project For the Team
+                                {% trans 'choose_project_team' %}
                             </button>
                         </div>
                         <!-- Button trigger modal -->
@@ -144,12 +144,12 @@
                             <th>{% trans 'status' %}</th>
                             <th>{% trans 'points' %}</th>
                             <th>{% trans 'date' %}</th>
-                            <th>{% trans 'claim mission' %}</th>
+                            <th>{% trans 'claim_mission' %}</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
+                        {% if user.profile in team.participants.all or user.is_speaker  %}
                             {% for mission in team.project.individualmission_set.available_mission %}
 
 
@@ -167,7 +167,7 @@
                                         {% if user.is_student %}
                                             <td><a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a></td>
                                         {% else %}
-                                            {% trans 'available mission' %}
+                                            {% trans 'available_mission' %}
                                         {% endif %}
 
                                 </tr>
@@ -187,7 +187,7 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <h5 class="card-header">{% trans 'collective mission' %}</h5>
+                <h5 class="card-header">{% trans 'collective_mission' %}</h5>
 
                 <div class="card-body">
 
@@ -199,12 +199,12 @@
                             <th>{% trans 'status' %}</th>
                             <th>{% trans 'points' %}</th>
                             <th>{% trans 'date' %}</th>
-                            <th>{% trans 'claim mission' %}</th>
+                            <th>{% trans 'claim_mission' %}</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
+                        {% if user.profile in team.participants.all or user.is_speaker %}
                             {% for mission in team.project.collectivemission_set.all %}
 
 
@@ -246,7 +246,7 @@
                             <tr>
                                 <th>{% trans 'mission' %}</th>
                                 <th>{% trans 'attributed to' %}</th>
-                                <th>{% trans 'stage of project' %}</th>
+                                <th>{% trans 'stage_of_project' %}</th>
                                 <th>{% trans 'points' %}</th>
                                 <th>{% trans 'date' %}</th>
                                 <th>{% trans 'status' %}</th>
@@ -262,7 +262,7 @@
                                     <td>{{mission.stage}}</td>
                                     <td>{{mission.points}}</td>
                                     <td>{{mission.due_date}}</td>
-                                    <td><a href="{% url 'submit_mission' mission.id  %}">See mission</a></td>
+                                    <td><a href="{% url 'submit_mission' mission.id  %}">{% trans 'see_mission' %}</a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -283,7 +283,7 @@
         <div class="row">
         <div class="col">
         <div class="card">
-        <h5 class="card-header">{% trans 'project mission' %}</h5>
+        <h5 class="card-header">{% trans 'project_mission' %}</h5>
 
         <div class="card-body">
             <p>My assigned missions</p>
@@ -292,7 +292,7 @@
                 <tr>
                     <th>{% trans 'project' %}</th>
                     <th>{% trans 'mission' %}</th>
-                    <th>{% trans 'stage of project' %}</th>
+                    <th>{% trans 'stage_of_project' %}</th>
                     <th>{% trans 'points' %}</th>
                     <th>{% trans 'date' %}</th>
                     <th>{% trans 'status' %}</th>
@@ -300,7 +300,7 @@
                 </thead>
                 <tbody>
 
-                {% for mission in team.project.individualmission_set|student_missions:user.student %}
+                {% for mission in team.project.individualmission_set|student_missions:user.is_student %}
 
                     <tr>
                         <td><a href="

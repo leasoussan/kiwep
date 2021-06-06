@@ -21,11 +21,11 @@
     {#    </div>#}
     <!-- Intro Courses -->
     <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
-        <div class="container col-lg-12">
-            <div class="row clearfix col-lg-8" >
+        <div class="container col-lg-12" >
+            <div class="row clearfix" >
                 <!-- Content Column -->
                 <div class="col-md-10 missions_list_team">
-                    <!-- Intro Info Tabs-->
+                    <!-- Intro Info Tabs -->
                     <div class="intro-info-tabs">
                         <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
                             <li class="nav-item tab-btns">
@@ -48,7 +48,7 @@
                                 <li class="nav-item tab-btns">
                                     <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                                        href="{% url 'update_project' project.id %}" role="tab" aria-controls="prod-overview"
-                                       aria-selected="true">{% trans 'edit project' %}</a>
+                                       aria-selected="true">{% trans 'edit_project' %}</a>
                                 </li>
                             {% endif %}
 
@@ -72,7 +72,7 @@
                                 <div class="card">
 
 
-                                    <h5 class="card-header" style="text-align:center;background-color:#f7d493;">{% trans 'what you will learn' %}</h5>
+                                    <h5 class="card-header" style="text-align:center;background-color:#f7d493;">{% trans 'what_you_will_learn' %}</h5>
                                     <div class="card-body">
                                         {% for skill in project.acquired_skills.all %}
                                             <p class="card-text" style="text-align:center;">{{skill.name}}</p>
@@ -94,22 +94,20 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            {% if user.is_speaker %}
+                                <div class="add_mission add_resource">
+                                    <button type="button" class=" btn add_button1" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
+                                        {% trans  'add_individual_mission' %}
+                                    </button>
+                                    <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#CollectiveMissionModal">
+                                        {% trans  'add_collective_mission' %}
+                                    </button>
+                                    <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#AddResoucresModal">
+                                        {% trans  'add_ressources' %}
+                                    </button>
 
-
-                        <div class="add_mission add_resource">
-                            <button type="button" class=" btn add_button1" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
-                                {% trans  'add_individual_mission' %}
-                            </button>
-                            <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#CollectiveMissionModal">
-                                {% trans  'add_collective_mission' %}
-                            </button>
-                            <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#AddResoucresModal">
-                                {% trans  'add_ressources' %}
-                            </button>
-
-                        </div>
-                        <div>
+                                </div>
+                            {% endif %}
                             <div>
                                 {% for mission in project.individualmission_set.all  %}
                                     <div class="card">
@@ -145,8 +143,6 @@
 
 
                     </div>
-                </div>
-            </div>
 
 
 
@@ -154,57 +150,54 @@
 
 
 
-            <div class="col-lg-4">
 
-               <div>
-               <h3>{% trans 'resources_projetc' %}</h3>
-                                {% for resource in project.resources_set.all %}
-                                    <div class="card">
-                                    <h5 class="card-header">{% trans  'collective_mission' %}</h5>
-                                    <div class="card-body">
-                                        <ul><a href="{% url 'resource_detail' resource.id %}">
-                                            <li>
-                                                <h5>{{resource.name}}<br>
-                                                </h5>
-                                            </li><hr>
-                                        </a></ul>
-
-                                    </div>
-                                {% endfor %}
-                                </div>
-
+            <div class="col-lg-4" style="padding-left: 2rem">
 
                 <div>
+                    <h3>{% trans 'resources_projetct' %}</h3>
+                    {% for resource in project.resources_set.all %}
+                        <div class="card">
+                        <div class="card-body">
+                            <ul><a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a></ul>
+
+                        </div>
+                        </div>
+                    {% endfor %}
+                    </div>
 
 
-                    <div class="card" style="width: 14rem;margin-top:40px;">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <i class="fa fa-files-o"></i>
-                                <span class="label">{% trans 'field' %}:</span>
-                                <span class="value">{{project.field}}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <i class="fa fa-clock-o"></i>
-                                <span class="label">{% trans 'time_to_complete' %}</span>
-                                <span class="value">{{project.time_to_complete}}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <i class="fa fa-users"></i>
-                                <span class="label">{% trans 'difficulty ' %}</span>
-                                <span class="value">{{project.difficulty}}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <i class="fa fa-check-square-o"></i>
-                                <span class="label">{% trans 'points' %}</span>
-                                <span class="value">{{project.points}}</span>
-                            </li>
-                        </ul>
+                    <div>
+
+
+                        <div class="card" style="width: 14rem;margin-top:40px;">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fa fa-files-o"></i>
+                                    <span class="label">{% trans 'field' %}:</span>
+                                    <span class="value">{{project.field}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span class="label">{% trans 'time_to_complete' %}</span>
+                                    <span class="value">{{project.time_to_complete}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fa fa-users"></i>
+                                    <span class="label">{% trans 'difficulty ' %}</span>
+                                    <span class="value">{{project.difficulty}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fa fa-check-square-o"></i>
+                                    <span class="label">{% trans 'points' %}</span>
+                                    <span class="value">{{project.points}}</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
-        </div>
         </div>
 
     </section>
