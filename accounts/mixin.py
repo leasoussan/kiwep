@@ -41,8 +41,7 @@ class SpeakerStatuPassesTestMixin(UserPassesTestMixin):
     def get_login_url(self):
         if not self.request.user.is_authenticated:
             return super().get_login_url()
-        else:
-            raise Http404
+
     
     def handle_no_permission(self):
         return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())

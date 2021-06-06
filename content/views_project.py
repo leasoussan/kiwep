@@ -88,7 +88,6 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
 
 
     def get_queryset(self):
-
         queryset = self.request.user.profile().project_set.personal_templates()
         queryset2 = super().get_queryset().global_template_projects()
         return queryset.union(queryset2)
@@ -159,7 +158,7 @@ class ProjectCreateView(SuccessMessageMixin, SpeakerStatuPassesTestMixin, Create
 
 
 
-class ProjectTeamCreateView(ProjectCreateView):
+class ProjectTeamCreateView(SpeakerStatuPassesTestMixin, ProjectCreateView):
     """This View inherite form ProjectCreateView
      we add here the team that it connecte right away with it and save it with a team """
 
