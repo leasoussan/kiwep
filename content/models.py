@@ -225,7 +225,7 @@ class Team(models.Model):
     start_date = models.DateField()
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Student, blank = True )
-    manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
+    manager = models.ForeignKey(Speaker, on_delete=models.CASCADE)
 
     project_completed = models.BooleanField(null=True, blank=True)
 
