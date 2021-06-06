@@ -101,8 +101,9 @@ class StudentAvailableProjectList(ProfileCheckPassesTestMixin, ListView):
     template_name = 'backend/project/project_list.html'
     context_object_name = "available_projects"
 
-    # def get_queryset(self):
-    #     pass
+    def get_queryset(self):
+        if user.is_student:
+            return self.request.user.profile().team_set.all()
 
 
 # ----------------PROJECT------Detail_View/

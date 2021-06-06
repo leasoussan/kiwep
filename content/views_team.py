@@ -32,8 +32,8 @@ class TeamListView(ProfileCheckPassesTestMixin, ListView):
 
 
     def get_queryset(self):
-        if self.request.user.is_student:
-            return self.request.user.profile().team_set.all()
+
+        return self.request.user.profile().team_set.all()
 
 
 class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):

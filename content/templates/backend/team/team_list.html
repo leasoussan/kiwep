@@ -50,7 +50,7 @@
 
 
 
- {% elif ueser.id_student  %}
+ {% elif user.is_student  %}
 
     <main class= "container-fluid">
 
@@ -64,7 +64,7 @@
     <thead>
 
     <tr>
-        <th>{% trans 'team name' %}</th>
+        <th>{% trans 'team_name' %}</th>
         <th>{% trans 'number of participants' %}</th>
         <th>{% trans 'duration of the project' %}</th>
         <th>{% trans 'field' %}</th>
