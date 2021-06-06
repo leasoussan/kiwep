@@ -104,10 +104,10 @@ class InstitutionStatuPassesTestMixin(UserPassesTestMixin):
 
 def speaker_check(user):
 
-    return user.get_user_type() == "is_speaker"
+    return user.is_speaker
 
 
 
 def student_check(user):
 
-    return user.get_user_type() == "is_student"
+    return user.is_student
