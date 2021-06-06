@@ -158,7 +158,7 @@ class ProjectCreateView(SuccessMessageMixin, SpeakerStatuPassesTestMixin, Create
 
 
 
-class ProjectTeamCreateView(SpeakerStatuPassesTestMixin, ProjectCreateView):
+class ProjectTeamCreateView(ProjectCreateView):
     """This View inherite form ProjectCreateView
      we add here the team that it connecte right away with it and save it with a team """
 

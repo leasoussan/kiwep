@@ -18,7 +18,7 @@ class ProfileCheckPassesTestMixin(UserPassesTestMixin):
         if not self.request.user.is_authenticated:
             return super().get_login_url()
         else:
-           
+
             return reverse('create_profile')
 
     def handle_no_permission(self):
@@ -42,7 +42,6 @@ class SpeakerStatuPassesTestMixin(UserPassesTestMixin):
         if not self.request.user.is_authenticated:
             return super().get_login_url()
 
-    
     def handle_no_permission(self):
         return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
 
