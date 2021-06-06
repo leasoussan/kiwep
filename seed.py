@@ -67,7 +67,7 @@ def pop_country():
 
 
 def pop_city():
-    city = City.objects.get_or_create(name='Tel-aviv', country = Country.objects.filter(name='Israel')),
+    city = City.objects.get_or_create(name='Tel-aviv', country = Country.objects.filter(name='Israel')[0]),
 
     print(f"the City  {city} was created")
 
