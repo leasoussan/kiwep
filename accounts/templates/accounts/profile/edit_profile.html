@@ -1,22 +1,30 @@
 
 {% extends 'base.html' %}
 {% load i18n %}
+{% load mytags %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-{{ object.usertype }}
-<h2>{{ usertype }} {% trans 'profile_edit' %}</h2>
+    {{ object.usertype }}
+    <h2>{{ usertype }} {% trans 'profile_edit' %}</h2>
 
-<form method="post">
+    <form method="post">
 
-    {% csrf_token %}
-    {{ user_form.as_p }}
+        {% csrf_token %}
+        {% if user.is_speaker or user.is_student%}
 
+            {{ user_form.as_p }}
 
-    {{ profile_form.as_p }}
-    <input type="hidden" name="next" value="{{ request.GET.next }}"/>
-    <input type="submit" value="save">
-</form>
+            {{ profile_form.as_p }}
+
+        {% elif user.is_representative %}
+            {{ user_form.as_p }}
+            {{ institution_form.as_p }}
+        {% endif %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+        <input type="submit" value="save">
+    </form>
 
 
 

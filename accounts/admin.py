@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from content.admin import  CollectiveMissionInlineAdmin
+
 
 
 from .forms import UserForm, MyUserCreationForm

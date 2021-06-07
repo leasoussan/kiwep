@@ -15,15 +15,14 @@ from .forms import (
     SpeakerProfileCreationForm,
     RepresentativeProfileCreationForm,
     UserForm,
-
     LoginForm,
- 
-
 )
+from backend.forms import InstitutionAddForm
+
 from django.urls import reverse_lazy
 from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from accounts.mixin import ProfileCheckPassesTestMixin
+from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin, RepresentativeStatuPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test, login_required
 from .mailer import *
 from.models import Student, Speaker, Representative, MyUser
@@ -62,12 +61,12 @@ class Register(View):
             setattr(user, usertype, True)
 
             user.save()
-            # user = authenticate(username= username, password = password, usertype =usertype)
+            user = authenticate(username= username, password = password, usertype =usertype)
             login(request, user)
             send_welcome_signup(user)
 
-            return redirect(reverse('create_profile'), form.cleaned_data['usertype'])
 
+            return redirect(reverse('create_profile'), form.cleaned_data['usertype'])
 
         return render(request, 'registration/register.html', {"form":form})
 
@@ -118,33 +117,42 @@ class CreateProfile(View):
 
         user_form = UserForm(instance =request.user)
         profile_form = get_user_profile_form(request)
-        
-        return render(request, 'accounts/profile/edit_profile.html', {'profile_form': profile_form, 'user_form': user_form})
+        institution_form = InstitutionAddForm(instance =request.user)
+        return render(request, 'accounts/profile/edit_profile.html', {'profile_form': profile_form,
+                                                                      'user_form': user_form,
+                                                                      'institution_form':institution_form})
 
 
     def post(self, request):
         user_form = UserForm(request.POST, instance = request.user)
         profile_form = get_user_profile_form(request)
-        valuenext= request.POST.get('next')
+        institution_form = InstitutionAddForm(request)
 
-        if profile_form.is_valid() and user_form.is_valid():
-            user_form.save()
-            profile = profile_form.save(commit=False)
-            profile.user = request.user
+        if request.user.is_student or request.user.is_student :
+            if profile_form.is_valid() and user_form.is_valid():
+                user_form.save()
+                profile = profile_form.save(commit=False)
+                profile.user = request.user
+                profile.save()
+                return redirect('dashboard')
 
-            profile.save()
-
-            return redirect('dashboard')
-
+        elif request.user.is_representative:
+            if user_form.is_valid() and institution_form.is_valid():
+                user_form.save()
+                profile = profile_form.save(commit=False)
+                profile.user = request.user
+                profile.save()
+                institution_profile = institution_form.save(commit=False)
+                institution_profile.representative = request.user
+                institution_profile.save()
+                return redirect('dashboard')
         # messages.add_message(request, messages.ERROR, 'You have an error in your form')
 
-        return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'form': profile_form})
+        return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'form': profile_form, 'institution_form':institution_form})
 
 
 
 
-
-# -----------------------------------------------------------------------------------------------
 
 
 
