@@ -154,11 +154,9 @@ pop_country()
 
 
 pop_city()
-
-groups = ['3rd', '4th', '5th', '6th']
-
-pop_level(4)
 pop_group(groups)
+pop_level(4)
+
 
 
 pop_skills(skills_list)
