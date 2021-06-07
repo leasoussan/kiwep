@@ -1,17 +1,24 @@
 from django.contrib import admin
 from .models import *
+
+
 # Register your models here.
 
 
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
+@admin.register(CommentResponse)
+class CommentResponseAdmin(admin.ModelAdmin):
     pass
 
 
 
-class TeamCommentsInlineAdmin(admin.TabularInline):
-    model = TeamCommentsBoard
+class CommentsTeamInlineAdmin(admin.TabularInline):
+    model = CommentsTeam
 
-@admin.register(TeamCommentsBoard)
-class TeamCommentAdmin(admin.ModelAdmin):
+@admin.register(CommentsTeam)
+class CommentsTeamAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(CommentsCollectiveMission)
+class CommentsCollectiveMissionAdmin(admin.ModelAdmin):
     pass

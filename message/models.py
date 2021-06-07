@@ -24,37 +24,57 @@ class Rating(models.Model):
     # 'content_type', 'object_id' are generic parameter for GenericContenteType
 
 
+    def __str__(self):
+        return f'rated by: {self.user.username}'
+
+    # def get_absolute_url(self):
+    #     return reverse("", kwargs={"pk":self.pk})
 
 
 
-class Comment(models.Model):
-    
+
+
+
+class CommentResponse(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     date_posted = models.DateField(auto_now_add=True)
     comment_text = models.TextField()
-    
+
+
+    def __str__(self):
+        return f'posted by: {self.user.username}'
+
+    # def get_absolute_url(self):
+    #     return reverse("", kwargs={"pk":self.pk})
+
+
+
+
+class CommentsTeam(models.Model):
+    team = models.ForeignKey(Team,  on_delete=models.CASCADE)
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    date_posted = models.DateField(auto_now_add=True)
+    comment_text = models.TextField()
+    responses = models.ManyToManyField(CommentResponse)
+
     def __str__(self):
         return f'posted by: {self.user.username}'
 
     def get_absolute_url(self):
-        return reverse("mission_detail", kwargs={"pk":self.pk})
+        return reverse("team_comments_list", kwargs={"pk":self.pk})
 
 
-class TeamCommentsBoard(models.Model):
-    title = models.CharField(max_length=100)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    comments = models.ManyToManyField(Comment)
-    
-    def __str__(self):
-        return f'Comments board of Team: {self.team.name}'
 
 
-class CollectiveMissionComments(models.Model):
+
+
+
+class CommentsCollectiveMission(models.Model):
     mission = models.ForeignKey(IndividualCollectiveMission, on_delete=models.CASCADE)
-    comments = models.ManyToManyField(Comment)
+    team_comments = models.ManyToManyField(CommentsTeam)
     vote = GenericRelation(Rating)
 
     def __str__(self):
-        return f'Missions Comments {self.mission.title}'
+        return f'Comments on Mission: {self.mission.title}'
 
     

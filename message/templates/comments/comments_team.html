@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load mytags %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+
+    <div>
+        <h3>{% trans 'add_comment'%}</h3>
+        <div>
+            <form method="POST" action ="">
+
+                {% csrf_token %}
+    {{ form }}
+{#                <input type="text" style="width: 600px", height="300px">#}
+                <button class="btn-shop orange-color" type="submit" value="Save">{% trans 'comment' %}</button>
+            </form>
+
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

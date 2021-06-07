@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 from django.contrib.auth.decorators import user_passes_test, login_required
 from accounts.decorators import check_profile
-from .models import Comment
-from .forms import AddMissionComment
+from .models import CommentResponse, CommentsTeam, CommentsCollectiveMission
+from message.forms import AddCommentsTeamForm
 from django.views.generic import (
     CreateView, 
     DetailView, 
@@ -22,11 +22,26 @@ def my_inbox(request):
 
 
 
-class CommentMissionCreateView(CreateView):
-    model = Comment
-    template = 'backend/mission/mission_detail.html'
-    form_class = AddMissionComment  
-   
+class CommentsTeamCreateView(CreateView):
+    model = CommentsTeam
+    template = 'comments/comments_team.html'
+    form = AddCommentsTeamForm
+
+
+    def form_valid(self, form):
+        pass
+
+
+
+class CommentsTeamListView(ListView):
+    model = CommentsTeam
+    template_name = 'comments/comments_team.html'
+
+    context_object_name = 'team_comments'
+
+
+    def get_queryset(self):
+        return self.request.user.commentsteam_set.all()
 
    
 class CommentMissionDeleteView():
