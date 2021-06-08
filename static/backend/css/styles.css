@@ -360,6 +360,15 @@ a .btn_modal {
 .edit_btn a {
   color: #f5a187;
 }
+.table_headers {
+  font-size: large;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.content_table {
+  border-right: 1px solid #7d7d83;
+  text-align: center;
+}
 
 Red : f5a187
 Orange : eca255
