@@ -32,7 +32,6 @@ class TeamListView(ProfileCheckPassesTestMixin, ListView):
 
 
     def get_queryset(self):
-
         return self.request.user.profile().team_set.all()
 
 

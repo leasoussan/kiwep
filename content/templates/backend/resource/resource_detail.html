@@ -7,9 +7,10 @@
     <button><a href="{% url 'resource_list' %}">{% trans 'list_resource_title' %}</a></button>
 
     <a href="{% url 'update_resource' resource.id %}">{% trans 'update_resource' %}</a>
+{#    <a href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a> {# TODO:AVI Check #}
 
 
-    {% if mission in resource.mission_set.individualmission_set.all %}
+    {% if mission in resource.project_set.individualmission_set.all %}
         <a href="{% url  'individual_mission_detail' mission.id %}">{% trans 'back_to_mission' %}</a>
     {% elif mission in  resource.mission_set.collectivemission_set.all %}
         <a href="{% url  'collective_mission_detail' mission.id %}">{% trans 'back_to_mission' %}"</a>

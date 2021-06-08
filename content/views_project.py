@@ -102,7 +102,7 @@ class StudentAvailableProjectList(ProfileCheckPassesTestMixin, ListView):
     context_object_name = "available_projects"
 
     def get_queryset(self):
-        if user.is_student:
+        if self.request.user.is_student:
             return self.request.user.profile().team_set.all()
 
 

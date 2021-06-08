@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    {{ object }}
+
     {# TODO#:Fix position of buttons#}
 
     <!-- Intro Courses -->
@@ -24,7 +24,7 @@
                                    href="#prod-overview" role="tab" aria-controls="prod-overview"
                                    aria-selected="true">{%  trans 'mission' %}</a>
                             </li>
-                            {% if user.profile.name == 'speaker' %}
+                            {% if user.is_speaker %}
                             <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                                href="{{ object.get_update_url }}" role="tab" aria-controls="prod-overview"
                                aria-selected="true">{% trans 'edit' %}</a></li>
@@ -80,7 +80,7 @@
 
     <div class = "resource">
         Ressources for this Mission
-        {% for resource in mission.resources.all %}
+        {% for resource in mission.resources_set.all %}
             <a href="{% url 'resource_detail' resource.id %}">{{resource.name}}</a>
         {% endfor %}
         HERE
