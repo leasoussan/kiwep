@@ -6,6 +6,13 @@ from .models import Student, Speaker, Representative, MyUser
 
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
+# SET UP THE FORMS
+# form django.core.urlresolvers import reverse
+# from crispy_forms.bootstrap import Field, InlineRadios, TabHolder, Tab
+# from crispy_forms.helper import FormHelper
+#
+# from crispy_forms.layout import Submit, Layout, Div, Fieldset
+# # END setting Form
 
 User = get_user_model()
 

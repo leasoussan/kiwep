@@ -30,16 +30,15 @@
 
   </head>
   <body>
-
+{% include 'navbar2.html' %}
 <main role="main" class="container-fluid">
 
   <div class="row">
 
-    <div class="col-md-2 mb-4" id ="side_panel" style="background: #9fce9c;">
+    <div class="col-md-2 mb-3" id ="side_panel">
 
       <ul class="nav nav-pills flex-column" style="text-align:left;">
         <li>
-          <a class="nav-link" style="color: #fffefc; font-size:50px;text-align:center;" href="{% url 'dashboard' %}">{% trans 'KIWEP' %}</a></li>
           <div class="row" >
             <div class="col" >
               <div class="jumbotron" style="height: 50px;" >
@@ -50,12 +49,12 @@
             </div>
           </div>
 
-        <button type="button" name="button">
+      <button class="btn_sidebar" type="button" name="button">
         <li class="nav-item">
           <a class="nav-link" id="a_link" href="{% url 'dashboard' %}">{% trans 'home' %}</a>
         </li>
         </button>
-        <button type="button" name="button">
+        <button class="btn_sidebar" type="button" name="button">
         <li class="nav-item">
             {% if user.profile.name == 'student' %}
 
@@ -66,29 +65,32 @@
             {% endif %}
         </li>
         </button>
-        <button type="button" name="button">
+      <button class="btn_sidebar" type="button" name="button">
         <li class="nav-item">
           {% if user.is_student %}
           <a class="nav-link" id="a_link"  href="{% url 'my_mission_list' %}">{% trans 'my_missions' %}</a>
           {% endif %}
         </li>
-            {% if user.is_student %}
         </button>
-        <button type="button" name="button">
-        <li class="nav-item">
-          <a class="nav-link" id="a_link"  href="{% url 'todo_list'%}">{% trans 'todo' %}</a>
-        </li>
+            {% if user.is_student %}
+
+        <button class="btn_sidebar" type="button" name="button">
+          <li class="nav-item">
+            <a class="nav-link" id="a_link"  href="{% url 'todo_list'%}">{% trans 'todo' %}</a>
+          </li>
         </button>
           {% endif %}
-        <button type="button" name="button">
+
+      <button class="btn_sidebar" type="button" name="button">
         <li class="nav-item">
           {% if user.is_speaker %}
-          <a class="nav-link" id="a_link" href="{% url 'project_list' %}">{% trans 'projects' %}</a>
+          <a class="nav-link" id="a_link" href="{% url 'project_list' %}">{% trans 'projects ' %}</a>
           {% else %}
           <a class="nav-link" id="a_link" href="{% url 'student_available_project_list' %}">{% trans 'availiable_projects' %}</a>
           {% endif %}
         </li>
-        </button><br>
+      </button>
+        <br>
 
 {#          TODO: searchForm #}
 {#          <form >#}
@@ -104,7 +106,7 @@
 
     <!-- wider column -->
     <div class="col-md-10 mb-4" id = "main_panel">
-        {% include 'navbar.html' %}
+
 
       <div class="row" >
         <div class="col" >

@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
+{% load static %}
 
 
     {% if user.speaker %}
 
-    <div class="container-fluid">
-      <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'add_team' %}</a>
+    <div class="container-fluid" id=" button_left" style="display:flex;
+    justify-content:flex-end; margin-bottom:30px;">
+      <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'create_a_new_team' %}</a>
       </button>
     </div>
     <main class= "container-fluid">
@@ -15,18 +17,18 @@
     <div class="col-sm-4-lg-10">
     <div class="card">
     <!-- <div class="card-body"> -->
-    <h5 class="card-header">My Teams</h5>
-    <div class="table-responsive">
-    <table class="table table-hover">
+    <!-- <h5 class="card-header">My Teams</h5> -->
+    <div class="my_table">
+    <table class="table table-hover table-responsive">
     <thead>
     <tr>
         <th>{% trans 'team_name' %}</th>
         <th>{% trans 'participants' %}</th>
         <th>{% trans 'duration' %}</th>
-        <th>{% trans 'field' %}</th>
-        <th>{% trans 'edit' %}</th>
+        <th>{% trans 'project_name' %}</th>
+        <th>{% trans ' ' %}</th>
     </tr>
-    </thead>
+    </thead><br>
     <tbody>
 
     {% for team in team_list %}
@@ -35,7 +37,7 @@
         <th>{{ team.participants.count }}</th>
         <th>{{team.project.time_to_complete}}</th>
         <th>{{teamp.project.field}}</th>
-        <th><a href="{% url 'update_team' team.id %}">  {% trans 'edit' %}</a></th>
+        <th><button type="button" class="edit_btn" name="button"><a href="{% url 'update_team' team.id %}">  {% trans 'edit_the_team' %}</a></button></th>
 
     </tr>
     {% endfor %}
