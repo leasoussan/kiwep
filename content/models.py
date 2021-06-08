@@ -11,6 +11,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import pre_save
 from django.contrib.contenttypes.fields import GenericRelation
 import datetime
+from datetime import datetime, timedelta
 
 from .managers import *
 # this is like a trans tag - just for the backend 
@@ -227,6 +228,8 @@ class Team(models.Model):
     participants = models.ManyToManyField(Student, blank = True )
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE, related_name="team_manager")
 
+    due_date = models.OneToOneField(Project, on_delete=models.CASCADE)
+
     project_completed = models.BooleanField(null=True, blank = True)
 
 
@@ -238,6 +241,9 @@ class Team(models.Model):
 
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
+
+    def due_date(self):
+        return self.due_date == self.start_date+timedelta(days=self.time_to_complete)
 
 # def check_date(sender, instance, *args, **kwargs):
 #         if instance.start_date > instance.due_date:
