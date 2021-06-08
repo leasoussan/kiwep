@@ -117,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 DATABASES = {'default': dj_database_url.config()}
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.EmailBackend',
 )
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

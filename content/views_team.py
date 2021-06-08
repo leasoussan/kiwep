@@ -24,7 +24,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 
 
 
-class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
+class TeamListView(ProfileCheckPassesTestMixin, ListView):
     """ Team List View will Show a user Teams list"""
     model = Team
     template_name = 'backend/team/team_list.html'
@@ -32,17 +32,9 @@ class TeamListView(LoginRequiredMixin, ProfileCheckPassesTestMixin, ListView):
 
 
     def get_queryset(self):
-        try:
-            if self.request.user.is_student:
 
-                return self.request.user.profile().team_set.all()
+        return self.request.user.profile().team_set.all()
 
-            elif self.request.user.is_speaker:
-
-                return self.request.user.profile().team_manager.all()
-        except:
-            print("you have no team YO!")
-            raise Http404
 
 class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
     """ Global Team Details """

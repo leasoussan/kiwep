@@ -10,7 +10,7 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 class TeamCommentsInlineAdmin(admin.TabularInline):
-    model = TeamCommentsBoard
+    pass
 
 @admin.register(TeamCommentsBoard)
 class TeamCommentAdmin(admin.ModelAdmin):
