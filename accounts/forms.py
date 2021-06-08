@@ -65,18 +65,18 @@ class StudentProfileCreationForm(forms.ModelForm):
         model = Student
         exclude = ['user', 'softs_skills']
 
+    dob = forms.DateField(
+        widget=django.forms.DateInput(
+            format='%d/%m/%Y',
+            attrs={'type': 'date'}),
+        # input_formats=('%d-%m-%Y',),
+    )
 
 class SpeakerProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Speaker
         exclude = ['user']
 
-    DOB = forms.DateField(
-        widget=django.forms.DateInput(
-            format='%d/%m/%Y',
-            attrs={'type': 'date'}),
-        # input_formats=('%d-%m-%Y',),
-    )
 
 class RepresentativeProfileCreationForm(forms.ModelForm):
     class Meta:
