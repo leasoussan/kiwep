@@ -85,7 +85,7 @@ def pop_field(skill_type):
     for f in fields_list:
         f = Field.objects.get_or_create(name=f, skills_type=skill)
 
-        print(f"the Field {f} was created")
+    print(f"the Field {f} was created")
 
 
 
@@ -93,72 +93,58 @@ def pop_level(n):
     for i in range(n):
         level= Level.objects.get_or_create(name=i, rating='3')
 
+        print(f'level:{i} was created')
 
 
-groups = ['3rd', '4th', '5th', '6th']
 
 
-def pop_group(groups):
-    for group in groups:
-        group = Group.objects.get_or_create(name=group,
-        number_of_participants = '5',
-        institution = random.choice(Institution.objects.all())
-)
+
 
 
 
 
 skills_list = ['Develop', 'writing', 'elaborating', 'research', 'Communicating']
 
-
 def pop_skills(n):
-    skill = random.choice(skills_list)
+
     for skill in skills_list:
         skill = Skills(name = skill)
         skill.save()
-
         skill.field.add(random.choice(list(Field.objects.all())))
+        print(f'Skill:{skill.id} was created')
 
-
-
-
-def pop_student_soft_skills_rating(n):
-    for  soft in skills:
-        student = random.choice(Student.objects.all())
-        skill = random.choice(Skills.objects.all())
-        rating = random.randint(1,10)
-        team =  random.choice(Team.objects.all())
-        comment = "You did well, with time we all can do better:)"
-
-        soft = StudentSoftSkillRating(
-            student=student,
-            skill = skill,
-            rating = rating,
-            team=team,
-            comment = comment
-        )
-
-        soft.save()
-
-    print(f'Student Rating Board:{student.id}')
+#
+# def pop_student_soft_skills_rating(n):
+#     for soft in skills:
+#         student = random.choice(Student.objects.all())
+#         skill = random.choice(Skills.objects.all())
+#         rating = random.randint(1,10)
+#         team =  random.choice(Team.objects.all())
+#         comment = "You did well, with time we all can do better:)"
+#
+#         student = StudentSoftSkillRating.objects.get_or_create(
+#             student=student,
+#             skill=skill,
+#             rating=rating,
+#             team=team,
+#             comment=comment
+#         )
+#
+#         soft.save()
+#
+#     print(f'Student Rating Board:{student.id}')
 
 
 
 
 pop_field(fields_list)
-
 pop_institution_category_list(institution_category_list)
 
-
 pop_country()
-
-
 pop_city()
 
-groups = ['3rd', '4th', '5th', '6th']
 
 pop_level(4)
-pop_group(groups)
 
 
 pop_skills(skills_list)
