@@ -101,7 +101,7 @@ def get_user_profile_form(request, edit=False):
 
 
     elif user.is_representative:
-        profile_form =  RepresentativeProfileCreationForm(data, instance=instance)
+        profile_form =  InstitutionAddForm(data)
 
     return profile_form
 
@@ -117,35 +117,29 @@ class CreateProfile(View):
 
         user_form = UserForm(instance =request.user)
         profile_form = get_user_profile_form(request)
-        institution_form = InstitutionAddForm(instance =request.user)
+
         return render(request, 'accounts/profile/edit_profile.html', {'profile_form': profile_form,
-                                                                      'user_form': user_form,
-                                                                      'institution_form':institution_form})
+                                                                      'user_form': user_form,}
+                      )
 
 
     def post(self, request):
-        user_form = UserForm(request.POST, instance = request.user)
+        user_form = UserForm(request.POST, instance= request.user)
         profile_form = get_user_profile_form(request)
-        institution_form = InstitutionAddForm(request)
 
-        if request.user.is_student or request.user.is_student :
-            if profile_form.is_valid() and user_form.is_valid():
-                user_form.save()
-                profile = profile_form.save(commit=False)
-                profile.user = request.user
-                profile.save()
-                return redirect('dashboard')
+        if profile_form.is_valid() and user_form.is_valid():
+            user_form.save()
+            object= profile_form.save(commit=False)
 
-        elif request.user.is_representative:
-            if user_form.is_valid() and institution_form.is_valid():
-                user_form.save()
-                profile = profile_form.save(commit=False)
-                profile.user = request.user
-                profile.save()
-                institution_profile = institution_form.save(commit=False)
-                institution_profile.representative = request.user
-                institution_profile.save()
-                return redirect('dashboard')
+            if request.user.is_representative:
+                object.representative = Representative.objects.get_or_create(user=request.user)[0]
+            else:
+                object.user = request.user
+            object.save()
+            return redirect('dashboard')
+
+
+
         # messages.add_message(request, messages.ERROR, 'You have an error in your form')
 
         return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'form': profile_form, 'institution_form':institution_form})

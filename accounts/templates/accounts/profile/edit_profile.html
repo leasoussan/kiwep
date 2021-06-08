@@ -12,16 +12,20 @@
     <form method="post">
 
         {% csrf_token %}
-        {% if user.is_speaker or user.is_student%}
-
+      <h3>{% trans 'represnetative_informations' %}</h3>
+        <div>
             {{ user_form.as_p }}
+        </div>
+<hr>
+        <h3>{% trans 'institution_informations_title' %}</h3>
 
+        <div>
             {{ profile_form.as_p }}
 
-        {% elif user.is_representative %}
-            {{ user_form.as_p }}
-            {{ institution_form.as_p }}
-        {% endif %}
+        </div>
+
+
+
         <input type="hidden" name="next" value="{{ request.GET.next }}"/>
         <input type="submit" value="save">
     </form>
