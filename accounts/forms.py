@@ -7,6 +7,8 @@ from .models import Student, Speaker, Representative, MyUser
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
+import django.forms.widgets
+
 User = get_user_model()
 
 
@@ -69,6 +71,12 @@ class SpeakerProfileCreationForm(forms.ModelForm):
         model = Speaker
         exclude = ['user']
 
+    DOB = forms.DateField(
+        widget=django.forms.DateInput(
+            format='%d/%m/%Y',
+            attrs={'type': 'date'}),
+        # input_formats=('%d-%m-%Y',),
+    )
 
 class RepresentativeProfileCreationForm(forms.ModelForm):
     class Meta:
