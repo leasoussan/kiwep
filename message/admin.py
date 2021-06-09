@@ -11,12 +11,6 @@ class CommentResponseAdmin(admin.ModelAdmin):
 
 
 
-class CommentsTeamInlineAdmin(admin.TabularInline):
-    model = CommentsTeam
-
-@admin.register(CommentsTeam)
-class CommentsTeamAdmin(admin.ModelAdmin):
-    pass
 
 
 @admin.register(CommentsCollectiveMission)
