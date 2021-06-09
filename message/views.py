@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from django.contrib.auth.decorators import user_passes_test, login_required
 from accounts.decorators import check_profile
-from .models import CommentResponse, CommentsTeam, CommentsCollectiveMission
+from .models import Comment, Discussion
 from message.forms import AddCommentsTeamForm
 from django.views.generic import (
     CreateView, 
@@ -23,7 +23,7 @@ def my_inbox(request):
 
 
 class CommentsTeamCreateView(CreateView):
-    model = CommentsTeam
+    model = Comment
     template = 'comments/comments_team.html'
     form = AddCommentsTeamForm
 
@@ -34,7 +34,7 @@ class CommentsTeamCreateView(CreateView):
 
 
 class CommentsTeamListView(ListView):
-    model = CommentsTeam
+    model = Comment
     template_name = 'comments/comments_team.html'
 
     context_object_name = 'team_comments'

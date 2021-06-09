@@ -5,14 +5,14 @@ from .models import *
 # Register your models here.
 
 
-@admin.register(CommentResponse)
-class CommentResponseAdmin(admin.ModelAdmin):
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
     pass
 
 
 
 
 
-@admin.register(CommentsCollectiveMission)
-class CommentsCollectiveMissionAdmin(admin.ModelAdmin):
+@admin.register(Discussion)
+class DiscussionAdmin(admin.ModelAdmin):
     pass

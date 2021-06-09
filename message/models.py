@@ -1,12 +1,13 @@
 from django.urls import reverse
 from django.db import models
-from accounts.models import MyUser
-from content.models import IndividualCollectiveMission, Team
+# from accounts.models import MyUser
+from django.forms import modelform_factory
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 
 
-# Create your models here.
+
+
 
 class Rating(models.Model):
     ACTION = (
@@ -14,7 +15,7 @@ class Rating(models.Model):
         ('up', 'Up Vote'),
         ('down', 'Down Vote'),
     )
-    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)          
+    user = models.ForeignKey('accounts.MyUser', on_delete=models.CASCADE)
     action = models.CharField(max_length = 10, choices=ACTION)
     date = models.DateField(auto_now_add=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
@@ -35,10 +36,14 @@ class Rating(models.Model):
 
 
 
-class CommentResponse(models.Model):
-    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+class Comment(models.Model):
+    user = models.ForeignKey('accounts.MyUser', on_delete=models.CASCADE)
     date_posted = models.DateField(auto_now_add=True)
     comment_text = models.TextField()
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    replies = GenericRelation('Comment')
 
 
     def __str__(self):
@@ -46,19 +51,15 @@ class CommentResponse(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse("", kwargs={"pk":self.pk})
+    
 
 
+class Discussion(Comment):
+    title = models.CharField(max_length=50)
 
-
-class CommentsTeam(models.Model):
-    team = models.ForeignKey(Team,  on_delete=models.CASCADE)
-    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    date_posted = models.DateField(auto_now_add=True)
-    comment_text = models.TextField()
-    responses = models.ManyToManyField(CommentResponse)
 
     def __str__(self):
-        return f'posted by: {self.user.username}'
+        return f'iscrussion title: {self.title}'
 
     def get_absolute_url(self):
         return reverse("team_comments_list", kwargs={"pk":self.pk})
@@ -69,12 +70,15 @@ class CommentsTeam(models.Model):
 
 
 
-class CommentsCollectiveMission(models.Model):
-    mission = models.ForeignKey(IndividualCollectiveMission, on_delete=models.CASCADE)
-    team_comments = models.ManyToManyField(CommentsTeam)
-    vote = GenericRelation(Rating)
 
-    def __str__(self):
-        return f'Comments on Mission: {self.mission.title}'
+    # This model rewrite the models.Model
+class DiscussionModel(models.Model):
+    discussions = GenericRelation(Discussion)
 
-    
+    class Meta:
+        abstract = True
+
+
+    def discussion_form(self):
+
+        return modelform_factory(Discussion, fields='__all__')()
