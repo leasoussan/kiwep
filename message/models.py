@@ -81,4 +81,4 @@ class DiscussionModel(models.Model):
 
     def discussion_form(self):
 
-        return modelform_factory(Discussion, fields='__all__')()
+        return modelform_factory(Discussion, fields=['title','comment_text'])()
