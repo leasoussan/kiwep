@@ -10,19 +10,18 @@
 
 <div>
 
-    {% if user.profile.name == 'representative' %}
+    {% if user.is_representative %}
 
     {% include 'accounts/profile/representative_profile.html' %}
 
 
-    Adding here Isntitution attached to hime
 
-    {% elif user.profile.name == 'speaker' %}
+    {% elif user.is_speaker %}
 
     {% include 'accounts/profile/speaker_profile.html' %}
     <!-- speaker Profile -->
 
-    {% elif user.profile.name  == 'student' %}
+    {% elif user.is_student %}
 
     {% include 'accounts/profile/student_profile.html' %}
 

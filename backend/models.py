@@ -45,18 +45,14 @@ class Institution(models.Model):
     name = models.CharField(max_length = 100)
     category = models.ForeignKey(InstitutionCategory, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE)
-    profile_pic = models.ImageField()
+    profile_pic = models.ImageField(default = 'profile/avatar.png', upload_to='media/profile/', blank = True, null = True)
     address = models.CharField(max_length = 100, null = True, blank = True)
-    city = models.CharField(max_length = 50, null = True, blank = True)
     joined_date = models.DateField(auto_now_add=True)
-    contact_name = models.CharField(max_length = 100)
-    phone_number = models.CharField(max_length = 100)
-    email = models.EmailField()
     website = models.URLField()
     description = models.TextField()
 
     def __str__(self):
-        return self.name
+        return f'{self.name}'
 
 
 

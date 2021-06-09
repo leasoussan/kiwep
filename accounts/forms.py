@@ -80,4 +80,4 @@ class SpeakerProfileCreationForm(forms.ModelForm):
 class RepresentativeProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Representative
-        exclude = ['user']
+        fields = ['user']
