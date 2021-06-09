@@ -18,15 +18,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin
 
 
-class ResourceListView(ProfileCheckPassesTestMixin, ListView):
+class ProjectResourceListView(ProfileCheckPassesTestMixin, ListView):
     model = Resource
     template_name = 'backend/resource/resource_list.html'
     context_object_name = 'resource_list'
 
-    #
-    # def get_queryset(self):
-    #     return super().get_queryset().filter(project__resource__in= self.project_)
-    #
+
+    def get_queryset(self):
+        pk = self.kwargs.get['pk']
+        return Resource.objects.filter(project__id = pk)
+
 
 
 class ResourceDetailView(ProfileCheckPassesTestMixin, DetailView):

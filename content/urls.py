@@ -14,7 +14,7 @@ urlpatterns = [
 
     path('chose-project-detail/<int:pk>', ChooseProjectView.as_view(), name = "chose_project_detail"),
     path('project-list/', ProjectListView.as_view(), name = "project_list"),
-    path('student-available-project-list/', StudentAvailableProjectList.as_view(), name="student_available_project_list"),
+    path('student-available-project-list/', StudentAvailableTeamList.as_view(), name="student_available_project_list"),
     path('project-detail/<int:pk>', ProjectDetailView.as_view(), name = "project_detail"),
     path('create-project/', ProjectCreateView.as_view(), name ="create_project"),
     path('duplicate-project/<int:pk>/<int:team_id>/', DuplicateProjectCreateView.as_view(), name="duplicate_create_project"),
@@ -72,7 +72,7 @@ urlpatterns = [
 
 
     # ressource
-    path('resource-list/', ResourceListView.as_view(), name = "resource_list"),
+    path('resource-list/<int:pk>', ProjectResourceListView.as_view(), name = "resource_list"),
     path('resource-detail/<int:pk>', ResourceDetailView.as_view(), name = "resource_detail"),
     path('create-resource/', ResourceCreateView.as_view(), name = "create_resource"),
     path('update-resource/<int:pk>', ResourceUpdateView.as_view(), name = "update_resource"),
