@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Mission, CollectiveMission, Team, IndividualMission
+from .models import Mission, CollectiveMission, Team, IndividualMission, IndividualCollectiveMission
 from django.forms import ModelForm
 from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm, CollectiveMissionAssign
 from django.urls import reverse_lazy
@@ -15,7 +15,7 @@ from django.views.generic import (
     View, FormView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
-from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin
+from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin, StudentStatuPassesTestMixin
 
 
 
@@ -170,7 +170,7 @@ class ClaimMission(ProfileCheckPassesTestMixin, RedirectView):
 
 
 
-class UnclaimMission(ProfileCheckPassesTestMixin, RedirectView):
+class UnclaimMission(StudentStatuPassesTestMixin, RedirectView):
     ''' Unclaim the mission - will return to the list of available Mission'''
     # query_sting = False >>this is false by default     
     pattern_name = 'my_mission_list'
@@ -201,7 +201,7 @@ class UnclaimMission(ProfileCheckPassesTestMixin, RedirectView):
 
 
 
-class StudentSubmitMission(LoginRequiredMixin, UpdateView):
+class StudentSubmitMission(StudentStatuPassesTestMixin, UpdateView):
     ''' An answer can be saved and unsubmited- here is the submit  '''
     model = IndividualMission
     form_class = SubmitMissionForm
@@ -229,18 +229,43 @@ class StudentSubmitMission(LoginRequiredMixin, UpdateView):
 
 
 
+class JoinCollectiveMissionView(StudentStatuPassesTestMixin, FormView):
+
+        pattern_name = 'collective_mission_detail'
+
+        def get_redirect_url(self, *args, **kwargs):
+            collective_mission = get_object_or_404(CollectiveMission, pk=kwargs['pk'])
+            IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission, attributed_to=self.request.user.profile())
+
+            return super().get_redirect_url(*args, **kwargs)
+
+
+
+
+class LeaveCollectiveMissionView(StudentStatuPassesTestMixin, RedirectView):
+    pattern_name= 'collective_mission_detail'
+
+    def get_redirect_url(self, *args, **kwargs):
+        collective_mission = get_object_or_404(CollectiveMission, pk=kwargs['pk'])
+        IndividualCollectiveMission.objects.get(parent_mission=collective_mission,
+                                                          attributed_to=self.request.user.profile()).delete()
+
+        return super().get_redirect_url(args, kwargs)
+
+
+
+
+
 class AssignCollectiveMissionView(SpeakerStatuPassesTestMixin, FormView):
     model = CollectiveMission
     form_class = CollectiveMissionAssign
     success_url = 'collective_mission_detail'
     template_name = "crud/create.html"
 
-
     def get_object(self):
         pk = self.kwargs.get('pk')
         print(pk, "pk print")
         return get_object_or_404(CollectiveMission, pk=pk)
-
 
     def get_form_kwargs(self):
         """Return the keyword arguments for instantiating the form."""
@@ -250,7 +275,6 @@ class AssignCollectiveMissionView(SpeakerStatuPassesTestMixin, FormView):
         print(kwargs, "kwargs")
         return kwargs
 
-
     def form_valid(self, form):
         """If the form is valid, redirect to the supplied URL."""
         collective_mission = self.get_object()
@@ -258,8 +282,7 @@ class AssignCollectiveMissionView(SpeakerStatuPassesTestMixin, FormView):
         print(collective_mission, "collective m")
         return super().form_valid(form)
 
-
     def form_invalid(self, form):
-        print(form['participants'],  'my form errors')
+        print(form['participants'], 'my form errors')
 
         return super().form_invalid(form)
