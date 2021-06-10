@@ -37,11 +37,10 @@ class TeamListView(ProfileCheckPassesTestMixin, ListView):
 
 class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
     """ Global Team Details """
-    
+
     model = Team
     template_name = 'backend/team/team_detail.html'
     queryset = IndividualMission.objects.available_mission()
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -55,7 +54,6 @@ class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
     def get_object(self):
         pk = self.kwargs.get("pk")
         return get_object_or_404(Team, pk=pk)
-
 
 
 

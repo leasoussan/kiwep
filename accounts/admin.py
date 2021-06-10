@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 
-
 from .forms import UserForm, MyUserCreationForm
 from django.contrib.auth import get_user_model
 

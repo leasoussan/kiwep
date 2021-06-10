@@ -32,6 +32,7 @@ urlpatterns = [
     path('individual-mission-detail/<int:pk>', IndividualMissionDetailView.as_view(), name="individual_mission_detail"),
     path('collective-mission-detail/<int:pk>', CollectiveMissionDetailView.as_view(), name="collective_mission_detail"),
     path('assign-collective-mission-detail/<int:pk>', AssignCollectiveMissionView.as_view(), name="assign_collective_mission_detail"),
+    path('join-collective-mission-detail/<int:pk>', JoinCollectiveMissionView.as_view(), name="join_collective_mission_detail"),
 
     path('create-individual-mission/<int:project_id>', AddIndividualMissionView.as_view(),
          name="create_individual_mission"),
