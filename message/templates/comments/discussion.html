@@ -1,9 +1,16 @@
 {% load i18n %}
 
 <div>
+    {% for discussion in object.discussions.all %}
+    {{ discussion.title }}
+    {% endfor %}
+</div>
+
+
+<div>
         <h3>{% trans 'add_discussion'%} to {{ object }}</h3>
         <div>
-            <form method="POST" >
+            <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }} " >
                 {% csrf_token %}
                 {{ object.discussion_form }}
                 {#                <input type="text" style="width: 600px", height="300px">#}
@@ -13,3 +20,5 @@
         </div>
     </div>
 
+
+<div></div>

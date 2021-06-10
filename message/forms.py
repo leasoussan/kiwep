@@ -4,16 +4,18 @@ from .models import Comment, Discussion
 
 
 
-class AddCommentsTeamForm(forms.ModelForm):
+class AddDiscussionForm(forms.ModelForm):
 
     class Meta:
-        model = Comment
-        fields = '__all__'
+        model = Discussion
+        # exclude = ['user']
+        fields = ['title', 'comment_text', 'content_type', 'object_id']
+        widgets={
+            'content_type':forms.HiddenInput(),
+            'object_id': forms.HiddenInput()
+        }
 
-    # comment_text = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"rows": 5, "cols": 20}))
-#
-
-
+        # order =
 
 
 

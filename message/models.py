@@ -57,7 +57,6 @@ class Comment(models.Model):
 class Discussion(Comment):
     title = models.CharField(max_length=50)
 
-
     def __str__(self):
         return f'iscrussion title: {self.title}'
 
@@ -78,7 +77,8 @@ class DiscussionModel(models.Model):
     class Meta:
         abstract = True
 
-
     def discussion_form(self):
+        from .forms import AddDiscussionForm
+        ct = ContentType.objects.get_for_model(self)
 
-        return modelform_factory(Discussion, fields=['title','comment_text'])()
+        return AddDiscussionForm(initial= {'content_type': ct.id,'object_id':self.id})
