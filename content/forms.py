@@ -1,6 +1,6 @@
 from django import forms
 from django.http import Http404
-from django.forms import ModelForm 
+from django.forms import ModelForm
 from .models import Project, Team, Mission, Resource, CollectiveMission, IndividualMission, IndividualCollectiveMission
 from accounts.models import Student
 from django.forms import inlineformset_factory
@@ -10,6 +10,9 @@ from django.db.models import Q
 import django.forms
 import django.forms.utils
 import django.forms.widgets
+
+
+
 
 
 class ProjectAddForm(ModelForm):
@@ -23,7 +26,7 @@ class ProjectAddForm(ModelForm):
             'difficulty',
             'points',
             'is_template',
-        ] 
+        ]
 
         # exclude = ['completed', 'created_by']
 
@@ -53,13 +56,13 @@ class AddMemberTeamForm(ModelForm):
     """ Speaker can add team memebers"""
     class Meta:
         model = Team
-        fields = ['participants'] 
-        
+        fields = ['participants']
+
         widgets = {
             'participants': FilteredSelectMultiple(verbose_name='Participants List', is_stacked=False)
         }
 
-        # class media is built inside django 
+        # class media is built inside django
 
     class Media:
             css = {
@@ -134,8 +137,8 @@ class CollectiveMissionAssign(forms.Form):
         # if self.is_valid():
             for participant in self.cleaned_data['participants']:
                 mission= IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,  attributed_to = participant )
-                
-                
+
+
 
 
 
@@ -153,7 +156,7 @@ class ResourceAddForm(ModelForm):
         model = Resource
 
         fields = [
-            'name', 
+            'name',
             'link',
             'text',
             'field',

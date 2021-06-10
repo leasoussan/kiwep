@@ -7,7 +7,7 @@
     {% if user.speaker %}
 
     <div class="container-fluid" id=" button_left" style="display:flex;
-    justify-content:flex-end; margin-bottom:30px;">
+    justify-content:flex-end; padding-bottom: 20px;">
       <button type="button" class="btn add_button" name="button"><a href="{% url 'create_team' %}">{% trans 'create_a_new_team' %}</a>
       </button>
     </div>
@@ -16,8 +16,7 @@
     <div class="row">
     <div class="col-sm-4-lg-10">
     <div class="card">
-    <!-- <div class="card-body"> -->
-    <!-- <h5 class="card-header">My Teams</h5> -->
+    
     <div class="my_table">
     <table class="table table-hover table-responsive table-borderless">
     <thead>
@@ -33,12 +32,13 @@
 
     {% for team in team_list %}
         <tr>
-        <th class="content_table"><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
-        <th class="content_table">{{ team.participants.count }}</th>
-        <th class="content_table">{{team.project.time_to_complete}}</th>
-        <th class="content_table">{{teamp.project.field}}</th>
-        <th>
-          <button type="button" class="edit_btn" name="button"><a href="{% url 'update_team' team.id %}">  {% trans 'edit_the_team' %}</a></button></th>
+        <td class="content_table"><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></td>
+        <td class="content_table">{{ team.participants.count }}</td>
+        <td class="content_table">{{team.project.time_to_complete}}</td>
+        <td class="content_table">{{teamp.project.field}}</td>
+        <td>
+          <button type="button" class="edit_btn" name="button"><a href="{% url 'update_team' team.id %}">  {% trans 'edit_the_team' %}</a></button>
+        </td>
 
     </tr>
     {% endfor %}

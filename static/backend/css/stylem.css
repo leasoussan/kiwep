@@ -1,0 +1,37 @@
+/* ---------NAVBAR--------- */
+.nav-wrapper {
+  background-color:#f7ebdc;
+  color: #425940;
+}
+
+/* -------ICON-------- */
+#user-icon{
+  font-size: 40px;
+  color: #26a69a
+}
+#arrow-icon {
+  color: #26a69a
+}
+#logo-color {
+  color: #26a69a
+}
+
+body {
+  background-color: #8abfa2;
+}
+.modal {
+  max-height: 100%;
+  max-width: 100%;
+}
+/* --------sidebar------- */
+.collection {
+  margin-top: 60px;
+  border: none;
+}
+
+/* -----mainpanel */
+#main-bar {
+  border-left: 1px solid #f8fafa;
+  padding-left: 5px;
+  height: 1000px;
+}

@@ -6,25 +6,29 @@
 
 
     <!-- Main content Start -->
-    <div class="container-fluid">
+
 
         {% if user.is_speaker %}
-<div>
 
-            <button type="button" class="btn add_button" name="button"><a href="{% url 'create_project' %}" >{% trans 'add_project' %}</a></button>
+        <div class="container-fluid" >
+        <h3 class="titles" style="display:flex;
+        justify-content:flex-start; padding-bottom: 20px;">{% trans 'my_project'%}</h3>
+        <button type="button" class="btn add_button" name="button"  style="display:flex;
+        justify-content:flex-end; padding-bottom: 20px;"><a href="{% url 'create_project' %}">{% trans 'add_project' %}</a>
+          </button>
+
         </div>
-
+        <main class= "container-fluid">
             <div class="row">
                 <div class="col-sm-4-lg-10">
                   <div class="card">
-                    <h5 class="card-header">{% trans 'template_avaialable_project' %}</h5>
-
+                    <div class="my_table">
                     <!-- {#<div id="createProject">#}
                     {#<div> #} -->
 
-                    <table class="table table-bordered table-hover table-responsive-md">
+                    <table class="table table-hover table-responsive-md table-borderless">
                         <thead>
-                        <tr>
+                        <tr class="table_headers">
                             <th scope="col">{% trans 'project_name_table_header' %}</th>
                             <th scope="col">{% trans 'speaker_table_header' %}</th>
                             <th scope="col">{% trans 'field_table_header' %}</th>
