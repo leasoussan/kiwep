@@ -23,7 +23,6 @@ class ProjectResourceListView(ProfileCheckPassesTestMixin, ListView):
     template_name = 'backend/resource/resource_list.html'
     context_object_name = 'resource_list'
 
-
     def get_queryset(self):
         pk = self.kwargs.get['pk']
         return Resource.objects.filter(project__id = pk)

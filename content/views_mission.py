@@ -201,11 +201,8 @@ class UnclaimMission(StudentStatuPassesTestMixin, RedirectView):
 
 
 
-<<<<<<< HEAD
-class StudentSubmitMission(SpeakerStatuPassesTestMixin, UpdateView):
-=======
 class StudentSubmitMission(StudentStatuPassesTestMixin, UpdateView):
->>>>>>> mission
+
     ''' An answer can be saved and unsubmited- here is the submit  '''
     model = IndividualMission
     form_class = SubmitMissionForm
