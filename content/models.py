@@ -11,7 +11,13 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import pre_save
 from django.contrib.contenttypes.fields import GenericRelation
 import datetime
+<<<<<<< HEAD
 from datetime import datetime, timedelta
+=======
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+
+>>>>>>> comment
 
 from .managers import *
 # this is like a trans tag - just for the backend 
@@ -21,9 +27,11 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save, m2m_changed, pre_delete
 
 from django.utils import timezone
+from message.models import DiscussionModel
 
 
-class Resource(models.Model):
+
+class Resource(DiscussionModel):
     name = models.CharField(max_length=200)
     link = models.URLField(max_length=200)
     image = models.ImageField(default = 'media/image/default.png', upload_to='images/')
@@ -31,7 +39,6 @@ class Resource(models.Model):
     text = models.TextField()
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE,  blank=True, null =True)
-
     objects = ResourceModelManager()
 
     def __str__(self):
@@ -56,7 +63,7 @@ class Skills(models.Model):
         return f"Subject{self.name}"
 
 
-class Project(models.Model):
+class Project(DiscussionModel):
     """ Model Of Project - independent of a Team - a project is reusable to each team his own """
 
     name = models.CharField(max_length=200)
@@ -95,7 +102,7 @@ class Project(models.Model):
 
 
 
-class Mission(models.Model):
+class Mission(DiscussionModel):
     STAGE_CHOICE = [
         ('start', 'Start'),
         ('middle', 'Middle'),
@@ -158,7 +165,7 @@ class IndividualMission(Mission):
     response_file = models.FileField(null=True, blank=True)
     accepted = models.BooleanField(default=False)
     hard_skill_rating = GenericRelation(MissionValue)
-
+    discussions = GenericRelation('message.Discussion')
     objects = IndividualMissionModelManager()
 
 
@@ -218,7 +225,7 @@ class IndividualCollectiveMission(models.Model):
 
 
 
-class Team(models.Model):
+class Team(DiscussionModel):
     """ a Team Model is to manage a Project per Team- Creating a team is allowing the Speaker to  
     Manage one or few people on a Project"""
     name = models.CharField(max_length=200)
@@ -228,7 +235,6 @@ class Team(models.Model):
     participants = models.ManyToManyField(Student, blank = True )
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE)
     project_completed = models.BooleanField(null=True, blank = True)
-
 
 
     objects = TeamModelManager()
