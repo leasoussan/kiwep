@@ -71,9 +71,9 @@
 
                 {% if not team.project %}
 
-                    <h3 class="card-header">Project</h3>
+                    <h3 class="card-header">{% trans 'project' %}</h3>
 
-                    {% if user.profile.name == 'speaker' %}
+                    {% if user.is_speaker %}
                         <div class="student_list">
                             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ChoseProject">
                                 Chose a Project For the Team
@@ -81,11 +81,14 @@
                         </div>
                         <!-- Button trigger modal -->
 
+
                     {% endif %}
                 {% else %}
                     <h3 class="card-header team_style"><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a></h3>
                 {% endif %}
+
             </div>
+{#        {% trans 'due_date' %} {{ team.due_date }} {# TODO: DANY something is not working in your due_date #}
         </div>
 
 

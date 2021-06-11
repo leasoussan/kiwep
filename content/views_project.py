@@ -1,3 +1,5 @@
+from optparse import Option
+
 from django.utils import timezone
 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -199,7 +201,10 @@ def clean_missions(project_id, *querysets):
         qs.model.objects.bulk_create(objects)
 
 
-
+def get_due_date(self, **kwargs):
+    context = super(ProjectTeamCreateView, self).get_due_date(**kwargs)
+    context['options_list'] = Option.objects.all()
+    return context
 
 
 class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
@@ -286,7 +291,10 @@ class ProjectUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateV
     def form_valid(self,form):
         return super().form_valid(form)
 
-
+    def get_due_date(self, **kwargs):
+        context = super(ProjectUpdateView, self).get_due_date(**kwargs)
+        context['options_list'] = Option.objects.all()
+        return context
 
 # 
 # -----------------------------PROJECT-----:Delete View 

@@ -14,6 +14,8 @@ from django.utils.translation import ugettext_lazy as _
 # from crispy_forms.layout import Submit, Layout, Div, Fieldset
 # # END setting Form
 
+import django.forms.widgets
+
 User = get_user_model()
 
 
@@ -70,6 +72,12 @@ class StudentProfileCreationForm(forms.ModelForm):
         model = Student
         exclude = ['user', 'softs_skills']
 
+    dob = forms.DateField(
+        widget=django.forms.DateInput(
+            format='%d/%m/%Y',
+            attrs={'type': 'date'}),
+        # input_formats=('%d-%m-%Y',),
+    )
 
 class SpeakerProfileCreationForm(forms.ModelForm):
     class Meta:
