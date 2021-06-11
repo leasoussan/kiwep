@@ -86,6 +86,12 @@
                     <h3 class="card-header team_style"><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a></h3>
                 {% endif %}
             </div>
+
+        {% if team.project.time_to_complete %}
+       {% trans 'due_date' %} {{ team.due_date }}
+            {# TODO: DANY something is not working in your due_date #}
+        {% endif %}
+
         </div>
 
 
