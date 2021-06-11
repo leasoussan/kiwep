@@ -10,14 +10,12 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import pre_save
 from django.contrib.contenttypes.fields import GenericRelation
-import datetime
-<<<<<<< HEAD
 from datetime import datetime, timedelta
-=======
+
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
->>>>>>> comment
+
 
 from .managers import *
 # this is like a trans tag - just for the backend 
