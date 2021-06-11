@@ -1,37 +1,118 @@
+body {
+  font-family:  'Helvetica', 'sans-serif';
+  background-color: #8abfa2;
+  color: #425940;
+}
+.modal {
+  max-height: 100%;
+  max-width: 100%;
+}
+
 /* ---------NAVBAR--------- */
 .nav-wrapper {
   background-color:#f7ebdc;
   color: #425940;
 }
 
-/* -------ICON-------- */
+
 #user-icon{
   font-size: 40px;
-  color: #26a69a
+  color: #425940;
 }
 #arrow-icon {
-  color: #26a69a
+  color: #425940;
 }
 #logo-color {
-  color: #26a69a
+  color: #425940;
 }
-
-body {
+.green-btn {
+  background-color: #8abfa2;
+  color:#f7ebdc;
+}
+.green-btn:hover {
   background-color: #8abfa2;
 }
-.modal {
-  max-height: 100%;
-  max-width: 100%;
+#a-link {
+  color:#425940;
 }
+#a-link1 {
+  color:#425940;
+}
+/* ------- END NAVBAR-------- */
+
 /* --------sidebar------- */
 .collection {
   margin-top: 60px;
   border: none;
 }
+.link-side-panel {
+  color: #fffefc;
+  /* font-size: 20px; */
+}
+.btn-side-panel {
+  border:none;
+  background-color: #8abfa2;
+  margin:5px;
+}
+.no-shadows{
+   box-shadow: none!important;
+}
+.btn-side-panel:hover {
+  border-left: 2px solid #425940;
+  background-color: #8abfa2;
+}
+.collection .collection-item:hover {
+  border-left: 2px solid #425940;
+  background-color: #8abfa2;
+}
 
-/* -----mainpanel */
+/* -----mainpanel------ */
 #main-bar {
-  border-left: 1px solid #f8fafa;
-  padding-left: 5px;
+  border-left: 1px solid #f7ebdc;
+  padding-left: 20px;
   height: 1000px;
+  padding-right: 20px;
+  /* margin-left: 10px; */
+}
+.my_table {
+  background-color: #f7ebdc;
+}
+.tables {
+  margin-top: 60px;
+}
+
+.button_left {
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:10px;
+  margin-top: 70px;
+  margin-right:20px;
+}
+.add_button {
+  background-color: #f5a187;
+  color:#f7ebdc;
+
+}
+.add_button:hover {
+  background-color: #f5a187;
+  color:#f7ebdc;
+}
+.table_headers {
+  font-size: large;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.link-table {
+  color:#425940;
+  font-size: large;
+}
+.edit_btn {
+  border: 1px solid #f5a187;
+  background-color: #fffefc;
+  color:#f5a187;
+  padding: -10px;
+  /* height: 40px; */
+  /* width:100px; */
+  /* border-radius: 5px; */
+
 }

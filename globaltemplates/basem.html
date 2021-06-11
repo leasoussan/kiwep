@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="{% static 'backend/css/stylem.css' %}" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet" >
 
   </head>
   <body>
@@ -18,19 +19,55 @@
          <div class="col s12 m4 l2">
            <div class="collection">
              <ul class="left">
-               <button class="btn waves-effect waves-light" type="submit" name="action">
-<li>         <a href="#!">Alvin</a>
-</li>
+               <button class="btn waves-effect waves-light btn-side-panel no-shadows" type="submit" name="action">
+                <li>
+                  <a class= "link-side-panel" href="{% url 'dashboard' %}">{% trans 'home' %}</a>
+                  </li>
                 </button>
-         <a href="#!" >Alvin</a>
-         <a href="#!" class="collection-item">Alvin</a>
-         <a href="#!" class="collection-item">Alvin</a>
+                <button class="btn waves-effect waves-light btn-side-panel no-shadows" type="submit" name="action">
+                  {% if user.profile.name == 'student' %}
+                  <li>
+                     <a class= "link-side-panel" href="{% url 'team_list' %}">{% trans 'my_projects' %}</a>
+                  </li>
+                  </button>
+                   {% else %}
+                   <button class="btn waves-effect waves-light btn-side-panel no-shadows" type="submit" name="action">
+
+                   <li>
+                     <a class= "link-side-panel" href="{% url 'team_list' %}">{% trans 'teams' %}</a>
+                  </li>
+                  </button>
+                   {% endif %}
+
+                 <button class="btn waves-effect waves-light btn-side-panel no-shadows" type="submit" name="action">
+                   {% if user.is_student %}
+                   <li>
+                      <a class= "link-side-panel" href="{% url 'my_mission_list' %}">{% trans 'my_missions' %}</a>
+                  </li>
+
+                  </button>
+                  <button class="btn waves-effect waves-light btn-side-panel no-shadows" type="submit" name="action">
+                    <li>
+                     <a class= "link-side-panel" href="{% url 'todo_list'%}">{% trans 'todo' %}</a>
+                    </li>
+                   {% endif %}
+                   </button>
+                   <button class="btn waves-effect waves-light btn-side-panel no-shadows" type="submit" name="action">
+                     {% if user.is_speaker %}
+                      <a class= "link-side-panel" href="{% url 'project_list' %}">{% trans 'projects ' %}</a>
+                      {% else %}
+                      <a class= "link-side-panel" href="{% url 'student_available_project_list' %}">{% trans 'availiable_projects' %}</a>
+                      {% endif %}
+                    </button>
              </ul>
 
      </div>
          </div>
          <div class="col s12 m8 l10" id="main-bar">
-           <h1>hi</h1>
+           {% block content %}
+
+           {% endblock %}
+
         </div>
         </div
 
