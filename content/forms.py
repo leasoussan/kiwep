@@ -1,18 +1,12 @@
-from django import forms
-from django.http import Http404
-from django.forms import ModelForm
-from .models import Project, Team, Mission, Resource, CollectiveMission, IndividualMission, IndividualCollectiveMission
-from accounts.models import Student
-from django.forms import inlineformset_factory
-from django.contrib.admin.widgets import FilteredSelectMultiple
-from django.db.models import Q
-
-import django.forms
-import django.forms.utils
 import django.forms.widgets
+from django import forms
+from django.contrib.admin.widgets import FilteredSelectMultiple
+from django.forms import ModelForm
+from django.forms import inlineformset_factory
+from django.http import Http404
 
-
-
+from accounts.models import Student
+from .models import Project, Team, Resource, CollectiveMission, IndividualMission, IndividualCollectiveMission
 
 
 class ProjectAddForm(ModelForm):
@@ -30,9 +24,8 @@ class ProjectAddForm(ModelForm):
 
         # exclude = ['completed', 'created_by']
 
+
 class TeamAddForm(ModelForm):
-
-
     class Meta:
         model = Team
         fields = [
@@ -45,15 +38,14 @@ class TeamAddForm(ModelForm):
     start_date = forms.DateField(
         widget=django.forms.DateInput(
             format='%d/%m/%Y',
-            attrs={'placeholder':'dd-mm-yyyy'}),
-        input_formats=('%d-%m-%Y',),
+            attrs={'type': 'date'}),
+        # input_formats=('%d-%m-%Y',),
     )
-
-
 
 
 class AddMemberTeamForm(ModelForm):
     """ Speaker can add team memebers"""
+
     class Meta:
         model = Team
         fields = ['participants']
@@ -65,41 +57,39 @@ class AddMemberTeamForm(ModelForm):
         # class media is built inside django
 
     class Media:
-            css = {
-                'all': ('/static/admin/css/widgets.css',),
-            }
-            js = ('/admin/jsi18n',)
-
+        css = {
+            'all': ('/static/admin/css/widgets.css',),
+        }
+        js = ('/admin/jsi18n',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['participants'].queryset = kwargs['instance'].group_Institution.student_set.all()
 
 
-
-
-
-
-
-
 class MissionAddForm(ModelForm):
     pass
 
 
-
 mission_fields = (
-        'name',
-        'response_type',
-        'stage',
-        'field',
-        'level',
-        'description',
-        'resources',
-        'points',
-        'acquired_skill',
-        'due_date',
-    )
+    'name',
+    'response_type',
+    'stage',
+    'field',
+    'level',
+    'description',
+    'resources',
+    'points',
+    'acquired_skill',
+    'due_date',
+)
 
+due_date = forms.DateField(
+    widget=django.forms.DateInput(
+        format='%d/%m/%Y',
+        attrs={'type': 'date'}),
+    # input_formats=('%d-%m-%Y',),
+)
 
 
 class IndividualMissionAddForm(ModelForm):
@@ -107,6 +97,12 @@ class IndividualMissionAddForm(ModelForm):
         model = IndividualMission
         fields = mission_fields
 
+    due_date = forms.DateField(
+        widget=django.forms.DateInput(
+            format='%d/%m/%Y',
+            attrs={'type': 'date'}),
+        # input_formats=('%d-%m-%Y',),
+    )
 
 
 class CollectiveMissionAddForm(ModelForm):
@@ -114,12 +110,15 @@ class CollectiveMissionAddForm(ModelForm):
         model = CollectiveMission
         fields = mission_fields
 
-
-
+    due_date = forms.DateField(
+        widget=django.forms.DateInput(
+            format='%d/%m/%Y',
+            attrs={'type': 'date'}),
+        # input_formats=('%d-%m-%Y',),
+    )
 
 
 class CollectiveMissionAssign(forms.Form):
-
     participants = forms.ModelMultipleChoiceField(queryset=Student.objects.all())
 
     def __init__(self, **kwargs):
@@ -130,25 +129,10 @@ class CollectiveMissionAssign(forms.Form):
         super().__init__()
         self.fields['participants'].queryset = team.participants.all()
 
-
-
-
     def save(self, collective_mission):
         # if self.is_valid():
-            for participant in self.cleaned_data['participants']:
-                mission= IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,  attributed_to = participant )
-
-
-
-
-
-
-
-
-
-
-
-
+        for participant in self.cleaned_data['participants']:
+            mission= IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,  attributed_to = participant )
 
 
 class ResourceAddForm(ModelForm):
@@ -164,10 +148,7 @@ class ResourceAddForm(ModelForm):
             'file_rsc',
         ]
 
-    link= forms.URLField()
-
-
-
+    link = forms.URLField()
 
 
 CollectiveMissionFormSet = inlineformset_factory(
@@ -180,10 +161,7 @@ IndividualMissionFormSet = inlineformset_factory(
     Project,
     IndividualMission,
     fields=mission_fields,
-         extra=1)
-
-
-
+    extra=1)
 
 
 class SubmitMissionForm(ModelForm):
