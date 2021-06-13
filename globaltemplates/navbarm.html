@@ -1,0 +1,32 @@
+{% load static %}
+{% load i18n %}
+
+{% block navbar %}
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-wrapper">
+    {% if user.is_authenticated %}
+    <a href="#" id="logo-color"class="brand-logo center">{% trans 'welcome'%} {{user.first_name}}</a>
+    {% endif %}
+    <ul id="nav-mobile" class="left">
+      <li><a class="waves-effect waves-light btn green-btn" href="{% url 'dashboard' %}">Back</a></li>
+    </ul>
+    <ul id="slide-out" class="right">
+
+      {% if user.is_authenticated %}
+       <li><a>
+         <i class="large material-icons" id="user-icon" >account_circle</i>
+         <!-- {{user.username}} -->
+            </a></li>
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons right" id="arrow-icon">arrow_drop_down</i></a></li>
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a id = "a-link" href="{% url 'profile' user.id  %}">{% trans 'profile'  %}</a></li>
+            <li><a id = "a-link1" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
+          </ul>
+          {% endif %}
+       </ul>
+
+  </div>
+</nav>
+
+{% endblock %}

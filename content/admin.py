@@ -1,5 +1,5 @@
 from django.contrib import admin
-from message.admin import TeamCommentsInlineAdmin
+
 from .models import (
     Resource,
     Project,
