@@ -242,7 +242,8 @@ class Team(models.Model):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
     def due_date(self):
-        return self.due_date == self.start_date+timedelta(days=self.project.time_to_complete)
+        due_date = self.start_date + timedelta(days=self.project.time_to_complete)
+        return due_date
 
 # def check_date(sender, instance, *args, **kwargs):
 #         if instance.start_date > instance.due_date:
