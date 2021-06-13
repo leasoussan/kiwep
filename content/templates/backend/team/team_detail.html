@@ -24,83 +24,91 @@
 
 
     <div class="row">
-    <div class="col-lg-6">
-        <div class="card top-products">
-            <div class="card-body">
-                <!-- {{team.id}} -->
-                <h3 class="card-header">{% trans 'participants' %}<span style= "margin-left:200px;"></span>
-                    {% if user.profile.name == 'speaker' %}
-                        <a  href="{% url 'add_member_team' team.id %}"><i style="color:#fffefc;"class="fas fa-user-plus team_style"></i></a>
+        <div class="col-lg-6">
+            <div class="card top-products">
+                <div class="card-body">
+                    <!-- {{team.id}} -->
+                    <h3 class="card-header">{% trans 'participants' %}<span style= "margin-left:200px;"></span>
+                        {% if user.profile.name == 'speaker' %}
+                            <a  href="{% url 'add_member_team' team.id %}"><i style="color:#fffefc;"class="fas fa-user-plus team_style"></i></a>
 
-                    {%  endif %}
-                </h3>
-                <div class="top-products-list">
-                    <div class="product-item">
-                        {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
-                            <h3>{% trans 'current_amount_participants_lable' %}: {{team.participants.count}}</h3>
+                        {%  endif %}
+                    </h3>
+                    <div class="top-products-list">
+                        <div class="product-item">
+                            {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+                                <h3>{% trans 'current_amount_participants_lable' %}: {{team.participants.count}}</h3>
 
-                        {% else %}
-                            {% for student in team.participants.all %}
-                                <div class="student_list">
-                                    <ol>
-                                        <li><a href="">{{ student.user.first_name }} {{ student.user.last_name }}</a></li>
-                                    </ol>
-                                </div>
-                            {% endfor %}
+                            {% else %}
+                                {% for student in team.participants.all %}
+                                    <div class="student_list">
+                                        <ol>
+                                            <li><a href="">{{ student.user.first_name }} {{ student.user.last_name }}</a></li>
+                                        </ol>
+                                    </div>
+                                {% endfor %}
 
 
-                        {%endif %}
+                            {%endif %}
 
-                    {% trans 'due_date' %} {{ team.due_date }}
+
+                        </div>
                         <!-- {% if user.is_speaker %}
                               <button type="button" class="btn" name="button"><a href="{% url 'add_member_team' team.id %}">{% trans 'add students' %}</a></button>
                             {%  endif %} -->
 
                     </div>
-
                 </div>
-            </div>
 
+<div>
+{% if team.project.time_to_complete %}
+                {% trans 'due_date' %} {{ team.due_date }}
+    {% else %}
+    {% trans "no_project_yet" %}
+{% endif %}
+</div>
+
+
+            </div>
         </div>
-    </div>
 
 
-    <div class="col-lg-6">
-        <div class="card card-transactions">
+        <div class="col-lg-6">
+            <div class="card card-transactions">
 
-            <div class="card-body">
+                <div class="card-body">
 
-                {% if not team.project %}
+                    {% if not team.project %}
 
-                    <h3 class="card-header">{% trans 'project' %}</h3>
+                        <h3 class="card-header">{% trans 'project' %}</h3>
 
-                    {% if user.is_speaker %}
-                        <div class="student_list">
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ChoseProject">
-                                Chose a Project For the Team
-                            </button>
-                        </div>
-                        <!-- Button trigger modal -->
+                        {% if user.is_speaker %}
+                            <div class="student_list">
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ChoseProject">
+                                    Chose a Project For the Team
+                                </button>
+                            </div>
+                            <!-- Button trigger modal -->
 
 
+                        {% endif %}
+                    {% else %}
+                        <h3 class="card-header team_style"><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a></h3>
                     {% endif %}
-                {% else %}
-                    <h3 class="card-header team_style"><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a></h3>
-                {% endif %}
+
+                </div>
+
+
+
+
+
 
             </div>
+            <div>
+                {% include 'comments/discussion.html' with object=team %}
 
-
-
-
-
-
-                    </div>
-                    <div>
-                        {% include 'comments/discussion.html' with object=team %}
-
-                    </div>
-                </div>
+            </div>
+        </div>
 
     </div>
 
