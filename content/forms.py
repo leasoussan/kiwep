@@ -1,16 +1,12 @@
-from django import forms
-from django.http import Http404
-from django.forms import ModelForm
-from .models import Project, Team, Mission, Resource, CollectiveMission, IndividualMission, IndividualCollectiveMission
-from accounts.models import Student
-from django.forms import inlineformset_factory
-from django.contrib.admin.widgets import FilteredSelectMultiple
-from django.db.models import Q
-
-import django.forms
-import django.forms.utils
 import django.forms.widgets
-from django.forms.widgets import NumberInput
+from django import forms
+from django.contrib.admin.widgets import FilteredSelectMultiple
+from django.forms import ModelForm
+from django.forms import inlineformset_factory
+from django.http import Http404
+
+from accounts.models import Student
+from .models import Project, Team, Resource, CollectiveMission, IndividualMission, IndividualCollectiveMission
 
 
 class ProjectAddForm(ModelForm):
@@ -58,7 +54,7 @@ class AddMemberTeamForm(ModelForm):
             'participants': FilteredSelectMultiple(verbose_name='Participants List', is_stacked=False)
         }
 
-        # class media is built inside django 
+        # class media is built inside django
 
     class Media:
         css = {
@@ -136,8 +132,7 @@ class CollectiveMissionAssign(forms.Form):
     def save(self, collective_mission):
         # if self.is_valid():
         for participant in self.cleaned_data['participants']:
-            mission = IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,
-                                                                        attributed_to=participant)
+            mission= IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,  attributed_to = participant )
 
 
 class ResourceAddForm(ModelForm):

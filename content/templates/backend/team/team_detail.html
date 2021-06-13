@@ -51,7 +51,8 @@
 
                         {%endif %}
 
-                        <!-- {% if user.profile.name == 'speaker' %}
+                    {% trans 'due_date' %} {{ team.due_date }}
+                        <!-- {% if user.is_speaker %}
                               <button type="button" class="btn" name="button"><a href="{% url 'add_member_team' team.id %}">{% trans 'add students' %}</a></button>
                             {%  endif %} -->
 
@@ -88,18 +89,18 @@
                 {% endif %}
 
             </div>
-        {% trans 'due_date' %} {{ team.due_date }}
-        </div>
 
 
 
-        {##}
-        {##}
-        {#            </div>#}
-        {#            <div>#}
-        {#                <button><a href="#">Comment Team Board</a></button>#}
-        {#            </div>#}
-        {#        </div>#}
+
+
+
+                    </div>
+                    <div>
+                        {% include 'comments/discussion.html' with object=team %}
+
+                    </div>
+                </div>
 
     </div>
 

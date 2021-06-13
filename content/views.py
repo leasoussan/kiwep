@@ -9,7 +9,6 @@ from .forms import TeamAddForm
 def homepage_view(request):
     return render(request, 'homepage.html')
 
-
 # def date_message(request):
 #     context = {}
 #     form = TeamAddForm(request.POST or None)
