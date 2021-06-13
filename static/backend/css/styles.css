@@ -1,7 +1,16 @@
 body {
   font-family:  'Helvetica', 'sans-serif';
-  background-color: #f6f6f6;
-  color: #7d7d83;
+  background-color: #8abfa2;
+  color: black;
+}
+
+.my_nav{
+  background: #fffefc;
+  height: 70px;
+}
+.logo-image {
+   height:100%;
+   width: auto;
 }
  a:visited {
   text-decoration: none;
@@ -10,16 +19,17 @@ body {
 }
 a {
   text-decoration: none;
-  color: black;
+  /* color: black; */
 }
 li a:hover {
-  background-color: #9fce9c;
+  color: #black;
 }
- button a {
-   color:#fffefc;
- }
+
  li  button a {
     color:#fffefc;
+  }
+  li {
+    padding:10px;
   }
 .input_search {
   border-radius: 10px;
@@ -37,28 +47,17 @@ li a:hover {
   text-decoration: none;
   text-align: center;
 }
- a:hover {
-  color: #425940;
-  text-decoration: none;
-}
-a .btn:hover {
-  background-color: #425940;
-  color: #fffefc;
-}
-#title_kiwep {
-  text-align: center;
-  color: #fffefc;
-}
+
 button {
-  background-color: #9fce9c;
+  background-color: #8abfa2;
   border: none;
 }
 
-button:hover {
-  background-color: #425940;
-  border-radius: 10px;
+/* button:hover {
+  background-color: #f5a187;
+
   color: #fffefc;
-}
+} */
 .dropdown-item:hover {
   background-color: #9fce9c;
 }
@@ -66,16 +65,30 @@ button:hover {
   border: none;
   margin:5px;
   background: #9fce9c;
-  border-radius: 10px;
+  border-radius: 5px;
   color: #fffefc;
 }
-.btn:hover {
+.btn1 {
+  border: none;
+  margin:5px;
+  background: #1f7968;
+  border-radius: 5px;
+  color: #fffefc;
+  height:40px;
+  width: 70px;
+  margin-left:30px;
+}
+
+/* .btn:hover {
   background-color: #425940;
   border-radius: 10px;
   color: #fffefc;
 
-}
+} */
 .btn a   {
+  color: #fffefc;
+}
+.btn1 a   {
   color: #fffefc;
 }
 
@@ -114,19 +127,25 @@ button:hover {
   color:#1f7968;
 }
 /* END FOOTER */
-
+/* SIDEBAR PANEL */
 #side_panel {
-  background-color: #9fce9c;
-  border-radius: 10px;
+  background-color: #8abfa2;
+  text-align: left;
   color:#f8fafa;
   padding-bottom: 400px;
 
 }
+.btn_sidebar:hover {
+  background-color: #8abfa2;
+  border-left:3px solid #1f7968;
+}
 
 #main_panel{
-  background:#f8fafa;
-  color: #7d7d83;
-  border-radius: 10px;
+  background:#8abfa2;
+  color: black;
+  /* border-radius: 10px; */
+  border-left: 1px solid #f8fafa;
+  padding-left: 5px;
 }
 main .card {
   margin-bottom: 20px;
@@ -177,22 +196,22 @@ h5 {
 /* ADD BUTTON */
 
 .add_button {
-  background-color: #f7d493;
-  border: 1px solid #7d7d83;
+  background-color: #f5a187;
+  color:#fffefc;
+  /* border: 1px solid #7d7d83; */
 }
 .add_button1 {
   background-color: #9fce9c;
   border: 1px solid #7d7d83;
 }
 .add_button a {
-  color:black;
+  color:#fffefc;
 }
 
-.add_button:hover {
-  background-color: #f7d493;
-}
+
 .add_button a:hover {
   color:#fffefc;
+
 }
 /* END  ADD BUTTON */
 /* TEAM DETAIL */
@@ -226,26 +245,46 @@ a .btn_modal {
 
 .button_login {
   border-radius:0px;
-  background-color:#fd7e14;
+  background-color:#f5a187;
+  width: 250px;
+  color: #fffefc;
 
 }
-.button_login:hover {
+/* .button_login:hover {
   border-radius:0px;
   background-color:#fd7e14;
-}
+} */
 .button_register {
   border-radius:0px;
   background-color:#1f7968
 }
 .button_register:hover {
   border-radius:0px;
-  background-color:#1f7968
+  background-color:#1f7968;
 }
 .login_register {
   display: flex;
   justify-content: center;
   align-items: center;
   color: black;
+}
+.login_card {
+  border-top: 3px solid #fffefc;
+  padding-top: 50px;
+}
+/* .card {
+  background-color: #8abfa2;
+} */
+.forgot_password {
+  text-align:center;
+  margin-bottom:50px;
+  margin-top:50px;
+}
+.forgot-link {
+  color: #f7ebdc;
+}
+#forgot-link1{
+  color: #f7ebdc;
 }
 /* END LOGIN/REGISTER */
 /* DASHBOARD */
@@ -290,10 +329,77 @@ a .btn_modal {
 .list-group{
   width: 150px;
 }
+/* --------TEAM LIST----------- */
+#button_left {
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:30px;
+}
+.my_table {
+  background-color:#fffefc;
+}
+.edit_btn {
+  border: 1px solid #f5a187;
+  background-color: #fffefc;
+  height: 30px;
+  border-radius: 5px;
 
+}
+.edit_btn a {
+  color: #f5a187;
+}
+.table_headers {
+  font-size: large;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.content_table {
+  border-right: 2px solid #7d7d83;
+  text-align: center;
+}
 
-Red : df5f46
+/* CREATE TEAM */
+/* .card .add_team_card {
+  background-color: #fffefc;
+  width:500px;
+  padding: 20px;
+} */
+
+.create_team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width:600px;
+  /* padding: 40px; */
+}
+.team_card {
+  padding: 20px;
+}
+.form-horizontal{
+  color:#1f7968;
+  font-size: large;
+  font-weight: bold;
+}
+/* ---------FOOTER--------- */
+.about_kiwep {
+  display: flex;
+  justify-content: flex-end;
+  padding-right:40px;
+  margin:40px;
+  padding-bottom: 400px;
+}
+
+/* -------------Projects speaker-------------- */
+.titles {
+  display:flex;
+  justify-content:center;
+  padding-bottom: 20px;
+  color:#1f7968;
+}
+Red : f5a187
 Orange : eca255
-Yellow: f7d493
-Light Green  : 9fce9c
+Yellow: f5e987
+Light Green  : 8abfa2
 Green: 425940
+white: f7ebdc

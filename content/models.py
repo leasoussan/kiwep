@@ -10,9 +10,11 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import pre_save
 from django.contrib.contenttypes.fields import GenericRelation
-import datetime
+from datetime import datetime, timedelta
+
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+
 
 
 from .managers import *
@@ -230,7 +232,7 @@ class Team(DiscussionModel):
     group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Student, blank = True )
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-    project_completed = models.BooleanField(null=True, blank=True)
+    project_completed = models.BooleanField(null=True, blank = True)
 
 
     objects = TeamModelManager()
@@ -241,6 +243,10 @@ class Team(DiscussionModel):
 
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
+
+    def due_date(self):
+        due_date = self.start_date + timedelta(days=self.project.time_to_complete)
+        return due_date
 
 # def check_date(sender, instance, *args, **kwargs):
 #         if instance.start_date > instance.due_date:

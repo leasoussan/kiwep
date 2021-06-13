@@ -6,6 +6,15 @@ from .models import Student, Speaker, Representative, MyUser
 
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
+# SET UP THE FORMS
+# form django.core.urlresolvers import reverse
+# from crispy_forms.bootstrap import Field, InlineRadios, TabHolder, Tab
+# from crispy_forms.helper import FormHelper
+#
+# from crispy_forms.layout import Submit, Layout, Div, Fieldset
+# # END setting Form
+
+import django.forms.widgets
 
 User = get_user_model()
 
@@ -63,6 +72,12 @@ class StudentProfileCreationForm(forms.ModelForm):
         model = Student
         exclude = ['user', 'softs_skills']
 
+    dob = forms.DateField(
+        widget=django.forms.DateInput(
+            format='%d/%m/%Y',
+            attrs={'type': 'date'}),
+        # input_formats=('%d-%m-%Y',),
+    )
 
 class SpeakerProfileCreationForm(forms.ModelForm):
     class Meta:
