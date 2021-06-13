@@ -24,6 +24,10 @@ class ProjectAddForm(ModelForm):
 
         # exclude = ['completed', 'created_by']
 
+    time_to_complete = forms.IntegerField(
+        help_text='Number of days to complete the Project',
+    )
+
 
 class TeamAddForm(ModelForm):
     class Meta:
@@ -132,7 +136,8 @@ class CollectiveMissionAssign(forms.Form):
     def save(self, collective_mission):
         # if self.is_valid():
         for participant in self.cleaned_data['participants']:
-            mission= IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,  attributed_to = participant )
+            mission = IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,
+                                                                        attributed_to=participant)
 
 
 class ResourceAddForm(ModelForm):
