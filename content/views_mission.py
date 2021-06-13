@@ -273,12 +273,11 @@ class AssignCollectiveMissionView(SpeakerStatuPassesTestMixin, FormView):
         kwargs = super().get_form_kwargs()
         kwargs['team'] = collective_mission.project.team
         kwargs['participants'] = collective_mission.project.team.participants.all()
-        print(kwargs)
         return kwargs
 
     def form_valid(self, form):
         """If the form is valid, redirect to the supplied URL."""
-        print(form)
+        print(form.cleaned_data(), 'cleaned_data')
         collective_mission = self.get_object()
         print(collective_mission, "HERREE")
         print(collective_mission, "collective mission ")
@@ -294,6 +293,6 @@ class AssignCollectiveMissionView(SpeakerStatuPassesTestMixin, FormView):
 
         return super(CreateView, self).form_valid(form)
     def form_invalid(self, form):
-        print(form.errors.as_data())
+        print(form.errors.as_data(),'error as data')
 
         return super().form_invalid(form)
