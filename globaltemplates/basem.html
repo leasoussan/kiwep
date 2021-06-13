@@ -24,8 +24,18 @@
                   <a class= "link-side-panel" href="{% url 'dashboard' %}">{% trans 'home' %}</a>
                   </li>
                 </button>
+                {% if user.is_speaker %}
                 <button class="btn waves-effect waves-light btn-side-panel no-shadows" type="submit" name="action">
-                  {% if user.profile.name == 'student' %}
+
+                   <a class= "link-side-panel" href="{% url 'project_list' %}">{% trans 'projects ' %}</a>
+                   {% else %}
+                   <a class= "link-side-panel" href="{% url 'student_available_project_list' %}">{% trans 'availiable_projects' %}</a>
+
+                 </button>
+                 {% endif %}
+                {% if user.profile.name == 'student' %}
+                <button class="btn waves-effect waves-light btn-side-panel no-shadows" type="submit" name="action">
+
                   <li>
                      <a class= "link-side-panel" href="{% url 'team_list' %}">{% trans 'my_projects' %}</a>
                   </li>
@@ -36,11 +46,13 @@
                    <li>
                      <a class= "link-side-panel" href="{% url 'team_list' %}">{% trans 'teams' %}</a>
                   </li>
-                  </button>
-                   {% endif %}
 
+                  </button>
+                  {% endif %}
+
+                    {% if user.is_student %}
                  <button class="btn waves-effect waves-light btn-side-panel no-shadows" type="submit" name="action">
-                   {% if user.is_student %}
+
                    <li>
                       <a class= "link-side-panel" href="{% url 'my_mission_list' %}">{% trans 'my_missions' %}</a>
                   </li>
@@ -50,15 +62,10 @@
                     <li>
                      <a class= "link-side-panel" href="{% url 'todo_list'%}">{% trans 'todo' %}</a>
                     </li>
-                   {% endif %}
+
                    </button>
-                   <button class="btn waves-effect waves-light btn-side-panel no-shadows" type="submit" name="action">
-                     {% if user.is_speaker %}
-                      <a class= "link-side-panel" href="{% url 'project_list' %}">{% trans 'projects ' %}</a>
-                      {% else %}
-                      <a class= "link-side-panel" href="{% url 'student_available_project_list' %}">{% trans 'availiable_projects' %}</a>
-                      {% endif %}
-                    </button>
+                   {% endif %}
+
              </ul>
 
      </div>

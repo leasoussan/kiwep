@@ -1,4 +1,4 @@
-{% extends 'basem.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 {% load crispy_forms_tags %}
@@ -11,16 +11,15 @@
  <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
     <div class="container">
             <h2>Create {{view.model|return_class_name}}</h2>
-
         <div class="cart-wrap">
                 <table class="cart-table"> -->
 
 
-                  <div class="container create_team">
+                  <div class="container-fluid create_team">
 
                     <div class="row" style="width:500px;">
-                
-                    <div class="col s9 m9 l12">
+
+                    <div class="col-sm-4-lg-10">
                         <div class="card team_card">
 
                     <form action="", method="POST" class="form-horizontal" >

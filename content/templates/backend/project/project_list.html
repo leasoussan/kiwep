@@ -9,24 +9,20 @@
 
 
         {% if user.is_speaker %}
-
-        <div class="container-fluid" >
-        <h3 class="titles" style="display:flex;
-        justify-content:flex-start; padding-bottom: 20px;">{% trans 'my_project'%}</h3>
-        <button type="button" class="btn add_button" name="button"  style="display:flex;
-        justify-content:flex-end; padding-bottom: 20px;"><a href="{% url 'create_project' %}">{% trans 'add_project' %}</a>
-          </button>
+        <div  class="button_left" >
+          <a href="{% url 'create_project' %}" class="waves-effect waves-light btn add_button">{% trans 'add_project' %}</a>
 
         </div>
-        <main class= "container-fluid">
+
             <div class="row">
-                <div class="col-sm-4-lg-10">
+                <div class="col s4 l12">
+                  <h5>{% trans 'my_projects'%}</h5>
                   <div class="card">
                     <div class="my_table">
                     <!-- {#<div id="createProject">#}
                     {#<div> #} -->
 
-                    <table class="table table-hover table-responsive-md table-borderless">
+                    <table class="highlight centered">
                         <thead>
                         <tr class="table_headers">
                             <th scope="col">{% trans 'project_name_table_header' %}</th>
@@ -56,19 +52,17 @@
             </div>
             </div>
             </div>
-
-
-
+            </div>
 
             <div class="row">
-                <div class="col">
-                    <h5 class="card-header">{% trans 'my_project_list' %}</h5>
-                    <table class="table table-bordered table-hover table-responsive-md">
+                <div class="col s4 l12">
+                  <h5 class="card-header">{% trans 'template_project' %}</h5>
 
-
+                  <div class="my_table">
+                    <table class="highlight centered">
 
                         <thead>
-                        <tr>
+                        <tr class="table_headers">
                             <th>{% trans 'project_name_table_header' %}</th>
                             <th>{% trans 'speaker_table_header' %}</th>
                             <th>{% trans 'field_table_header' %}</th>
@@ -107,14 +101,15 @@
 
             <div class="row">
                 <div class="col">
-                    <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'available_project' %}</h5>
+                    <!-- <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'available_project' %}</h5> -->
 
-                    {#<div id="createProject">#}
-                    {#<div> #}
 
-                    <table class="table table-bordered table-hover table-responsive-md">
+                      <div class="card">
+
+                      <div class="my_table">
+                    <table class="highlight centered">
                         <thead>
-                        <tr>
+                        <tr class="table_headers">
                             <th scope="col">{% trans 'project_name_table_header' %}</th>
                             <th scope="col">{% trans 'speaker_table_header' %}</th>
                             <th scope="col">{% trans 'field_table_header' %}</th>
@@ -134,7 +129,7 @@
 
 
                                 <td>{{project.time_to_complete}}</td>
-                                <td> Check Team </a> </td>
+                                <td> <a>Check Team </a> </td>
 
                             </tr>
                         {% endfor %}
@@ -145,11 +140,11 @@
 
                 </div>
             </div>
-
+          </div>
+              </div>
+</main>
         {% endif %}
 
-</div>
-    </div>
 
 
 {% endblock %}
