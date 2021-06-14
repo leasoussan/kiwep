@@ -24,12 +24,11 @@
 
                     <form action="", method="POST" class="form-horizontal" >
 
-                        <!-- {% csrf_token %} -->
                         {% if form %}
                         <table >
                           {% csrf_token %}
                        {{ form|materializecss }}
-                          <!-- {{form|crispy}} -->
+{#                           {{form|crispy}}#}
 
                         </table>
 

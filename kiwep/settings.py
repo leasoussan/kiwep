@@ -52,9 +52,9 @@ INSTALLED_APPS = [
     'materialize',
     'crispy_forms_materialize',
      'materializecssform',
-     'materializeform'
-
 ]
+
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -175,6 +175,8 @@ APPEND_SLASH=False
 
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
+
+
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 EMAIL_HOST_USER= os.environ.get('EMAIL_HOST_USER')
