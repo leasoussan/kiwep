@@ -129,10 +129,25 @@ class CollectiveMissionAssign(forms.Form):
         super().__init__()
         self.fields['participants'].queryset = team.participants.all()
 
+        print("team particpantes::::::", team.participants)
+
+    # .values_list('pk', flat=True)
+#TODO check with avi -how to get the value pk
+
+
     def save(self, collective_mission):
-        # if self.is_valid():
-        for participant in self.cleaned_data['participants']:
-            mission= IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,  attributed_to = participant )
+
+        if self.is_valid():
+            for participant in self.cleaned_data['participants']:
+                mission= IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,  attributed_to = participant.value)
+                
+                
+
+
+
+
+
+
 
 
 class ResourceAddForm(ModelForm):
