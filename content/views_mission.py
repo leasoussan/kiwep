@@ -137,9 +137,9 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
     template_name = 'crud/update.html'
 
 
-def get_object(self):
-    pk = self.kwargs.get['pk']
-    return get_object_or_404(CollectiveMission, pk=pk)
+    def get_object(self):
+        pk = self.kwargs.get['pk']
+        return get_object_or_404(CollectiveMission, pk=pk)
 
 
 
@@ -150,7 +150,9 @@ class MissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
     success_url = reverse_lazy('mission_list')
 
 
-
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get['pk']
+        return get_object_or_404(Mission, pk=pk)
 
 
 class ClaimMission(ProfileCheckPassesTestMixin, RedirectView):
@@ -273,26 +275,41 @@ class AssignCollectiveMissionView(SpeakerStatuPassesTestMixin, FormView):
         kwargs = super().get_form_kwargs()
         kwargs['team'] = collective_mission.project.team
         kwargs['participants'] = collective_mission.project.team.participants.all()
+        # if self.request.method == "POST":
+        #     del kwargs['participants']
         return kwargs
 
     def form_valid(self, form):
         """If the form is valid, redirect to the supplied URL."""
-        print(form.cleaned_data(), 'cleaned_data')
+        print(form.cleaned_data, 'cleaned_data')
         collective_mission = self.get_object()
         print(collective_mission, "HERREE")
-        print(collective_mission, "collective mission ")
-        # form.save(collective_mission)
-        # print(collective_mission, "collective mission to be assigned")
-        # form.attributed_to =
+
+        form.save(collective_mission)
+
         return super().form_valid(form)
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.creator = self.request.user
-        self.object.save()
 
-        return super(CreateView, self).form_valid(form)
     def form_invalid(self, form):
-        print(form.errors.as_data(),'error as data')
+        print(form['participants'],  'my form errors')
 
         return super().form_invalid(form)
+
+
+
+def assign_mission(request, pk):
+
+    collective_mission = get_object_or_404(CollectiveMission, pk=pk)
+    team = collective_mission.project.team
+    participants = collective_mission.project.team.participants.all()
+
+    form = CollectiveMissionAssign(team=team)
+    if request.method == "POST":
+
+        form = CollectiveMissionAssign(data=request.POST, team=team)
+        if form.is_valid():
+            form.save(collective_mission)
+            return redirect('collective_mission_detail', collective_mission.id)
+        else:
+            print(form.errors, 'error')
+    return render(request, "crud/create.html", {'form': form})
