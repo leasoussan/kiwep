@@ -303,13 +303,15 @@ def assign_mission(request, pk):
     team = collective_mission.project.team
     participants = collective_mission.project.team.participants.all()
 
-    form = CollectiveMissionAssign(team=team)
+    form = CollectiveMissionAssign(request.POST or None )
+    form.fields['participants'].queryset = team.participants.all()
     if request.method == "POST":
-
-        form = CollectiveMissionAssign(data=request.POST, team=team)
+        print(repr(form), 'form')
         if form.is_valid():
-            form.save(collective_mission)
+
+            form.save_individuals(collective_mission)
+
             return redirect('collective_mission_detail', collective_mission.id)
         else:
-            print(form.errors, 'error')
+            print(repr(form), 'form')
     return render(request, "crud/create.html", {'form': form})
