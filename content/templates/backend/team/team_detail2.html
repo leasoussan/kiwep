@@ -7,18 +7,18 @@
 {% block content %}
 
 
-    <div class="col-2  " >
+    {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
 
-        {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+        <button type="button" class="btn add_button"name="button"><a href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a></button>
 
-            <button type="button" class="btn add_button"name="button"><a href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a></button>
+    {% elif request.user.profile == team.manager %}
 
-        {% elif request.user.profile == team.manager %}
+        <button type="button" class="btn add_button"name="button"><a href="{% url 'update_team' team.id %}">{% trans 'edit team' %}</a></button>
 
-            <button type="button" class="btn add_button"name="button"><a href="{% url 'update_team' team.id %}">{% trans 'edit team' %}</a></button>
+    {% else %}
+        <button type="button" class="btn add_button" name="button"><a href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a></button>
 
-        {% else %}
-            <button type="button" class="btn add_button" name="button"><a href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a></button>
+    {% endif %}
 
 
 
@@ -101,23 +101,109 @@
         {% if team.project.time_to_complete %}
 {#        {% trans 'due_date' %} {{ team.due_date }}
             {# TODO: DANY something is not working in your due_date #}
-
         {% endif %}
+
+        </div>
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+            <div>
+                {% include 'comments/discussion.html' with object=team %}
+
+            </div>
+        </div>
 
     </div>
 
 
+    {#    #TODO: Progress bar#}
 
+    {#    {% if user.profile in team.participants.all or user.profile.name == "speaker" %}#}
+    {##}
+    {#        <div class="row">#}
+    {#            <div class="col-xl">#}
+    {#                <div class="card">#}
+    {#                    <div class="card-body">#}
+    {#                        <p>Where are you at?</p>#}
+    {#                        <div class="progress">#}
+    {#                            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" role="progressbar"#}
+    {#                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {##}
+    {#    {% endif %}#}
+
+
+
+
+    <!--
+{% if user.is_speakers %}
+{% endif %} -->
 
 
     <div class="row">
-        <div class="col-lg-8"
-        <h2>{% trans 'project_title' %}{{ team.project.name }} </h2>
-        <p>{{ team.project.description }}</p>
-        <a  href="{% url 'project_detail' team.project.id %}">{% trans 'read_more' %}</a>
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header header_missions">{% trans 'available mission' %}</h5>
+                <div class="card-body">
+
+
+                    <table id="zero-conf" class="display" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>{% trans 'mission' %}</th>
+
+                            <th>{% trans 'status' %}</th>
+                            <th>{% trans 'points' %}</th>
+                            <th>{% trans 'date' %}</th>
+                            <th>{% trans 'claim mission' %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
+                            {% for mission in team.project.individualmission_set.available_mission %}
+
+
+                                <tr>
+                                    <td>
+                                        <a
+                                                href="{% url 'individual_mission_detail' mission.id %}">{{mission.name}}</a>
+                                    </td>
+
+                                    <td>{{mission.stage}}</td>
+                                    <td>{{mission.points}}</td>
+                                    <td>{{mission.due_date}}</td>
+
+                                    <td>
+                                        {% if user.is_student %}
+                                            <td><a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a></td>
+                                        {% else %}
+                                            {% trans 'available mission' %}
+                                        {% endif %}
+
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
-<<<<<<< HEAD
     <!-- Collective Missions -->
 
     <div class="row">
@@ -153,9 +239,6 @@
                                 <td>{{mission.points}}</td>
                                 <td>{{mission.due_date}}</td>
                                 <td><a href="{% url 'assign_collective_mission_detail' mission.id %}">{% trans 'assign_mission' %}</a></td>
-                                {% if user.is_student %}
-                                <td><a href="{% url 'join_collective_mission_detail' mission.id %}">{% trans 'join_mission' %}</a></td>
-                                {% endif %}
                             {% endfor %}
 
 
@@ -256,35 +339,121 @@
                         <td>{{mission.status}}</td>
                     </tr>
 
-    <div class="col-lg-4"
-
-    <div class="card">
 
 
-        {% if user.is_speaker %}
-            <a  class="btn-floating halfway-fab waves-effect waves-light red" href="{% url 'add_member_team' team.id %}"><i class="material-icons"</i>{% trans 'add' %}</a>
-        {% endif %}
 
-        <div class="card-content">
-            {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
-                <span class="card-title"># Participants: {{ team.participants.count }}</span>
-
-                <ul class="collection">
-                {% for student in team.participants.all %}
-                    <li class="collection-item avatar">
-                        <img src="{{  profile.profilepic_or_default }}" alt="" class="circle">
-                        <span class="title">{{ student.user.first_name }} {{ student.user.last_name }}</span>
-                        <a href="#!" class="secondary-content"><i class="material-icons">{% trans 'grade' %}</i></a>
-                    </li>
                 {% endfor %}
-            {%endif %}
 
+                <tr><td>here</td> </tr>
+
+                {#            {% for collectiveindividualmission in user.student.team_set.project.collectivemission_set.all|collective_student_missions:team.project %}#}
+                <tr>
+                    <td><a href="
+                                {% if user.profile == collectiveindividualmission.attributed_to and not collectiveindividualmission.response_file %}
+                                {% url 'submit_mission' collectiveindividualmission.id %}
+                                {% else %}
+{#                                {% url 'collective_mission_detail' collectivemission.id %}#}
+                                {% endif %}
+                                ">{{collectiveindividualmission.parent_mission.mission.name}}</a> </td>
+                    <td>{{collectiveindividualmission.parent_mission.mission_type}}</td>
+                    <td>{{collectiveindividualmission.parent_mission.mission.stage}}</td>
+                    <td>{{collectiveindividualmission.parent_mission.points}}</td>
+                    <td>{{collectiveindividualmission.parent_mission.due_date}}</td>
+                    <td>{{collectiveindividualmission.parent_mission.status}}</td>
+                </tr>
+                {#                    {% endfor %}#}
+
+                </tbody>
+
+            </table>
+        </div>
+
+    {% endif %}
+
+</div>
+</div>
+
+
+
+
+{#     <h1>Comments Board</h1>   #}
+
+{% comment %}
+ {% for board in team.teamcommentsboard_set.all %}
+    <a href="{% url 'board_detail' board.id %}">board.</a>
+    {% for comment %}
+ {{comment.team.}}
+ {{comment.comments.comment_text}}
+
+ {% endfor %}
+
+ {% endcomment %}
+
+</div>
+
+
+
+
+
+
+
+
+    <!-- Modal -->
+
+
+
+
+
+    <div class="modal" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Projects </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">{% trans 'close' %}</button>
+            </div>
+            <div class="modal-body modal-open">
+                <ul class="nav nav-pills">
+
+                    <li><a class="btn btn_modal" href="#" data-bs-toggle="pill" data-bs-target="#pills-create-project">{% trans 'new_project' %}</a></li>
+                    <li ><a class="btn btn_modal"href="#" data-bs-toggle="pill" data-bs-target="#pills-template" >{% trans 'choose_templates' %}</a></li>
+                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'duplicate' %}</a></li>
+                </ul>
+
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">
+
+                        <form method="post" action="{% url 'create_team_project' team.id %}">
+                            {% csrf_token %}
+                            {{ project_form|crispy }}
+                            <button type="submit">Save</button>
+                        </form>
+
+                        {#                         <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>#}
+                    </div>
+                    <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
+
+                        {% for project in templates  %}
+
+                            <h2>{{ project.name }}</h2>
+                            <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">
+                        {% for project in old_projects  %}
+                            <h2>{{ project.name }}</h2>
+                            <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
 
 
+
+
+
 {% endblock %}
-
 <script src="{% static  'backend/js/visible_buttons.js'%}" type="text/javascript"></script>
-

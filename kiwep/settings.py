@@ -49,7 +49,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'bootstrap4',
+    'materialize',
+    'crispy_forms_materialize',
+     'materializecssform',
+
 ]
+
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -168,7 +174,9 @@ LOGOUT_URL = "homepage"
 
 APPEND_SLASH=False
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
+
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())

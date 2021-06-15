@@ -36,7 +36,7 @@
         <td class="content_table">{{team.project.time_to_complete}}</td>
         <td class="content_table">{{teamp.project.field}}</td>
         <td>
-          <a href="{% url 'update_team' team.id %}" class="waves-effect waves-light btn edit_btn">{% trans 'edit_the_team' %}</a>
+          <a scope="col" href="{% url 'update_team' team.id %}" class="waves-effect waves-light btn edit_btn">{% trans 'edit_the_team' %}</a>
 
           <!-- <button type="button" class="edit_btn" name="button"><a href="{% url 'update_team' team.id %}">  {% trans 'edit_the_team' %}</a></button> -->
         </td>
@@ -50,24 +50,24 @@
     </div>
     </div>
     </div>
-    </main>
+
 
 
 
  {% elif user.is_student  %}
 
-    <main class= "container-fluid">
+    <!-- <main class= "container-fluid"> -->
 
-       <div class="row">
-    <div class="col-sm-4-lg-10">
-    <div class="card">
-    <div class="card-body">
-    <h5 class="card-header">My Teams</h5>
-    <div class="table-responsive">
-    <table class="table table-striped">
+    <div class="row tables">
+
+    <div class="col s12 m12 l12">
+    <!-- <div class="card"> -->
+
+    <div class="my_table">
+    <table class="highlight centered">
     <thead>
 
-    <tr>
+    <tr class="table_headers">
         <th>{% trans 'team_name' %}</th>
         <th>{% trans 'number of participants' %}</th>
         <th>{% trans 'duration of the project' %}</th>
@@ -87,19 +87,22 @@
 
     {% endfor %}
 
-    <tr>
-    </tr>
+
     </tbody>
     </table>
     </div>
-    </div>
-    </div>
+    <!-- </div> -->
     </div>
     </div>
 
-    </main>
+
+
 
      {% endif %}
+     <div  class="button_left" >
+       <a href="" class="waves-effect waves-light btn secondary_button">{% trans 'answers_board' %}</a>
 
+     </div>
+<!-- </main> -->
 
 {% endblock %}

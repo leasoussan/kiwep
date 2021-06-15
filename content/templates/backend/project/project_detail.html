@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'basem.html' %}
 
 {% load crispy_forms_filters %}
 
@@ -6,6 +6,7 @@
 
 {% load static %}
 {% load i18n %}
+{% load materializecss %}
 
 
 {% block content %}
@@ -20,6 +21,85 @@
     {##}
     {#    </div>#}
     <!-- Intro Courses -->
+    <!-- <div class=""> -->
+      <div class="row">
+          <div class="col s10"><p>{{project.description}}</p></div>
+          <div class="col s2" id="button-edit-project">
+            {% if user.is_speaker %}
+            <a class="waves-effect waves-light btn  secondary_button edit-project"href="{% url 'update_project' project.id %}"">{% trans 'edit'%}</a>
+            {% endif %}
+          </div>
+
+    </div>
+    <div class="project-detail" >
+
+    <div class="card-content background-collection" id="card_skills" >
+      <div class="row">
+        <div class="col s12 m6 l4 background-collection"><ul class="collection with-header">
+        <li class="collection-header"><h4>Details</h4></li>
+        <li class="collection-item">
+          <span class="label">{% trans 'field' %}:</span>
+          <span class="value">{{project.field}}</span>
+        </li>
+        <li class="collection-item">
+          <span class="label">{% trans 'time_to_complete' %}</span>
+          <span class="value">{{project.time_to_complete}}</span>
+        </li>
+        <li class="collection-item">
+          <span class="label">{% trans 'difficulty ' %}</span>
+          <span class="value">{{project.difficulty}}</span>
+        </li>
+        <li class="collection-item">
+          <span class="label">{% trans 'points' %}</span>
+          <span class="value">{{project.points}}</span>
+        </li>
+      </ul>
+    </div>
+        <div class="col s12 m6 l4">
+
+          <ul class="collection with-header">
+              <li class="collection-header"><h4>{% trans 'required_skills' %}</h4></li>
+              {% for skill in project.acquired_skills.all %}
+              <li class="collection-item">{{skill.name}}</li>
+              {% endfor %}
+        </ul>
+    </div>
+    </div>
+</div>
+  </div>
+
+  <!-- <div class="row mission-div">
+      <div class="col s12 m4 l9">
+          <h5 class="card-header">{% trans 'missions'%}</h5>
+          {% if user.is_speaker %}
+        missions<a class="waves-effect waves-light btn modal-trigger add_button" href="#IndividualMissionModal">{% trans 'add_mission'%}</a>
+          {% endif %}
+      </div>
+  </div> -->
+  <nav class="no-shadows nav_color">
+  <div class="nav-wrapper nav_project ">
+    <a href="#!" class="brand-logo" id = "project_headers"><h5>{% trans 'missions'%}</h5></a>
+    <ul class="right hide-on-med-and-down">
+      {% if user.is_speaker %}
+      <li><a class="waves-effect waves-light btn modal-trigger add_button" href="#IndividualMissionModal">{% trans 'add_missions' %}</a>
+      {% endif %}</li>
+    </ul>
+  </div>
+</nav>
+  <nav class="no-shadows nav_color">
+  <div class="nav-wrapper nav_project ">
+    <a href="#!" class="brand-logo" id = "project_headers"><h5>{% trans 'resources'%}</h5></a>
+    <ul class="right hide-on-med-and-down">
+      {% if user.is_speaker %}
+      <li><a class="waves-effect waves-light btn modal-trigger add_button" href="#AddResoucresModal">{% trans 'add_resources' %}</a>
+      {% endif %}</li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
     <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
         <div class="container col-lg-12">
 
@@ -28,7 +108,7 @@
                         {% include 'comments/discussion.html' with object=project %}
 
                     </div>
-                </div>
+
             <div class="row clearfix col-lg-8" >
                 <!-- Content Column -->
                 <div class="col-md-10 missions_list_team">
@@ -52,11 +132,11 @@
                                 </li>
                             {% endif %}
                             {% if user.is_speaker %}
-                                <li class="nav-item tab-btns">
+                                <!-- <li class="nav-item tab-btns">
                                     <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                                        href="{% url 'update_project' project.id %}" role="tab" aria-controls="prod-overview"
                                        aria-selected="true">{% trans 'edit project' %}</a>
-                                </li>
+                                </li> -->
                             {% endif %}
 
 
@@ -88,7 +168,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col">
                                 <div class="card">
 
@@ -101,21 +181,21 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
-                        <div class="add_mission add_resource">
+                        <!-- <div class="add_mission add_resource">
                             <button type="button" class=" btn add_button1" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
                                 {% trans  'add_individual_mission' %}
                             </button>
                             <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#CollectiveMissionModal">
                                 {% trans  'add_collective_mission' %}
                             </button>
-                            <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#AddResoucresModal">
+                             <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#AddResoucresModal">
                                 {% trans  'add_ressources' %}
                             </button>
 
-                        </div>
+                        </div> -->
                         <div>
                             <div>
                                 {% for mission in project.individualmission_set.all  %}
@@ -161,9 +241,9 @@
 
 
 
-            <div class="col-lg-4">
+            <!-- <div class="col-lg-4"> -->
 
-               <div>
+               <!-- <div>
                <h3>{% trans 'resources_projetc' %}</h3>
                                 {% for resource in project.resources_set.all %}
                                     <div class="card">
@@ -181,44 +261,113 @@
                                 </div>
 
 
-                <div>
 
-
-                    <div class="card" style="width: 14rem;margin-top:40px;">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <i class="fa fa-files-o"></i>
-                                <span class="label">{% trans 'field' %}:</span>
-                                <span class="value">{{project.field}}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <i class="fa fa-clock-o"></i>
-                                <span class="label">{% trans 'time_to_complete' %}</span>
-                                <span class="value">{{project.time_to_complete}}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <i class="fa fa-users"></i>
-                                <span class="label">{% trans 'difficulty ' %}</span>
-                                <span class="value">{{project.difficulty}}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <i class="fa fa-check-square-o"></i>
-                                <span class="label">{% trans 'points' %}</span>
-                                <span class="value">{{project.points}}</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
 
-        </div>
-        </div>
+        </div> -->
+        <!-- </div> -->
 
     </section>
 
+<!-- -----------MODAL WITH MATERIALIZE MISSIONS-------- -->
 
+<!-- Modal Structure -->
+<div id="IndividualMissionModal" class="modal">
+  <div class="modal-content">
+    <div class="collection header_mission">
+        <h4>{% trans 'missions' %}</h4>
+        <a class="waves-effect waves-light btn modal-trigger collection-item " href="#IndividualMission">{% trans 'individual_mission'%}</a>
+        <a class="waves-effect waves-light btn modal-trigger collection-item" href="#CollectiveMission">{% trans 'collective_mission'%}</a>
+      </div>
+
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat green-btn">{% trans 'close'%}</a>
+  </div>
+</div>
+<!-- -------------------INDIVIDUAL MISSION MODAL---------------- -->
+
+<div id="IndividualMission" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>{% trans 'individual_mission'%}</h4>
+
+    <div class="row">
+<form method="POST" action='{% url 'create_individual_mission'  project.id %}' class="col s12" >
+  <div class="row">
+    <div class="input-field col s6">
+      {% csrf_token %}
+          {{ individual_form|materializecss }}
+        <!-- {{resources_form|crispy}} -->
+  </div>
+  </div>
+  </form>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat green-btn">close</a>
+    <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">Save
+
+</button>
+  </div>
+</div>
+  </div>
+    </div>
+
+    <!-- --------------COLLECTIVE MISSION MODAL--------------- -->
+
+    <div id="CollectiveMission" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>{% trans 'collective_mission'%}</h4>
+
+        <div class="row">
+    <form method="POST" action='{% url 'create_collective_mission' project.id %}' class="col s9" >
+      <div class="row">
+        <div class="input-field col s6">
+          {% csrf_token %}
+              {{ collective_form|materializecss }}
+            <!-- {{resources_form|crispy}} -->
+      </div>
+      </div>
+      </form>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
+        <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">Save
+
+    </button>
+      </div>
+    </div>
+      </div>
+        </div>
+
+
+
+
+
+
+
+<!-- ---------MODAL RESOURCES with materialize---------- -->
+    <div id="AddResoucresModal" class="modal">
+      <div class="modal-content">
+        <h4>{% trans 'resources'%}</h4>
+
+        <div class="row">
+    <form method="POST" action='{% url 'create_resource' %}' class="col s12" >
+      <div class="row">
+        <div class="input-field col s6">
+          {% csrf_token %}
+              {{ resources_form|materializecss }}
+            <!-- {{resources_form|crispy}} -->
+      </div>
+      </div>
+      </form>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
+        <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="action">Submit
+</button>
+      </div>
+    </div>
+      </div>
+        </div>
     <!-- Modal -->
-    <div class="modal fade" id="IndividualMissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="IndividualMissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -239,14 +388,14 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
 
 
     <!-- Modal -->
-    <div class="modal fade" id="CollectiveMissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="CollectiveMissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -294,7 +443,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -305,3 +454,9 @@
 
 
 <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
+<script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+     $('.modal').modal();
+   });
+</script>
