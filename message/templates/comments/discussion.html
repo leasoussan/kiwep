@@ -7,14 +7,37 @@
 </div>
 
 
+
+  <div class="row">
+    <div class="col s12 m6 l9">
+      <div class="card">
+
+          <span class="card-title">{% trans 'add_discussion'%} to {{ object }}</span>
+
+          <div class="card-content">
+              <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }} " >
+                  {% csrf_token %}
+                  {{ object.discussion_form }}
+                  {#                <input type="text" style="width: 600px", height="300px">#}
+                  <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'comment' %}
+                  </button>
+              </form>
+
+          </div>
+      </div>
+    </div>
+  </div>
+
+
 <div>
-        <h3>{% trans 'add_discussion'%} to {{ object }}</h3>
+        <h5 style="link-side-panel">{% trans 'add_discussion'%} to {{ object }}</h5>
         <div>
             <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }} " >
                 {% csrf_token %}
                 {{ object.discussion_form }}
                 {#                <input type="text" style="width: 600px", height="300px">#}
-                <button class="btn-shop orange-color" type="submit" value="Save">{% trans 'comment' %}</button>
+                <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'comment' %}
+                </button>
             </form>
 
         </div>

@@ -78,8 +78,8 @@
   </div> -->
   <nav class="no-shadows nav_color">
   <div class="nav-wrapper nav_project ">
-    <a href="#!" class="brand-logo" id = "project_headers"><h5>{% trans 'missions'%}</h5></a>
-    <ul class="right hide-on-med-and-down">
+    <a href="#!" class="brand-logo link-side-panel1 left" id = "project_headers">{% trans 'missions'%}</a>
+    <ul class="right">
       {% if user.is_speaker %}
       <li><a class="waves-effect waves-light btn modal-trigger add_button" href="#IndividualMissionModal">{% trans 'add_missions' %}</a>
       {% endif %}</li>
@@ -88,8 +88,8 @@
 </nav>
   <nav class="no-shadows nav_color">
   <div class="nav-wrapper nav_project ">
-    <a href="#!" class="brand-logo" id = "project_headers"><h5>{% trans 'resources'%}</h5></a>
-    <ul class="right hide-on-med-and-down">
+    <a href="#!" class="brand-logo link-side-panel1 left" id = "project_headers">{% trans 'resources'%}</a>
+    <ul class="right">
       {% if user.is_speaker %}
       <li><a class="waves-effect waves-light btn modal-trigger add_button" href="#AddResoucresModal">{% trans 'add_resources' %}</a>
       {% endif %}</li>
@@ -142,7 +142,7 @@
 
                         </ul>
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col">
                                 <div class="card">
 
@@ -152,9 +152,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col">
                                 <div class="card">
 
@@ -167,7 +167,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <div class="row">
                             <div class="col">
                                 <div class="card">
@@ -196,7 +196,7 @@
                             </button>
 
                         </div> -->
-                        <div>
+                        <!-- <div>
                             <div>
                                 {% for mission in project.individualmission_set.all  %}
                                     <div class="card">
@@ -228,7 +228,7 @@
                                 {% endfor %}
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
                     </div>
