@@ -22,7 +22,6 @@
 
 
 
-
     <div class="row">
         <div class="col-lg-6">
             <div class="card top-products">
@@ -98,14 +97,11 @@
 
 
             </div>
-        {% if team.project.time_to_complete %}
-{#        {% trans 'due_date' %} {{ team.due_date }}
-            {# TODO: DANY something is not working in your due_date #}
+
 
         {% endif %}
 
     </div>
-
 
 
 
@@ -118,12 +114,15 @@
     </div>
 
 
+    <div class="col-lg-4">
+
+
     <!-- Collective Missions -->
 
     <div class="row">
         <div class="col">
             <div class="card">
-                <h5 class="card-header">{% trans 'collective mission' %}</h5>
+                <h5 class="card-header">{% trans 'collective_mission' %}</h5>
 
                 <div class="card-body">
 
@@ -135,12 +134,18 @@
                             <th>{% trans 'status' %}</th>
                             <th>{% trans 'points' %}</th>
                             <th>{% trans 'date' %}</th>
-                            <th>{% trans 'claim mission' %}</th>
+
+                            <th>{% if user.is_speaker %}
+                                {% trans 'assign_mission' %}
+                                {% elif user.is_student %}
+                                {% trans 'join_mission' %}
+                                {% endif %}
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        {% if user.profile in team.participants.all or user.profile.name == "speaker" %}
+                        {% if user.profile in team.participants.all or user.is_peaker %}
                             {% for mission in team.project.collectivemission_set.all %}
 
 
@@ -255,6 +260,7 @@
                         <td>{{mission.due_date}}</td>
                         <td>{{mission.status}}</td>
                     </tr>
+
                 {% endfor %}
 
 
@@ -267,7 +273,7 @@
 
         <div class="card-content">
             {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
-                <span class="card-title"># Participants: {{ team.participants.count }}</span>
+                <span class="card-title">{% trans "participants_nmbr_title" %}{{ team.participants.count }}</span>
 
                 <ul class="collection">
                 {% for student in team.participants.all %}
@@ -280,6 +286,13 @@
             {%endif %}
 
         </div>
+    </div>
+        </div>
+        </div>
+        </div>
+    </div>
+</div>
+</div>
     </div>
 
 
