@@ -25,16 +25,16 @@
                                    aria-selected="true">{%  trans 'mission' %}</a>
                             </li>
                             {% if user.profile.name == 'speaker' %}
-                            <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                               href="{{ object.get_update_url }}" role="tab" aria-controls="prod-overview"
-                               aria-selected="true">{% trans 'edit' %}</a></li>
-                            <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                  href="{% url 'create_resource' %}" role="tab" aria-controls="prod-overview"
-                                  aria-selected="true">{% trans 'add resource' %}</a></li>
+                                <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
+                                       href="{{ object.get_update_url }}" role="tab" aria-controls="prod-overview"
+                                       aria-selected="true">{% trans 'edit' %}</a></li>
+                                <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
+                                       href="{% url 'create_resource' %}" role="tab" aria-controls="prod-overview"
+                                       aria-selected="true">{% trans 'add resource' %}</a></li>
                             {% endif %}
                             <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                  href="{% url 'project_detail' object.id %}" role="tab" aria-controls="prod-overview"
-                                  aria-selected="true">{% trans 'back ' %}</a></li>
+                                   href="{% url 'project_detail' object.id %}" role="tab" aria-controls="prod-overview"
+                                   aria-selected="true">{% trans 'back ' %}</a></li>
                         </ul>
                         <div class="row">
                             <div class="col">
@@ -70,18 +70,39 @@
                                     </div>
                                 </div>
                             </div>
+                            <h3>{% trans 'attributed_to' %}
+                                <div>
+
+                                    {% if object.attributed_to < 0  %}
+                                        {% trans 'no_one_joined_yet' %}
+                                    {% else %}
+                                        {% for participant in object.attributed_to.all %}
+                                            <li> {{ participant}}</li>
+                                            {% if participant in object.attributed_to.all and participant == request.user.profile  %}
+                                                <a href="{% url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    {% endif %}
+                                </div>
+
+                                {% if user.profile ==  request.user.profile and user.profile in object.project.team.participants.all %}
+                                    hello    <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_mission' %}</a>
+                                {% endif %}
                         </div>
+
                     </div>
                 </div>
             </div>
     </section>
 
-                    </div>
-                    <div>
-                        {% include 'comments/discussion.html' with object=mission %}
 
-                    </div>
-                </div>
+    </div>
+    <div>
+        {% include 'comments/discussion.html' with object=mission %}
+
+    </div>
+    </div>
 
 
     <div class = "resource">
@@ -94,37 +115,33 @@
     </div>
     <!-- Video Column -->
     <div class="video-column col-lg-4">
-    <div class="inner-column">
+        <div class="inner-column">
 
-        <div class="course-features-info">
-            <ul>
-                <li class="lectures-feature">
-                    <i class="fa fa-files-o"></i>
-                    <span class="label">{% trans 'field' %}:</span>
-                    <span class="value">{{object.field}}</span>
-                </li>
+            <div class="course-features-info">
+                <ul>
+                    <li class="lectures-feature">
+                        <i class="fa fa-files-o"></i>
+                        <span class="label">{% trans 'field' %}:</span>
+                        <span class="value">{{object.field}}</span>
+                    </li>
 
 
 
-                <li class="students-feature">
-                    <i class="fa fa-users"></i>
-                    <span class="label">{% trans 'difficulty_title' %}</span>
-                    <span class="value">{{object.level}}</span>
-                </li>
+                    <li class="students-feature">
+                        <i class="fa fa-users"></i>
+                        <span class="label">{% trans 'difficulty_title' %}</span>
+                        <span class="value">{{object.level}}</span>
+                    </li>
 
-                <li class="assessments-feature">
-                    <i class="fa fa-check-square-o"></i>
-                    <span class="label">{% trans 'points_title' %}</span>
-                    <span class="value">{{object.points}}</span>
-                </li>
-            </ul>
+                    <li class="assessments-feature">
+                        <i class="fa fa-check-square-o"></i>
+                        <span class="label">{% trans 'points_title' %}</span>
+                        <span class="value">{{object.points}}</span>
+                    </li>
+                </ul>
+            </div>
+
         </div>
-
-    </div>
-
-
-    <!-- Main content End -->
-
 
 
 

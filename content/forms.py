@@ -121,29 +121,22 @@ class CollectiveMissionAddForm(ModelForm):
 class CollectiveMissionAssign(forms.Form):
     participants = forms.ModelMultipleChoiceField(queryset=Student.objects.all())
 
-    def __init__(self, **kwargs):
-        team = kwargs['team']
-        if not team.project:
-            raise Http404("You dont Have a Projects")
-
-        super().__init__()
-        self.fields['participants'].queryset = team.participants.all()
-
-        print("team particpantes::::::", team.participants)
-
-    # .values_list('pk', flat=True)
-#TODO check with avi -how to get the value pk
+    # def __init__(self, team, **kwargs):
+    #     # team = kwargs['team']
+    #
+    #     if not team.project:
+    #         raise Http404("You dont Have a Projects")
+    #
+    #     super().__init__()
+    #     self.fields['participants'].queryset = team.participants.all()
 
 
-    def save(self, collective_mission):
+    def save_individuals(self, collective_mission):
+        print('is valid')
+        for participant in self.cleaned_data['participants']:
+            mission= IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,  attributed_to = participant)
 
-        if self.is_valid():
-            for participant in self.cleaned_data['participants']:
-                mission= IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,  attributed_to = participant.value)
-                
-                
-
-
+            print('participant', participant)
 
 
 

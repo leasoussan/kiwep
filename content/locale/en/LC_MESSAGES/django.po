@@ -405,7 +405,7 @@ msgstr "Missions for this project"
 
 #: templates/backend/team/team_detail.html:211
 msgid "assign_mission"
-msgstr "Edit Mission"
+msgstr "Assign Mission"
 
 #: templates/backend/team/team_detail.html:213
 #, fuzzy
