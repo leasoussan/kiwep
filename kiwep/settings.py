@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'materialize',
     'crispy_forms_materialize',
      'materializecssform',
-     'materializeform'
+
 
 ]
 REST_FRAMEWORK = {

@@ -253,6 +253,81 @@
         <!-- </div> -->
 
     </section>
+
+<!-- -----------MODAL WITH MATERIALIZE MISSIONS-------- -->
+
+<!-- Modal Structure -->
+<div id="IndividualMissionModal" class="modal">
+  <div class="modal-content">
+    <ul class="collection with-header">
+        <li class="collection-header" id="header_mission"><h4>{% trans 'missions' %}</h4></li>
+        <li collection-item> <button data-target="IndividualMission" class="btn modal-trigger">{% trans 'individual_mission'%}</button></li>
+        <li collection-item> <button data-target="CollectiveMission" class="btn modal-trigger">{% trans 'collective_mission'%}</button></li>
+
+
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+<!-- -------------------INDIVIDUAL MISSION MODAL---------------- -->
+
+<div id="IndividualMission" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>{% trans 'individual_mission'%}</h4>
+
+    <div class="row">
+<form method="POST" action='{% url 'create_individual_mission'  project.id %}' class="col s12" >
+  <div class="row">
+    <div class="input-field col s6">
+      {% csrf_token %}
+          {{ individual_form|materializecss }}
+        <!-- {{resources_form|crispy}} -->
+  </div>
+  </div>
+  </form>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
+    <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="action">Save
+
+</button>
+  </div>
+</div>
+  </div>
+    </div>
+
+    <!-- --------------COLLECTIVE MISSION MODAL--------------- -->
+
+    <div id="CollectiveMission" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>{% trans 'collective_mission'%}</h4>
+
+        <div class="row">
+    <form method="POST" action='{% url 'create_collective_mission' project.id %}' class="col s9" >
+      <div class="row">
+        <div class="input-field col s6">
+          {% csrf_token %}
+              {{ collective_form|materializecss }}
+            <!-- {{resources_form|crispy}} -->
+      </div>
+      </div>
+      </form>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
+        <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="action">Save
+
+    </button>
+      </div>
+    </div>
+      </div>
+        </div>
+
+
+
+
+
+
+
 <!-- ---------MODAL with materialize---------- -->
     <div id="AddResoucresModal" class="modal">
       <div class="modal-content">
@@ -271,7 +346,6 @@
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
         <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="action">Submit
-  <i class="material-icons right">save</i>
 </button>
       </div>
     </div>
