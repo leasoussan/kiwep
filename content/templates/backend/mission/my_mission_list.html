@@ -4,10 +4,6 @@
 
 
 
-{% if user.profile.name == 'speaker' %}
-
-<a href="{% url 'create_mission' %}">{% trans 'add_mission_link' %}/a>
-{% endif %}
 
 <div class="row">
     <div class="col">
@@ -27,6 +23,7 @@
                     </thead>
                     <tbody>
                         {% for mission in mission_list %}
+                            {%  if mission %}
                         <tr>
                             <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
                             <td>{{mission.due_date}}</td>

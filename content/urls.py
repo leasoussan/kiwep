@@ -29,6 +29,7 @@ urlpatterns = [
     # mission
     path('mission-list/', IndividualMissionListView.as_view(), name="mission_list"),
     path('my_mission-list/', IndividualMissionListView.as_view(), name="my_mission_list"),
+    path('answer-mission-list/', AnswerBoardMissionListView.as_view(), name="answer_mission_list"),
     path('individual-mission-detail/<int:pk>', IndividualMissionDetailView.as_view(), name="individual_mission_detail"),
     path('collective-mission-detail/<int:pk>', CollectiveMissionDetailView.as_view(), name="collective_mission_detail"),
     path('assign-collective-mission-detail/<int:pk>', assign_mission, name="assign_collective_mission_detail"),

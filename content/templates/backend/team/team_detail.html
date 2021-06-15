@@ -117,7 +117,7 @@
         <a  href="{% url 'project_detail' team.project.id %}">{% trans 'read_more' %}</a>
     </div>
 
-<<<<<<< HEAD
+
     <!-- Collective Missions -->
 
     <div class="row">
@@ -222,7 +222,7 @@
         <div class="row">
         <div class="col">
         <div class="card">
-        <h5 class="card-header">{% trans 'project mission' %}</h5>
+        <h5 class="card-header">{% trans 'project_mission' %}</h5>
 
         <div class="card-body">
             <p>My assigned missions</p>
@@ -255,10 +255,10 @@
                         <td>{{mission.due_date}}</td>
                         <td>{{mission.status}}</td>
                     </tr>
+                {% endfor %}
 
-    <div class="col-lg-4"
 
-    <div class="card">
+
 
 
         {% if user.is_speaker %}

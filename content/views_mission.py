@@ -32,6 +32,19 @@ class IndividualMissionListView(ProfileCheckPassesTestMixin, ListView):
     def get_queryset(self):
         return super().get_queryset().filter(attributed_to = self.request.user.profile())
 
+
+# ----------------------------------------------------------------------------------------------------------------
+
+class AnswerBoardMissionListView(ProfileCheckPassesTestMixin, ListView):
+    ''' To See all Missions View'''
+    model = IndividualMission
+    template_name = 'backend/mission/my_mission_list.html'
+    context_object_name = 'answers_mission_list'
+
+
+    def get_queryset(self):
+        return super().get_queryset().filter(response_comment = True)
+
 # ----------------------------------------------------------------------------------------------------------------
 
 

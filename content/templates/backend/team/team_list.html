@@ -100,8 +100,11 @@
 
      {% endif %}
      <div  class="button_left" >
-       <a href="" class="waves-effect waves-light btn secondary_button">{% trans 'answers_board' %}</a>
-
+        {% if user.is_speaker %}
+       <a href="{% url 'answer_mission_list' %}" class="waves-effect waves-light btn secondary_button">{% trans 'answers_board' %}</a>
+        {% elif user.is_student %}
+       <a href="{% url 'mission_list' %}" class="waves-effect waves-light btn secondary_button">{% trans 'my_mission_board' %}</a>
+        {% endif %}
      </div>
 <!-- </main> -->
 
