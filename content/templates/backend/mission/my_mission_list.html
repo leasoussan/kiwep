@@ -3,117 +3,121 @@
 {% block content %}
 
 
-    {% if user.is_speaker %}
 
+        {% if user.is_speaker %}
 
-        <h5 class="card-header">{% trans 'my_mission_board_title' %}</h5>
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>{% trans 'mission_name' %}</th>
-                <th>{% trans 'team_name' %}</th>
-                <th>{% trans 'project_name' %}</th>
-                <th>{% trans 'due_date' %}</th>
-                <th>{% trans 'answer' %}</th>
-                <th>{% trans 'validate_title' %}</th>
-            </tr>
-            </tr>
-            </thead>
-            <tbody>
-            {% for mission in answers_mission_list %}
-                <tr>
-                    <td>{% if mission.individualmission %}
-                        <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a>
-                    {% elif  mission.collectivemission %}
+    {% if answer_mission_list == None  %}
 
-                        <a href="{% url 'collective_mission_detail'  mission.pk %}">{{ mission.name }}</a>
-                    {% endif %}
-                    </td>
-                    <td><a href="{% url 'team_detail'  team.pk %}">{{ team.name }}</a></td>
-                    <td><a href="{% url 'project_detail'  project.pk %}">{{ project.name }}</a></td>
-                    <td>{{mission.due_date}}</td>
-                    <td>{%  if mission.response_comment %}
-                        <a href="#">Answer</a>
-                    {% else  %}
-                        {% trans 'not_answer_yet' %}
-                    {% endif %}
-                    </td>
-                    <td>{{mission.completed}}</td>
-                    <td>000</td>
-                    <td></td>
+        <div>
+            <h1> {% trans 'there are no answers yet' %}</h1>
 
-                </tr>
-
-            {% endfor %}
-
-            </tbody>
-        </table>
-        </div>
-        </div>
-        {{ object }}
-        </div>
         </div>
 
+    {% else %}
+            <div>
+                <h5 class="card-header">{% trans 'my_mission_board_title' %}</h5>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>{% trans 'mission_name' %}</th>
+                        <th>{% trans 'team_name' %}</th>
+                        <th>{% trans 'project_name' %}</th>
+                        <th>{% trans 'due_date' %}</th>
+                        <th>{% trans 'answer' %}</th>
+                        <th>{% trans 'validate_title' %}</th>
+                    </tr>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for mission in answers_mission_list %}
+                        <tr>
+                            <td>{% if mission.individualmission %}
+                                <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a>
+                            {% elif  mission.collectivemission %}
+
+                                <a href="{% url 'collective_mission_detail'  mission.pk %}">{{ mission.name }}</a>
+                            {% endif %}
+                            </td>
+                            <td><a href="{% url 'team_detail'  mission.team_set.id %}">{{ team.name }}</a></td>
+                            <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ project.name }}</a></td>
+                            <td>{{mission.due_date}}</td>
+                            <td>{%  if mission.response_comment %}
+                                <a href="#">Answer</a>
+                            {% else  %}
+                                {% trans 'not_answer_yet' %}
+                            {% endif %}
+                            </td>
+                            <td>{{mission.completed}}</td>
+                            <td>000</td>
+                            <td></td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+{% endif %}
+            </div>
 
 
 
+        {% elif user.is_student %}
 
 
-    {% elif user.student %}
-
-
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-header">{% trans 'my_mission_board_title' %}</h5>
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>{% trans 'mission_name' %}</th>
-                                <th>{% trans 'team_name' %}</th>
-                                <th>{% trans 'project_name' %}</th>
-                                <th>{% trans 'due_date' %}</th>
-                                <th>{% trans 'answer' %}</th>
-                                <th>{% trans 'status' %}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for mission in mission_list %}
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-header">{% trans 'my_mission_board_title' %}</h5>
+                            <table class="table table-hover">
+                                <thead>
                                 <tr>
-                                    <td>{% if mission in mission.individualmission_set %}
-                                        <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a>
-                                    {% elif  mission in mission.individualmission_set %}
-
-                                        <a href="{% url 'collective_mission_detail'  mission.pk %}">{{ mission.name }}</a>
-                                        </td>
-                                    {% endif %}
-                                    <td><a href="{% url 'team_detail'  team.pk %}">{{ team.name }}</a></td>
-                                    <td><a href="{% url 'project_detail'  project.pk %}">{{ project.name }}</a></td>
-                                    <td>{{mission.due_date}}</td>
-
-                                    {#                                get the answer modal #}
-                                    {% if mission.response_comment or mission.response_file %}
-                                        <a href="">{% trans 'see_answer' %}</a>
-                                    {% else %}
-                                        {% trans 'Not Yet' %}
-                                    {% endif %}
-                                    <td>{{mission.}}</td>
-                                    <td>{{mission.completed}}</td>
-                                    <td>000</td>
-                                    <td>xxx</td>
-
+                                    <th>{% trans 'mission_name' %}</th>
+                                    <th>{% trans 'team_name' %}</th>
+                                    <th>{% trans 'project_name' %}</th>
+                                    <th>{% trans 'due_date' %}</th>
+                                    <th>{% trans 'answer' %}</th>
+                                    <th>{% trans 'status' %}</th>
                                 </tr>
-                            {% endfor %}
+                                </thead>
+                                <tbody>
+                                {% for mission in mission_list %}
+                                    <tr>
+                                        <td>{% if mission in mission.individualmission.all %}
+                                            <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.title }}anser</a>
+                                        {% elif  mission in mission.individualmission_set.all %}
 
-                            </tbody>
-                        </table>
+                                            <a href="{% url 'collective_mission_detail'  mission.pk %}">{{ mission.title }}</a>
+                                            </td>
+                                        {% endif %}
+{#                                        <td><a href="{% url 'team_detail'  mission.team_set.id %}">{{ team.name }}</a></td>#}
+                                        <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ project.name }}</a></td>
+                                        <td>{{mission.due_date}}</td>
+
+                                        {#                                get the answer modal #}
+                                        {% if mission.response_comment or mission.response_file %}
+                                            <a href="">{% trans 'see_answer' %}</a>
+                                        {% else %}
+                                            {% trans 'Not Yet' %}
+                                        {% endif %}
+                                        <td>{{mission.}}</td>
+                                        <td>{{mission.completed}}</td>
+                                        <td>000</td>
+                                        <td>xxx</td>
+
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>
-        </div>
 
+        {% endif %}
 
-    {% endif %}
 
 {% endblock %}
