@@ -4,56 +4,58 @@
 {% load crispy_forms_tags %}
 {% load mytags %}
 {% block content %}
-{% load materializecss %}
+    {% load materializecss %}
 
 
-<!-- <div id = "getApi"> </div>
+    <!-- <div id = "getApi"> </div>
  <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
     <div class="container">
+    {% if model %}
             <h2>Create {{view.model|return_class_name}}</h2>
+            {% endif %}
         <div class="cart-wrap">
                 <table class="cart-table"> -->
 
 
-                  <div class="container-fluid create_team">
+    <div class="container-fluid create_team">
 
-                    <div class="row" style="width:500px;">
+        <div class="row" style="width:500px;">
 
-                    <div class="col-sm-4-lg-10">
-                        <div class="card team_card">
+            <div class="col-sm-4-lg-10">
+                <div class="card team_card">
 
                     <form action="", method="POST" class="form-horizontal" >
 
                         {% if form %}
-                        <table >
-                          {% csrf_token %}
-                       {{ form|materializecss }}
-{#                           {{form|crispy}}#}
+                            <table >
+                                {% csrf_token %}
+                                {{ form|materializecss }}
+                                {#                           {{form|crispy}}#}
 
-                        </table>
+                            </table>
 
                         {% endif %}
                         {% if formset %}
-                        {{formset.management_form}}
-                        {% for subform in formset %}
+                            {{formset.management_form}}
+                            {% for subform in formset %}
 
-                        {{subform|crispy}}
+                                {{subform|crispy}}
 
 
-                        {% endfor %}
+                            {% endfor %}
                         {% endif %}
 
                     </form>
-                <!-- </table> -->
-                <div id=" button_left" style="display:flex;
+                    <!-- </table> -->
+                    <div id=" button_left" style="display:flex;
                 justify-content:flex-end; padding-top: 20px;">
-                <button class="btn add_button" type="submit" value="Save">Save</button>
-                </div>
+                        <button class="btn add_button" type="submit" value="Save">Save</button>
+                    </div>
 
-            </div>
+                </div>
             </div>
         </div>
     </div>
 
-    {% endblock %}
-    <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
+{% endblock %}
+<script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
