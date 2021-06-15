@@ -109,27 +109,27 @@
 
                     </div>
 
-            <div class="row clearfix col-lg-8" >
+            <!-- <div class="row clearfix col-lg-8" >
                 <!-- Content Column -->
-                <div class="col-md-10 missions_list_team">
+                <!-- <div class="col-md-10 missions_list_team"> -->
                     <!-- Intro Info Tabs-->
-                    <div class="intro-info-tabs">
+                    <!-- <div class="intro-info-tabs">
                         <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
                             <li class="nav-item tab-btns">
                                 <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                                    href="#prod-overview" role="tab" aria-controls="prod-overview"
                                    aria-selected="true">{{project.name}}</a>
-                            </li>
+                            </li> -->
                             {% if user.is_student %}
-                                <li class="nav-item tab-btns">
+                                <!-- <li class="nav-item tab-btns">
                                     <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                                        href="{% url 'student_available_project_list' %}" role="tab" aria-controls="prod-overview"
-                                       aria-selected="true">{% trans 'all projects' %}</a>
+                                       aria-selected="true">{% trans 'all projects' %}</a> -->
                                     {% else %}
-                                    <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
+                                    <!-- <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                                        href="{% url 'project_list' %}" role="tab" aria-controls="prod-overview"
                                        aria-selected="true">{% trans 'all projects' %}</a>
-                                </li>
+                                </li> -->
                             {% endif %}
                             {% if user.is_speaker %}
                                 <!-- <li class="nav-item tab-btns">
@@ -137,10 +137,10 @@
                                        href="{% url 'update_project' project.id %}" role="tab" aria-controls="prod-overview"
                                        aria-selected="true">{% trans 'edit project' %}</a>
                                 </li> -->
-                            {% endif %}
+                            <!-- {% endif %}
 
 
-                        </ul>
+                        </ul> -->
 
                         <!-- <div class="row">
                             <div class="col">
@@ -230,10 +230,10 @@
                             </div>
                         </div> -->
 
-
+<!--
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
 
@@ -267,7 +267,7 @@
         </div> -->
         <!-- </div> -->
 
-    </section>
+    <!-- </section> -->
 
 <!-- -----------MODAL WITH MATERIALIZE MISSIONS-------- -->
 
