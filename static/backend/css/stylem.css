@@ -38,6 +38,9 @@ body {
 .green-btn:hover {
   background-color: #9e9e9e ;
 }
+.green-btn:active {
+  background-color: #9e9e9e ;
+}
 #a-link {
   color:#425940;
 }
@@ -182,9 +185,19 @@ body {
 
 
 
-
 -----------------TEAM DETAIL-----------------------------
 
 .btn_edit_team{
 
 }
+
+.header_mission {
+  text-align: center;
+}
+#background-collection{
+  background-color:#f7ebdc;
+}
+.mission-div {
+  margin-top: 90px;
+}
+
