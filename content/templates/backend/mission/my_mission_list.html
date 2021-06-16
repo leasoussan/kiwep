@@ -33,15 +33,14 @@
                 <tbody>
                 <tr>
                     {% for mission in answers_mission_list %}
+{{ mission.project.team.id }}
+                        <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
 
-                        <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a>
-
-                            {#                            </td>#}
-                            {#                            <td><a href="{% url 'team_detail'  mission.team.id %}">{{ team.name }}</a></td>#}
-                            {#                            <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ project.name }}</a></td>#}
+                        <td><a href="{% url 'team_detail'  mission.project.team.id %}">{{ mission.project.team.name }}</a></td>
+                        <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ mission.project.name }}</a></td>
                         <td>{{mission.due_date}}</td>
                         <td>{%  if mission.response_comment %}
-                            <a href="#">Answer</a>
+                            <a href="{% url 'individual_mission_detail' mission.id %}">{% trans 'answer' %}</a>
                         {% else  %}
                             {% trans 'not_answer_yet' %}
                         {% endif %}
@@ -84,22 +83,17 @@
                             {% for mission in mission_list %}
                                 <tr>
 
-                                    <td>{% if mission.individualmission %}
-                                        <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.title }}anser</a>
-                                    {% elif mission.individualmission %}
+                                    <td>   <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.title }}anser</a></td>
 
-                                        <a href="{% url 'collective_mission_detail'  mission.pk %}">{{ mission.title }}</a>
-
-                                    {% endif %}  </td>
-                                    {#                                        <td><a href="{% url 'team_detail'  mission.team.id %}">{{ team.name }}</a></td>#}
-                                    {#                                        <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ project.name }}</a></td>#}
+                                    <td><a style="color: #0a0a0a" href="{% url 'team_detail'  mission.project.team.id %}">{{ mission.project.team.name }}</a></td>
+                                    <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ mission.project.name }}</a></td>
                                     <td>{{mission.due_date}}</td>
 
                                     {#                                get the answer modal #}
                                     <td>{% if mission.response_comment or mission.response_file %}
-                                        <a href="">{% trans 'see_answer' %}</a>
-                                    {% else %}
-                                        {% trans 'Not Yet' %}
+                                        <a href="{% url 'individual_mission_detail'  mission.id %}">{% trans 'see_answer' %}</a>
+                                    {% elif user.profile == mission.attributed_to %}
+                                        <a href="{% url 'submit_mission' mission.id %}">{% trans 'submit_mission' %}</a>
                                     {% endif %}</td>
                                     <td>{{mission.status}}</td>
                                 </tr>

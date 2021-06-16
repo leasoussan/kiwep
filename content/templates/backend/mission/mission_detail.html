@@ -7,8 +7,17 @@
 {% endblock %}
 
 {% block content %}
-    {{ object }}
-    {# TODO#:Fix position of buttons#}
+
+
+    {% if user.profile.name == 'speaker' %}
+        <div class="">
+        <button> <a href="{{ object.get_update_url }}">{% trans 'edit_mission' %}</a></button>
+    {% endif %}
+
+
+    <a href="{% url 'project_detail' object.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
+
+
 
     <!-- Intro Courses -->
     <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
@@ -30,7 +39,7 @@
                                        aria-selected="true">{% trans 'edit' %}</a></li>
                                 <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                                        href="{% url 'create_resource' %}" role="tab" aria-controls="prod-overview"
-                                       aria-selected="true">{% trans 'add resource' %}</a></li>
+                                       aria-selected="true">{% trans 'add_resource' %}</a></li>
                             {% endif %}
                             <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                                    href="{% url 'project_detail' object.id %}" role="tab" aria-controls="prod-overview"
@@ -71,7 +80,8 @@
                                 </div>
                             </div>
 
-                            {#                Speaker      __________________________________________________________________INDIVIDUAL attributed_to___ CALL#}
+{# --------  Speaker__________________________________#}
+{# ______________________________________________________________________________________________________________________________INDIVIDUAL attributed_to___ CALL_______________#}
                             {% if user.is_speaker %}
                                 <div>
                                     <h3>{% trans 'attributed_to' %}
@@ -88,7 +98,7 @@
 
 
 
-                                            {#                                ----------------------------------------------------------COLLECTIVE attributed_to Call#}
+ {# _________________________________________________________________________________________________________________________________________COLLECTIVE attributed_to Call __________#}
 
                                             {% if object.attributed_to == 0  %}
                                                 {% trans 'no_one_joined_yet' %}
@@ -113,7 +123,8 @@
 
 
 
-                            {#                Student      __________________________________________________________________INDIVIDUAL attributed_to___ CALL#}
+ {# --------  STUDENT___________________#}
+{# _____________________________________________________________________________________________________________________________Individual _____attributed_to___ CALL #}
                             {% if user.is_student %}
                                 <div>
                                     <h3>{% trans 'attributed_to' %}
@@ -128,8 +139,7 @@
 
 
 
-
-                                            {#                                ----------------------------------------------------------COLLECTIVE attributed_to Call#}
+ {# ______________________________________________________________________________________________________________________________________________COLLECTIVE attributed_to Call#}
 
                                             {% if object.attributed_to == 0  %}
                                                 {% trans 'no_one_joined_yet' %}
@@ -158,7 +168,7 @@
                 </div>
     </section>
 
-
+{# _________________________________________________________________________Discussion BOARD - COMMENTS ___________________________________ #}
     </div>
     <div>
         {% include 'comments/discussion.html' with object=mission %}
@@ -166,7 +176,7 @@
     </div>
     </div>
 
-
+{# _______________________________________________________________________________RESOURCES ________________________________________________________________ #}
     <div class = "resource">
         Ressources for this Mission
         {% for resource in mission.resources.all %}
@@ -175,6 +185,14 @@
         HERE
     </div>
     </div>
+
+
+
+
+
+{# _______________________________________________________________________________Other Details ________________________________________________________________ #}
+
+
     <!-- Video Column -->
     <div class="video-column col-lg-4">
         <div class="inner-column">
@@ -205,6 +223,70 @@
 
         </div>
 
+{#    ____________________________________________________________________________________ANSWER ________________________#}
 
+
+      <div class="tab-content tabs-content" id="myTabContent">
+                            <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
+                                 aria-labelledby="prod-overview-tab">
+                                <div class="content white-bg pt-30 mission_description">
+                                    <!-- Cource Overview -->
+                                    <div class="course-overview">
+                                        <div class="inner-box" >
+                                            <div class= "mission_description">
+                                                <h3>{% trans 'about_the_mission' %}</h3>
+                                                <p>{{object.mission.description}} </p>
+
+
+                                                <div class="inner-box" >
+                                                    <h2>{% trans 'my_response' %}</h2>
+                                                    <p>,{{object.response_comment}} </p>
+                                                    <p>{{object.response_file}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {% if update %}
+                                            {% if user.profile == object.attributed_to  %}
+
+                                                <form action="" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    {{form.as_p}}
+                                                    <button type="submit">{% trans 'send' %}</button>
+
+                                                </form>
+
+
+                                            {% endif %}
+
+
+                                        {% endif %}
+
+
+                                        {% if user.profile == object.attributed_to %}
+                                            <button><a href="{% url 'submit_mission' object.id %}">{% trans 'edit-response' %}</a> </button>
+                                            <button><a href="{% url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a> </button>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if user.profile.name == 'speaker' %}
+
+                                {% if object.response_file or object.response_comment %}
+                                    {% trans 'file_lable' %} :{{object.response_file}}
+                                    {% trans 'text_lable' %}: {{object.response_comment}}
+                                {% else %}
+
+                                    {% trans 'no_answer_yet' %}
+                                {% endif %}
+                            {% endif %}
+
+
+
+                        </div>
+                    </div>
+                </div>
 
 {% endblock %}

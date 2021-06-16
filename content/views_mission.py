@@ -262,7 +262,7 @@ class StudentSubmitMission(StudentStatuPassesTestMixin, UpdateView):
     #         'response_comment',
     #         'response_file',
     #     ]
-    template_name = 'backend/mission/team_mission_detail.html'
+    template_name = 'backend/mission/mission_detail.html'
 
 
 # on the get contex data im adding  the context that I get in the page. here it mean that when I call this view ill get to add in the kward update 
@@ -273,9 +273,10 @@ class StudentSubmitMission(StudentStatuPassesTestMixin, UpdateView):
         return context
 
     def get_success_url(self):
-        return reverse_lazy('team_detail', kwargs ={'pk': self.object.team.id})
+        return reverse_lazy('team_detail', kwargs ={'pk': self.object.project.team.id})
 
     def form_valid(self, form):
+        print(form.errors)
         return super().form_valid(form)
 
 # ----------------------------------------------------------------------------------------------------------------

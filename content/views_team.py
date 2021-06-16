@@ -36,6 +36,9 @@ class TeamListView(ProfileCheckPassesTestMixin, ListView):
         return self.request.user.profile().team_set.all()
 
 
+
+
+
 class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
     """ Global Team Details """
 
