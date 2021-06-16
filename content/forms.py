@@ -121,20 +121,13 @@ class CollectiveMissionAddForm(ModelForm):
 class CollectiveMissionAssign(forms.Form):
     participants = forms.ModelMultipleChoiceField(queryset=Student.objects.all())
 
-    # def __init__(self, team, **kwargs):
-    #     # team = kwargs['team']
-    #
-    #     if not team.project:
-    #         raise Http404("You dont Have a Projects")
-    #
-    #     super().__init__()
-    #     self.fields['participants'].queryset = team.participants.all()
-
 
     def save_individuals(self, collective_mission):
         print('is valid')
         for participant in self.cleaned_data['participants']:
-            mission= IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission,  attributed_to = participant)
+            mission= IndividualCollectiveMission.objects.get_or_create(
+                                                        parent_mission=collective_mission,
+                                                        attributed_to = participant)
 
             print('participant', participant)
 
@@ -179,3 +172,16 @@ class SubmitMissionForm(ModelForm):
             'response_comment',
             'response_file',
         ]
+
+
+
+
+# ____________________________________________________________________________Validate Mission----------------------
+class ValidateMissionForm(forms.Form):
+    accepted = forms.BooleanField()
+
+
+    def validate_mission(self, mission):
+        mission = IndividualMission.objects.get(id= mission.id)
+        mission.accepted = True
+        mission.save()

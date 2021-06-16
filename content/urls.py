@@ -45,6 +45,7 @@ urlpatterns = [
     path('delete-mission/<int:pk>', MissionDeleteView.as_view(), name="delete_mission"),
     path('claim-mission/<int:pk>', ClaimMission.as_view(), name="claim_mission"),
     path('submit-mission/<int:pk>', StudentSubmitMission.as_view(), name='submit_mission'),
+    path('validate-mission/<int:pk>', ValidateMission.as_view(), name='validate_mission'),
     path('unclaim-mission/<int:pk>', UnclaimMission.as_view(), name="unclaim_mission"),
 
 

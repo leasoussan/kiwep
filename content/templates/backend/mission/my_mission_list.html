@@ -33,9 +33,7 @@
                 <tbody>
                 <tr>
                     {% for mission in answers_mission_list %}
-{{ mission.project.team.id }}
                         <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
-
                         <td><a href="{% url 'team_detail'  mission.project.team.id %}">{{ mission.project.team.name }}</a></td>
                         <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ mission.project.name }}</a></td>
                         <td>{{mission.due_date}}</td>
@@ -45,9 +43,17 @@
                             {% trans 'not_answer_yet' %}
                         {% endif %}
                         </td>
-                        <td>{{mission.completed}}</td>
-                        <td>000</td>
-                        <td></td>
+                        <td>{{mission.due_date}}</td>
+                        <td>{% if user.is_speaker %}
+                            <form method = "post">
+                            {% csrf_token %}
+                                <input type="checkbox" id="mission_validate" name="mission_validate" value="validate">
+                                <label for="validate">{% trans 'validate' %}</label><br>
+                                <input type = "submit" value = "validate">
+                            </form>
+                        {% endif %}
+
+                        </td>
                     {% endfor %}
                 </tr>
 

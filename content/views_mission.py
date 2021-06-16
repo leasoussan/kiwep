@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Mission, CollectiveMission, Team, IndividualMission, IndividualCollectiveMission
 from django.forms import ModelForm
-from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm, CollectiveMissionAssign
+from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm, CollectiveMissionAssign, ValidateMissionForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -40,7 +40,7 @@ class AnswerBoardMissionListView(ProfileCheckPassesTestMixin, ListView):
     model = IndividualMission
     template_name = 'backend/mission/my_mission_list.html'
     context_object_name = 'answers_mission_list'
-
+    form = ValidateMissionForm()
 
     def get_queryset(self):
         return super().get_queryset().filter(attributed_to = True)
@@ -50,8 +50,6 @@ class AnswerBoardMissionListView(ProfileCheckPassesTestMixin, ListView):
 
 
 class AddIndividualMissionView(ProfileCheckPassesTestMixin, View):
-
-
     ''' Add an Individual Mission '''
     model = IndividualMission
 
@@ -342,51 +340,76 @@ def assign_mission(request, pk):
     return render(request, "crud/create.html", {'form': form})
 
 
+# ______________________SPEAKAER____VALIDATION _______________________________________________________________________________
 
 
 
+def validate_mission(request, form):
+    mission  = get_object_or_404(IndividualMission, pk=pk)
+    form = ValidateMissionForm(request.POST)
+    print(request.POST)
+    if request.method == "POST":
+        print("vlaide")
+        if form.is_valid():
+            form.attributed_to = mission.attributed_to
+            form.save(validate_mission)
+            return redirect('answer_mission_list')
+        else:
+            print("not validate")
 
-# class AssignCollectiveMissionView(SpeakerStatuPassesTestMixin, FormView):
-#     model = CollectiveMission
-#     form_class = CollectiveMissionAssign
-#     success_url = 'collective_mission_detail'
-#     template_name = "crud/create.html"
-#
-#     def get_object(self):
-#         pk = self.kwargs.get('pk')
-#         print(pk, "pk print")
-#         return get_object_or_404(CollectiveMission, pk=pk)
-#
-#     def get_form_kwargs(self):
-#         """Return the keyword arguments for instantiating the form."""
-#         collective_mission = self.get_object()
-#         kwargs = super().get_form_kwargs()
-#         kwargs['team'] = collective_mission.project.team
-#         kwargs['participants'] = collective_mission.project.team.participants.all()
-#         # if self.request.method == "POST":
-#         #     del kwargs['participants']
-#         return kwargs
-#
-#     def form_valid(self, form):
-#         """If the form is valid, redirect to the supplied URL."""
-#         print(form.cleaned_data, 'cleaned_data')
-#         collective_mission = self.get_object()
-#         print(collective_mission, "HERREE")
-#
-#         form.save(collective_mission)
-#
-#         return super().form_valid(form)
-#
-#
-#     def form_invalid(self, form):
-#         print(form['participants'],  'my form errors')
-#
-#         return super().form_invalid(form)
-#
+    return render(request, "backend/mission/my_mission_list.html", {'form': form})
 
 
 
+class ValidateMission(SpeakerStatuPassesTestMixin, RedirectView):
+    ''' ValidateMission a mission of-student'''
+    pattern_name = 'my_mission_list'
+
+    def get_redirect_url(self, *args, **kwargs):
+        mission = get_object_or_404(IndividualMission, pk=kwargs['pk'])
+        mission.accepted = True
+        mission.save()
+        return super().get_redirect_url(*args, **kwargs)
+
+    # -------------------------------------------------------
+
+    # class AssignCollectiveMissionView(SpeakerStatuPassesTestMixin, FormView):
+    #     model = CollectiveMission
+    #     form_class = CollectiveMissionAssign
+    #     success_url = 'collective_mission_detail'
+    #     template_name = "crud/create.html"
+    #
+    #     def get_object(self):
+    #         pk = self.kwargs.get('pk')
+    #         print(pk, "pk print")
+    #         return get_object_or_404(CollectiveMission, pk=pk)
+    #
+    #     def get_form_kwargs(self):
+    #         """Return the keyword arguments for instantiating the form."""
+    #         collective_mission = self.get_object()
+    #         kwargs = super().get_form_kwargs()
+    #         kwargs['team'] = collective_mission.project.team
+    #         kwargs['participants'] = collective_mission.project.team.participants.all()
+    #         # if self.request.method == "POST":
+    #         #     del kwargs['participants']
+    #         return kwargs
+    #
+    #     def form_valid(self, form):
+    #         """If the form is valid, redirect to the supplied URL."""
+    #         print(form.cleaned_data, 'cleaned_data')
+    #         collective_mission = self.get_object()
+    #         print(collective_mission, "HERREE")
+    #
+    #         form.save(collective_mission)
+    #
+    #         return super().form_valid(form)
+    #
+    #
+    #     def form_invalid(self, form):
+    #         print(form['participants'],  'my form errors')
+    #
+    #         return super().form_invalid(form)
+    #
 
 
 
-# _________________________________________________________________________________________________________
