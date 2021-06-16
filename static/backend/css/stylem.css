@@ -86,6 +86,7 @@ body {
 }
 .my_table {
   background-color: #f7ebdc;
+  color: #425940;
 }
 .tables {
   margin-top: 60px;
@@ -110,6 +111,7 @@ body {
   font-size: large;
   text-align: center;
   padding-bottom: 20px;
+  color:#425940;
 }
 .link-table {
   color:#425940;
