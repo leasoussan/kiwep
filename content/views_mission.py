@@ -43,7 +43,7 @@ class AnswerBoardMissionListView(ProfileCheckPassesTestMixin, ListView):
 
 
     def get_queryset(self):
-        return super().get_queryset().filter(response_comment = True)
+        return super().get_queryset().filter(attributed_to = True)
 
 # ----------------------------------------------------------------------------------------------------------------
 

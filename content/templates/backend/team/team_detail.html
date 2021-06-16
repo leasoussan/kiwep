@@ -228,7 +228,13 @@
                                 <td>{{mission.stage}}</td>
                                 <td>{{mission.points}}</td>
                                 <td>{{mission.due_date}}</td>
-                                <td><a href="{% url 'assign_collective_mission_detail' mission.id %}">{% trans 'assign_mission' %}</a></td>
+                                <td>{% if user.is_speaker %}
+                                    <a href="{% url 'assign_collective_mission_detail' mission.id %}">{% trans 'assign_mission' %}</a>
+                                {% elif user.is_student %}
+                                    <a href="{% url 'join_collective_mission_detail' mission.id %}">{% trans 'join_mission' %}</a>
+                                {% endif %}
+
+                                </td>
                             {% endfor %}
 
 

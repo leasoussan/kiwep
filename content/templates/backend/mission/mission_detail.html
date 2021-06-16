@@ -70,30 +70,92 @@
                                     </div>
                                 </div>
                             </div>
-                            <h3>{% trans 'attributed_to' %}
+
+                            {#                Speaker      __________________________________________________________________INDIVIDUAL attributed_to___ CALL#}
+                            {% if user.is_speaker %}
                                 <div>
+                                    <h3>{% trans 'attributed_to' %}
+                                        <div>
+                                            {% if individualmission  %}
+                                                {% if object.attributed_to == 0  %}
+                                                    {% trans 'mission_unclaimed' %}
 
-                                    {% if object.attributed_to < 0  %}
-                                        {% trans 'no_one_joined_yet' %}
-                                    {% else %}
-                                        {% for participant in object.attributed_to.all %}
-                                            <li> {{ participant}}</li>
-                                            {% if participant in object.attributed_to.all and participant == request.user.profile  %}
-                                                <a href="{% url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>
+                                                {% elif object.attributed_to %}
+                                                    <h3>{{ object.attributed_to }}</h3>
+                                                {% endif %}
                                             {% endif %}
-                                        {% endfor %}
 
-                                    {% endif %}
+
+
+
+                                            {#                                ----------------------------------------------------------COLLECTIVE attributed_to Call#}
+
+                                            {% if object.attributed_to == 0  %}
+                                                {% trans 'no_one_joined_yet' %}
+                                            {% else %}
+                                                {% for participant in object.attributed_to.all %}
+                                                    <li> {{ participant}}</li>
+                                                    {% if participant in object.attributed_to.all and participant == request.user.profile  %}
+                                                        <a href="{% url 'remove_from_collective_mission_detail' object.id %}">{% trans 'remove_from_mission' %}</a>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                            {% endif %}
+                                        </div>
+
+
+                                        {#                                        {% if user.profile ==  request.user.profile and user.profile in object.project.team.participants.all %}#}
+                                        {#                                            <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_mission' %}</a>#}
+                                        {#                                        {% endif %}#}
                                 </div>
+                            {% endif %}
 
-                                {% if user.profile ==  request.user.profile and user.profile in object.project.team.participants.all %}
-                                    hello    <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_mission' %}</a>
-                                {% endif %}
+
+
+
+                            {#                Student      __________________________________________________________________INDIVIDUAL attributed_to___ CALL#}
+                            {% if user.is_student %}
+                                <div>
+                                    <h3>{% trans 'attributed_to' %}
+                                        <div>
+                                            {% if object.attributed_to == 0  %}
+                                                <a href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>
+
+                                            {% elif object.attributed_to == user.profile %}
+                                                <h3>{% trans 'i_in_charge_of_mission' %}</h3>
+                                            {% endif %}
+
+
+
+
+
+                                            {#                                ----------------------------------------------------------COLLECTIVE attributed_to Call#}
+
+                                            {% if object.attributed_to == 0  %}
+                                                {% trans 'no_one_joined_yet' %}
+                                            {% else %}
+                                                {% for participant in object.attributed_to.all %}
+                                                    <li> {{ participant }}</li>
+                                                    {% if participant in object.attributed_to.all and participant == request.user.profile  %}
+                                                        <a href="{% url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>
+                                                    {% endif %}
+
+                                                {% endfor %}
+                                            {% endif %}
+                                            {% if user.profile in object.project.team.participants.all and user.profile not in object.attributed_to.all %}
+                                                {% if user.profile ==  request.user.profile %}
+                                                    <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_mission' %}</a>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </div>
+                                </div>
+                            {% endif %}
+
+
                         </div>
-
                     </div>
                 </div>
-            </div>
     </section>
 
 

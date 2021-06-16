@@ -3,6 +3,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% load mytags %}
+{% load i18n %}
 {% block content %}
     {% load materializecss %}
 
@@ -10,9 +11,9 @@
 <div id = "getApi"> </div>
  <div class="rs-cart orange-color pt-100 pb-100 md-pt-70 md-pb-70">
     <div class="container">
-    {% if view.model %}
+    {% if model %}
 {#    or  {% if model %}#}
-            <h2>{% trans 'create_title' %} {{view.model|return_class_name}}</h2>
+            <h2>{% trans 'create_title' %} {{model|return_class_name}}</h2>
     {% endif %}
 
 
