@@ -77,11 +77,12 @@ body {
 
 /* -----mainpanel------ */
 #main-bar {
+  display: flex;
+  flex-direction: column;
   border-left: 1px solid #f7ebdc;
-  padding-left: 20px;
-  /* height: 1000px; */
-  padding-right: 20px;
-  /* margin-top:60px; */
+  padding-left: 10%;
+  
+
 
 }
 .my_table {
