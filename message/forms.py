@@ -15,7 +15,7 @@ class AddDiscussionForm(forms.ModelForm):
             'object_id': forms.HiddenInput()
         }
 
-        # order =
+
 
 
 

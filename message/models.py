@@ -46,6 +46,9 @@ class Comment(models.Model):
     replies = GenericRelation('Comment')
 
 
+    class Meta:
+        ordering = ['date_posted']
+
     def __str__(self):
         return f'posted by: {self.user.username}'
 
