@@ -11,8 +11,8 @@
         {% if user.is_speaker %}
     <nav class="no-shadows nav_color">
     <div class="nav-wrapper nav_project ">
-      <a href="#!" class="brand-logo" id = "project_headers"><h5>All projects</h5></a>
-      <ul class="right hide-on-med-and-down">
+      <a href="#!" class="brand-logo left" id = "project_headers"><h5>All projects</h5></a>
+      <ul class="right ">
         <li><a href="{% url 'create_project' %}" class="waves-effect waves-light btn add_button">{% trans 'add_project' %}</a>
         </li>
       </ul>
@@ -22,12 +22,12 @@
             <div class="row">
                 <div class="col s12 m12 l12">
                   <!-- <h5>{% trans 'my_projects'%}</h5> -->
-                  <div class="card">
-                    <div class="my_table">
+                  <!-- <div class="card"> -->
+                    <!-- <div class="my_table"> -->
                     <!-- {#<div id="createProject">#}
                     {#<div> #} -->
 
-                    <table class="highlight centered">
+                    <table class="highlight centered my_table">
                         <thead>
                         <tr class="table_headers">
                             <th class="link-table" scope="col">{% trans 'project_name_table_header' %}</th>
@@ -41,12 +41,12 @@
                         </thead>
                         <tbody>
                         {% for project in project_list %}
-                            <tr>
-                                <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</a></th>
+                            <tr class="table_headers">
+                                <td><a class= "link-table" href="{% url 'project_detail' project.id %}">{{project.name}}</a></td>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
                                 <td>{{project.time_to_complete}}</td>
-                                <td> <a href="{% url 'chose_project_detail' project.id %}">{% trans 'speaker_select_project' %}</a> </td>
+                                <td> <a class= "link-table" href="{% url 'chose_project_detail' project.id %}">{% trans 'speaker_select_project' %}</a> </td>
                             </tr>
                         {% endfor %}
 
@@ -56,15 +56,15 @@
 
             </div>
             </div>
-            </div>
-            </div>
+            <!-- </div> -->
+            <!-- </div> -->
 
             <div class="row">
                 <div class="col s12 m12 l12">
                   <h5 class="card-header">{% trans 'template_project' %}</h5>
 
-                  <div class="my_table">
-                    <table class="highlight centered">
+                  <!-- <div class="my_table"> -->
+                    <table class="highlight centered my_table" >
 
                         <thead>
                         <tr class="table_headers">
@@ -79,12 +79,13 @@
                         <tbody>
                         {% for project in user.profile.project_set.personal_projects %}
 
-                            <tr>
-                                <td><a href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
+                            <tr class="table_headers">
+                                <td><a a class= "link-table"href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
                                 <td>{{project.time_to_complete}}</td>
-                                <td><a href="{% url 'update_project' project.id %}">{% trans 'edit' %}</a> <a href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a></a> </td>
+                                <td><a  scope="col" class="waves-effect waves-light btn edit_btn" href="{% url 'update_project' project.id %}">{% trans 'edit' %}</a> <a  scope="col" class="waves-effect waves-light btn edit_btn"href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a> </td>
+
                             </tr>
 
                         {% endfor %}
@@ -99,7 +100,7 @@
 
 
 
-<div>
+<!-- <div> -->
 
         {% elif user.is_student %}
 
@@ -127,7 +128,7 @@
 
                         <tbody>
                         {% for project in available_projects %}
-                            <tr>
+                            <tr class="table_headers">
                                 <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</a></th>
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
@@ -147,7 +148,7 @@
             </div>
           </div>
               </div>
-</main>
+<!-- </main> -->
         {% endif %}
 
 
