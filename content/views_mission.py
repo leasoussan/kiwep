@@ -49,7 +49,8 @@ class AnswerBoardMissionListView(ProfileCheckPassesTestMixin, ListView):
 
 
 
-class AddIndividualMissionView(ProfileCheckPassesTestMixin, View):
+class AddIndividualMissionView(SpeakerStatuPassesTestMixin, View):
+
     ''' Add an Individual Mission '''
     model = IndividualMission
 
@@ -74,7 +75,7 @@ class AddIndividualMissionView(ProfileCheckPassesTestMixin, View):
 
 
 
-class AddCollectiveMissionView(ProfileCheckPassesTestMixin, View):
+class AddCollectiveMissionView(SpeakerStatuPassesTestMixin, View):
     ''' See User Missions List'''
     model = CollectiveMission
 
@@ -253,6 +254,7 @@ class UnclaimMission(StudentStatuPassesTestMixin, RedirectView):
 
 
 class StudentSubmitMission(StudentStatuPassesTestMixin, UpdateView):
+
     ''' An answer can be saved and unsubmited- here is the submit  '''
     model = IndividualMission
     form_class = SubmitMissionForm

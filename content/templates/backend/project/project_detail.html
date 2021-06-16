@@ -109,11 +109,14 @@
 
                     </div>
 
-            <!-- <div class="row clearfix col-lg-8" >
+                </div>
+            <div class="row clearfix col-lg-8" >
+
                 <!-- Content Column -->
-                <!-- <div class="col-md-10 missions_list_team"> -->
-                    <!-- Intro Info Tabs-->
-                    <!-- <div class="intro-info-tabs">
+                <div class="col-md-10 missions_list_team">
+                    <!-- Intro Info Tabs -->
+                    <div class="intro-info-tabs">
+
                         <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
                             <li class="nav-item tab-btns">
                                 <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
@@ -139,7 +142,6 @@
                                 </li> -->
                             <!-- {% endif %}
 
-
                         </ul> -->
 
                         <!-- <div class="row">
@@ -159,7 +161,7 @@
                                 <div class="card">
 
 
-                                    <h5 class="card-header" style="text-align:center;background-color:#f7d493;">{% trans 'what you will learn' %}</h5>
+                                    <h5 class="card-header" style="text-align:center;background-color:#f7d493;">{% trans 'what_you_will_learn' %}</h5>
                                     <div class="card-body">
                                         {% for skill in project.acquired_skills.all %}
                                             <p class="card-text" style="text-align:center;">{{skill.name}}</p>
@@ -181,22 +183,25 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
 
 
-                        <!-- <div class="add_mission add_resource">
-                            <button type="button" class=" btn add_button1" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
-                                {% trans  'add_individual_mission' %}
-                            </button>
-                            <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#CollectiveMissionModal">
-                                {% trans  'add_collective_mission' %}
-                            </button>
-                             <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#AddResoucresModal">
-                                {% trans  'add_ressources' %}
-                            </button>
 
-                        </div> -->
-                        <!-- <div>
+
+
+                            {% if user.is_speaker %}
+                                <div class="add_mission add_resource">
+                                    <button type="button" class=" btn add_button1" data-bs-toggle="modal" data-bs-target="#IndividualMissionModal">
+                                        {% trans  'add_individual_mission' %}
+                                    </button>
+                                    <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#CollectiveMissionModal">
+                                        {% trans  'add_collective_mission' %}
+                                    </button>
+                                    <button type="button" class="btn add_button1" data-bs-toggle="modal" data-bs-target="#AddResoucresModal">
+                                        {% trans  'add_ressources' %}
+                                    </button>
+
+                                </div>
+                            {% endif %}
                             <div>
                                 {% for mission in project.individualmission_set.all  %}
                                     <div class="card">
@@ -228,12 +233,6 @@
                                 {% endfor %}
                                 </div>
                             </div>
-                        </div> -->
-
-<!--
-                    </div>
-                </div>
-            </div> -->
 
 
 
@@ -241,9 +240,6 @@
 
 
 
-            <!-- <div class="col-lg-4"> -->
-
-               <!-- <div>
                <h3>{% trans 'resources_projetc' %}</h3>
                                 {% for resource in project.resources_set.all %}
                                     <div class="card">
@@ -251,23 +247,13 @@
                                     <div class="card-body">
                                         <ul><a href="{% url 'resource_detail' resource.id %}">
                                             <li>
-                                                <h5>{{resource.name}}<br>
-                                                </h5>
-                                            </li><hr>
-                                        </a></ul>
+                                                <h5>{{resource.name}}</h5>
+                                            </li>
+                                        </a>
+                                        </ul>
 
                                     </div>
-                                {% endfor %}
-                                </div>
-
-
-
-            </div>
-
-        </div> -->
-        <!-- </div> -->
-
-    <!-- </section> -->
+                                    </div>
 
 <!-- -----------MODAL WITH MATERIALIZE MISSIONS-------- -->
 

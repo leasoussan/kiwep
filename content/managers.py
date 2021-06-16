@@ -83,7 +83,8 @@ class IndividualMissionQuerySet(models.QuerySet):
     """ QUERYSET are Connected to a Manager to make specific requests"""
 
     def get_attributed_mission(self):
-        return self.exclude(attributed_to = None)
+        return self.exclude(attributed_to = None).order_by('-stage')
+    # 'stage' will be creshendo (- do the other way arround)
 
 
     def is_my_mission(self, user):
@@ -150,9 +151,11 @@ class MissionModelManager(models.Manager):
 class ResourceQuerySet(models.QuerySet):
     """ QUERYSET are Connected to a Manager to make specific requests"""
 
-    def get_speaker_resources(self):
-        return self.filter(owner = self.request.user)
+    def get_speaker_resources(self, user):
+        return self.filter(owner=user)
 
+    def get_project_resources(self, project):
+        return self.filter(project__resources=project)
 
 class ResourceModelManager(models.Manager):
     """ Managers are a way to get specifi data from a Model with the help of a queryset """
@@ -162,3 +165,7 @@ class ResourceModelManager(models.Manager):
 
     def get_speaker_resources(self):
         return self.get_queryset().get_speaker_resources()
+
+
+    def get_project_resources(self, project):
+        return self.get_queryset().get_project_resources()

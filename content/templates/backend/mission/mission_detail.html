@@ -9,6 +9,7 @@
 {% block content %}
 
 
+
     {% if user.profile.name == 'speaker' %}
         <div class="">
         <button> <a href="{{ object.get_update_url }}">{% trans 'edit_mission' %}</a></button>
@@ -16,6 +17,7 @@
 
 
     <a href="{% url 'project_detail' object.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
+
 
 
 
@@ -33,13 +35,15 @@
                                    href="#prod-overview" role="tab" aria-controls="prod-overview"
                                    aria-selected="true">{%  trans 'mission' %}</a>
                             </li>
-                            {% if user.profile.name == 'speaker' %}
-                                <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                       href="{{ object.get_update_url }}" role="tab" aria-controls="prod-overview"
-                                       aria-selected="true">{% trans 'edit' %}</a></li>
-                                <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                       href="{% url 'create_resource' %}" role="tab" aria-controls="prod-overview"
-                                       aria-selected="true">{% trans 'add_resource' %}</a></li>
+
+                            {% if user.is_speaker %}
+                            <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
+                               href="{{ object.get_update_url }}" role="tab" aria-controls="prod-overview"
+                               aria-selected="true">{% trans 'edit' %}</a></li>
+                            <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
+                                  href="{% url 'create_resource' %}" role="tab" aria-controls="prod-overview"
+                                  aria-selected="true">{% trans 'add resource' %}</a></li>
+
                             {% endif %}
                             <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
                                    href="{% url 'project_detail' object.id %}" role="tab" aria-controls="prod-overview"
@@ -179,7 +183,7 @@
 {# _______________________________________________________________________________RESOURCES ________________________________________________________________ #}
     <div class = "resource">
         Ressources for this Mission
-        {% for resource in mission.resources.all %}
+        {% for resource in mission.resources_set.all %}
             <a href="{% url 'resource_detail' resource.id %}">{{resource.name}}</a>
         {% endfor %}
         HERE
