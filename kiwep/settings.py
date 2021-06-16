@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'bootstrap4',
     'materialize',
-    'crispy_forms_materialize',
      'materializecssform',
 
 ]
