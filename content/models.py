@@ -244,9 +244,17 @@ class Team(DiscussionModel):
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
 
-    def due_date(self):
-        due_date = self.start_date + timedelta(days=self.project.time_to_complete)
-        return due_date
+    def due_date(self,):
+        if self.project:
+            due_date = self.start_date + timedelta(days=self.project.time_to_complete)
+
+            return due_date
+
+    def days_left(self):
+        if self.project:
+            now = datetime.now().date()
+            days_left = (self.due_date() - now)
+            return days_left.days
 
 # def check_date(sender, instance, *args, **kwargs):
 #         if instance.start_date > instance.due_date:
