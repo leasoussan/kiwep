@@ -93,6 +93,26 @@
 
 
 
+<div>
+{% if team.project.time_to_complete %}
+                {% trans 'due_date' %} {{ team.due_date }}
+    {% else %}
+    {% trans "no_project_yet" %}
+{% endif %}
+</div>
+        <div>
+{% if team.days_left %}
+                {% trans 'days_left' %} {{ team.days_left }}
+    {% else %}
+    {% trans "no_project_yet" %}
+{% endif %}
+</div>
+        </div>
+
+
+
+
+
 
 
                     </div>
