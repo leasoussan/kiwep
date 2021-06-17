@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load mytags %}
-{% load crispy_forms_tags %}
 {% load static %}
-
+{%  load materializecss %}
 {% block content %}
 
 
@@ -78,10 +77,9 @@
             <div class="card card-transactions">
 
                 <div class="card-body">
-
+                    <h3 class="card-header">{% trans 'project' %}</h3>
                     {% if not team.project %}
 
-                        <h3 class="card-header">{% trans 'project' %}</h3>
 
                         {% if user.is_speaker  %}
                             <div class="student_list">
@@ -89,18 +87,15 @@
                                     {% trans 'choose_project_team' %}
                                 </button>
                             </div>
-                         {% endif %}
 
-                        {% elif team.project and user.is_speaker %}
-                            <a href="{% url 'delete_project' team.project.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>
+
 
                         {% else %}
                             <h3 class="card-header team_style"><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a></h3>
 
                         {% endif %}
 
-                    
-
+                    {% endif %}
                 </div>
 
 
@@ -397,57 +392,57 @@
 
 
     <!-- Modal -->
-
-
-
-
-
-    <div class="modal" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Projects </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">{% trans 'close' %}</button>
-            </div>
-            <div class="modal-body modal-open">
-                <ul class="nav nav-pills">
-
-                    <li><a class="btn btn_modal" href="#" data-bs-toggle="pill" data-bs-target="#pills-create-project">{% trans 'new_project' %}</a></li>
-                    <li ><a class="btn btn_modal"href="#" data-bs-toggle="pill" data-bs-target="#pills-template" >{% trans 'choose_templates' %}</a></li>
-                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'duplicate' %}</a></li>
-                </ul>
-
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">
-
-                        <form method="post" action="{% url 'create_team_project' team.id %}">
-                            {% csrf_token %}
-                            {{ project_form|crispy }}
-                            <button type="submit">Save</button>
-                        </form>
-
-                        {#                         <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>#}
-                    </div>
-                    <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">
-
-                        {% for project in templates  %}
-
-                            <h2>{{ project.name }}</h2>
-                            <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">
-                        {% for project in old_projects  %}
-                            <h2>{{ project.name }}</h2>
-                            <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
-                        {% endfor %}
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#    <div class="modal" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">#}
+    {#    <div class="modal-dialog">#}
+    {#        <div class="modal-content">#}
+    {#            <div class="modal-header">#}
+    {#                <h5 class="modal-title" id="staticBackdropLabel">Projects </h5>#}
+    {#                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">{% trans 'close' %}</button>#}
+    {#            </div>#}
+    {#            <div class="modal-body modal-open">#}
+    {#                <ul class="nav nav-pills">#}
+    {##}
+    {#                    <li><a class="btn btn_modal" href="#" data-bs-toggle="pill" data-bs-target="#pills-create-project">{% trans 'new_project' %}</a></li>#}
+    {#                    <li ><a class="btn btn_modal"href="#" data-bs-toggle="pill" data-bs-target="#pills-template" >{% trans 'choose_templates' %}</a></li>#}
+    {#                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'duplicate' %}</a></li>#}
+    {#                </ul>#}
+    {##}
+    {#                <div class="tab-content" id="pills-tabContent">#}
+    {#                    <div class="tab-pane show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">#}
+    {##}
+    {#                        <form method="post" action="{% url 'create_team_project' team.id %}">#}
+    {#                            {% csrf_token %}#}
+    {#                            {{ project_form|materializecss }}#}
+    {#                            <button type="submit">Save</button>#}
+    {#                        </form>#}
+    {##}
+    {#                                                 <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>#}
+    {#                    </div>#}
+    {#                    <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">#}
+    {##}
+    {#                        {% for project in templates  %}#}
+    {##}
+    {#                            <h2>{{ project.name }}</h2>#}
+    {#                            <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>#}
+    {#                        {% endfor %}#}
+    {#                    </div>#}
+    {#                    <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">#}
+    {#                        {% for project in old_projects  %}#}
+    {#                            <h2>{{ project.name }}</h2>#}
+    {#                            <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>#}
+    {#                        {% endfor %}#}
+    {#                    </div>#}
+    {#                </div>#}
+    {##}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {##}
 
 
 
