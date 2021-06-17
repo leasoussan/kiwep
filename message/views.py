@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import user_passes_test, login_required
 from accounts.decorators import check_profile
 from .models import Comment, Discussion
-from message.forms import AddDiscussionForm
+from message.forms import AddDiscussionForm, AddCommentForm
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -44,46 +44,35 @@ class DiscussionCreateView(RedirectView):
 
 
 
-
-class DiscussionListView(ListView):
-    model = Discussion
-    context_object_name = "discussion_list"
-
-
-    def get_queryset(self):
-        return self.get_queryset().filter(title__id=self.object_id)
+# ________________________________________________________________________________________Comment CreateView>>>>>>>>>>
 
 
 
 
-class DiscussionView(DetailView):
-    model = Discussion
-    template_name = 'comments/discussion.html'
+class CommentCreateView(RedirectView):
 
-    def get_object(self):
-        pk = self.kwargs.get('pk')
-        return get_object_or_404(Discussion, pk=pk)
+    pattern_name = 'comment_add'
+
+    def get_redirect_url(self, *args, **kwargs):
+        form = AddCommentForm(self.request.POST)
 
 
-#
-# class CommentView(ListView):
-#     model = Comment
-#     template_name = 'comments/comments_team.html'
-#
-#     context_object_name = 'team_comments'
-#
-#
-#     def get_queryset(self):
-#         return self.request.user.commentsteam_set.all()
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = self.request.user
+            comment.save()
+
+
+            messages.success(self.request,  'Your Comment was added succesfuly')
+
+        else:
+            messages.warning(self.request, 'Your Comment wasn\'t saved')
+
+        return self.request.GET.get('next')
 
 
 
 
 
-class CommentMissionDeleteView():
-
-    pass
 
 
-class CommentMissionUpdate():
-    pass

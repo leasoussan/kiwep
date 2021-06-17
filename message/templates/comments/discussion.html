@@ -20,9 +20,44 @@
                 </form>
 
             </div>
-            {% for discussion in object.discussions.all %}
-             <a href="{% url 'discussion_view' discussion.id %}">{{ discussion.title }}</a>
-            {% endfor %}
+            <ul class="collapsible popout">
+                {% for discussion in object.discussions.all %}
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ discussion.title }}</div>
+
+                        <div class="collapsible-body"><span>{{discussion.comment_text}}</span>
+                            <div>
+                                {% for comment in discussion.replies.all %}
+                                    <p>{{ comment.comment_text }}</p>
+                                {% endfor %}
+                                <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }} " >
+                                    {% csrf_token %}
+                                <div class="row">
+
+                                    <div class="col s11 ">
+                                    {{ discussion.comment_form|materializecss }}
+
+                                    </div>
+
+                                    <div class="col s1">
+                                        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>
+
+
+                                </div>
+
+
+                                </form>
+
+                            </div>
+
+
+                        </div>
+
+                    </li>
+
+                {% endfor %}
+            </ul>
+
         </div>
     </div>
 </div>

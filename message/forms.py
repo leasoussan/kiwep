@@ -19,3 +19,16 @@ class AddDiscussionForm(forms.ModelForm):
 
 
 
+class AddCommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        # exclude = ['user']
+        fields = ['comment_text', 'content_type', 'object_id']
+        widgets={
+            'content_type':forms.HiddenInput(),
+            'object_id': forms.HiddenInput()
+        }
+
+
+

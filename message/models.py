@@ -52,9 +52,9 @@ class Comment(models.Model):
     def __str__(self):
         return f'posted by: {self.user.username}'
 
-    # def get_absolute_url(self):
-    #     return reverse("", kwargs={"pk":self.pk})
-    
+
+
+
 
 
 class Discussion(Comment):
@@ -68,8 +68,10 @@ class Discussion(Comment):
 
 
 
-
-
+    def comment_form(self):
+        from .forms import AddCommentForm
+        ct = ContentType.objects.get_for_model(self)
+        return AddCommentForm(initial={'content_type': ct.id, 'object_id': self.id})
 
 
 
