@@ -1,7 +1,5 @@
 {% extends 'basem.html' %}
 
-{% load crispy_forms_filters %}
-
 {% load mytags %}
 
 {% load static %}
@@ -283,7 +281,7 @@
     <div class="input-field col s6">
       {% csrf_token %}
           {{ individual_form|materializecss }}
-        <!-- {{resources_form|crispy}} -->
+        <!-- {{resources_form|materializecss}} -->
   </div>
   </div>
   </form>
@@ -309,7 +307,7 @@
         <div class="input-field col s6">
           {% csrf_token %}
               {{ collective_form|materializecss }}
-            <!-- {{resources_form|crispy}} -->
+            <!-- {{resources_form|materializecss}} -->
       </div>
       </div>
       </form>

@@ -1,32 +1,31 @@
 {% load i18n %}
-
-<div>
-    {% for discussion in object.discussions.all %}
-    {{ discussion.title }}
-    {% endfor %}
-</div>
+{% load mytags %}
+{% load materializecss %}
 
 
 
-  <div class="row">
+<div class="row">
     <div class="col s12 m6 l9">
-      <div class="card">
+        <div class="card">
 
-          <span class="card-title">{% trans 'add_discussion'%} to {{ object }}</span>
+            <span class="card-title">{% trans 'add_discussion'%} to  {{object}}</span>
 
-          <div class="card-content">
-              <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }} " >
-                  {% csrf_token %}
-                  {{ object.discussion_form }}
-                  {#                <input type="text" style="width: 600px", height="300px">#}
-                  <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'comment' %}
-                  </button>
-              </form>
+            <div class="card-content">
+                <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }} " >
+                    {% csrf_token %}
+                    {{ object.discussion_form|materializecss }}
 
-          </div>
-      </div>
+                    <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'open_discussion' %}
+                    </button>
+                </form>
+
+            </div>
+            {% for discussion in object.discussions.all %}
+             <a href="{% url 'discussion_view' discussion.id %}">{{ discussion.title }}</a>
+            {% endfor %}
+        </div>
     </div>
-  </div>
+</div>
 
 
 <!-- <div>
