@@ -167,15 +167,15 @@ IndividualMissionFormSet = inlineformset_factory(
     fields=mission_fields,
     extra=1)
 
-
-class SubmitMissionForm(ModelForm):
-    class Meta:
-        model = IndividualCollectiveMission
-        fields = [
-            'response_comment',
-            'response_file',
-        ]
-
+#
+class SubmitMissionForm():
+#     class Meta:
+#         model = IndividualCollectiveMission
+#         fields = [
+#             'response_comment',
+#             'response_file',
+#         ]
+    pass
 
 
 

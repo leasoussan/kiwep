@@ -24,7 +24,7 @@
         <th>{% trans 'participants' %}</th>
         <th>{% trans 'duration' %}</th>
         <th>{% trans 'project_name' %}</th>
-        <th>{% trans ' ' %}</th>
+        <th>{% trans 'delete' %}</th>
     </tr>
     </thead>
     <tbody><br>
@@ -35,12 +35,8 @@
         <td class="content_table">{{ team.participants.count }}</td>
         <td class="content_table">{{team.project.time_to_complete}}</td>
         <td class="content_table">{{teamp.project.field}}</td>
-        <td>
-          <a scope="col" href="{% url 'update_team' team.id %}" class="waves-effect waves-light btn edit_btn">{% trans 'edit_the_team' %}</a>
-
-          <!-- <button type="button" class="edit_btn" name="button"><a href="{% url 'update_team' team.id %}">  {% trans 'edit_the_team' %}</a></button> -->
-        </td>
-
+        <td><a scope="col" href="{% url 'update_team' team.id %}" class="waves-effect waves-light btn edit_btn">{% trans 'edit_the_team' %}</a></td>
+            <td><a href="{% url 'delete_team' team.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
     </tr>
     {% endfor %}
     </tbody>

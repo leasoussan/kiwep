@@ -84,7 +84,11 @@
                                 <td>{{project.speaker.user.first_name}}</td>
                                 <td>{{project.field}}</td>
                                 <td>{{project.time_to_complete}}</td>
-                                <td><a  scope="col" class="waves-effect waves-light btn edit_btn" href="{% url 'update_project' project.id %}">{% trans 'edit' %}</a> <a  scope="col" class="waves-effect waves-light btn edit_btn"href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a> </td>
+                                <td><a  scope="col" class="waves-effect waves-light btn edit_btn"
+                                        href="{% url 'update_project' project.id %}">{% trans 'edit' %}</a>
+                                    <a  scope="col" class="waves-effect waves-light btn edit_btn"
+                                        href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a>
+                                    <a href="{% url 'delete_project' project.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
 
                             </tr>
 

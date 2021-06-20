@@ -33,6 +33,23 @@ class Rating(models.Model):
 
 
 
+class Answer(models.Model):
+    STATUS_CHOICES =[
+        ('w_r', 'Waiting Review'),
+        ('u_r','Under Review'),
+        ('a', 'Accepted'),
+        ('r', 'Rejected'),
+        ('c', 'See Comments'),
+    ]
+    response_comment = models.TextField(blank=True)
+    response_file = models.FileField(null=True, blank=True)
+    accepted = models.BooleanField(default=False)
+    status=models.CharField(max_length=20, choices=STATUS_CHOICES, default='w_r')
+
+    def __str__(self):
+        return f'answe by: {self.user.username}'
+
+
 
 
 
@@ -87,3 +104,9 @@ class DiscussionModel(models.Model):
         ct = ContentType.objects.get_for_model(self)
 
         return AddDiscussionForm(initial= {'content_type': ct.id,'object_id':self.id})
+
+
+class AnswerModel(DiscussionModel):
+    pass
+
+
