@@ -127,7 +127,6 @@ class Mission(DiscussionModel):
     acquired_skill = models.ManyToManyField(Skills, blank =True)
     created_date = models.DateField(auto_now_add=True)
     due_date = models.DateField(default=timezone.now)
-    completed = models.BooleanField(default=False)
 
     # objects = MissionModelManager()
 
@@ -154,16 +153,13 @@ class HardSkillsRating(models.Model):
     percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
 
 
-class IndividualMission(Mission):
+class IndividualMission(Mission, ):
     """ an Individuall Mission is a Mission that has to be done by one team Member,
         so this mission can be claimed """
 
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE,  related_name = "my_missions", blank = True, null=True)
-    response_comment = models.TextField(blank=True)
-    response_file = models.FileField(null=True, blank=True)
-    accepted = models.BooleanField(default=False)
     hard_skill_rating = GenericRelation(MissionValue)
-    discussions = GenericRelation('message.Discussion')
+
     objects = IndividualMissionModelManager()
 
 
@@ -206,10 +202,8 @@ class IndividualCollectiveMission(models.Model):
 
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")
     parent_mission = models.ForeignKey(CollectiveMission, on_delete= models.CASCADE)
-    completed = models.BooleanField(default=False)
-    response_comment = models.TextField(blank=True)
-    response_file = models.FileField(null=True, blank=True)
-    accepted = models.BooleanField(default=False)
+
+
 
 
     def __str__(self):

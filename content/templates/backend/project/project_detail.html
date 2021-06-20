@@ -249,11 +249,11 @@
                                             </li>
                                         </a>
                                         </ul>
-
+{% endfor %}
                                     </div>
                                     </div>
 
-<!-- -----------MODAL WITH MATERIALIZE MISSIONS-------- -->
+<-- -----------MODAL WITH MATERIALIZE MISSIONS-------- -->
 
 <!-- Modal Structure -->
 <div id="IndividualMissionModal" class="modal">
@@ -338,7 +338,7 @@
         <div class="input-field col s6">
           {% csrf_token %}
               {{ resources_form|materializecss }}
-            <!-- {{resources_form|crispy}} -->
+            <!-- {{resources_form|materializecss}} -->
       </div>
       </div>
       </form>
@@ -363,7 +363,7 @@
                     {% csrf_token %}
 
                     <div class="modal-body">
-                        {{individual_form|crispy}}
+                        {{individual_form|materializecss}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
@@ -390,7 +390,7 @@
                     {% csrf_token %}
                     <div class="modal-body">
 
-                        {{collective_form|crispy}}
+                        {{collective_form|materializecss}}
                     </div>
 
 
@@ -418,7 +418,7 @@
                     {% csrf_token %}
 
                     <div class="modal-body">
-                        {{resources_form|crispy}}
+                        {{resources_form|materializecss}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>

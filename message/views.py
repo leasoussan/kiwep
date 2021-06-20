@@ -70,6 +70,21 @@ class CommentCreateView(RedirectView):
 
         return self.request.GET.get('next')
 
+class DiscussionListView(ListView):
+    model = Discussion
+    context_object_name = "discussion_list"
+
+
+    def get_queryset(self):
+        return self.get_queryset().filter(title__id=self.object_id)
+
+
+
+
+class DiscussionView(DetailView):
+    model = Discussion
+    template_name = 'comments/discussion.html'
+
 
 
 

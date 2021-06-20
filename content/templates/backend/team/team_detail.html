@@ -1,103 +1,51 @@
 {% extends 'basem.html' %}
 {% load i18n %}
 {% load mytags %}
-{% load materializecss %}
-{% load static %}
 
+{% load static %}
+{%  load materializecss %}
 {% block content %}
 
-
+<div class="top_buttons_team_page">
     {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
 
-        <button type="button" class="btn add_button"name="button"><a href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a></button>
+
+<a class="waves-effect waves-light btn" href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a>
 
     {% elif request.user.profile == team.manager %}
 
-        <button type="button" class="btn add_button"name="button"><a href="{% url 'update_team' team.id %}">{% trans 'edit team' %}</a></button>
+       <a class="waves-effect waves-light btn" href="{% url 'update_team' team.id %}">{% trans 'edit team' %}</a>
+        <a href="{% url 'delete_team' team.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>
 
     {% else %}
         <button type="button" class="btn add_button" name="button"><a href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a></button>
 
     {% endif %}
-
-
-
-
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="card top-products">
-                <div class="card-body">
-                    <!-- {{team.id}} -->
-                    <h3 class="card-header">{% trans 'participants' %}<span style= "margin-left:200px;"></span>
-                        {% if user.profile.name == 'speaker' %}
-                            <a  href="{% url 'add_member_team' team.id %}"><i style="color:#fffefc;"class="fas fa-user-plus team_style"></i></a>
-
-                        {%  endif %}
-                    </h3>
-                    <div class="top-products-list">
-                        <div class="product-item">
-                            {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
-                                <h3>{% trans 'current_amount_participants_lable' %}: {{team.participants.count}}</h3>
-
-                            {% else %}
-                                {% for student in team.participants.all %}
-                                    <div class="student_list">
-                                        <ol>
-                                            <li><a href="">{{ student.user.first_name }} {{ student.user.last_name }}</a></li>
-                                        </ol>
-                                    </div>
-                                {% endfor %}
-
-
-                            {%endif %}
-
-
-                        </div>
-                        <!-- {% if user.is_speaker %}
-                              <button type="button" class="btn" name="button"><a href="{% url 'add_member_team' team.id %}">{% trans 'add students' %}</a></button>
-                            {%  endif %} -->
-
-                    </div>
-                </div>
-
-<div>
-{% if team.project.time_to_complete %}
-                {% trans 'due_date' %} {{ team.due_date }}
-    {% else %}
-    {% trans "no_project_yet" %}
-{% endif %}
 </div>
 
 
-            </div>
-        </div>
-
-
-        <div class="col-lg-6">
-            <div class="card card-transactions">
-
-                <div class="card-body">
-
-                    {% if not team.project %}
-
-                        <h3 class="card-header">{% trans 'project' %}</h3>
 
 
 
-                    {% if user.is_speaker  %}
-                        <div class="student_list">
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ChoseProject">
-                                {% trans 'choose_project_team' %}
-                            </button>
-                        </div>
-                        <!-- Button trigger modal --     >
 
-                        {% endif %}
-                    {% else %}
-                        <h3 class="card-header team_style"><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a></h3>
-                    {% endif %}
 
-                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -124,275 +72,303 @@
 
 
 
-            </div>
-            <div>
-                {% include 'comments/discussion.html' with object=team %}
-
-            </div>
-        </div>
-
-    </div>
 
 
-    {# TODO: Progress bar#}
 
-    {#    {% if user.profile in team.participants.all or user.profile.name == "speaker" %}#}
+
     {##}
-    {#        <div class="row">#}
-    {#            <div class="col-xl">#}
-    {#                <div class="card">#}
-    {#                    <div class="card-body">#}
-    {#                        <p>Where are you at?</p>#}
-    {#                        <div class="progress">#}
-    {#                            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" role="progressbar"#}
-    {#                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>#}
+    {##}
+    {##}
+    {##}
+    {#                    <h3 class="card-header">{% trans 'participants' %}<span style= "margin-left:200px;"></span>#}
+    {#                        {% if user.profile.name == 'speaker' %}#}
+    {#                            <a  href="{% url 'add_member_team' team.id %}"><i style="color:#fffefc;"class="fas fa-user-plus team_style"></i></a>#}
+    {##}
+    {#                        {%  endif %}#}
+    {#                    </h3>#}
+    {#                    <div>#}
+    {#                            {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}#}
+    {#                                <h3>{% trans 'current_amount_participants_lable' %}: {{team.participants.count}}</h3>#}
+    {##}
+    {#                            {% else %}#}
+    {#                                {% for student in team.participants.all %}#}
+    {#                                    <div class="student_list">#}
+    {#                                        <ol>#}
+    {#                                            <li><a href="">{{ student.user.first_name }} {{ student.user.last_name }}</a></li>#}
+    {#                                        </ol>#}
+    {#                                    </div>#}
+    {#                                {% endfor %}#}
+    {##}
+    {##}
+    {#                            {%endif %}#}
+    {##}
+    {##}
     {#                        </div>#}
-    {#                    </div>#}
+    {##}
+    {##}
+    {##}
+    {#                <div>#}
+    {#                    {% if team.project.time_to_complete %}#}
+    {#                        {% trans 'due_date' %} {{ team.due_date }}#}
+    {#                    {% else %}#}
+    {#                        {% trans "no_project_yet" %}#}
+    {#                    {% endif %}#}
     {#                </div>#}
-    {#            </div>#}
+    {##}
+    {##}
+    {#        <div>#}
+    {#                    {% if not team.project %}#}
+    {##}
+    {##}
+    {#                        {% if user.is_speaker  %}#}
+    {#                            <div class="student_list">#}
+    {#                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ChoseProject">#}
+    {#                                    {% trans 'choose_project_team' %}#}
+    {#                                </button>#}
+    {#                            </div>#}
+    {##}
+    {##}
+    {##}
+    {#                        {% else %}#}
+    {#                            <h3 class="card-header team_style"><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name }} </a></h3>#}
+    {##}
+    {#                        {% endif %}#}
+    {#                    {% endif %}#}
+    {#                </div>#}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#{% if team.days_left %}#}
+    {#                {% trans 'days_left' %} {{ team.days_left }}#}
+    {#    {% else %}#}
+    {#    {% trans "no_project_yet" %}#}
+    {#{% endif %}#}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#<div>#}
+    {##}
+    {##}
+    {#                {% include 'comments/discussion.html' with object=team %}#}
+    {##}
+    {##}
+    {#    <div>#}
+    {#                <h5 class="card-header header_missions">{% trans 'available mission' %}</h5>#}
+    {#                <div class="card-body">#}
+    {##}
+    {##}
+    {#                    <table id="zero-conf" class="display" style="width:100%">#}
+    {#                        <thead>#}
+    {#                        <tr>#}
+    {#                            <th>{% trans 'mission' %}</th>#}
+    {##}
+    {#                            <th>{% trans 'status' %}</th>#}
+    {#                            <th>{% trans 'points' %}</th>#}
+    {#                            <th>{% trans 'date' %}</th>#}
+    {#                            <th>{% trans 'claim_mission' %}</th>#}
+    {#                        </tr>#}
+    {#                        </thead>#}
+    {#                        <tbody>#}
+    {##}
+    {#                        {% if user.profile in team.participants.all or user.is_speaker  %}#}
+    {#                            {% for mission in team.project.individualmission_set.available_mission %}#}
+    {##}
+    {##}
+    {#                                <tr>#}
+    {#                                    <td>#}
+    {#                                        <a#}
+    {#                                                href="{% url 'individual_mission_detail' mission.id %}">{{mission.name}}</a>#}
+    {#                                    </td>#}
+    {##}
+    {#                                    <td>{{mission.stage}}</td>#}
+    {#                                    <td>{{mission.points}}</td>#}
+    {#                                    <td>{{mission.due_date}}</td>#}
+    {##}
+    {#                                    <td>#}
+    {#                                        {% if user.is_student %}#}
+    {#                                            <td><a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a></td>#}
+    {#                                        {% else %}#}
+    {#                                            {% trans 'available_mission' %}#}
+    {#                                        {% endif %}#}
+    {##}
+    {#                                </tr>#}
+    {#                            {% endfor %}#}
+    {#                        {% endif %}#}
+    {##}
+    {#                        </tbody>#}
+    {##}
+    {#                    </table>#}
+    {##}
+    {##}
+    {#    <div>#}
+    {#                <h5 class="card-header">{% trans 'collective_mission' %}</h5>#}
+    {##}
+    {##}
+    {##}
+    {#                    <table id="zero-conf" class="display" style="width:100%">#}
+    {#                        <thead>#}
+    {#                        <tr>#}
+    {#                            <th>{% trans 'mission' %}</th>#}
+    {##}
+    {#                            <th>{% trans 'status' %}</th>#}
+    {#                            <th>{% trans 'points' %}</th>#}
+    {#                            <th>{% trans 'date' %}</th>#}
+    {#                            <th>{% trans 'claim_mission' %}</th>#}
+    {#                        </tr>#}
+    {#                        </thead>#}
+    {#                        <tbody>#}
+    {##}
+    {#                        {% if user.profile in team.participants.all or user.is_speaker %}#}
+    {#                            {% for mission in team.project.collectivemission_set.all %}#}
+    {##}
+    {##}
+    {#                                <tr>#}
+    {#                                <td>#}
+    {#                                    <a#}
+    {#                                            href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a>#}
+    {#                                </td>#}
+    {#                                <td>{{mission.stage}}</td>#}
+    {#                                <td>{{mission.points}}</td>#}
+    {#                                <td>{{mission.due_date}}</td>#}
+    {#                                <td>{% if user.is_speaker %}#}
+    {#                                    <a href="{% url 'assign_collective_mission_detail' mission.id %}">{% trans 'assign_mission' %}</a>#}
+    {#                                {% elif user.is_student %}#}
+    {#                                    <a href="{% url 'join_collective_mission_detail' mission.id %}">{% trans 'join_mission' %}</a>#}
+    {#                                {% endif %}#}
+    {##}
+    {#                                </td>#}
+    {#                            {% endfor %}#}
+    {##}
+    {##}
+    {#                        </tr>#}
+    {##}
+    {#                        {% endif %}#}
+    {#                        </tbody>#}
+    {##}
+    {#                    </table>#}
+    {#                </div>#}
+    {##}
+    {##}
+    {##}
+    {#    {% if user.is_speaker %}#}
+    {##}
+    {#                    <h5 class="card-header">{% trans 'project mission' %}</h5>#}
+    {##}
+    {##}
+    {#                        <table id="zero-conf" class="display" style="width:100%">#}
+    {#                            <thead>#}
+    {#                            <tr>#}
+    {#                                <th>{% trans 'mission' %}</th>#}
+    {#                                <th>{% trans 'attributed to' %}</th>#}
+    {#                                <th>{% trans 'stage_of_project' %}</th>#}
+    {#                                <th>{% trans 'points' %}</th>#}
+    {#                                <th>{% trans 'date' %}</th>#}
+    {#                                <th>{% trans 'status' %}</th>#}
+    {#                            </tr>#}
+    {##}
+    {#                            </thead>#}
+    {#                            <tbody>#}
+    {##}
+    {#                            {% for mission in team.project.individualmission_set.get_attributed_mission %}#}
+    {#                                <tr>#}
+    {#                                    <td>{{mission.name}}</td>#}
+    {#                                    <td>{{mission.attributed_to}}</td>#}
+    {#                                    <td>{{mission.stage}}</td>#}
+    {#                                    <td>{{mission.points}}</td>#}
+    {#                                    <td>{{mission.due_date}}</td>#}
+    {#                                    <td><a href="{% url 'submit_mission' mission.id  %}">{% trans 'see_mission' %}</a></td>#}
+    {#                                </tr>#}
+    {#                            {% endfor %}#}
+    {#                            </tbody>#}
+    {##}
+    {#                        </table>#}
+    {##}
+    {#    {% endif %}#}
+    {##}
+    {##}
+    {##}
+    {#    <!-- ------------------------------------------------------------------STUDENT VIEW HIS MISSION LIST  -->#}
+    {##}
+    {#    {% if user.is_student %}#}
+    {##}
+    {#        <h5 class="card-header">{% trans 'project_mission' %}</h5>#}
+    {##}
+    {#        <div class="card-body">#}
+    {#            <p>My assigned missions</p>#}
+    {#            <table>#}
+    {#                <thead>#}
+    {#                <tr>#}
+    {#                    <th>{% trans 'project' %}</th>#}
+    {#                    <th>{% trans 'mission' %}</th>#}
+    {#                    <th>{% trans 'stage_of_project' %}</th>#}
+    {#                    <th>{% trans 'points' %}</th>#}
+    {#                    <th>{% trans 'date' %}</th>#}
+    {#                    <th>{% trans 'status' %}</th>#}
+    {#                </tr>#}
+    {#                </thead>#}
+    {#                <tbody>#}
+    {##}
+    {#                {% for mission in team.project.individualmission_set|student_missions:user.is_student %}#}
+    {##}
+    {#                    <tr>#}
+    {#                        <td><a href="#}
+    {#                                {% if user.profile == mission.attributed_to and not mission.response_file %}#}
+    {#                                {% url 'submit_mission' mission.id %}#}
+    {#                                {% else %}#}
+    {#                                {% url 'individual_mission_detail' mission.id %}#}
+    {#                                {% endif %}#}
+    {#                                ">{{mission.name}}</a> </td>#}
+    {#                        <td>{{mission.description}}</td>#}
+    {#                        <td>{{mission.stage}}</td>#}
+    {#                        <td>{{mission.points}}</td>#}
+    {#                        <td>{{mission.due_date}}</td>#}
+    {#                        <td>{{mission.status}}</td>#}
+    {#                    </tr>#}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#                {% endfor %}#}
+    {#                </tbody>#}
+    {#            </table>#}
+    {#        </div>#}
+    {##}
+    {##}
+    {#                            {% for collectiveindividualmission in user.student.team_set.project.collectivemission_set.all|collective_student_missions:team.project %}#}
+    {#                <tr>#}
+    {#                    <td><a href="#}
+    {#                                {% if user.profile == collectiveindividualmission.attributed_to and not collectiveindividualmission.response_file %}#}
+    {#                                {% url 'submit_mission' collectiveindividualmission.id %}#}
+    {#                                {% else %}#}
+    {#                                {% url 'collective_mission_detail' collectivemission.id %}#}
+    {#                                {% endif %}#}
+    {#                                ">{{collectiveindividualmission.parent_mission.mission.name}}</a> </td>#}
+    {#                    <td>{{collectiveindividualmission.parent_mission.mission_type}}</td>#}
+    {#                    <td>{{collectiveindividualmission.parent_mission.mission.stage}}</td>#}
+    {#                    <td>{{collectiveindividualmission.parent_mission.points}}</td>#}
+    {#                    <td>{{collectiveindividualmission.parent_mission.due_date}}</td>#}
+    {#                    <td>{{collectiveindividualmission.parent_mission.status}}</td>#}
+    {#                </tr>#}
+    {#                    {% endfor %}#}
+    {##}
+    {#                </tbody>#}
+    {##}
+    {#            </table>#}
     {#        </div>#}
     {##}
     {#    {% endif %}#}
+    {##}
+    {##}
 
 
+    {#     <h1>Comments Board</h1>   #}
 
-
-
-
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <h5 class="card-header header_missions">{% trans 'available mission' %}</h5>
-                <div class="card-body">
-
-
-                    <table id="zero-conf" class="display" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>{% trans 'mission' %}</th>
-
-                            <th>{% trans 'status' %}</th>
-                            <th>{% trans 'points' %}</th>
-                            <th>{% trans 'date' %}</th>
-                            <th>{% trans 'claim_mission' %}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        {% if user.profile in team.participants.all or user.is_speaker  %}
-                            {% for mission in team.project.individualmission_set.available_mission %}
-
-
-                                <tr>
-                                    <td>
-                                        <a
-                                                href="{% url 'individual_mission_detail' mission.id %}">{{mission.name}}</a>
-                                    </td>
-
-                                    <td>{{mission.stage}}</td>
-                                    <td>{{mission.points}}</td>
-                                    <td>{{mission.due_date}}</td>
-
-                                    <td>
-                                        {% if user.is_student %}
-                                            <td><a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a></td>
-                                        {% else %}
-                                            {% trans 'available_mission' %}
-                                        {% endif %}
-
-                                </tr>
-                            {% endfor %}
-                        {% endif %}
-
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Collective Missions --!>
-
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <h5 class="card-header">{% trans 'collective_mission' %}</h5>
-
-                <div class="card-body">
-
-                    <table id="zero-conf" class="display" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>{% trans 'mission' %}</th>
-
-                            <th>{% trans 'status' %}</th>
-                            <th>{% trans 'points' %}</th>
-                            <th>{% trans 'date' %}</th>
-                            <th>{% trans 'claim_mission' %}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        {% if user.profile in team.participants.all or user.is_speaker %}
-                            {% for mission in team.project.collectivemission_set.all %}
-
-
-                                <tr>
-                                <td>
-                                    <a
-                                            href="{% url 'collective_mission_detail' mission.id %}">{{mission.name}}</a>
-                                </td>
-                                <td>{{mission.stage}}</td>
-                                <td>{{mission.points}}</td>
-                                <td>{{mission.due_date}}</td>
-                                <td>{% if user.is_speaker %}
-                                    <a href="{% url 'assign_collective_mission_detail' mission.id %}">{% trans 'assign_mission' %}</a>
-                                {% elif user.is_student %}
-                                    <a href="{% url 'join_collective_mission_detail' mission.id %}">{% trans 'join_mission' %}</a>
-                                {% endif %}
-
-                                </td>
-                            {% endfor %}
-
-
-                        </tr>
-
-                        {% endif %}
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    {% if user.is_speaker %}
-
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <h5 class="card-header">{% trans 'project mission' %}</h5>
-
-                    <div class="card-body">
-                        <table id="zero-conf" class="display" style="width:100%">
-                            <thead>
-                            <tr>
-                                <th>{% trans 'mission' %}</th>
-                                <th>{% trans 'attributed to' %}</th>
-                                <th>{% trans 'stage_of_project' %}</th>
-                                <th>{% trans 'points' %}</th>
-                                <th>{% trans 'date' %}</th>
-                                <th>{% trans 'status' %}</th>
-                            </tr>
-
-                            </thead>
-                            <tbody>
-
-                            {% for mission in team.project.individualmission_set.get_attributed_mission %}
-                                <tr>
-                                    <td>{{mission.name}}</td>
-                                    <td>{{mission.attributed_to}}</td>
-                                    <td>{{mission.stage}}</td>
-                                    <td>{{mission.points}}</td>
-                                    <td>{{mission.due_date}}</td>
-                                    <td><a href="{% url 'submit_mission' mission.id  %}">{% trans 'see_mission' %}</a></td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-
-
-
-    <!-- ------------------------------------------------------------------STUDENT VIEW HIS MISSION LIST  -->
-
-    {% if user.is_student %}
-
-        <div class="row">
-        <div class="col">
-        <div class="card">
-        <h5 class="card-header">{% trans 'project_mission' %}</h5>
-
-        <div class="card-body">
-            <p>My assigned missions</p>
-            <table id="zero-conf" class="display" style="width:100%">
-                <thead>
-                <tr>
-                    <th>{% trans 'project' %}</th>
-                    <th>{% trans 'mission' %}</th>
-                    <th>{% trans 'stage_of_project' %}</th>
-                    <th>{% trans 'points' %}</th>
-                    <th>{% trans 'date' %}</th>
-                    <th>{% trans 'status' %}</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                {% for mission in team.project.individualmission_set|student_missions:user.is_student %}
-
-                    <tr>
-                        <td><a href="
-                                {% if user.profile == mission.attributed_to and not mission.response_file %}
-                                {% url 'submit_mission' mission.id %}
-                                {% else %}
-                                {% url 'individual_mission_detail' mission.id %}
-                                {% endif %}
-                                ">{{mission.name}}</a> </td>
-                        <td>{{mission.description}}</td>
-                        <td>{{mission.stage}}</td>
-                        <td>{{mission.points}}</td>
-                        <td>{{mission.due_date}}</td>
-                        <td>{{mission.status}}</td>
-                    </tr>
-
-
-
-
-                {% endfor %}
-
-                <tr><td>here</td> </tr>
-
-                {#            {% for collectiveindividualmission in user.student.team_set.project.collectivemission_set.all|collective_student_missions:team.project %}#}
-                <tr>
-                    <td><a href="
-                                {% if user.profile == collectiveindividualmission.attributed_to and not collectiveindividualmission.response_file %}
-                                {% url 'submit_mission' collectiveindividualmission.id %}
-                                {% else %}
-{#                                {% url 'collective_mission_detail' collectivemission.id %}#}
-                                {% endif %}
-                                ">{{collectiveindividualmission.parent_mission.mission.name}}</a> </td>
-                    <td>{{collectiveindividualmission.parent_mission.mission_type}}</td>
-                    <td>{{collectiveindividualmission.parent_mission.mission.stage}}</td>
-                    <td>{{collectiveindividualmission.parent_mission.points}}</td>
-                    <td>{{collectiveindividualmission.parent_mission.due_date}}</td>
-                    <td>{{collectiveindividualmission.parent_mission.status}}</td>
-                </tr>
-                {#                    {% endfor %}#}
-
-                </tbody>
-
-            </table>
-        </div>
-
-    {% endif %}
-
-</div>
-</div>
-
-
-
-
-{#     <h1>Comments Board</h1>   #}
-
-{% comment %}
+    {% comment %}
  {% for board in team.teamcommentsboard_set.all %}
     <a href="{% url 'board_detail' board.id %}">board.</a>
     {% for comment %}
@@ -403,8 +379,6 @@
 
  {% endcomment %}
 
-</div>
-
 
 
 
@@ -413,6 +387,7 @@
 
 
     <!-- Modal -->
+<<<<<<< HEAD
 
 
 {##}
@@ -465,6 +440,60 @@
 {#    </div>#}
 {##}
 {##}
+=======
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#    <div class="modal" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">#}
+    {#    <div class="modal-dialog">#}
+    {#        <div class="modal-content">#}
+    {#            <div class="modal-header">#}
+    {#                <h5 class="modal-title" id="staticBackdropLabel">Projects </h5>#}
+    {#                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">{% trans 'close' %}</button>#}
+    {#            </div>#}
+    {#            <div class="modal-body modal-open">#}
+    {#                <ul class="nav nav-pills">#}
+    {##}
+    {#                    <li><a class="btn btn_modal" href="#" data-bs-toggle="pill" data-bs-target="#pills-create-project">{% trans 'new_project' %}</a></li>#}
+    {#                    <li ><a class="btn btn_modal"href="#" data-bs-toggle="pill" data-bs-target="#pills-template" >{% trans 'choose_templates' %}</a></li>#}
+    {#                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'duplicate' %}</a></li>#}
+    {#                </ul>#}
+    {##}
+    {#                <div class="tab-content" id="pills-tabContent">#}
+    {#                    <div class="tab-pane show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">#}
+    {##}
+    {#                        <form method="post" action="{% url 'create_team_project' team.id %}">#}
+    {#                            {% csrf_token %}#}
+    {#                            {{ project_form|materializecss }}#}
+    {#                            <button type="submit">Save</button>#}
+    {#                        </form>#}
+    {##}
+    {#                                                 <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>#}
+    {#                    </div>#}
+    {#                    <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">#}
+    {##}
+    {#                        {% for project in templates  %}#}
+    {##}
+    {#                            <h2>{{ project.name }}</h2>#}
+    {#                            <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>#}
+    {#                        {% endfor %}#}
+    {#                    </div>#}
+    {#                    <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">#}
+    {#                        {% for project in old_projects  %}#}
+    {#                            <h2>{{ project.name }}</h2>#}
+    {#                            <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>#}
+    {#                        {% endfor %}#}
+    {#                    </div>#}
+    {#                </div>#}
+    {##}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {##}
+
+>>>>>>> cssglobal
 
 
 

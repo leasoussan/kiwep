@@ -3,16 +3,26 @@ body {
   background-color: #8abfa2;
   color: #425940;
 }
-.margin-block {
-  height: 60px;
-}
-.margin-block1 {
-  height: 75px;
-}
+
 .modal {
   max-height: 100%;
   max-width: 100%;
 }
+
+/*lea add*/
+.main_view_base{
+  margin-top: 18vh;
+}
+
+/*Main COntent blocn From base*/
+
+/*lea add*/
+.content_block{
+  display: flex;
+  flex-direction: column;
+
+}
+
 
 /* ---------NAVBAR--------- */
 .nav-wrapper {
@@ -49,7 +59,7 @@ body {
 }
 /* ------- END NAVBAR-------- */
 
-/* --------sidebar------- */
+/* --------sidebar----MENU PANEL--- */
 .collection {
   /* margin-top: 60px; */
   border: none;
@@ -75,15 +85,33 @@ body {
   background-color: #8abfa2;
 }
 
-/* -----mainpanel------ */
-#main-bar {
-  border-left: 1px solid #f7ebdc;
-  padding-left: 20px;
-  /* height: 1000px; */
-  padding-right: 20px;
-  /* margin-top:60px; */
 
+.menu_panel{
+  width: 80%;
+  background-color: #425940;
 }
+
+.menu_color .li .ul{
+  background-color: #425940;
+}
+
+
+/* -----mainpanel------ */
+.main_content_block{
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
+}
+
+
+#main-bar {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #f7ebdc;
+  padding-left: 10%;
+  
+
+
 .my_table {
   background-color: #f7ebdc;
   color: #425940;
