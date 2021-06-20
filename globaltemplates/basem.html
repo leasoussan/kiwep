@@ -9,19 +9,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KIWEP</title>
 
+
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link href="{% static 'backend/css/stylem.css' %}" rel="stylesheet" >
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="{% static 'backend/css/stylem.css' %}" rel="stylesheet" >
 
     {% block css %}
 
     {% endblock css %}
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
 
 
 </head>
@@ -47,6 +50,7 @@
                             <div class="collapsible-header"><a class= "link-side-panel" href="{% url 'team_list' %}">{% trans 'teams' %}</a></div>
                             <div class="collapsible-body"><span>Other page</span></div>
                         </li>
+
 
 
                     </ul>
@@ -85,6 +89,11 @@
 
 
             {% block content %}
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
 
 
             {% endblock %}
@@ -96,14 +105,13 @@
 
 
 
+    <script>
 
 
-    {# TODO: Irina to help with plugin  #}
     var elem = document.querySelector('.collapsible.expandable');
     var instance = M.Collapsible.init(elem, {
     accordion: false
     });
-
 
     </script>
 
@@ -130,7 +138,6 @@
     {% block javascript %}
 
     {% endblock javascript %}
-
 
 </body>
 </html>

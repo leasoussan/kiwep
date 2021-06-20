@@ -98,9 +98,11 @@ body {
 
 /* -----mainpanel------ */
 .main_content_block{
-  width: 600px;
-  background-color: black;
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
 }
+
 
 #main-bar {
   display: flex;
