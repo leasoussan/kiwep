@@ -1,405 +1,319 @@
+/*This page holds styles for the Mian style. Imported in:*/
+/*'base.html'*/
+
+
+
+/*
+
+INDEX:
+1.  base.html
+.  Navbar
+.  Project
+.  Team
+.  Mission
+.  Resource
+7.  Modal
+8. colors
+9.
+10
+
+
+*/
+
+/*__________________________________________________________________*/
+
+/*_______________________________________________________BASE*/
+
+
 body {
   font-family:  'Helvetica', 'sans-serif';
-  background-color: #8abfa2;
-  color: black;
+  background-color: #b2dfdb;
+  color: #425940;
 }
 
-.my_nav{
-  background: #fffefc;
-  height: 70px;
-}
-.logo-image {
-   height:100%;
-   width: auto;
-}
- a:visited {
-  text-decoration: none;
-  color:rgba(0,0,0,.55);
 
-}
-a {
-  text-decoration: none;
-  /* color: black; */
-}
-li a:hover {
-  color: #black;
-}
-
- li  button a {
-    color:#fffefc;
-  }
-  li {
-    padding:10px;
-  }
-.input_search {
-  border-radius: 10px;
-  border:1px solid #7d7d83;
-}
-#search_btn {
-  border-radius: 10px;
-  border:1px solid #7d7d83;
-  height: 40px;
-  background-color:#f7d493;
-  /* width:210px; */
-}
-.nav-link {
-  color: #fffefc;
-  text-decoration: none;
-  text-align: center;
-}
-
-button {
-  background-color: #8abfa2;
-  border: none;
-}
-
-/* button:hover {
-  background-color: #f5a187;
-
-  color: #fffefc;
-} */
-.dropdown-item:hover {
-  background-color: #9fce9c;
-}
-.btn {
-  border: none;
-  margin:5px;
-  background: #9fce9c;
-  border-radius: 5px;
-  color: #fffefc;
-}
-.btn1 {
-  border: none;
-  margin:5px;
-  background: #1f7968;
-  border-radius: 5px;
-  color: #fffefc;
-  height:40px;
-  width: 70px;
-  margin-left:30px;
-}
-
-/* .btn:hover {
-  background-color: #425940;
-  border-radius: 10px;
-  color: #fffefc;
-
-} */
-.btn a   {
-  color: #fffefc;
-}
-.btn1 a   {
-  color: #fffefc;
-}
-
-.profile_card {
-  margin:10px;
-  border-radius: 10px;
-}
- /* a:hover {
-  color:  #425940;
-} */
-.main-wrapper{
-  background-color:#f7d493;
-  border-radius: 10px;
-}
-/* FOOTER */
-#footer_rights {
+.main_view_base{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  /* flex-direction: row; */
-  font-size: 13px;
-  color:#f8fafa;
-  margin-top: 20px;
-  /* background-color: #f8fafa; */
+  margin-top: 10vh;
 }
-.footer_social{
-  padding: 15px;
-  color: black;
+
+
+/*base*/
+.main_content_block{
+
+  justify-content:flex_start ;
 }
-#footer_div {
+
+
+
+/*base*/
+.content_main_view  {
+  width: 90%;
+  justify-content:flex_start ;
+
+}
+
+
+/* -________________________________________________2________________NAVBAR--------- */
+.nav-wrapper {
+  background-color:white;
+  color: #425940;
+}
+
+
+#user-icon{
+  font-size: 40px;
+  color: #425940;
+}
+#arrow-icon {
+  color: #425940;
+}
+#logo-color {
+  color: #425940;
+}
+.green-btn {
+  background-color:#757575;
+  color:#f7ebdc;
+}
+.green-btn:hover {
+  background-color: #9e9e9e ;
+}
+.green-btn:active {
+  background-color: #9e9e9e ;
+}
+#a-link {
+  color:#425940;
+}
+#a-link1 {
+  color:#425940;
+}
+
+
+
+
+
+
+
+/* --------------------------------------------------------------sidebar----MENU PANEL--- */
+.main_container{
   display: flex;
+  flex-direction: column;
+}
+
+
+/*.link-side-panel {*/
+/*  color: #f7ebdc;*/
+/*  font-size: 20px;*/
+/*}*/
+/*.btn-side-panel {*/
+/*  border:none;*/
+/*  background-color: #8abfa2;*/
+/*  margin:5px;*/
+/*}*/
+/*.no-shadows{*/
+/*   box-shadow: none!important;*/
+/*}*/
+/*.btn-side-panel:hover {*/
+/*  border-left: 2px solid #425940;*/
+/*  background-color: #8abfa2;*/
+/*}*/
+
+
+.menu_panel{
+  width:100%%;
+}
+
+.menu_panel_color li div:hover{
+  background-color: #4db6ac;
+}
+
+
+.menu_panel_color li div a:hover{
+  font: helvetica;
+  font-size: 1rem;
+  color: white;
+}
+
+
+
+
+.menu_panel_color li:active{
+  background-color: #4db6ac;
+}
+
+
+.menu_main_div{
+
+}
+
+
+
+
+/*---------------------------------------7 Modal*/
+
+.modal {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+
+
+
+
+
+/*-----------------------------------------------------------__COLORS*/
+
+
+/*LIGHTER GREEN #e0f2f1 teal lighten-5*/
+/*LIGHT GREEN - #b2dfdb teal lighten-4*/
+/*LIGHT TURQUOISE #b2ebf2 cyan lighten-4*/
+
+
+
+
+
+/*_________________________________________________________________________Bouttons ___________*/
+
+.speaker_btn_group{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 30%;
+}
+
+.edit_button {
+  background-color: #fdd835;
+  display: flex;
+  width: 7rem;
   justify-content: center;
-  align-items: center;
-  background-color:#f8fafa;
-  margin-top:10px;
-  color:#1f7968;
 }
-/* END FOOTER */
-/* SIDEBAR PANEL */
-#side_panel {
-  background-color: #8abfa2;
-  text-align: left;
-  color:#f8fafa;
-  padding-bottom: 400px;
-
-}
-.btn_sidebar:hover {
-  background-color: #8abfa2;
-  border-left:3px solid #1f7968;
-}
-
-#main_panel{
-  background:#8abfa2;
-  color: black;
-  /* border-radius: 10px; */
-  border-left: 1px solid #f8fafa;
-  padding-left: 5px;
-}
-main .card {
-  margin-bottom: 20px;
-}
-
-
-
-i {
-  color: #1f7968;
-}
-
-.title_signin {
-  text-align: center;
-  margin-top: 15px;
-}
-
-ul {
-  list-style: none; /* Remove list bullets */
-  padding: 0;
-  margin: 0;
-}
-
-
-.input-group{
-  margin-right: -70px;
-}
-.launguage {
-  margin-right: 10px;
-}
-
-#a_link {
-  color: #fffefc;
-  font-size: 20px;
-}
-h5 {
-  text-align: center;
-}
-.details_icon {
-  margin-right:10px;
-}
-
-/* HEADERS FOR TABLES */
-.card-header {
-  text-align:center;
-  background-color:#425940;
-  color:#fffefc;
-}
-/* ADD BUTTON */
 
 .add_button {
-  background-color: #f5a187;
-  color:#fffefc;
-  /* border: 1px solid #7d7d83; */
-}
-.add_button1 {
-  background-color: #9fce9c;
-  border: 1px solid #7d7d83;
-}
-.add_button a {
-  color:#fffefc;
-}
-
-
-.add_button a:hover {
-  color:#fffefc;
-
-}
-/* END  ADD BUTTON */
-/* TEAM DETAIL */
-.student_list {
-  margin-top: 25px;
-}
-
-
-.team_style a{
-  color:#fffefc;
-}
-.team_style:hover {
-  background-color: #f7d493;
-  color:black;
-  border-radius:5px;
-  border: 1px solid #7d7d83;
-}
-.team_style a:hover {
-  color:black;
-}
-/* END TEAM DETAIL */
-/* Button MODAL */
-a .btn_modal {
-  color:#fffefc;
-}
-.header_missions {
-  background-color: #f7d493;
-  color:#fffefc;
-}
-/* LOGIN/REGISTER */
-
-.button_login {
-  border-radius:0px;
-  background-color:#f5a187;
-  width: 250px;
-  color: #fffefc;
-
-}
-/* .button_login:hover {
-  border-radius:0px;
-  background-color:#fd7e14;
-} */
-.button_register {
-  border-radius:0px;
-  background-color:#1f7968
-}
-.button_register:hover {
-  border-radius:0px;
-  background-color:#1f7968;
-}
-.login_register {
+  background-color: #1565c0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
-}
-.login_card {
-  border-top: 3px solid #fffefc;
-  padding-top: 50px;
-}
-/* .card {
-  background-color: #8abfa2;
-} */
-.forgot_password {
-  text-align:center;
-  margin-bottom:50px;
-  margin-top:50px;
-}
-.forgot-link {
-  color: #f7ebdc;
-}
-#forgot-link1{
-  color: #f7ebdc;
-}
-/* END LOGIN/REGISTER */
-/* DASHBOARD */
-.card_round {
-  background-color: #fd7e14;
-  color: black;
-  width: 18rem;
-  height: 30vh;
+  width: 7rem;
 
 }
-#homepage_try_us{
- display: flex;
- flex-direction: column;
- margin: 10px;
- margin-bottom: 100px;
- height: 50vh;
- color: #0b2e13;
- align-self: right;
-}
-#main {
+
+/*_____________PROJECT____________________________________________________-*/
+
+
+
+.project_description_block{
   display: flex;
   flex-direction: row;
-  background-color: 9fce9c;
-    justify-content: center;
-  }
-/* ENDDASHBOARD */
-
-/* ADD INDIVIDUAL AND COLLECTIVE MISSIONS */
-.add_mission {
-  text-align:center;
-}
-
-.add_resource{
-   text-align:center;
+  height: 20%;
+  width: 100%;
 }
 
 
-.missions_list_team{
-  display:flex;
-  flex-direction: row;
-}
-.list-group{
-  width: 150px;
-}
-/* --------TEAM LIST----------- */
-#button_left {
-  display:flex;
-  justify-content:flex-end;
-  margin-bottom:30px;
-}
-.my_table {
-  background-color:#fffefc;
-}
-.edit_btn {
-  border: 1px solid #f5a187;
-  background-color: #fffefc;
-  height: 30px;
-  border-radius: 5px;
 
-}
-.edit_btn a {
-  color: #f5a187;
-}
-.table_headers {
-  font-size: large;
-  text-align: center;
-  padding-bottom: 20px;
-}
-.content_table {
-  border-right: 2px solid #7d7d83;
-  text-align: center;
+.description_block{
+  width: 60%;
+  height: 25vh;
+  /*border: 1px solid;*/
+  /*border-color:white ;*/
+  box-shadow: 5px 5px 5px #80cbc4;
 }
 
-/* CREATE TEAM */
-/* .card .add_team_card {
-  background-color: #fffefc;
-  width:500px;
-  padding: 20px;
-} */
-
-.create_team {
+.project_detail_block{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  width:600px;
-  /* padding: 40px; */
+  flex-direction: row;
+  justify-content: space-between;
+  height:25vh;
+  width: 60%;
+  margin-top: 3rem;
+  background-color: white;
 }
-.team_card {
-  padding: 20px;
+
+.project_detail{
+  display: flex;
+  /*flex-wrap: wrap;*/
+  width: 40%;
 }
-.form-horizontal{
-  color:#1f7968;
-  font-size: large;
+
+.project_detail div h4{
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight = bold;
+}
+
+.project_acquired_skills{
+  width: 30%;
+
+}
+
+.table_detail_project{
+  diplay:flex;
+
+
+}
+
+
+.table_detail_project li{
+  height: 1rem ;
+  padding-left: 20px;
+  width: 80%;
+
+}
+
+.table_detail_project li span{
+
+  height: 1rem ;
+  font-size: 1rem;
+  width: 80%;
+}
+
+.project_extra_detail {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  padding-top: 5rem;
+  justify-content: space-between;
+}
+
+
+.project_mission_table{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  justify-content: flex-end;
+}
+
+/*.add_mission_modal{*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  justify-content: space-between;*/
+/*}*/
+
+.add_mission_modal a{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.project_resource_table{
+  width:30%;
+   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  : 0;
+}
+
+
+
+
+/*_____________________GLOBAL*/
+
+.section_header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.section_header h3{
+  font-size: 2rem;
   font-weight: bold;
 }
-/* ---------FOOTER--------- */
-.about_kiwep {
-  display: flex;
-  justify-content: flex-end;
-  padding-right:40px;
-  margin:40px;
-  padding-bottom: 400px;
-}
-
-/* -------------Projects speaker-------------- */
-.titles {
-  display:flex;
-  justify-content:center;
-  padding-bottom: 20px;
-  color:#1f7968;
-}
-Red : f5a187
-Orange : eca255
-Yellow: f5e987
-Light Green  : 8abfa2
-Green: 425940
-white: f7ebdc

@@ -30,5 +30,3 @@ class AddCommentForm(forms.ModelForm):
             'object_id': forms.HiddenInput()
         }
 
-
-

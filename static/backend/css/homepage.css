@@ -21,3 +21,149 @@
   align-self: right;
 
 }
+
+
+
+
+
+ * -----mainpanel------ */
+.main_content_block{
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
+}
+
+
+#main-bar {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #f7ebdc;
+  padding-left: 10%;
+
+
+
+.my_table {
+  background-color: #f7ebdc;
+  color: #425940;
+}
+.tables {
+  margin-top: 60px;
+}
+
+.button_left {
+  display:flex;
+  justify-content:flex-end;
+  margin-right:15px;
+  text-align:center;
+}
+.add_button {
+  background-color: #2196f3;
+  color:#f7ebdc;
+
+}
+.add_button:hover {
+  background-color: #2196f3;
+  color:#f7ebdc;
+}
+.table_headers {
+  font-size: large;
+  text-align: center;
+  padding-bottom: 20px;
+  color:#425940;
+}
+.link-table {
+  color:#425940;
+  font-size: large;
+}
+.edit_btn {
+  border: 1px solid #757575;
+  background-color: #fffefc;
+  color:#757575;
+  padding-right: 10px;
+  padding-left: 10px;
+
+}
+.edit_btn:hover {
+  border: 1px solid #757575;
+  background-color: #fffefc;
+  color:#757575;
+}
+.secondary_button {
+  background-color: #fdd835;
+  color:#425940;
+  text-align: center;
+}
+.secondary_button:hover {
+  background-color: #fdd835;
+  color:#425940;
+  text-align: center;
+}
+
+/* -----------PROJECT LIST--------- */
+.nav_project {
+  /* margin-top: 75px; */
+  margin-left:15px;
+  background-color: #8abfa2;
+  border:none;
+}
+#project_headers {
+  color:#f7ebdc;
+}
+.nav_color {
+  background-color: #8abfa2;
+}
+.card-header {
+  color:#f7ebdc;
+  padding-bottom: 15px;
+}
+
+/* ------------PROJECT DETAIL------------- */
+.edit-project {
+  padding-right: 10px;
+  padding-left: 10px;
+  text-align: center;
+}
+#button-edit-project {
+  display:flex;
+  justify-content:flex-end;
+  text-align:center;
+}
+#card_skills{
+  background-color:#f7ebdc;
+}
+.card-content {
+  background-color:#f7ebdc;
+}
+
+
+
+-----------------TEAM DETAIL-----------------------------
+
+.btn_edit_team{
+
+}
+
+.header_mission {
+  text-align: center;
+}
+#background-collection{
+  background-color:#f7ebdc;
+}
+.mission-div {
+  margin-top: 90px;
+}
+
+.link-side-panel1 {
+  color: #f7ebdc;
+  font-size: 5px;
+}
+
+/* ------------CREATE TEAM---------- */
+.create_team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width:600px;
+}
+

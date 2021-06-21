@@ -52,7 +52,6 @@ class Answer(models.Model):
 
 
 
-
 class Comment(models.Model):
     user = models.ForeignKey('accounts.MyUser', on_delete=models.CASCADE)
     date_posted = models.DateField(auto_now_add=True)
@@ -106,7 +105,5 @@ class DiscussionModel(models.Model):
         return AddDiscussionForm(initial= {'content_type': ct.id,'object_id':self.id})
 
 
-class AnswerModel(DiscussionModel):
-    pass
 
 
