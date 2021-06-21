@@ -12,8 +12,7 @@ from django.db.models.signals import pre_save
 from django.contrib.contenttypes.fields import GenericRelation
 from datetime import datetime, timedelta
 
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
+
 
 
 
@@ -25,7 +24,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save, m2m_changed, pre_delete
 
 from django.utils import timezone
-from message.models import DiscussionModel
+from message.models import DiscussionModel,AnswerModel
 
 
 
@@ -100,7 +99,7 @@ class Project(DiscussionModel):
 
 
 
-class Mission(DiscussionModel):
+class Mission(AnswerModel):
     STAGE_CHOICE = [
         ('start', 'Start'),
         ('middle', 'Middle'),

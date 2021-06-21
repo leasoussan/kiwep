@@ -33,24 +33,6 @@ class Rating(models.Model):
 
 
 
-class Answer(models.Model):
-    STATUS_CHOICES =[
-        ('w_r', 'Waiting Review'),
-        ('u_r','Under Review'),
-        ('a', 'Accepted'),
-        ('r', 'Rejected'),
-        ('c', 'See Comments'),
-    ]
-    response_comment = models.TextField(blank=True)
-    response_file = models.FileField(null=True, blank=True)
-    accepted = models.BooleanField(default=False)
-    status=models.CharField(max_length=20, choices=STATUS_CHOICES, default='w_r')
-
-    def __str__(self):
-        return f'answe by: {self.user.username}'
-
-
-
 
 class Comment(models.Model):
     user = models.ForeignKey('accounts.MyUser', on_delete=models.CASCADE)
@@ -105,5 +87,43 @@ class DiscussionModel(models.Model):
         return AddDiscussionForm(initial= {'content_type': ct.id,'object_id':self.id})
 
 
+
+
+
+
+
+class Answer(DiscussionModel):
+    STATUS_CHOICES =[
+        ('w_r', 'Waiting Review'),
+        ('u_r','Under Review'),
+        ('a', 'Accepted'),
+        ('r', 'Rejected'),
+        ('c', 'See Comments'),
+    ]
+    response_comment = models.TextField(blank=True)
+    response_file = models.FileField(null=True, blank=True)
+    status= models.CharField(max_length=20, choices=STATUS_CHOICES, default='w_r')
+    grade = models.IntegerField()
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    def __str__(self):
+        return f'answer by: {self.user.username}'
+
+
+
+
+
+class AnswerModel(DiscussionModel):
+    answer = GenericRelation(Answer)
+
+    class Meta:
+        abstract= True
+
+    def answer_form(self):
+        from .forms import AddAnswerForm
+        ct = ContentType.objects.get_for_model(self)
+
+        return AddAnswerForm(initial= {'content_type': ct.id,'object_id':self.id})
 
 

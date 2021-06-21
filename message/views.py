@@ -4,8 +4,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.contrib.auth.decorators import user_passes_test, login_required
 from accounts.decorators import check_profile
+from accounts.mixin import StudentStatuPassesTestMixin
 from .models import Comment, Discussion
-from message.forms import AddDiscussionForm, AddCommentForm
+from message.forms import AddDiscussionForm, AddCommentForm, AddAnswerForm
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -23,24 +24,49 @@ from django.views.generic import (
 #     return render(request, 'message/my_inbox.html')
 
 
+class GenericCustomRedirectView(RedirectView):
 
-class DiscussionCreateView(RedirectView):
+    pattern_name = 'comment_add'
+    form_class = None
 
-    pattern_name = 'discussion_add'
+    def save_form(self, form):
+        return form.save()
+
+    def can_save(self,form):
+        return True
+
 
     def get_redirect_url(self, *args, **kwargs):
-        form = AddDiscussionForm(self.request.POST)
+        form = self.form_class(self.request.POST)
+        fail = True
         if form.is_valid():
-            discussion = form.save(commit=False)
-            discussion.user = self.request.user
-            discussion.save()
+            if self.can_save(form):
+                self.object = self.save_form(form)
+                fail=False
+                messages.success(self.request,  f'Your {self.object._meta.model.__name__} was added succesfuly')
 
-            messages.success(self.request,  'Your Discussion was added succesfuly')
-
-        else:
-            messages.warning(self.request, 'Your Discussion wasn\'t saved')
+        if fail:
+            messages.warning(self.request, f'Your {self.object._meta.model.__name__} wasn\'t saved')
 
         return self.request.GET.get('next')
+
+
+
+
+class RequestUserSaveFormMixin():
+
+    def save_form(self, form):
+        object = form.save(commit=False)
+        object.user = self.request.user
+        object.save()
+        return object
+
+
+
+class DiscussionCreateView(RequestUserSaveFormMixin, GenericCustomRedirectView):
+
+    pattern_name = 'discussion_add'
+    form_class = AddDiscussionForm
 
 
 
@@ -48,25 +74,18 @@ class DiscussionCreateView(RedirectView):
 
 
 
-class CommentCreateView(RedirectView):
+class CommentCreateView(RequestUserSaveFormMixin, GenericCustomRedirectView):
 
     pattern_name = 'comment_add'
-
-    def get_redirect_url(self, *args, **kwargs):
-        form = AddCommentForm(self.request.POST)
+    form_class= AddCommentForm
 
 
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.user = self.request.user
-            comment.save()
 
 
-            messages.success(self.request,  'Your Comment was added succesfuly')
 
-        else:
-            messages.warning(self.request, 'Your Comment wasn\'t saved')
+class AnswerCreateView(StudentStatuPassesTestMixin, GenericCustomRedirectView):
+    pattern_name = "answer_add"
+    form_class = AddAnswerForm
 
-        return self.request.GET.get('next')
-
-
+    def can_save(self, form):
+        print(form.cleaned_data)
