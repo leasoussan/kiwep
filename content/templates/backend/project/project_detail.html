@@ -11,10 +11,10 @@
 
     <div class="row project_description_block" >
         <div class="description_block ">
-            <div>
+
                 <p>{{project.description}}</p>
                 <a href ="{url 'project_detail' team.project.id %}">{% trans 'read_more_porject' %}</a>
-            </div>
+
 
         </div>
         <div class="speaker_btn_group">
@@ -32,8 +32,8 @@
 
         <div class="project_detail" >
 
-            <div class="table_detail_project">
-                <div><h4>{% trans 'details_header' %}</h4></div>
+            <div class="table_detail_project ">
+             <h4 class ="title">{% trans 'details_header' %}</h4>
                 <ul >
                     <li>
                         <span class="label">{% trans 'field' %}:</span>
@@ -56,10 +56,10 @@
 
         </div>
 
-        <div class="project_acquired_skills" >
+        <div class="project_acquired_skills title" >
 
             <div>
-                <div style = "margin-left: 15px "><p>{% trans 'acquired_skills' %}</p></div>
+                <div style = "margin-left: 15px "><p class ="title">{% trans 'acquired_skills' %}</p></div>
                 {% for skill in project.acquired_skills.all %}
                     <li class="collection-item">{{skill.name}}</li>
                 {% endfor %}
@@ -103,19 +103,18 @@
                     <tbody><br>
 
                     {% for mission in project.individualmission_set.all %}
+
                         <tr>
+
                             <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
                             <td class="content_table">{{ mission.due_date }}</td>
-                            <td class="content_table">
-                                {% if mision in individualmission_set.all %}
-                                    <p> {% trans 'individual_mission' %}</p>
-                                {% elif mission in collectivemission_set.all %}
-                                    <p> {% trans 'collective_mission' %}</p>
-                                {% endif %}</td>
-
-                            <td><a href="{% url 'delete_team' team.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
-                            <td><a scope="col" href="{% url 'update_team' team.id %}" class="waves-effect waves-light btn edit_btn">{% trans 'edit_the_team' %}</a></td>
-
+                            <td class="content_table">{% trans "individual_mission" %}</td>
+                            {% if user.is_speaker %}
+                                <td><a href="{% url 'delete_individual_mission' mission.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
+                                <td><a scope="col" href="{% url 'update_individual_mission' mission.id %}" class="waves-effect waves-light btn edit_btn_tbl">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                            {% endif %}
                         </tr>
                     {% endfor %}
 
@@ -123,18 +122,15 @@
 
                     {% for mission in project.collectivemission_set.all %}
                         <tr>
-                            <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
+                            <td class="content_table"><a class= "link-table" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a></td>
                             <td class="content_table">{{ mission.due_date }}</td>
-                            <td class="content_table">
-                                {% if mision in individualmission_set.all %}
-                                    <p> {% trans 'individual_mission' %}</p>
-                                {% elif mission in collectivemission_set.all %}
-                                    <p> {% trans 'collective_mission' %}</p>
-                                {% endif %}</td>
-
-                            <td><a href="{% url 'delete_team' team.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
-                            <td><a scope="col" href="{% url 'update_team' team.id %}" class="waves-effect waves-light btn edit_btn">{% trans 'edit_the_team' %}</a></td>
-
+                            <td class="content_table">{% trans 'collective_mission' %}</td>
+                            {% if user.is_speaker %}
+                                <td><a href="{% url 'delete_collective_mission' mission.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
+                                <td><a scope="col" href="{% url 'update_collective_mission' mission.id %}" class="waves-effect waves-light btn edit_btn_tbl">
+                                    <i class="material-icons">edit</i>
+                                </a></td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
 
@@ -153,7 +149,9 @@
                     <h3>        {% trans 'resource' %}</h3>
                 </div>
                 <div class="speaker_btn_group">
-                    <a class="waves-effect btn add_button" >{% trans 'add' %}</a>
+
+                    <!-- Modal Trigger -->
+                    <button data-target="add_resource" class="btn modal-trigger add_button">{% trans 'add' %}</button>
                 </div>
             </div>
 
@@ -168,7 +166,7 @@
                         {% endif %}
                     </tr>
                     </thead>
-                    <body>
+                  <tbody><br>
                     {% for resource in project.resources.all %}
                         <td class="content_table"><a href="{% url 'resource_detail' resource.id %}"> {{ resrouce.name }} </a></td>
                     {% endfor %}
@@ -211,14 +209,14 @@
                 <div class="col s12">
 
                     <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-                        <li class="tab col s5"><a href="#IndividualMission">{% trans 'individual_mission'%}</a></li>
-                        <li class="tab col s5"><a class="active" href="#CollectiveMission">{% trans 'collective_mission'%}</a></li>
+                        <li class="tab col s5"><a href="#AddIndividualMission">{% trans 'individual_mission'%}</a></li>
+                        <li class="tab col s5"><a class="active" href="#AddCollectiveMission">{% trans 'collective_mission'%}</a></li>
                     </ul>
 
 
                 </div>
                 <div>
-                    <div id="IndividualMission" class="col s12">
+                    <div id="AddIndividualMission" class="col s12">
                         <h4>{% trans 'individual_mission'%}</h4>
 
                         <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' project.id %}' >
@@ -232,7 +230,7 @@
 
 
 
-                    <div id="CollectiveMission" class="col s12">
+                    <div id="AddCollectiveMission" class="col s12">
                         <h4>{% trans 'collective_mission'%}</h4>
 
                         <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' project.id %}' >
@@ -256,24 +254,53 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+{#    ----------------------------------------------------------------Add Resource Modal#}
+    <div id="add_resource" class="modal">
+        <div class="modal-content">
+            <div class="row">
+
+                <div>
+
+                        <form method="POST" class="form-horizontal" action='{% url 'create_resource' %}' >
+                            {% csrf_token %}
+                            {{ resources_form|materializecss }}
+                            <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                {% trans 'save'%}</button>
+                        </form>
+
+                    </div>
+
+
 {% endblock %}
 
-    {% block javascript %}
-<script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
-<script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>
+{% block javascript %}
+    <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
+    <script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>
 
 
 
 
-<script>
-    $(document).ready(function(){
-        $('.modal').modal();
+    <script>
+        $(document).ready(function(){
+            $('.modal').modal();
 
 
-        $('.tabs').tabs();
+            $('.tabs').tabs();
 
-    });
-</script>
+        });
+    </script>
 
 
-    {% endblock javascript %}
+{% endblock javascript %}

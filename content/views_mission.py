@@ -184,17 +184,28 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
 
 
 
-class MissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
-    model = Mission
+class IndividualMissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
+    model = IndividualMission
     template_name = 'crud/delete.html' 
     success_url = reverse_lazy('mission_list')
 
 
     def get_object(self, queryset=None):
         pk = self.kwargs.get['pk']
-        return get_object_or_404(Mission, pk=pk)
+        return get_object_or_404(IndividualMission, pk=pk)
 # ----------------------------------------------------------------------------------------------------------------
 
+
+class CollectiveMissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
+    model = CollectiveMission
+    template_name = 'crud/delete.html'
+    success_url = reverse_lazy('mission_list')
+
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get['pk']
+        return get_object_or_404(CollectiveMission, pk=pk)
+# ----------------------------------------------------------------------------------------------------------------
 
 
 

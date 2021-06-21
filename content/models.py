@@ -153,7 +153,7 @@ class HardSkillsRating(models.Model):
     percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
 
 
-class IndividualMission(Mission, ):
+class IndividualMission(Mission ):
     """ an Individuall Mission is a Mission that has to be done by one team Member,
         so this mission can be claimed """
 
@@ -174,6 +174,8 @@ class IndividualMission(Mission, ):
     def get_update_url(self):
         """ To """
         return reverse('update_individual_mission', kwargs={"pk":self.pk})
+
+
 
 class CollectiveMission(Mission):
     """

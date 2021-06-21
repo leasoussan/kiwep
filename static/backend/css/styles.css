@@ -188,6 +188,13 @@ body {
   justify-content: center;
 }
 
+
+.edit_btn_tbl{
+  background-color: #fdd835;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
 .add_button {
   background-color: #1565c0;
   display: flex;
@@ -209,10 +216,12 @@ body {
 
 
 .description_block{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 60%;
   height: 25vh;
-  /*border: 1px solid;*/
-  /*border-color:white ;*/
+
   box-shadow: 5px 5px 5px #80cbc4;
 }
 
@@ -229,7 +238,7 @@ body {
 .project_detail{
   display: flex;
   /*flex-wrap: wrap;*/
-  width: 40%;
+  width: 60%;
 }
 
 .project_detail div h4{
@@ -244,17 +253,24 @@ body {
 }
 
 .table_detail_project{
-  diplay:flex;
-
-
+  width: 100%;
 }
 
 
 .table_detail_project li{
   height: 1rem ;
   padding-left: 20px;
+  margin: 0 0 4px 0;
   width: 80%;
+}
 
+.table_detail_project h4{
+
+}
+
+
+.table_detail_project ul{
+  height: 80%;
 }
 
 .table_detail_project li span{
@@ -294,11 +310,11 @@ body {
 }
 
 .project_resource_table{
+  display: flex;
   width:30%;
-   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  : 0;
+
+
 }
 
 
@@ -316,4 +332,13 @@ body {
 .section_header h3{
   font-size: 2rem;
   font-weight: bold;
+}
+
+table{
+  background-color: whitesmoke;
+}
+
+.title{
+    font-weight: bold;
+
 }
