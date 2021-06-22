@@ -70,3 +70,5 @@ class CommentCreateView(RedirectView):
         return self.request.GET.get('next')
 
 
+
+

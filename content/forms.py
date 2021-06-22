@@ -188,3 +188,6 @@ class ValidateMissionForm(forms.Form):
         mission = IndividualMission.objects.get(id= mission.id)
         mission.accepted = True
         mission.save()
+
+
+

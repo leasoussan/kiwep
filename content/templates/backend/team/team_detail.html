@@ -106,9 +106,9 @@
                     </tr>
                     </thead>
                     <tbody><br>
-                        {% if user.profile in team.participants.all or user.is_speaker  %}
+                    {% if user.profile in team.participants.all or user.is_speaker  %}
 
-                    {% for mission in team.project.individualmission_set.available_mission %}
+                        {% for mission in team.project.individualmission_set.available_mission %}
                             <tr>
                                 <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
                                 <td class="content_table">
@@ -133,31 +133,43 @@
                                 <td class="content_table">{{mission.graded}}</td>
 
                             </tr>
-                                    {% endfor %}
-                        {% endif %}
+                        {% endfor %}
 
 
 
 
-                    {% for mission in team.project.collectivemission_set.all %}
-                        <tr>
-                            <td class="content_table"><a class= "link-table" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a></td>
-                            <td class="content_table">{{ mission.due_date }}</td>
-                            <td class="content_table">{% trans 'collective_mission' %}</td>
-                            {% if user.is_speaker %}
-                                <td><a href="{% url 'delete_collective_mission' mission.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
-                                <td><a scope="col" href="{% url 'update_collective_mission' mission.id %}" class="waves-effect waves-light btn edit_btn_tbl">
-                                    <i class="material-icons">edit</i>
-                                </a></td>
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
+
+                        {% for mission in team.project.collectivemission_set.all %}
+                         <tr>
+                                <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
+                                <td class="content_table">
+                                    {% if user.is_speaker %}
+                                        {% if mission.attributed_to == True %}
+                                            {{ mission.attributed_to }}
+                                            {% trans 'mission_unclaimed_yet' %}
+                                        {% endif %}
+                                    {% endif %}
+                                    {% if user.is_student %}#}
+                                        <td><a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
+                                    {% else %}
+                                        {% trans 'available_mission' %}
+                                    {% endif %}
+                                    </td>
+
+                                <td class="content_table">{{ mission.points }}</td>
+
+                                <td class="content_table">{{mission.due_date}}</td>
+                                <td class="content_table">missionType</td>
+                                <td class="content_table">{{mission.status}}</td>
+                                <td class="content_table">{{mission.graded}}</td>
+                            </tr>
+                        {% endfor %}
 
 
-                    </tbody>
-                </table>
+                        </tbody>
+                        </table>
 
-
+                    {% endif %}
             </div>
 
 

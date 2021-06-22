@@ -1,7 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Comment, Discussion
-
+from .models import Comment, Discussion, Answer
 
 
 class AddDiscussionForm(forms.ModelForm):
@@ -30,3 +29,12 @@ class AddCommentForm(forms.ModelForm):
             'object_id': forms.HiddenInput()
         }
 
+
+
+
+
+class MissionStatusAnswerForm(forms.ModelForm):
+
+    class Meta:
+        model = Answer
+        fields = ['status']
