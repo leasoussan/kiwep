@@ -41,7 +41,7 @@
                                href="{{ object.get_update_url }}" role="tab" aria-controls="prod-overview"
                                aria-selected="true">{% trans 'edit' %}</a></li>
                             <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                  href="{% url 'create_resource' %}" role="tab" aria-controls="prod-overview"
+                                  href="{% url 'create_resource' object.project.id %}" role="tab" aria-controls="prod-overview"
                                   aria-selected="true">{% trans 'add resource' %}</a></li>
 
                             {% endif %}
@@ -91,6 +91,7 @@
                                     <h3>{% trans 'attributed_to' %}
                                         <div>
                                             {% if individualmission  %}
+                                                {% include "answer/answer.html"  with object=object%}
                                                 {% if object.attributed_to == 0  %}
                                                     {% trans 'mission_unclaimed' %}
 
@@ -175,7 +176,7 @@
 {# _________________________________________________________________________Discussion BOARD - COMMENTS ___________________________________ #}
     </div>
     <div>
-        {% include 'comments/discussion.html' with object=mission %}
+        {% include 'comments/discussion.html' with object=object %}
 
     </div>
     </div>

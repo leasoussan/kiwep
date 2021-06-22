@@ -31,6 +31,12 @@ body {
   color: #425940;
 }
 
+body h4{
+  font-size: 2rem;
+  font-weight: bold;
+  color: #006064;
+}
+
 
 .main_view_base{
   display: flex;
@@ -123,8 +129,26 @@ body {
   width:100%%;
 }
 
+.collapsible_no_border{
+  boder: None;
+  box-shadow: None;
+}
+.menu_panel_color {
+  background-color:#b2dfdb ;
+  border:None;
+
+}
+
+.menu_panel_color li{
+  font-size: large;
+  font-weight: bold;
+}
+
+
+
+
 .menu_panel_color li div:hover{
-  background-color: #4db6ac;
+  background-color: #80cbc4;
 }
 
 
@@ -317,8 +341,72 @@ body {
 
 }
 
+/*________________________________________TEAM*/
+.main_container_team{
+  width: 90%;
+  /*display: flex;*/
+  /*flex-direction: row;*/
+
+}
+.team_button_group{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+}
+
+.team_button_group a{
+  margin: 0 20px 0 20px ; ;
+}
+
+.team_participant_list{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 10px;
+  padding-top: 0px ;
+  font-size: small;
+  font-weight: normal;
+}
+
+.team_participant_list li {
+  border: #4db6ac 1px solid;
+  background-color: whitesmoke;
+}
+
+.collection_participants{
+  width: 100%;
+
+}
+
+.team_title_project{
+  display: flex;
+  size: 3rem;
+  justify-content: flex-start;
+}
+
+.team_middle_container{
+  margin-top: 2rem;
+}
 
 
+.avatar img{
+  width: 20px;
+  height: 20px;
+}
+
+
+.team_mission_list{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+
+}
+
+.team_mission_table{
+  background-color: white;
+
+}
 
 /*_____________________GLOBAL*/
 
@@ -339,6 +427,6 @@ table{
 }
 
 .title{
-    font-weight: bold;
+  font-weight: bold;
 
 }

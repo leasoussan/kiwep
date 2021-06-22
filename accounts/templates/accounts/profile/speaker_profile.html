@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-4">
               <div class="card profile_card">
-                <img src="{{ user.profilepic_or_default }}" class="card-img-top" alt="...">
+                <img src="{{ object.profilepic_or_default }}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">{% trans 'about'%}</h5>
                       <div class="">
@@ -18,7 +18,7 @@
                             <a href="#">{{user.profile.institution.name}}</a>
                           </span>
 
-                          <li><span>{% trans 'from'%}: <a href="#">{{user.city}}</a></span></li>
+                          <li><span>{% trans 'from'%}: <a href="#">{{object.city}}</a></span></li>
                       </ul>
                       </div><br>
 
@@ -32,7 +32,7 @@
               <div class="col-md-8">
                   <div class="card profile_card">
                       <div class="card-body">
-                          <h3 class="card-title">{{user.username}} <span>{{ user.get_user_type }}</span></h3>
+                          <h3 class="card-title">{{object.username}} <span>{{ object.get_user_type }}</span></h3>
                           <i> {% trans 'active' %}</i>
                       </div>
                       <div>
@@ -43,9 +43,9 @@
                       <div class="card-body">
                           <h5 class="card-title">{% trans 'contact_info'%}</h5>
                           <ul class="list-unstyled profile-about-list">
-                              <li><i class="material-icons details_icon">email</i><span>{{user.email}}</span></li>
-                              <li><i class="material-icons details_icon">home</i><span>{% trans 'live_in' %}<a href="#">{{user.city}}</a></span></li>
-                              <li><i class="material-icons details_icon">local_phone</i><span>{{user.phone_number}}</span></li>
+                              <li><i class="material-icons details_icon">email</i><span>{{object.email}}</span></li>
+                              <li><i class="material-icons details_icon">home</i><span>{% trans 'live_in' %}<a href="#">{{object.city}}</a></span></li>
+                              <li><i class="material-icons details_icon">local_phone</i><span>{{object.phone_number}}</span></li>
                           </ul>
                       </div>
                   </div>

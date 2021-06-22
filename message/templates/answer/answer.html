@@ -12,7 +12,7 @@
             <span class="card-title">{% trans 'add_answer'%} to  {{object}}</span>
 
             <div class="card-content">
-                <form method="POST" action = "{% url 'answer_add' %}?next={{ request.path }} " >
+                <form method="POST" action = "{% url 'answer_add' %}?next={{ request.path }} " enctype="multipart/form-data" >
                     {% csrf_token %}
                     {{ object.answer_form|materializecss }}
 

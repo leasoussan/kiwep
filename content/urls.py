@@ -79,7 +79,7 @@ urlpatterns = [
     # ressource
     path('resource-list/<int:pk>', ProjectResourceListView.as_view(), name = "resource_list"),
     path('resource-detail/<int:pk>', ResourceDetailView.as_view(), name = "resource_detail"),
-    path('create-resource/', ResourceCreateView.as_view(), name = "create_resource"),
+    path('create-resource/<int:project_id>', ResourceCreateView.as_view(), name = "create_resource"),
     path('update-resource/<int:pk>', ResourceUpdateView.as_view(), name = "update_resource"),
     path('delete-resource/<int:pk>', ResourceDeleteView.as_view(), name = "delete_resource"),
 

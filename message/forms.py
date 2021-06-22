@@ -3,7 +3,6 @@ from django.forms import ModelForm
 from .models import Comment, Discussion, Answer
 
 
-
 class AddDiscussionForm(forms.ModelForm):
 
     class Meta:
@@ -32,6 +31,7 @@ class AddCommentForm(forms.ModelForm):
 
 
 
+
 class AddAnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
@@ -40,3 +40,12 @@ class AddAnswerForm(forms.ModelForm):
             'content_type': forms.HiddenInput(),
             'object_id': forms.HiddenInput()
         }
+
+
+class MissionStatusAnswerForm(forms.ModelForm):
+
+    class Meta:
+        model = Answer
+        fields = ['status']
+
+

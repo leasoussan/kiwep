@@ -152,7 +152,7 @@ class HardSkillsRating(models.Model):
     percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
 
 
-class IndividualMission(Mission ):
+class IndividualMission(Mission):
     """ an Individuall Mission is a Mission that has to be done by one team Member,
         so this mission can be claimed """
 
@@ -198,7 +198,7 @@ class CollectiveMission(Mission):
 
 
 
-class IndividualCollectiveMission(models.Model):
+class IndividualCollectiveMission(AnswerModel):
     """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
 
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")

@@ -37,7 +37,7 @@ class GenericCustomRedirectView(RedirectView):
 
 
     def get_redirect_url(self, *args, **kwargs):
-        form = self.form_class(self.request.POST)
+        form = self.form_class(self.request.POST, self.request.FILES or None)
         fail = True
         if form.is_valid():
             if self.can_save(form):
@@ -86,6 +86,7 @@ class CommentCreateView(RequestUserSaveFormMixin, GenericCustomRedirectView):
 class AnswerCreateView(StudentStatuPassesTestMixin, GenericCustomRedirectView):
     pattern_name = "answer_add"
     form_class = AddAnswerForm
+
 
     def can_save(self, form):
         print(form.cleaned_data)
