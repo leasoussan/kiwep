@@ -31,6 +31,12 @@ body {
   color: #425940;
 }
 
+body h4{
+  font-size: 2rem;
+  font-weight: bold;
+  color: #006064;
+}
+
 
 .main_view_base{
   display: flex;
@@ -353,11 +359,53 @@ body {
   margin: 0 20px 0 20px ; ;
 }
 
+.team_participant_list{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 10px;
+  padding-top: 0px ;
+  font-size: small;
+  font-weight: normal;
+}
+
+.team_participant_list li {
+  border: #4db6ac 1px solid;
+  background-color: whitesmoke;
+}
+
+.collection_participants{
+  width: 100%;
+
+}
 
 .team_title_project{
   display: flex;
   size: 3rem;
   justify-content: flex-start;
+}
+
+.team_middle_container{
+  margin-top: 2rem;
+}
+
+
+.avatar img{
+  width: 20px;
+  height: 20px;
+}
+
+
+.team_mission_list{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+
+}
+
+.team_mission_table{
+  background-color: white;
+
 }
 
 /*_____________________GLOBAL*/
@@ -379,6 +427,6 @@ table{
 }
 
 .title{
-    font-weight: bold;
+  font-weight: bold;
 
 }

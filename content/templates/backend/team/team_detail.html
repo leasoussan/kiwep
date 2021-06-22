@@ -3,6 +3,7 @@
 {% load mytags %}
 
 {% load static %}
+{% load materializecss %}
 {% block content %}
 
 
@@ -52,16 +53,116 @@
 
 
         <div class="team_middle_container">
-            <div>
-                <a href ="{url 'project_detail' team.project.id %}">{% trans 'read_more_porject' %}</a>
+            <div class="col s8 m8 l6">
+
+                <div>
+                    <a href ="{url 'project_detail' team.project.id %}">{% trans 'read_more_porject' %}</a>
+                </div>
+                <div>
+                    <!-- Modal Trigger -->
+                    <a data-target="team_project_resource_list" class="modal-trigger">{% trans 'resources_link' %}</a>
+
+                </div>
             </div>
-            <div>
-                <!-- Modal Trigger -->
-                <a data-target="team_project_resource_list" class="btn modal-trigger">{% trans 'resources_link' %}</a>
+
+            <div class="col s4 m4 l6">
+                <h4 class="title">{% trans 'participants_title' %} </h4>
+                <div class="team_participant_list">
+
+                    <ul class=" collection_participants ">
+                        {% for participant in team.participants.all %}
+                            <li class="collection-item avatar collection_participants">
+                                <img src="images/yuna.jpg" alt="" class="circle">
+                                <span class="title">{{ participant }}</span>
+                                {#                            <a href="{% url 'profile_view' profile.id %}" class="secondary-content"><i class="material-icons">grade</i></a>#}
+                            </li>
+                        {% endfor %}
+                </div>
 
             </div>
+
         </div>
 
+
+        <div class=" team_mission_list">
+
+            <div class ="title">
+                <h4>  {% trans 'missions_title' %}</h4>
+            </div>
+
+
+            <div>
+                <table class ="team_mission_table">
+                    <thead>
+                    <tr class="table_headers">
+                        <th>{% trans 'mission_name' %}</th>
+                        <th>{% trans 'attributed_to' %}</th>
+                        <th>{% trans 'points' %}</th>
+                        <th>{% trans 'dead_line' %}</th>
+                        <th>{% trans 'type_mission' %}</th>
+                        <th>{% trans 'status' %}</th>
+                        <th>{% trans 'graded' %}</th>
+
+                    </tr>
+                    </thead>
+                    <tbody><br>
+                        {% if user.profile in team.participants.all or user.is_speaker  %}
+
+                    {% for mission in team.project.individualmission_set.available_mission %}
+                            <tr>
+                                <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
+                                <td class="content_table">
+                                    {% if user.is_speaker %}
+                                        {% if mission.attributed_to == True %}
+                                            {{ mission.attributed_to }}
+                                            {% trans 'mission_unclaimed_yet' %}
+                                        {% endif %}
+                                    {% endif %}
+                                    {% if user.is_student %}#}
+                                        <td><a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
+                                    {% else %}
+                                        {% trans 'available_mission' %}
+                                    {% endif %}
+                                    </td>
+
+                                <td class="content_table">{{ mission.points }}</td>
+
+                                <td class="content_table">{{mission.due_date}}</td>
+                                <td class="content_table">missionType</td>
+                                <td class="content_table">{{mission.status}}</td>
+                                <td class="content_table">{{mission.graded}}</td>
+
+                            </tr>
+                                    {% endfor %}
+                        {% endif %}
+
+
+
+
+                    {% for mission in team.project.collectivemission_set.all %}
+                        <tr>
+                            <td class="content_table"><a class= "link-table" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a></td>
+                            <td class="content_table">{{ mission.due_date }}</td>
+                            <td class="content_table">{% trans 'collective_mission' %}</td>
+                            {% if user.is_speaker %}
+                                <td><a href="{% url 'delete_collective_mission' mission.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
+                                <td><a scope="col" href="{% url 'update_collective_mission' mission.id %}" class="waves-effect waves-light btn edit_btn_tbl">
+                                    <i class="material-icons">edit</i>
+                                </a></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+
+
+
+        </div>
 
     </div>
 
@@ -71,17 +172,21 @@
 
 
 
-
-
-{{ project}}
     <!-- Modal Structure -->
     <div id="team_project_resource_list" class="modal">
         <div class="modal-content">
-
-            {% for resource in project.resources.all %}
-                <a href="{% url 'resource_detail' resource.id %}">{{ resrouce.title }}</a>
-            {% endfor %}
-        </div>
+            {% if team.project %}
+                {% for resource in project.resources.all %}
+                    <a href="{% url 'resource_detail' resource.id %}">{{ resrouce.name }}</a>
+                {% endfor %}
+            {% else %}
+                {% trans 'there_are_no_resources_yet' %}
+                <div class="speaker_btn_group">
+                    <!-- Modal Trigger -->
+                    <button data-target="add_resource" class="btn modal-trigger add_button">{% trans 'add' %}</button>
+                </div>
+                </div>
+            {% endif %}
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
         </div>
@@ -98,6 +203,22 @@
 
 
 
+
+    {#    ----------------------------------------------------------------Add Resource Modal#}
+    <div id="add_resource" class="modal">
+    <div class="modal-content">
+    <div class="row">
+
+    <div>
+
+        {#        <form method="POST" class="form-horizontal" action='{% url 'create_resource' team.project.id %}' >#}
+        {#            {% csrf_token %}#}
+        {#            {{ resources_form|materializecss }}#}
+        {#            <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">#}
+        {#                {% trans 'save'%}</button>#}
+        {#        </form>#}
+
+    </div>
 
 
 

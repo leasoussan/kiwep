@@ -8,6 +8,8 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
 from django.views.generic import View
 from django.urls import reverse
+
+from backend.models import Institution
 from .forms import (
     MyUserCreationForm,
     UserForm,
@@ -221,10 +223,31 @@ class MyLoginView(LoginView):
         return super().get(self, request, *args, **kwargs)
 
 
-class ProfileView(View):
-    """ View to show profile view - not logged in User"""
-    'profile_view'
-    pass
+
+
+def get_profile(request):
+    if request.profile.is_student:
+        return Student.objects.get(pk=pk)
+
+
+    if request.profile.is_speaker:
+        return Speaker.objects.get(pk=pk)
+
+    if request.profile.is_institution:
+        return Institution.objects.get(pk=pk)
+
+    else:
+        return "you dont have access here"
+
+
+
+class ProfileView(DetailView):
+
+    def get(self, request):
+        """ View to show profile view - other logged in User"""
+        return get_profile(request)
+
+
 
 
 
