@@ -3,10 +3,12 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 
 from django.contrib.auth.decorators import user_passes_test, login_required
+from django.urls import reverse_lazy
+
 from accounts.decorators import check_profile
 from accounts.mixin import StudentStatuPassesTestMixin
-from .models import Comment, Discussion
-from message.forms import AddDiscussionForm, AddCommentForm, AddAnswerForm
+from .models import Comment, Discussion, Answer
+from message.forms import AddDiscussionForm, AddCommentForm, AddAnswerForm, MissionSpeakerStatusAnswerForm
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -89,4 +91,16 @@ class AnswerCreateView(StudentStatuPassesTestMixin, GenericCustomRedirectView):
 
 
     def can_save(self, form):
-        print(form.cleaned_data)
+
+        mission = form.cleaned_data['content_type'].model_class().objects.get(id=form.cleaned_data['object_id'])
+        if self.request.user == mission.attributed_to.user:
+            return True
+        return False
+
+
+
+class SpeakerAnswerMissionStatusView(UpdateView):
+    model = Answer
+    template_name = 'crud/update.html'
+    success_url = reverse_lazy('dashboard')
+    form_class = MissionSpeakerStatusAnswerForm

@@ -91,7 +91,7 @@
                                     <h3>{% trans 'attributed_to' %}
                                         <div>
                                             {% if individualmission  %}
-                                                {% include "answer/answer.html"  with object=object%}
+
                                                 {% if object.attributed_to == 0  %}
                                                     {% trans 'mission_unclaimed' %}
 
@@ -138,7 +138,9 @@
                                                 <a href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>
 
                                             {% elif object.attributed_to == user.profile %}
-                                                <h3>{% trans 'i_in_charge_of_mission' %}</h3>
+                                                <h3>{% trans 'response' %}</h3>
+
+                                                     {% include "answer/answer.html"  with object=object%}
                                             {% endif %}
 
 
@@ -277,15 +279,23 @@
                                 </div>
                             </div>
 
-                            {% if user.profile.name == 'speaker' %}
+                            {% if user.is_speaker %}
+            {% with answer=object.answer.all.last  %}
+                                {% if answer.response_comment or answer.response_file %}
+                                    {% trans 'file_lable' %} :{{answer.response_file}}
+                                    {% trans 'text_lable' %}: {{answer.response_comment}}
+<form method="POST" action="{% url 'answer_edit_status' answer.id %}">
+{% csrf_token %}
 
-                                {% if object.response_file or object.response_comment %}
-                                    {% trans 'file_lable' %} :{{object.response_file}}
-                                    {% trans 'text_lable' %}: {{object.response_comment}}
+{{ answer.status_form }}
+
+</form>
+
                                 {% else %}
 
                                     {% trans 'no_answer_yet' %}
                                 {% endif %}
+                                {% endwith %}
                             {% endif %}
 
 

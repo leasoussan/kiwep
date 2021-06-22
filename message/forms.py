@@ -35,17 +35,22 @@ class AddCommentForm(forms.ModelForm):
 class AddAnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
-        fields = ['response_comment','response_file', 'status']
+        fields = ['response_comment','response_file', 'content_type', 'object_id']
         widgets = {
             'content_type': forms.HiddenInput(),
             'object_id': forms.HiddenInput()
         }
 
 
-class MissionStatusAnswerForm(forms.ModelForm):
+class MissionSpeakerStatusAnswerForm(forms.ModelForm):
 
     class Meta:
         model = Answer
         fields = ['status']
 
+        widgets = {
+            'content_type': forms.HiddenInput(),
+            'object_id': forms.HiddenInput(),
+            'status': forms.Select(attrs={'onchange':'this.form.submit()'})
+        }
 

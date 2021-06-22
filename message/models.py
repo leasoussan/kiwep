@@ -103,7 +103,7 @@ class Answer(DiscussionModel):
     response_comment = models.TextField(blank=True)
     response_file = models.FileField(null=True, blank=True)
     status= models.CharField(max_length=20, choices=STATUS_CHOICES, default='w_r')
-    grade = models.IntegerField()
+    grade = models.IntegerField(null=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -111,8 +111,9 @@ class Answer(DiscussionModel):
     def __str__(self):
         return f'answer by: {self.content_object.attributed_to.user.first_name}'
 
-
-
+    def status_form(self):
+        from .forms import MissionSpeakerStatusAnswerForm
+        return MissionSpeakerStatusAnswerForm(instance=self)
 
 
 class AnswerModel(DiscussionModel):
@@ -126,5 +127,4 @@ class AnswerModel(DiscussionModel):
         ct = ContentType.objects.get_for_model(self)
 
         return AddAnswerForm(initial= {'content_type': ct.id,'object_id':self.id})
-
 
