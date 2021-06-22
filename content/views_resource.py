@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, HttpResponse,redirect
-from .models import Resource
+from django.views import View
+
+from .models import Resource, Project
 from django.forms import ModelForm
 from .forms import ResourceAddForm
 from django.urls import reverse_lazy
@@ -41,18 +43,31 @@ class ResourceDetailView(ProfileCheckPassesTestMixin, DetailView):
 
 
 
-class ResourceCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, CreateView):
+class ResourceCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
      
-    model = Resource
-    form_class = ResourceAddForm
-    template_name = 'crud/create.html'
 
+    def get(self, request, *args, **kwargs):
+        project = Project.objects.get(id=self.kwargs['project_id'])
+        form = ResourceAddForm()
+        return render(request, 'crud/create.html', {'form': form})
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.owner = self.request.user
-        self.object.save()
-        return super().form_valid(form)
+    def post(self, request, *args, **kwargs):
+        project = Project.objects.get(id=self.kwargs['project_id'])
+        form = ResourceAddForm(request.POST)
+
+        if request.method == "POST":
+            if form.is_valid():
+                resource = form.save(commit =False)
+                print(resource)
+                resource.owner = self.request.user
+                resource.save()
+                project.resources.add(resource.id)
+                print('your resource was saved"')
+
+            return redirect('project_detail', project.id)
+
+        return render(request, 'crud/create.html', {'form': form})
+
 
 
 

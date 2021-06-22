@@ -7,33 +7,85 @@
 
 
 
+    <div class = "main_container_team">
+        <div class ="row">
+            <div class="col s6 m6 l6 team_title_project title" >
 
-<div class="top_buttons_team_page">
-    {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+                {% if user.is_speaker  %}
+                    {% if not team.project %}
 
-
-<a class="waves-effect waves-light btn" href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a>
-
-    {% elif request.user.profile == team.manager %}
-
-       <a class="waves-effect waves-light btn" href="{% url 'update_team' team.id %}">{% trans 'edit team' %}</a>
-        <a href="{% url 'delete_team' team.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>
-
-    {% else %}
-        <button type="button" class="btn add_button" name="button"><a href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a></button>
-
-    {% endif %}
-</div>
+                        <div class="">
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ChoseProject">
+                                {% trans 'choose_project_team' %}
+                            </button>
+                        </div>
 
 
 
+                    {% else %}
+                        <h3 class="card-header "><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name.title }} </a></h3>
 
-
-
+                    {% endif %}
+                {% endif %}
+            </div>
 
 
 
 
+            <div class="col s6 m6 l6 team_button_group" >
+                {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+
+
+                    <a class="waves-effect waves-light btn" href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a>
+
+                {% elif request.user.profile == team.manager %}
+
+                    <a class="waves-effect waves-light btn" href="{% url 'update_team' team.id %}">{% trans 'edit team' %}</a>
+                    <a href="{% url 'delete_team' team.id %}" > <i class="small material-icons delete">delete</i></a>
+
+                {% else %}
+                    <button type="button" class="btn add_button" name="button"><a href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a></button>
+
+                {% endif %}
+            </div>
+        </div>
+
+
+        <div class="team_middle_container">
+            <div>
+                <a href ="{url 'project_detail' team.project.id %}">{% trans 'read_more_porject' %}</a>
+            </div>
+            <div>
+                <!-- Modal Trigger -->
+                <a data-target="team_project_resource_list" class="btn modal-trigger">{% trans 'resources_link' %}</a>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+{{ project}}
+    <!-- Modal Structure -->
+    <div id="team_project_resource_list" class="modal">
+        <div class="modal-content">
+
+            {% for resource in project.resources.all %}
+                <a href="{% url 'resource_detail' resource.id %}">{{ resrouce.title }}</a>
+            {% endfor %}
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
+        </div>
+    </div>
 
 
 
@@ -50,23 +102,22 @@
 
 
 
-
-{##}
-{#<div>#}
-{#{% if team.project.time_to_complete %}#}
-{#                {% trans 'due_date' %} {{ team.due_date }}#}
-{#    {% else %}#}
-{#    {% trans "no_project_yet" %}#}
-{#{% endif %}#}
-{#</div>#}
-{#        <div>#}
-{#{% if team.days_left %}#}
-{#                {% trans 'days_left' %} {{ team.days_left }}#}
-{#    {% else %}#}
-{#    {% trans "no_project_yet" %}#}
-{#{% endif %}#}
-{#</div>#}
-{#        </div>#}
+    {##}
+    {#<div>#}
+    {#{% if team.project.time_to_complete %}#}
+    {#                {% trans 'due_date' %} {{ team.due_date }}#}
+    {#    {% else %}#}
+    {#    {% trans "no_project_yet" %}#}
+    {#{% endif %}#}
+    {#</div>#}
+    {#        <div>#}
+    {#{% if team.days_left %}#}
+    {#                {% trans 'days_left' %} {{ team.days_left }}#}
+    {#    {% else %}#}
+    {#    {% trans "no_project_yet" %}#}
+    {#{% endif %}#}
+    {#</div>#}
+    {#        </div>#}
 
 
 
@@ -391,56 +442,56 @@
     <!-- Modal -->
 
 
-{##}
-{##}
-{##}
-{#    <div class="modal" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">#}
-{#    <div class="modal-dialog">#}
-{#        <div class="modal-content">#}
-{#            <div class="modal-header">#}
-{#                <h5 class="modal-title" id="staticBackdropLabel">Projects </h5>#}
-{#                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">{% trans 'close' %}</button>#}
-{#            </div>#}
-{#            <div class="modal-body modal-open">#}
-{#                <ul class="nav nav-pills">#}
-{##}
-{#                    <li><a class="btn btn_modal" href="#" data-bs-toggle="pill" data-bs-target="#pills-create-project">{% trans 'new_project' %}</a></li>#}
-{#                    <li ><a class="btn btn_modal"href="#" data-bs-toggle="pill" data-bs-target="#pills-template" >{% trans 'choose_templates' %}</a></li>#}
-{#                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'duplicate' %}</a></li>#}
-{#                </ul>#}
-{##}
-{#                <div class="tab-content" id="pills-tabContent">#}
-{#                    <div class="tab-pane show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">#}
-{##}
-{#                        <form method="post" action="{% url 'create_team_project' team.id %}">#}
-{#                            {% csrf_token %}#}
-{#                            {{ project_form|materializecss }}#}
-{#                            <button type="submit">Save</button>#}
-{#                        </form>#}
-{##}
-                        {#                         <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>#}
-{#                    </div>#}
-{#                    <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">#}
-{##}
-{#                        {% for project in templates  %}#}
-{##}
-{#                            <h2>{{ project.name }}</h2>#}
-{#                            <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>#}
-{#                        {% endfor %}#}
-{#                    </div>#}
-{#                    <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">#}
-{#                        {% for project in old_projects  %}#}
-{#                            <h2>{{ project.name }}</h2>#}
-{#                            <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>#}
-{#                        {% endfor %}#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{##}
+    {##}
+    {##}
+    {##}
+    {#    <div class="modal" id="ChoseProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">#}
+    {#    <div class="modal-dialog">#}
+    {#        <div class="modal-content">#}
+    {#            <div class="modal-header">#}
+    {#                <h5 class="modal-title" id="staticBackdropLabel">Projects </h5>#}
+    {#                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">{% trans 'close' %}</button>#}
+    {#            </div>#}
+    {#            <div class="modal-body modal-open">#}
+    {#                <ul class="nav nav-pills">#}
+    {##}
+    {#                    <li><a class="btn btn_modal" href="#" data-bs-toggle="pill" data-bs-target="#pills-create-project">{% trans 'new_project' %}</a></li>#}
+    {#                    <li ><a class="btn btn_modal"href="#" data-bs-toggle="pill" data-bs-target="#pills-template" >{% trans 'choose_templates' %}</a></li>#}
+    {#                    <li ><a class="btn btn_modal"href="#"  data-bs-toggle="pill" data-bs-target="#pills-duplicate">{% trans 'duplicate' %}</a></li>#}
+    {#                </ul>#}
+    {##}
+    {#                <div class="tab-content" id="pills-tabContent">#}
+    {#                    <div class="tab-pane show active" id="pills-create-project" role="tabpanel" aria-labelledby="pills-create-tab">#}
+    {##}
+    {#                        <form method="post" action="{% url 'create_team_project' team.id %}">#}
+    {#                            {% csrf_token %}#}
+    {#                            {{ project_form|materializecss }}#}
+    {#                            <button type="submit">Save</button>#}
+    {#                        </form>#}
+    {##}
+    {#                         <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>#}
+    {#                    </div>#}
+    {#                    <div class="tab-pane fade" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab">#}
+    {##}
+    {#                        {% for project in templates  %}#}
+    {##}
+    {#                            <h2>{{ project.name }}</h2>#}
+    {#                            <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>#}
+    {#                        {% endfor %}#}
+    {#                    </div>#}
+    {#                    <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">#}
+    {#                        {% for project in old_projects  %}#}
+    {#                            <h2>{{ project.name }}</h2>#}
+    {#                            <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>#}
+    {#                        {% endfor %}#}
+    {#                    </div>#}
+    {#                </div>#}
+    {##}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {##}
+    {##}
 
     {##}
     {##}

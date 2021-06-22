@@ -123,8 +123,26 @@ body {
   width:100%%;
 }
 
+.collapsible_no_border{
+  boder: None;
+  box-shadow: None;
+}
+.menu_panel_color {
+  background-color:#b2dfdb ;
+  border:None;
+
+}
+
+.menu_panel_color li{
+  font-size: large;
+  font-weight: bold;
+}
+
+
+
+
 .menu_panel_color li div:hover{
-  background-color: #4db6ac;
+  background-color: #80cbc4;
 }
 
 
@@ -317,8 +335,30 @@ body {
 
 }
 
+/*________________________________________TEAM*/
+.main_container_team{
+  width: 90%;
+  /*display: flex;*/
+  /*flex-direction: row;*/
+
+}
+.team_button_group{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+}
+
+.team_button_group a{
+  margin: 0 20px 0 20px ; ;
+}
 
 
+.team_title_project{
+  display: flex;
+  size: 3rem;
+  justify-content: flex-start;
+}
 
 /*_____________________GLOBAL*/
 

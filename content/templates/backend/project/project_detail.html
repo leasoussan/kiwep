@@ -1,4 +1,4 @@
-{% extends 'basem.html' %}
+{% extends 'base.html' %}
 {% load mytags %}
 
 {% load static %}
@@ -12,28 +12,30 @@
     <div class="row project_description_block" >
         <div class="description_block ">
 
-                <p>{{project.description}}</p>
-                <a href ="{url 'project_detail' team.project.id %}">{% trans 'read_more_porject' %}</a>
-
+            <p>{{project.description}}</p>
+            <a href ="{url 'project_detail' team.project.id %}">{% trans 'read_more_porject' %}</a>
 
         </div>
         <div class="speaker_btn_group">
             {% if user.is_speaker %}
-                <a class="waves-effect btn edit_button" href="{% url 'update_project' project.id %}">{% trans 'edit'%}</a>
+                {% if project.is_template %}
+
+                    <a class="waves-effect btn edit_button" href="{% url 'chose_project_detail' project.id %}">{% trans 'select_project_button'%}</a>
+
+                {% else %}
+                    <a class="waves-effect btn edit_button" href="{% url 'update_project' project.id %}">{% trans 'edit'%}</a>
+                {% endif %}
             {% endif %}
         </div>
 
     </div>
-
-
-
 
     <div class="row project_detail_block" >
 
         <div class="project_detail" >
 
             <div class="table_detail_project ">
-             <h4 class ="title">{% trans 'details_header' %}</h4>
+                <h4 class ="title">{% trans 'details_header' %}</h4>
                 <ul >
                     <li>
                         <span class="label">{% trans 'field' %}:</span>
@@ -112,8 +114,8 @@
                             {% if user.is_speaker %}
                                 <td><a href="{% url 'delete_individual_mission' mission.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
                                 <td><a scope="col" href="{% url 'update_individual_mission' mission.id %}" class="waves-effect waves-light btn edit_btn_tbl">
-                                    <i class="material-icons">edit</i>
-                                </a>
+                                <i class="material-icons">edit</i>
+                            </a>
                             {% endif %}
                         </tr>
                     {% endfor %}
@@ -143,6 +145,7 @@
 
         </div>
 
+
         <div class="project_resource_table">
             <div class="section_header">
                 <div class = "section_title">
@@ -166,20 +169,28 @@
                         {% endif %}
                     </tr>
                     </thead>
-                  <tbody><br>
+                    <tbody><br>
+
+
+
                     {% for resource in project.resources.all %}
-                        <td class="content_table"><a href="{% url 'resource_detail' resource.id %}"> {{ resrouce.name }} </a></td>
+                        <tr>
+                            <td class="content_table"><a href="{% url 'resource_detail' resource.id %}"> {{ resource.name }} </a></td>
+                            {% if user.is_speaker %}
+                                <td>
+                                    <a href="{% url 'delete_resource' resource.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>
+                                    <a scope="col" href="{% url 'update_resource' resource.id %}" class="waves-effect waves-light btn edit_btn_tbl"><i class="material-icons">edit</i></a>
+                                </td>
+                            {% endif %}
+
+                        </tr>
                     {% endfor %}
-                    </body>
+                    </tbody>
                 </table>
             </div>
 
         </div>
     </div>
-
-
-
-
 
 
 
@@ -266,21 +277,21 @@
 
 
 
-{#    ----------------------------------------------------------------Add Resource Modal#}
+    {#    ----------------------------------------------------------------Add Resource Modal#}
     <div id="add_resource" class="modal">
-        <div class="modal-content">
-            <div class="row">
+    <div class="modal-content">
+    <div class="row">
 
-                <div>
+    <div>
 
-                        <form method="POST" class="form-horizontal" action='{% url 'create_resource' %}' >
-                            {% csrf_token %}
-                            {{ resources_form|materializecss }}
-                            <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
-                                {% trans 'save'%}</button>
-                        </form>
+        <form method="POST" class="form-horizontal" action='{% url 'create_resource' project.id %}' >
+            {% csrf_token %}
+            {{ resources_form|materializecss }}
+            <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                {% trans 'save'%}</button>
+        </form>
 
-                    </div>
+    </div>
 
 
 {% endblock %}
@@ -301,6 +312,9 @@
 
         });
     </script>
+
+
+
 
 
 {% endblock javascript %}
