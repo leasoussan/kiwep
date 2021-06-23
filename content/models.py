@@ -99,7 +99,7 @@ class Project(DiscussionModel):
 
 
 
-class Mission(AnswerModel):
+class Mission(DiscussionModel):
     STAGE_CHOICE = [
         ('start', 'Start'),
         ('middle', 'Middle'),
@@ -153,6 +153,7 @@ class HardSkillsRating(models.Model):
 
 
 class IndividualMission(Mission):
+
     """ an Individuall Mission is a Mission that has to be done by one team Member,
         so this mission can be claimed """
 

@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
+
+from message.forms import AddAnswerForm, MissionSpeakerStatusAnswerForm
 from .models import Mission, CollectiveMission, Team, IndividualMission, IndividualCollectiveMission
 from django.forms import ModelForm
 from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm, \
@@ -118,6 +120,8 @@ class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['resources_form'] = ResourceAddForm()
+        context['answer_form'] = AddAnswerForm()
+        context['status_form'] = MissionSpeakerStatusAnswerForm()
         return context
 # ----------------------------------------------------------------------------------------------------------------
 
@@ -134,7 +138,13 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
         pk = self.kwargs.get('pk')
         return get_object_or_404(CollectiveMission, pk=pk)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['resources_form'] = ResourceAddForm()
+        context['answer_form'] = AddAnswerForm()
+        context['status_form'] = MissionSpeakerStatusAnswerForm()
 
+        return context
 # ----------------------------------------------------------------------------------------------------------------
 
 

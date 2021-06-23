@@ -7,102 +7,225 @@
 
 {% block content %}
     <div class="content">
-    <div class="mission_container">
-    <div>
-        {% if user.is_speaker %}
+        <div class="mission_container">
+
             <div>
-            <button> <a href="{{ object.get_update_url }}">{% trans 'edit_mission' %}</a></button>
-        {% endif %}
-        </div>
-
-
-        <a href="{% url 'project_detail' object.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
-    </div>
-    <div class="row mission_description">
-        <p class="mission_description_text"> {{ object.description }}</p>
-        <div>
-        </div>
-    </div>
-
-
-    <div class="row mission_extra_detail_box" >
-    <div class="col mission_resource">
-        <div class="mission_resource_add_btn">
-            <!-- Modal Trigger -->
-            <button data-target="add_resource" class="btn modal-trigger add_button">{% trans 'add' %}</button>
-
-        </div>
-        <div class="mission_resource_list">
-            Ressource List
-        </div>
-    </div>
-
-    <div class="col mission_detail_extra" >
-        <div class="mission_detail_edit_button">
-            <button class="btn edit_button">Edit</button>
-
-        </div>
-        <div class="detail_container">
-            <div class ="col mission_detail_box">
-
-                <div class ="detail_title">
-                    <h5 class ="small_title">{% trans 'details_header' %}</h5>
-                </div>
-
-
-                <div class="table_detail_mission ">
-                    <ul >
-                        <li>
-                            <span class="label">{% trans 'field' %}:</span>
-                            <span class="value">{{object.field}}</span>
-                        </li>
-                        <li>
-                            <span class="label">{% trans 'dead_line' %}</span>
-                            <span class="value">{{object.due_date}}</span>
-                        </li>
-                        <li >
-                            <span class="label">{% trans 'difficulty ' %}</span>
-                            <span class="value">{{object.level}}</span>
-                        </li>
-                        <li>
-                            <span class="label">{% trans 'points' %}</span>
-                            <span class="value">{{object.points}}</span>
-                        </li>
-                        <li>
-                            <span class="label">{% trans 'typ' %}</span>
-                            <span class="value">{{object.points}}</span>
-                        </li>
-                    </ul>
-
-                </div>
+                <a href="{% url 'project_detail' object.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
             </div>
 
-            <div class="col acquired_skills"><p class ="small_title">{% trans 'acquired_skills' %}</p>
-
+            <div class=" mission_description">
+                <p class="mission_description_text"> {{ object.description }}</p>
                 <div>
-                    {% for skill in project.acquired_skills.all %}
-                        <li class="collection-item">{{skill.name}}</li>
-                    {% endfor %}
+                </div>
+            </div>
+
+
+
+            <div class="row mission_extra_detail_box" >
+                <div class="col mission_resource">
+                    <div class="mission_resource_add_btn">
+                        <!-- Modal Trigger -->
+                        <button data-target="add_resource" class="btn modal-trigger add_button">{% trans 'add' %}</button>
+
+                    </div>
+                    <div class="mission_resource_list">
+                        Ressource List
+                    </div>
                 </div>
 
+                <div class="col mission_detail_extra" >
+                    <div class="mission_detail_edit_button">
+                        {% if user.is_speaker %}
+                            <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a>
+                        {% endif %}
+                    </div>
+                    <div class="detail_container">
+                        <div class ="col mission_detail_box">
+
+                            <div class ="detail_title">
+                                <h5 class ="small_title">{% trans 'details_header' %}</h5>
+                            </div>
+
+
+                            <div class="table_detail_mission ">
+                                <ul >
+                                    <li>
+                                        <span class="label">{% trans 'field' %}:</span>
+                                        <span class="value">{{object.field}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="label">{% trans 'dead_line' %}</span>
+                                        <span class="value">{{object.due_date}}</span>
+                                    </li>
+                                    <li >
+                                        <span class="label">{% trans 'difficulty ' %}</span>
+                                        <span class="value">{{object.level}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="label">{% trans 'points' %}</span>
+                                        <span class="value">{{object.points}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="label">{% trans 'typ' %}</span>
+                                        <span class="value">{{object.points}}</span>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                        <div class="col acquired_skills"><p class ="small_title">{% trans 'acquired_skills' %}</p>
+
+                            <div>
+                                {% for skill in project.acquired_skills.all %}
+                                    <li class="collection-item">{{skill.name}}</li>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-        </div>
+
+            <div class ="answer_block">
+
+                <div class="container"></div>
+                {# --------  Speaker__________________________________#}
+                {# ______________________________________________________________________________________________________________________________INDIVIDUAL attributed_to___ CALL_______________#}
+
+                {% if user.is_speaker %}
+                    {% if individualmission  %}
+                        {% if object.attributed_to == 0  %}
+                            {% trans 'mission_unclaimed' %}
+
+                        {% elif object.attributed_to %}
+                            <h3>{% trans 'mission_is_attributed_to' %}{{ object.attributed_to }}</h3>
+
+                        {% else %}
+                            {% trans 'not_claimed' %}
+                        {% endif %}
+                    {% endif %}
+
+
+                {% elif collectivemission  %}
+                    {% if object.attributed_to == 0  %}
+                        {% trans 'no_one_joined_yet' %}
+                        {% if user.profile ==  object.team.manager %}
+
+                            <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
+                        {% endif %}
+
+                    {% elif object.attributed_to < 0 %}
+                        {% for participant in object.attributed_to.all %}
+                            <li> {{ participant }}</li>
+
+                        {% endfor %}
+                    {% endif %}
+
+                {% endif %}
+
+
+
+
+
+                {% if user.is_student and user.profile == request.user.profile %}
+
+{##}
+                    {% if user.profile in object.project.team.participants.all %}
+{##}
+{#                        {% if individualmission and object.attributed_to == False  %}#}
+{##}
+{#                            <a href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>#}
+{#                        {% elif individualmission and object.attributed_to == True  %}#}
+{#                            {% if object.atributed_to == request.user.profile %}#}
+{#                                <h3>{% trans 'mission_is_attributed_to_you' %}{{ object.attributed_to }}</h3>#}
+{#                            {% else %}#}
+{#                                <h3>{% trans 'mission_is_assigned_to' %}{{ object.attributed_to }}</h3>#}
+{#                                {% if answer.response_comment or answer.response_file %}#}
+{#                                    {% trans 'file_lable' %} :{{answer.response_file}}#}
+{#                                    {% trans 'text_lable' %}: {{answer.response_comment}}#}
+{##}
+{##}
+{#                                {% else %}#}
+{#                                    {% include "answer/answer.html"  with object=mission %}#}
+{#                                {% endif %}#}
+{#                            {% endif %}#}
+{##}
+{#                        {% endif %}#}
+{#                    {% endif %}#}
+{##}
+                    {# ______________________________________________________________________________________________________________________________________________COLLECTIVE attributed_to Call#}
+{#                    {% if collectivemission and object.attributed_to == 0 %}#}
+{#                        {% trans 'no_one_joined_yet' %}#}
+{#                        {% if collectivemission and object.attributed_to.all.count > 0 %}#}
+{#                            <p>{% trans 'as_of_now_' %} {{ object.attributed_to.all.count }} {% trans 'joined_the_mission' %}</p>#}
+{##}
+{#                            {% if user.profile not in object.attributed_to.all %}#}
+{##}
+{#                            <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_mission' %}</a>#}
+{##}
+{##}
+{##}
+{#                            {% elif user.profile in object.attributed_to.all  %}#}
+{##}
+{##}
+{#                                <a href="{% url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>#}
+{#                            {% endif %}#}
+{##}
+                        {% endif %}
+
+                    {% endif %}
+
+
+                    </div>
+                    </div>
+
+
+
+                    <div class ="answer_status">
+                        {% if user.is_speaker %}
+                            {% with answer=object.answer.all.last  %}
+                                {% if answer.response_comment or answer.response_file %}
+                                    {% trans 'file_lable' %} :{{answer.response_file}}
+                                    {% trans 'text_lable' %}: {{answer.response_comment}}
+                                    <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
+                                        {% csrf_token %}
+
+                                        {{ answer.status_form }}
+
+                                    </form>
+
+                                {% else %}
+
+                                    {% trans 'no_answer_yet' %}
+                                {% endif %}
+                            {% endwith %}
+                        {% endif %}
+
+
+
+                        {% if collectivemission  %}
+                            {% include "answer/answer.html"  with object=object%}
+                            {% if object.attributed_to == 0  %}
+                                {% trans 'mission_unclaimed' %}
+
+                            {% elif object.attributed_to %}
+                                <h3>{{ object.attributed_to }}</h3>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+
+
     </div>
 
 
-</div>
 
-    <div class ="answer_block">
 
-        <div class="answer_content">
-            {% if user.is_speaker %}
-            {% include 'answer/answer.html' with object=object %}
-        </div>
-        <div class ="answer_status">
 
-        </div>
 
-    </div>
+
     <div class="comment_section">
 
         Comment
@@ -110,7 +233,28 @@
     </div>
 
 
+    </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {#    ________________________________________________________MODALS#}
     <div id="add_resource" class="modal">
         <div class="modal-content">
 

@@ -111,6 +111,10 @@ class Answer(DiscussionModel):
     def __str__(self):
         return f'answer by: {self.content_object.attributed_to.user.first_name}'
 
+
+    def __str__(self):
+        return f'answer by: {self.content_object.attributed_to.user.first_name}'
+
     def status_form(self):
         from .forms import MissionSpeakerStatusAnswerForm
         return MissionSpeakerStatusAnswerForm(instance=self)
@@ -126,5 +130,5 @@ class AnswerModel(DiscussionModel):
         from .forms import AddAnswerForm
         ct = ContentType.objects.get_for_model(self)
 
-        return AddAnswerForm(initial= {'content_type': ct.id,'object_id':self.id})
+        return AddAnswerForm(initial= {'content_type': ct.id, 'object_id':self.id})
 

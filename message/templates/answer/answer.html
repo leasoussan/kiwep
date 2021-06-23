@@ -15,9 +15,10 @@
                 <form method="POST" action = "{% url 'answer_add' %}?next={{ request.path }} " enctype="multipart/form-data" >
                     {% csrf_token %}
                     {% if user.is_student %}
+
                         {{ object.answer_form|materializecss }}
                     {% elif user.is_speaker %}
-                        {{ object.answer_form|materializecss }}
+                        {{ object.status_form|materializecss }}
                     {% endif %}
                     <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'save_answer' %}
                     </button>

@@ -16,3 +16,9 @@ class CommentAdmin(admin.ModelAdmin):
 @admin.register(Discussion)
 class DiscussionAdmin(admin.ModelAdmin):
     pass
+
+
+
+@admin.register(Answer)
+class AnswerAdmin(admin.ModelAdmin):
+    pass

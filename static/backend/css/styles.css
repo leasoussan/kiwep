@@ -438,19 +438,28 @@ body h4{
   height: 15vh;
   margin-bottom: 5rem;
   align-items: center;
-  max-height: 15%;
+  flex-wrap: wrap;
+  max-height: ;: 15%;
   width: 90%;
 }
 
 
+div p.mission_description_text{
+  font-size: 1rem;
+  word-wrap: break-word;
+  width: 90%;
+  max-height: 15%;
+}
 
 .mission_extra_detail_box{
   display: flex;
   flex-direction: row;
   width: 90%;
   height: 40%;
-  flex-wrap:wrap ;
+
 }
+
+
 .mission_resource_list{
   width: 70%;
   height: 75%;
@@ -458,11 +467,6 @@ body h4{
   margin-top: 1rem;
 }
 
-div p.mission_description_text{
-  font-size: 2rem;
-  word-wrap: break-word;
-  width: 90%;
-}
 
 .mission_resource{
   width: 30%;
@@ -475,6 +479,7 @@ div p.mission_description_text{
   flex-direction: column;
   justify-content: flex-start;
   width: 70%;
+
 
 }
 
