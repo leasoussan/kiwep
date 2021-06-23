@@ -1,307 +1,156 @@
 {% extends 'base.html' %}
+
 {% load i18n %}
 {% load static %}
 {% load mytags %}
-{% block extrahead %}
-    <link rel="stylesheet" href="{% static 'backend/css/overwrite.css' %}">
-{% endblock %}
+{% load materializecss %}
 
 {% block content %}
-
-
-
-    {% if user.profile.name == 'speaker' %}
-        <div class="">
-        <button> <a href="{{ object.get_update_url }}">{% trans 'edit_mission' %}</a></button>
-    {% endif %}
-
-
-    <a href="{% url 'project_detail' object.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
-
-
-
-
-    <!-- Intro Courses -->
-    <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70">
-        <div class="container">
-            <div class="row clearfix">
-                <!-- Content Column -->
-                <div class="col-lg-8 md-mb-50">
-                    <!-- Intro Info Tabs-->
-                    <div class="intro-info-tabs">
-                        <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
-                            <li class="nav-item tab-btns">
-                                <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                   href="#prod-overview" role="tab" aria-controls="prod-overview"
-                                   aria-selected="true">{%  trans 'mission' %}</a>
-                            </li>
-
-                            {% if user.is_speaker %}
-                            <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                               href="{{ object.get_update_url }}" role="tab" aria-controls="prod-overview"
-                               aria-selected="true">{% trans 'edit' %}</a></li>
-                            <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                  href="{% url 'create_resource' object.project.id %}" role="tab" aria-controls="prod-overview"
-                                  aria-selected="true">{% trans 'add resource' %}</a></li>
-
-                            {% endif %}
-                            <li><a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab"
-                                   href="{% url 'project_detail' object.id %}" role="tab" aria-controls="prod-overview"
-                                   aria-selected="true">{% trans 'back ' %}</a></li>
-                        </ul>
-                        <div class="row">
-                            <div class="col">
-                                <div class="card">
-                                    <h5 class="card-header">{{project.title}}</h5>
-                                    <div class="card-body">
-                                        <p class="card-text" style="text-align:center; ">{{project.description}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-content tabs-content" id="myTabContent">
-                            <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
-                                 aria-labelledby="prod-overview-tab">
-                                <div class="content white-bg pt-30 mission_description">
-                                    <!-- Cource Overview -->
-                                    <div class="course-overview">
-                                        <div class="inner-box" >
-                                            <div class= "mission_description">
-                                                <h3>{% trans 'about_the_mission' %}</h3>
-                                                <p>{{object.description}}</p>
-                                                <h3>{% trans 'mission_type_title' %}:</h3>
-                                                <p>{{object.get_mission_type_display}}  </p>
-
-                                                <h4>{% trans 'resposne_type_title:' %}:</h4>
-                                                <p> {{object.get_response_type_display}}</p>
-
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-{# --------  Speaker__________________________________#}
-{# ______________________________________________________________________________________________________________________________INDIVIDUAL attributed_to___ CALL_______________#}
-                            {% if user.is_speaker %}
-                                <div>
-                                    <h3>{% trans 'attributed_to' %}
-                                        <div>
-                                            {% if individualmission  %}
-
-                                                {% if object.attributed_to == 0  %}
-                                                    {% trans 'mission_unclaimed' %}
-
-                                                {% elif object.attributed_to %}
-                                                    <h3>{{ object.attributed_to }}</h3>
-                                                {% endif %}
-                                            {% endif %}
-
-
-
-
- {# _________________________________________________________________________________________________________________________________________COLLECTIVE attributed_to Call __________#}
-
-                                            {% if object.attributed_to == 0  %}
-                                                {% trans 'no_one_joined_yet' %}
-                                            {% else %}
-                                                {% for participant in object.attributed_to.all %}
-                                                    <li> {{ participant}}</li>
-                                                    {% if participant in object.attributed_to.all and participant == request.user.profile  %}
-                                                        <a href="{% url 'remove_from_collective_mission_detail' object.id %}">{% trans 'remove_from_mission' %}</a>
-                                                    {% endif %}
-                                                {% endfor %}
-
-                                            {% endif %}
-                                        </div>
-
-
-                                        {#                                        {% if user.profile ==  request.user.profile and user.profile in object.project.team.participants.all %}#}
-                                        {#                                            <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_mission' %}</a>#}
-                                        {#                                        {% endif %}#}
-                                </div>
-                            {% endif %}
-
-
-
-
- {# --------  STUDENT___________________#}
-{# _____________________________________________________________________________________________________________________________Individual _____attributed_to___ CALL #}
-                            {% if user.is_student %}
-                                <div>
-                                    <h3>{% trans 'attributed_to' %}
-                                        <div>
-                                            {% if object.attributed_to == 0  %}
-                                                <a href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>
-
-                                            {% elif object.attributed_to == user.profile %}
-                                                <h3>{% trans 'response' %}</h3>
-
-                                                     {% include "answer/answer.html"  with object=object%}
-                                            {% endif %}
-
-
-
-
- {# ______________________________________________________________________________________________________________________________________________COLLECTIVE attributed_to Call#}
-
-                                            {% if object.attributed_to == 0  %}
-                                                {% trans 'no_one_joined_yet' %}
-                                            {% else %}
-                                                {% for participant in object.attributed_to.all %}
-                                                    <li> {{ participant }}</li>
-                                                    {% if participant in object.attributed_to.all and participant == request.user.profile  %}
-                                                        <a href="{% url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>
-                                                    {% endif %}
-
-                                                {% endfor %}
-                                            {% endif %}
-                                            {% if user.profile in object.project.team.participants.all and user.profile not in object.attributed_to.all %}
-                                                {% if user.profile ==  request.user.profile %}
-                                                    <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_mission' %}</a>
-                                                {% endif %}
-                                            {% endif %}
-
-                                        </div>
-                                </div>
-                            {% endif %}
-
-
-                        </div>
-                    </div>
-                </div>
-    </section>
-
-{# _________________________________________________________________________Discussion BOARD - COMMENTS ___________________________________ #}
-    </div>
+    <div class="content">
+    <div class="mission_container">
     <div>
-        {% include 'comments/discussion.html' with object=object %}
+        {% if user.is_speaker %}
+            <div>
+            <button> <a href="{{ object.get_update_url }}">{% trans 'edit_mission' %}</a></button>
+        {% endif %}
+        </div>
 
+
+        <a href="{% url 'project_detail' object.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
     </div>
-    </div>
-
-{# _______________________________________________________________________________RESOURCES ________________________________________________________________ #}
-    <div class = "resource">
-        Ressources for this Mission
-        {% for resource in mission.resources_set.all %}
-            <a href="{% url 'resource_detail' resource.id %}">{{resource.name}}</a>
-        {% endfor %}
-        HERE
-    </div>
+    <div class="row mission_description">
+        <p class="mission_description_text"> {{ object.description }}</p>
+        <div>
+        </div>
     </div>
 
 
+    <div class="row mission_extra_detail_box" >
+    <div class="col mission_resource">
+        <div class="mission_resource_add_btn">
+            <!-- Modal Trigger -->
+            <button data-target="add_resource" class="btn modal-trigger add_button">{% trans 'add' %}</button>
+
+        </div>
+        <div class="mission_resource_list">
+            Ressource List
+        </div>
+    </div>
+
+    <div class="col mission_detail_extra" >
+        <div class="mission_detail_edit_button">
+            <button class="btn edit_button">Edit</button>
+
+        </div>
+        <div class="detail_container">
+            <div class ="col mission_detail_box">
+
+                <div class ="detail_title">
+                    <h5 class ="small_title">{% trans 'details_header' %}</h5>
+                </div>
 
 
+                <div class="table_detail_mission ">
+                    <ul >
+                        <li>
+                            <span class="label">{% trans 'field' %}:</span>
+                            <span class="value">{{object.field}}</span>
+                        </li>
+                        <li>
+                            <span class="label">{% trans 'dead_line' %}</span>
+                            <span class="value">{{object.due_date}}</span>
+                        </li>
+                        <li >
+                            <span class="label">{% trans 'difficulty ' %}</span>
+                            <span class="value">{{object.level}}</span>
+                        </li>
+                        <li>
+                            <span class="label">{% trans 'points' %}</span>
+                            <span class="value">{{object.points}}</span>
+                        </li>
+                        <li>
+                            <span class="label">{% trans 'typ' %}</span>
+                            <span class="value">{{object.points}}</span>
+                        </li>
+                    </ul>
 
-{# _______________________________________________________________________________Other Details ________________________________________________________________ #}
-
-
-    <!-- Video Column -->
-    <div class="video-column col-lg-4">
-        <div class="inner-column">
-
-            <div class="course-features-info">
-                <ul>
-                    <li class="lectures-feature">
-                        <i class="fa fa-files-o"></i>
-                        <span class="label">{% trans 'field' %}:</span>
-                        <span class="value">{{object.field}}</span>
-                    </li>
-
-
-
-                    <li class="students-feature">
-                        <i class="fa fa-users"></i>
-                        <span class="label">{% trans 'difficulty_title' %}</span>
-                        <span class="value">{{object.level}}</span>
-                    </li>
-
-                    <li class="assessments-feature">
-                        <i class="fa fa-check-square-o"></i>
-                        <span class="label">{% trans 'points_title' %}</span>
-                        <span class="value">{{object.points}}</span>
-                    </li>
-                </ul>
+                </div>
             </div>
+
+            <div class="col acquired_skills"><p class ="small_title">{% trans 'acquired_skills' %}</p>
+
+                <div>
+                    {% for skill in project.acquired_skills.all %}
+                        <li class="collection-item">{{skill.name}}</li>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    <div class ="answer_block">
+
+        <div class="answer_content">
+            {% if user.is_speaker %}
+            {% include 'answer/answer.html' with object=object %}
+        </div>
+        <div class ="answer_status">
 
         </div>
 
-{#    ____________________________________________________________________________________ANSWER ________________________#}
+    </div>
+    <div class="comment_section">
 
+        Comment
 
-      <div class="tab-content tabs-content" id="myTabContent">
-                            <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel"
-                                 aria-labelledby="prod-overview-tab">
-                                <div class="content white-bg pt-30 mission_description">
-                                    <!-- Cource Overview -->
-                                    <div class="course-overview">
-                                        <div class="inner-box" >
-                                            <div class= "mission_description">
-                                                <h3>{% trans 'about_the_mission' %}</h3>
-                                                <p>{{object.mission.description}} </p>
-
-
-                                                <div class="inner-box" >
-                                                    <h2>{% trans 'my_response' %}</h2>
-                                                    <p>,{{object.response_comment}} </p>
-                                                    <p>{{object.response_file}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {% if update %}
-                                            {% if user.profile == object.attributed_to  %}
-
-                                                <form action="" method="post" enctype="multipart/form-data">
-                                                    {% csrf_token %}
-                                                    {{form.as_p}}
-                                                    <button type="submit">{% trans 'send' %}</button>
-
-                                                </form>
-
-
-                                            {% endif %}
-
-
-                                        {% endif %}
-
-
-                                        {% if user.profile == object.attributed_to %}
-                                            <button><a href="{% url 'submit_mission' object.id %}">{% trans 'edit-response' %}</a> </button>
-                                            <button><a href="{% url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a> </button>
-                                        {% endif %}
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            {% if user.is_speaker %}
-            {% with answer=object.answer.all.last  %}
-                                {% if answer.response_comment or answer.response_file %}
-                                    {% trans 'file_lable' %} :{{answer.response_file}}
-                                    {% trans 'text_lable' %}: {{answer.response_comment}}
-<form method="POST" action="{% url 'answer_edit_status' answer.id %}">
-{% csrf_token %}
-
-{{ answer.status_form }}
-
-</form>
-
-                                {% else %}
-
-                                    {% trans 'no_answer_yet' %}
-                                {% endif %}
-                                {% endwith %}
-                            {% endif %}
+    </div>
 
 
 
-                        </div>
-                    </div>
-                </div>
+    <div id="add_resource" class="modal">
+        <div class="modal-content">
+
+
+            {% if object.team.project %}
+                <form method="POST" class="form-horizontal" action='{% url 'create_resource' object.project.id %}' >
+                    {% csrf_token %}
+                    {{ resources_form|materializecss }}
+                    <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                        {% trans 'save'%}</button>
+                </form>
+            {% endif %}
+        </div>
+
+    </div>
+
 
 {% endblock %}
+
+
+
+
+{% block javascript %}
+
+    <script>
+        $(document).ready(function(){
+            $('.modal').modal();
+
+
+
+        });
+    </script>
+
+    <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
+    <script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>
+
+
+
+
+
+
+
+{% endblock javascript %}

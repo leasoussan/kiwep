@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Mission, CollectiveMission, Team, IndividualMission, IndividualCollectiveMission
 from django.forms import ModelForm
-from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm, CollectiveMissionAssign, ValidateMissionForm
+from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm, \
+    CollectiveMissionAssign, ValidateMissionForm, ResourceAddForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -114,6 +115,10 @@ class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
         return get_object_or_404(IndividualMission, pk=pk)
 
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['resources_form'] = ResourceAddForm()
+        return context
 # ----------------------------------------------------------------------------------------------------------------
 
 

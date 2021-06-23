@@ -167,7 +167,7 @@ class IndividualMission(Mission):
 
 
     def get_absolute_url(self):
-        return reverse("team_detail", kwargs={"pk":self.pk})
+        return reverse("individual_mission_detail", kwargs={"pk":self.pk})
 
 
     def get_update_url(self):
