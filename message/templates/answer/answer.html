@@ -9,29 +9,50 @@
     <div class="col s12 m6 l9">
         <div class="card">
 
-            <span class="card-title">{% trans 'add_answer'%} to  {{object}}</span>
+
 
             <div class="card-content">
+                  {% if user.is_student %}
+                                  <span class="card-title">{% trans 'add_answer'%} to  {{object}}</span>
                 <form method="POST" action = "{% url 'answer_add' %}?next={{ request.path }} " enctype="multipart/form-data" >
                     {% csrf_token %}
-                    {% if user.is_student %}
+
 
                         {{ object.answer_form|materializecss }}
-                    {% elif user.is_speaker %}
-                        {{ object.status_form|materializecss }}
-                    {% endif %}
+
+
                     <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'save_answer' %}
                     </button>
                 </form>
-
+ {% endif %}
             </div>
             <ul class="collapsible popout">
                 {% for answer in object.answer.all %}
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{% trans 'answer_by' %}{{ answer.content_object.attributed_to.user.get_full_name }}</div>
+                        <div class="collapsible-header">
+                            <i class="material-icons">filter_drama</i>
+                            {% trans 'answer_by' %} {{ answer.content_object.attributed_to.user.get_full_name }}  {% trans 'status' %}: {{ answer.get_status_display }}
+
+                            {% if answer.grade %}
+                             {% trans 'and_graded :' %}
+                            {{ answer.grade }}
+                            {% endif %}
+
+                        </div>
 
                         <div class="collapsible-body"><span>{{answer.response_comment}}</span>
                             <div>
+                                {% if user.is_speaker %}
+                                    <form method="POST" action = "{% url 'answer_edit_status' answer.id %}?next={{ request.path }} " enctype="multipart/form-data" >
+                                        {% csrf_token %}
+
+                                        {{ answer.status_form|materializecss }}
+
+                                        <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'save_answer' %}
+                                        </button>
+                                    </form>
+                                {% endif %}
+
 
                             </div>
 

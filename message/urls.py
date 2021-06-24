@@ -5,7 +5,8 @@ from .views import (
 
     CommentCreateView,
     AnswerCreateView,
-    SpeakerAnswerMissionStatusView
+    SpeakerAnswerMissionStatusView,
+    SpeakerGradeAnswerView,
 )
 
 
@@ -16,6 +17,8 @@ urlpatterns = [
     path('comment-add/',CommentCreateView.as_view(), name = 'comment_add'),
     path('answer-add/', AnswerCreateView.as_view(), name='answer_add'),
     path('answer-edit-status/<int:pk>', SpeakerAnswerMissionStatusView.as_view(), name='answer_edit_status'),
+    path('answer-grade/<int:pk>', SpeakerGradeAnswerView.as_view(), name='answer_grade_add'),
+
     #   path('',.as_view(), name = '')
 
 ]

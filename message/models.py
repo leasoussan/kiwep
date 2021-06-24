@@ -4,7 +4,7 @@ from django.db import models
 from django.forms import modelform_factory
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
-
+from django.utils.translation import ugettext as _
 
 
 
@@ -94,11 +94,11 @@ class DiscussionModel(models.Model):
 
 class Answer(DiscussionModel):
     STATUS_CHOICES =[
-        ('w_r', 'Waiting Review'),
-        ('u_r','Under Review'),
-        ('a', 'Accepted'),
-        ('r', 'Rejected'),
-        ('c', 'See Comments'),
+        ('w_r', _('waiting_review')),
+        ('u_r',_('under_review')),
+        ('a', _('accepted')),
+        ('r', _('rejected')),
+        ('c', _('see_comment')),
     ]
     response_comment = models.TextField(blank=True)
     response_file = models.FileField(null=True, blank=True)
@@ -118,6 +118,11 @@ class Answer(DiscussionModel):
     def status_form(self):
         from .forms import MissionSpeakerStatusAnswerForm
         return MissionSpeakerStatusAnswerForm(instance=self)
+
+
+    def grade_form(self):
+        from .forms import MissionSpeakerGradeAnswerForm
+        return MissionSpeakerGradeAnswerForm(instance=self)
 
 
 class AnswerModel(DiscussionModel):

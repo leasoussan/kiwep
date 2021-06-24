@@ -8,7 +8,8 @@ from django.urls import reverse_lazy
 from accounts.decorators import check_profile
 from accounts.mixin import StudentStatuPassesTestMixin
 from .models import Comment, Discussion, Answer
-from message.forms import AddDiscussionForm, AddCommentForm, AddAnswerForm, MissionSpeakerStatusAnswerForm
+from message.forms import AddDiscussionForm, AddCommentForm, AddAnswerForm, MissionSpeakerStatusAnswerForm, \
+    MissionSpeakerGradeAnswerForm
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -108,8 +109,8 @@ class SpeakerAnswerMissionStatusView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         print(context)
+
 
     def get_success_url(self):
         return reverse_lazy('team_list')
@@ -117,3 +118,42 @@ class SpeakerAnswerMissionStatusView(UpdateView):
     def form_valid(self, form):
         print(f'form errors {form.errors}')
         return super().form_valid(form)
+
+
+class SpeakerGradeAnswerView(UpdateView):
+    model =Answer
+    template_name = "crud/update.html"
+    success_url = reverse_lazy()
+    form_class = MissionSpeakerGradeAnswerForm
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print(context)
+
+
+    def get_success_url(self):
+        return reverse_lazy('team_list')
+
+
+    def form_valid(self, form):
+
+        return super().form_valid(form)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

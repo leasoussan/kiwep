@@ -621,3 +621,30 @@ span{
   font-size: small;
 
 }
+
+
+
+
+/*------------------------------------------------------COMMENT -DISCUSSION*/
+
+
+.speech-bubble {
+	position: relative;
+	background: #7000bb;
+	border-radius: .4em;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 0.969em solid transparent;
+	border-right-color: #7000bb;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -0.484em;
+	margin-left: -0.969em;
+}

@@ -54,3 +54,14 @@ class MissionSpeakerStatusAnswerForm(forms.ModelForm):
             'status': forms.Select(attrs={'onchange':'this.form.submit()'})
         }
 
+class MissionSpeakerGradeAnswerForm(forms.ModelForm):
+
+    class Meta:
+        model = Answer
+        fields = ['grade']
+
+        widgets = {
+            'content_type': forms.HiddenInput(),
+            'object_id': forms.HiddenInput(),
+            'status': forms.Select(attrs={'onchange':'this.form.submit()'})
+        }

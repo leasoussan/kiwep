@@ -5,6 +5,11 @@
 {% load mytags %}
 {% load materializecss %}
 
+
+
+
+
+
 {% block content %}
     <div class="content">
         <div class="mission_container">
@@ -29,7 +34,7 @@
 
                     </div>
                     <div class="mission_resource_list">
-                        Ressource List
+                        Resource List
                     </div>
                 </div>
 
@@ -87,152 +92,152 @@
                 </div>
 
 
-            </div>
+</div>
 
             <div class ="answer_block">
 
-                <div class="container"></div>
-                {# --------  Speaker__________________________________#}
-                {# ______________________________________________________________________________________________________________________________INDIVIDUAL attributed_to___ CALL_______________#}
+                <div class="row">
+                    {# --------  Speaker__________________________________#}
+                    {# ______________________________________________________________________________________________________________________________INDIVIDUAL attributed_to___ CALL_______________#}
 
-                {% if user.is_speaker %}
-                    {% if individualmission  %}
-                        {% if object.attributed_to == 0  %}
-                            {% trans 'mission_unclaimed' %}
-
-                        {% elif object.attributed_to %}
-                            <h3>{% trans 'mission_is_attributed_to' %}{{ object.attributed_to }}</h3>
-
-                        {% else %}
-                            {% trans 'not_claimed' %}
-                        {% endif %}
-                    {% endif %}
+<div>
 
 
-                {% elif collectivemission  %}
-                    {% if object.attributed_to == 0  %}
-                        {% trans 'no_one_joined_yet' %}
-                        {% if user.profile ==  object.team.manager %}
-
-                            <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
-                        {% endif %}
-
-                    {% elif object.attributed_to < 0 %}
-                        {% for participant in object.attributed_to.all %}
-                            <li> {{ participant }}</li>
-
-                        {% endfor %}
-                    {% endif %}
-
-                {% endif %}
-
-
-
-
-
-                {% if user.is_student and user.profile == request.user.profile %}
-
-{##}
-                    {% if user.profile in object.project.team.participants.all %}
-{##}
-{#                        {% if individualmission and object.attributed_to == False  %}#}
-{##}
-{#                            <a href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>#}
-{#                        {% elif individualmission and object.attributed_to == True  %}#}
-{#                            {% if object.atributed_to == request.user.profile %}#}
-{#                                <h3>{% trans 'mission_is_attributed_to_you' %}{{ object.attributed_to }}</h3>#}
-{#                            {% else %}#}
-{#                                <h3>{% trans 'mission_is_assigned_to' %}{{ object.attributed_to }}</h3>#}
-{#                                {% if answer.response_comment or answer.response_file %}#}
-{#                                    {% trans 'file_lable' %} :{{answer.response_file}}#}
-{#                                    {% trans 'text_lable' %}: {{answer.response_comment}}#}
-{##}
-{##}
-{#                                {% else %}#}
-{#                                    {% include "answer/answer.html"  with object=mission %}#}
-{#                                {% endif %}#}
-{#                            {% endif %}#}
-{##}
-{#                        {% endif %}#}
-{#                    {% endif %}#}
-{##}
-                    {# ______________________________________________________________________________________________________________________________________________COLLECTIVE attributed_to Call#}
-{#                    {% if collectivemission and object.attributed_to == 0 %}#}
-{#                        {% trans 'no_one_joined_yet' %}#}
-{#                        {% if collectivemission and object.attributed_to.all.count > 0 %}#}
-{#                            <p>{% trans 'as_of_now_' %} {{ object.attributed_to.all.count }} {% trans 'joined_the_mission' %}</p>#}
-{##}
-{#                            {% if user.profile not in object.attributed_to.all %}#}
-{##}
-{#                            <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_mission' %}</a>#}
-{##}
-{##}
-{##}
-{#                            {% elif user.profile in object.attributed_to.all  %}#}
-{##}
-{##}
-{#                                <a href="{% url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>#}
-{#                            {% endif %}#}
-{##}
-                        {% endif %}
-
-                    {% endif %}
-
-
-                    </div>
-                    </div>
-
-
-
-                    <div class ="answer_status">
-                        {% if user.is_speaker %}
-                            {% with answer=object.answer.all.last  %}
-                                {% if answer.response_comment or answer.response_file %}
-                                    {% trans 'file_lable' %} :{{answer.response_file}}
-                                    {% trans 'text_lable' %}: {{answer.response_comment}}
-                                    <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
-                                        {% csrf_token %}
-
-                                        {{ answer.status_form }}
-
-                                    </form>
-
-                                {% else %}
-
-                                    {% trans 'no_answer_yet' %}
-                                {% endif %}
-                            {% endwith %}
-                        {% endif %}
-
-
-
-                        {% if collectivemission  %}
-                            {% include "answer/answer.html"  with object=object%}
-                            {% if object.attributed_to == 0  %}
+                    {% if user.is_speaker %}
+                        {% if individualmission  %}
+                            {% if not object.attributed_to  %}
                                 {% trans 'mission_unclaimed' %}
 
-                            {% elif object.attributed_to %}
-                                <h3>{{ object.attributed_to }}</h3>
+                            {% else %}
+                                <h3>{% trans 'mission_is_attributed_to' %}{{ object.attributed_to }}</h3>
+
                             {% endif %}
+
+
+
+                        {% elif collectivemission  %}
+                            {% if not object.attributed_to.all.exists %}
+                                {% trans 'no_one_joined_yet' %}
+                                {% if user.profile ==  object.team.manager %}
+
+                                    <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
+                                {% endif %}
+
+                            {% else %}
+                                {% for participant in object.attributed_to.all %}
+                                    <li> {{ participant }}</li>
+
+                                {% endfor %}
+                            {% endif %}
+
                         {% endif %}
-                    </div>
 
 
-    </div>
+                    {% elif user.is_student %}
+
+                        {% if user.profile in object.project.team.participants.all %}
+
+                            {% if individualmission and not object.attributed_to  %}
+
+                                <a href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>
+                            {% elif individualmission and object.attributed_to %}
+
+                                {% if object.attributed_to == request.user.profile %}
+                                    <h3>{% trans 'mission_is_attributed_to_you' %}
+                                        {{ object.attributed_to }}</h3>
+
+                                    {% if answer.response_comment or answer.response_file %}
+                                        {% trans 'file_lable' %} :{{answer.response_file}}
+                                        {% trans 'text_lable' %}: {{answer.response_comment}}
+
+                                    {% else %}
+
+                                        {% include "answer/answer.html"  with object=object %}
+                                    {% endif %}
+                                {% endif %}
 
 
 
 
 
+                                {#                ______________________________________________________________________________________________________________________________________________COLLECTIVE attributed_to Call#}
+                            {% elif collectivemission and not object.attributed_to.all.exists %}
+                                {% trans 'no_one_joined_yet' %}
+                            {% elif collectivemission  %}
+                                <p>{% trans 'as_of_now_' %} {{ object.attributed_to.all.count }} {% trans 'joined_the_mission' %}</p>
+
+                                {% if user.profile not in object.attributed_to.all %}
+
+                                    <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_mission' %}</a>
+
+                                {% else %}
+                                    <a href="{% url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>
+                                {% endif %}
+                                {##}
+                            {% endif %}
+
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+
+</div>
 
 
-    <div class="comment_section">
-
-        Comment
-
-    </div>
+            <div class ="answer_status">
+            <div>
 
 
+                {% if user.is_speaker %}
+
+                    {% for answer in object.answer.all  %}
+
+                        {% if answer.response_comment or answer.response_file %}
+                            {% trans 'file_lable' %} :{{answer.response_file}}
+                            {% trans 'text_lable' %}: {{answer.response_comment}}
+                            <div>
+
+                                <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
+                                    {% csrf_token %}
+
+                                    {{ answer.status_form }}
+                                </form>
+
+                                {% if answer.status == 'a' %}
+                                    {% if not answer.grade %}
+                                        <form method="POST" action="{% url 'answer_grade_add' answer.id %}">
+                                            {% csrf_token %}
+
+                                            {{ answer.grade_form }}
+                                        </form>
+                                    {% else %}
+                                        {% trans 'grade_for_mission ' %}: {{ answer.grade }}
+                                    {% endif %}
+                                    </div>
+                                {% else %}
+
+                                    {% trans 'mission_wasnt_accepted_yet' %}
+                                {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+            </div>
+
+
+
+
+</div>
+
+
+            <div class="comment_section">
+
+                Comment
+
+            </div>
+
+        </div>
     </div>
 
 

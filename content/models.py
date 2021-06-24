@@ -99,7 +99,7 @@ class Project(DiscussionModel):
 
 
 
-class Mission(DiscussionModel):
+class Mission(AnswerModel):
     STAGE_CHOICE = [
         ('start', 'Start'),
         ('middle', 'Middle'),
