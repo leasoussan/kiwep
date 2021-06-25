@@ -636,20 +636,19 @@ span{
 .modal-content{
   height: 200%;
 }
+/*.modal { width: 100% !important ; height: 100% !important ; }  !* increase the height and width as you desire *!*/
 .modal.bottom-sheet{
-  min-height: 70%;
-  max-height: 70%;
-  width: 90%;
+  max-height: 150%;
 }
 
 
-.speech-bubble-left {
+.speech-bubble {
   position: relative;
   background: #7000bb;
   border-radius: .4em;
 }
 
-.speech-bubble-left:after {
+.speech-bubble:after {
   content: '';
   position: absolute;
   left: 0;
@@ -664,53 +663,10 @@ span{
   margin-left: -0.969em;
 }
 
-.speech-bubble-right {
-  position: relative;
-  background: #00aabb;
-  border-radius: .4em;
-}
 
-.speech-bubble-right:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: 0;
-  height: 0;
-  border: 20px solid transparent;
-  border-left-color: #00aabb;
-  border-right: 0;
-  border-bottom: 0;
-  margin-top: -10px;
-  margin-right: -20px;
-}
 
 
 /*---------------------------------------------DISCUSSION*/
-
-
-.discussion_contant{
-  display: flex;
-  background-color: grey;
-}
-
-.discussion_detail{
-  min-height: 70%;
-  max-height: 70%;
-}
-
-.dialog_box div{
-  background-color: green;
-  margin-bottom: 10px;
-  width: 60%;
-}
-
-.dialog_box{
-  min-width: 70%;
-  max-width: 70%;
-  background-color: whitesmoke;
-}
-
 
 .discussion_list{
   width: 100%;

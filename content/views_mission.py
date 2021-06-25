@@ -187,7 +187,7 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
 
 
     def get_object(self):
-        pk = self.kwargs.get['pk']
+        pk = self.kwargs.get('pk')
         return get_object_or_404(CollectiveMission, pk=pk)
 
 # ----------------------------------------------------------------------------------------------------------------

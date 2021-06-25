@@ -20,7 +20,7 @@
             {% if user.is_speaker %}
                 {% if project.is_template %}
 
-                    <a class="waves-effect btn edit_button" href="{% url 'chose_project_detail' project.id %}">{% trans 'select_project_button'%}</a>
+                    <a class="waves-effect btn edit_button" href="{% url 'chose_project_detail' project.id %}">{% trans 'select'%}</a>
 
                 {% else %}
                     <a class="waves-effect btn edit_button" href="{% url 'update_project' project.id %}">{% trans 'edit'%}</a>
@@ -75,11 +75,11 @@
 
 
     <div class="project_extra_detail">
-  <div>
-                {% include 'comments/discussion.html' with object=project %}
-
-            </div>
-
+{#  <div>#}
+{#                {% include 'comments/discussion.html' with object=project %}#}
+{##}
+{#            </div>#}
+{##}
 
 
         <div class ="project_mission_table">
