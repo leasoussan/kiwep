@@ -632,14 +632,19 @@ span{
 
 
 }
-
+.modal{
+  display: flex;
+  align-items: center;
+}
 .modal-content{
   height: 200%;
+  width: 90%;
 }
 .modal.bottom-sheet{
   min-height: 70%;
   max-height: 70%;
   width: 90%;
+  margin-left:5rem ;
 }
 
 
@@ -699,17 +704,31 @@ span{
   max-height: 70%;
 }
 
-.dialog_box div{
-  background-color: green;
-  margin-bottom: 10px;
-  width: 60%;
-}
 
 .dialog_box{
+  display: flex;
+  flex-direction: column;
   min-width: 70%;
   max-width: 70%;
   background-color: whitesmoke;
 }
+
+
+.dialog_box div{
+  margin-bottom: 10px;
+  width: 60%;
+}
+.profile_comment{
+  background-color: darkseagreen;
+  justify-content: flex-end;
+}
+
+.user_comment{
+  background-color: lightyellow;
+  justify-content: flex-start;
+
+}
+
 
 
 .discussion_list{
