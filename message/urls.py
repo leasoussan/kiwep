@@ -12,7 +12,7 @@ from .views import (
 
 urlpatterns = [
     # path('my_inbox', my_inbox, name= 'my_inbox'),
-    path('discussion-add', DiscussionCreateView.as_view(), name= 'discussion_add'),
+    path('discussion-add/', DiscussionCreateView.as_view(), name= 'discussion_add'),
 
     path('comment-add/',CommentCreateView.as_view(), name = 'comment_add'),
     path('answer-add/', AnswerCreateView.as_view(), name='answer_add'),
