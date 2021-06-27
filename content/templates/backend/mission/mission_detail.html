@@ -301,7 +301,7 @@
                 {% endif %}
             </div>
             <div id="choose_resource" class="col s12">
-                Chose from project resource
+                Chose from  resource in project
             </div>
 
 
@@ -313,7 +313,9 @@
 
 
 
-    <!-- Modal Structure -->
+    <!-- Modal Structure  Discussion -->
+
+     <div id="discussion_board" class="modal bottom-sheet">
     <div class="row modal-content">
 
         <h4>{% trans 'start_disucssion' %}</h4>
@@ -334,7 +336,7 @@
         <a class="modal-action modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
     </div>
 
-
+     </div>
 
 
 
@@ -359,11 +361,5 @@
 
     <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
     <script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>
-
-
-
-
-
-
 
 {% endblock javascript %}

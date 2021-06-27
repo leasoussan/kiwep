@@ -6,7 +6,7 @@
 
     {% if user.speaker %}
 
-    <div  class="button_left" >
+    <div  class="button_right" >
       <a href="{% url 'create_team' %}" class="waves-effect waves-light btn add_button">{% trans 'create_a_new_team' %}</a>
 
     </div>
@@ -34,7 +34,7 @@
         <td class="content_table"><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></td>
         <td class="content_table">{{ team.participants.count }}</td>
         <td class="content_table">{{team.project.time_to_complete}}</td>
-        <td class="content_table">{{teamp.project.field}}</td>
+        <td class="content_table">{{team.project.name}}</td>
         <td><a scope="col" href="{% url 'update_team' team.id %}" class="waves-effect waves-light btn edit_btn">{% trans 'edit_the_team' %}</a></td>
             <td><a href="{% url 'delete_team' team.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
     </tr>
@@ -81,6 +81,7 @@
 
 
 
+
     {% endfor %}
 
 
@@ -95,7 +96,7 @@
 
 
      {% endif %}
-     <div  class="button_left" >
+     <div  class="button_right" >
         {% if user.is_speaker %}
        <a href="{% url 'answer_mission_list' %}" class="waves-effect waves-light btn secondary_button">{% trans 'answers_board' %}</a>
         {% elif user.is_student %}

@@ -183,7 +183,10 @@ body h4{
 
 
 
-
+.modal_content{
+  display: flex;
+  margin-left: 1rem;
+}
 
 /*-----------------------------------------------------------__COLORS*/
 
@@ -231,9 +234,22 @@ body h4{
   font-size: large;
 }
 
+.navigation_btn{
+  display: flex;
+  flex-direction: row;
+}
 
 
+.button_right{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
 
+.button_right a {
+  width: 15%;
+}
 /*_____________PROJECT____________________________________________________-*/
 
 
@@ -356,35 +372,74 @@ body h4{
   /*flex-direction: row;*/
 
 }
+.first_box_team{
+  display: flex;
+  height: 15vh;
+}
+
 .team_button_group{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
   justify-content: flex-end;
-
+  justify-content: space-between;
 }
 
 .team_button_group a{
   margin: 0 20px 0 20px ; ;
 }
 
+.participant_box{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.participants_list_header_box{
+ display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .team_participant_list{
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 50%;
-  padding: 10px;
-  padding-top: 0px ;
+  max-height: 250px;
   font-size: small;
   font-weight: normal;
 }
 
+
 .team_participant_list li {
   border: #4db6ac 1px solid;
   background-color: whitesmoke;
+  padding-left: 1rem;
+  padding-top: 6px;
+
 }
 
-.collection_participants{
-  width: 100%;
+.add_participants{
+  display: flex;
+  align-items: flex-end;
+  width: 3rem;
+  height: 3rem;
+}
 
+.add_participants i {
+  color: yellow;
+}
+
+
+
+.collection_participants_team{
+  width: 100%;
+  max-height: 6rem;
+  background-color: white;
 }
 
 .team_title_project{
@@ -407,21 +462,33 @@ body h4{
 .team_mission_list{
   display: flex;
   flex-direction: column;
-  width: 80%;
-
+  width: 90%;
+  align-items: center;
+  margin-top: 10vh;
 }
 
 .team_mission_table{
   background-color: white;
-
+  width: 100%;
 }
 
-/*.modal_participants{*/
-/*  width: 250px;*/
-/*  height: 250px;*/
-/*}*/
+.collective_mission_participants_modal{
+  width: 30%;
+  min-height: 40vh;
+  max-height:80vh;
+  font-size: 2rem;
+}
 
+.team_resource_modal{
+  width: 30%;
+  min-height: 40vh;
+  max-height:80vh;
+  font-size: 2rem;
+}
 
+.comment_section{
+  margin: 3rem;
+}
 
 /*_----------------------------------------------------MISSION*/
 
@@ -546,11 +613,13 @@ div p.mission_description_text{
 
 
 
+
+
 /*_________________________________REsource */
 
 .resource_modal{
   max-height: 60%;
- }
+}
 
 
 
@@ -612,20 +681,32 @@ table{
 
 .title{
   font-weight: bold;
+  font-size: x-large;
 }
 
+.medium_title{
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
 .small_title{
   font-weight: bold;
-  font-size: 16px;
+  font-size: 1rem;
   margin-bottom: 0px;
 }
 
-span{
-  font-size: small;
+/*span{*/
+/*  font-size: small;*/
+
+/*}*/
+
+list_text{
 
 }
 
-
+.list_text{
+  font-weight:bold;
+}
 
 
 /*------------------------------------------------------COMMENT -DISCUSSION*/

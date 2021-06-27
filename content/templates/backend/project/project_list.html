@@ -9,23 +9,17 @@
 
 
         {% if user.is_speaker %}
-    <nav class="no-shadows nav_color">
-    <div class="nav-wrapper nav_project ">
-      <a href="#!" class="brand-logo left" id = "project_headers"><h5>All projects</h5></a>
-      <ul class="right ">
-        <li><a href="{% url 'create_project' %}" class="waves-effect waves-light btn add_button">{% trans 'add_project' %}</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+
+
+      <div class="button_right ">
+       <a href="{% url 'create_project' %}" class="waves-effect waves-light btn add_button">{% trans 'add_project' %}</a>
+      </div>
+
+
 
             <div class="row">
                 <div class="col s12 m12 l12">
-                  <!-- <h5>{% trans 'my_projects'%}</h5> -->
-                  <!-- <div class="card"> -->
-                    <!-- <div class="my_table"> -->
-                    <!-- {#<div id="createProject">#}
-                    {#<div> #} -->
+           <h2 class="medium_title"> {% trans 'my_projects'%}</h2>
 
                     <table class="highlight centered my_table">
                         <thead>
@@ -56,15 +50,12 @@
 
             </div>
             </div>
-            <!-- </div> -->
-            <!-- </div> -->
-
             <div class="row">
                 <div class="col s12 m12 l12">
-                  <h5 class="card-header">{% trans 'template_project' %}</h5>
+                  <h2 class="medium_title">{% trans 'template_project' %}</h2>
 
                   <!-- <div class="my_table"> -->
-                    <table class="highlight centered my_table" >
+                    <table class="#" >
 
                         <thead>
                         <tr class="table_headers">

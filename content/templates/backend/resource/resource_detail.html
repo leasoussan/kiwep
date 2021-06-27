@@ -1,18 +1,28 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
 {% load mytags %}
+{% load materializecss %}
 {% block content %}
 
 
-    <a href="{% url 'update_resource' resource.id %}">{% trans 'update_resource' %}</a>
-{#    <a href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a> {# TODO:AVI Check #}
+    <div class="content">
+<div class="speaker_btn_group">
+    <a class="btn edit_btn" href="{% url 'update_resource' resource.id %}">{% trans 'update_resource' %}</a>
 
-
-    {% if mission in resource.project_set.individualmission_set.all %}
-        <a href="{% url  'individual_mission_detail' mission.id %}">{% trans 'back_to_mission' %}</a>
-    {% elif mission in  resource.mission_set.collectivemission_set.all %}
+</div>
+<div class="navigation_btn">
+    {#    <a href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a> {# TODO:AVI Check #}
+{{ individualmission.resources_set.all }}
+    {% if resource in resource.individualmission.resources.all %}
+        here
+        <a href="{% url  'individual_mission_detail' resource.mission_set.id %}">{% trans 'back_to_mission' %}</a>
+    {% elif collectivemission %}
+        here3
         <a href="{% url  'collective_mission_detail' mission.id %}">{% trans 'back_to_mission' %}"</a>
     {% endif %}
+
+</div>
 
     <div class="container">
         <div class="coupon-toggle">
@@ -46,18 +56,51 @@
             </div>
 
 
-                    </div>
-                    <div>
-                        {% include 'comments/discussion.html' with object=resource %}
-
-                    </div>
-                </div>
         </div>
+        <div>
+            <!-- Modal Trigger -->
+            <a class="waves-effect waves-light btn modal-trigger" href="#discussion_board">Modal</a>
+
+        </div>
+    </div>
     </div>
 
 
 
 
 
+    <!-- Modal Structure -->
+ <div id="discussion_board" class="modal">
+     <div class="row modal-content">
+
+        <h4>{% trans 'start_disucssion' %}</h4>
+
+
+            {% include 'comments/discussion.html' with object=resource %}
+
+    </div>
+
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
+    </div>
+
+     </div>
 
 {% endblock %}
+
+
+{% block javascript %}
+
+    <script>
+        $(document).ready(function(){
+            $('.modal').modal();
+
+            $('.tabs').tabs();
+
+        });
+    </script>
+
+    <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
+    <script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>
+
+{% endblock javascript %}
