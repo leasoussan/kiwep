@@ -102,6 +102,7 @@ class IndividualMissionAddForm(ModelForm):
             format='%d/%m/%Y',
             attrs={'type': 'date'}),
         # input_formats=('%d-%m-%Y',),
+    # resources = forms.ModelMultipleChoiceField(queryset=object.team_set.project.resources.all)
     )
 
 

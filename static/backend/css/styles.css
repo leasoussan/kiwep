@@ -546,8 +546,11 @@ div p.mission_description_text{
 
 
 
+/*_________________________________REsource */
 
-
+.resource_modal{
+  max-height: 60%;
+ }
 
 
 
@@ -632,10 +635,7 @@ span{
 
 
 }
-.modal{
-  display: flex;
-  align-items: center;
-}
+
 .modal-content{
   height: 200%;
   width: 90%;
