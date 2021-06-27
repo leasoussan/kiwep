@@ -671,7 +671,7 @@ span{
 
 .speech-bubble-right {
   position: relative;
-  background: #00aabb;
+  background: orange;
   border-radius: .4em;
 }
 
@@ -694,10 +694,10 @@ span{
 /*---------------------------------------------DISCUSSION*/
 
 
-.discussion_contant{
-  display: flex;
-  background-color: grey;
-}
+/*.discussion_content{*/
+/*  display: flex;*/
+/*  background-color: grey;*/
+/*}*/
 
 .discussion_detail{
   min-height: 70%;
@@ -705,33 +705,36 @@ span{
 }
 
 
-.dialog_box{
+.dialog_box {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   min-width: 70%;
   max-width: 70%;
-  background-color: whitesmoke;
+  background-color: grey;
 }
 
 
 .dialog_box div{
   margin-bottom: 10px;
   width: 60%;
+
+
 }
-.profile_comment{
-  background-color: darkseagreen;
-  justify-content: flex-end;
-}
+
 
 .user_comment{
-  background-color: lightyellow;
-  justify-content: flex-start;
+  background-color: green;
+  justify-content: center;
 
 }
 
+.profile_comment{
+  justify-content: right;
+
+}
 
 
 .discussion_list{
   width: 100%;
-  background-color: red;
 }

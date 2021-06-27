@@ -14,22 +14,22 @@
             {{ object.discussions.first }}
                         {% for discussion in object.discussions.all|slice:1 %}
 
-
+ <div class="dialog_box">
             {% for comment in discussion.replies.all %}
-                <div class="dialog_box">
+
                     {% if comment.user.profile == request.user.profile %}
-                        <div class="user_comment speech-bubble-right ">
+                        <div class="speech-bubble-left user_comment">
                             {{ comment.comment_text }}
                         </div>
                     {% else %}
-                        <div class="profile_comment speech-bubble-left">
+                        <div class="speech-bubble-right profile_comment">
                             {{ comment.comment_text}}
                         </div>
 
                     {% endif %}
-                </div>
-            {% endfor %}
 
+            {% endfor %}
+   </div>
 
             <div class="add_comment_input">
 
@@ -156,3 +156,9 @@
             </div> -->
 
 
+{% block javascript %}
+
+  $(document).ready(function(){
+    $('.tabs').tabs();
+
+{% endblock javascript %}
