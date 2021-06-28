@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
-from django.views.generic import View
+from django.views.generic import View, RedirectView
 from django.urls import reverse
 
 from backend.models import Institution
@@ -17,7 +17,7 @@ from .forms import (
     SpeakerProfileCreationForm,
     RepresentativeProfileCreationForm,
     UserForm,
-    LoginForm,
+    LoginForm, InstitutionInviteForm,
 )
 from backend.forms import InstitutionAddForm
 
@@ -27,11 +27,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin, RepresentativeStatuPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test, login_required
 from .mailer import *
-from.models import Student, Speaker, Representative, MyUser
+from .models import Student, Speaker, Representative, MyUser, InstitutionInvite, random_token, SpeakerInvite
 from accounts.decorators import check_profile, login_check
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
 
+from django.utils.translation  import ugettext as _
 # ----------------------------------------------------------------------------------Mixin
 
 
@@ -61,6 +62,33 @@ class Register(View):
 
 
             setattr(user, usertype, True)
+
+            if user.is_representative:
+                """this is to collecte the key in the url - if cliecked to register from the invite email"""
+                key = request.GET.get('key')
+                if InstitutionInvite.objects.filter(key=key, used=False).exists():
+                    invite = InstitutionInvite.objects.get(key=key)
+                    invite.used=True
+                    user.save()
+                    invite.joined_user = user
+                    invite.save()
+                else:
+                    messages.error(request, _('contact_us_to_register'))
+                    return redirect('register')  
+                    
+            elif user.is_speaker:
+                key = request.GET.get('key')
+                if SpeakerInvite.objects.filter(key=key, used=False).exists():
+                    invite = SpeakerInvite.objects.get(key=key)
+                    invite.used = True
+                    user.save()
+                    invite.joined_user = user
+                    invite.save()
+                else:
+                    messages.error(request, _('contact_us_to_register'))
+                    return redirect('register')
+
+
 
             user.save()
             user = authenticate(username= username, password = password, usertype =usertype)
@@ -254,3 +282,60 @@ class ProfileView(DetailView):
 def page_404(request):
     """ 404 Page Not Found"""
     return render(request, '404.html')
+
+
+
+
+
+class InstitutionInviteView(View):
+    def get(self, request):
+        form = InstitutionInviteForm
+
+        return render(request, 'accounts/invite/invite.html', {'form': form})
+
+    def post(self, request):
+        if request.method == "POST":
+            form = InstitutionInviteForm(request.POST)
+            email= form.cleaned_data["email"]
+            print(form)
+            print(email)
+            if form.is_valid():
+                institution_invite = form.save(commit=False)
+                institution_invite.user = self.request.user
+                institution_invite.key = random
+                institution_invite = InstitutionInvite.object.get_or_create(request.user, email)
+
+                institution_invite.send_institution_signup_invit(email)
+
+                return redirect('institution_invite')
+
+            return redirect('institution_invite')
+
+
+
+
+class SpeakerInviteView(View):
+    def get(self, request):
+        form = SpeakerInviteForm
+
+        return render(request, 'accounts/invite/invite.html', {'form': form})
+
+    def post(self, request):
+        if request.method == "POST":
+            form = InstitutionInviteForm(request.POST)
+            email= form.cleaned_data["email"]
+            key = random_token()
+            print(form)
+            print(email)
+            if form.is_valid():
+                speaker_invite = form.save(commit=False)
+
+                user = self.request.user
+                speaker_invite = InstitutionInvite.object.get_or_create(user=request.user, email=email, keay=key )
+
+                speaker_invite.send_speaker_signup_invit(email)
+
+            return redirect('speaker_invite')
+
+        return redirect('speaker_invite')
+

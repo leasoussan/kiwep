@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 from django.conf import settings
 from django import forms
 from django.db import transaction
-from .models import Student, Speaker, Representative, MyUser
+from .models import Student, Speaker, Representative, MyUser, InstitutionInvite, SpeakerInvite
 
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
@@ -89,3 +89,22 @@ class RepresentativeProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Representative
         fields = ['user']
+
+
+
+
+class InstitutionInviteForm(forms.ModelForm):
+
+    class Meta:
+        model = InstitutionInvite
+        fields = ['email']
+
+
+
+
+class SpeakerInviteForm(forms.ModelForm):
+    class Meta:
+        model = SpeakerInvite
+        fields = ['email', 'institution']
+
+
