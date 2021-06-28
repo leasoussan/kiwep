@@ -227,7 +227,7 @@ body h4{
   font-size: large;
 }
 .add_button {
-  background-color: #fdd835;
+  background-color: blue;
   display: flex;
   width: 7rem;
   font-weight: bold;
