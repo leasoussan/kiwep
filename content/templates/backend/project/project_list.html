@@ -15,12 +15,14 @@
             <a href="{% url 'create_project' %}" class="waves-effect waves-light btn add_button">{% trans 'add_project' %}</a>
         </div>
 
+
         <div class="row">
             <div class="col s12 m12 l12">
                 <h2 class="medium_title">{% trans 'my_projects'%}</h2>
 
+            {% if user.profile.project_set.personal_projects.exists %}
                 <!-- <div class="my_table"> -->
-                <table class="#" >
+                <table class="project_list_table" >
 
                     <thead>
                     <tr class="table_headers">
@@ -28,23 +30,30 @@
                         <th>{% trans 'speaker_table_header' %}</th>
                         <th>{% trans 'field_table_header' %}</th>
                         <th>{% trans 'time_to_complete_table_header' %}</th>
-                        <th>{% trans 'edit_table_header' %}</th>
+                        <th>{% trans 'edit_p_table_header' %}</th>
                     </tr>
 
                     </thead>
                     <tbody>
                     {% for project in user.profile.project_set.personal_projects %}
 
-                        <tr class="table_headers">
+                        <tr class="table_headers table_row">
                             <td><a a class= "link-table"href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
                             <td>{{project.speaker.user.first_name}}</td>
-                            <td>{{project.field}}</td>
-                            <td>{{project.time_to_complete}} {% trans 'days' %}</td>
-                            <td><a  scope="col" class="waves-effect waves-light btn edit_btn"
+                            <td>{% if not project.field.exists %}
+                                {% trans 'no_fields' %}
+                            {% else %}
+
+                                {{project.field}}
+                                {% endif %}
+                            </td>
+                            <td>{{project.time_to_complete}} {% trans 'in_days' %}</td>
+                            <td class="speaker_btn_group">
+                                <a  scope="col" class="waves-effect waves-light btn project_edit_button"
                                     href="{% url 'update_project' project.id %}">{% trans 'edit' %}</a>
-                                <a  scope="col" class="waves-effect waves-light btn edit_btn"
+                                <a  scope="col" class="waves-effect waves-light btn duplicate_btn_project"
                                     href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a>
-                                <a href="{% url 'delete_project' project.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
+                                <a href="{% url 'delete_project' project.id %}" > <i class="small material-icons delete garbege">{% trans 'delete' %}</i></a></td>
 
                         </tr>
 
@@ -52,6 +61,7 @@
                     </tbody>
 
                 </table>
+                {% endif %}
             </div>
 
 
@@ -67,6 +77,7 @@
                             <th class="link-table" scope="col">{% trans 'speaker_table_header' %}</th>
                             <th class="link-table" scope="col">{% trans 'field_table_header' %}</th>
                             <th class="link-table" scope="col">{% trans 'time_to_complete_table_header' %}</th>
+                            <th class="link-table" scope="col">{% trans 'see_project' %}</th>
                             <th class="link-table" scope="col">{% trans 'speaker_select_project' %}</th>
 
 
@@ -77,9 +88,15 @@
                             <tr class="table_headers">
                                 <td><a class= "link-table" href="{% url 'project_detail' project.id %}">{{project.name}}</a></td>
                                 <td>{{project.speaker.user.first_name}}</td>
-                                <td>{{project.field}}</td>
-                                <td>{{project.time_to_complete}}{% trans 'days' %}</td>
-                                <td> <a class= "link-table btn" href="{% url 'chose_project_detail' project.id %}">{% trans 'speaker_select_project' %}</a> </td>
+                                <td>{% if not project.field.exists %}
+                                {% trans 'no_fields' %}
+                            {% else %}
+                                {{project.field}}
+                                {% endif %}
+                            </td>
+                                <td>{{project.time_to_complete}} {% trans 'days' %}</td>
+                            <td> <a href="{% url 'project_detail' project.id %}"> <i class="material-icons">pageview</i> </a></td>
+                                <td> <a class= "link-table speaker_select_project" href="{% url 'chose_project_detail' project.id %}">{% trans 'speaker_select_project' %}</a> </td>
                             </tr>
                         {% endfor %}
 

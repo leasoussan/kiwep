@@ -56,7 +56,9 @@ body h4{
 .content_main_view  {
   width: 90%;
   justify-content:flex_start ;
-
+  border-left: 2px solid whitesmoke;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 
@@ -140,8 +142,8 @@ body h4{
 }
 
 .menu_panel_color li{
-  font-size: large;
-  font-weight: bold;
+  font-size: 2rem;
+  /*font-weight: bold;*/
 }
 
 
@@ -154,7 +156,7 @@ body h4{
 
 .menu_panel_color li div a:hover{
   font: helvetica;
-  font-size: 1rem;
+  font-size: 2rem;
   color: white;
 }
 
@@ -194,10 +196,10 @@ body h4{
 /*LIGHTER GREEN #e0f2f1 teal lighten-5*/
 /*LIGHT GREEN - #b2dfdb teal lighten-4*/
 /*LIGHT TURQUOISE #b2ebf2 cyan lighten-4*/
-
-
-
-
+/*Dark Green  teal dark -4 #004d40*/
+/*DAK blue #1565c0 blue darken-3*/
+/*Dark Red #b71c1c red darken-4*/
+/*Yello #ffd600 yellow accent-4*/
 
 /*_________________________________________________________________________Bouttons ___________*/
 
@@ -205,18 +207,75 @@ body h4{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  width: 30%;
+  width: 90%;
 }
 
 .edit_button {
-  background-color: #fdd835;
+  background-color: #ffd600;
   display: flex;
-  width: 7rem;
+  width: 8rem;
   justify-content: center;
   font-weight: bold;
-  font-size: large;
+  font-size: medium;
 }
 
+.add_button_small{
+  background-color: #1565c0;
+  display: flex;
+  width: 5rem;
+  justify-content: center;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.speaker_select_project{
+  display: flex;
+  width: 8rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: medium;
+  color: white;
+  background-color: #1565c0;
+  border:2px solid;
+  border-color:  #1565c0;
+
+}
+.project_edit_button{
+  display: flex;
+  width: 5rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: medium;
+  color: #1565c0;
+  background-color: white;
+  border:2px solid;
+  border-color:  #1565c0;
+
+}
+
+.duplicate_btn_project{
+  display: flex;
+  width: 7rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: medium;
+  color:  #ffd600;
+  background-color: white;
+  border:2px solid;
+  border-color:  #ffd600;
+
+}
+
+
+.garbege{
+  color: #1565c0;
+}
 
 .edit_btn_tbl{
   background-color: #fdd835;
@@ -226,13 +285,16 @@ body h4{
   font-weight: bold;
   font-size: large;
 }
-.add_button {
-  background-color: blue;
+
+.add_team_button {
+  background-color: #1565c0;
   display: flex;
-  width: 7rem;
+  width: 8rem;
   font-weight: bold;
   font-size: large;
+
 }
+
 
 .navigation_btn{
   display: flex;
@@ -242,13 +304,24 @@ body h4{
 
 .button_right{
   display: flex;
-  align-items: flex-end;
   justify-content: flex-end;
-  padding-right: 2rem;
+
+}
+
+.button_left{
+  display: flex;
+  justify-content: flex-start;
 }
 
 .button_right a {
-  width: 15%;
+
+}
+
+.team_list_btn_gp{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 /*_____________PROJECT____________________________________________________-*/
 
@@ -259,6 +332,7 @@ body h4{
   flex-direction: row;
   height: 20%;
   width: 100%;
+  justify-content: space-between;
 }
 
 
@@ -365,6 +439,22 @@ body h4{
 
 }
 
+
+
+
+
+
+
+/*_______PROJECT LIST */
+
+.project_list_table tr{
+  height: 10px;
+}
+
+.table_row td{
+  height: 2em;
+}
+
 /*________________________________________TEAM*/
 .main_container_team{
   width: 90%;
@@ -399,7 +489,7 @@ body h4{
 }
 
 .participants_list_header_box{
- display: flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -687,7 +777,7 @@ table{
 .medium_title{
   font-weight: bold;
   font-size: 2rem;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 .small_title{
   font-weight: bold;
@@ -708,6 +798,18 @@ list_text{
   font-weight:bold;
 }
 
+
+speaker_video_intro{
+  display: flex;
+  align-items: flex-start;
+  background-color: yellow;
+}
+
+.video_speaker {
+  display: flex;
+  align-items: flex-start;
+  width: 650px;
+}
 
 /*------------------------------------------------------COMMENT -DISCUSSION*/
 

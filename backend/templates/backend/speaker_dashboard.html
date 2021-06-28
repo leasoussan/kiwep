@@ -2,14 +2,10 @@
 {% load i18n %}
 {% load static%}
 
-<h2>{% trans 'welcome'%} {{user.first_name}} </h2>
+<div class="container speaker_video_intro">
+  <h3 class="medium_title">{% trans 'welcome'%} {{user.first_name}} </h3>
 
-
-    <main role="main" class="container-fluid">
-
-        <div class="row">
-
-            <video width="500" height="500" controls >
+            <video class="video_speaker" controls >
                 <source src="{% static 'backend/images/video/en_speaker_intro.mp4' %}" type="video/mp4">
                 <b>{{video.title}}</b>
             </video>
