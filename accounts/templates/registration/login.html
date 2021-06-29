@@ -1,6 +1,7 @@
-{% extends 'base1.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load materializecss %}
 {% block content %}
 
 <div class="container-fluid" style="">
@@ -11,7 +12,7 @@
     <!-- <div class="card-body" style="margin-top:50px; margin-bottom:50px;"> -->
       <form method="post" style="text-align: center;">
           {% csrf_token %}
-          {{ form.as_p }}
+          {{ form|materializecss }}
           <br>
           <button type="submit" class=" form-control mb-3 btn btn-block btn-submit button_login" >{% trans 'login'%}</button>
       </form>

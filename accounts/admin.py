@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import UserForm, MyUserCreationForm
 from django.contrib.auth import get_user_model
 
-from .models import MyUser, Student, Speaker, Representative, City, Country
+from .models import MyUser, Student, Speaker, Representative, City, Country, SpeakerInvite, InstitutionInvite
 
 
 #
@@ -61,3 +61,16 @@ class CountryAdmin(admin.ModelAdmin):
     pass
 
 
+
+
+@admin.register(SpeakerInvite)
+class SpeakerInviteAdmin(admin.ModelAdmin):
+    pass
+
+
+
+
+
+@admin.register(InstitutionInvite)
+class InstitutionInviteAdmin(admin.ModelAdmin):
+    pass

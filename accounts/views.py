@@ -17,7 +17,7 @@ from .forms import (
     SpeakerProfileCreationForm,
     RepresentativeProfileCreationForm,
     UserForm,
-    LoginForm, InstitutionInviteForm,
+    LoginForm, InstitutionInviteForm, MySpeakerCreationForm,
 )
 from backend.forms import InstitutionAddForm
 
@@ -42,11 +42,16 @@ from django.utils.translation  import ugettext as _
 # -----------------------------------------------------------------------------------Resistration and Profile Creation
 
 
+
 class Register(View):
     def get(self, request):
-        context = {
-         "form": MyUserCreationForm()
+        form = MyUserCreationForm()
 
+        if 'key' in  request.GET:
+            form = MySpeakerCreationForm(initial={'usertype': 'is_speaker'})
+
+        context = {
+         "form": form
         }
         return render(request, 'registration/register.html', context)
 
@@ -63,20 +68,7 @@ class Register(View):
 
             setattr(user, usertype, True)
 
-            if user.is_representative:
-                """this is to collecte the key in the url - if cliecked to register from the invite email"""
-                key = request.GET.get('key')
-                if InstitutionInvite.objects.filter(key=key, used=False).exists():
-                    invite = InstitutionInvite.objects.get(key=key)
-                    invite.used=True
-                    user.save()
-                    invite.joined_user = user
-                    invite.save()
-                else:
-                    messages.error(request, _('contact_us_to_register'))
-                    return redirect('register')  
-                    
-            elif user.is_speaker:
+            if user.is_speaker:
                 key = request.GET.get('key')
                 if SpeakerInvite.objects.filter(key=key, used=False).exists():
                     invite = SpeakerInvite.objects.get(key=key)
@@ -84,11 +76,6 @@ class Register(View):
                     user.save()
                     invite.joined_user = user
                     invite.save()
-                else:
-                    messages.error(request, _('contact_us_to_register'))
-                    return redirect('register')
-
-
 
             user.save()
             user = authenticate(username= username, password = password, usertype =usertype)
@@ -103,6 +90,63 @@ class Register(View):
 
 
 
+
+
+# -----------------------------------------------------------------------------------------------
+
+class RegisterInvite(View):
+    def get(self, request):
+        context = {
+            "form": MyUserCreationForm()
+
+        }
+        return render(request, 'registration/register.html', context)
+
+    def post(self, request):
+        form = MyUserCreationForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+
+            usertype = form.cleaned_data['usertype']
+
+            setattr(user, usertype, True)
+
+            if user.is_representative:
+                """this is to collecte the key in the url - if cliecked to register from the invite email"""
+                key = request.GET.get('key')
+                if InstitutionInvite.objects.filter(key=key, used=False).exists():
+                    invite = InstitutionInvite.objects.get(key=key)
+                    invite.used = True
+                    user.save()
+                    invite.joined_user = user
+                    invite.save()
+                else:
+                    messages.error(request, _('contact_us_to_register'))
+                    return redirect('register')
+
+            elif user.is_speaker:
+                key = request.GET.get('key')
+                if SpeakerInvite.objects.filter(key=key, used=False).exists():
+                    invite = SpeakerInvite.objects.get(key=key)
+                    invite.used = True
+                    user.save()
+                    invite.joined_user = user
+                    invite.save()
+                else:
+                    messages.error(request, _('contact_us_to_register'))
+                    return redirect('register')
+
+            user.save()
+            user = authenticate(username=username, password=password, usertype=usertype)
+            login(request, user)
+            send_welcome_signup(user)
+
+            return redirect(reverse('create_profile'), form.cleaned_data['usertype'])
+
+        return render(request, 'registration/register.html', {"form": form})
 
 
 # -----------------------------------------------------------------------------------------------
@@ -147,6 +191,12 @@ class CreateProfile(View):
 
         user_form = UserForm(instance =request.user)
         profile_form = get_user_profile_form(request)
+        user = request.user
+        if user.is_speaker:
+            invites = user.recieved_invites.all()
+            if invites.exists():
+                institution= invites.first().institution
+                profile_form.fields['group'].queryset =  institution.group_set.all()
 
         return render(request, 'accounts/profile/edit_profile.html', {'profile_form': profile_form,
                                                                       'user_form': user_form,}
@@ -156,8 +206,10 @@ class CreateProfile(View):
     def post(self, request):
         user_form = UserForm(request.POST, instance= request.user)
         profile_form = get_user_profile_form(request)
+        user = request.user
 
         if profile_form.is_valid() and user_form.is_valid():
+
             user_form.save()
             object= profile_form.save(commit=False)
 
@@ -166,6 +218,9 @@ class CreateProfile(View):
             else:
                 object.user = request.user
             object.save()
+            if user.is_speaker:
+                for invite in user.received_invites.all():
+                    object.institution.add(invite.institution)
             return redirect('dashboard')
 
 
