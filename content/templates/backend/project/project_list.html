@@ -43,8 +43,7 @@
                             <td>{% if not project.field.exists %}
                                 {% trans 'no_fields' %}
                             {% else %}
-
-                                {{project.field}}
+                                {{project.field.name}}
                                 {% endif %}
                             </td>
                             <td>{{project.time_to_complete}} {% trans 'in_days' %}</td>
@@ -91,7 +90,7 @@
                                 <td>{% if not project.field.exists %}
                                 {% trans 'no_fields' %}
                             {% else %}
-                                {{project.field}}
+                                {{project.field.name}}
                                 {% endif %}
                             </td>
                                 <td>{{project.time_to_complete}} {% trans 'days' %}</td>

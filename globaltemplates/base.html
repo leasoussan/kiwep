@@ -43,14 +43,14 @@
                 {% if user.is_speaker %}
                     <ul class="collapsible expandable menu_panel_color collapsible_no_border ">
                         <li>
-                            <div class="collapsible-header menu_panel_color"> <a class= "link-side-panel" href="{% url 'dashboard' %}">{% trans 'home' %}</a></div>
+                            <a class= "link-side-panel" href="{% url 'dashboard' %}"><div class="collapsible-header menu_panel_color"> {% trans 'home' %}</div></a>
                         </li>
                         <li>
-                            <div class="collapsible-header menu_panel_color"><a class= "link-side-panel" href="{% url 'project_list' %}">{% trans 'projects ' %}</a></div>
+                            <a class= "link-side-panel" href="{% url 'project_list' %}"><div class="collapsible-header menu_panel_color">{% trans 'projects ' %}</div></a>
                             <div class="collapsible-body"><span>Other page</span></div>
                         </li>
                         <li>
-                            <div class="collapsible-header menu_panel_color"><a class= "link-side-panel" href="{% url 'team_list' %}">{% trans 'teams' %}</a></div>
+                            <a class= "link-side-panel" href="{% url 'team_list' %}"><div class="collapsible-header menu_panel_color">{% trans 'teams' %}</div></a>
                             <div class="collapsible-body"><span>Other page</span></div>
                         </li>
 
@@ -64,15 +64,15 @@
                         </li>
                         <li>
                             <div class="collapsible-header menu_panel_color"><a class= "link-side-panel" href="{% url 'team_list' %}">{% trans 'my_projects' %}</a></div>
-                            <div class="collapsible-body"><span>Other page</span></div>
+                            <div class="collapsible-body"><span class="sub_menu">Other page</span></div>
                         </li>
                         <li>
                             <div class="collapsible-header menu_panel_color"><a class= "link-side-panel" href="{% url 'my_mission_list' %}">{% trans 'my_missions' %}</a></div>
-                            <div class="collapsible-body"><span>Other page</span></div>
+                            <div class="collapsible-body"><span class="sub_menu">Other page</span></div>
                         </li>
                         <li>
                             <div class="collapsible-header menu_panel_color"> <a class= "link-side-panel" href="{% url 'todo_list'%}">{% trans 'todo' %}</a></div>
-                            <div class="collapsible-body"><span>Other page</span></div>
+                            <div class="collapsible-body"><span class="sub_menu">Other page</span></div>
                         </li>
                         <li>
                             <div class="collapsible-header"><a class= "link-side-panel" href="{% url 'student_available_project_list' %}">{% trans 'availiable_projects' %}</a></div>
@@ -127,6 +127,18 @@
 
     {% block javascript %}
 
+<script>
+// Add active class to the current button (highlight it)
+var header = document.getElementById("menu_panel");
+var btns = header.getElementsByClassName("link-side-panel");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  current[0].className = current[0].className.replace(" active", "");
+  this.className += " active";
+  });
+}
+</script>
     {% endblock javascript %}
 </body>
 </html>

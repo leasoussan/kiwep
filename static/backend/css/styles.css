@@ -154,24 +154,30 @@ body h4{
 }
 
 
-.menu_panel_color li div a:hover{
+.menu_panel_color .active li div:hover{
   font: helvetica;
   font-size: 2rem;
   color: white;
 }
 
+.active, .btn:hover {
+  background-color: #666;
+  color: white;
+}
 
 
 
-.menu_panel_color li:active{
-  background-color: #4db6ac;
+.link-side-panel li:active{
+  background-color: #yellow;
 }
 
 
 .menu_main_div{
-
 }
 
+.sub_menu{
+  font-size: 1rem;
+}
 
 
 
@@ -405,7 +411,7 @@ body h4{
 .project_extra_detail {
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 100%;
   padding-top: 5rem;
   justify-content: space-between;
 }
@@ -578,6 +584,9 @@ body h4{
 
 .comment_section{
   margin: 3rem;
+  width: 90%;
+    background-color: green;
+
 }
 
 /*_----------------------------------------------------MISSION*/
@@ -812,6 +821,14 @@ speaker_video_intro{
 }
 
 /*------------------------------------------------------COMMENT -DISCUSSION*/
+.discussion_table{
+  width: 100%;
+}
+
+
+
+
+
 
 .discussion_box_modal{
   /*background-color: #0b2e13;*/
