@@ -17,7 +17,7 @@ from .forms import (
     SpeakerProfileCreationForm,
     RepresentativeProfileCreationForm,
     UserForm,
-    LoginForm, InstitutionInviteForm, MySpeakerCreationForm,
+    LoginForm, InstitutionInviteForm, MySpeakerCreationForm, InstitutionCreationForm
 )
 from backend.forms import InstitutionAddForm
 
@@ -31,7 +31,7 @@ from .models import Student, Speaker, Representative, MyUser, InstitutionInvite,
 from accounts.decorators import check_profile, login_check
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
-
+from datetime import datetime, timedelta, date
 from django.utils.translation  import ugettext as _
 # ----------------------------------------------------------------------------------Mixin
 
@@ -94,16 +94,48 @@ class Register(View):
 
 # -----------------------------------------------------------------------------------------------
 
-class RegisterInvite(View):
-    def get(self, request):
-        context = {
-            "form": MyUserCreationForm()
 
+def is_key_valid(request, key, use= False):
+    thirty_days = date.today() - timedelta(days=30)
+
+    if InstitutionInvite.objects.filter(key=key).exists():
+        invite = InstitutionInvite.objects.get(key=key)
+        if invite.used:
+            messages.error(request, _("invite_used"))
+            return False
+
+        elif invite.date_invited < thirty_days:
+            messages.error(request, _("your_invite_expired"))
+            return False
+    else:
+        messages.error(request, _("no_key_to_register"))
+        return False
+
+    if use:
+        invite.used=True
+        invite.save()
+    return True
+
+
+
+class InstitutionInviteView(View):
+    def get(self, request, **kwargs):
+        key=self.kwargs['key']
+        if not is_key_valid(request, key):
+            return redirect('homepage')
+        context = {
+            "form": InstitutionCreationForm(initial={'usertype': 'is_representative'})
         }
         return render(request, 'registration/register.html', context)
 
-    def post(self, request):
-        form = MyUserCreationForm(request.POST)
+    def post(self, request, **kwargs):
+        key = self.kwargs['key']
+
+        if not is_key_valid(request, key, use=True):
+            return redirect('homepage')
+
+        form = InstitutionCreationForm(request.POST)
+
 
         if form.is_valid():
             user = form.save()
@@ -114,30 +146,6 @@ class RegisterInvite(View):
 
             setattr(user, usertype, True)
 
-            if user.is_representative:
-                """this is to collecte the key in the url - if cliecked to register from the invite email"""
-                key = request.GET.get('key')
-                if InstitutionInvite.objects.filter(key=key, used=False).exists():
-                    invite = InstitutionInvite.objects.get(key=key)
-                    invite.used = True
-                    user.save()
-                    invite.joined_user = user
-                    invite.save()
-                else:
-                    messages.error(request, _('contact_us_to_register'))
-                    return redirect('register')
-
-            elif user.is_speaker:
-                key = request.GET.get('key')
-                if SpeakerInvite.objects.filter(key=key, used=False).exists():
-                    invite = SpeakerInvite.objects.get(key=key)
-                    invite.used = True
-                    user.save()
-                    invite.joined_user = user
-                    invite.save()
-                else:
-                    messages.error(request, _('contact_us_to_register'))
-                    return redirect('register')
 
             user.save()
             user = authenticate(username=username, password=password, usertype=usertype)
@@ -341,56 +349,56 @@ def page_404(request):
 
 
 
+#
+# class InstitutionInviteView(View):
+#     def get(self, request):
+#         form = InstitutionInviteForm
+#
+#         return render(request, 'accounts/invite/invite.html', {'form': form})
+#
+#     def post(self, request):
+#         if request.method == "POST":
+#             form = InstitutionInviteForm(request.POST)
+#             email= form.cleaned_data["email"]
+#             print(form)
+#             print(email)
+#             if form.is_valid():
+#                 institution_invite = form.save(commit=False)
+#                 institution_invite.user = self.request.user
+#                 institution_invite.key = random
+#                 institution_invite = InstitutionInvite.object.get_or_create(request.user, email)
+#
+#                 institution_invite.send_institution_signup_invit(email)
+#
+#                 return redirect('institution_invite')
+#
+#             return redirect('institution_invite')
+#
+#
 
-class InstitutionInviteView(View):
-    def get(self, request):
-        form = InstitutionInviteForm
-
-        return render(request, 'accounts/invite/invite.html', {'form': form})
-
-    def post(self, request):
-        if request.method == "POST":
-            form = InstitutionInviteForm(request.POST)
-            email= form.cleaned_data["email"]
-            print(form)
-            print(email)
-            if form.is_valid():
-                institution_invite = form.save(commit=False)
-                institution_invite.user = self.request.user
-                institution_invite.key = random
-                institution_invite = InstitutionInvite.object.get_or_create(request.user, email)
-
-                institution_invite.send_institution_signup_invit(email)
-
-                return redirect('institution_invite')
-
-            return redirect('institution_invite')
-
-
-
-
-class SpeakerInviteView(View):
-    def get(self, request):
-        form = SpeakerInviteForm
-
-        return render(request, 'accounts/invite/invite.html', {'form': form})
-
-    def post(self, request):
-        if request.method == "POST":
-            form = InstitutionInviteForm(request.POST)
-            email= form.cleaned_data["email"]
-            key = random_token()
-            print(form)
-            print(email)
-            if form.is_valid():
-                speaker_invite = form.save(commit=False)
-
-                user = self.request.user
-                speaker_invite = InstitutionInvite.object.get_or_create(user=request.user, email=email, keay=key )
-
-                speaker_invite.send_speaker_signup_invit(email)
-
-            return redirect('speaker_invite')
-
-        return redirect('speaker_invite')
-
+#
+# class SpeakerInviteView(View):
+#     def get(self, request):
+#         form = SpeakerInviteForm
+#
+#         return render(request, 'accounts/invite/invite.html', {'form': form})
+#
+#     def post(self, request):
+#         if request.method == "POST":
+#             form = InstitutionInviteForm(request.POST)
+#             email= form.cleaned_data["email"]
+#             key = random_token()
+#             print(form)
+#             print(email)
+#             if form.is_valid():
+#                 speaker_invite = form.save(commit=False)
+#
+#                 user = self.request.user
+#                 speaker_invite = InstitutionInvite.object.get_or_create(user=request.user, email=email, keay=key )
+#
+#                 speaker_invite.send_speaker_signup_invit(email)
+#
+#             return redirect('speaker_invite')
+#
+#         return redirect('speaker_invite')
+#

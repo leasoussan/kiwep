@@ -11,7 +11,6 @@ from accounts.views import (
     MyProfileView,
     ProfileView,
     InstitutionInviteView,
-    SpeakerInviteView,
 
 
 )
@@ -25,9 +24,7 @@ urlpatterns = [
     path('profile/<int:id>',MyProfileView.as_view(), name="profile"),
     path('edit-profile/', EditProfile.as_view(), name="edit_profile"),
     path('profile_view/<int:pk>', ProfileView.as_view(), name = "profile_view"),
-    path('institution-invite/', InstitutionInviteView.as_view(), name = "institution_invite"),
-    path('speaker-invite/', SpeakerInviteView.as_view(), name = "speaker_invite"),
-
+    path('institution-invite/<str:key>', InstitutionInviteView.as_view(), name = "institution_invite"),
 ]
 
 
