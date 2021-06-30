@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
+
+from message.forms import AddAnswerForm, MissionSpeakerStatusAnswerForm
 from .models import Mission, CollectiveMission, Team, IndividualMission, IndividualCollectiveMission
 from django.forms import ModelForm
-from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm, CollectiveMissionAssign, ValidateMissionForm
+from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm, \
+    CollectiveMissionAssign, ValidateMissionForm, ResourceAddForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -114,6 +117,12 @@ class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
         return get_object_or_404(IndividualMission, pk=pk)
 
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['resources_form'] = ResourceAddForm()
+        context['answer_form'] = AddAnswerForm()
+        context['status_form'] = MissionSpeakerStatusAnswerForm()
+        return context
 # ----------------------------------------------------------------------------------------------------------------
 
 
@@ -129,7 +138,13 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
         pk = self.kwargs.get('pk')
         return get_object_or_404(CollectiveMission, pk=pk)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['resources_form'] = ResourceAddForm()
+        context['answer_form'] = AddAnswerForm()
+        context['status_form'] = MissionSpeakerStatusAnswerForm()
 
+        return context
 # ----------------------------------------------------------------------------------------------------------------
 
 
@@ -172,7 +187,7 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
 
 
     def get_object(self):
-        pk = self.kwargs.get['pk']
+        pk = self.kwargs.get('pk')
         return get_object_or_404(CollectiveMission, pk=pk)
 
 # ----------------------------------------------------------------------------------------------------------------
@@ -184,17 +199,28 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
 
 
 
-class MissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
-    model = Mission
+class IndividualMissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
+    model = IndividualMission
     template_name = 'crud/delete.html' 
     success_url = reverse_lazy('mission_list')
 
 
     def get_object(self, queryset=None):
         pk = self.kwargs.get['pk']
-        return get_object_or_404(Mission, pk=pk)
+        return get_object_or_404(IndividualMission, pk=pk)
 # ----------------------------------------------------------------------------------------------------------------
 
+
+class CollectiveMissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
+    model = CollectiveMission
+    template_name = 'crud/delete.html'
+    success_url = reverse_lazy('mission_list')
+
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get['pk']
+        return get_object_or_404(CollectiveMission, pk=pk)
+# ----------------------------------------------------------------------------------------------------------------
 
 
 

@@ -12,8 +12,7 @@ from django.db.models.signals import pre_save
 from django.contrib.contenttypes.fields import GenericRelation
 from datetime import datetime, timedelta
 
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
+
 
 
 
@@ -25,7 +24,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save, m2m_changed, pre_delete
 
 from django.utils import timezone
-from message.models import DiscussionModel
+from message.models import DiscussionModel,AnswerModel
 
 
 
@@ -100,7 +99,7 @@ class Project(DiscussionModel):
 
 
 
-class Mission(DiscussionModel):
+class Mission(AnswerModel):
     STAGE_CHOICE = [
         ('start', 'Start'),
         ('middle', 'Middle'),
@@ -153,7 +152,8 @@ class HardSkillsRating(models.Model):
     percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
 
 
-class IndividualMission(Mission, ):
+class IndividualMission(Mission):
+
     """ an Individuall Mission is a Mission that has to be done by one team Member,
         so this mission can be claimed """
 
@@ -168,12 +168,14 @@ class IndividualMission(Mission, ):
 
 
     def get_absolute_url(self):
-        return reverse("team_detail", kwargs={"pk":self.pk})
+        return reverse("individual_mission_detail", kwargs={"pk":self.pk})
 
 
     def get_update_url(self):
         """ To """
         return reverse('update_individual_mission', kwargs={"pk":self.pk})
+
+
 
 class CollectiveMission(Mission):
     """
@@ -197,7 +199,7 @@ class CollectiveMission(Mission):
 
 
 
-class IndividualCollectiveMission(models.Model):
+class IndividualCollectiveMission(AnswerModel):
     """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
 
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")

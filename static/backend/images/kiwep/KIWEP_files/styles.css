@@ -1,0 +1,674 @@
+/*This page holds styles for the Mian style. Imported in:*/
+/*'base.html'*/
+
+
+
+/*
+
+INDEX:
+1.  base.html
+.  Navbar
+.  Project
+.  Team
+.  Mission
+.  Resource
+7.  Modal
+8. colors
+9.
+10
+
+
+*/
+
+/*__________________________________________________________________*/
+
+/*_______________________________________________________BASE*/
+
+
+body {
+  font-family:  'Helvetica', 'sans-serif';
+  background-color: #b2dfdb;
+  color: #425940;
+}
+
+body h4{
+  font-size: 2rem;
+  font-weight: bold;
+  color: #006064;
+}
+
+
+.main_view_base{
+  display: flex;
+  margin-top: 10vh;
+}
+
+
+/*base*/
+.main_content_block{
+
+  justify-content:flex_start ;
+}
+
+
+
+/*base*/
+.content_main_view  {
+  width: 90%;
+  justify-content:flex_start ;
+
+}
+
+
+/* -________________________________________________2________________NAVBAR--------- */
+.nav-wrapper {
+  background-color:white;
+  color: #425940;
+}
+
+
+#user-icon{
+  font-size: 40px;
+  color: #425940;
+}
+#arrow-icon {
+  color: #425940;
+}
+#logo-color {
+  color: #425940;
+}
+.green-btn {
+  background-color:#757575;
+  color:#f7ebdc;
+}
+.green-btn:hover {
+  background-color: #9e9e9e ;
+}
+.green-btn:active {
+  background-color: #9e9e9e ;
+}
+#a-link {
+  color:#425940;
+}
+#a-link1 {
+  color:#425940;
+}
+
+
+
+
+
+
+
+/* --------------------------------------------------------------sidebar----MENU PANEL--- */
+.main_container{
+  display: flex;
+  flex-direction: column;
+}
+
+
+/*.link-side-panel {*/
+/*  color: #f7ebdc;*/
+/*  font-size: 20px;*/
+/*}*/
+/*.btn-side-panel {*/
+/*  border:none;*/
+/*  background-color: #8abfa2;*/
+/*  margin:5px;*/
+/*}*/
+/*.no-shadows{*/
+/*   box-shadow: none!important;*/
+/*}*/
+/*.btn-side-panel:hover {*/
+/*  border-left: 2px solid #425940;*/
+/*  background-color: #8abfa2;*/
+/*}*/
+
+
+.menu_panel{
+  width:100%;
+}
+
+.collapsible_no_border{
+  boder: None;
+  box-shadow: None;
+}
+.menu_panel_color {
+  background-color:#b2dfdb ;
+  border:None;
+
+}
+
+.menu_panel_color li{
+  font-size: large;
+  font-weight: bold;
+}
+
+
+
+
+.menu_panel_color li div:hover{
+  background-color: #80cbc4;
+}
+
+
+.menu_panel_color li div a:hover{
+  font: helvetica;
+  font-size: 1rem;
+  color: white;
+}
+
+
+
+
+.menu_panel_color li:active{
+  background-color: #4db6ac;
+}
+
+
+.menu_main_div{
+
+}
+
+
+
+
+/*---------------------------------------7 Modal*/
+
+.modal {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+
+
+
+
+
+/*-----------------------------------------------------------__COLORS*/
+
+
+/*LIGHTER GREEN #e0f2f1 teal lighten-5*/
+/*LIGHT GREEN - #b2dfdb teal lighten-4*/
+/*LIGHT TURQUOISE #b2ebf2 cyan lighten-4*/
+
+
+
+
+
+/*_________________________________________________________________________Bouttons ___________*/
+
+.speaker_btn_group{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 30%;
+}
+
+.edit_button {
+  background-color: #fdd835;
+  display: flex;
+  width: 7rem;
+  justify-content: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+
+.edit_btn_tbl{
+  background-color: #fdd835;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  font-weight: bold;
+  font-size: large;
+}
+.add_button {
+  background-color: #fdd835;
+  display: flex;
+  width: 7rem;
+  font-weight: bold;
+  font-size: large;
+}
+
+
+
+
+/*_____________PROJECT____________________________________________________-*/
+
+
+
+.project_description_block{
+  display: flex;
+  flex-direction: row;
+  height: 20%;
+  width: 100%;
+}
+
+
+
+.description_block{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 60%;
+  height: 25vh;
+
+  box-shadow: 5px 5px 5px #80cbc4;
+}
+
+.project_detail_block{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height:25vh;
+  width: 60%;
+  margin-top: 3rem;
+  background-color: white;
+}
+
+.project_detail{
+  display: flex;
+  /*flex-wrap: wrap;*/
+  width: 60%;
+}
+
+.project_detail div h4{
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight = bold;
+}
+
+.project_acquired_skills{
+  width: 30%;
+
+}
+
+.table_detail_project{
+  width: 100%;
+}
+
+
+.table_detail_project li{
+  height: 1rem ;
+  padding-left: 20px;
+  margin: 0 0 4px 0;
+  width: 80%;
+}
+
+.table_detail_project h4{
+
+}
+
+
+.table_detail_project ul{
+  height: 80%;
+}
+
+.table_detail_project li span{
+
+  height: 1rem ;
+  font-size: 1rem;
+  width: 80%;
+}
+
+.project_extra_detail {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  padding-top: 5rem;
+  justify-content: space-between;
+}
+
+
+.project_mission_table{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  justify-content: flex-end;
+}
+
+/*.add_mission_modal{*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  justify-content: space-between;*/
+/*}*/
+
+.add_mission_modal a{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.project_resource_table{
+  display: flex;
+  width:30%;
+  flex-direction: column;
+
+
+}
+
+/*________________________________________TEAM*/
+.main_container_team{
+  width: 90%;
+  /*display: flex;*/
+  /*flex-direction: row;*/
+
+}
+.team_button_group{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+}
+
+.team_button_group a{
+  margin: 0 20px 0 20px ; ;
+}
+
+.team_participant_list{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 10px;
+  padding-top: 0px ;
+  font-size: small;
+  font-weight: normal;
+}
+
+.team_participant_list li {
+  border: #4db6ac 1px solid;
+  background-color: whitesmoke;
+}
+
+.collection_participants{
+  width: 100%;
+
+}
+
+.team_title_project{
+  display: flex;
+  size: 3rem;
+  justify-content: flex-start;
+}
+
+.team_middle_container{
+  margin-top: 2rem;
+}
+
+
+.avatar img{
+  width: 20px;
+  height: 20px;
+}
+
+
+.team_mission_list{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+
+}
+
+.team_mission_table{
+  background-color: white;
+
+}
+
+/*.modal_participants{*/
+/*  width: 250px;*/
+/*  height: 250px;*/
+/*}*/
+
+
+
+/*_----------------------------------------------------MISSION*/
+
+
+.mission_container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 90%;
+  height: 100vh;
+}
+.mission_description{
+  display: flex;
+  height: 15vh;
+  margin-bottom: 5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  max-height: ;: 15%;
+  width: 90%;
+}
+
+
+div p.mission_description_text{
+  font-size: 1rem;
+  word-wrap: break-word;
+  width: 90%;
+  max-height: 15%;
+}
+
+.mission_extra_detail_box{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  height: 40%;
+
+}
+
+
+.mission_resource_list{
+  width: 70%;
+  height: 75%;
+  background-color: white;
+  margin-top: 1rem;
+}
+
+
+.mission_resource{
+  width: 30%;
+
+
+}
+
+.mission_detail_extra{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 70%;
+
+
+}
+
+.table_detail_mission{
+  display: flex;
+  width: 100%;
+  margin-top: 0px;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-wrap:wrap;
+}
+
+.table_detail_mission ul{
+  align-items: flex-end;
+}
+
+
+.mission_detail_box{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: flex-start;
+
+}
+
+.mission_detail_edit_button{
+  display: flex;
+  justify-content:flex-end ;
+  margin-right:10% ;
+}
+
+
+.table_detail_mission ul li span{
+  height:1rem;
+}
+
+.detail_container{
+  display: flex;
+  background-color: white;
+  width: 90%;
+  height: 75%;
+  background-color: white;
+  margin-top: 1rem;
+}
+
+.acquired_skills{
+  width: 40%;
+}
+
+
+.answer_section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: black solid 2px;
+  width: 80%;
+  height: 30%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*____________________________________________ANSWER*/
+
+
+
+
+.answer_block{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 30%;
+  width: 80%;
+  margin-top: 3rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*_____________________GLOBAL*/
+
+
+
+
+
+.section_header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.section_header h3{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+table{
+  background-color: whitesmoke;
+}
+
+.title{
+  font-weight: bold;
+}
+
+.small_title{
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 0px;
+}
+
+span{
+  font-size: small;
+
+}
+
+
+
+
+/*------------------------------------------------------COMMENT -DISCUSSION*/
+
+.discussion_box_modal{
+  /*background-color: #0b2e13;*/
+
+
+}
+
+.modal-content{
+  height: 200%;
+}
+/*.modal { width: 100% !important ; height: 100% !important ; }  !* increase the height and width as you desire *!*/
+.modal.bottom-sheet{
+  max-height: 150%;
+}
+
+
+.speech-bubble {
+  position: relative;
+  background: #7000bb;
+  border-radius: .4em;
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 0.969em solid transparent;
+  border-right-color: #7000bb;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -0.484em;
+  margin-left: -0.969em;
+}
+
+
+
+
+/*---------------------------------------------DISCUSSION*/
+
+.discussion_list{
+  width: 100%;
+  background-color: red;
+}

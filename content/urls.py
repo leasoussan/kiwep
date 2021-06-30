@@ -42,7 +42,8 @@ urlpatterns = [
          name="create_collective_mission"),
     path('update-individual-mission/<int:pk>', IndividualMissionUpdateView.as_view(), name="update_individual_mission"),
     path('update-collective-mission/<int:pk>', CollectiveMissionUpdateView.as_view(), name="update_collective_mission"),
-    path('delete-mission/<int:pk>', MissionDeleteView.as_view(), name="delete_mission"),
+    path('delete-individual-mission/<int:pk>', IndividualMissionDeleteView.as_view(), name="delete_individual_mission"),
+    path('delete-collective-mission/<int:pk>', CollectiveMissionDeleteView.as_view(), name="delete_collective_mission"),
     path('claim-mission/<int:pk>', ClaimMission.as_view(), name="claim_mission"),
     path('submit-mission/<int:pk>', StudentSubmitMission.as_view(), name='submit_mission'),
     path('validate-mission/<int:pk>', ValidateMission.as_view(), name='validate_mission'),
@@ -78,7 +79,7 @@ urlpatterns = [
     # ressource
     path('resource-list/<int:pk>', ProjectResourceListView.as_view(), name = "resource_list"),
     path('resource-detail/<int:pk>', ResourceDetailView.as_view(), name = "resource_detail"),
-    path('create-resource/', ResourceCreateView.as_view(), name = "create_resource"),
+    path('create-resource/<int:project_id>', ResourceCreateView.as_view(), name = "create_resource"),
     path('update-resource/<int:pk>', ResourceUpdateView.as_view(), name = "update_resource"),
     path('delete-resource/<int:pk>', ResourceDeleteView.as_view(), name = "delete_resource"),
 

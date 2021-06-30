@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (
    View
 )
@@ -7,7 +7,8 @@ from .forms import TeamAddForm
 
 
 def homepage_view(request):
-    return render(request, 'homepage.html')
+
+    return redirect('https://www.subscribepage.com/kiwep')
 
 # def date_message(request):
 #     context = {}

@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 from django.conf import settings
 from django import forms
 from django.db import transaction
-from .models import Student, Speaker, Representative, MyUser
+from .models import Student, Speaker, Representative, MyUser, InstitutionInvite, SpeakerInvite
 
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
@@ -24,7 +24,6 @@ class MyUserCreationForm(UserCreationForm):
     USER_TYPE = [
         ('is_student', _('student')),
         ('is_speaker', _('speaker')),
-        ('is_representative', _('representative')),
     ]
     usertype = forms.ChoiceField(choices=USER_TYPE, label='Who are you?')
     email = forms.EmailField(max_length=60, help_text='Required. Add a valid email address')
@@ -32,23 +31,15 @@ class MyUserCreationForm(UserCreationForm):
         model = MyUser
         fields = ['username', 'email', 'password1', 'password2', 'language_code']
 
-          # labels ={
+        #   labels ={
         #     'language_code': 'Language'
         # }
 
 
-    # TODO: future further validation or others
-    # def __init__(self, *args, **kwargs):
-    #     """
-    #       specifying styles to fields
-    #     """
-    #     super(MyUserCreationForm, self).__init__(*args, **kwargs)
-    #     for field in (
-    #     self.fields['email'], self.fields['username'], self.fields['password1'], self.fields['password2']):
-    #         field.widget.attrs.update({'class': 'form-control '})
-    #
-
-
+class MySpeakerCreationForm(MyUserCreationForm):
+    
+    usertype = forms.CharField(label='Who are you?', initial ='is_speaker', widget=forms.HiddenInput())
+    
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label='Email / Username')
@@ -89,3 +80,22 @@ class RepresentativeProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Representative
         fields = ['user']
+
+
+
+
+class InstitutionInviteForm(forms.ModelForm):
+
+    class Meta:
+        model = InstitutionInvite
+        fields = ['email']
+
+
+
+
+class SpeakerInviteForm(forms.ModelForm):
+    class Meta:
+        model = SpeakerInvite
+        fields = ['email', 'institution']
+
+
