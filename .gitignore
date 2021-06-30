@@ -13,7 +13,7 @@ staticfiles/
 pop_db.py
 seed.py
 
-#
-#**/migrations/**
-#**/migrations
-#**/migrations/__init__.py
+
+**/migrations/**
+**/migrations
+**/migrations/__init__.py
