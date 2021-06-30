@@ -193,7 +193,7 @@ class CreateProfile(View):
         profile_form = get_user_profile_form(request)
         user = request.user
         if user.is_speaker:
-            invites = user.recieved_invites.all()
+            invites = user.received_invites.all()
             if invites.exists():
                 institution= invites.first().institution
                 profile_form.fields['group'].queryset =  institution.group_set.all()
