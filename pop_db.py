@@ -116,7 +116,7 @@ def pop_speaker(n):
                 password = '123456',
                 phone_number = '+972 500000000',
                 profile_pic = 'media/profile/avatar.png',
-                city = City.objects.get(name='Tel-aviv'),
+                city = City.objects.get(name='tel-aviv'),
                 is_speaker = True,
                 )
             user.save()
@@ -151,7 +151,7 @@ def pop_student(n):
                 password = '123456',
                 phone_number = '+972 500000000',
                 profile_pic = 'media/profile/avatar.png',
-                city = City.objects.get(name='Tel-aviv'),
+                city = City.objects.get(name='tel-aviv'),
                 is_student = True
                 )
             user.save()

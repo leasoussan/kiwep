@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load materializecss %}
+{% load i18n %}
+
+{% block content %}
+
+
+    please see our invite here
+    <div>
+    <form method="post" action="{% url 'institution_invite' %}">
+        {% csrf_token %}
+        {{ form|materializecss }}
+        <button type="submit">{% trans 'send' %}</button>
+    </form>
+    </div>
+
+{% endblock %}

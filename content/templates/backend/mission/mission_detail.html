@@ -248,9 +248,19 @@
 
             <div class="comment_section">
 
+                {#                <!-- Modal Trigger -->#}
+                {#                <a class="waves-effect waves-light btn modal-trigger" href="#discussion_board">{% trans 'discussion_board' %}</a>#}
 
-                <!-- Modal Trigger -->
-                <a class="waves-effect waves-light btn modal-trigger" href="#discussion_board">{% trans 'discussion_board' %}</a>
+                <ul class="collapsible discussion_table">
+                       {% for discussion in object.discussions.all %}
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ discussion.title }}</div>
+
+                        <div class="collapsible-body"></div>
+                    </li>
+                    {% endfor %}
+
+                </ul>
 
             </div>
 
@@ -315,28 +325,28 @@
 
     <!-- Modal Structure  Discussion -->
 
-     <div id="discussion_board" class="modal bottom-sheet">
-    <div class="row modal-content">
+    <div id="discussion_board" class="modal bottom-sheet">
+        <div class="row modal-content">
 
-        <h4>{% trans 'start_disucssion' %}</h4>
-        {% if individualmission %}
+            <h4>{% trans 'start_disucssion' %}</h4>
+            {% if individualmission %}
 
-            {% include 'comments/discussion.html' with object=individualmission %}
+                {% include 'comments/discussion.html' with object=individualmission %}
 
-        {% else %}
+            {% else %}
 
-            {% include 'comments/discussion.html' with object=collectivemission %}
-        {% endif %}
+                {% include 'comments/discussion.html' with object=collectivemission %}
+            {% endif %}
 
 
+
+        </div>
+
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
+        </div>
 
     </div>
-
-    <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
-    </div>
-
-     </div>
 
 
 
@@ -355,6 +365,9 @@
             $('.modal').modal();
 
             $('.tabs').tabs();
+
+            $('.collapsible').collapsible();
+
 
         });
     </script>
