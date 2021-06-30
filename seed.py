@@ -22,11 +22,12 @@ from django.contrib.auth import get_user_model
 
 
 
-fields_list = ['Economics', 'Digital', 'Commercial', 'Artisitic', 'Fashion', 'Other', 'Leadership', 'SelfLearner','TeamPLayer' ]
+fields_list = ['Problem solving','Autonomy', 'Rigor', 'Initiative', 'Team spirit', 'Leadership', 'Communication', 'Creativity', 'Emotional intelligence', 'Critical spirit', 'Self confidence', 'Flexibility', 'Time management', 'Stress management', 'Fiability', 'Determination', 'Stress management', 'Empathy']
 skill_type = ['hard', 'soft']
 
 def pop_field(skill_type):
-    skill = random.choice(skill_type)
+    # skill = random.choice(skill_type)
+    skill = 'soft'
     for f in fields_list:
         f = Field.objects.get_or_create(name=f, skills_type=skill)
 
@@ -35,7 +36,7 @@ def pop_field(skill_type):
 
 
 
-institution_category_list = ['School', 'University', 'Institution', 'organization', 'Independent', 'None-Profit']
+institution_category_list = ['High-School', 'University', 'organization']
 
 def pop_institution_category_list(institution_category_list):
     for institution in institution_category_list:
@@ -57,32 +58,32 @@ def pop_institution_category_list(institution_category_list):
 #         country = City.objects.get_or_create(name = city, country=country)
 
 
-
+countries =['Israel', 'France', 'United Kingdom' , 'United State' ]
 def pop_country():
-    country =Country.objects.get_or_create(name='Israel')
-    country2 =Country.objects.get_or_create(name='France')
+    for country in countries:
+        country = Country.objects.get_or_create(name=country)
 
-    print(f"the Country  {country} {country2} was created")
+        print(f"the Country  {country} was created")
 
 
 
 def pop_city():
-    city = City.objects.get_or_create(name='Tel-aviv', country = Country.objects.filter(name='Israel')[0]),
-
-    print(f"the City  {city} was created")
-
-
+    city1 = City.objects.get_or_create(name='tel-aviv', country = Country.objects.filter(name='Israel')[0]),
+    city2 = City.objects.get_or_create(name='paris', country=Country.objects.filter(name='France')[0]),
+    print(f"the City  {city1}  {city2}was created")
 
 
 
 
 
-fields_list = ['Economics', 'Digital', 'Commercial', 'Artisitic', 'Fashion', 'Other', 'Leadership', 'SelfLearner','TeamPLayer' ]
-skill_type = ['hard', 'soft']
 
-def pop_field(skill_type):
-    skill = random.choice(skill_type)
-    for f in fields_list:
+
+fields_list_hard = ['No Code' , 'Personal development', 'Entrepreneurship']
+
+
+def pop_field_hard(skill_type):
+    skill = 'hard'
+    for f in fields_list_hard:
         f = Field.objects.get_or_create(name=f, skills_type=skill)
 
     print(f"the Field {f} was created")
@@ -138,6 +139,7 @@ def pop_skills(n):
 
 
 pop_field(fields_list)
+pop_field_hard(fields_list_hard)
 pop_institution_category_list(institution_category_list)
 
 pop_country()
