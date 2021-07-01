@@ -46,8 +46,9 @@ body h4{
 
 /*base*/
 .main_content_block{
-width: 100%;
+  width: 100%;
   justify-content:flex_start ;
+  min-height: 100vh;
 }
 
 
@@ -59,6 +60,7 @@ width: 100%;
   border-left: 2px solid whitesmoke;
   padding-left: 2rem;
   padding-right: 2rem;
+  min-height: 100vh;
 }
 
 .icon_color_dd{
@@ -734,7 +736,7 @@ div p.mission_description_text{
 }
 
 .answer_content{
-display: flex;
+  display: flex;
   flex-direction: column;
   width: 80%;
   height: 30%;
