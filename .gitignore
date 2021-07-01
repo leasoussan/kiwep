@@ -11,5 +11,5 @@ staticfiles/
 .vscode/
 
 pop_db.py
-seed.py
+#seed.py
 
