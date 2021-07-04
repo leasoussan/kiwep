@@ -69,9 +69,10 @@ class AddMemberTeamForm(ModelForm):
 
 class MissionAddForm(ModelForm):
     pass
+    
 
 
-mission_fields = (
+mission_fields = [
     'name',
     'response_type',
     'stage',
@@ -82,14 +83,8 @@ mission_fields = (
     'points',
     'acquired_skill',
     'due_date',
-)
+]
 
-due_date = forms.DateField(
-    widget=django.forms.DateInput(
-        format='%d/%m/%Y',
-        attrs={'type': 'date'}),
-    # input_formats=('%d-%m-%Y',),
-)
 
 
 class IndividualMissionAddForm(ModelForm):
@@ -168,15 +163,6 @@ IndividualMissionFormSet = inlineformset_factory(
     fields=mission_fields,
     extra=1)
 
-#
-class SubmitMissionForm():
-#     class Meta:
-#         model = IndividualCollectiveMission
-#         fields = [
-#             'response_comment',
-#             'response_file',
-#         ]
-    pass
 
 
 

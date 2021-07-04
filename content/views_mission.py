@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from message.forms import AddAnswerForm, MissionSpeakerStatusAnswerForm
 from .models import Mission, CollectiveMission, Team, IndividualMission, IndividualCollectiveMission
 from django.forms import ModelForm
-from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm, \
+from .forms import MissionAddForm, IndividualMissionAddForm, CollectiveMissionAddForm, \
     CollectiveMissionAssign, ValidateMissionForm, ResourceAddForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
@@ -65,7 +65,8 @@ class AddIndividualMissionView(SpeakerStatuPassesTestMixin, View):
 
         if form.is_valid():
             mission = form.save(commit=False)
-            mission.project_id= kwargs['project_id']
+            mission.project_id=kwargs['project_id']
+            mission.mission_type = 'i'
             mission.owner = self.request.user
             mission.save()
         return redirect('project_detail', kwargs['project_id'])
@@ -91,6 +92,7 @@ class AddCollectiveMissionView(SpeakerStatuPassesTestMixin, View):
         if form.is_valid():
             collective_mission = form.save(commit=False)
             collective_mission.project_id = kwargs['project_id']
+            collective_mission.mission_type = 'c'
             collective_mission.owner = self.request.user
             collective_mission.save()
 
@@ -279,16 +281,6 @@ class UnclaimMission(StudentStatuPassesTestMixin, RedirectView):
 
 
 
-class StudentSubmitMission(StudentStatuPassesTestMixin, UpdateView):
-
-    ''' An answer can be saved and unsubmited- here is the submit  '''
-    model = IndividualMission
-    form_class = SubmitMissionForm
-    # fields = [
-    #         'response_comment',
-    #         'response_file',
-    #     ]
-    template_name = 'backend/mission/mission_detail.html'
 
 
 # on the get contex data im adding  the context that I get in the page. here it mean that when I call this view ill get to add in the kward update 

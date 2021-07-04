@@ -129,22 +129,36 @@ class IndividualMissionModelManager(models.Manager):
 class MissionQuerySet(models.QuerySet):
     """ QUERYSET are Connected to a Manager to make specific requests"""
 
-    def speaker_missions(self):
-        return self.filter(owner = self.request.user)
 
-    
+
+    def individual(self):
+        return self.filter(mission_type='i')
+
+    def collective(self):
+        return self.filter(mission_type='c')
+
+    def collective_individual(self):
+        return self.filter(mission_type='ci')
+
+
+
 
 
 class MissionModelManager(models.Manager):
     """ Managers are a way to get specifi data from a Model with the help of a queryset """
 
     def get_queryset(self):
-        return MissionQuerySet(self.model, using = self._db)
+        return MissionQuerySet(self.model, using= self._db)
 
-    def speaker_missions(self):
-        return self.get_queryset().speaker_missions()
+    def individual(self):
+        return self.get_queryset().individual()
 
-    
+    def collective(self):
+        return self.get_queryset().collective()
+
+    def collective_individual(self):
+        return self.get_queryset().collective_individual()
+
 
 # ---------------------------------Resource ---Manager__queryset
 

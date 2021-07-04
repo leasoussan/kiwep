@@ -113,6 +113,13 @@ class Mission(AnswerModel):
         ('power_p', 'Power Point'),
         ('image', 'image'),
     ]
+
+    MISSION_TYPE = [
+        ('i', _('individual_mission')),
+        ('c', _('collective_mission')),
+        ('ci', _('collective_Individual_mission')),
+    ]
+    
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     stage = models.CharField(max_length=10, choices=STAGE_CHOICE, default='start')
     response_type = models.CharField(max_length=200, choices=RESPONSE_TYPE, default=None)
@@ -126,11 +133,10 @@ class Mission(AnswerModel):
     acquired_skill = models.ManyToManyField(Skills, blank =True)
     created_date = models.DateField(auto_now_add=True)
     due_date = models.DateField(default=timezone.now)
+    mission_type = models.CharField(max_length=5, choices=MISSION_TYPE)
 
-    # objects = MissionModelManager()
+    objects = MissionModelManager()
 
-    class Meta:
-        abstract = True
 
     def __str__(self):
         return f"Mission Name : {self.name}"
@@ -183,11 +189,12 @@ class CollectiveMission(Mission):
     Therefore each participants will have this mission attributed to him """
     attributed_to = models.ManyToManyField(Student, through='IndividualCollectiveMission',
                                            related_name="my_team_missions", blank=True)
+
     hard_skill_rating = GenericRelation(MissionValue)
     objects = CollectiveMissionModelManager()
 
     def __str__(self):
-        return f"Missions of Team: {self.project.team}"
+        return f"Missions of Team: {self.project}"
 
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk": self.pk})
@@ -201,6 +208,7 @@ class CollectiveMission(Mission):
 
 class IndividualCollectiveMission(AnswerModel):
     """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
+
 
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")
     parent_mission = models.ForeignKey(CollectiveMission, on_delete= models.CASCADE)
