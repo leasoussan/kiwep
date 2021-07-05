@@ -43,7 +43,9 @@ body h4{
   margin-top: 10vh;
 }
 
+.team_list_table{
 
+}
 /*base*/
 .main_content_block{
   width: 100%;
@@ -816,7 +818,7 @@ div p.mission_description_text{
 
 table{
   background-color: white;
-  width: 90%;
+  width: 100%;
 }
 
 .title{
