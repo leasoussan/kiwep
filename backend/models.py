@@ -50,6 +50,7 @@ class Institution(models.Model):
     joined_date = models.DateField(auto_now_add=True)
     website = models.URLField()
     description = models.TextField()
+    join_code = models.CharField(max_length=10, unique=True)
 
     def __str__(self):
         return f'{self.name}'

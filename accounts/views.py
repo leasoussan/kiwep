@@ -87,12 +87,13 @@ class Register(View):
 
         return render(request, 'registration/register.html', {"form":form})
 
+# __________________________________________________________________________________________
 
 
 
 
 
-# -----------------------------------------------------------------------------------------------
+
 
 
 def is_key_valid(request, key, use= False):
@@ -117,6 +118,7 @@ def is_key_valid(request, key, use= False):
     return True
 
 
+# -----------------------------------------------------------------------------------------------
 
 class InstitutionInviteView(View):
     def get(self, request, **kwargs):
@@ -200,6 +202,8 @@ class CreateProfile(View):
         user_form = UserForm(instance =request.user)
         profile_form = get_user_profile_form(request)
         user = request.user
+
+
         if user.is_speaker:
             invites = user.received_invites.all()
             if invites.exists():
@@ -212,6 +216,7 @@ class CreateProfile(View):
 
 
     def post(self, request):
+
         user_form = UserForm(request.POST, instance= request.user)
         profile_form = get_user_profile_form(request)
         user = request.user
@@ -221,6 +226,8 @@ class CreateProfile(View):
             user_form.save()
             object= profile_form.save(commit=False)
 
+
+
             if request.user.is_representative:
                 object.representative = Representative.objects.get_or_create(user=request.user)[0]
             else:
@@ -229,6 +236,13 @@ class CreateProfile(View):
             if user.is_speaker:
                 for invite in user.received_invites.all():
                     object.institution.add(invite.institution)
+
+            elif user.is_student:
+                join_code = profile_form.cleaned_data['join_code']
+                if Institution.objects.filter(join_code = join_code).exists():
+                    inst = Institution.objects.get(join_code=join_code)
+
+
             return redirect('dashboard')
 
 
