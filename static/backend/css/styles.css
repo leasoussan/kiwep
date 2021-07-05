@@ -49,7 +49,7 @@ body h4{
 /*base*/
 .main_content_block{
   width: 100%;
-  justify-content:flex_start ;
+  justify-content:flex-start ;
   min-height: 100vh;
 }
 
@@ -58,7 +58,7 @@ body h4{
 /*base*/
 .content_main_view  {
   width: 90%;
-  justify-content:flex_start ;
+  justify-content:flex-start ;
   border-left: 2px solid whitesmoke;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -167,7 +167,6 @@ body h4{
 }
 
 .active, .btn:hover {
-  background-color: #666;
   color: white;
 }
 

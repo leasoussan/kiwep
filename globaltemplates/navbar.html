@@ -9,7 +9,7 @@
                 <a href="#" id="logo-color"class="brand-logo center">{% trans 'welcome'%} {{user.first_name}} {{ user.get_user_type }}</a>
             {% endif %}
             <ul id="nav-mobile" class="left">
-                <li><a class="waves-effect waves-light btn green-btn" href="{% url 'dashboard' %}">Back</a></li>
+{#                <li><a class="waves-effect waves-light btn green-btn" href="{% url 'dashboard' %}">Back</a></li>#}
             </ul>
             <ul id="slide-out" class="right hide-on-med-and-down">
                 <li class="nav-item launguage">
@@ -34,14 +34,14 @@
                 {% if user.is_authenticated %}
 
                     <li><a>
-                        <i class="large material-icons" id="user-icon" >account_circle</i>
+                        <a href="{% url 'profile' user.id  %}"><i class="large material-icons" id="user-icon" >account_circle</i></a>
                     </a></li>
 
                     <!-- Dropdown Structure -->
 
                     <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right icon_color_dd">arrow_drop_down</i></a></li>
                     <ul id="dropdown1" class="dropdown-content">
-                        <li><a id = "a-link" href="{% url 'profile' user.id  %}">{% trans 'profile'  %}</a></li>
+                        <li><a id = "a-link" href="{% url 'edit_profile' %}">{% trans 'edit_profile'  %}</a></li>
                         <li><a id = "a-link1" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
                         <li class="divider"></li>
                         <li><a id = "a-link1" href="#">{% trans 'other' %}</a></li>
