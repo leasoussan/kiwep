@@ -65,7 +65,7 @@ class ResourceCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
                 project.resources.add(resource.id)
                 print('your resource was saved"')
 
-            return redirect('project_detail', project.id)
+            return redirect('resource_detail', resource.id)
 
         return render(request, 'crud/create.html', {'form': form})
 

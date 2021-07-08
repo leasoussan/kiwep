@@ -6,15 +6,11 @@
 {% load materializecss %}
 
 
-
-
-
-
 {% block content %}
     <div class="mission_container">
-
+{{ object.parent }}
         <div>
-            <a href="{% url 'project_detail' object.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
+            <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
         </div>
 
         <div class=" mission_description">
