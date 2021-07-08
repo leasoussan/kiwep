@@ -55,7 +55,7 @@ class Register(View):
         return render(request, 'registration/register.html', context)
 
     def post(self, request):
-        form = MyUserCreationForm(request.POST)
+        form = MyUserCreationForm(request.POST, request.FILES,)
 
         if form.is_valid():
             user = form.save()
@@ -63,7 +63,7 @@ class Register(View):
             password = form.cleaned_data['password1']
 
             usertype=form.cleaned_data['usertype']
-
+            image = form.cleaned_data['image']
 
             setattr(user, usertype, True)
 
@@ -272,7 +272,7 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
 
 
     def post(self, request):
-        user_form = UserForm(request.POST, instance = request.user)
+        user_form = UserForm(request.POST, request.FILES, instance=request.user)
 
         profile_form = get_user_profile_form(request, edit =True)
 

@@ -20,6 +20,8 @@ class ProjectAddForm(ModelForm):
             'difficulty',
             'points',
             'is_template',
+            'required_skills',
+            'acquired_skills'
         ]
 
         # exclude = ['completed', 'created_by']

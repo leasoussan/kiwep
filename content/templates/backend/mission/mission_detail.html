@@ -36,14 +36,6 @@
                         </div>
                     {% endfor %}
 
-
-                    {% for resource in object.project.resources.all %}
-                        <div>
-                            <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
-                        </div>
-                    {% endfor %}
-
-
                 </div>
             </div>
 
@@ -62,25 +54,26 @@
 
 
                         <div class="table_detail_mission ">
-                            <ul >
+                            <ul>
                                 <li>
                                     <span class="label">{% trans 'field' %}:</span>
                                     <span class="value">{{object.field}}</span>
+
                                 </li>
                                 <li>
-                                    <span class="label">{% trans 'dead_line' %}</span>
+                                    <span class="label">{% trans 'dead_line' %}:</span>
                                     <span class="value">{{object.due_date}}</span>
                                 </li>
                                 <li >
-                                    <span class="label">{% trans 'difficulty ' %}</span>
+                                    <span class="label">{% trans 'difficulty ' %}:</span>
                                     <span class="value">{{object.level}}</span>
                                 </li>
                                 <li>
-                                    <span class="label">{% trans 'points' %}</span>
+                                    <span class="label">{% trans 'points' %}:</span>
                                     <span class="value">{{object.points}}</span>
                                 </li>
                                 <li>
-                                    <span class="label">{% trans 'typ' %}</span>
+                                    <span class="label">{% trans 'typ' %}:</span>
                                     <span class="value">{{object.points}}</span>
                                 </li>
                             </ul>

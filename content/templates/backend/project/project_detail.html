@@ -12,8 +12,9 @@
         <div class="row project_description_block" >
             <div class="description_block ">
 
+                <h3 class="title"> {{ project.name }}</h3>
+
                 <p>{{project.description}}</p>
-                <a href ="{url 'project_detail' team.project.id %}">{% trans 'read_more_porject' %}</a>
 
             </div>
             <div class="speaker_btn_group">
@@ -42,15 +43,15 @@
                             <span class="value">{{project.field}}</span>
                         </li>
                         <li>
-                            <span class="label">{% trans 'time_to_complete' %}</span>
+                            <span class="label">{% trans 'time_to_complete' %}:</span>
                             <span class="value">{{project.time_to_complete}} {% trans 'days' %}</span>
                         </li>
                         <li >
-                            <span class="label">{% trans 'difficulty ' %}</span>
+                            <span class="label">{% trans 'difficulty ' %}:</span>
                             <span class="value">{{project.difficulty}}</span>
                         </li>
                         <li>
-                            <span class="label">{% trans 'points' %}</span>
+                            <span class="label">{% trans 'points' %}:</span>
                             <span class="value">{{project.points}}</span>
                         </li>
                     </ul>
@@ -58,16 +59,15 @@
 
             </div>
 
-            <div class="project_acquired_skills title" >
+            <div class="project_acquired_skills" >
 
                 <div>
-                    <div style = "margin-left: 15px "><p class ="title">{% trans 'acquired_skills' %}</p></div>
+                      <h4 class ="title">{% trans 'acquired_skills' %}</h4>
                     {% for skill in project.acquired_skills.all %}
-                        <li class="collection-item">{{skill.name}}</li>
+                        <li class="list_text">{{skill.name}}</li>
                     {% endfor %}
                     </ul>
                 </div>
-
 
             </div>
 
@@ -203,56 +203,56 @@
     </div>
 
 
-        {#    <-- -----------MODAL WITH MATERIALIZE MISSIONS-------- -->#}
+    {#    <-- -----------MODAL WITH MATERIALIZE MISSIONS-------- -->#}
 
-        <!-- Modal Structure -->
-        <div id="add_mission" class="modal">
-            <div class="modal-content">
-                <div class="row">
-                    <div class="col s12">
+    <!-- Modal Structure -->
+    <div id="add_mission" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12">
 
-                        <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-                            <li class="tab col s5"><a class="active" href="#AddIndividualMission">{% trans 'individual_mission'%}</a></li>
-                            <li class="tab col s5"><a  href="#AddCollectiveMission">{% trans 'collective_mission'%}</a></li>
-                        </ul>
-
-
-                    </div>
-                    <div>
-                        <div id="AddIndividualMission" class="col s12">
-                            <h4>{% trans 'individual_mission'%}</h4>
-
-                            <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' project.id %}' >
-                                {% csrf_token %}
-                                {{ individual_form|materializecss }}
-                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
-                                    {% trans 'save'%}</button>
-                            </form>
-
-                        </div>
+                    <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+                        <li class="tab col s5"><a class="active" href="#AddIndividualMission">{% trans 'individual_mission'%}</a></li>
+                        <li class="tab col s5"><a  href="#AddCollectiveMission">{% trans 'collective_mission'%}</a></li>
+                    </ul>
 
 
+                </div>
+                <div>
+                    <div id="AddIndividualMission" class="col s12">
+                        <h4>{% trans 'individual_mission'%}</h4>
 
-                        <div id="AddCollectiveMission" class="col s12">
-                            <h4>{% trans 'collective_mission'%}</h4>
-
-                            <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' project.id %}' >
-                                {% csrf_token %}
-                                {{ collective_form|materializecss }}
-                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
-                                    {% trans 'save' %}</button>
-                            </form>
-
-                        </div>
+                        <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' project.id %}' >
+                            {% csrf_token %}
+                            {{ individual_form|materializecss }}
+                            <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                {% trans 'save'%}</button>
+                        </form>
 
                     </div>
 
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat green-btn">close</a>
+
+
+                    <div id="AddCollectiveMission" class="col s12">
+                        <h4>{% trans 'collective_mission'%}</h4>
+
+                        <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' project.id %}' >
+                            {% csrf_token %}
+                            {{ collective_form|materializecss }}
+                            <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                {% trans 'save' %}</button>
+                        </form>
+
                     </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat green-btn">close</a>
                 </div>
             </div>
         </div>
+    </div>
 
 
 
@@ -269,23 +269,23 @@
 
 
 
-        {#    ----------------------------------------------------------------Add Resource Modal#}
+    {#    ----------------------------------------------------------------Add Resource Modal#}
 
-        <div id="add_resource" class="modal">
-            <div class="modal-content">
-                {% trans 'add_resource' %}
+    <div id="add_resource" class="modal">
+        <div class="modal-content">
+            {% trans 'add_resource' %}
 
-                <form method="POST" class="form-horizontal" action='{% url 'create_resource' project.id %}' >
-                    {% csrf_token %}
-                    {{ resources_form|materializecss }}
-                    <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
-                        {% trans 'save'%}</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
-            </div>
+            <form method="POST" class="form-horizontal" action='{% url 'create_resource' project.id %}' >
+                {% csrf_token %}
+                {{ resources_form|materializecss }}
+                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                    {% trans 'save'%}</button>
+            </form>
         </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
+        </div>
+    </div>
 
 
 {% endblock %}

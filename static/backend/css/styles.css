@@ -382,7 +382,6 @@ body h4{
 
 .project_acquired_skills{
   width: 30%;
-
 }
 
 .table_detail_project{
@@ -397,9 +396,6 @@ body h4{
   width: 80%;
 }
 
-.table_detail_project h4{
-
-}
 
 
 .table_detail_project ul{
@@ -407,10 +403,10 @@ body h4{
 }
 
 .table_detail_project li span{
-
   height: 1rem ;
   font-size: 1rem;
   width: 80%;
+  font-weight: normal;
 }
 
 .project_extra_detail {
@@ -755,10 +751,40 @@ div p.mission_description_text{
   max-height: 60%;
 }
 
+.container_resource{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
 
 
+.resource_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+.resource_detail{
+  display : flex;
+  flex-direction:row;
+    margin-top: 3rem;
 
+}
 
+.resource_description_box{
+  width: 50%;
+}
+
+.resource_description{
+  width: 100%;
+  font-size: medium;
+}
+
+.resource_img_box{
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+}
 
 
 
@@ -830,10 +856,11 @@ table{
   font-size: 2rem;
   margin-bottom: 30px;
 }
-.small_title{
+.table_detail_project{
   font-weight: bold;
   font-size: 1rem;
   margin-bottom: 0px;
+  color: #0d3349;
 }
 
 /*span{*/
@@ -847,6 +874,7 @@ list_text{
 
 .list_text{
   font-weight:bold;
+  font-size: medium;
 }
 
 

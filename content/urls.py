@@ -6,7 +6,6 @@ from content.views_resource import *
 from .views import *
 
 
-
 urlpatterns = [
 
     path('', homepage_view, name = 'homepage'),

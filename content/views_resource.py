@@ -38,7 +38,6 @@ class ResourceDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     def get_object(self):
         pk = self.kwargs.get('pk')
-
         return get_object_or_404(Resource, pk=pk)
 
 
@@ -54,7 +53,7 @@ class ResourceCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
 
     def post(self, request, *args, **kwargs):
         project = Project.objects.get(id=self.kwargs['project_id'])
-        form = ResourceAddForm(request.POST)
+        form = ResourceAddForm(request.POST, request.FILES,)
 
         if request.method == "POST":
             if form.is_valid():
@@ -62,8 +61,8 @@ class ResourceCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
                 print(resource)
                 resource.owner = self.request.user
                 resource.save()
-                project.resources.add(resource.id)
-                print('your resource was saved"')
+                project.resources.add(resource)
+                print('your resource was saved"', project.id)
 
             return redirect('resource_detail', resource.id)
 
