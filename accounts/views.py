@@ -15,7 +15,6 @@ from .forms import (
     UserForm,
     StudentProfileCreationForm,
     SpeakerProfileCreationForm,
-    RepresentativeProfileCreationForm,
     UserForm,
     LoginForm, InstitutionInviteForm, MySpeakerCreationForm, InstitutionCreationForm
 )
@@ -183,7 +182,7 @@ def get_user_profile_form(request, edit=False):
 
 
     elif user.is_representative:
-        profile_form =  InstitutionAddForm(data)
+        profile_form = InstitutionAddForm(data)
 
     return profile_form
 
@@ -204,7 +203,7 @@ class CreateProfile(View):
             invites = user.received_invites.all()
             if invites.exists():
                 institution= invites.first().institution
-                profile_form.fields['group'].queryset =  institution.group_set.all()
+                profile_form.fields['group'].queryset = institution.group_set.all()
 
         return render(request, 'accounts/profile/edit_profile.html', {'profile_form': profile_form,
                                                                       'user_form': user_form,}

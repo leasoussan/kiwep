@@ -180,7 +180,7 @@ def pop_student(n):
 def pop_resources(n):
     if Resource.objects.count() == 0:
         for r in range(n):
-            name = 'Resource {resource}'
+            name = f'Resource {r}'
             link = "www.google.com"
             image =  'image/default.png'
             file_rsc = 'null'
@@ -201,7 +201,7 @@ bool = [True, False ]
 def pop_project(n):
     if Project.objects.count() == 0:
         for project in range(n+1):
-            name = "Kiwep {n}"
+            name = f"Kiwep {project}"
             title = "Welcome to Kiwep Project "
             required_skills = "desire to learn"
             acquired_skills = "Digital"
