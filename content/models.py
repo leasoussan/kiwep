@@ -42,7 +42,7 @@ class Resource(DiscussionModel):
         return f"Ressource Name : {self.name}"
 
     def get_absolute_url(self):
-        return reverse("resource_detail", kwargs={"pk":self.pk})
+        return reverse("project_detail", kwargs={"pk":self.pk})
 
 
     def get_resourceImg_or_default(self, default_path= 'resources/default.png'):

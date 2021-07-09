@@ -8,12 +8,13 @@
 
 {% block content %}
     <div class="mission_container">
-{{ object.parent }}
+
         <div>
             <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
         </div>
 
         <div class=" mission_description">
+            <h3 class="title">{{ object.project.name }}</h3>
             <p class="mission_description_text"> {{ object.description }}</p>
             <div>
             </div>
@@ -21,7 +22,7 @@
 
 
 
-        <div class="row mission_extra_detail_box" style="background-color: #0a6aa1">
+        <div class="row mission_extra_detail_box" >
             <div class="col mission_resource">
                 <div class="mission_resource_add_btn">
                     <!-- Modal Trigger -->
@@ -29,13 +30,13 @@
 
                 </div>
                 <div class="mission_resource_list">
-
-                    {% for resource in object.resources.all  %}
+{% if object.project.resources %}
+                    {% for resource in object.project.resources.all   %}
                         <div>
                             <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
                         </div>
                     {% endfor %}
-
+{% endif %}
                 </div>
             </div>
 
@@ -81,10 +82,11 @@
                         </div>
                     </div>
 
-                    <div class="col acquired_skills"><p class ="small_title">{% trans 'acquired_skills' %}</p>
+                    <div class="col acquired_skills">
+                        <h5 class ="small_title">{% trans 'acquired_skills' %}</h5>
 
                         <div>
-                            {% for skill in project.acquired_skills.all %}
+                            {% for skill in object.acquired_skill.all %}
                                 <li class="collection-item">{{skill.name}}</li>
                             {% endfor %}
                         </div>
@@ -95,7 +97,7 @@
             </div>
         </div>
 
-        <div class ="answer_block"  style=background-color:teal>
+        <div class ="answer_block">
 
             {# --------  Speaker__________________________________#}
             {# ______________________________________________________________________________________________________________________________INDIVIDUAL attributed_to___ CALL_______________#}
@@ -104,9 +106,10 @@
 
                 {% if individualmission  %}
                     {% if not object.attributed_to  %}
-                        <div>
-                            {% trans 'mission_unclaimed' %}
+                        <div class="mission_status">
+                        <h5>{% trans 'mission_status' %}:</h5>
                         </div>
+                        <p>   {% trans 'mission_unclaimed' %}</p>
                     {% else %}
                         <div>
                             <h3>{% trans 'mission_is_attributed_to' %}{{ object.attributed_to }}</h3>
@@ -266,55 +269,55 @@
 
                 <ul class="collapsible discussion_table">
                     {% for discussion in object.discussions.all %}
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ discussion.title }}</div>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ discussion.title }}</div>
 
-                        <div class="collapsible-body">
-                            {% if not discussion.replies.exists %}
+                            <div class="collapsible-body">
+                                {% if not discussion.replies.exists %}
 
-                                <div class="add_comment_input">
+                                    <div class="add_comment_input">
 
-                                    <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}">
+                                        <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}">
+                                            {% csrf_token %}
+                                            {{ discussion.comment_form|materializecss }}
+                                            <div class="col s1">
+                                                <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>
+                                            </div>
+                                        </form>
+
+
+                                    </div>
+
+                                {% else %}
+
+
+                                    {% for comment in discussion.replies.all %}
+                                        {% if comment.user.profile == request.user.profile %}
+
+                                            <div class="speech-bubble-left user_comment">
+                                                {{ comment.comment_text }}
+                                            </div>
+                                        {% else %}
+                                            <div class="speech-bubble-right profile_comment">
+                                                {{ comment.comment_text}}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+
+
+                                    <div class="add_comment_input">
+
+                                    <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >
                                         {% csrf_token %}
                                         {{ discussion.comment_form|materializecss }}
                                         <div class="col s1">
                                             <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>
                                         </div>
                                     </form>
+                                {% endif %}
 
-
-                                </div>
-
-                            {% else %}
-
-
-                                {% for comment in discussion.replies.all %}
-                                    {% if comment.user.profile == request.user.profile %}
-
-                                        <div class="speech-bubble-left user_comment">
-                                            {{ comment.comment_text }}
-                                        </div>
-                                    {% else %}
-                                        <div class="speech-bubble-right profile_comment">
-                                            {{ comment.comment_text}}
-                                        </div>
-                                    {% endif %}
-                                {% endfor %}
-
-
-                                <div class="add_comment_input">
-
-                                <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >
-                                    {% csrf_token %}
-                                    {{ discussion.comment_form|materializecss }}
-                                    <div class="col s1">
-                                        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>
-                                    </div>
-                                </form>
-                            {% endif %}
-
-                </ul>
-                {% endfor %}
+                        </ul>
+                    {% endfor %}
             {% endif %}
         </div>
 
@@ -420,7 +423,6 @@
             $('.tabs').tabs();
 
             $('.collapsible').collapsible();
-
 
         });
     </script>

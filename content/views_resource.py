@@ -38,6 +38,7 @@ class ResourceDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     def get_object(self):
         pk = self.kwargs.get('pk')
+        project = Project.objects.get(id=self.kwargs['project_id'])
         return get_object_or_404(Resource, pk=pk)
 
 
@@ -64,7 +65,7 @@ class ResourceCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
                 project.resources.add(resource)
                 print('your resource was saved"', project.id)
 
-            return redirect('resource_detail', resource.id)
+            return redirect('project_detail', project.id)
 
         return render(request, 'crud/create.html', {'form': form})
 

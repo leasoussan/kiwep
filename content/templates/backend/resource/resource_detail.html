@@ -14,7 +14,8 @@
         <div class="navigation_btn">
             {#    <a href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a> {# TODO:AVI Check #}
 
-            {% if resource in resource.individualmission.resources.all %}
+        {{ object }}
+            {% if resource in resource.project.all %}
                 here
                 <a href="{% url  'individual_mission_detail' resource.mission_set.id %}">{% trans 'back_to_mission' %}</a>
             {% elif collectivemission %}
