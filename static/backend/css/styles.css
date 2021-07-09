@@ -352,10 +352,13 @@ body h4{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 60%;
+  width: 80%;
   height: 25vh;
-
   box-shadow: 5px 5px 5px #80cbc4;
+}
+
+.description_block{
+  flex-wrap: wrap;
 }
 
 .project_detail_block{
