@@ -38,8 +38,8 @@
                     <p class="resource_description">{{resource.text}}</p>
                 </div>
                 <div class="resource_img_box">
-{{ resource.image.url }}
-                    <img class="item_img"  src="{{ resource.image.url }}" alt="{{ resource.title }}" style = 'width: 300px; height: 300px;;'>
+
+                    <img class="item_img"  src="{{ resource.get_resourceImg_or_default }}" alt="{{ resource.title }}" style = 'width: 300px; height: 300px;;'>
                 </div>
 
             </div>

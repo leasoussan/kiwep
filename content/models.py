@@ -31,7 +31,7 @@ from message.models import DiscussionModel,AnswerModel
 class Resource(DiscussionModel):
     name = models.CharField(max_length=200)
     link = models.URLField(max_length=200)
-    image = models.ImageField(upload_to='resources/', default = 'media/image/default.png', )
+    image = models.ImageField(upload_to='resources', default ='resources/default.png', )
     file_rsc = models.FileField(null=True, blank=True)
     text = models.TextField()
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
@@ -45,7 +45,7 @@ class Resource(DiscussionModel):
         return reverse("resource_detail", kwargs={"pk":self.pk})
 
 
-    def get_resourceImg_or_default(self, default_path= 'media/images/default.png'):
+    def get_resourceImg_or_default(self, default_path= 'resources/default.png'):
         if self.image:
             return self.image.url
         return default_path
