@@ -38,10 +38,13 @@
                 <div class="table_detail_project ">
                     <h4 class ="title">{% trans 'details_header' %}</h4>
                     <ul >
-                        <li>
-                            <span class="label">{% trans 'field' %}:</span>
-                            <span class="value">{{project.field}}</span>
-                        </li>
+{#                        <li>#}
+{#                            <span class="label">{% trans 'field' %}:</span>#}
+{#                        {{ project.field }}#}
+{#                            {% for filed in project.field.all %}#}
+{#                            <span class="value">{{project.field}}</span>#}
+{#                            {% endfor %}#}
+{#                        </li>#}
                         <li>
                             <span class="label">{% trans 'time_to_complete' %}:</span>
                             <span class="value">{{project.time_to_complete}} {% trans 'days' %}</span>
