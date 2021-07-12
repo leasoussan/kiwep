@@ -204,7 +204,6 @@ def pop_project(n):
             name = "Kiwep {n}"
             title = "Welcome to Kiwep Project "
             required_skills = "desire to learn"
-            acquired_skills = "Digital"
             description = "This Project is about Blbalabal"
             time_to_complete = random.randrange(60, 120, 10)
             difficulty = random.choice(Level.objects.all())
@@ -227,10 +226,10 @@ def pop_project(n):
         p.save()
 
         field = list(Field.objects.all())
-        required_skills= list(Skills.objects.all())
+        required_skill= list(Skills.objects.all())
         acquired_skills = list(Skills.objects.all())
         p.field.add(*random.sample(field, 2))
-        p.acquried_skills.add(*random.sample(acquired_skills,2))
+        p.acquired_skills.add(*random.sample(acquired_skills,2))
         p.required_skills.add(*random.sample(required_skills,2))
 
         print(f'Project:{p.id}')
