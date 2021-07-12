@@ -12,12 +12,12 @@
         <div class="row project_description_block" >
             <div class="description_block ">
 
-                <h3 class="title"> {{ project.name }}</h3>
+                <h3 class="title"> {{ project.name.title }}</h3>
 
                 <p>{{project.description}}</p>
 
             </div>
-            <div class="speaker_btn_group">
+            <div class="speaker_btn_group_select">
                 {% if user.is_speaker %}
                     {% if project.is_template %}
 

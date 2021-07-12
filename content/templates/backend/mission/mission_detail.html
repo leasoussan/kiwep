@@ -14,7 +14,7 @@
         </div>
 
         <div class=" mission_description">
-            <h3 class="title">{{ object.project.name }}</h3>
+            <h3 class="title">{% trans 'mission_name' %}:{{ object.name.title }}</h3>
             <p class="mission_description_text"> {{ object.description }}</p>
             <div>
             </div>
@@ -22,32 +22,32 @@
 
 
 
-        <div class="row mission_extra_detail_box" >
-            <div class="col mission_resource">
+        <div class="mission_extra_detail_box">
+            <div class=" mission_resource">
                 <div class="mission_resource_add_btn">
                     <!-- Modal Trigger -->
                     <button data-target="add_resource" class="btn modal-trigger add_button">{% trans 'add' %}</button>
 
                 </div>
                 <div class="mission_resource_list">
-{% if object.project.resources %}
-                    {% for resource in object.project.resources.all   %}
-                        <div>
-                            <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
-                        </div>
-                    {% endfor %}
-{% endif %}
+                    {% if object.project.resources %}
+                        {% for resource in object.project.resources.all   %}
+                            <div>
+                                <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
 
-            <div class="col mission_detail_extra" >
+            <div class=" mission_detail_extra"  >
                 <div class="mission_detail_edit_button">
                     {% if user.is_speaker %}
                         <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a>
                     {% endif %}
                 </div>
                 <div class="detail_container">
-                    <div class ="col mission_detail_box">
+                    <div class ="mission_detail_box">
 
                         <div class ="detail_title">
                             <h5 class ="small_title">{% trans 'details_header' %}</h5>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
 
-                    <div class="col acquired_skills">
+                    <div class="acquired_skills">
                         <h5 class ="small_title">{% trans 'acquired_skills' %}</h5>
 
                         <div>
@@ -107,7 +107,7 @@
                 {% if individualmission  %}
                     {% if not object.attributed_to  %}
                         <div class="mission_status">
-                        <h5>{% trans 'mission_status' %}:</h5>
+                            <h5>{% trans 'mission_status' %}:</h5>
                         </div>
                         <p>   {% trans 'mission_unclaimed' %}</p>
                     {% else %}
