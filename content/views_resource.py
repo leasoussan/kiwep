@@ -39,6 +39,8 @@ class ResourceDetailView(ProfileCheckPassesTestMixin, DetailView):
     def get_object(self):
         pk = self.kwargs.get('pk')
         project = Project.objects.get(id=self.kwargs['project_id'])
+        print('project', project.id)
+        print('pk', pk)
         return get_object_or_404(Resource, pk=pk)
 
 
@@ -81,11 +83,18 @@ class ResourceUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Update
             'link',
             'text',
             'image']
-    # success_url = ('resource_detail')
+
 
     def get_object(self):
+
+        project = Project.objects.get(id=self.kwargs['project_id'])
         pk = self.kwargs.get('pk')
-        return get_object_or_404(Resource, pk=pk)
+        print('project', project.id)
+        print('pk', pk)
+        return get_object_or_404(Resource, pk=pk, project=project)
+
+    def get_success_url(self):
+        return reverse_lazy('resource_detail', kwargs={'pk': self.object.id, 'project_id':self.project.id})
 
 
 class ResourceDeleteView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, DeleteView):

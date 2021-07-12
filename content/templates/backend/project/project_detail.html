@@ -97,7 +97,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div class="scrolling_list">
                     <table>
                         <thead>
                         <tr class="table_headers">
@@ -110,7 +110,7 @@
                             {% endif %}
                         </tr>
                         </thead>
-                        <tbody><br>
+                        <tbody>
 
                         {% for mission in project.individualmission_set.all %}
 
@@ -166,7 +166,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div class="scrolling_list">
                     <table>
                         <thead>
                         <tr class="table_headers">
@@ -177,7 +177,7 @@
                             {% endif %}
                         </tr>
                         </thead>
-                        <tbody><br>
+                        <tbody>
 
 
 
@@ -187,7 +187,7 @@
                                 {% if user.is_speaker %}
                                     <td>
                                         <a href="{% url 'delete_resource' resource.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>
-                                        <a scope="col" href="{% url 'update_resource' resource.id %}" class="waves-effect waves-light btn edit_btn_tbl"><i class="material-icons">edit</i></a>
+                                        <a scope="col" href="{% url 'update_resource' project.id %}" class="waves-effect waves-light btn edit_btn_tbl"><i class="material-icons">edit</i></a>
                                     </td>
                                 {% endif %}
 

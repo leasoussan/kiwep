@@ -33,7 +33,7 @@
                     {% if object.project.resources %}
                         {% for resource in object.project.resources.all   %}
                             <div>
-                                <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+{#                                <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>#}
                             </div>
                         {% endfor %}
                     {% endif %}
@@ -358,12 +358,12 @@
 
             <div id="new_resource" class="col s12">
                 {% if object %}
-                    <form method="POST" class="form-horizontal" action='{% url 'create_resource' object.project.id %}' >
-                        {% csrf_token %}
-                        {{ resources_form|materializecss }}
-                        <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
-                            {% trans 'save'%}</button>
-                    </form>
+{#                    <form method="POST" class="form-horizontal" action='{% url 'create_resource' resource.id %}' >#}
+{#                        {% csrf_token %}#}
+{#                        {{ resources_form|materializecss }}#}
+{#                        <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">#}
+{#                            {% trans 'save'%}</button>#}
+{#                    </form>#}
                 {% endif %}
             </div>
             <div id="choose_resource" class="col s12">

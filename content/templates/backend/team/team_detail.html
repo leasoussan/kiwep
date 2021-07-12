@@ -289,7 +289,8 @@
                     {% if team.project %}
 
                         {% for resource in team.project.resources.all %}
-                            <li> <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a></li>
+{#                            <li> <a href="{% url 'resource_detail' resource.id project.id %}">{{ resource.name }}</a></li>#}
+
 
                         {% endfor %}
                     {% else %}
@@ -335,7 +336,7 @@
                     <div class="col s12">
                         <ul class="tabs">
                             <li class="tab col s3 btn"><a href="#pills-create-project">{% trans 'new_project' %}</a></li>
-                            <li class="tab col s3 btn"><a class="active" href="#pills-template">% trans 'choose_templates' %}</a></li>
+                            <li class="tab col s3 btn"><a class="active" href="#pills-template">{% trans 'choose_templates' %}</a></li>
                             <li class="tab col s3"><a href="#pills-duplicate">{% trans 'duplicate' %}</a></li>
                         </ul>
                     </div>
