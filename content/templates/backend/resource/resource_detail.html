@@ -7,84 +7,132 @@
 
 
     <div class="content">
-<div class="speaker_btn_group">
-    <a class="btn edit_btn" href="{% url 'update_resource' resource.id %}">{% trans 'update_resource' %}</a>
+        <div class="speaker_btn_group">
+            <a class="btn edit_btn" href="{% url 'update_resource' resource.id %}">{% trans 'update_resource' %}</a>
 
-</div>
-<div class="navigation_btn">
-    {#    <a href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a> {# TODO:AVI Check #}
-{{ individualmission.resources_set.all }}
-    {% if resource in resource.individualmission.resources.all %}
-        here
-        <a href="{% url  'individual_mission_detail' resource.mission_set.id %}">{% trans 'back_to_mission' %}</a>
-    {% elif collectivemission %}
-        here3
-        <a href="{% url  'collective_mission_detail' mission.id %}">{% trans 'back_to_mission' %}"</a>
-    {% endif %}
+        </div>
+        <div class="navigation_btn">
+            {#    <a href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a> {# TODO:AVI Check #}
 
-</div>
+        {{ object }}
+            {% if resource in resource.project.all %}
+                here
+                <a href="{% url  'individual_mission_detail' resource.mission_set.id %}">{% trans 'back_to_mission' %}</a>
+            {% elif collectivemission %}
+                here3
+                <a href="{% url  'collective_mission_detail' mission.id %}">{% trans 'back_to_mission' %}"</a>
+            {% endif %}
 
-    <div class="container">
-        <div class="coupon-toggle">
-            <div id="accordion" class="accordion">
-                <div class="card">
-                    <div class="billing-fields">
-                        <div class="checkout-title">
-                            <h3>{% trans 'resource_lable' %} {{ resource.name }}</h3>
-                        </div>
-                        <div class="checkout-title">
-                            <a4>  <a href="{{ resource.link }}">{% trans 'resource_link' %}</a></a4>
+        </div>
 
-                        </div>
+        <div class="container_resource">
+            <div class="resource_info">
+                <h3 class="medium_title">{% trans 'resource_lable' %} {{ resource.name }}</h3>
 
-                        <div class="form-content-box">
-                            <div class="row">
-                                <h2>{{resource.text}}</h2>
-                            </div>
-                            <div>
 
-                                <img class="item_img"  src="{{ resource.get_resourceImg_or_default }}" alt="{{ resource.title }}" style = 'width: 300px; height: 300px;;'>
-                            </div>
-                            {{ resource.get_resourceImg_or_default }}
-                            <div>
-                                <a href="{{ resource.upload_file.url }}">{% trans 'name_file_lable' %}</a>
-                            </div>
-                        </div>
+                <a class="btn" href="{{ resource.link }}">{% trans 'resource_link' %}</a>
 
-                    </div>
-                </div>
             </div>
 
+            <div class="resource_detail">
+                <div class="resource_description_box">
+                    <p class="resource_description">{{resource.text}}</p>
+                </div>
+                <div class="resource_img_box">
 
-        </div>
-        <div>
-            <!-- Modal Trigger -->
-            <a class="waves-effect waves-light btn modal-trigger" href="#discussion_board">Modal</a>
+                    <img class="item_img"  src="{{ resource.get_resourceImg_or_default }}" alt="{{ resource.title }}" style = 'width: 300px; height: 300px;;'>
+                </div>
+
+            </div>
 
         </div>
     </div>
-    </div>
 
-
-
-
+{#    <div>#}
+{#        <!-- Modal Trigger -->#}
+{#        <a class="waves-effect waves-light btn modal-trigger" href="#discussion_board">{% trans 'discussion_board' %}</a>#}
+{##}
+{#    </div>#}
+{#{{ object.project_set.team_set }}#}
+{#    {% if user.profile in object.project_set.team.participants.all and  request.user.profile == object.project_set.team.manager%}#}
+{##}
+{#    <!-- Modal Trigger -->#}
+{#    <a class="waves-effect waves-light btn modal-trigger" href="#add_discussion">{% trans 'discussion_mission' %}</a>#}
+{##}
+{##}
+{#    <ul class="collapsible discussion_table">#}
+{#        {% for discussion in object.discussions.all %}#}
+{#            <li>#}
+{#                <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ discussion.title }}</div>#}
+{#            </li>#}
+{##}
+{#            <div class="collapsible-body">#}
+{#            {% if not discussion.replies.exists %}#}
+{##}
+{#                <div class="add_comment_input">#}
+{##}
+{#                    <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}">#}
+{#                        {% csrf_token %}#}
+{#                        {{ discussion.comment_form|materializecss }}#}
+{#                        <div class="col s1">#}
+{#                            <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
+{#                        </div>#}
+{#                    </form>#}
+{##}
+{##}
+{#                </div>#}
+{##}
+{#            {% else %}#}
+{##}
+{##}
+{#                {% for comment in discussion.replies.all %}#}
+{#                    {% if comment.user.profile == request.user.profile %}#}
+{##}
+{#                        <div class="speech-bubble-left user_comment">#}
+{#                            {{ comment.comment_text }}#}
+{#                        </div>#}
+{#                    {% else %}#}
+{#                        <div class="speech-bubble-right profile_comment">#}
+{#                            {{ comment.comment_text}}#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{##}
+{##}
+{#                <div class="add_comment_input">#}
+{##}
+{#                <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >#}
+{#                    {% csrf_token %}#}
+{#                    {{ discussion.comment_form|materializecss }}#}
+{#                    <div class="col s1">#}
+{#                        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
+{#                    </div>#}
+{#                </form>#}
+{#            {% endif %}#}
+{##}
+{##}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#            {% endif %}#}
+{##}
+{##}
 
     <!-- Modal Structure -->
- <div id="discussion_board" class="modal">
-     <div class="row modal-content">
+    <div id="discussion_board" class="modal">
+        <div class="row modal-content">
 
-        <h4>{% trans 'start_disucssion' %}</h4>
+            <h4>{% trans 'start_disucssion' %}</h4>
 
 
             {% include 'comments/discussion.html' with object=resource %}
 
-    </div>
+        </div>
 
-    <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
-    </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
+        </div>
 
-     </div>
+    </div>
 
 {% endblock %}
 
@@ -96,6 +144,7 @@
             $('.modal').modal();
 
             $('.tabs').tabs();
+            $('.collapsible').collapsible();
 
         });
     </script>

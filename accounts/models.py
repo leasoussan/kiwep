@@ -1,3 +1,5 @@
+import secrets
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
@@ -44,7 +46,7 @@ class MyUser(AbstractUser):
 
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=30, blank = True, null = True)
-    profile_pic = models.ImageField(default = 'profile/avatar.png', upload_to='media/profile/', blank = True, null = True)
+    profile_pic = models.ImageField(upload_to='profile/', default = 'profile/avatar.png', blank = True, null = True)
     joined_date = models.DateField(auto_now_add=True, blank = True, null = True)
     city = models.ForeignKey(City,on_delete=models.CASCADE, null=True, blank=True)
     language_code = models.CharField(_('language'), choices = settings.LANGUAGES, default = 'en', max_length=50)
@@ -87,7 +89,7 @@ class MyUser(AbstractUser):
                 return qs.first()
 
 
-    def profilepic_or_default(self, default_path='media/profile/avatar.png'):
+    def profilepic_or_default(self, default_path='profile/avatar.png'):
         if self.profile_pic:
             return self.profile_pic.url
         return default_path
@@ -160,3 +162,44 @@ class Speaker(models.Model):
         tasks = Task.objects.filter(id__in = list(personal_tasks) + list(team_tasks))
         # we cant add a queryset to queryset ---this is why we make them a list first
         return tasks
+
+
+
+def random_token():
+    return secrets.token_urlsafe(40)
+    
+    
+
+class PlatformInvite(models.Model):
+    key = models.CharField(max_length=200, default=random_token, unique=True)
+    used = models.BooleanField(default=False)
+    date_invited = models.DateField(auto_now_add=True, blank = True, null = True)
+    user = models.ForeignKey(MyUser, verbose_name=_('invitor'), on_delete=models.CASCADE)
+
+    class Meta:
+        abstract= True
+
+
+
+
+class InstitutionInvite(PlatformInvite):
+    email = models.EmailField (unique=True)
+    joined_user = models.ForeignKey(MyUser, null=True, blank=True, on_delete=models.CASCADE, related_name='received_platform_invites')
+
+
+    def __str__(self):
+        inst = _("institution_invite_for")
+        return f'{inst} {self.email}'
+
+
+class SpeakerInvite(PlatformInvite):
+    email = models.EmailField ()
+    institution = models.ForeignKey('backend.Institution', on_delete=models.CASCADE)
+    joined_user = models.ForeignKey(MyUser, null=True, blank=True, on_delete=models.CASCADE, related_name='received_invites')
+
+    def __str__(self):
+        speaker = _("speaker_invite_for")
+        return f'{speaker} {self.email}'
+
+
+

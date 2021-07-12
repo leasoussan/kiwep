@@ -2,94 +2,58 @@
 {% load i18n %}
 
 {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-light" >
-        <div class="container-fluid">
-            <!-- <a class="navbar-brand" href="{% url 'homepage' %}">{% trans 'KIWEP' %}</a> -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse text-center" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 " id="center_nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-bars fa-2x"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% if user.is_authenticated %}
-                                <li><a class="nav-link" style="" href="{% url 'dashboard' %}">{% trans 'dashboard' %}</a></li>
-                                <li><a class="nav-link" href="{% url 'homepage' %}">{% trans 'home_page' %}</a></li>
-                            {% else %}
-                                <li><a class="nav-link" href="{% url 'logout' %}">{% trans 'home_page' %}</a></li>
-                            {% endif %}
-                            <li><a class="nav-link" href="#">{% trans 'contact_us' %}</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="nav-link" href="#">{% trans 'other' %}</a></li>
-                        </ul>
-                    </li>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-wrapper">
+            {% if user.is_authenticated %}
+                <a href="#" id="logo-color"class="brand-logo center">{% trans 'welcome'%} {{user.first_name}} {{ user.get_user_type }}</a>
+            {% endif %}
+            <ul id="nav-mobile" class="left">
+{#                <li><a class="waves-effect waves-light btn green-btn" href="{% url 'dashboard' %}">Back</a></li>#}
+            </ul>
+            <ul id="slide-out" class="right hide-on-med-and-down">
+                <li class="nav-item launguage">
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <!-- <i class="fas fa-globe"></i> -->
+                        <input name="next" type="hidden" value="{{ redirect_to }}" />
 
+                        <div class="input-group ">
+                            <select class="form-select " name="language" onchange="this.form.submit()">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% for lang in LANGUAGES %}
+                                    <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                                        {{ lang.1 }} ({{ lang.0 }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                </li>
+                {% if user.is_authenticated %}
 
-                    <!-- </button> -->
+                    <li><a>
+                        <a href="{% url 'profile' user.id  %}"><i class="large material-icons" id="user-icon" >account_circle</i></a>
+                    </a></li>
 
-                </ul>
+                    <!-- Dropdown Structure -->
 
-                <ul>
-                    {% if user.is_authenticated %}
-                        <li style="margin: 0 auto;"><h4 style="margin-right:400px;">{% trans 'welcome'%} {{user.first_name}}</h4></li>
-                    {% endif %}
-                </ul>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right icon_color_dd">arrow_drop_down</i></a></li>
+                    <ul id="dropdown1" class="dropdown-content">
+                        <li><a id = "a-link" href="{% url 'edit_profile' %}">{% trans 'edit_profile'  %}</a></li>
+                        <li><a id = "a-link1" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
+                        <li class="divider"></li>
+                        <li><a id = "a-link1" href="#">{% trans 'other' %}</a></li>
 
+                    </ul>
+                    <ul id='dropdown1' class='dropdown-content'>
 
-                <span class="navbar-text">
-                              <ul class="navbar-nav me-auto mb-2 mb-lg-0"  id = "right-side-nav" style="text-align:center;">
-                                <li class="nav-item launguage">
-                                  <form action="{% url 'set_language' %}" method="post">
-                                      {% csrf_token %}
-                                      <!-- <i class="fas fa-globe"></i> -->
-                                      <input name="next" type="hidden" value="{{ redirect_to }}" />
+                    </ul>
+                {% endif %}
+            </ul>
 
-                                      <div class="input-group ">
-                                          <select class="form-select " name="language" onchange="this.form.submit()">
-                                              {% get_current_language as LANGUAGE_CODE %}
-                                              {% get_available_languages as LANGUAGES %}
-                                              {% for lang in LANGUAGES %}
-                                                  <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected="selected"{% endif %}>
-                                                      {{ lang.1 }} ({{ lang.0 }})
-                                                  </option>
-                                              {% endfor %}
-                                          </select>
-                                      </div>
-                                  </form>
-                                </li>
-
-
-
-
-                <li class="nav-item dropdown">
-                    {% if user.is_authenticated %}
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{% static 'backend/images/avatars/profile-image-1.png' %}"
-                                 alt="profile image" style = "width:40px; height:40px;">
-                            <span>{{user.username}}</span>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="nav-link active btn" href="{% url 'profile' user.id  %}">{% trans 'profile'  %}</a>
-                            </li>
-                            <li><a class="nav-link active" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
-                        </ul>
-
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link active btn" style="color: #f6f6f6;" href="{% url 'login' %}">{% trans 'login'%}</a>
-                        </li>
-                        <li>
-                            <a class="nav-link active btn" style="color: #f6f6f6;" href="{% url 'register' %}">{% trans 'register' %}</a>
-                        </li>
-                    {% endif %}
-                </ul>
-                </span>
-            </div>
         </div>
     </nav>
+
 {% endblock %}

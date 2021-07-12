@@ -43,11 +43,14 @@ body h4{
   margin-top: 10vh;
 }
 
+.team_list_table{
 
+}
 /*base*/
 .main_content_block{
-
-  justify-content:flex_start ;
+  width: 100%;
+  justify-content:flex-start ;
+  min-height: 100vh;
 }
 
 
@@ -55,11 +58,16 @@ body h4{
 /*base*/
 .content_main_view  {
   width: 90%;
-  justify-content:flex_start ;
-
+  justify-content:flex-start ;
+  border-left: 2px solid whitesmoke;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  min-height: 100vh;
 }
 
-
+.icon_color_dd{
+  color: #0d3349;
+}
 /* -________________________________________________2________________NAVBAR--------- */
 .nav-wrapper {
   background-color:white;
@@ -140,8 +148,8 @@ body h4{
 }
 
 .menu_panel_color li{
-  font-size: large;
-  font-weight: bold;
+  font-size: 2rem;
+  /*font-weight: bold;*/
 }
 
 
@@ -152,24 +160,29 @@ body h4{
 }
 
 
-.menu_panel_color li div a:hover{
+.menu_panel_color .active li div:hover{
   font: helvetica;
-  font-size: 1rem;
+  font-size: 2rem;
+  color: white;
+}
+
+.active, .btn:hover {
   color: white;
 }
 
 
 
-
-.menu_panel_color li:active{
-  background-color: #4db6ac;
+.link-side-panel li:active{
+  background-color: white;
 }
 
 
 .menu_main_div{
-
 }
 
+.sub_menu{
+  font-size: 1rem;
+}
 
 
 
@@ -194,10 +207,10 @@ body h4{
 /*LIGHTER GREEN #e0f2f1 teal lighten-5*/
 /*LIGHT GREEN - #b2dfdb teal lighten-4*/
 /*LIGHT TURQUOISE #b2ebf2 cyan lighten-4*/
-
-
-
-
+/*Dark Green  teal dark -4 #004d40*/
+/*DAK blue #1565c0 blue darken-3*/
+/*Dark Red #b71c1c red darken-4*/
+/*Yello #ffd600 yellow accent-4*/
 
 /*_________________________________________________________________________Bouttons ___________*/
 
@@ -205,18 +218,76 @@ body h4{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  width: 30%;
+  width: 90%;
 }
+
 
 .edit_button {
-  background-color: #fdd835;
+  background-color: #ffd600;
   display: flex;
-  width: 7rem;
+  width: 8rem;
   justify-content: center;
   font-weight: bold;
-  font-size: large;
+  font-size: medium;
 }
 
+.add_button_small{
+  background-color: #1565c0;
+  display: flex;
+  width: 5rem;
+  justify-content: center;
+  font-weight: bold;
+  font-size: medium;
+}
+/*in project template list */
+.speaker_select_project{
+  display: flex;
+  width: 8rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: medium;
+  color: white;
+  background-color: #1565c0;
+  border:2px solid;
+  border-color:  #1565c0;
+
+}
+.project_edit_button{
+  display: flex;
+  width: 5rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: medium;
+  color: #1565c0;
+  background-color: white;
+  border:2px solid;
+  border-color:  #1565c0;
+
+}
+
+.duplicate_btn_project{
+  display: flex;
+  width: 7rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: medium;
+  color:  #ffd600;
+  background-color: white;
+  border:2px solid;
+  border-color:  #ffd600;
+
+}
+
+
+.garbege{
+  color: #1565c0;
+}
 
 .edit_btn_tbl{
   background-color: #fdd835;
@@ -226,13 +297,16 @@ body h4{
   font-weight: bold;
   font-size: large;
 }
-.add_button {
-  background-color: blue;
+
+.add_team_button {
+  background-color: #1565c0;
   display: flex;
-  width: 7rem;
+  width: 8rem;
   font-weight: bold;
   font-size: large;
+
 }
+
 
 .navigation_btn{
   display: flex;
@@ -242,14 +316,36 @@ body h4{
 
 .button_right{
   display: flex;
-  align-items: flex-end;
   justify-content: flex-end;
-  padding-right: 2rem;
+
+}
+
+.button_left{
+  display: flex;
+  justify-content: flex-start;
 }
 
 .button_right a {
-  width: 15%;
+
 }
+
+.team_list_btn_gp{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+
+.speaker_btn_group_select{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-star;
+  width: 90%;
+}
+
+
 /*_____________PROJECT____________________________________________________-*/
 
 
@@ -259,6 +355,7 @@ body h4{
   flex-direction: row;
   height: 20%;
   width: 100%;
+  justify-content: space-between;
 }
 
 
@@ -266,12 +363,15 @@ body h4{
 .description_block{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 60%;
-  height: 25vh;
-
+  max-width: 70%;
+  max-height: 30vh;
   box-shadow: 5px 5px 5px #80cbc4;
+  overflow: auto;
 }
+
+/*.description_block{*/
+/*  flex-wrap: wrap;*/
+/*}*/
 
 .project_detail_block{
   display: flex;
@@ -281,6 +381,7 @@ body h4{
   width: 60%;
   margin-top: 3rem;
   background-color: white;
+
 }
 
 .project_detail{
@@ -297,11 +398,13 @@ body h4{
 
 .project_acquired_skills{
   width: 30%;
-
+  overflow: auto;
 }
 
 .table_detail_project{
   width: 100%;
+  overflow: auto;
+
 }
 
 
@@ -312,9 +415,6 @@ body h4{
   width: 80%;
 }
 
-.table_detail_project h4{
-
-}
 
 
 .table_detail_project ul{
@@ -322,16 +422,16 @@ body h4{
 }
 
 .table_detail_project li span{
-
   height: 1rem ;
   font-size: 1rem;
   width: 80%;
+  font-weight: normal;
 }
 
 .project_extra_detail {
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 100%;
   padding-top: 5rem;
   justify-content: space-between;
 }
@@ -365,9 +465,26 @@ body h4{
 
 }
 
+
+
+
+
+
+
+/*_______PROJECT LIST */
+
+.project_list_table tr{
+  height: 10px;
+}
+
+.table_row td{
+  height: 2em;
+}
+
 /*________________________________________TEAM*/
 .main_container_team{
-  width: 90%;
+  width: 100%;
+  padding-left: 2rem;
   /*display: flex;*/
   /*flex-direction: row;*/
 
@@ -394,12 +511,12 @@ body h4{
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .participants_list_header_box{
- display: flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -449,6 +566,9 @@ body h4{
 }
 
 .team_middle_container{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
   margin-top: 2rem;
 }
 
@@ -462,15 +582,16 @@ body h4{
 .team_mission_list{
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   align-items: center;
   margin-top: 10vh;
 }
 
 .team_mission_table{
-  background-color: white;
   width: 100%;
 }
+
+
 
 .collective_mission_participants_modal{
   width: 30%;
@@ -488,6 +609,8 @@ body h4{
 
 .comment_section{
   margin: 3rem;
+  width: 90%;
+
 }
 
 /*_----------------------------------------------------MISSION*/
@@ -497,19 +620,26 @@ body h4{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 90%;
+  width: 100%;
   height: 100vh;
 }
 .mission_description{
   display: flex;
-  height: 15vh;
-  margin-bottom: 5rem;
-  align-items: center;
-  flex-wrap: wrap;
-  max-height: ;: 15%;
-  width: 90%;
-}
+  /*height: 15vh;*/
+  /*margin-bottom: 5rem;*/
+  /*align-items: center;*/
+  /*flex-wrap: wrap;*/
+  /*max-height: 15%;*/
+  /*width: 90%;*/
+  /*overflow: auto;*/
 
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+  max-height: 30vh;
+  box-shadow: 5px 5px 5px #80cbc4;
+  overflow: auto;
+}
 
 div p.mission_description_text{
   font-size: 1rem;
@@ -520,33 +650,42 @@ div p.mission_description_text{
 
 .mission_extra_detail_box{
   display: flex;
-  flex-direction: row;
-  width: 90%;
+  flex-direction:row;
+  width: 100%;
   height: 40%;
-
+  margin-top: 3rem;
 }
 
 
+
+
 .mission_resource_list{
-  width: 70%;
-  height: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height:25vh;
+  width: 80%;
+ margin-top: 3rem;
   background-color: white;
-  margin-top: 1rem;
 }
 
 
 .mission_resource{
-  width: 30%;
-
-
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width:40%;
+  margin-left: 1rem;
 }
 
 .mission_detail_extra{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  width: 70%;
-
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  margin-right: 1rem;
 
 }
 
@@ -557,6 +696,7 @@ div p.mission_description_text{
   justify-content: flex-start;
   align-items: flex-end;
   flex-wrap:wrap;
+
 }
 
 .table_detail_mission ul{
@@ -565,12 +705,30 @@ div p.mission_description_text{
 
 
 .mission_detail_box{
-  display: flex;
-  flex-direction: column;
   width: 50%;
-  justify-content: flex-start;
-
+  overflow: auto;
 }
+
+.mission_detail_box li{
+  height: 1rem ;
+  padding-left: 20px;
+  margin: 0 0 4px 0;
+  width: 80%;
+}
+
+
+
+.mission_detail_box ul{
+  height: 80%;
+}
+
+.mission_detail_box li span{
+  height: 1rem ;
+  font-size: 1rem;
+  width: 80%;
+  font-weight: normal;
+}
+
 
 .mission_detail_edit_button{
   display: flex;
@@ -579,22 +737,33 @@ div p.mission_description_text{
 }
 
 
+.mission_resource_add_button{
+  display: flex;
+  justify-content:flex-end ;
+  margin-right:10% ;
+}
+
 .table_detail_mission ul li span{
   height:1rem;
 }
 
 .detail_container{
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height:25vh;
+  width: 80%;
+  margin-top: 3rem;
   background-color: white;
-  width: 90%;
-  height: 75%;
-  background-color: white;
-  margin-top: 1rem;
+
+}
+.acquired_skills{
+
+  width: 50%;
+  overflow: auto;
+
 }
 
-.acquired_skills{
-  width: 40%;
-}
 
 
 .answer_section{
@@ -606,12 +775,36 @@ div p.mission_description_text{
   height: 30%;
 
 }
+.mission_status{
+  width: 30%;
+}
+
+
+.mission_attributed_to{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 
 
 
+.answer{
+  display: flex;
+  flex-direction: column;
+}
 
+.answer_content{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 30%;
+}
 
-
+.grade_content{
+  display: flex;
+}
 
 
 
@@ -621,10 +814,40 @@ div p.mission_description_text{
   max-height: 60%;
 }
 
+.container_resource{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
 
 
+.resource_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+.resource_detail{
+  display : flex;
+  flex-direction:row;
+  margin-top: 3rem;
 
+}
 
+.resource_description_box{
+  width: 50%;
+}
+
+.resource_description{
+  width: 100%;
+  font-size: medium;
+}
+
+.resource_img_box{
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+}
 
 
 
@@ -635,16 +858,20 @@ div p.mission_description_text{
 
 
 .answer_block{
+
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 30%;
+
   width: 80%;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 
-
+.answer_block_template{
+  width: 100%;
+  height: 40%;
+}
 
 
 
@@ -659,7 +886,9 @@ div p.mission_description_text{
 
 /*_____________________GLOBAL*/
 
-
+.launguage{
+  width: 5rem;
+}
 
 
 
@@ -676,7 +905,8 @@ div p.mission_description_text{
 }
 
 table{
-  background-color: whitesmoke;
+  background-color: white;
+  width: 100%;
 }
 
 .title{
@@ -687,12 +917,13 @@ table{
 .medium_title{
   font-weight: bold;
   font-size: 2rem;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
-.small_title{
+.table_detail_project{
   font-weight: bold;
   font-size: 1rem;
   margin-bottom: 0px;
+  color: #0d3349;
 }
 
 /*span{*/
@@ -706,10 +937,31 @@ list_text{
 
 .list_text{
   font-weight:bold;
+  font-size: medium;
 }
 
 
+speaker_video_intro{
+  display: flex;
+  align-items: flex-start;
+  background-color: yellow;
+}
+
+.video_speaker {
+  display: flex;
+  align-items: flex-start;
+  width: 650px;
+}
+
 /*------------------------------------------------------COMMENT -DISCUSSION*/
+.discussion_table{
+  width: 100%;
+}
+
+
+
+
+
 
 .discussion_box_modal{
   /*background-color: #0b2e13;*/

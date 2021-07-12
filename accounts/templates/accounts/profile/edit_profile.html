@@ -6,18 +6,18 @@
 
 {% block content %}
 
-    {{ object.usertype }}
+
     <h2>{{ usertype }} {% trans 'profile_edit' %}</h2>
 
     <form method="post">
 
         {% csrf_token %}
-      <h3>{% trans 'represnetative_informations' %}</h3>
+      <h3>{% trans 'formuser' %}</h3>
         <div>
             {{ user_form.as_p }}
         </div>
 <hr>
-        <h3>{% trans 'institution_informations_title' %}</h3>
+        <h3>{% trans 'profile_form' %}</h3>
 
         <div>
             {{ profile_form.as_p }}

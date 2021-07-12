@@ -68,7 +68,7 @@ class AddIndividualMissionView(SpeakerStatuPassesTestMixin, View):
             mission.project_id= kwargs['project_id']
             mission.owner = self.request.user
             mission.save()
-        return redirect('project_detail', kwargs['project_id'])
+        return redirect('individual_mission_detail', mission.id )
 
 
 # ----------------------------------------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ class AddCollectiveMissionView(SpeakerStatuPassesTestMixin, View):
             collective_mission.owner = self.request.user
             collective_mission.save()
 
-        return redirect('project_detail', kwargs['project_id'])
+        return redirect('collective_mission_detail',  collective_mission.id )
 
 
 
