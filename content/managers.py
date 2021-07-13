@@ -96,7 +96,8 @@ class IndividualMissionQuerySet(models.QuerySet):
     def available_mission(self):
         return self.filter(attributed_to = None)
 
-    
+    def attributed_mission(self):
+        return self.filter(attributed_to = True)
 
 class IndividualMissionModelManager(models.Manager):
     """ Managers are a way to get specifi data from a Model with the help of a queryset """
@@ -121,7 +122,8 @@ class IndividualMissionModelManager(models.Manager):
     def is_my_mission(self, user):
         return self.get_queryset().is_my_mission(user)
 
-
+    def attributed_mission(self, project):
+        return self.get_queryset().attributed_mission(project)
 
 
 # -----------------------------------------------------Mission Manager  QUerySet

@@ -86,7 +86,8 @@
         </thead>
         <tbody>
         <tr>
-            {% for mission in team.project.individualmission_set.all  %}
+
+            {% for mission in mission_list  %}
 
                 <tr>
 
@@ -96,7 +97,7 @@
                     <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ mission.project.name }}</a></td>
                     <td>{{mission.due_date}}</td>
 
-                                                    get the answer modal
+
                     <td>{% if mission.response_comment or mission.response_file %}
                         <a href="{% url 'individual_mission_detail'  mission.id %}">{% trans 'see_answer' %}</a>
                     {% elif user.profile == mission.attributed_to %}

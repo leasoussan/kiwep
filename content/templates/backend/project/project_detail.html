@@ -187,7 +187,7 @@
                                 {% if user.is_speaker %}
                                     <td>
                                         <a href="{% url 'delete_resource' resource.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>
-                                        <a scope="col" href="{% url 'update_resource' project.id %}" class="waves-effect waves-light btn edit_btn_tbl"><i class="material-icons">edit</i></a>
+{#                                        <a scope="col" href="{% url 'update_resource' project.id %}" class="waves-effect waves-light btn edit_btn_tbl"><i class="material-icons">edit</i></a>#}
                                     </td>
                                 {% endif %}
 
