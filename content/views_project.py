@@ -276,12 +276,16 @@ class CreateProjectMissionView(SpeakerStatuPassesTestMixin, View):
 
 class ProjectUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
     model = Project
-    fields = ['name',
+    fields = [
+            'name',
             'description',
             'time_to_complete',
             'field',
             'difficulty',
-            'is_template'
+            'points',
+            'is_template',
+            'required_skills',
+            'acquired_skills'
             ]
     template_name = 'crud/update.html'
     

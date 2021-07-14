@@ -28,7 +28,7 @@
                     <tr class="table_headers">
                         <th>{% trans 'project_name_table_header' %}</th>
                         <th>{% trans 'speaker_table_header' %}</th>
-                        <th>{% trans 'field_table_header' %}</th>
+{#                        <th>{% trans 'field_table_header' %}</th>#}
                         <th>{% trans 'time_to_complete_table_header' %}</th>
                         <th>{% trans 'edit_p_table_header' %}</th>
                     </tr>
@@ -40,12 +40,12 @@
                         <tr class="table_headers table_row">
                             <td><a a class= "link-table"href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
                             <td>{{project.speaker.user.first_name}}</td>
-                            <td>{% if not project.field.exists %}
-                                {% trans 'no_fields' %}
-                            {% else %}
-                                {{project.field.name}}
-                                {% endif %}
-                            </td>
+{#                            <td>{% if not project.field.exists %}#}
+{#                                {% trans 'no_fields' %}#}
+{#                            {% else %}#}
+{#                                {{project.field.name}}#}
+{#                                {% endif %}#}
+{#                            </td>#}
                             <td>{{project.time_to_complete}} {% trans 'in_days' %}</td>
                             <td class="speaker_btn_group">
                                 <a  scope="col" class="waves-effect waves-light btn project_edit_button"
@@ -74,7 +74,7 @@
                         <tr class="table_headers">
                             <th class="link-table" scope="col">{% trans 'project_name_table_header' %}</th>
                             <th class="link-table" scope="col">{% trans 'speaker_table_header' %}</th>
-                            <th class="link-table" scope="col">{% trans 'field_table_header' %}</th>
+{#                            <th class="link-table" scope="col">{% trans 'field_table_header' %}</th>#}
                             <th class="link-table" scope="col">{% trans 'time_to_complete_table_header' %}</th>
                             <th class="link-table" scope="col">{% trans 'see_project' %}</th>
                             <th class="link-table" scope="col">{% trans 'speaker_select_project' %}</th>
@@ -87,12 +87,12 @@
                             <tr class="table_headers">
                                 <td><a class= "link-table" href="{% url 'project_detail' project.id %}">{{project.name}}</a></td>
                                 <td>{{project.speaker.user.first_name}}</td>
-                                <td>{% if not project.field.exists %}
-                                {% trans 'no_fields' %}
-                            {% else %}
-                                {{project.field.name}}
-                                {% endif %}
-                            </td>
+{#                                <td>{% if not project.field.exists %}#}
+{#                                {% trans 'no_fields' %}#}
+{#                            {% else %}#}
+{#                                {{project.field.name}}#}
+{#                                {% endif %}#}
+{#                            </td>#}
                                 <td>{{project.time_to_complete}} {% trans 'days' %}</td>
                             <td> <a href="{% url 'project_detail' project.id %}"> <i class="material-icons">pageview</i> </a></td>
                                 <td> <a class= "link-table speaker_select_project" href="{% url 'chose_project_detail' project.id %}">{% trans 'speaker_select_project' %}</a> </td>
@@ -129,7 +129,7 @@
                             <tr class="table_headers">
                                 <th scope="col">{% trans 'project_name_table_header' %}</th>
                                 <th scope="col">{% trans 'speaker_table_header' %}</th>
-                                <th scope="col">{% trans 'field_table_header' %}</th>
+{#                                <th scope="col">{% trans 'field_table_header' %}</th>#}
                                 <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
                                 <th scope="col">{% trans 'check_team' %}</th>
 
@@ -142,7 +142,7 @@
                                 <tr class="table_headers">
                                     <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</a></th>
                                     <td>{{project.speaker.user.first_name}}</td>
-                                    <td>{{project.field}}</td>
+{#                                    <td>{{project.field}}</td>#}
 
 
                                     <td>{{project.time_to_complete}}</td>
@@ -165,4 +165,22 @@
 
 
 {% endblock %}
-{#<script src="{% static  'backend/js/project_api.js'%}" type="text/javascript"></script>#}
+
+
+{% block javascript %}
+
+    <script>
+        $(document).ready(function(){
+            $('.modal').modal();
+
+            $('.tabs').tabs();
+
+            $('.collapsible').collapsible();
+
+        });
+    </script>
+
+    <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
+    <script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>
+
+{% endblock javascript %}

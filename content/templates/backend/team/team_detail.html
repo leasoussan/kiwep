@@ -148,11 +148,12 @@
                                 <td class="content_table">{{ mission.points }}</td>
 
                                 <td class="content_table">{{mission.due_date}}</td>
+                                <td class="content_table">{% trans 'individual_mission' %}</td>
                                 <td class="content_table">
-
-                                    {% if individualmission %}
-                                        {% trans 'individual_mission' %}
+                                    {% if mission.answer.status %}
+                                       {{answer.status}}</td>
                                     {% else %}
+
                                         {% trans 'colelctive_mission' %}
                                     {% endif %}
                                 </td>
@@ -160,7 +161,10 @@
                                     {% if mission.attributed_to %}
                                         {{mission.status}}</td>
                                     {% else %}
-                                        {% trans 'mission_to_attributed_yet' %}
+
+                                        {% trans 'no_answer' %}
+
+
                                     {% endif %}
                                 <td class="content_table">{{mission.graded}}</td>
 
@@ -208,6 +212,35 @@
                                 <td class="content_table">{{mission.graded}}</td>
                             </tr>
                         {% endfor %}
+
+
+
+
+                        {% for mission in team.project.individualmission_set.get_attributed_mission %}
+                            <tr>
+                                <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
+                                <td class="content_table">
+                                        {{ mission.attributed_to }}
+                                </td>
+
+                                <td class="content_table">{{ mission.points }}</td>
+
+                                <td class="content_table">{{mission.due_date}}</td>
+                                <td class="content_table">
+                                        {% trans 'individual_mission' %}
+                                </td>
+                                <td class="content_table">
+                                    {% if mission.attributed_to %}
+                                        {{mission.status}}</td>
+                                    {% else %}
+                                        {% trans 'mission_no_attributed_yet' %}
+
+                                    {% endif %}
+                                <td class="content_table">{{mission.graded}}</td>
+
+                            </tr>
+                        {% endfor %}
+
 
 
                     {% endif %}
@@ -289,7 +322,8 @@
                     {% if team.project %}
 
                         {% for resource in team.project.resources.all %}
-                            <li> <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a></li>
+{#                            <li> <a href="{% url 'resource_detail' resource.id project.id %}">{{ resource.name }}</a></li>#}
+
 
                         {% endfor %}
                     {% else %}
@@ -335,7 +369,7 @@
                     <div class="col s12">
                         <ul class="tabs">
                             <li class="tab col s3 btn"><a href="#pills-create-project">{% trans 'new_project' %}</a></li>
-                            <li class="tab col s3 btn"><a class="active" href="#pills-template">% trans 'choose_templates' %}</a></li>
+                            <li class="tab col s3 btn"><a class="active" href="#pills-template">{% trans 'choose_templates' %}</a></li>
                             <li class="tab col s3"><a href="#pills-duplicate">{% trans 'duplicate' %}</a></li>
                         </ul>
                     </div>
@@ -386,7 +420,7 @@
 
     <!-- Modal Structure  Discussion -->
 
-    <div id="discussion_board" class="modal bottom-sheet">
+    <div id="add_discussion" class="modal bottom-sheet">
         <div class="row modal-content">
 
             <h4>{% trans 'start_disucssion' %}</h4>

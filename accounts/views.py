@@ -15,7 +15,6 @@ from .forms import (
     UserForm,
     StudentProfileCreationForm,
     SpeakerProfileCreationForm,
-    RepresentativeProfileCreationForm,
     UserForm,
     LoginForm, InstitutionInviteForm, MySpeakerCreationForm, InstitutionCreationForm
 )
@@ -64,7 +63,6 @@ class Register(View):
             password = form.cleaned_data['password1']
 
             usertype=form.cleaned_data['usertype']
-
 
             setattr(user, usertype, True)
 
@@ -185,7 +183,7 @@ def get_user_profile_form(request, edit=False):
 
 
     elif user.is_representative:
-        profile_form =  InstitutionAddForm(data)
+        profile_form = InstitutionAddForm(data)
 
     return profile_form
 
@@ -208,7 +206,7 @@ class CreateProfile(View):
             invites = user.received_invites.all()
             if invites.exists():
                 institution= invites.first().institution
-                profile_form.fields['group'].queryset =  institution.group_set.all()
+                profile_form.fields['group'].queryset = institution.group_set.all()
 
         return render(request, 'accounts/profile/edit_profile.html', {'profile_form': profile_form,
                                                                       'user_form': user_form,}
@@ -217,7 +215,8 @@ class CreateProfile(View):
 
     def post(self, request):
 
-        user_form = UserForm(request.POST, instance= request.user)
+        user_form = UserForm(request.POST,  request.FILES,  instance= request.user)
+
         profile_form = get_user_profile_form(request)
         user = request.user
 
@@ -287,11 +286,12 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
 
 
     def post(self, request):
-        user_form = UserForm(request.POST, instance = request.user)
-
+        user_form = UserForm(request.POST, request.FILES, instance=request.user)
+        print(user_form)
         profile_form = get_user_profile_form(request, edit =True)
 
         if user_form.is_valid() and profile_form.is_valid():
+            print(user_form)
             user_form.save()
             profile_form.save()
             return redirect('profile',request.user.id)

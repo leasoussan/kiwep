@@ -31,21 +31,22 @@ from message.models import DiscussionModel,AnswerModel
 class Resource(DiscussionModel):
     name = models.CharField(max_length=200)
     link = models.URLField(max_length=200)
-    image = models.ImageField(default = 'media/image/default.png', upload_to='images/')
+    image = models.ImageField(upload_to='resources', default ='resources/default.png', )
     file_rsc = models.FileField(null=True, blank=True)
     text = models.TextField()
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE,  blank=True, null =True)
+    project = models.ForeignKey('Project', on_delete=models.CASCADE)
     objects = ResourceModelManager()
 
     def __str__(self):
         return f"Ressource Name : {self.name}"
 
     def get_absolute_url(self):
-        return reverse("resource_detail", kwargs={"pk":self.pk})
+        return reverse("project_detail", kwargs={"pk":self.pk})
 
 
-    def get_resourceImg_or_default(self, default_path= 'media/images/default.png'):
+    def get_resourceImg_or_default(self, default_path= 'resources/default.png'):
         if self.image:
             return self.image.url
         return default_path
@@ -70,7 +71,6 @@ class Project(DiscussionModel):
     acquired_skills = models.ManyToManyField(Skills)
     time_to_complete = models.PositiveIntegerField()
     field = models.ManyToManyField(Field)
-    resources = models.ManyToManyField(Resource, blank=True)
     difficulty = models.ForeignKey(Level, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)

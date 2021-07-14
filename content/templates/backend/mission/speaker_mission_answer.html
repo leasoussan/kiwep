@@ -1,0 +1,139 @@
+
+
+
+SPeaker answer view
+{#    <div class ="answer_status">#}
+{#        <div class="answer">#}
+{##}
+{#            {% if user.is_speaker %}#}
+{##}
+{#                {% for answer in object.answer.all  %}#}
+{##}
+{#                    {% if answer.response_comment or answer.response_file %}#}
+{#                        <li>     {% trans 'file_lable' %} :{{answer.response_file}}</li>#}
+{#                        <li>{% trans 'text_lable' %}: {{answer.response_comment}}</li>#}
+{##}
+{#                        <div class="answer_content">#}
+{#                        <form method="POST" action="{% url 'answer_edit_status' answer.id %}">#}
+{#                            {% csrf_token %}#}
+{##}
+{#                            {{ answer.status_form }}#}
+{#                        </form>#}
+{##}
+{#                        {% if answer.status == 'a' %}#}
+{##}
+{#                            {% if not answer.grade %}#}
+{#                                <div class="grade_content">#}
+{#                                <form method="POST" action="{% url 'answer_grade_add' answer.id %}">#}
+{#                                    {% csrf_token %}#}
+{##}
+{#                                    {{ answer.grade_form }}#}
+{#                                </form>#}
+{#                            {% else %}#}
+{#                                <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>#}
+{#                            {% endif %}#}
+{#                        </div>#}
+{#                        {% else %}#}
+{##}
+{#                            {% trans 'mission_wasnt_accepted_yet' %}#}
+{#                        {% endif %}#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{##}
+{#            {% elif user.is_student %}#}
+{##}
+{##}
+{#            {% if answer.response_comment or answer.response_file %}#}
+{##}
+{#                {% if object.answer.all.exists %}#}
+{#                    {% with answer=object.answer.last %}#}
+{#                        <div class="answer_content" style="background-color: yellow">#}
+{#                            <h3>{% trans 'add_new_answer' %}</h3>#}
+{#                            <form method="POST" action="{% url 'answer_edit_status' answer.id %}">#}
+{#                                {% csrf_token %}#}
+{##}
+{##}
+{#                                {{ answer.status_form }}#}
+{#                                <button type="submit">{% trans 'send_answer' %}</button>#}
+{#                            </form>#}
+{##}
+{#                            </form>#}
+{##}
+{#                            {% if answer.status %}#}
+{#                                <p> {% trans 'answer_status' %}: {{ answer.status }} </p>#}
+{#                            {% elif answer.status == 'a' %}#}
+{#                                {% if not answer.grade %}#}
+{##}
+{#                                    <p>{% trans 'mission_not_graded' %}</p>#}
+{#                                {% else %}#}
+{#                                    {% trans 'grade_for_mission ' %}: {{ answer.grade }}#}
+{#                                {% endif %}#}
+{#                                </div>#}
+{#                            {% else %}#}
+{##}
+{#                                <p> {% trans 'mission_wasnt_accepted_yet' %}</p>#}
+{#                            {% endif %}#}
+{#                        </div>#}
+{#                        </div>#}
+{#                    {% endwith %}#}
+{#                {% endif %}#}
+{#            {% endif %}#}
+{#            {% endif %}#}
+{##}
+{#       #}
+{#            {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}#}
+{#            {% if answer.status %}#}
+{#                <lable> {% trans 'answer_status' %}: {{ answer.status }} </lable>#}
+{#            {% elif answer.status == 'a' %}#}
+{#                {% if not answer.grade %}#}
+{##}
+{#                    <lable>{% trans 'mission_not_graded' %}</lable>#}
+{#                {% else %}#}
+{#                    <lable>{% trans 'grade_for_mission ' %}: {{ answer.grade }}</lable>#}
+{#                {% endif %}#}
+{##}
+{#            {% else %}#}
+{##}
+{#                <lable> {% trans 'mission_wasnt_accepted_yet' %}</lable>#}
+{#            {% endif %}#}
+{#        </div>#}
+{##}
+{#        {% endwith %}#}
+{#        {% else %}#}
+{#        <div class="answer_content">#}
+{#            {% include "answer/answer.html"  with object=object %}#}
+{##}
+{##}
+{#            <!-- Modal Trigger -->#}
+{#            <a class="waves-effect waves-light btn modal-trigger" href="#add_discussion">{% trans 'discussion_mission' %}</a>#}
+{##}
+{##}
+{##}
+{#            <ul class="collapsible discussion_table">#}
+{#                {% for discussion in object.discussions.all %}#}
+{#                <li>#}
+{#                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ discussion.title }}</div>#}
+{##}
+{#                    <div class="collapsible-body">#}
+{#                        {% if not discussion.replies.exists %}#}
+{##}
+{#                        {% endif %}#}
+{#                    </div>#}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="add_comment_input">#}
+{##}
+{#            <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}">#}
+{#                {% csrf_token %}#}
+{#                {{ discussion.comment_form|materializecss }}#}
+{#                <div class="col s1">#}
+{#                    <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
+{#                </div>#}
+{#            </form>#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{#        {% else %}#}
+{##}
