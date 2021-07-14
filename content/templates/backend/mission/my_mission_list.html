@@ -73,7 +73,8 @@
         </thead>
         <tbody>
         <tr>
-            {% for mission in team.project.individualmission_set.all  %}
+
+            {% for mission in mission_list  %}
 
         <div>
         <h5 class="card-header">{% trans 'my_mission_board_title' %}</h5>
@@ -101,6 +102,10 @@
                         <td>   <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cssglobal
                     <td>{% if mission.response_comment or mission.response_file %}
                         <a href="{% url 'individual_mission_detail'  mission.id %}">{% trans 'see_answer' %}</a>
                     {% elif user.profile == mission.attributed_to %}

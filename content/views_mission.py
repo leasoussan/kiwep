@@ -70,7 +70,7 @@ class AddIndividualMissionView(SpeakerStatuPassesTestMixin, View):
             mission.mission_type = 'i'
             mission.owner = self.request.user
             mission.save()
-        return redirect('individual_mission_detail', mission.id )
+        return redirect('individual_mission_detail', mission.id)
 
 
 # ----------------------------------------------------------------------------------------------------------------

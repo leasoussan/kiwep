@@ -125,6 +125,7 @@
                     {% if user.profile in team.participants.all or user.is_speaker  %}
 
                         {% for mission in team.project.individualmission_set.available_mission %}
+                            here
                             <tr>
                                 <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
                                 <td class="content_table">
@@ -137,13 +138,13 @@
                                         {% endif %}
 
                                     {% elif user.is_student %}
-                                        {% if mission.attributed_to == True %}
-                                            <td><a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
+                                        {% if not mission.attributed_to %}
+                                            <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
                                         {% else %}
                                             {% trans 'available_mission' %}
                                         {% endif %}
                                     {% endif %}
-                                    </td>
+                                </td>
 
                                 <td class="content_table">{{ mission.points }}</td>
 
@@ -161,9 +162,13 @@
                                     {% if mission.attributed_to %}
                                         {{mission.status}}</td>
                                     {% else %}
+<<<<<<< HEAD
 
                                         {% trans 'no_answer' %}
 
+=======
+                                        {% trans 'mission_no_attributed_yet' %}
+>>>>>>> cssglobal
 
                                     {% endif %}
                                 <td class="content_table">{{mission.graded}}</td>
@@ -176,6 +181,7 @@
 
 
                         {% for mission in team.project.collectivemission_set.all %}
+
                             <tr>
                                 <td class="content_table"> <a class= "link-table" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a></td>
                                 <td class="content_table">
@@ -215,19 +221,44 @@
 
 
 
+<<<<<<< HEAD
 
                         {% for mission in team.project.individualmission_set.get_attributed_mission %}
                             <tr>
                                 <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
                                 <td class="content_table">
                                         {{ mission.attributed_to }}
+=======
+                        {% for mission in team.project.individualmission_set.attributed_mission %}
+                            <tr>
+                                <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
+                                <td class="content_table">
+                                    {% if user.is_speaker %}
+                                        {{ mission.attributed_to }}
+
+                                    {% elif user.is_student %}
+                                        {% if not mission.attributed_to %}
+
+                                            {% trans 'not_available_mission' %}
+                                        {% endif %}
+                                    {% endif %}
+>>>>>>> cssglobal
                                 </td>
 
                                 <td class="content_table">{{ mission.points }}</td>
 
                                 <td class="content_table">{{mission.due_date}}</td>
                                 <td class="content_table">
+<<<<<<< HEAD
                                         {% trans 'individual_mission' %}
+=======
+
+                                    {% if individualmission %}
+                                        {% trans 'individual_mission' %}
+                                    {% else %}
+                                        {% trans 'colelctive_mission' %}
+                                    {% endif %}
+>>>>>>> cssglobal
                                 </td>
                                 <td class="content_table">
                                     {% if mission.attributed_to %}
@@ -243,6 +274,10 @@
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cssglobal
                     {% endif %}
                     </tbody>
                 </table>
@@ -322,7 +357,7 @@
                     {% if team.project %}
 
                         {% for resource in team.project.resources.all %}
-{#                            <li> <a href="{% url 'resource_detail' resource.id project.id %}">{{ resource.name }}</a></li>#}
+                            {#                            <li> <a href="{% url 'resource_detail' resource.id project.id %}">{{ resource.name }}</a></li>#}
 
 
                         {% endfor %}
