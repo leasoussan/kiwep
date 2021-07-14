@@ -3,8 +3,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from message.forms import AddAnswerForm, MissionSpeakerStatusAnswerForm
 from .models import Mission, CollectiveMission, Team, IndividualMission, IndividualCollectiveMission
 from django.forms import ModelForm
-from .forms import MissionAddForm, IndividualMissionAddForm, CollectiveMissionAddForm, \
-    CollectiveMissionAssign, ValidateMissionForm, ResourceAddForm
+from .forms import (
+    MissionAddForm,
+    IndividualMissionAddForm,
+    CollectiveMissionAddForm,
+    CollectiveMissionAssign,
+    ValidateMissionForm,
+    ResourceAddForm,
+    MissionAddForm
+    )
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -56,21 +63,34 @@ class AnswerBoardMissionListView(ProfileCheckPassesTestMixin, ListView):
 class AddIndividualMissionView(SpeakerStatuPassesTestMixin, View):
 
     ''' Add an Individual Mission '''
-    model = IndividualMission
+    model = Mission
 
     def get(self, request, *args, **kwargs):
+        mission_form = MissionAddForm(instance=request.user)
         return redirect('homepage')
 
     def post(self, request, *args, **kwargs):
-        form = IndividualMissionAddForm(request.POST)
+        mission_form = MissionAddForm(request.POST)
+        ind_form = IndividualMissionAddForm(request.POST)
 
-        if form.is_valid():
-            mission = form.save(commit=False)
+        if mission_form.is_valid() and ind_form.is_valid():
+            mission = mission_form.save(commit=False)
+
             mission.project_id=kwargs['project_id']
             mission.mission_type = 'i'
+            mission.response_type = mission_form.cleaned_data['response_type']
             mission.owner = self.request.user
             mission.save()
-        return redirect('individual_mission_detail', mission.id)
+            individual_mission = mission_form.save(commit=False)
+            individual_mission.mission_ptr_id = mission.id
+
+            individual_mission.save()
+            print('mission', individual_mission)
+
+            return redirect('individual_mission_detail', individual_mission.id)
+
+        return render(request, 'backend/mission/mission_detail.html',
+                      {'mission_form': mission_form, 'ind_form': ind_form})
 
 
 # ----------------------------------------------------------------------------------------------------------------
@@ -81,25 +101,34 @@ class AddIndividualMissionView(SpeakerStatuPassesTestMixin, View):
 
 
 class AddCollectiveMissionView(SpeakerStatuPassesTestMixin, View):
-    ''' See User Missions List'''
-    model = CollectiveMission
+    ''' Add an Individual Mission '''
+    model = Mission
 
     def get(self, request, *args, **kwargs):
+        mission_form = MissionAddForm(instance=request.user)
         return redirect('homepage')
 
     def post(self, request, *args, **kwargs):
-        form = CollectiveMissionAddForm(request.POST)
+        mission_form = MissionAddForm(request.POST)
+        coll_form = CollectiveMissionAddForm(request.POST)
 
-        if form.is_valid():
-            collective_mission = form.save(commit=False)
-            collective_mission.project_id = kwargs['project_id']
-            collective_mission.mission_type = 'c'
-            collective_mission.owner = self.request.user
+        if mission_form.is_valid() and coll_form.is_valid():
+            mission = mission_form.save(commit=False)
+            mission.project_id = kwargs['project_id']
+            mission.mission_type = 'i'
+            mission.response_type = mission_form.cleaned_data['response_type']
+            mission.owner = self.request.user
+
+            mission.save()
+
+            collective_mission = IndividualMission(mission_ptr_id=mission.id)
+
             collective_mission.save()
 
-        return redirect('collective_mission_detail',  collective_mission.id )
+            return redirect('individual_mission_detail', collective_mission.id)
 
-
+        return render(request, 'backend/mission/mission_detail.html',
+                      {'mission_form': mission_form, 'coll_form': coll_form})
 
 
 

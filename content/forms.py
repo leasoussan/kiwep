@@ -6,7 +6,7 @@ from django.forms import inlineformset_factory
 from django.http import Http404
 
 from accounts.models import Student
-from .models import Project, Team, Resource, CollectiveMission, IndividualMission, IndividualCollectiveMission
+from .models import Project, Team, Resource, Mission, CollectiveMission, IndividualMission, IndividualCollectiveMission
 
 
 class ProjectAddForm(ModelForm):
@@ -19,8 +19,9 @@ class ProjectAddForm(ModelForm):
             'field',
             'difficulty',
             'points',
+            'acquired_skills',
             'is_template',
-            'acquired_skills'
+
         ]
 
         # exclude = ['completed', 'created_by']
@@ -68,15 +69,11 @@ class AddMemberTeamForm(ModelForm):
         self.fields['participants'].queryset = kwargs['instance'].group_Institution.student_set.all()
 
 
-class MissionAddForm(ModelForm):
-    pass
-    
-
 
 mission_fields = [
-    'name',
-    'response_type',
     'stage',
+    'response_type',
+    'name',
     'field',
     'level',
     'description',
@@ -87,10 +84,9 @@ mission_fields = [
 ]
 
 
-
-class IndividualMissionAddForm(ModelForm):
+class MissionAddForm(ModelForm):
     class Meta:
-        model = IndividualMission
+        model=Mission
         fields = mission_fields
 
     due_date = forms.DateField(
@@ -98,21 +94,21 @@ class IndividualMissionAddForm(ModelForm):
             format='%d/%m/%Y',
             attrs={'type': 'date'}),
         # input_formats=('%d-%m-%Y',),
-    # resources = forms.ModelMultipleChoiceField(queryset=object.team_set.project.resources.all)
+        # resources=forms.ModelMultipleChoiceField(queryset=object.project.mission)
     )
+
+
+class IndividualMissionAddForm(ModelForm):
+    class Meta:
+        model = IndividualMission
+        fields = ['attributed_to']
 
 
 class CollectiveMissionAddForm(ModelForm):
     class Meta:
         model = CollectiveMission
-        fields = mission_fields
+        fields = ['attributed_to']
 
-    due_date = forms.DateField(
-        widget=django.forms.DateInput(
-            format='%d/%m/%Y',
-            attrs={'type': 'date'}),
-        # input_formats=('%d-%m-%Y',),
-    )
 
 
 class CollectiveMissionAssign(forms.Form):
@@ -123,8 +119,8 @@ class CollectiveMissionAssign(forms.Form):
         print('is valid')
         for participant in self.cleaned_data['participants']:
             mission= IndividualCollectiveMission.objects.get_or_create(
-                                                        parent_mission=collective_mission,
-                                                        attributed_to = participant)
+                parent_mission=collective_mission,
+                attributed_to = participant)
 
             print('participant', participant)
 

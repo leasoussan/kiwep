@@ -98,37 +98,37 @@ class TeamCreateView(SpeakerStatuPassesTestMixin,  CreateView):
 
 
 
-
-class TeamCreateMissionView(SpeakerStatuPassesTestMixin, View):
-    """ Once a Team IS created the missions have to be set, Deadline, attribution etc...."""
-    def get(self, request, *args, **kwargs):
-        
-        team = Team.objects.get(id = self.kwargs['pk'])
-        participants= team.participants.all()
-
-
-
-        return render(request, 'crud/create_team_missions.html', {'participants': participants})
-    
-
-    def post(self, request, *args, **kwargs):
-        
-        team = Team.objects.get(id = self.kwargs['pk'])
-        missions = team.project.missions.all()
-        
-        formset = CollectiveMissionFormSet(request.POST, instance = team)
-
-        
-        if formset.is_valid():
-            formset.save()
-            return redirect('team_detail' , team.id)
-
-        
-        for form in formset:
-            form.fields['mission'].queryset = missions
-           
-        return render(request, 'crud/create_team_missions.html', {'formset': formset})
-
+#
+# class TeamCreateMissionView(SpeakerStatuPassesTestMixin, View):
+#     """ Once a Team IS created the missions have to be set, Deadline, attribution etc...."""
+#     def get(self, request, *args, **kwargs):
+#
+#         team = Team.objects.get(id = self.kwargs['pk'])
+#         participants= team.participants.all()
+#
+#
+#
+#         return render(request, 'crud/create_team_missions.html', {'participants': participants})
+#
+#
+#     def post(self, request, *args, **kwargs):
+#
+#         team = Team.objects.get(id = self.kwargs['pk'])
+#         missions = team.project.missions.all()
+#
+#         formset = CollectiveMissionFormSet(request.POST, instance = team)
+#
+#
+#         if formset.is_valid():
+#             formset.save()
+#             return redirect('team_detail' , team.id)
+#
+#
+#         for form in formset:
+#             form.fields['mission'].queryset = missions
+#
+#         return render(request, 'crud/create_team_missions.html', {'formset': formset})
+#
 
 
 # prefix='collective' We might need to add a Prefix if using few formset- might have been changed by DJANGO 

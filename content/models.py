@@ -170,7 +170,7 @@ class IndividualMission(Mission):
 
 
     def __str__(self):
-        return f"Missions of project: {self.project.name}"
+        return f"Missions : {self.name}"
 
 
     def get_absolute_url(self):

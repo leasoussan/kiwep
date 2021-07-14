@@ -7,6 +7,7 @@ from .models import Project, Team, IndividualMission, CollectiveMission
 from django.forms import ModelForm
 from .forms import (
     ProjectAddForm,
+    MissionAddForm,
     IndividualMissionFormSet,
     CollectiveMissionFormSet,
     IndividualMissionAddForm,
@@ -122,6 +123,7 @@ class ProjectDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['mission_form'] = MissionAddForm()
         context['individual_form'] = IndividualMissionAddForm()
         context['collective_form'] = CollectiveMissionAddForm()
         context['resources_form'] = ResourceAddForm()

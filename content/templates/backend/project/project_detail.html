@@ -215,6 +215,7 @@
 
                         <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' project.id %}' >
                             {% csrf_token %}
+                            {{ mission_form|materializecss }}
                             {{ individual_form|materializecss }}
                             <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
                                 {% trans 'save'%}</button>
@@ -229,6 +230,7 @@
 
                         <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' project.id %}' >
                             {% csrf_token %}
+                             {{ mission_form|materializecss }}
                             {{ collective_form|materializecss }}
                             <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
                                 {% trans 'save' %}</button>
