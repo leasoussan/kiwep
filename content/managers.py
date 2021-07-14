@@ -114,7 +114,6 @@ class IndividualMissionModelManager(models.Manager):
 
 
     def get_attributed_mission(self):
-
         return self.get_queryset().get_attributed_mission()
 
 

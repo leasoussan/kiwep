@@ -111,7 +111,6 @@ class SpeakerAnswerMissionStatusView(UpdateView):
         context = super().get_context_data(**kwargs)
         print(context)
 
-
     def get_success_url(self):
         return reverse_lazy('team_list')
 

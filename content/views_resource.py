@@ -47,25 +47,26 @@ class ResourceDetailView(ProfileCheckPassesTestMixin, DetailView):
 
 
 class ResourceCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
-     
 
     def get(self, request, *args, **kwargs):
-        project = Project.objects.get(id=self.kwargs['project_id'])
         form = ResourceAddForm()
         return render(request, 'crud/create.html', {'form': form})
 
+
     def post(self, request, *args, **kwargs):
         project = Project.objects.get(id=self.kwargs['project_id'])
+
         form = ResourceAddForm(request.POST, request.FILES,)
 
         if request.method == "POST":
+
             if form.is_valid():
                 resource = form.save(commit =False)
                 print(resource)
+                resource.project = project
                 resource.owner = self.request.user
                 resource.save()
-                project.resources.add(resource)
-                print('your resource was saved"', project.id)
+                print('your resource was saved to"', project.id)
 
             return redirect('project_detail', project.id)
 
@@ -87,11 +88,11 @@ class ResourceUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Update
 
     def get_object(self):
 
-        project = Project.objects.get(id=self.kwargs['project_id'])
+        # project = Project.objects.get(id=self.kwargs['project_id'])
         pk = self.kwargs.get('pk')
-        print('project', project.id)
+        # print('project', project.id)
         print('pk', pk)
-        return get_object_or_404(Resource, pk=pk, project=project)
+        return get_object_or_404(Resource, pk=pk)
 
     def get_success_url(self):
         return reverse_lazy('resource_detail', kwargs={'pk': self.object.id, 'project_id':self.project.id})

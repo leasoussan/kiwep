@@ -232,12 +232,18 @@
 
                     {% if answer.response_comment or answer.response_file %}
 
-                        <div class="answer_content">
-                            <h3>{% trans 'add_new_answer' %}</h3>
-                            <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
-                                {% csrf_token %}
+                    {% if object.answer.all.exists %}
+                        {% with answer=object.answer.last %}
+                            <div class="answer_content" style="background-color: yellow">
+                                <h3>{% trans 'add_new_answer' %}</h3>
+                                <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
+                                    {% csrf_token %}
 
-                                {{ answer.status_form }}
+
+                                    {{ answer.status_form }}
+                                    <button type="submit">{% trans 'send_answer' %}</button>
+                                </form>
+
                             </form>
 
                             {% if answer.status %}
@@ -262,9 +268,95 @@
         <div class="comment_section">
 
             {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}
+                                {% if answer.status %}
+                                    <lable> {% trans 'answer_status' %}: {{ answer.status }} </lable>
+                                {% elif answer.status == 'a' %}
+                                    {% if not answer.grade %}
+
+                                        <lable>{% trans 'mission_not_graded' %}</lable>
+                                    {% else %}
+                                        <lable>{% trans 'grade_for_mission ' %}: {{ answer.grade }}</lable>
+                                    {% endif %}
+
+                                {% else %}
+
+                                    <lable> {% trans 'mission_wasnt_accepted_yet' %}</lable>
+                                {% endif %}
+                            </div>
+
+                        {% endwith %}
+                    {% else %}
+                        <div class="answer_content">
+                            {% include "answer/answer.html"  with object=object %}
+
 
                 <!-- Modal Trigger -->
                 <a class="waves-effect waves-light btn modal-trigger" href="#add_discussion">{% trans 'discussion_mission' %}</a>
+
+
+
+                <ul class="collapsible discussion_table">
+                    {% for discussion in object.discussions.all %}
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ discussion.title }}</div>
+
+                            <div class="collapsible-body">
+                                {% if not discussion.replies.exists %}
+
+                {% endif %}
+            </div>
+        </div>
+
+
+                                    <div class="add_comment_input">
+
+                                        <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}">
+                                            {% csrf_token %}
+                                            {{ discussion.comment_form|materializecss }}
+                                            <div class="col s1">
+                                                <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>
+                                            </div>
+                                        </form>
+
+
+                                    </div>
+
+                                {% else %}
+
+
+        <div class="comment_section">
+
+            {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}
+
+                <!-- Modal Trigger -->
+                <a class="waves-effect waves-light btn modal-trigger" href="#add_discussion">{% trans 'discussion_mission' %}</a>
+
+
+                                    {% for comment in discussion.replies.all %}
+                                        {% if comment.user.profile == request.user.profile %}
+
+
+                                            <div class="speech-bubble-left user_comment">
+                                                {{ comment.comment_text }}
+                                            </div>
+                                        {% else %}
+                                            <div class="speech-bubble-right profile_comment">
+                                                {{ comment.comment_text}}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+
+
+                                    <div class="add_comment_input">
+
+                                    <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >
+                                        {% csrf_token %}
+                                        {{ discussion.comment_form|materializecss }}
+                                        <div class="col s1">
+                                            <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>
+                                        </div>
+                                    </form>
+                                {% endif %}
 
 
                 <ul class="collapsible discussion_table">
@@ -320,6 +412,7 @@
                     {% endfor %}
             {% endif %}
         </div>
+
 
     </div>
 

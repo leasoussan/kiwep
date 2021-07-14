@@ -36,6 +36,7 @@ class Resource(DiscussionModel):
     text = models.TextField()
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE,  blank=True, null =True)
+    project = models.ForeignKey('Project', on_delete=models.CASCADE)
     objects = ResourceModelManager()
 
     def __str__(self):
@@ -70,7 +71,6 @@ class Project(DiscussionModel):
     acquired_skills = models.ManyToManyField(Skills)
     time_to_complete = models.PositiveIntegerField()
     field = models.ManyToManyField(Field)
-    resources = models.ManyToManyField(Resource, blank=True)
     difficulty = models.ForeignKey(Level, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)

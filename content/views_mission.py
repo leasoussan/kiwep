@@ -45,8 +45,9 @@ class AnswerBoardMissionListView(ProfileCheckPassesTestMixin, ListView):
     context_object_name = 'answers_mission_list'
     form = ValidateMissionForm()
 
+
     def get_queryset(self):
-        return super().get_queryset().filter(attributed_to = True)
+        return super().get_queryset().filter(attributed_to__isnull=False)
 
 # ----------------------------------------------------------------------------------------------------------------
 
@@ -114,6 +115,7 @@ class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     def get_object(self):
         pk = self.kwargs.get('pk')
+        # answer =
         return get_object_or_404(IndividualMission, pk=pk)
 
 
@@ -398,46 +400,4 @@ class ValidateMission(SpeakerStatuPassesTestMixin, RedirectView):
         mission.accepted = True
         mission.save()
         return super().get_redirect_url(*args, **kwargs)
-
-    # -------------------------------------------------------
-
-    # class AssignCollectiveMissionView(SpeakerStatuPassesTestMixin, FormView):
-    #     model = CollectiveMission
-    #     form_class = CollectiveMissionAssign
-    #     success_url = 'collective_mission_detail'
-    #     template_name = "crud/create.html"
-    #
-    #     def get_object(self):
-    #         pk = self.kwargs.get('pk')
-    #         print(pk, "pk print")
-    #         return get_object_or_404(CollectiveMission, pk=pk)
-    #
-    #     def get_form_kwargs(self):
-    #         """Return the keyword arguments for instantiating the form."""
-    #         collective_mission = self.get_object()
-    #         kwargs = super().get_form_kwargs()
-    #         kwargs['team'] = collective_mission.project.team
-    #         kwargs['participants'] = collective_mission.project.team.participants.all()
-    #         # if self.request.method == "POST":
-    #         #     del kwargs['participants']
-    #         return kwargs
-    #
-    #     def form_valid(self, form):
-    #         """If the form is valid, redirect to the supplied URL."""
-    #         print(form.cleaned_data, 'cleaned_data')
-    #         collective_mission = self.get_object()
-    #         print(collective_mission, "HERREE")
-    #
-    #         form.save(collective_mission)
-    #
-    #         return super().form_valid(form)
-    #
-    #
-    #     def form_invalid(self, form):
-    #         print(form['participants'],  'my form errors')
-    #
-    #         return super().form_invalid(form)
-    #
-
-
 
