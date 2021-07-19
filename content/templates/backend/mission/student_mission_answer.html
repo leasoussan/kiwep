@@ -1,6 +1,6 @@
 {% load i18n %}
-{% elif user.is_student %}
-
+{% if user.is_student %}
+Here is I submit my answer
 
 {% if answer.response_comment or answer.response_file %}
 
@@ -39,4 +39,5 @@
     {% endif %}
 
 
+{% endif %}
 {% endif %}

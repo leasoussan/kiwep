@@ -3,13 +3,13 @@ from optparse import Option
 from django.utils import timezone
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Project, Team, IndividualMission, CollectiveMission
+from .models import Project, Team, IndividualMission, CollectiveMission, Resource
 from django.forms import ModelForm
 from .forms import (
     ProjectAddForm,
-    MissionAddForm,
-    IndividualMissionFormSet,
-    CollectiveMissionFormSet,
+
+    # IndividualMissionFormSet,
+    # CollectiveMissionFormSet,
     IndividualMissionAddForm,
     CollectiveMissionAddForm, ResourceAddForm,
 )
@@ -123,7 +123,7 @@ class ProjectDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['mission_form'] = MissionAddForm()
+
         context['individual_form'] = IndividualMissionAddForm()
         context['collective_form'] = CollectiveMissionAddForm()
         context['resources_form'] = ResourceAddForm()
@@ -178,8 +178,9 @@ class ProjectTeamCreateView(ProjectCreateView):
 
 # To Overwrite the Get_absolut_url if I want it to go somewhere else - for ex in the update view 
 
-    # def get_success_url(self):
-    #     return ('content/project_list')
+# def get_success_url(self):
+#     return ('content/project_list')
+
 
 def clean_missions(project_id, *querysets):
 
@@ -196,12 +197,29 @@ def clean_missions(project_id, *querysets):
             mission.completed=False
             if qs.model == IndividualMission:
                 mission.attributed_to = None
-                mission.response_comment = ''
-                mission.response_file = None
                 mission.accepted = False
 
             objects.append(mission)
         qs.model.objects.bulk_create(objects)
+
+def clean_resource(project_id, *querysets):
+
+    for qs in querysets:
+        objects = []
+        if qs.model not in Resource:
+            print('Function clean mission should be only used on resource query set ')
+            return
+        for resource in qs:
+            resource.id = None
+            resource.project_id = project_id
+            print(resource)
+            objects.append(resource)
+        qs.model.objects.bulk_create(objects)
+
+
+
+
+
 
 
 def get_due_date(self, **kwargs):
@@ -219,13 +237,14 @@ class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
         project = get_object_or_404(Project, pk=kwargs['pk'])
         pk = self.kwargs.get("team_id")
         team = get_object_or_404(Team, pk=pk)
-        i_missions = project.individualmission_set.all()
-        c_missions = project.collectivemission_set.all()
-        project.id =  None
-
+        missions = project.mission_set.all()
+        resources = project.resource_set.all
+        project.id =None
         project.save()
-        clean_missions(project.id, i_missions, c_missions)
+        clean_missions(project.id, missions)
+        clean_resource(resources)
         team.project = project
+        # {TODO:why team.project }
         team.save()
         kwargs['pk'] = project.pk
         del kwargs['team_id']
@@ -234,38 +253,37 @@ class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
 
 
 
-
-
-class CreateProjectMissionView(SpeakerStatuPassesTestMixin, View):
-    """ Once a Project IS created the missions have to be set, Deadline, attribution etc...."""
-
-    def get(self, request, *args, **kwargs):
-
-        project = Project.objects.get(id=self.kwargs['pk'])
-
-        formset_collective = CollectiveMissionFormSet(instance=project)
-        formset_individual = IndividualMissionFormSet(instance=project)
-        formsets = {'individual':formset_individual, 'collective': formset_collective}
-
-
-        return render(request, 'crud/create_missions.html', {'formsets': formsets})
-
-    def post(self, request, *args, **kwargs):
-
-        project = Project.objects.get(id=self.kwargs['pk'])
-
-        individual_missions = IndividualMissionFormSet(request.POST, instance=project)
-
-        collective_missions = CollectiveMissionFormSet(request.POST, instance=project)
-
-        if individual_missions.is_valid():
-            individual_missions.save()
-            return redirect('project_detail', project.id)
-
-        return render(request, 'crud/create_project_missions.html', {'formset': individual_missions})
-
-
-# prefix='collective' We might need to add a Prefix if using few formset- might have been changed by DJANGO
+#
+#
+# class CreateProjectMissionView(SpeakerStatuPassesTestMixin, View):
+#     """ Once a Project IS created the missions have to be set, Deadline, attribution etc...."""
+#
+#     def get(self, request, *args, **kwargs):
+#
+#         project = Project.objects.get(id=self.kwargs['pk'])
+#
+#         formset_collective = CollectiveMissionFormSet(instance=project)
+#         formset_individual = IndividualMissionFormSet(instance=project)
+#         formsets = {'individual':formset_individual, 'collective': formset_collective}
+#
+#
+#         return render(request, 'crud/create_missions.html', {'formsets': formsets})
+#
+#     def post(self, request, *args, **kwargs):
+#
+#         project = Project.objects.get(id=self.kwargs['pk'])
+#
+#         individual_missions = IndividualMissionFormSet(request.POST, instance=project)
+#
+#         collective_missions = CollectiveMissionFormSet(request.POST, instance=project)
+#
+#         if individual_missions.is_valid():
+#             individual_missions.save()
+#             return redirect('project_detail', project.id)
+#
+#         return render(request, 'crud/create_project_missions.html', {'formset': individual_missions})
+#
+#
 
 
 
@@ -279,18 +297,16 @@ class CreateProjectMissionView(SpeakerStatuPassesTestMixin, View):
 class ProjectUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
     model = Project
     fields = [
-            'name',
-            'description',
-            'time_to_complete',
-            'field',
-            'difficulty',
-            'points',
-            'is_template',
-            'required_skills',
-            'acquired_skills'
-            ]
+        'name',
+        'description',
+        'time_to_complete',
+        'field',
+        'difficulty',
+        'points',
+        'acquired_skills',
+    ]
     template_name = 'crud/update.html'
-    
+
     def get_object(self):
         pk = self.kwargs.get("pk")
         return get_object_or_404(Project, pk=pk)

@@ -94,7 +94,7 @@ class IndividualMissionQuerySet(models.QuerySet):
         return self.filter(mission='s_m')
 
     def available_mission(self):
-        return self.filter(attributed_to = None)
+        return self.filter(attributed_to=None)
 
     def attributed_mission(self):
         return self.filter(attributed_to = True)

@@ -27,7 +27,7 @@
                     <thead>
                     <tr class="table_headers">
                         <th>{% trans 'project_name_table_header' %}</th>
-                        <th>{% trans 'speaker_table_header' %}</th>
+                        <th>{% trans 'team_attached' %}</th>
 {#                        <th>{% trans 'field_table_header' %}</th>#}
                         <th>{% trans 'time_to_complete_table_header' %}</th>
                         <th>{% trans 'edit_p_table_header' %}</th>
@@ -39,7 +39,12 @@
 
                         <tr class="table_headers table_row">
                             <td><a a class= "link-table"href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
-                            <td>{{project.speaker.user.first_name}}</td>
+                            <td>{% if project.team %}
+                                {{ project.team.name }}
+                                {% else %}
+                                {% trans 'no_team_attributed_yet' %}
+                                {% endif %}
+                            </td>
 {#                            <td>{% if not project.field.exists %}#}
 {#                                {% trans 'no_fields' %}#}
 {#                            {% else %}#}

@@ -101,17 +101,17 @@ class Project(DiscussionModel):
 
 class Mission(AnswerModel):
     STAGE_CHOICE = [
-        ('start', 'Start'),
-        ('middle', 'Middle'),
-        ('final', 'Final'),
+        ('start', _('start')),
+        ('middle', _('middle')),
+        ('final', _('final')),
     ]
 
     RESPONSE_TYPE = [
-        ('link', 'Link'),
-        ('video', 'Video'),
-        ('doc', 'Document'),
-        ('power_p', 'Power Point'),
-        ('image', 'image'),
+        ('link', _('link')),
+        ('video', _('video')),
+        ('doc', _('document')),
+        ('power_p', _('power Point')),
+        ('image', _('image')),
     ]
 
     MISSION_TYPE = [
@@ -140,6 +140,21 @@ class Mission(AnswerModel):
 
     def __str__(self):
         return f"Mission Name : {self.name}"
+
+
+    def get_mission_type(self):
+        mission_type = {
+        'is_indidividual':IndividualMission,
+        'is_collective': CollectiveMission,
+
+        }
+
+        for key, value in mission_type.items():
+
+            if value.objects.filter(mission=self).exists():
+                # TODO: We need to check if there is the Individual Mission
+                return key
+
 
 
 class MissionValue(models.Model):

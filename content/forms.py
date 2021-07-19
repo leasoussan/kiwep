@@ -41,7 +41,6 @@ class TeamAddForm(ModelForm):
         widget=django.forms.DateInput(
             format='%d/%m/%Y',
             attrs={'type': 'date'}),
-        # input_formats=('%d-%m-%Y',),
     )
 
 
@@ -53,7 +52,7 @@ class AddMemberTeamForm(ModelForm):
         fields = ['participants']
 
         widgets = {
-            'participants': FilteredSelectMultiple(verbose_name='Participants List', is_stacked=False)
+            'participants': FilteredSelectMultiple(verbose_name='participants_list', is_stacked=False)
         }
 
         # class media is built inside django
@@ -67,6 +66,23 @@ class AddMemberTeamForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['participants'].queryset = kwargs['instance'].group_Institution.student_set.all()
+
+
+class UpdateTeamForm(ModelForm):
+
+    class Meta:
+
+        model = Team
+        fields = [
+            'name',
+            'project',
+            'start_date',
+            'participants',
+            'project_completed' ]
+        #
+        # widgets = {
+        #     'project': Select(verbose_name='participants_list', is_stacked=False)
+        # }
 
 
 
@@ -84,30 +100,29 @@ mission_fields = [
 ]
 
 
-class MissionAddForm(ModelForm):
-    class Meta:
-        model=Mission
-        fields = mission_fields
-
-    due_date = forms.DateField(
-        widget=django.forms.DateInput(
-            format='%d/%m/%Y',
-            attrs={'type': 'date'}),
-        # input_formats=('%d-%m-%Y',),
-        # resources=forms.ModelMultipleChoiceField(queryset=object.project.mission)
-    )
 
 
 class IndividualMissionAddForm(ModelForm):
     class Meta:
         model = IndividualMission
-        fields = ['attributed_to']
+        fields = mission_fields + ['attributed_to']
 
+# TODO: Check date setup
+# # Check if a date is not in the past.
+#         if data < datetime.date.today():
+#             raise ValidationError(_('Invalid date - renewal in past'))
+#
+#         # Check if a date is in the allowed range (+4 weeks from today).
+#         if data > datetime.date.today() + datetime.timedelta(weeks=4):
+#             raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
+#
+#         # Remember to always return the cleaned data.
+#         return data
 
 class CollectiveMissionAddForm(ModelForm):
     class Meta:
         model = CollectiveMission
-        fields = ['attributed_to']
+        fields = mission_fields + ['attributed_to']
 
 
 
@@ -147,19 +162,19 @@ class ResourceAddForm(ModelForm):
 
 
 
-
-CollectiveMissionFormSet = inlineformset_factory(
-    Project,
-    CollectiveMission,
-    fields=mission_fields,
-    extra=1)
-
-IndividualMissionFormSet = inlineformset_factory(
-    Project,
-    IndividualMission,
-    fields=mission_fields,
-    extra=1)
-
+#
+# CollectiveMissionFormSet = inlineformset_factory(
+#     Project,
+#     CollectiveMission,
+#     fields=mission_fields,
+#     extra=1)
+#
+# IndividualMissionFormSet = inlineformset_factory(
+#     Project,
+#     IndividualMission,
+#     fields=mission_fields,
+#     extra=1)
+#
 
 
 

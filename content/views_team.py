@@ -2,7 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team, CollectiveMission, Project, Mission, IndividualMission
 from django.forms import ModelForm
-from .forms import TeamAddForm, CollectiveMissionFormSet, AddMemberTeamForm, IndividualMissionFormSet, ProjectAddForm
+from .forms import TeamAddForm, AddMemberTeamForm, ProjectAddForm, UpdateTeamForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -133,30 +133,30 @@ class TeamCreateView(SpeakerStatuPassesTestMixin,  CreateView):
 
 # prefix='collective' We might need to add a Prefix if using few formset- might have been changed by DJANGO 
 
-
-class TeamEditIndividualProjectMission(SpeakerStatuPassesTestMixin, UpdateView):
-    """ """
-    model = IndividualMission
-    fields = '__all__'
-
-    template_name = 'crud/update.html'
-    # success_url = ('team_detail')
-
-
-
-class TeamEditCollectiveProjectMission(SpeakerStatuPassesTestMixin, UpdateView):
-    model = CollectiveMission
-    fields = '__all__'
-
-    template_name = 'crud/update.html'
-    # success_url = ('team_detail')
+#
+# class TeamEditIndividualProjectMission(SpeakerStatuPassesTestMixin, UpdateView):
+#     """ """
+#     model = IndividualMission
+#     fields = '__all__'
+#
+#     template_name = 'crud/update.html'
+#     # success_url = ('team_detail')
+#
+#
+#
+# class TeamEditCollectiveProjectMission(SpeakerStatuPassesTestMixin, UpdateView):
+#     model = CollectiveMission
+#     fields = '__all__'
+#
+#     template_name = 'crud/update.html'
+#     # success_url = ('team_detail')
 
 
 
 
 class TeamUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
-    model = Team 
-    fields = ['name', 'project', 'start_date', 'group_Institution', 'participants' ]
+    model = Team
+    form_class = UpdateTeamForm
     template_name = 'crud/update.html'
     # success_url = ('team_detail')
 

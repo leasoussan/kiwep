@@ -25,6 +25,8 @@
 
                     {% else %}
                         <a class="waves-effect btn edit_button" href="{% url 'update_project' project.id %}">{% trans 'edit'%}</a>
+                                                        <a href="{% url 'delete_project' project.id %}" > <i class="small material-icons delete garbege">{% trans 'delete' %}</i></a></td>
+
                     {% endif %}
                 {% endif %}
             </div>
@@ -38,13 +40,13 @@
                 <div class="table_detail_project ">
                     <h4 class ="title">{% trans 'details_header' %}</h4>
                     <ul >
-{#                        <li>#}
-{#                            <span class="label">{% trans 'field' %}:</span>#}
-{#                        {{ project.field }}#}
-{#                            {% for filed in project.field.all %}#}
-{#                            <span class="value">{{project.field}}</span>#}
-{#                            {% endfor %}#}
-{#                        </li>#}
+                        {#                        <li>#}
+                        {#                            <span class="label">{% trans 'field' %}:</span>#}
+                        {#                        {{ project.field }}#}
+                        {#                            {% for filed in project.field.all %}#}
+                        {#                            <span class="value">{{project.field}}</span>#}
+                        {#                            {% endfor %}#}
+                        {#                        </li>#}
                         <li>
                             <span class="label">{% trans 'time_to_complete' %}:</span>
                             <span class="value">{{project.time_to_complete}} {% trans 'days' %}</span>
@@ -65,7 +67,7 @@
             <div class="project_acquired_skills" >
 
                 <div>
-                      <h4 class ="title">{% trans 'acquired_skills' %}</h4>
+                    <h4 class ="title">{% trans 'acquired_skills' %}</h4>
                     {% for skill in project.acquired_skills.all %}
                         <li class="list_text">{{skill.name}}</li>
                     {% endfor %}
@@ -78,12 +80,6 @@
 
 
         <div class="project_extra_detail">
-            {#  <div>#}
-            {#                {% include 'comments/discussion.html' with object=project %}#}
-            {##}
-            {#            </div>#}
-            {##}
-
 
             <div class ="project_mission_table">
                 <div class="section_header">
@@ -103,10 +99,10 @@
                         <tr class="table_headers">
                             <th>{% trans 'mission_name' %}</th>
                             <th>{% trans 'dead_line' %}</th>
-                            <th>{% trans 'mission_type_title' %}</th>
+                            <th>{% trans 'mission_type' %}</th>
                             {% if user.is_speaker %}
-                                <th>{% trans 'delete' %}</th>
-                                <th> {% trans 'edit' %}</th>
+                                <th>{% trans 'delete' %}
+                                    {% trans 'edit' %}</th>
                             {% endif %}
                         </tr>
                         </thead>
@@ -115,23 +111,17 @@
                         {% for mission in project.mission_set.all %}
 
                             <tr>
-
                                 <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
+                                <td class="content_table">{{mission.due_date}}</td>
                                 <td class="content_table">{{ mission.get_mission_type_display }}</td>
-                                <td class="content_table">{% trans "individual_mission" %}</td>
+
                                 {% if user.is_speaker %}
-                                    <td><a href="{% url 'delete_individual_mission' mission.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
-                                    <td><a scope="col" href="{% url 'update_individual_mission' mission.id %}" class="waves-effect waves-light btn edit_btn_tbl">
-                                    <i class="material-icons">edit</i>
-                                </a>
+                                    <td><a href="{% url 'delete_individual_mission' mission.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>
+                                        <a scope="col" href="{% url 'update_individual_mission' mission.id %}" class="waves-effect waves-light btn edit_btn_tbl">
+                                            <i class="material-icons">edit</i></a></td>
                                 {% endif %}
                             </tr>
                         {% endfor %}
-
-
-
-
-
 
                         </tbody>
                     </table>
@@ -169,13 +159,13 @@
 
 
 
-                        {% for resource in project.resources.all %}
+                        {% for resource in project.resource_set.all %}
                             <tr>
-                                <td class="content_table"><a href="{% url 'resource_detail' resource.id project.id %}"> {{ resource.name }} </a></td>
+                                <td class="content_table"><a href="{% url 'resource_detail' resource.id %}"> {{ resource.name }} </a></td>
                                 {% if user.is_speaker %}
                                     <td>
                                         <a href="{% url 'delete_resource' resource.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>
-{#                                        <a scope="col" href="{% url 'update_resource' project.id %}" class="waves-effect waves-light btn edit_btn_tbl"><i class="material-icons">edit</i></a>#}
+                                        {#                                        <a scope="col" href="{% url 'update_resource' project.id %}" class="waves-effect waves-light btn edit_btn_tbl"><i class="material-icons">edit</i></a>#}
                                     </td>
                                 {% endif %}
 
@@ -215,7 +205,7 @@
 
                         <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' project.id %}' >
                             {% csrf_token %}
-                            {{ mission_form|materializecss }}
+
                             {{ individual_form|materializecss }}
                             <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
                                 {% trans 'save'%}</button>
@@ -230,7 +220,7 @@
 
                         <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' project.id %}' >
                             {% csrf_token %}
-                             {{ mission_form|materializecss }}
+
                             {{ collective_form|materializecss }}
                             <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
                                 {% trans 'save' %}</button>

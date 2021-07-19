@@ -43,11 +43,13 @@
 
 
                     {% elif collectivemission  %}
+                        <h3 class="header_title">{% trans 'participants_in_mission' %}</h3>
                         {% if not object.attributed_to.all.exists %}
                             <label>{% trans 'no_one_joined_yet' %}</label>
-                            {% if user.profile ==  object.team.manager %}
-
                                 <div>  <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a></div>
+
+                            {% if user.profile ==  team.manager %}
+
                             {% endif %}
 
                         {% else %}
@@ -126,8 +128,9 @@
             </div>
 
             <div class="mission_resource_list">
-                {% if object.project.resources %}
-                    {% for resource in object.project.resources.all   %}
+                {% if object.resource_set %}
+                    he
+                    {% for resource in object.project.resource_set.all   %}
                         <div>
                             <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
                         </div>
@@ -137,7 +140,7 @@
         </div>
 
 
-        <div class=" mission_detail_extra"  >
+        <div class="mission_detail_extra"  >
             <div class="mission_detail_edit_button">
                 {% if user.is_speaker %}
                     <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a>
@@ -205,7 +208,7 @@
     {% endif %}
 
 
-    {% include 'comments/discussion.html' %}
+    {% include 'comments/discussion.html'  with object=object %}
 
     {##}
     {#        <div class="comment_section">#}
