@@ -7,10 +7,13 @@ class ProjectModelQuerySet(models.QuerySet):
 
 
     def personal_templates(self):
-        return self.filter(is_template=True)
+        return self.filter(is_template=True, is_global= False)
 
     def personal_projects(self):
         return self.filter(is_template=False)
+
+    def available_projects(self):
+        return self.filter(is_template=False, is_global=False, team__isnull=True )
 
     def global_template_projects(self):
         return self.filter(is_template=True, is_global=True)
@@ -27,6 +30,8 @@ class ProjectModelManager(models.Manager):
     def personal_projects(self):
         return self.get_queryset().personal_projects()
 
+    def available_projects(self):
+        return self.get_queryset().available_projects()
 
     def global_template_projects(self):
         return self.get_queryset().global_template_projects()

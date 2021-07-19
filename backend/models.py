@@ -24,17 +24,21 @@ class Field(models.Model):
     skills_type = models.CharField(max_length=50, choices = SKILLS_TYPE)
 
     def __str__(self):
-        return f'{self.name} is a {self.skills_type} skill'
+        return f'{self.name}'
+
+
 
 
 
 class InstitutionCategory(models.Model):
     """ Type of Institution, as School, university, organization etc..."""
     name = models.CharField(max_length=100)
-    fields = models.ForeignKey(Field, on_delete=models.CASCADE)
+    fields = models.ManyToManyField(Field)
 
     def __str__(self):
         return self.name
+
+
 
 
 

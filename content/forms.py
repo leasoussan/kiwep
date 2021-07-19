@@ -20,8 +20,6 @@ class ProjectAddForm(ModelForm):
             'difficulty',
             'points',
             'acquired_skills',
-            'is_template',
-
         ]
 
         # exclude = ['completed', 'created_by']
@@ -36,7 +34,7 @@ class TeamAddForm(ModelForm):
             'group_Institution',
             'participants',
         ]
-
+    #
     start_date = forms.DateField(
         widget=django.forms.DateInput(
             format='%d/%m/%Y',
@@ -44,9 +42,10 @@ class TeamAddForm(ModelForm):
     )
 
 
+
+
 class AddMemberTeamForm(ModelForm):
     """ Speaker can add team memebers"""
-
     class Meta:
         model = Team
         fields = ['participants']
@@ -68,10 +67,10 @@ class AddMemberTeamForm(ModelForm):
         self.fields['participants'].queryset = kwargs['instance'].group_Institution.student_set.all()
 
 
+
+
 class UpdateTeamForm(ModelForm):
-
     class Meta:
-
         model = Team
         fields = [
             'name',
@@ -79,10 +78,18 @@ class UpdateTeamForm(ModelForm):
             'start_date',
             'participants',
             'project_completed' ]
-        #
-        # widgets = {
-        #     'project': Select(verbose_name='participants_list', is_stacked=False)
-        # }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['project'].queryset = kwargs['instance'].manager.project_set.available_projects()
+        if kwargs['instance'].project:
+            self.fields['project'].queryset |= Project.objects.filter(id=kwargs['instance'].project.id)
+
+class ProjectTeamAddForm(ModelForm):
+    class Meta:
+        model = Team
+        fields = ['name', 'start_date', 'participants']
+
 
 
 
@@ -98,8 +105,6 @@ mission_fields = [
     'acquired_skill',
     'due_date',
 ]
-
-
 
 
 class IndividualMissionAddForm(ModelForm):

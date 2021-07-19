@@ -288,12 +288,15 @@
                 <div class="row">
                     <div class="col s12">
                         <ul class="tabs">
-                            <li class="tab col s3 btn"><a href="#pills-create-project">{% trans 'new_project' %}</a></li>
-                            <li class="tab col s3 btn"><a class="active" href="#pills-template">{% trans 'choose_templates' %}</a></li>
-                            <li class="tab col s3"><a href="#pills-duplicate">{% trans 'duplicate' %}</a></li>
+                          <li class="tab col 3"><a class="active" href="#pills-create-project">{% trans 'new_project' %}</a></li>
+                            <li class="tab col 3"><a href="#pills-template">{% trans 'choose_templates' %}</a></li>
+                            <li class="tab col 3"><a href="#pills-duplicate">{% trans 'duplicate' %}</a></li>
                         </ul>
                     </div>
-                    <div id="pills-create-project" class="col s12">
+
+
+
+                    <div id="pills-create-project" class="col s12" >
                         <form method="post" action="{% url 'create_team_project' team.id %}">
                             {% csrf_token %}
                             {{ project_form|materializecss }}
@@ -307,23 +310,27 @@
 
                     <div id="pills-template" class="col s12">
                         {% for project in templates  %}
-                            <h2>{{ project.name }}</h2>
-                            <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>
+                            <div class="duplicate_table">
+                                <h4 class="small_title">{{ project.name }}</h4>
+                                <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>
+
+                            </div>
                         {% endfor %}
                     </div>
 
 
                     <div id="pills-duplicate" class="col s12">
                         {% for project in old_projects  %}
-                            <h2>{{ project.name }}</h2>
-                            <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
+                            <div class="duplicate_table">
+                                <h4 class="small_title">{{ project.name }}</h4>
+                                <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
+                            </div>
                         {% endfor %}
 
                     </div>
                 </div>
 
 
-            </div>
             <div class="modal-footer">
                 <button type="button" class="modal-close" aria-label="Close">{% trans 'close' %}</button>
             </div>

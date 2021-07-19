@@ -89,6 +89,10 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
     template_name = 'backend/project/project_list.html'
     context_object_name = 'project_list'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['project_form'] = ProjectAddForm()
+        return context
 
     def get_queryset(self):
         queryset = self.request.user.profile().project_set.personal_templates()
@@ -165,7 +169,7 @@ class ProjectCreateView(SuccessMessageMixin, SpeakerStatuPassesTestMixin, Create
 
 
 class ProjectTeamCreateView(ProjectCreateView):
-    """This View inherite form ProjectCreateView
+    """This View inherite form ProjectCreateView project created with a team already exisiting
      we add here the team that it connecte right away with it and save it with a team """
 
     def form_valid(self, form):
@@ -202,20 +206,17 @@ def clean_missions(project_id, *querysets):
             objects.append(mission)
         qs.model.objects.bulk_create(objects)
 
-def clean_resource(project_id, *querysets):
 
-    for qs in querysets:
-        objects = []
-        if qs.model not in Resource:
-            print('Function clean mission should be only used on resource query set ')
-            return
-        for resource in qs:
-            resource.id = None
-            resource.project_id = project_id
-            print(resource)
-            objects.append(resource)
-        qs.model.objects.bulk_create(objects)
-
+def clean_resource(project_id, queryset):
+    objects = []
+    if queryset.model is not Resource:
+        print('Function clean resource should be only used on resource query set ')
+        return
+    for resource in queryset:
+        resource.id = None
+        resource.project_id = project_id
+        objects.append(resource)
+    queryset.model.objects.bulk_create(objects)
 
 
 
@@ -242,7 +243,7 @@ class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
         project.id =None
         project.save()
         clean_missions(project.id, missions)
-        clean_resource(resources)
+        clean_resource(project.id, resources)
         team.project = project
         # {TODO:why team.project }
         team.save()

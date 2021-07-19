@@ -2,7 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team, CollectiveMission, Project, Mission, IndividualMission
 from django.forms import ModelForm
-from .forms import TeamAddForm, AddMemberTeamForm, ProjectAddForm, UpdateTeamForm
+from .forms import TeamAddForm, AddMemberTeamForm, ProjectAddForm, UpdateTeamForm, ProjectTeamAddForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -77,7 +77,6 @@ class TeamCreateView(SpeakerStatuPassesTestMixin,  CreateView):
         self.object.manager = self.request.user.profile()
         self.object.completed = False
         self.object.save()
-
         return super().form_valid(form)
 
     
@@ -93,9 +92,21 @@ class TeamCreateView(SpeakerStatuPassesTestMixin,  CreateView):
 
 
 
+class ProjectToTeamCreateView(TeamCreateView):
+    """Create a Team for an existing project  """
 
+    def form_valid(self, form):
+        super().form_valid(form)
+        print(form)
+        pk = self.kwargs.get('pk')
+        print('pk', pk)
+        self.object.project = Project.objects.get(pk=pk)
+        self.object.save()
 
+        return super().form_valid(form)
 
+    def get_success_url(self):
+        return reverse_lazy('team_detail', kwargs={'pk': self.object.id})
 
 
 #

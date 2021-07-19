@@ -89,11 +89,6 @@ class Register(View):
 
 
 
-
-
-
-
-
 def is_key_valid(request, key, use= False):
     thirty_days = date.today() - timedelta(days=30)
 
@@ -141,11 +136,8 @@ class InstitutionInviteView(View):
             user = form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
-
             usertype = form.cleaned_data['usertype']
-
             setattr(user, usertype, True)
-
 
             user.save()
             user = authenticate(username=username, password=password, usertype=usertype)

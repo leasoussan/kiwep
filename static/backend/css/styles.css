@@ -497,6 +497,21 @@ border{
   height: 2em;
 }
 
+.project_list_modal{
+ width: 60%;
+}
+
+#select_project{
+  font-weight: normal;
+  color: #0c5460;
+}
+.modal-content{
+  width: 100%;
+}
+
+.project_create_button {
+  margin-bottom: 2rem;
+}
 /*________________________________________TEAM*/
 .main_container_team{
   width: 100%;
@@ -519,8 +534,25 @@ border{
   justify-content: space-between;
 }
 
+.duplicate_table{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid #0c5460;
+  margin-bottom: 3px;
+  height: 2rem;
+  padding:7px;
+
+}
+
 .team_button_group a{
   margin: 0 20px 0 20px ; ;
+}
+
+
+#add_project{
+  font-weight: normal;
+  color: #0c5460;
 }
 
 .participant_box{

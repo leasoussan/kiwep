@@ -36,6 +36,7 @@ class MyUserCreationForm(UserCreationForm):
         # }
 
 
+
 class MySpeakerCreationForm(MyUserCreationForm):
     
     usertype = forms.CharField(label='Who are you?', initial ='is_speaker', widget=forms.HiddenInput())
@@ -46,10 +47,11 @@ class MySpeakerCreationForm(MyUserCreationForm):
 class InstitutionCreationForm(UserCreationForm):
     usertype = forms.CharField(label='Who are you?', widget=forms.HiddenInput())
     email = forms.EmailField(max_length=60, help_text='Required. Add a valid email address')
-
+    fields = forms
     class Meta:
         model = MyUser
         fields = ['username', 'email', 'password1', 'password2', 'language_code']
+
 
 
 class LoginForm(AuthenticationForm):
@@ -88,20 +90,20 @@ class SpeakerProfileCreationForm(forms.ModelForm):
         exclude = ['user', 'institution']
 
 
-
-class RepresentativeProfileCreationForm(forms.ModelForm):
-    class Meta:
-        model = Representative
-        fields = ['user']
-
-
-
-
-class InstitutionInviteForm(forms.ModelForm):
-
-    class Meta:
-        model = InstitutionInvite
-        fields = ['email']
+#
+# class RepresentativeProfileCreationForm(forms.ModelForm):
+#     class Meta:
+#         model = Representative
+#         fields = ['user']
+#
+#
+#
+#
+# class InstitutionInviteForm(forms.ModelForm):
+#
+#     class Meta:
+#         model = InstitutionInvite
+#         fields = ['email']
 
 
 

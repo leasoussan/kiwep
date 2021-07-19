@@ -17,7 +17,7 @@ User = get_user_model()
 
 
 # -------------------------------------------------------------------CREAT INSTITUTION PROFILE----------------------------
-
+#
 # class CreateInstitutionProfile(RepresentativeStatuPassesTestMixin, CreateView):
 #     model = Institution
 #     form_class = InstitutionAddForm
@@ -36,9 +36,9 @@ User = get_user_model()
 #     def form_invalid(self, form):
 #
 #         return super().form_invalid(form)
-
-    # def get_success_url(self):
-    #     return reverse_lazy('', kwargs={'pk': self.object.id})
+#
+#     def get_success_url(self):
+#         return reverse_lazy('', kwargs={'pk': self.object.id})
 
 
 @login_required
