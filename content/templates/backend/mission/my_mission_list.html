@@ -26,6 +26,7 @@
                     <th>{% trans 'due_date' %}</th>
                     <th>{% trans 'answer' %}</th>
                     <th>{% trans 'validate_title' %}</th>
+                    <th>{% trans 'action' %}</th>
                 </tr>
                 </tr>
 
@@ -35,12 +36,12 @@
                 {% for mission in answers_mission_list %}
 
                     <tr>
-                    {{ mission }}
+                        {{ mission }}
                         <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
                         {% if mission.project.team %}
                             <td><a href="{% url 'team_detail'  mission.project.team.id %}">{{ mission.project.team.name }}</a></td>
                         {% else %}
-                           <td> not team</td>
+                            <td> not team</td>
                         {% endif %}
                         <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ mission.project.name }}</a></td>
                         <td>{{mission.due_date}}</td>
@@ -90,6 +91,7 @@
                 <th>{% trans 'due_date' %}</th>
                 <th>{% trans 'answer' %}</th>
                 <th>{% trans 'status' %}</th>
+                <th>{% trans 'action' %}</th>
             </tr>
             </tr>
 
@@ -99,17 +101,25 @@
 
 
                 {% for mission in mission_list  %}
-{{ mission.team }}
+
                     <tr>
                         <td>   <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
-{#                        <td>   <a href="{% url 'team_detail' mission.team.id %}">{{ mission.team.name }}</a></td>#}
-
+                        {#                        <td>   <a href="{% url 'team_detail' mission.project.team_set.id %}">{{ mission.team.name }}</a></td>#}
+                        <td></td>
+                        <td>   <a href="{% url 'project_detail' mission.project.id %}">{{ mission.team.name }}</a></td>
+                        <td>{{ mission.due_date }}</td>
                         <td>{% if mission.response_comment or mission.response_file %}
                             <a href="{% url 'individual_mission_detail'  mission.id %}">{% trans 'see_answer' %}</a>
                         {% elif user.profile == mission.attributed_to %}
                             <lable>{% trans 'submit_mission' %}</lable>
                         {% endif %}</td>
-                        <td>{{mission.status}}</td>
+                        <td>{% if not mission.answer.first %}
+                            <lable>{% trans 'mission_not_answered_yet' %}</lable>
+                        {% else %}
+                            {{mission.answer.status}}
+                        {% endif %}
+                        </td>
+                        <td><a href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -16,7 +16,8 @@ from .forms import (
     StudentProfileCreationForm,
     SpeakerProfileCreationForm,
     UserForm,
-    LoginForm, InstitutionInviteForm, MySpeakerCreationForm, InstitutionCreationForm
+    LoginForm, MySpeakerCreationForm, InstitutionCreationForm
+    # InstitutionInviteForm
 )
 from backend.forms import InstitutionAddForm
 
@@ -50,7 +51,7 @@ class Register(View):
             form = MySpeakerCreationForm(initial={'usertype': 'is_speaker'})
 
         context = {
-         "form": form
+            "form": form
         }
         return render(request, 'registration/register.html', context)
 
@@ -160,10 +161,10 @@ def get_user_profile_form(request, edit=False):
 
     if edit:
         instance = user.profile()
-    else: 
+    else:
         instance = None
 
-    data = request.POST or None 
+    data = request.POST or None
 
     if user.is_student:
 
@@ -272,7 +273,7 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
         user_form = UserForm(instance =request.user)
 
         profile_form = get_user_profile_form(request, edit =True)
-        
+
 
         return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'profile_form': profile_form})
 

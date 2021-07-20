@@ -43,7 +43,7 @@ class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     model = Team
     template_name = 'backend/team/team_detail.html'
-    queryset = IndividualMission.objects.available_mission()
+    # queryset = IndividualMission.objects.all().available_mission()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

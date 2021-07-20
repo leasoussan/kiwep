@@ -15,7 +15,7 @@
 
             <div class="main_detail_project">
                 <div>
-{#                    <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>#}
+                    <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
                 </div>
 
                 <div class=" mission_description">
@@ -46,7 +46,7 @@
                         <h3 class="header_title">{% trans 'participants_in_mission' %}</h3>
                         {% if not object.attributed_to.all.exists %}
                             <label>{% trans 'no_one_joined_yet' %}</label>
-                                <div>  <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a></div>
+                            <div>  <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a></div>
 
                             {% if user.profile ==  team.manager %}
 
@@ -77,7 +77,7 @@
 
                                     <h4 class="small_title">{% trans 'mission_attributed_to_you' %}:
                                         {{ object.attributed_to }}</h4>
-
+                                    <a href="{%  url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a>
 
                                 </div>
 
@@ -119,186 +119,186 @@
 
 
 
-    <div class="mission_extra_detail_box">
-        <div class=" mission_resource">
-            <div class="mission_resource_add_btn">
-                <!-- Modal Trigger -->
-                <button data-target="add_resource" class="btn modal-trigger add_button">{% trans 'add' %}</button>
+        <div class="mission_extra_detail_box">
+            <div class=" mission_resource">
+                <div class="mission_resource_add_btn">
+                    <!-- Modal Trigger -->
+                    <button data-target="add_resource" class="btn modal-trigger add_button">{% trans 'add' %}</button>
 
-            </div>
-
-            <div class="mission_resource_list">
-                {% if object.resource_set %}
-                    he
-                    {% for resource in object.project.resource_set.all   %}
-                        <div>
-                            <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-
-
-        <div class="mission_detail_extra"  >
-            <div class="mission_detail_edit_button">
-                {% if user.is_speaker %}
-                    <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a>
-                {% endif %}
-            </div>
-            <div class="detail_container">
-                <div class ="mission_detail_box">
-
-                    <div class ="detail_title">
-                        <h5 class ="small_title">{% trans 'details_header' %}</h5>
-                    </div>
-
-
-                    <div class="table_detail_mission ">
-                        <ul>
-                            <li>
-                                <span class="label">{% trans 'field' %}:</span>
-                                <span class="value">{{object.field}}</span>
-
-                            </li>
-                            <li>
-                                <span class="label">{% trans 'dead_line' %}:</span>
-                                <span class="value">{{object.due_date}}</span>
-                            </li>
-                            <li >
-                                <span class="label">{% trans 'difficulty ' %}:</span>
-                                <span class="value">{{object.level}}</span>
-                            </li>
-                            <li>
-                                <span class="label">{% trans 'points' %}:</span>
-                                <span class="value">{{object.points}}</span>
-                            </li>
-                            <li>
-                                <span class="label">{% trans 'typ' %}:</span>
-                                <span class="value">{{object.points}}</span>
-                            </li>
-                        </ul>
-
-                    </div>
                 </div>
 
-                <div class="acquired_skills">
-                    <h5 class ="small_title">{% trans 'acquired_skills' %}</h5>
-
-                    <div>
-                        {% for skill in object.acquired_skill.all %}
-                            <li class="collection-item">{{skill.name}}</li>
+                <div class="mission_resource_list">
+                    {% if object.resource_set %}
+                        he
+                        {% for resource in object.project.resource_set.all   %}
+                            <div>
+                                <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+                            </div>
                         {% endfor %}
-                    </div>
-
+                    {% endif %}
                 </div>
             </div>
 
+
+            <div class="mission_detail_extra"  >
+                <div class="mission_detail_edit_button">
+                    {% if user.is_speaker %}
+                        <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a>
+                    {% endif %}
+                </div>
+                <div class="detail_container">
+                    <div class ="mission_detail_box">
+
+                        <div class ="detail_title">
+                            <h5 class ="small_title">{% trans 'details_header' %}</h5>
+                        </div>
+
+
+                        <div class="table_detail_mission ">
+                            <ul>
+                                <li>
+                                    <span class="label">{% trans 'field' %}:</span>
+                                    <span class="value">{{object.field}}</span>
+
+                                </li>
+                                <li>
+                                    <span class="label">{% trans 'dead_line' %}:</span>
+                                    <span class="value">{{object.due_date}}</span>
+                                </li>
+                                <li >
+                                    <span class="label">{% trans 'difficulty ' %}:</span>
+                                    <span class="value">{{object.level}}</span>
+                                </li>
+                                <li>
+                                    <span class="label">{% trans 'points' %}:</span>
+                                    <span class="value">{{object.points}}</span>
+                                </li>
+                                <li>
+                                    <span class="label">{% trans 'typ' %}:</span>
+                                    <span class="value">{{object.points}}</span>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="acquired_skills">
+                        <h5 class ="small_title">{% trans 'acquired_skills' %}</h5>
+
+                        <div>
+                            {% for skill in object.acquired_skill.all %}
+                                <li class="collection-item">{{skill.name}}</li>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
 
 
 
 
-    {% if user.is_speaker %}
+        {% if user.is_speaker %}
 
-        {% include 'backend/mission/speaker_mission_answer.html' %}
-    {% elif user.is_student %}
-        {% include 'backend/mission/student_mission_answer.html' %}
-    {% endif %}
-
-
-    {% include 'comments/discussion.html'  with object=object %}
-
-    {##}
-    {#        <div class="comment_section">#}
-    {##}
-    {#            {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}#}
-    {##}
-    {#                <!-- Modal Trigger -->#}
-    {#                <a class="waves-effect waves-light btn modal-trigger" href="#add_discussion">{% trans 'discussion_mission' %}</a>#}
-    {##}
-    {##}
-    {#                {% for comment in discussion.replies.all %}#}
-    {#                    {% if comment.user.profile == request.user.profile %}#}
-    {##}
-    {##}
-    {#                        <div class="speech-bubble-left user_comment">#}
-    {#                            {{ comment.comment_text }}#}
-    {#                        </div>#}
-    {#                    {% else %}#}
-    {#                        <div class="speech-bubble-right profile_comment">#}
-    {#                            {{ comment.comment_text}}#}
-    {#                        </div>#}
-    {#                    {% endif %}#}
-    {#                {% endfor %}#}
-    {##}
-    {##}
-    {#                <div class="add_comment_input">#}
-    {##}
-    {#                <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >#}
-    {#                    {% csrf_token %}#}
-    {#                    {{ discussion.comment_form|materializecss }}#}
-    {#                    <div class="col s1">#}
-    {#                        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
-    {#                    </div>#}
-    {#                </form>#}
-    {#            {% endif %}#}
+            {% include 'backend/mission/speaker_mission_answer.html' %}
+        {% elif user.is_student %}
+            {% include 'backend/mission/student_mission_answer.html' %}
+        {% endif %}
 
 
-    {#            <ul class="collapsible discussion_table">#}
-    {#                {% for discussion in object.discussions.all %}#}
-    {#                    <li>#}
-    {#                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ discussion.title }}</div>#}
-    {##}
-    {#                        <div class="collapsible-body">#}
-    {#                            {% if not discussion.replies.exists %}#}
-    {##}
-    {#                                <div class="add_comment_input">#}
-    {##}
-    {#                                    <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}">#}
-    {#                                        {% csrf_token %}#}
-    {#                                        {{ discussion.comment_form|materializecss }}#}
-    {#                                        <div class="col s1">#}
-    {#                                            <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
-    {#                                        </div>#}
-    {#                                    </form>#}
-    {##}
-    {##}
-    {#                                </div>#}
-    {##}
-    {#                            {% else %}#}
-    {##}
-    {##}
-    {#                                {% for comment in discussion.replies.all %}#}
-    {#                                    {% if comment.user.profile == request.user.profile %}#}
-    {##}
-    {#                                        <div class="speech-bubble-left user_comment">#}
-    {#                                            {{ comment.comment_text }}#}
-    {#                                        </div>#}
-    {#                                    {% else %}#}
-    {#                                        <div class="speech-bubble-right profile_comment">#}
-    {#                                            {{ comment.comment_text}}#}
-    {#                                        </div>#}
-    {#                                    {% endif %}#}
-    {#                                {% endfor %}#}
-    {##}
-    {##}
-    {#                                <div class="add_comment_input">#}
-    {##}
-    {#                                <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >#}
-    {#                                    {% csrf_token %}#}
-    {#                                    {{ discussion.comment_form|materializecss }}#}
-    {#                                    <div class="col s1">#}
-    {#                                        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
-    {#                                    </div>#}
-    {#                                </form>#}
-    {#                            {% endif %}#}
-    {##}
-    {#                    </ul>#}
-    {#                {% endfor %}#}
-    {#            {% endif %}#}
-    {#            </div>#}
+        {% include 'comments/discussion.html'  with object=object %}
+
+        {##}
+        {#        <div class="comment_section">#}
+        {##}
+        {#            {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}#}
+        {##}
+        {#                <!-- Modal Trigger -->#}
+        {#                <a class="waves-effect waves-light btn modal-trigger" href="#add_discussion">{% trans 'discussion_mission' %}</a>#}
+        {##}
+        {##}
+        {#                {% for comment in discussion.replies.all %}#}
+        {#                    {% if comment.user.profile == request.user.profile %}#}
+        {##}
+        {##}
+        {#                        <div class="speech-bubble-left user_comment">#}
+        {#                            {{ comment.comment_text }}#}
+        {#                        </div>#}
+        {#                    {% else %}#}
+        {#                        <div class="speech-bubble-right profile_comment">#}
+        {#                            {{ comment.comment_text}}#}
+        {#                        </div>#}
+        {#                    {% endif %}#}
+        {#                {% endfor %}#}
+        {##}
+        {##}
+        {#                <div class="add_comment_input">#}
+        {##}
+        {#                <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >#}
+        {#                    {% csrf_token %}#}
+        {#                    {{ discussion.comment_form|materializecss }}#}
+        {#                    <div class="col s1">#}
+        {#                        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
+        {#                    </div>#}
+        {#                </form>#}
+        {#            {% endif %}#}
+
+
+        {#            <ul class="collapsible discussion_table">#}
+        {#                {% for discussion in object.discussions.all %}#}
+        {#                    <li>#}
+        {#                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ discussion.title }}</div>#}
+        {##}
+        {#                        <div class="collapsible-body">#}
+        {#                            {% if not discussion.replies.exists %}#}
+        {##}
+        {#                                <div class="add_comment_input">#}
+        {##}
+        {#                                    <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}">#}
+        {#                                        {% csrf_token %}#}
+        {#                                        {{ discussion.comment_form|materializecss }}#}
+        {#                                        <div class="col s1">#}
+        {#                                            <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
+        {#                                        </div>#}
+        {#                                    </form>#}
+        {##}
+        {##}
+        {#                                </div>#}
+        {##}
+        {#                            {% else %}#}
+        {##}
+        {##}
+        {#                                {% for comment in discussion.replies.all %}#}
+        {#                                    {% if comment.user.profile == request.user.profile %}#}
+        {##}
+        {#                                        <div class="speech-bubble-left user_comment">#}
+        {#                                            {{ comment.comment_text }}#}
+        {#                                        </div>#}
+        {#                                    {% else %}#}
+        {#                                        <div class="speech-bubble-right profile_comment">#}
+        {#                                            {{ comment.comment_text}}#}
+        {#                                        </div>#}
+        {#                                    {% endif %}#}
+        {#                                {% endfor %}#}
+        {##}
+        {##}
+        {#                                <div class="add_comment_input">#}
+        {##}
+        {#                                <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >#}
+        {#                                    {% csrf_token %}#}
+        {#                                    {{ discussion.comment_form|materializecss }}#}
+        {#                                    <div class="col s1">#}
+        {#                                        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
+        {#                                    </div>#}
+        {#                                </form>#}
+        {#                            {% endif %}#}
+        {##}
+        {#                    </ul>#}
+        {#                {% endfor %}#}
+        {#            {% endif %}#}
+        {#            </div>#}
 
 
 

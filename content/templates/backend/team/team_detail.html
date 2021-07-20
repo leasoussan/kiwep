@@ -84,7 +84,7 @@
                             <ul class="collection_participants_team">
                                 {% for participant in team.participants.all %}
                                     <li class="collection-item avatar ">
-                                        <img src="images/yuna.jpg" alt="" class="circle">
+                                        <img src="{% static 'media/profile/avatar.jpg' %}" alt="" class="circle">
                                         <span class="list_text">{{ participant }}</span>
                                     </li>
 
@@ -128,15 +128,13 @@
                     <br>
 
                     {% if user.profile in team.participants.all or user.is_speaker  %}
+                        {% for mission in team.project.mission_set.individual.available_mission %}
 
-                        {% for mission in team.project.mission_set.all %}
-
-                            <tr>
+                            <tr style="background-color: yellow">
                                 <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
                                 <td class="content_table">
                                     {% if user.is_speaker %}
-                                        {% if mission.attributed_to == True %}
-                                            {{ mission.attributed_to }}
+                                        {% if mission.attributed_to %}
                                             {% trans 'attributed_to' %}
                                         {% else %}
                                             {% trans 'mission_unclaimed_yet' %}
@@ -179,14 +177,58 @@
 
 
 
-
-                        {% for mission in team.project.individualmission_set.get_attributed_mission %}
+                        {% for mission in team.project.mission_set.collective.all %}
                             <tr>
+                                <td class="content_table"> <a class= "link-table" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a></td>
+                                <td class="content_table">
+                                    {% if user.is_speaker %}
+                                        {% if mission.collectivemission.attributed_to %}
+                                            <div>
+                                                <!-- Modal Trigger -->
+                                                <a href="#collective_mission_participants" class="waves-effect waves-light btn modal-trigger"> {{mission.collectivemission.attributed_to.count}}{% trans 'particpants' %}</a>
+                                            </div>
+                                        {% elif mission.collectivemission.attributed_to == 0 %}
+                                            {% trans 'no_one_join_yet' %}
+                                        {% endif %}
 
+                                    {% elif user.is_student %}
+                                        {% if mission.collectivemission.attributed_to %}
+                                            {% if user.profile not in mission.collectivemission.attributed_to.all %}
+                                                <a href="{% url 'join_collective_mission_detail' mission.id %}">{% trans 'join_col_mission_link' %}</a>
+                                            {% else %}
+                                                <!-- Modal Trigger -->
+                                                <a href="#collective_mission_participants" class="waves-effect waves-light btn modal-trigger">
+                                                    {% trans 'you_are_in' %}</a>                                            {% endif %}
+                                        {% else %}
+
+                                    {% trans 'mission_not_attributed' %}
+
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
+
+                                <td class="content_table">{{ mission.points }}</td>
+
+                                <td class="content_table">{{mission.due_date}}</td>
+                                <td class="content_table">
+                                    {% if individualmission %}
+                                        {% trans 'individual_mission' %}
+                                    {% else %}
+                                        {% trans 'colelctive_mission' %}
+                                    {% endif %}
+                                </td>
+                                <td class="content_table">{{mission.status}}</td>
+                                <td class="content_table">{{mission.graded}}</td>
+                            </tr>
+                        {% endfor %}
+
+
+
+                        {% for mission in team.project.mission_set.individual.get_attributed_mission %}
+                            <tr>
                                 <td class="content_table"><a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a></td>
                                 <td class="content_table">
-                                    {{ mission.attributed_to }}
-
+                                    {{ mission.individualmission.attributed_to }}
                                 </td>
 
                                 <td class="content_table">{{ mission.points }}</td>
@@ -263,16 +305,21 @@
 
     <div id="collective_mission_participants" class="modal collective_mission_participants_modal">
         <div class="modal-content">
-            {% with collectivemission=team.project.collectivemission %}
+
+            {% with collectivemission=team.project.mission_set.collective.first %}
                 <h4>{% trans 'participants_list' %}</h4>
-                {% for participant in collectivemission.attributed_to %}
-                    {{ participant }}h
+
+                {% for participant in  collectivemission.collectivemission.attributed_to.all %} {# TODO:why double collective mission #}
+                    {{ participant }}
+                    {% if user.profile in collectivemission.collectivemission.attributed_to.all %}
+                        <a href="{% url 'leave_collective_mission_detail' collectivemission.collectivemission.id %}">{% trans 'leave_col_mission_link' %}</a>
+                    {% endif %}
                 {% endfor %}
             {% endwith %}
         </div>
 
         <div class="modal-footer">
-            <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            <a class="modal-action modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
         </div>
     </div>
     </div>
@@ -284,51 +331,51 @@
 
     {% if not team.project %}
         <div id="ChoseProject" class="modal">
-            <div class="modal-content">
-                <div class="row">
-                    <div class="col s12">
-                        <ul class="tabs">
-                          <li class="tab col 3"><a class="active" href="#pills-create-project">{% trans 'new_project' %}</a></li>
-                            <li class="tab col 3"><a href="#pills-template">{% trans 'choose_templates' %}</a></li>
-                            <li class="tab col 3"><a href="#pills-duplicate">{% trans 'duplicate' %}</a></li>
-                        </ul>
-                    </div>
-
-
-
-                    <div id="pills-create-project" class="col s12" >
-                        <form method="post" action="{% url 'create_team_project' team.id %}">
-                            {% csrf_token %}
-                            {{ project_form|materializecss }}
-                            <button type="submit">Save</button>
-                        </form>
-
-                        <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>
-                    </div>
-
-
-
-                    <div id="pills-template" class="col s12">
-                        {% for project in templates  %}
-                            <div class="duplicate_table">
-                                <h4 class="small_title">{{ project.name }}</h4>
-                                <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>
-
-                            </div>
-                        {% endfor %}
-                    </div>
-
-
-                    <div id="pills-duplicate" class="col s12">
-                        {% for project in old_projects  %}
-                            <div class="duplicate_table">
-                                <h4 class="small_title">{{ project.name }}</h4>
-                                <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
-                            </div>
-                        {% endfor %}
-
-                    </div>
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col 3"><a class="active" href="#pills-create-project">{% trans 'new_project' %}</a></li>
+                        <li class="tab col 3"><a href="#pills-template">{% trans 'choose_templates' %}</a></li>
+                        <li class="tab col 3"><a href="#pills-duplicate">{% trans 'duplicate' %}</a></li>
+                    </ul>
                 </div>
+
+
+
+                <div id="pills-create-project" class="col s12" >
+                    <form method="post" action="{% url 'create_team_project' team.id %}">
+                        {% csrf_token %}
+                        {{ project_form|materializecss }}
+                        <button type="submit">Save</button>
+                    </form>
+
+                    <a href="{% url 'create_project' %}">{% trans 'add_project_link' %}</a>
+                </div>
+
+
+
+                <div id="pills-template" class="col s12">
+                    {% for project in templates  %}
+                        <div class="duplicate_table">
+                            <h4 class="small_title">{{ project.name }}</h4>
+                            <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>
+
+                        </div>
+                    {% endfor %}
+                </div>
+
+
+                <div id="pills-duplicate" class="col s12">
+                    {% for project in old_projects  %}
+                        <div class="duplicate_table">
+                            <h4 class="small_title">{{ project.name }}</h4>
+                            <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
 
 
             <div class="modal-footer">
