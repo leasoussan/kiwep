@@ -121,12 +121,13 @@
 
         <div class="mission_extra_detail_box">
             <div class=" mission_resource">
-                <div class="mission_resource_add_btn">
-                    <!-- Modal Trigger -->
-                    <button data-target="add_resource" class="btn modal-trigger add_button">{% trans 'add' %}</button>
+                {% if user.is_speaker %}
+                    <div class="mission_resource_add_btn">
+                        <!-- Modal Trigger -->
+                        <button data-target="add_resource" class="btn modal-trigger add_button">{% trans 'add' %}</button>
 
-                </div>
-
+                    </div>
+                {% endif %}
                 <div class="mission_resource_list">
                     {% if object.resource_set %}
                         he
@@ -200,15 +201,16 @@
 
 
 
-        {% if user.is_speaker %}
+        <div class="answer_block overflow-auto">
+            {% include 'backend/mission/../../../../message/templates/answer/answer.html' with mission=mission%}
 
-            {% include 'backend/mission/speaker_mission_answer.html' %}
-        {% elif user.is_student %}
-            {% include 'backend/mission/student_mission_answer.html' %}
-        {% endif %}
+        </div>
 
+        <div class="container">
+            {% include 'comments/discussion.html'  with object=object %}
 
-        {% include 'comments/discussion.html'  with object=object %}
+        </div>
+
 
         {##}
         {#        <div class="comment_section">#}
@@ -308,7 +310,7 @@
     </div>
 
 
-    ________________________________________________________MODALS
+    {#    ________________________________________________________MODALS#}
 
 
     <div id="add_resource" class="modal resource_modal">
