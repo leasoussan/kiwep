@@ -3,8 +3,9 @@ from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.forms import ModelForm
 from django.forms import inlineformset_factory
-from django.http import Http404
 
+from django.http import Http404
+from django.utils.translation import ugettext as _
 from accounts.models import Student
 from .models import Project, Team, Resource, Mission, CollectiveMission, IndividualMission, IndividualCollectiveMission
 
@@ -131,6 +132,27 @@ class CollectiveMissionAddForm(ModelForm):
 
 
 
+
+
+class BulkAddMissionForm(forms.Form):
+    MISSION_TYPE=[
+        ('i', _('individual_mission')),
+        ('c', _('collective_mission')),
+    ]
+    projects=forms.ModelMultipleChoiceField(queryset=Project.objects.all(), widget=forms.CheckboxSelectMultiple)
+    mission_type = forms.Select(choices=MISSION_TYPE)
+
+    def __init__(self, *args, **kwargs):
+        super(BulkAddMissionForm, self).__init__(*args, **kwargs)
+        self.fields['projects'].queryset = self.projects.personal_projects()
+
+    # def save_bulk_mission(self, mission):
+    #     print('valid')
+    #     for project in self.cleaned_data['projects']:
+    #         mission = project.mission
+    #         mission.id=None
+
+
 class CollectiveMissionAssign(forms.Form):
     participants = forms.ModelMultipleChoiceField(queryset=Student.objects.all())
 
@@ -162,7 +184,7 @@ class ResourceAddForm(ModelForm):
             'file_rsc',
         ]
 
-    link= forms.URLField(initial='http://')
+    link= forms.URLField(initial='http://', required=False)
 
 
 

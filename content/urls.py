@@ -3,6 +3,7 @@ from content.views_project import *
 from content.views_team import *
 from content.views_mission import *
 from content.views_resource import *
+from .forms import BulkAddMissionForm
 from .views import *
 
 
@@ -47,9 +48,8 @@ urlpatterns = [
     # path('submit-mission/<int:pk>', StudentSubmitMission.as_view(), name='submit_mission'),
     path('validate-mission/<int:pk>', ValidateMission.as_view(), name='validate_mission'),
     path('unclaim-mission/<int:pk>', UnclaimMission.as_view(), name="unclaim_mission"),
-
-
-
+    path('bulk-add-individual-mission/', bulk_add_individual_mission, name="bulk_add_individual_mission"),
+    path('bulk-add-collective-mission/', bulk_add_collective_mission, name="bulk_add_collective_mission"),
 
     # team
     path('team-list/', TeamListView.as_view(), name = "team_list"),

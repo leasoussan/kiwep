@@ -7,11 +7,10 @@ from .models import Project, Team, IndividualMission, CollectiveMission, Resourc
 from django.forms import ModelForm
 from .forms import (
     ProjectAddForm,
-
     # IndividualMissionFormSet,
     # CollectiveMissionFormSet,
     IndividualMissionAddForm,
-    CollectiveMissionAddForm, ResourceAddForm,
+    CollectiveMissionAddForm, ResourceAddForm, BulkAddMissionForm,
 )
 from django.urls import reverse_lazy
 
@@ -93,6 +92,10 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['project_form'] = ProjectAddForm()
+        context['mission_bulk_form'] = BulkAddMissionForm()
+        context['individual_form'] = IndividualMissionAddForm()
+        context['collective_form'] = CollectiveMissionAddForm()
+
         return context
 
     def get_queryset(self):

@@ -12,7 +12,7 @@ from django.db.models.signals import pre_save
 from django.contrib.contenttypes.fields import GenericRelation
 from datetime import datetime, timedelta
 
-
+from django.utils.translation import ugettext as _
 
 
 
@@ -30,7 +30,7 @@ from message.models import DiscussionModel,AnswerModel
 
 class Resource(DiscussionModel):
     name = models.CharField(max_length=200)
-    link = models.URLField(max_length=200)
+    link = models.URLField(max_length=200,  blank=True, null =True)
     image = models.ImageField(upload_to='resources', default ='resources/default.png', )
     file_rsc = models.FileField(null=True, blank=True)
     text = models.TextField()
