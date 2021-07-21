@@ -12,15 +12,18 @@
     {% if user.is_speaker %}
 
 
-        <div class="button_right ">
-            <!-- Modal Trigger -->
-            <a class="waves-effect waves-light btn modal-trigger" href="#add_project">{% trans 'add_project' %}</a>
-
-        </div>
 
 
         <div class="row">
-            <div class="col s12 m12 l12">
+
+            <div class="col s12 m12 l12 project_list_container">
+
+                    <div class="button_right ">
+                        <!-- Modal Trigger -->
+                        <a class="waves-effect waves-light btn modal-trigger" href="#add_project">{% trans 'add_project' %}</a>
+                        <a class="waves-effect waves-light btn modal-trigger" href="#add_bulk_mission">{% trans 'add_mission' %}</a>
+                    </div>
+
                 <h2 class="medium_title">{% trans 'my_projects'%}</h2>
 
                 {% if user.profile.project_set.personal_projects.exists %}
@@ -45,7 +48,7 @@
                                 <td>{% if project.team %}
                                     {{ project.team.name }}
                                 {% else %}
-                                  <a class= "link-table"href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a>
+                                    <a class= "link-table"href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a>
                                 {% endif %}
                                 </td>
                                 {#                            <td>{% if not project.field.exists %}#}
@@ -200,6 +203,21 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="add_bulk_mission" class="modal">
+        <div class="modal-content">
+            <form>
+                AddBulkMission Form
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
         </div>
     </div>
 

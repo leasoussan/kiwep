@@ -120,6 +120,26 @@ class AddCollectiveMissionView(SpeakerStatuPassesTestMixin, View):
 
 
 
+
+
+def bulk_add_mission():
+    ''' Add bulk Mission in Project '''
+
+    mission_form = IndividualMissionAddForm(request.POST)
+    if mission_form.is_valid():
+        mission = mission_form.save(commit=False)
+        mission.project_id=kwargs['project_id']
+        mission.mission_type = 'i'
+        mission.owner = self.request.user
+        mission.save()
+
+        return redirect('individual_mission_detail', mission.id)
+
+    return render(request, 'backend/mission/mission_detail.html',
+                  {'mission_form': mission_form})
+
+
+
 # ----------------------------------------------------------------------------------------------------------------
 
 class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):

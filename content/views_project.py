@@ -39,7 +39,7 @@ class ChooseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
     as a copy to enable using it after with a team and make changes"""
 
     # query_sting = False >>this is false by default
-    pattern_name = 'project_list'
+    pattern_name = 'update_project'
 
     def get_redirect_url(self,  *args, **kwargs):
         project = get_object_or_404(Project, pk=kwargs['pk'])
@@ -50,6 +50,7 @@ class ChooseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
         project.speaker = self.request.user.profile()
         project.save()
         del kwargs['pk']
+        kwargs['pk'] = project.pk
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -243,7 +244,7 @@ class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
         project.id =None
         project.save()
         clean_missions(project.id, missions)
-        clean_resource(project.id, resources)
+        # clean_resource(project.id, resources)
         team.project = project
         # {TODO:why team.project }
         team.save()
