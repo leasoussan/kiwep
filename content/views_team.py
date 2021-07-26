@@ -34,7 +34,18 @@ class TeamListView(ProfileCheckPassesTestMixin, ListView):
     def get_queryset(self):
         return self.request.user.profile().team_set.all()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
+        if self.request.user.is_speaker:
+            context['project_form'] = ProjectAddForm()
+            context['templates'] = Project.objects.global_template_projects()
+            context['old_projects'] = self.request.user.profile().project_set.all()
+        return context
+
+    def get_object(self):
+        pk = self.kwargs.get("pk")
+        return get_object_or_404(Team, pk=pk)
 
 
 

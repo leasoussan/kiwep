@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
 
 from message.forms import AddAnswerForm, MissionSpeakerStatusAnswerForm
 from .models import Mission, CollectiveMission, Team, IndividualMission, IndividualCollectiveMission, Project
@@ -211,6 +212,8 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
         pk = self.kwargs.get('pk')
         return get_object_or_404(CollectiveMission, pk=pk)
 
+    def get_success_url(self):
+        return reverse_lazy('collective_mission_detail', kwargs ={'pk': self.object.id})
 # ----------------------------------------------------------------------------------------------------------------
 
 
@@ -373,36 +376,60 @@ def assign_mission(request, pk):
     return render(request, "crud/create.html", {'form': form})
 
 
+def clean_bulk_mission(request, mission_id, queryset):
 
+    for project in queryset:
+        # project.id = project_id
+        print('qs***', dir(project))
+        mission.project_id = project.id
+        print('missionqs****', mission)
+        mission.id =None
+        print('mission_ID*****', mission.id)
+        mission.project_id = project['project_id'].id
+        print('qs.project*****',project.project)
+        mission.created_date = None
+        mission.due_date = timezone.now()
+        mission.completed = False
+        mission.owner.id = request.user
+        if mission == IndividualMission:
+            mission.attributed_to = None
+            mission.accepted = False
+            print("mission cleaned", mission)
+        mission = mission.save()
+
+        project.model.objects.bulk_create(mission)
 
 def bulk_add_individual_mission(request, *kwargs):
+
     ''' Add bulk Mission in Project '''
-    if request.method=="POST":
-        individual_form = IndividualMissionAddForm(request.POST)
-        mission_bulk_form = BulkAddMissionForm(request.POST)
 
-        if request.method == "POST":
-            if individual_form.is_valid() and mission_bulk_form.is_valid():
-                mission = mission_bulk_form.save(commit=False)
-                mission_form = individual_form.save(commit=False)
-                projects = mission_bulk_form.cleaned_data['projects'].filter(speaker=request.user)
+    individual_form = IndividualMissionAddForm(request.POST)
+    mission_bulk_form = BulkAddMissionForm(data=request.POST)
 
-                for p in projects:
-                    i = IndividualMission(
-                    project=p.id,
-                    id=None,
-                    mission_type='i',
-                    owner=request.user,
-                    )
+    if request.method == "POST":
+        if individual_form.is_valid() and mission_bulk_form.is_valid():
+            projects = mission_bulk_form.cleaned_data['projects']
+            mission = individual_form.save(commit=False)
+            clean_bulk_mission(mission, projects)
+            mission.owner = request.user
+            mission.mission_type='i'
 
-                    bulk = IndividualMission.objects.bulk_create(i)
-                    del kwargs['pk']
-                    print(f'mission for project {p}', mission)
+            mission.save()
+
+
+            print('*****mission_form***', mission)
+            print('mission_id ***', mission.id)
+            mission.objects.bulk_create(objects)
+
+
+            # bulk = IndividualMission.objects.bulk_create(mission_form)
+            #
+            print(f'mission for project {p}')
 
 
             return redirect('individual_mission_detail', mission.id)
 
-        return render(request, 'backend/mission/mission_detail.html', {'individual_form':individual_form,'mission_bulk_form': mission_bulk_form})
+    return render(request, 'backend/project/project_list.html', {'individual_form':individual_form,'mission_bulk_form': mission_bulk_form})
 
 
 

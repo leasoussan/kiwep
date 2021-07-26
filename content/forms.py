@@ -135,16 +135,17 @@ class CollectiveMissionAddForm(ModelForm):
 
 
 class BulkAddMissionForm(forms.Form):
-    MISSION_TYPE=[
-        ('i', _('individual_mission')),
-        ('c', _('collective_mission')),
-    ]
+    # MISSION_TYPE=[
+    #     ('i', _('individual_mission')),
+    #     ('c', _('collective_mission')),
+    # ]
     projects=forms.ModelMultipleChoiceField(queryset=Project.objects.all(), widget=forms.CheckboxSelectMultiple)
-    mission_type = forms.Select(choices=MISSION_TYPE)
+    # mission_type = forms.Select(choices=MISSION_TYPE)
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, projects =None, *args, **kwargs):
         super(BulkAddMissionForm, self).__init__(*args, **kwargs)
-        self.fields['projects'].queryset = self.projects.personal_projects()
+        if projects:
+            self.fields['projects'].queryset = projects
 
     # def save_bulk_mission(self, mission):
     #     print('valid')

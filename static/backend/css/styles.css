@@ -1012,6 +1012,16 @@ table{
   background-color: white;
   width: 100%;
 }
+.inline{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+/*.table_column td{*/
+/*  width: 30%;*/
+/*}*/
 
 .title{
   font-weight: bold;

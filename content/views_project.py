@@ -3,7 +3,7 @@ from optparse import Option
 from django.utils import timezone
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Project, Team, IndividualMission, CollectiveMission, Resource
+from .models import Project, Team, IndividualMission, CollectiveMission, Resource, Mission, Skills
 from django.forms import ModelForm
 from .forms import (
     ProjectAddForm,
@@ -89,10 +89,10 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
     template_name = 'backend/project/project_list.html'
     context_object_name = 'project_list'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data( *args, **kwargs)
         context['project_form'] = ProjectAddForm()
-        context['mission_bulk_form'] = BulkAddMissionForm()
+        context['mission_bulk_form'] = BulkAddMissionForm(projects=self.request.user.profile().project_set.personal_projects())
         context['individual_form'] = IndividualMissionAddForm()
         context['collective_form'] = CollectiveMissionAddForm()
 
@@ -194,7 +194,7 @@ def clean_missions(project_id, *querysets):
 
     for qs in querysets:
         objects = []
-        if qs.model not in [IndividualMission, CollectiveMission]:
+        if qs.model not in [Mission]:
             print('Function clean mission should be only used on mission query set ')
             return
         for mission in qs:
@@ -222,6 +222,16 @@ def clean_resource(project_id, queryset):
         objects.append(resource)
     queryset.model.objects.bulk_create(objects)
 
+# TODO: Add other clean
+# def clean_skills(project_id, queryset):
+#     objects = []
+#     if queryset.model is not Skills:
+#         print('Function clean skills should be only used on skills query set ')
+#         return
+#     for skill in queryset:
+#         objects.append(skill)
+#     queryset.model.objects.bulk_create(objects)
+
 
 
 
@@ -243,11 +253,11 @@ class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
         pk = self.kwargs.get("team_id")
         team = get_object_or_404(Team, pk=pk)
         missions = project.mission_set.all()
-        resources = project.resource_set.all
+        resources = project.resource_set.all()
         project.id =None
         project.save()
         clean_missions(project.id, missions)
-        # clean_resource(project.id, resources)
+        clean_resource(project.id, resources)
         team.project = project
         # {TODO:why team.project }
         team.save()

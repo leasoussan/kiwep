@@ -9,14 +9,18 @@
     <!-- Main content Start -->
 
 
-    {% if user.is_speaker %}
 
+    <div class="row">
 
-
-
-        <div class="row">
-
-            <div class="col s12 m12 l12 project_list_container">
+        <div class="col s12 m12 l12 project_list_container">
+            <div  class="button_left" >
+                {% if user.is_speaker %}
+                    <a href="{% url 'answer_mission_list' %}" class="waves-effect waves-light btn secondary_button">{% trans 'answers_board' %}</a>
+                {% elif user.is_student %}
+                    <a href="{% url 'mission_list' %}" class="waves-effect waves-light btn secondary_button">{% trans 'my_mission_board' %}</a>
+                {% endif %}
+            </div>
+            {% if user.is_speaker %}
 
                 <div class="button_right ">
                     <!-- Modal Trigger -->
@@ -43,13 +47,17 @@
                         <tbody>
                         {% for project in user.profile.project_set.personal_projects %}
 
-                            <tr class="table_headers table_row">
+                            <tr class="table_headers table_row table_column">
                                 <td><a class= "link-table"href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
-                                <td>{% if project.team %}
-                                    {{ project.team.name }}
-                                {% else %}
-                                    <a class= "link-table"href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a>
-                                {% endif %}
+                                 <td class="content_table inline">
+                                    {% if not project.team %}
+                                        <a class= "btn"href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a>
+                                    {% else %}
+                                        <a class= "link-table" href="{% url 'team_detail' project.team.id %}">{{ project.team.name }}</a>
+                                        <a href="{% url 'update_team' project.team.id %}">  <i class="material-icons">edit</i></a></td>
+
+
+                                    {% endif %}
                                 </td>
                                 {#                            <td>{% if not project.field.exists %}#}
                                 {#                                {% trans 'no_fields' %}#}
@@ -59,10 +67,8 @@
                                 {#                            </td>#}
                                 <td>{{project.time_to_complete}} {% trans 'in_days' %}</td>
                                 <td class="speaker_btn_group">
-                                    <a  scope="col" class="waves-effect waves-light btn project_edit_button"
-                                        href="{% url 'update_project' project.id %}">{% trans 'edit' %}</a>
-                                    <a  scope="col" class="waves-effect waves-light btn duplicate_btn_project"
-                                        href="{#   url 'duplicate_create_project' project.id team.id  #}">{% trans 'duplicate' %}</a>
+                                    <a href="{% url 'update_project' project.id %}"> <i class="material-icons">edit</i></a>
+                                    <a  href="{#   url 'duplicate_create_project' project.id team.id  #}"> <i class="material-icons">content_copy</i></a>
                                     <a href="{% url 'delete_project' project.id %}" > <i class="small material-icons delete garbege">{% trans 'delete' %}</i></a></td>
 
                             </tr>
@@ -72,66 +78,66 @@
 
                     </table>
                 {% endif %}
-            </div>
+                </div>
 
 
 
 
 
-        </div>
+                </div>
 
 
 
-        <!-- <div> -->
+                <!-- <div> -->
 
-    {% elif user.is_student %}
-
-
-        <div class="row">
-            <div class="col">
-                <!-- <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'available_project' %}</h5> -->
+            {% elif user.is_student %}
 
 
-                <div class="card">
-
-                    <div class="my_table">
-                        <table class="highlight centered">
-                            <thead>
-                            <tr class="table_headers">
-                                <th scope="col">{% trans 'project_name_table_header' %}</th>
-                                <th scope="col">{% trans 'speaker_table_header' %}</th>
-                                {#                                <th scope="col">{% trans 'field_table_header' %}</th>#}
-                                <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
-                                <th scope="col">{% trans 'check_team' %}</th>
+                <div class="row">
+                    <div class="col">
+                        <!-- <h5 class="card-header" style="text-align:center; background-color:#425940; color:#fffefc;">{% trans 'available_project' %}</h5> -->
 
 
-                            </tr>
-                            </thead>
+                        <div class="card">
 
-                            <tbody>
-                            {% for project in available_projects %}
-                                <tr class="table_headers">
-                                    <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</a></th>
-                                    <td>{{project.speaker.user.first_name}}</td>
-                                    {#                                    <td>{{project.field}}</td>#}
-
-
-                                    <td>{{project.time_to_complete}}</td>
-                                    <td> <a>Check Team </a> </td>
-
-                                </tr>
-                            {% endfor %}
+                            <div class="my_table">
+                                <table class="highlight centered">
+                                    <thead>
+                                    <tr class="table_headers">
+                                        <th scope="col">{% trans 'project_name_table_header' %}</th>
+                                        <th scope="col">{% trans 'speaker_table_header' %}</th>
+                                        {#                                <th scope="col">{% trans 'field_table_header' %}</th>#}
+                                        <th scope="col">{% trans 'time_to_complete_table_header' %}</th>
+                                        <th scope="col">{% trans 'check_team' %}</th>
 
 
-                            </tbody>
-                        </table>
+                                    </tr>
+                                    </thead>
 
+                                    <tbody>
+                                    {% for project in available_projects %}
+                                        <tr class="table_headers">
+                                            <th scope="row"><a style = "color: black"  href="{% url 'project_detail' project.id %}">{{project.name}}</a></th>
+                                            <td>{{project.speaker.user.first_name}}</td>
+                                            {#                                    <td>{{project.field}}</td>#}
+
+
+                                            <td>{{project.time_to_complete}}</td>
+                                            <td> <a>Check Team </a> </td>
+
+                                        </tr>
+                                    {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- </main> -->
-    {% endif %}
+                <!-- </main> -->
+            {% endif %}
 
 
 
@@ -223,29 +229,29 @@
                 </div>
                 <div id="bulk_individual_mission" class="col s12">
 
-                 <div style="background-color: #0a0a0a">
+                    <div style="background-color: #0a0a0a">
 
 
-                 </div>
+                    </div>
 
-                    <form method="post" action="{% url 'bulk_add_individual_mission' %}">
-                        {% csrf_token %}
-                        {{ individual_form|materializecss }}
-                        {{ mission_bulk_form|materializecss }}
+                                        <form method="post" action="{% url 'bulk_add_individual_mission' %}">
+                                            {% csrf_token %}
+                                            {{ individual_form|materializecss }}
+                                            {{ mission_bulk_form|materializecss }}
 
-                        <button type="submit">{% trans 'save' %}</button>
-                    </form>
+                                            <button type="submit">{% trans 'save' %}</button>
+                                        </form>
 
-                </div>
+                                    </div>
 
-                <div id="bulk_collective_mission" class="col s12">
-                    <form method="post" action="{% url 'bulk_add_collective_mission' %}">
-                        {% csrf_token %}
-                        {{ mission_bulk_form|materializecss }}
-                         {{ individual_form|materializecss }}
-                        <button type="submit">{% trans 'save' %}</button>
+                                    <div id="bulk_collective_mission" class="col s12">
+                                        <form method="post" action="{% url 'bulk_add_collective_mission' %}">
+                                            {% csrf_token %}
+                                            {{ mission_bulk_form|materializecss }}
+                                             {{ individual_form|materializecss }}
+                                            <button type="submit">{% trans 'save' %}</button>
 
-                    </form>
+                                        </form>
 
 
                 </div>
