@@ -177,25 +177,6 @@ def pop_student(n):
 
 
 
-def pop_resources(n):
-    if Resource.objects.count() == 0:
-        for r in range(n):
-            name = f'Resource {r}'
-            link = "www.google.com"
-            image =  'image/default.png'
-            file_rsc = 'null'
-            text = 'This is aresource about.......'
-            owner = random.choice(MyUser.objects.all())
-            field =  random.choice(Field.objects.all())
-
-            r = Resource(name=name, link=link, image=image, file_rsc=file_rsc, text=text,owner=owner, field=field)
-            r.save()
-            print(f'resource :{r.name} was created')
-
-        print(f"Finished...{n} Resource populated.")
-
-
-
 
 bool = [True, False ]
 def pop_project(n):
@@ -203,8 +184,6 @@ def pop_project(n):
         for project in range(n+1):
             name = f"Kiwep {project}"
             title = "Welcome to Kiwep Project "
-            required_skills = "desire to learn"
-            acquired_skills = "Digital"
             description = "This Project is about Blbalabal"
             time_to_complete = random.randrange(60, 120, 10)
             difficulty = random.choice(Level.objects.all())
@@ -228,13 +207,38 @@ def pop_project(n):
 
         field = list(Field.objects.all())
         required_skills= list(Skills.objects.all())
-        acquired_skills = list(Skills.objects.all())
+        acquired_skills_l = list(Skills.objects.all())
+        print('acquired_skills_l', acquired_skills_l)
         p.field.add(*random.sample(field, 2))
-        p.acquried_skills.add(*random.sample(acquired_skills,2))
+        p.acquried_skills.add(*random.sample(acquired_skills_l,2))
         p.required_skills.add(*random.sample(required_skills,2))
 
         print(f'Project:{p.id}')
         print(f"Finished...{n} Projects populated.")
+
+
+
+
+
+def pop_resources(n):
+    if Resource.objects.count() == 0:
+        for r in range(n):
+            name = f'Resource {r}'
+            link = "www.google.com"
+            image =  'image/default.png'
+            file_rsc = 'null'
+            text = 'This is aresource about.......'
+            owner = random.choice(MyUser.objects.all())
+            field =  random.choice(Field.objects.all())
+            project = random.choice(Project.objects.all())
+
+            r = Resource(name=name, link=link, image=image, file_rsc=file_rsc, text=text,owner=owner, field=field, project=project)
+            r.save()
+            print(f'resource :{r.name} was created')
+
+        print(f"Finished...{n} Resource populated.")
+
+
 
 
 
@@ -275,7 +279,6 @@ def pop_individual_missions(n, participants):
                 field = field,
                 level = level,
                 description = "Project to improve and teach your self",
-
                 owner = owner,
                 points = points,
                 created_date = created_date,
@@ -406,13 +409,14 @@ def pop_mission_collective_projects(n):
 
 
 # ----------------------------------------------------
-pop_representative(1)
-pop_institution(1)
-pop_group(groups)
-pop_speaker(5)
-pop_student(30)
-pop_resources(20)
+# pop_representative(1)
+# pop_institution(1)
+# pop_group(groups)
+# pop_speaker(5)
+# pop_student(30)
 pop_project(6)
+
+# pop_resources(20)
 # pop_team(4)
 # team = random.choice(Team.objects.all())
 # participants = team.participants.all()
