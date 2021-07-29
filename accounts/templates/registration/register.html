@@ -4,24 +4,24 @@
 {% block content %}
 
 
+<div id="background">
+<div>
+    <div>
+        <div>
+            <div>
+                <h5>{% trans 'sign up' %}</h5>
+                <div>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Sign Up"><br>
+                        <button type="button" name="button"><a href="{% url 'login' %}">{% trans 'back_to_login'%}</a></button>
+                    </form>
 
-<div class="container-fluid">
-<div class="row login_register">
-
-<div class="col-md-9">
-  <div class="card" >
-    <h5 class="card-header" style="background-color:#1f7968;">{% trans 'sign up' %}</h5>
-    <div class="card-body" style="margin-top:50px; margin-bottom:50px;">
-      <form method="post" >
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" class="btn button_login" value="Signup"><br>
-        <button class="btn button_register" type="button"name="button"><a href="{% url 'login' %}" style="text-decoration: none; color:#f6f6f6;">{% trans 'back_to_login' %}</a></button>
-      </form>
-
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-</div>
 </div>
 </div>
 

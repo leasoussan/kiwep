@@ -1,0 +1,80 @@
+* {margin:0px; padding: 0px;}
+
+header, main, footer{
+    display: block;
+    width: 100%;
+}
+
+
+#logo{
+    background-image: url(/images/logo.png);
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 80px;
+    display: block;
+    position: relative;
+    top: 10px;
+}
+
+#background{ 
+    background-image: url(/images/kiwep.png);
+    background-repeat: no-repeat;
+    width: 716px;
+    height: 614px;
+    display: block;
+    margin-top: 15px;
+    background-color: white;
+}
+
+#wrapper{
+    margin: 0 auto;
+    width: 1000px;
+}
+
+div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#opacity{
+    opacity: 0.8;
+    width: 650px;
+    height: 530px;
+    background-color: white;
+    margin-left: 30px;
+    margin-top: 42px;
+}
+
+body *{
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+/* Mobile */
+
+@media (max-width: 670px) {
+    
+    #wrapper{
+        width: 60%;
+    }
+
+    #background{
+        background-image: url(/images/kiwep_mobile.png);
+        background-repeat: no-repeat;
+        width: 318px;
+        height: 614px;
+        display: block;
+        margin-top: 15px;
+    }
+
+    #opacity{
+        opacity: 0.5;
+        width: 300px;
+        height: 550px;
+        background-color: white;
+        margin-left: 10px;
+        margin-right: 25px;
+        margin-top: 30px;
+    }
+}

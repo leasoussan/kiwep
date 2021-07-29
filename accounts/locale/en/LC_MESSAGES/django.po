@@ -20,7 +20,7 @@ msgstr ""
 
 #: forms.py:18
 msgid "student"
-msgstr "Etudient    "
+msgstr "Etudien "
 
 #: forms.py:19
 #, fuzzy
