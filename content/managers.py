@@ -7,10 +7,13 @@ class ProjectModelQuerySet(models.QuerySet):
 
 
     def personal_templates(self):
-        return self.filter(is_template=True)
+        return self.filter(is_template=True, is_global= False)
 
     def personal_projects(self):
         return self.filter(is_template=False)
+
+    def available_projects(self):
+        return self.filter(is_template=False, is_global=False, team__isnull=True )
 
     def global_template_projects(self):
         return self.filter(is_template=True, is_global=True)
@@ -27,6 +30,8 @@ class ProjectModelManager(models.Manager):
     def personal_projects(self):
         return self.get_queryset().personal_projects()
 
+    def available_projects(self):
+        return self.get_queryset().available_projects()
 
     def global_template_projects(self):
         return self.get_queryset().global_template_projects()
@@ -82,9 +87,6 @@ class CollectiveMissionModelManager(models.Manager):
 class IndividualMissionQuerySet(models.QuerySet):
     """ QUERYSET are Connected to a Manager to make specific requests"""
 
-    def get_attributed_mission(self):
-        return self.exclude(attributed_to = None).order_by('-stage')
-    # 'stage' will be creshendo (- do the other way arround)
 
 
     def is_my_mission(self, user):
@@ -93,10 +95,9 @@ class IndividualMissionQuerySet(models.QuerySet):
     def get_student_missions(self):
         return self.filter(mission='s_m')
 
-    def available_mission(self):
-        return self.filter(attributed_to = None)
 
-    
+    # def attributed_mission(self):
+    #     return self.filter(attributed_to = True)
 
 class IndividualMissionModelManager(models.Manager):
     """ Managers are a way to get specifi data from a Model with the help of a queryset """
@@ -105,46 +106,63 @@ class IndividualMissionModelManager(models.Manager):
         return IndividualMissionQuerySet(self.model, using=self._db)
 
 
-    def available_mission(self):
-        return self.get_queryset().available_mission()
-
     def get_student_missions(self):
         return self.get_queryset().get_student_missions()
 
 
 
-    def get_attributed_mission(self):
-
-        return self.get_queryset().get_attributed_mission()
-
 
     def is_my_mission(self, user):
         return self.get_queryset().is_my_mission(user)
 
-
-
+    # def attributed_mission(self, project):
+    #     return self.get_queryset().attributed_mission(project)
+    #
 
 # -----------------------------------------------------Mission Manager  QUerySet
 
 class MissionQuerySet(models.QuerySet):
     """ QUERYSET are Connected to a Manager to make specific requests"""
 
-    def speaker_missions(self):
-        return self.filter(owner = self.request.user)
 
-    
+    def individual(self):
+        return self.filter(mission_type='i')
+
+    def collective(self):
+        return self.filter(mission_type='c')
+
+    def collective_individual(self):
+        return self.filter(mission_type='ci')
+
+    def available_mission(self):
+        return self.filter(individualmission__attributed_to__isnull=True)
+
+    def get_attributed_mission(self):
+        return self.exclude(individualmission__attributed_to__isnull=True).order_by('-stage')
+    # 'stage' will be creshendo (- do the other way arround)
 
 
 class MissionModelManager(models.Manager):
     """ Managers are a way to get specifi data from a Model with the help of a queryset """
 
     def get_queryset(self):
-        return MissionQuerySet(self.model, using = self._db)
+        return MissionQuerySet(self.model, using= self._db)
 
-    def speaker_missions(self):
-        return self.get_queryset().speaker_missions()
+    def individual(self):
+        return self.get_queryset().individual()
 
-    
+    def collective(self):
+        return self.get_queryset().collective()
+
+    def collective_individual(self):
+        return self.get_queryset().collective_individual()
+
+
+    def available_mission(self):
+        return self.get_queryset().individual().available_mission()
+
+    def get_attributed_mission(self):
+        return self.get_queryset().get_attributed_mission()
 
 # ---------------------------------Resource ---Manager__queryset
 

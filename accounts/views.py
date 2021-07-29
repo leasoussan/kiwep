@@ -16,7 +16,8 @@ from .forms import (
     StudentProfileCreationForm,
     SpeakerProfileCreationForm,
     UserForm,
-    LoginForm, InstitutionInviteForm, MySpeakerCreationForm, InstitutionCreationForm
+    LoginForm, MySpeakerCreationForm, InstitutionCreationForm
+    # InstitutionInviteForm
 )
 from backend.forms import InstitutionAddForm
 
@@ -50,7 +51,7 @@ class Register(View):
             form = MySpeakerCreationForm(initial={'usertype': 'is_speaker'})
 
         context = {
-         "form": form
+            "form": form
         }
         return render(request, 'registration/register.html', context)
 
@@ -85,12 +86,8 @@ class Register(View):
 
         return render(request, 'registration/register.html', {"form":form})
 
+# __________________________________________________________________________________________
 
-
-
-
-
-# -----------------------------------------------------------------------------------------------
 
 
 def is_key_valid(request, key, use= False):
@@ -115,6 +112,7 @@ def is_key_valid(request, key, use= False):
     return True
 
 
+# -----------------------------------------------------------------------------------------------
 
 class InstitutionInviteView(View):
     def get(self, request, **kwargs):
@@ -139,11 +137,8 @@ class InstitutionInviteView(View):
             user = form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
-
             usertype = form.cleaned_data['usertype']
-
             setattr(user, usertype, True)
-
 
             user.save()
             user = authenticate(username=username, password=password, usertype=usertype)
@@ -166,10 +161,10 @@ def get_user_profile_form(request, edit=False):
 
     if edit:
         instance = user.profile()
-    else: 
+    else:
         instance = None
 
-    data = request.POST or None 
+    data = request.POST or None
 
     if user.is_student:
 
@@ -198,6 +193,8 @@ class CreateProfile(View):
         user_form = UserForm(instance =request.user)
         profile_form = get_user_profile_form(request)
         user = request.user
+
+
         if user.is_speaker:
             invites = user.received_invites.all()
             if invites.exists():
@@ -210,7 +207,9 @@ class CreateProfile(View):
 
 
     def post(self, request):
+
         user_form = UserForm(request.POST,  request.FILES,  instance= request.user)
+
         profile_form = get_user_profile_form(request)
         user = request.user
 
@@ -218,6 +217,8 @@ class CreateProfile(View):
 
             user_form.save()
             object= profile_form.save(commit=False)
+
+
 
             if request.user.is_representative:
                 object.representative = Representative.objects.get_or_create(user=request.user)[0]
@@ -227,6 +228,13 @@ class CreateProfile(View):
             if user.is_speaker:
                 for invite in user.received_invites.all():
                     object.institution.add(invite.institution)
+
+            elif user.is_student:
+                join_code = profile_form.cleaned_data['join_code']
+                if Institution.objects.filter(join_code = join_code).exists():
+                    inst = Institution.objects.get(join_code=join_code)
+
+
             return redirect('dashboard')
 
 
@@ -265,7 +273,7 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
         user_form = UserForm(instance =request.user)
 
         profile_form = get_user_profile_form(request, edit =True)
-        
+
 
         return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'profile_form': profile_form})
 

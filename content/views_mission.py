@@ -1,10 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
 
 from message.forms import AddAnswerForm, MissionSpeakerStatusAnswerForm
-from .models import Mission, CollectiveMission, Team, IndividualMission, IndividualCollectiveMission
+from .models import Mission, CollectiveMission, Team, IndividualMission, IndividualCollectiveMission, Project
 from django.forms import ModelForm
-from .forms import MissionAddForm, SubmitMissionForm, IndividualMissionAddForm, CollectiveMissionAddForm, \
-    CollectiveMissionAssign, ValidateMissionForm, ResourceAddForm
+from .forms import (
+    IndividualMissionAddForm,
+    CollectiveMissionAddForm,
+    CollectiveMissionAssign,
+    ValidateMissionForm,
+    ResourceAddForm, BulkAddMissionForm,
+
+)
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -33,7 +40,7 @@ class IndividualMissionListView(ProfileCheckPassesTestMixin, ListView):
 
 
     def get_queryset(self):
-        return super().get_queryset().filter(attributed_to = self.request.user.profile())
+        return super().get_queryset().filter(attributed_to=self.request.user.profile())
 
 
 # ----------------------------------------------------------------------------------------------------------------
@@ -45,8 +52,9 @@ class AnswerBoardMissionListView(ProfileCheckPassesTestMixin, ListView):
     context_object_name = 'answers_mission_list'
     form = ValidateMissionForm()
 
+
     def get_queryset(self):
-        return super().get_queryset().filter(attributed_to = True)
+        return super().get_queryset().filter(attributed_to__isnull=False)
 
 # ----------------------------------------------------------------------------------------------------------------
 
@@ -58,17 +66,24 @@ class AddIndividualMissionView(SpeakerStatuPassesTestMixin, View):
     model = IndividualMission
 
     def get(self, request, *args, **kwargs):
+        mission_form = IndividualMissionAddForm(instance=request.user)
         return redirect('homepage')
 
     def post(self, request, *args, **kwargs):
-        form = IndividualMissionAddForm(request.POST)
+        mission_form = IndividualMissionAddForm(request.POST)
 
-        if form.is_valid():
-            mission = form.save(commit=False)
-            mission.project_id= kwargs['project_id']
+
+        if mission_form.is_valid():
+            mission = mission_form.save(commit=False)
+            mission.project_id=kwargs['project_id']
+            mission.mission_type = 'i'
             mission.owner = self.request.user
             mission.save()
-        return redirect('individual_mission_detail', mission.id )
+
+            return redirect('individual_mission_detail', mission.id)
+
+        return render(request, 'backend/mission/mission_detail.html',
+                      {'mission_form': mission_form})
 
 
 # ----------------------------------------------------------------------------------------------------------------
@@ -79,23 +94,30 @@ class AddIndividualMissionView(SpeakerStatuPassesTestMixin, View):
 
 
 class AddCollectiveMissionView(SpeakerStatuPassesTestMixin, View):
-    ''' See User Missions List'''
+    ''' Add an Individual Mission '''
     model = CollectiveMission
 
     def get(self, request, *args, **kwargs):
+        mission_form = CollectiveMissionAddForm(instance=request.user)
         return redirect('homepage')
 
     def post(self, request, *args, **kwargs):
-        form = CollectiveMissionAddForm(request.POST)
+        mission_form = CollectiveMissionAddForm(request.POST)
 
-        if form.is_valid():
-            collective_mission = form.save(commit=False)
-            collective_mission.project_id = kwargs['project_id']
-            collective_mission.owner = self.request.user
-            collective_mission.save()
+        if mission_form.is_valid():
+            mission = mission_form.save(commit=False)
+            mission.project_id = kwargs['project_id']
+            mission.mission_type = 'c'
+            mission.owner = self.request.user
+            mission.save()
 
-        return redirect('collective_mission_detail',  collective_mission.id )
+            return redirect('collective_mission_detail', mission.id)
 
+        return render(request, 'backend/mission/mission_detail.html',
+                      {'mission_form': mission_form})
+
+
+# -------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -190,6 +212,8 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
         pk = self.kwargs.get('pk')
         return get_object_or_404(CollectiveMission, pk=pk)
 
+    def get_success_url(self):
+        return reverse_lazy('collective_mission_detail', kwargs ={'pk': self.object.id})
 # ----------------------------------------------------------------------------------------------------------------
 
 
@@ -276,34 +300,19 @@ class UnclaimMission(StudentStatuPassesTestMixin, RedirectView):
 
 
 
-
-
-
-class StudentSubmitMission(StudentStatuPassesTestMixin, UpdateView):
-
-    ''' An answer can be saved and unsubmited- here is the submit  '''
-    model = IndividualMission
-    form_class = SubmitMissionForm
-    # fields = [
-    #         'response_comment',
-    #         'response_file',
-    #     ]
-    template_name = 'backend/mission/mission_detail.html'
-
-
 # on the get contex data im adding  the context that I get in the page. here it mean that when I call this view ill get to add in the kward update 
 # the view -template will get the update in an {% if update%}
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['update']= True 
-        return context
-
-    def get_success_url(self):
-        return reverse_lazy('team_detail', kwargs ={'pk': self.object.project.team.id})
-
-    def form_valid(self, form):
-        print(form.errors)
-        return super().form_valid(form)
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['update']= True
+#         return context
+#
+#     def get_success_url(self):
+#         return reverse_lazy('team_detail', kwargs ={'pk': self.object.project.team.id})
+#
+#     def form_valid(self, form):
+#         print(form.errors)
+#         return super().form_valid(form)
 
 # ----------------------------------------------------------------------------------------------------------------
 
@@ -347,7 +356,6 @@ class LeaveCollectiveMissionView(StudentStatuPassesTestMixin, RedirectView):
 # _________________________________________________________________________________________________________
 
 
-
 def assign_mission(request, pk):
 
     collective_mission = get_object_or_404(CollectiveMission, pk=pk)
@@ -366,6 +374,96 @@ def assign_mission(request, pk):
         else:
             print(repr(form), 'form')
     return render(request, "crud/create.html", {'form': form})
+
+
+def clean_bulk_mission(request, mission_id, queryset):
+
+    for project in queryset:
+        # project.id = project_id
+        print('qs***', dir(project))
+        mission.project_id = project.id
+        print('missionqs****', mission)
+        mission.id =None
+        print('mission_ID*****', mission.id)
+        mission.project_id = project['project_id'].id
+        print('qs.project*****',project.project)
+        mission.created_date = None
+        mission.due_date = timezone.now()
+        mission.completed = False
+        mission.owner.id = request.user
+        if mission == IndividualMission:
+            mission.attributed_to = None
+            mission.accepted = False
+            print("mission cleaned", mission)
+        mission = mission.save()
+
+        project.model.objects.bulk_create(mission)
+
+def bulk_add_individual_mission(request, *kwargs):
+
+    ''' Add bulk Mission in Project '''
+
+    individual_form = IndividualMissionAddForm(request.POST)
+    mission_bulk_form = BulkAddMissionForm(data=request.POST)
+
+    if request.method == "POST":
+        if individual_form.is_valid() and mission_bulk_form.is_valid():
+            projects = mission_bulk_form.cleaned_data['projects']
+            mission = individual_form.save(commit=False)
+            clean_bulk_mission(mission, projects)
+            mission.owner = request.user
+            mission.mission_type='i'
+
+            mission.save()
+
+
+            print('*****mission_form***', mission)
+            print('mission_id ***', mission.id)
+            mission.objects.bulk_create(objects)
+
+
+            # bulk = IndividualMission.objects.bulk_create(mission_form)
+            #
+            print(f'mission for project {p}')
+
+
+            return redirect('individual_mission_detail', mission.id)
+
+    return render(request, 'backend/project/project_list.html', {'individual_form':individual_form,'mission_bulk_form': mission_bulk_form})
+
+
+
+
+
+
+def bulk_add_collective_mission(request, *kwargs):
+    ''' Add bulk Mission in Project '''
+
+    collective_form = CollectiveMissionAddForm()
+    mission_bulk_form = BulkAddMissionForm(request.POST)
+    projects= mission_bulk_form.cleaned_data['projects']
+    print(projects)
+    if request.method == "POST":
+        if collective_form.is_valid() and mission_bulk_form.is_valid():
+            mission = mission_bulk_form.save(commit=False)
+            mission_form = collective_form.save(commit=False)
+            mission.id = None
+            mission.mission_type = mission_bulk_form.cleaned_data['mission_type']
+            mission.owner = request.user
+            projects = mission_bulk_form.cleaned_data['projects'].filter(speaker=request.user)
+            for project in projects:
+                mission.project_id = project.id
+
+            del kwargs['pk']
+            print(f'mission for project {project}', mission)
+            mission.save()
+
+        return redirect('individual_mission_detail', mission.id)
+
+    return render(request, 'backend/mission/mission_detail.html', {'mission_bulk_form': mission_bulk_form})
+
+
+
 
 
 # ______________________SPEAKAER____VALIDATION _______________________________________________________________________________
@@ -398,46 +496,4 @@ class ValidateMission(SpeakerStatuPassesTestMixin, RedirectView):
         mission.accepted = True
         mission.save()
         return super().get_redirect_url(*args, **kwargs)
-
-    # -------------------------------------------------------
-
-    # class AssignCollectiveMissionView(SpeakerStatuPassesTestMixin, FormView):
-    #     model = CollectiveMission
-    #     form_class = CollectiveMissionAssign
-    #     success_url = 'collective_mission_detail'
-    #     template_name = "crud/create.html"
-    #
-    #     def get_object(self):
-    #         pk = self.kwargs.get('pk')
-    #         print(pk, "pk print")
-    #         return get_object_or_404(CollectiveMission, pk=pk)
-    #
-    #     def get_form_kwargs(self):
-    #         """Return the keyword arguments for instantiating the form."""
-    #         collective_mission = self.get_object()
-    #         kwargs = super().get_form_kwargs()
-    #         kwargs['team'] = collective_mission.project.team
-    #         kwargs['participants'] = collective_mission.project.team.participants.all()
-    #         # if self.request.method == "POST":
-    #         #     del kwargs['participants']
-    #         return kwargs
-    #
-    #     def form_valid(self, form):
-    #         """If the form is valid, redirect to the supplied URL."""
-    #         print(form.cleaned_data, 'cleaned_data')
-    #         collective_mission = self.get_object()
-    #         print(collective_mission, "HERREE")
-    #
-    #         form.save(collective_mission)
-    #
-    #         return super().form_valid(form)
-    #
-    #
-    #     def form_invalid(self, form):
-    #         print(form['participants'],  'my form errors')
-    #
-    #         return super().form_invalid(form)
-    #
-
-
 

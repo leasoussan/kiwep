@@ -12,7 +12,7 @@ from django.db.models.signals import pre_save
 from django.contrib.contenttypes.fields import GenericRelation
 from datetime import datetime, timedelta
 
-
+from django.utils.translation import ugettext as _
 
 
 
@@ -30,12 +30,13 @@ from message.models import DiscussionModel,AnswerModel
 
 class Resource(DiscussionModel):
     name = models.CharField(max_length=200)
-    link = models.URLField(max_length=200)
+    link = models.URLField(max_length=200,  blank=True, null =True)
     image = models.ImageField(upload_to='resources', default ='resources/default.png', )
     file_rsc = models.FileField(null=True, blank=True)
     text = models.TextField()
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE,  blank=True, null =True)
+    project = models.ForeignKey('Project', on_delete=models.CASCADE)
     objects = ResourceModelManager()
 
     def __str__(self):
@@ -67,14 +68,13 @@ class Project(DiscussionModel):
     title = models.CharField(max_length=300)
     description = models.TextField()
     required_skills = models.ManyToManyField(Skills, related_name="required_skills")
-    acquired_skills = models.ManyToManyField(Skills)
+    acquired_skills = models.ManyToManyField(Skills, default=None)
     time_to_complete = models.PositiveIntegerField()
     field = models.ManyToManyField(Field)
-    resources = models.ManyToManyField(Resource, blank=True)
-    difficulty = models.ForeignKey(Level, on_delete=models.CASCADE)
+    difficulty = models.ForeignKey(Level, on_delete=models.CASCADE, null=True, blank=True)
     completed = models.BooleanField(default=False)
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-    points = models.PositiveIntegerField()
+    points = models.PositiveIntegerField(null=True, blank=True)
     is_template = models.BooleanField(default=False)
     is_global = models.BooleanField(default=False)
     is_premium = models.BooleanField(default=False)
@@ -101,18 +101,25 @@ class Project(DiscussionModel):
 
 class Mission(AnswerModel):
     STAGE_CHOICE = [
-        ('start', 'Start'),
-        ('middle', 'Middle'),
-        ('final', 'Final'),
+        ('start', _('start')),
+        ('middle', _('middle')),
+        ('final', _('final')),
     ]
 
     RESPONSE_TYPE = [
-        ('link', 'Link'),
-        ('video', 'Video'),
-        ('doc', 'Document'),
-        ('power_p', 'Power Point'),
-        ('image', 'image'),
+        ('link', _('link')),
+        ('video', _('video')),
+        ('doc', _('document')),
+        ('power_p', _('power Point')),
+        ('image', _('image')),
     ]
+
+    MISSION_TYPE = [
+        ('i', _('individual_mission')),
+        ('c', _('collective_mission')),
+        ('ci', _('collective_Individual_mission')),
+    ]
+    
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     stage = models.CharField(max_length=10, choices=STAGE_CHOICE, default='start')
     response_type = models.CharField(max_length=200, choices=RESPONSE_TYPE, default=None)
@@ -123,17 +130,31 @@ class Mission(AnswerModel):
     resources = models.ManyToManyField(Resource, blank=True)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     points = models.PositiveIntegerField()
-    acquired_skill = models.ManyToManyField(Skills, blank =True)
+    acquired_skill = models.ManyToManyField(Skills)
     created_date = models.DateField(auto_now_add=True)
     due_date = models.DateField(default=timezone.now)
+    mission_type = models.CharField(max_length=5, choices=MISSION_TYPE)
 
-    # objects = MissionModelManager()
+    objects = MissionModelManager()
 
-    class Meta:
-        abstract = True
 
     def __str__(self):
         return f"Mission Name : {self.name}"
+
+
+    def get_mission_type(self):
+        mission_type = {
+        'is_indidividual':IndividualMission,
+        'is_collective': CollectiveMission,
+
+        }
+
+        for key, value in mission_type.items():
+
+            if value.objects.filter(mission=self).exists():
+                # TODO: We need to check if there is the Individual Mission
+                return key
+
 
 
 class MissionValue(models.Model):
@@ -164,7 +185,7 @@ class IndividualMission(Mission):
 
 
     def __str__(self):
-        return f"Missions of project: {self.project.name}"
+        return f"Missions : {self.name}"
 
 
     def get_absolute_url(self):
@@ -183,11 +204,12 @@ class CollectiveMission(Mission):
     Therefore each participants will have this mission attributed to him """
     attributed_to = models.ManyToManyField(Student, through='IndividualCollectiveMission',
                                            related_name="my_team_missions", blank=True)
+
     hard_skill_rating = GenericRelation(MissionValue)
     objects = CollectiveMissionModelManager()
 
     def __str__(self):
-        return f"Missions of Team: {self.project.team}"
+        return f"Missions of Team: {self.project}"
 
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk": self.pk})
@@ -201,6 +223,7 @@ class CollectiveMission(Mission):
 
 class IndividualCollectiveMission(AnswerModel):
     """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
+
 
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")
     parent_mission = models.ForeignKey(CollectiveMission, on_delete= models.CASCADE)

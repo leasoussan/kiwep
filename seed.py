@@ -40,12 +40,14 @@ institution_category_list = ['High-School', 'University', 'organization']
 
 def pop_institution_category_list(institution_category_list):
     for institution in institution_category_list:
-        institution = InstitutionCategory.objects.get_or_create(
+        institution_i = InstitutionCategory.objects.get_or_create(
             name =institution,
-            fields = random.choice(Field.objects.all())
         )
+        fields = list(Field.objects.all())
+        print(fields)
+        institution_i.fields.add(*random.sample(fields, 2))
 
-        print(f"the Institution Category {institution} was created")
+        print(f"the Institution Category {institution_i} was created")
 
 # pop_institution_category_list(institution_category_list)
 
@@ -81,7 +83,7 @@ def pop_city():
 fields_list_hard = ['No Code' , 'Personal development', 'Entrepreneurship']
 
 
-def pop_field_hard(skill_type):
+def pop_field_hard():
     skill = 'hard'
     for f in fields_list_hard:
         f = Field.objects.get_or_create(name=f, skills_type=skill)
@@ -109,7 +111,7 @@ skills_list = ['Develop', 'writing', 'elaborating', 'research', 'Communicating']
 def pop_skills(n):
 
     for skill in skills_list:
-        skill = Skills(name = skill)
+        skill = Skills(name=skill)
         skill.save()
         skill.field.add(random.choice(list(Field.objects.all())))
         print(f'Skill:{skill.id} was created')
@@ -139,8 +141,8 @@ def pop_skills(n):
 
 
 pop_field(fields_list)
-pop_field_hard(fields_list_hard)
-pop_institution_category_list(institution_category_list)
+pop_field_hard()
+# pop_institution_category_list(institution_category_list)
 
 pop_country()
 pop_city()

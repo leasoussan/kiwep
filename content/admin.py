@@ -16,6 +16,8 @@ from .models import (
 
 admin.site.register(MissionValue)
 admin.site.register(HardSkillsRating)
+admin.site.register(Mission)
+
 
 
 

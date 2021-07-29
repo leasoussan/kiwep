@@ -3,10 +3,11 @@ from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.forms import ModelForm
 from django.forms import inlineformset_factory
-from django.http import Http404
 
+from django.http import Http404
+from django.utils.translation import ugettext as _
 from accounts.models import Student
-from .models import Project, Team, Resource, CollectiveMission, IndividualMission, IndividualCollectiveMission
+from .models import Project, Team, Resource, Mission, CollectiveMission, IndividualMission, IndividualCollectiveMission
 
 
 class ProjectAddForm(ModelForm):
@@ -17,11 +18,7 @@ class ProjectAddForm(ModelForm):
             'description',
             'time_to_complete',
             'field',
-            'difficulty',
             'points',
-            'is_template',
-            'required_skills',
-            'acquired_skills'
         ]
 
         # exclude = ['completed', 'created_by']
@@ -36,24 +33,24 @@ class TeamAddForm(ModelForm):
             'group_Institution',
             'participants',
         ]
-
+    #
     start_date = forms.DateField(
         widget=django.forms.DateInput(
             format='%d/%m/%Y',
             attrs={'type': 'date'}),
-        # input_formats=('%d-%m-%Y',),
     )
+
+
 
 
 class AddMemberTeamForm(ModelForm):
     """ Speaker can add team memebers"""
-
     class Meta:
         model = Team
         fields = ['participants']
 
         widgets = {
-            'participants': FilteredSelectMultiple(verbose_name='Participants List', is_stacked=False)
+            'participants': FilteredSelectMultiple(verbose_name='participants_list', is_stacked=False)
         }
 
         # class media is built inside django
@@ -69,14 +66,36 @@ class AddMemberTeamForm(ModelForm):
         self.fields['participants'].queryset = kwargs['instance'].group_Institution.student_set.all()
 
 
-class MissionAddForm(ModelForm):
-    pass
 
 
-mission_fields = (
-    'name',
-    'response_type',
+class UpdateTeamForm(ModelForm):
+    class Meta:
+        model = Team
+        fields = [
+            'name',
+            'project',
+            'start_date',
+            'participants',
+            'project_completed' ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['project'].queryset = kwargs['instance'].manager.project_set.available_projects()
+        if kwargs['instance'].project:
+            self.fields['project'].queryset |= Project.objects.filter(id=kwargs['instance'].project.id)
+
+class ProjectTeamAddForm(ModelForm):
+    class Meta:
+        model = Team
+        fields = ['name', 'start_date', 'participants']
+
+
+
+
+mission_fields = [
     'stage',
+    'response_type',
+    'name',
     'field',
     'level',
     'description',
@@ -84,41 +103,53 @@ mission_fields = (
     'points',
     'acquired_skill',
     'due_date',
-)
-
-due_date = forms.DateField(
-    widget=django.forms.DateInput(
-        format='%d/%m/%Y',
-        attrs={'type': 'date'}),
-    # input_formats=('%d-%m-%Y',),
-)
+]
 
 
 class IndividualMissionAddForm(ModelForm):
     class Meta:
         model = IndividualMission
-        fields = mission_fields
+        fields = mission_fields + ['attributed_to']
 
-    due_date = forms.DateField(
-        widget=django.forms.DateInput(
-            format='%d/%m/%Y',
-            attrs={'type': 'date'}),
-        # input_formats=('%d-%m-%Y',),
-    # resources = forms.ModelMultipleChoiceField(queryset=object.team_set.project.resources.all)
-    )
-
+# TODO: Check date setup
+# # Check if a date is not in the past.
+#         if data < datetime.date.today():
+#             raise ValidationError(_('Invalid date - renewal in past'))
+#
+#         # Check if a date is in the allowed range (+4 weeks from today).
+#         if data > datetime.date.today() + datetime.timedelta(weeks=4):
+#             raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
+#
+#         # Remember to always return the cleaned data.
+#         return data
 
 class CollectiveMissionAddForm(ModelForm):
     class Meta:
         model = CollectiveMission
-        fields = mission_fields
+        fields = mission_fields + ['attributed_to']
 
-    due_date = forms.DateField(
-        widget=django.forms.DateInput(
-            format='%d/%m/%Y',
-            attrs={'type': 'date'}),
-        # input_formats=('%d-%m-%Y',),
-    )
+
+
+
+
+class BulkAddMissionForm(forms.Form):
+    # MISSION_TYPE=[
+    #     ('i', _('individual_mission')),
+    #     ('c', _('collective_mission')),
+    # ]
+    projects=forms.ModelMultipleChoiceField(queryset=Project.objects.all(), widget=forms.CheckboxSelectMultiple)
+    # mission_type = forms.Select(choices=MISSION_TYPE)
+
+    def __init__(self, projects =None, *args, **kwargs):
+        super(BulkAddMissionForm, self).__init__(*args, **kwargs)
+        if projects:
+            self.fields['projects'].queryset = projects
+
+    # def save_bulk_mission(self, mission):
+    #     print('valid')
+    #     for project in self.cleaned_data['projects']:
+    #         mission = project.mission
+    #         mission.id=None
 
 
 class CollectiveMissionAssign(forms.Form):
@@ -129,8 +160,8 @@ class CollectiveMissionAssign(forms.Form):
         print('is valid')
         for participant in self.cleaned_data['participants']:
             mission= IndividualCollectiveMission.objects.get_or_create(
-                                                        parent_mission=collective_mission,
-                                                        attributed_to = participant)
+                parent_mission=collective_mission,
+                attributed_to = participant)
 
             print('participant', participant)
 
@@ -152,33 +183,24 @@ class ResourceAddForm(ModelForm):
             'file_rsc',
         ]
 
-    link= forms.URLField(initial='http://')
+    link= forms.URLField(initial='http://', required=False)
 
 
 
-
-
-CollectiveMissionFormSet = inlineformset_factory(
-    Project,
-    CollectiveMission,
-    fields=mission_fields,
-    extra=1)
-
-IndividualMissionFormSet = inlineformset_factory(
-    Project,
-    IndividualMission,
-    fields=mission_fields,
-    extra=1)
 
 #
-class SubmitMissionForm():
-#     class Meta:
-#         model = IndividualCollectiveMission
-#         fields = [
-#             'response_comment',
-#             'response_file',
-#         ]
-    pass
+# CollectiveMissionFormSet = inlineformset_factory(
+#     Project,
+#     CollectiveMission,
+#     fields=mission_fields,
+#     extra=1)
+#
+# IndividualMissionFormSet = inlineformset_factory(
+#     Project,
+#     IndividualMission,
+#     fields=mission_fields,
+#     extra=1)
+#
 
 
 

@@ -4,109 +4,127 @@
 
 
 
-{% if user.is_speaker %}
+    {% if user.is_speaker %}
 
-{% if answer_mission_list  %}
+        {% if answer_mission_list  %}
 
-    <div>
-        <h1> {% trans 'there are no answers yet' %}</h1>
+            <div>
+                <h1> {% trans 'there are no answers yet' %}</h1>
 
+            </div>
+
+        {% else %}
+
+            <div>
+            <h5 class="card-header">{% trans 'my_answer_mission_board_title' %}</h5>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>{% trans 'mission_name' %}</th>
+                    <th>{% trans 'team_name' %}</th>
+                    <th>{% trans 'project_name' %}</th>
+                    <th>{% trans 'due_date' %}</th>
+                    <th>{% trans 'answer' %}</th>
+                    <th>{% trans 'validate_title' %}</th>
+                    <th>{% trans 'action' %}</th>
+                </tr>
+                </tr>
+
+                </thead>
+                <tbody>
+
+                {% for mission in answers_mission_list %}
+
+                    <tr>
+                        {{ mission }}
+                        <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
+                        {% if mission.project.team %}
+                            <td><a href="{% url 'team_detail'  mission.project.team.id %}">{{ mission.project.team.name }}</a></td>
+                        {% else %}
+                            <td> not team</td>
+                        {% endif %}
+                        <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ mission.project.name }}</a></td>
+                        <td>{{mission.due_date}}</td>
+
+                        <td>  {% if mission.answer.all.exists %}
+                            {{ mission.answer.last.get_status_display }}
+                        {% else  %}
+                            {% trans 'not_answer_yet' %}
+                        {% endif %}
+                        </td>
+                        <td>{{mission.due_date}}</td>
+                        <td>{% if user.is_speaker %}
+                            {#                            <form method = "post">#}
+                            {#                                {% csrf_token %}#}
+                            {#                                <input type="checkbox" id="mission_validate" name="mission_validate" value="validate">#}
+                            {#                                <label for="validate">{% trans 'validate' %}</label><br>#}
+                            {#                                <input type = "submit" value = "validate">#}
+                            {#                            </form>#}
+                        {% endif %}
+
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
     </div>
 
-{% else %}
 
-    <div>
-    <h5 class="card-header">{% trans 'my_answer_mission_board_title' %}</h5>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>{% trans 'mission_name' %}</th>
-            <th>{% trans 'team_name' %}</th>
-            <th>{% trans 'project_name' %}</th>
-            <th>{% trans 'due_date' %}</th>
-            <th>{% trans 'answer' %}</th>
-            <th>{% trans 'validate_title' %}</th>
-        </tr>
-        </tr>
+
+    {% elif user.is_student %}
+
 
         </thead>
         <tbody>
         <tr>
-            {% for mission in answers_mission_list_set.all %}
-                <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
-                <td><a href="{% url 'team_detail'  mission.project.team.id %}">{{ mission.project.team.name }}</a></td>
-                <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ mission.project.name }}</a></td>
-                <td>{{mission.due_date}}</td>
-                <td>{%  if mission.response_comment %}
-                    <a href="{% url 'individual_mission_detail' mission.id %}">{% trans 'answer' %}</a>
-                {% else  %}
 
-                    {% trans 'not_answer_yet' %}
-                {% endif %}
-                </td>
-                <td>{{mission.due_date}}</td>
-                <td>{% if user.is_speaker %}
-                    <form method = "post">
-                        {% csrf_token %}
-                        <input type="checkbox" id="mission_validate" name="mission_validate" value="validate">
-                        <label for="validate">{% trans 'validate' %}</label><br>
-                        <input type = "submit" value = "validate">
-                    </form>
-                {% endif %}
+        <div>
+        <h5 class="card-header">{% trans 'my_mission_board_title' %}</h5>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>{% trans 'mission_name' %}</th>
+                <th>{% trans 'team_name' %}</th>
+                <th>{% trans 'project_name' %}</th>
+                <th>{% trans 'due_date' %}</th>
+                <th>{% trans 'answer' %}</th>
+                <th>{% trans 'status' %}</th>
+                <th>{% trans 'action' %}</th>
+            </tr>
+            </tr>
 
-                </td>
-            {% endfor %}
-        </tr>
+            </thead>
+            <tbody>
+            <tr>
 
 
+                {% for mission in mission_list  %}
 
-        </tbody>
-    </table>
-{% endif %}
-</div>
+                    <tr>
+                        <td>   <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
+                        {#                        <td>   <a href="{% url 'team_detail' mission.project.team_set.id %}">{{ mission.team.name }}</a></td>#}
+                        <td></td>
+                        <td>   <a href="{% url 'project_detail' mission.project.id %}">{{ mission.team.name }}</a></td>
+                        <td>{{ mission.due_date }}</td>
+                        <td>{% if mission.response_comment or mission.response_file %}
+                            <a href="{% url 'individual_mission_detail'  mission.id %}">{% trans 'see_answer' %}</a>
+                        {% elif user.profile == mission.attributed_to %}
+                            <lable>{% trans 'submit_mission' %}</lable>
+                        {% endif %}</td>
+                        <td>{% if not mission.answer.first %}
+                            <lable>{% trans 'mission_not_answered_yet' %}</lable>
+                        {% else %}
+                            {{mission.answer.status}}
+                        {% endif %}
+                        </td>
+                        <td><a href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-
-
-{% elif user.is_student %}
-
-<div>
-    <h5 class="card-header">{% trans 'my_mission_board_title' %}</h5>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>{% trans 'mission_name' %}</th>
-            <th>{% trans 'team_name' %}</th>
-            <th>{% trans 'project_name' %}</th>
-            <th>{% trans 'due_date' %}</th>
-            <th>{% trans 'answer' %}</th>
-            <th>{% trans 'status' %}</th>
-        </tr>
-        </tr>
-
-        </thead>
-        <tbody>
-        <tr>
-            {% for mission in team.project.individualmission_set.all  %}
-
-                <tr>
-
-                    <td>   <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
-
-                    <td><a style="color: #0a0a0a" href="{% url 'team_detail'  mission.project.team.id %}">{{ mission.project.team.name }}</a></td>
-                    <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ mission.project.name }}</a></td>
-                    <td>{{mission.due_date}}</td>
-
-                                                    get the answer modal
-                    <td>{% if mission.response_comment or mission.response_file %}
-                        <a href="{% url 'individual_mission_detail'  mission.id %}">{% trans 'see_answer' %}</a>
-                    {% elif user.profile == mission.attributed_to %}
-                        <a href="{% url 'submit_mission' mission.id %}">{% trans 'submit_mission' %}</a>
-                    {% endif %}</td>
-                    <td>{{mission.status}}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
     {% endif %}
 </div>
 

@@ -2,7 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team, CollectiveMission, Project, Mission, IndividualMission
 from django.forms import ModelForm
-from .forms import TeamAddForm, CollectiveMissionFormSet, AddMemberTeamForm, IndividualMissionFormSet, ProjectAddForm
+from .forms import TeamAddForm, AddMemberTeamForm, ProjectAddForm, UpdateTeamForm, ProjectTeamAddForm
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -34,7 +34,18 @@ class TeamListView(ProfileCheckPassesTestMixin, ListView):
     def get_queryset(self):
         return self.request.user.profile().team_set.all()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
+        if self.request.user.is_speaker:
+            context['project_form'] = ProjectAddForm()
+            context['templates'] = Project.objects.global_template_projects()
+            context['old_projects'] = self.request.user.profile().project_set.all()
+        return context
+
+    def get_object(self):
+        pk = self.kwargs.get("pk")
+        return get_object_or_404(Team, pk=pk)
 
 
 
@@ -43,7 +54,7 @@ class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     model = Team
     template_name = 'backend/team/team_detail.html'
-    queryset = IndividualMission.objects.available_mission()
+    # queryset = IndividualMission.objects.all().available_mission()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -77,7 +88,6 @@ class TeamCreateView(SpeakerStatuPassesTestMixin,  CreateView):
         self.object.manager = self.request.user.profile()
         self.object.completed = False
         self.object.save()
-
         return super().form_valid(form)
 
     
@@ -93,70 +103,82 @@ class TeamCreateView(SpeakerStatuPassesTestMixin,  CreateView):
 
 
 
+class ProjectToTeamCreateView(TeamCreateView):
+    """Create a Team for an existing project  """
+
+    def form_valid(self, form):
+        super().form_valid(form)
+        print(form)
+        pk = self.kwargs.get('pk')
+        print('pk', pk)
+        self.object.project = Project.objects.get(pk=pk)
+        self.object.save()
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('team_detail', kwargs={'pk': self.object.id})
 
 
-
-
-
-
-class TeamCreateMissionView(SpeakerStatuPassesTestMixin, View):
-    """ Once a Team IS created the missions have to be set, Deadline, attribution etc...."""
-    def get(self, request, *args, **kwargs):
-        
-        team = Team.objects.get(id = self.kwargs['pk'])
-        participants= team.participants.all()
-
-
-
-        return render(request, 'crud/create_team_missions.html', {'participants': participants})
-    
-
-    def post(self, request, *args, **kwargs):
-        
-        team = Team.objects.get(id = self.kwargs['pk'])
-        missions = team.project.missions.all()
-        
-        formset = CollectiveMissionFormSet(request.POST, instance = team)
-
-        
-        if formset.is_valid():
-            formset.save()
-            return redirect('team_detail' , team.id)
-
-        
-        for form in formset:
-            form.fields['mission'].queryset = missions
-           
-        return render(request, 'crud/create_team_missions.html', {'formset': formset})
-
+#
+# class TeamCreateMissionView(SpeakerStatuPassesTestMixin, View):
+#     """ Once a Team IS created the missions have to be set, Deadline, attribution etc...."""
+#     def get(self, request, *args, **kwargs):
+#
+#         team = Team.objects.get(id = self.kwargs['pk'])
+#         participants= team.participants.all()
+#
+#
+#
+#         return render(request, 'crud/create_team_missions.html', {'participants': participants})
+#
+#
+#     def post(self, request, *args, **kwargs):
+#
+#         team = Team.objects.get(id = self.kwargs['pk'])
+#         missions = team.project.missions.all()
+#
+#         formset = CollectiveMissionFormSet(request.POST, instance = team)
+#
+#
+#         if formset.is_valid():
+#             formset.save()
+#             return redirect('team_detail' , team.id)
+#
+#
+#         for form in formset:
+#             form.fields['mission'].queryset = missions
+#
+#         return render(request, 'crud/create_team_missions.html', {'formset': formset})
+#
 
 
 # prefix='collective' We might need to add a Prefix if using few formset- might have been changed by DJANGO 
 
-
-class TeamEditIndividualProjectMission(SpeakerStatuPassesTestMixin, UpdateView):
-    """ """
-    model = IndividualMission
-    fields = '__all__'
-
-    template_name = 'crud/update.html'
-    # success_url = ('team_detail')
-
-
-
-class TeamEditCollectiveProjectMission(SpeakerStatuPassesTestMixin, UpdateView):
-    model = CollectiveMission
-    fields = '__all__'
-
-    template_name = 'crud/update.html'
-    # success_url = ('team_detail')
+#
+# class TeamEditIndividualProjectMission(SpeakerStatuPassesTestMixin, UpdateView):
+#     """ """
+#     model = IndividualMission
+#     fields = '__all__'
+#
+#     template_name = 'crud/update.html'
+#     # success_url = ('team_detail')
+#
+#
+#
+# class TeamEditCollectiveProjectMission(SpeakerStatuPassesTestMixin, UpdateView):
+#     model = CollectiveMission
+#     fields = '__all__'
+#
+#     template_name = 'crud/update.html'
+#     # success_url = ('team_detail')
 
 
 
 
 class TeamUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
-    model = Team 
-    fields = ['name', 'project', 'start_date', 'group_Institution', 'participants' ]
+    model = Team
+    form_class = UpdateTeamForm
     template_name = 'crud/update.html'
     # success_url = ('team_detail')
 
