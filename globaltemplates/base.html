@@ -20,12 +20,11 @@
 
 
 
-
+    <div class = "container" style="background-color: yellow;">
     {% block css %}
 
-
     {% endblock css %}
-
+    </div>
 </head>
 
 
@@ -38,6 +37,7 @@
 
 
 <body>
+    <!-- NAVBAR SHOULD NOT APPEAR AT LOGIN PAGE/REGISTER PAGE -->
     {% include 'navbar.html' %}
     <div>
         <div>

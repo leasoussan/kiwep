@@ -5,11 +5,33 @@
 {% block content %}
 
 <div class="aligning">
-    <form method="post">
-      {% csrf_token %}
-      <!-- how to switch to Bootstrap? -->
-      {{ form|materializecss }}
-      <br>
+  <form>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Email:*</label>
+      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Password:*</label>
+      <input type="password" name="password" class="form-control" id="exampleFormControlTextarea1"></textarea>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary">Sign In</button>
+    </div>
+  </form>
+  <br>
+  <div><a class="fonts" href="{% url 'login' %}">Forgot Password?</a></div>
+  <div><a class="fonts" href="{% url 'login' %}">New To KIWEP?</a></div>
+</div>
+
+
+{% endblock %}
+
+
+<!-- <form method="post">
+      {% csrf_token %} -->
+<!-- how to switch to Bootstrap? -->
+<!-- {{ form|materializecss }} -->
+<!-- <br>
       <button type="submit">{% trans 'login'%}</button>
     </form>
     <div class="aligning">
@@ -24,8 +46,4 @@
         <li><a href="{% url 'register' %}" id="forgot-link1">{% trans 'Do not have an account yet?'%}</a></li>
 
       </ul>
-    </div>
-</div>
-
-
-{% endblock %}
+    </div> -->

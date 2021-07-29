@@ -2,9 +2,43 @@
 {% load i18n %}
 
 {% block navbar %}
-    <!-- NAVBAR -->
-    <nav>
-        <div>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div><span>KIWEP</span></div>
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Answers</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div id="user"></div>
+        <div id="name"><span>Hello, User!</span></div>
+    </div>
+    
+</nav>
+
+{% endblock %}
+
+
+
+
+
+<!-- 
+         <div>
             {% if user.is_authenticated %}
                 <a href="#">{% trans 'welcome'%} {{user.first_name}} {{ user.get_user_type }}</a>
             {% endif %}
@@ -15,11 +49,11 @@
                 <li>
                     <form action="{% url 'set_language' %}" method="post">
                         {% csrf_token %}
-                        <input name="next" type="hidden" value="{{ redirect_to }}" />
-                        <!-- Should take down class="input-group"? -->
-                        <div class="input-group">
-                            <!-- Should take down class="form-select"? -->
-                            <select class="form-select" name="language" onchange="this.form.submit()">
+                        <input name="next" type="hidden" value="{{ redirect_to }}" /> -->
+<!-- Should take down class="input-group"? -->
+<!-- <div class="input-group"> -->
+<!-- Should take down class="form-select"? -->
+<!-- <select class="form-select" name="language" onchange="this.form.submit()">
                                 {% get_current_language as LANGUAGE_CODE %}
                                 {% get_available_languages as LANGUAGES %}
                                 {% for lang in LANGUAGES %}
@@ -35,11 +69,11 @@
 
                     <li><a>
                         <a href="{% url 'profile' user.id  %}"><i>account_circle</i></a>
-                    </a></li>
+                    </a></li> -->
 
-                    <!-- Dropdown Structure -->
+<!-- Dropdown Structure -->
 
-                    <li><a href="#!" data-target="dropdown1"><i>arrow_drop_down</i></a></li>
+<!-- <li><a href="#!" data-target="dropdown1"><i>arrow_drop_down</i></a></li>
                     <ul>
                         <li><a href="{% url 'edit_profile' %}">{% trans 'edit_profile'  %}</a></li>
                         <li><a href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
@@ -53,7 +87,4 @@
                 {% endif %}
             </ul>
 
-        </div>
-    </nav>
-
-{% endblock %}
+        </div>  -->

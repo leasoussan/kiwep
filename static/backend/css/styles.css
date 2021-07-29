@@ -39,12 +39,34 @@ body *{
 .aligning{
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   
 }
 
+.fonts{
+  text-decoration: none;
+  font-weight: bold;
+  color:rgb(0, 174, 255);
+
+}
+
 /*------NAVBAR--------- */
+#user{
+  width: 70px;
+  height: 70px;
+  background-color: aqua;
+  margin-right: 25px;
+}
+
+span{
+  white-space: nowrap;
+  background-color: transparent;
+}
+
+#name span{
+  font-size: small;
+}
+
 /*------SIDENAV----MENU PANEL----*/
 /*------7 Modal------*/
 /*------COLORS------*/
