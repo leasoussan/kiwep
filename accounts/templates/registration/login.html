@@ -1,49 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
-{% load materializecss %}
 {% block content %}
 
-<div class="aligning">
-  <form>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Email:*</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+
+<div id="wrapper">
+  <div id="background">
+    <div id="opacity">
+      <div id="logotitle">
+        <a href="{% url 'login' %}"><h1>KIWEP</h1></a>
+      </div>
+        <div class="aligning">
+          <form class="formfont forms" method="post" style="text-align: center;">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <div class="forms">
+              <div id="rememcheck">
+                <label class="smallfont" for="exampleCheck1">{% trans 'remeber_me_login'%}</label>
+                <input type="checkbox">
+            </div>
+              <button type="button" class="btn btn-primary">{% trans 'login'%}</button>
+              <!-- ASK WHY THIS BUTTON IS REDIRECTING ME AND MINE ISN'T -->
+              <button type="submit" class=" form-control mb-3 btn btn-block btn-submit button_login" >{% trans 'login'%}</button>
+            </div>
+          </form>
+          <br>
+          <div class="aligning1">
+            <div class="forms"><a class="fonts" href="{{ 'password_reset' }}">{% trans 'forgot_password?'%}</a></div>
+            <div class="forms"><a class="fonts" href="{% url 'register' %}">{% trans 'Do not have an account yet?'%}</a></div>
+          </div>
+        </div>
     </div>
-    <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Password:*</label>
-      <input type="password" name="password" class="form-control" id="exampleFormControlTextarea1"></textarea>
-    </div>
-    <div>
-      <button type="button" class="btn btn-primary">Sign In</button>
-    </div>
-  </form>
-  <br>
-  <div><a class="fonts" href="{% url 'login' %}">Forgot Password?</a></div>
-  <div><a class="fonts" href="{% url 'login' %}">New To KIWEP?</a></div>
+  </div>
 </div>
 
 
 {% endblock %}
-
-
-<!-- <form method="post">
-      {% csrf_token %} -->
-<!-- how to switch to Bootstrap? -->
-<!-- {{ form|materializecss }} -->
-<!-- <br>
-      <button type="submit">{% trans 'login'%}</button>
-    </form>
-    <div class="aligning">
-      <ul>
-        <li>
-          <div class="aligning">
-            <input type="checkbox" class="custom-control-input" id="exampleCheck1">
-            <label for="exampleCheck1">{% trans 'remeber_me_login'%}</label>
-          </div>
-        </li>
-        <li><a href="{{ 'password_reset' }}" class="forgot-link">{% trans 'forgot_password?'%}</a></li>
-        <li><a href="{% url 'register' %}" id="forgot-link1">{% trans 'Do not have an account yet?'%}</a></li>
-
-      </ul>
-    </div> -->

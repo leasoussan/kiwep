@@ -25,29 +25,140 @@ body *{
   background-color: #ffffff;
   color: #000000;
 }
-/*------REGISTER/SIGN UP------*/
+
+/*------REGISTER/LOGIN------*/
+/* 
+#logo{
+  background-image: url("../images/logo.png");
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 80px;
+  display: block;
+  position: relative;
+  top: 10px;
+} */
+
+header{
+  display: block;
+}
+
+h1{
+  font-weight: bold;
+  color: rgb(92, 92, 92);
+}
+
+#logotitle{
+  width: 150px;
+  margin: auto;
+  position: relative;
+  left: 40px;
+}
+
+a{
+  text-decoration: none;
+}
+
+.smallfont{
+  font-size: small;
+}
 #background{
-  /* background-image: url(/images/kiwep/kiwep.png);
-  background-repeat: no-repeat; */
+  background-image: url("../images/kiwep/kiwep.png");
+  background-repeat: no-repeat;
   width: 716px;
   height: 614px;
   display: block;
-  margin-top: 15px;
-  background-color: pink;
+  margin-top: 55px;
+  margin-left: 120px;
 }
+
+#opacity{
+  opacity: 0.8;
+  width: 650px;
+  height: 530px;
+  background-color: white;
+  margin-left: 30px;
+  padding-top: 50px;
+  position: relative;
+  top: 40px;
+} 
 
 .aligning{
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  position: relative;
+  top: 110px;
+  background-color: transparent;
+}
+
+.aligning1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 18px;
+  background-color: transparent;
+}
+
+.aligning2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 30px;
+  left: 150px;
+}
+
+.aligning3{
+  width: 30px;
+  height: 40px;
+  position: relative;
+  left: 150px;
+}
+
+.aligning4{
+  position: relative;
+  left: 130px;
+}
+
+button a:hover{
+  color: white;
+}
+
+div > button{
+  margin-left: 18px;
+}
+
+#wrapper{
+  margin: 0 auto;
+  width: 1000px;
+}
+
+#rememcheck{
+  position: relative;
+  bottom: 30px;
+  left: 14px;
+  background-color: transparent;
 }
 
 .fonts{
   text-decoration: none;
   font-weight: bold;
+  font-size: small;
   color:rgb(0, 174, 255);
+  background-color: transparent;
 
+}
+
+.formfont{
+  font-weight: bold;
+}
+
+.forms{
+  background-color: transparent;
+}
+
+div a{
+  background-color: transparent;
 }
 
 /*------NAVBAR--------- */
@@ -80,3 +191,83 @@ span{
 /*------GLOBAL------*/
 /*------COMMENT-DISCUSSION------*/
 /*------DISCUSSION------*/
+
+
+/* RESPONSIVE */
+@media (max-width: 670px) {
+  
+  /* REGISTER/LOGIN */
+  #wrapper{
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  #background{
+    background-image: none;
+    background-color: rgb(163, 163, 163);
+    background-repeat: no-repeat;
+    width: 380px;
+    height: 580px;
+    display: block; 
+    margin: 50px 
+  }
+
+  #opacity{
+    opacity: 0.8;
+    width: 350px;
+    height: 530px;
+    background-color: rgb(184, 181, 181);
+    position: relative;
+    top: 26px;
+    right: 15px;
+  } 
+
+  #logotitle{
+    width: 100px;
+    position: relative;
+    left: 10px;
+  }
+
+  
+  .aligning{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 100px;
+    background-color: transparent;
+  }
+
+  a > h1{
+    background-color: rgb(184, 181, 181); 
+  }
+
+  .formfont{
+    font-weight: bold;
+    font-size:smaller;
+
+  }
+
+  .aligning2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 30px;
+    left: 80px;
+    background-color: transparent;
+  }
+
+  .aligning3{
+    width: 30px;
+    height: 40px;
+    position: relative;
+    left: 80px;
+    background-color: transparent;
+  }
+  
+  .aligning4{
+    position: relative;
+    left: 58px;
+  }
+}

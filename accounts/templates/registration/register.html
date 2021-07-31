@@ -3,26 +3,24 @@
 {% load i18n %}
 {% block content %}
 
-
-<div id="background">
-<div>
-    <div>
-        <div>
-            <div>
-                <h5>{% trans 'sign up' %}</h5>
-                <div>
-                    <form method="post">
+<div id="wrapper">
+    <div id="background">
+        <div id="opacity">
+            <div id="logotitle">
+                <a href="{% url 'login' %}"><h1>KIWEP</h1></a>
+            </div>
+                <!-- <h2>{% trans 'sign up' %}</h2> -->
+                <div class="aligning2">
+                    <form class="formfont forms" method="post">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <input type="submit" value="Sign Up"><br>
-                        <button type="button" name="button"><a href="{% url 'login' %}">{% trans 'back_to_login'%}</a></button>
+                        <div class="aligning3"><input class="btn btn-primary" type="submit" value="Sign Up"><br></div>
+                        <!-- <button class="aligning4 btn btn-outline-secondary" type="button" name="button"><a href="{% url 'login' %}">{% trans 'back_to_login'%}</a></button> -->
+                    <button class="aligning4 btn btn-outline-secondary" type="button" name="button"><a href="{% url 'login' %}">{% trans 'back_to_login'%}</a></button>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-
 {% endblock %}
