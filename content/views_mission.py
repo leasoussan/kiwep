@@ -376,30 +376,25 @@ def assign_mission(request, pk):
     return render(request, "crud/create.html", {'form': form})
 
 
-def clean_bulk_mission(request, mission_id, queryset):
+def clean_bulk_mission(mission, projects):
+    missions=[]
 
-    for project in queryset:
+    for project in projects:
+        print('los projetctos', projects)
         # project.id = project_id
-        print('qs***', dir(project))
-        mission.project_id = project.id
-        print('missionqs****', mission)
-        mission.id =None
-        print('mission_ID*****', mission.id)
-        mission.project_id = project['project_id'].id
-        print('qs.project*****',project.project)
-        mission.created_date = None
+        mission.project = project
+        mission.created_date = timezone.now()
         mission.due_date = timezone.now()
         mission.completed = False
-        mission.owner.id = request.user
         if mission == IndividualMission:
             mission.attributed_to = None
-            mission.accepted = False
             print("mission cleaned", mission)
-        mission = mission.save()
+            mission.save()
+        missions.append(mission)
+    mission.individualmission.objects.bulk_create(missions)
+    print("missions", missions)
 
-        project.model.objects.bulk_create(mission)
-
-def bulk_add_individual_mission(request, *kwargs):
+def bulk_add_individual_mission(request, **kwargs):
 
     ''' Add bulk Mission in Project '''
 
@@ -409,22 +404,20 @@ def bulk_add_individual_mission(request, *kwargs):
     if request.method == "POST":
         if individual_form.is_valid() and mission_bulk_form.is_valid():
             projects = mission_bulk_form.cleaned_data['projects']
+            project = projects.first()
+            print('project', project)
             mission = individual_form.save(commit=False)
-            clean_bulk_mission(mission, projects)
             mission.owner = request.user
             mission.mission_type='i'
-
+            mission.project =project
             mission.save()
+            clean_bulk_mission(mission, projects.exclude(id=mission.project.id))
 
 
             print('*****mission_form***', mission)
             print('mission_id ***', mission.id)
-            mission.objects.bulk_create(objects)
 
-
-            # bulk = IndividualMission.objects.bulk_create(mission_form)
-            #
-            print(f'mission for project {p}')
+            print(f'mission for project {project}')
 
 
             return redirect('individual_mission_detail', mission.id)

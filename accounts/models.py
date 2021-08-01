@@ -120,6 +120,7 @@ class Student(models.Model):
     dob = models.DateField()
     softs_skills = models.ManyToManyField('content.Skills', through = 'backend.StudentSoftSkillRating', related_name= "student_skills_scores" )
 
+
     def __str__(self):
         return f"{self.user.username}, {self.user.last_name}"
 

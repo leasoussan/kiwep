@@ -181,7 +181,7 @@ class IndividualMission(Mission):
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE,  related_name = "my_missions", blank = True, null=True)
     hard_skill_rating = GenericRelation(MissionValue)
 
-    objects = IndividualMissionModelManager()
+    objects_individual = IndividualMissionModelManager()
 
 
     def __str__(self):
@@ -252,7 +252,6 @@ class Team(DiscussionModel):
     participants = models.ManyToManyField(Student, blank = True )
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE)
     project_completed = models.BooleanField(null=True, blank = True)
-
 
     objects = TeamModelManager()
 

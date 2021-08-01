@@ -54,18 +54,21 @@ class Institution(models.Model):
     joined_date = models.DateField(auto_now_add=True)
     website = models.URLField()
     description = models.TextField()
-    join_code = models.CharField(max_length=10, unique=True)
+
 
     def __str__(self):
         return f'{self.name}'
 
 
 
+
+
 class Group(models.Model):
     """ Group is reference to a Classroom, or group of people part of same level one group can have few teams"""
-    name = models.CharField(max_length = 100)
-    number_of_participants = models.PositiveIntegerField()
 
+    name = models.CharField(max_length=100)
+    number_of_participants = models.PositiveIntegerField()
+    join_code = models.CharField(max_length=10, unique=False)
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -16,7 +16,7 @@ from .forms import (
     StudentProfileCreationForm,
     SpeakerProfileCreationForm,
     UserForm,
-    LoginForm, MySpeakerCreationForm, InstitutionCreationForm
+    LoginForm, MySpeakerCreationForm, InstitutionCreationForm, SpeakerInviteForm
     # InstitutionInviteForm
 )
 from backend.forms import InstitutionAddForm
@@ -356,7 +356,7 @@ def page_404(request):
 
 
 
-#
+#OLD VERSIOn
 # class InstitutionInviteView(View):
 #     def get(self, request):
 #         form = InstitutionInviteForm
@@ -384,28 +384,24 @@ def page_404(request):
 #
 
 #
-# class SpeakerInviteView(View):
-#     def get(self, request):
-#         form = SpeakerInviteForm
-#
-#         return render(request, 'accounts/invite/invite.html', {'form': form})
-#
-#     def post(self, request):
-#         if request.method == "POST":
-#             form = InstitutionInviteForm(request.POST)
-#             email= form.cleaned_data["email"]
-#             key = random_token()
-#             print(form)
-#             print(email)
-#             if form.is_valid():
-#                 speaker_invite = form.save(commit=False)
-#
-#                 user = self.request.user
-#                 speaker_invite = InstitutionInvite.object.get_or_create(user=request.user, email=email, keay=key )
-#
-#                 speaker_invite.send_speaker_signup_invit(email)
-#
-#             return redirect('speaker_invite')
-#
-#         return redirect('speaker_invite')
-#
+class SpeakerInviteView(View):
+    def get(self, request):
+        form = SpeakerInviteForm()
+        return render(request, 'backend/general_dashboard.html', {'form': form})
+
+    def post(self, request):
+        if request.method == "POST":
+            form = SpeakerInviteForm(request.POST)
+
+            if form.is_valid():
+                speaker_invite = form.save(commit=False)
+                email = form.cleaned_data["email"]
+                user = self.request.user
+                speaker_invite, created = InstitutionInvite.objects.get_or_create(user=request.user, email=email)
+
+                send_speaker_signup_invit(email)
+
+            return redirect('speaker_invite')
+
+        return redirect('speaker_invite')
+

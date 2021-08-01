@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load static%}
+
+
+{% trans 'welcome' %}
+
+
+invite speaker
+
+<form method="post" action="{% url 'speaker_invite' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% trans 'send_invite' %}</button>
+</form>
+
+
+{{ context }}

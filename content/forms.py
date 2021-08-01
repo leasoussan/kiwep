@@ -140,7 +140,7 @@ class BulkAddMissionForm(forms.Form):
     projects=forms.ModelMultipleChoiceField(queryset=Project.objects.all(), widget=forms.CheckboxSelectMultiple)
     # mission_type = forms.Select(choices=MISSION_TYPE)
 
-    def __init__(self, projects =None, *args, **kwargs):
+    def __init__(self, projects=None, *args, **kwargs):
         super(BulkAddMissionForm, self).__init__(*args, **kwargs)
         if projects:
             self.fields['projects'].queryset = projects
