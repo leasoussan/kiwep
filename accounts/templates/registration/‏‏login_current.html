@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+
+
+<div class="container-fluid" style="">
+  <div class="row login_register">
+  <div class="col-md-9 login_card">
+  <!-- <div class="card login_card"> -->
+    <!-- <h5 class="card-header" style="background-color:#1f7968;">{% trans 'login_in_to_your_kiwep_account!'%}</h5> -->
+    <!-- <div class="card-body" style="margin-top:50px; margin-bottom:50px;"> -->
+      <form method="post" style="text-align: center;">
+          {% csrf_token %}
+          {{ form|materializecss }}
+          <br>
+          <button type="submit" class=" form-control mb-3 btn btn-block btn-submit button_login" >{% trans 'login'%}</button>
+      </form>
+      <div class="forgot_password" >
+
+          <ul>
+            <li><div class="custom-control custom-checkbox form-group">
+                <input type="checkbox" class="custom-control-input" id="exampleCheck1">
+                <label class="custom-control-label" for="exampleCheck1">{% trans 'remeber_me_login'%}</label>
+            </div></li>
+            <li><a href="{{ 'password_reset' }}" class="forgot-link">{% trans 'forgot_password?'%}</a></li>
+            <li><a href="{% url 'register' %}" id="forgot-link1">{% trans 'Do not have an account yet?'%}</a></li>
+
+          </ul>
+      </div>
+    </div>
+</div>
+
+</div>
+<!-- </div>
+</div> -->
+
+
+
+
+
+
+    {% endblock %}

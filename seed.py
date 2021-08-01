@@ -142,7 +142,7 @@ def pop_skills(n):
 
 pop_field(fields_list)
 pop_field_hard()
-# pop_institution_category_list(institution_category_list)
+pop_institution_category_list(institution_category_list)
 
 pop_country()
 pop_city()

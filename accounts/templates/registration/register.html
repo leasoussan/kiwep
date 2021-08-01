@@ -3,26 +3,24 @@
 {% load i18n %}
 {% block content %}
 
-
-
-<div class="container-fluid">
-<div class="row login_register">
-
-<div class="col-md-9">
-  <div class="card" >
-    <h5 class="card-header" style="background-color:#1f7968;">{% trans 'sign up' %}</h5>
-    <div class="card-body" style="margin-top:50px; margin-bottom:50px;">
-      <form method="post" >
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" class="btn button_login" value="Signup"><br>
-        <button class="btn button_register" type="button"name="button"><a href="{% url 'login' %}" style="text-decoration: none; color:#f6f6f6;">{% trans 'back_to_login' %}</a></button>
-      </form>
-
+<div id="wrapper">
+    <div id="background">
+        <div id="opacity">
+            <div id="logotitle">
+                <a href="{% url 'login' %}"><h1>KIWEP</h1></a>
+            </div>
+                <!-- <h2>{% trans 'sign up' %}</h2> -->
+                <div class="aligning2">
+                    <form class="formfont forms" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="aligning3"><input class="btn btn-primary" type="submit" value="Sign Up"><br></div>
+                        <!-- <button class="aligning4 btn btn-outline-secondary" type="button" name="button"><a href="{% url 'login' %}">{% trans 'back_to_login'%}</a></button> -->
+                    <button class="aligning4 btn btn-outline-secondary" type="button" name="button"><a href="{% url 'login' %}">{% trans 'back_to_login'%}</a></button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
 </div>
-</div>
-</div>
-
 {% endblock %}

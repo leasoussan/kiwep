@@ -1,7 +1,5 @@
-/*This page holds styles for the Mian style. Imported in:*/
-/*'base.html'*/
-
-
+/*This page holds styles for the Main style. Imported in:*/
+/* 'base.html'*/
 
 /*
 
@@ -17,1195 +15,259 @@ INDEX:
 9.
 10
 
-
 */
 
-/*__________________________________________________________________*/
-
-/*_______________________________________________________BASE*/
-
-
-body {
-  font-family:  'Helvetica', 'sans-serif';
-  background-color: #b2dfdb;
-  color: #425940;
-}
-
-body h4{
-  font-size: 2rem;
-  font-weight: bold;
-  color: #006064;
-}
-
-
-.main_view_base{
-  display: flex;
-  margin-top: 10vh;
-}
-
-.team_list_table{
-
-}
-/*base*/
-.main_content_block{
-  width: 100%;
-  justify-content:flex-start ;
-  min-height: 100vh;
-}
-
-
-
-/*base*/
-.content_main_view  {
-  width: 90%;
-  justify-content:flex-start ;
-  border-left: 2px solid whitesmoke;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  min-height: 100vh;
-}
-
-
-
-.icon_color_dd{
-  color: #0d3349;
-}
-
-border{
-  background-color: #0b2e13;
-}
-/* -________________________________________________2________________NAVBAR--------- */
-.nav-wrapper {
-  background-color:white;
-  color: #425940;
-}
-
-
-#user-icon{
-  font-size: 40px;
-  color: #425940;
-}
-#arrow-icon {
-  color: #425940;
-}
-#logo-color {
-  color: #425940;
-}
-.green-btn {
-  background-color:#757575;
-  color:#f7ebdc;
-}
-.green-btn:hover {
-  background-color: #9e9e9e ;
-}
-.green-btn:active {
-  background-color: #9e9e9e ;
-}
-#a-link {
-  color:#425940;
-}
-#a-link1 {
-  color:#425940;
-}
-
-
-
-
-
-
-
-/* --------------------------------------------------------------sidebar----MENU PANEL--- */
-.main_container{
-  display: flex;
-  flex-direction: column;
-}
-
-
-/*.link-side-panel {*/
-/*  color: #f7ebdc;*/
-/*  font-size: 20px;*/
-/*}*/
-/*.btn-side-panel {*/
-/*  border:none;*/
-/*  background-color: #8abfa2;*/
-/*  margin:5px;*/
-/*}*/
-/*.no-shadows{*/
-/*   box-shadow: none!important;*/
-/*}*/
-/*.btn-side-panel:hover {*/
-/*  border-left: 2px solid #425940;*/
-/*  background-color: #8abfa2;*/
-/*}*/
-
-
-.menu_panel{
-  width:100%;
-}
-
-.collapsible_no_border{
-  boder: None;
-  box-shadow: None;
-}
-.menu_panel_color {
-  background-color:#b2dfdb ;
-  border:None;
-
-}
-
-.menu_panel_color li{
-  font-size: 2rem;
-  /*font-weight: bold;*/
-}
-
-
-
-
-.menu_panel_color li div:hover{
-  background-color: #80cbc4;
-}
-
-
-.menu_panel_color .active li div:hover{
-  font: helvetica;
-  font-size: 2rem;
-  color: white;
-}
-
-.active, .btn:hover {
-  color: white;
-}
-
-
-
-.link-side-panel li:active{
-  background-color: white;
-}
-
-
-.menu_main_div{
-}
-
-.sub_menu{
-  font-size: 1rem;
-}
-
-
-
-/*---------------------------------------7 Modal*/
-
-.modal {
-  max-height: 100%;
-  max-width: 100%;
-}
-
-
-
-
-.modal_content{
-  display: flex;
-  margin-left: 1rem;
-}
-
-/*-----------------------------------------------------------__COLORS*/
-
-
-/*LIGHTER GREEN #e0f2f1 teal lighten-5*/
-/*LIGHT GREEN - #b2dfdb teal lighten-4*/
-/*LIGHT TURQUOISE #b2ebf2 cyan lighten-4*/
-/*Dark Green  teal dark -4 #004d40*/
-/*DAK blue #1565c0 blue darken-3*/
-/*Dark Red #b71c1c red darken-4*/
-/*Yello #ffd600 yellow accent-4*/
-
-/*_________________________________________________________________________Bouttons ___________*/
-
-.speaker_btn_group{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  justify-content: space-around;
-  width: 90%;
-}
-
-
-.edit_button {
-  background-color: #ffd600;
-  display: flex;
-  width: 8rem;
-  justify-content: center;
-  font-weight: bold;
-  font-size: medium;
-}
-
-.add_button_small{
-  background-color: #1565c0;
-  display: flex;
-  width: 5rem;
-  justify-content: center;
-  font-weight: bold;
-  font-size: medium;
-}
-/*in project template list */
-.speaker_select_project{
-  display: flex;
-  width: 8rem;
-  height: 2rem;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: medium;
-  color: white;
-  background-color: #1565c0;
-  border:2px solid;
-  border-color:  #1565c0;
-
-}
-.project_edit_button{
-  display: flex;
-  width: 5rem;
-  height: 2rem;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: medium;
-  color: #1565c0;
-  background-color: white;
-  border:2px solid;
-  border-color:  #1565c0;
-
-}
-
-.duplicate_btn_project{
-  display: flex;
-  width: 7rem;
-  height: 2rem;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: medium;
-  color:  #ffd600;
-  background-color: white;
-  border:2px solid;
-  border-color:  #ffd600;
-
-}
-
-
-.garbege{
-  color: #1565c0;
-}
-
-.edit_btn_resource{
-  background-color: yellow;
-  color: white;
-  font-size: large;
-  font-weight: bold;
-  width: auto;
-}
-
-.
-
-.edit_btn_tbl{
-  background-color: #fdd835;
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  font-weight: bold;
-  font-size: large;
-}
-
-.add_team_button {
-  background-color: #1565c0;
-  display: flex;
-  width: 8rem;
-  font-weight: bold;
-  font-size: large;
-
-}
-
-
-.navigation_btn{
-  display: flex;
-  flex-direction: row;
-}
-
-
-.button_right{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: flex-end;
-
-}
-
-
-.button_left{
-  display: flex;
-  justify-content: flex-start;
-}
-
-.button_right a {
-  margin-left: 3rem;
-}
-
-.team_list_btn_gp{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-
-.speaker_btn_group_select{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  width: 50%;
-}
-
-
-/*_____________PROJECT____________________________________________________-*/
-
-
-
-.project_description_block{
-  display: flex;
-  flex-direction: row;
-  height: 20%;
-  width: 100%;
-  justify-content: space-between;
-}
-
-
-
-.description_block{
-  display: flex;
-  flex-direction: column;
-  min-height: 10vh;
-  min-width: 60%;
-  max-width: 70%;
-  max-height: 30vh;
-  box-shadow: 5px 5px 5px #80cbc4;
-  overflow: auto;
-}
-
-/*.description_block{*/
-/*  flex-wrap: wrap;*/
-/*}*/
-
-.project_detail_block{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height:25vh;
-  width: 60%;
-  margin-top: 3rem;
-  background-color: white;
-
-}
-
-.project_detail{
-  display: flex;
-  /*flex-wrap: wrap;*/
-  width: 60%;
-}
-
-.project_detail div h4{
-  margin-left: 1rem;
-  font-size: 1rem;
-  font-weight = bold;
-}
-
-.project_acquired_skills{
-  width: 30%;
-  overflow: auto;
-}
-
-.table_detail_project{
-  width: 100%;
-  overflow: auto;
-
-}
-
-
-.table_detail_project li{
-  height: 1rem ;
-  padding-left: 20px;
-  margin: 0 0 4px 0;
-  width: 80%;
-}
-
-
-
-.table_detail_project ul{
-  height: 80%;
-}
-
-.table_detail_project li span{
-  height: 1rem ;
-  font-size: 1rem;
-  width: 80%;
-  font-weight: normal;
-}
-
-.project_extra_detail {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  padding-top: 5rem;
-  justify-content: space-between;
-}
-
-
-.project_mission_table{
-  display: flex;
-  flex-direction: column;
-  width: 60%;
-  justify-content: flex-start;
-}
-
-/*.add_mission_modal{*/
-/*  display: flex;*/
-/*  flex-direction: row;*/
-/*  justify-content: space-between;*/
-/*}*/
-
-.add_mission_modal a{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 40%;
-}
-
-.project_resource_table{
-  display: flex;
-  width:30%;
-  flex-direction: column;
-
-}
-
-
-
-
-
-
-
-/*_______PROJECT LIST */
-.project_list_container{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.project_list_table tr{
-  height: 10px;
-}
-
-.table_row td{
-  height: 2em;
-}
-
-.project_list_modal{
-  width: 60%;
-}
-
-#select_project{
-  font-weight: normal;
-  color: #0c5460;
-}
-.modal-content{
-  width: 100%;
-}
-
-.project_create_button {
-  margin-bottom: 2rem;
-}
-/*________________________________________TEAM*/
-.main_container_team{
-  width: 100%;
-  padding-left: 2rem;
-  /*display: flex;*/
-  /*flex-direction: row;*/
-
-}
-.first_box_team{
-  display: flex;
-  height: 15vh;
-}
-
-.team_button_group{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  align-items: center;
-  justify-content: flex-end;
-  justify-content: space-between;
-}
-
-.duplicate_table{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border: 1px solid #0c5460;
-  margin-bottom: 3px;
-  height: 2rem;
-  padding:7px;
-
-}
-
-.team_button_group a{
-  margin: 0 20px 0 20px ; ;
-}
-
-
-#add_project{
-  font-weight: normal;
-  color: #0c5460;
-}
-
-.participant_box{
+/*---------------------------------*/
+
+/*------BASE------*/
+body *{
+  font-family: 'Open Sans', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/*------REGISTER/LOGIN------*/
+/* 
+#logo{
+  background-image: url("../images/logo.png");
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 80px;
+  display: block;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
+  top: 10px;
+} */
+
+header{
+  display: block;
 }
 
-.participants_list_header_box{
-  display: flex;
-  flex-direction: row;
-  height: 3rem;
+h1{
+  font-weight: bold;
+  color: rgb(92, 92, 92);
 }
 
-.team_participant_list{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width:90%;
-  max-height: 300px;
+#logotitle{
+  width: 150px;
+  margin: auto;
+  position: relative;
+  left: 40px;
+}
+
+a{
+  text-decoration: none;
+}
+
+.smallfont{
   font-size: small;
-  font-weight: normal;
 }
-
-
-.team_participant_list li {
-  display: flex;
-  align-items: center;
-  /*border: #4db6ac 1px solid;*/
-  background-color: whitesmoke;
-  padding-left: 1rem;
-  padding-top: 7px;
-  height:25px ;
-  margin-top: 2px;
-}
-
-.add_participants{
-  display: flex;
-  align-items: flex-end;
-  width: 3rem;
-  height: 3rem;
-  margin-left: 3rem;
-}
-
-.add_participants i {
-  color: yellow;
-}
-
-.participant_list{
-  overflow: auto;
-}
-
-.collection_participants_team{
-  width: 90%;
-  max-height: 6rem;
-  background-color: white;
-}
-
-.team_title_project{
-  display: flex;
-  size: 3rem;
-  justify-content: flex-start;
-}
-
-.team_middle_container{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 20vh;
-  margin-top: 3rem;
-}
-
-
-.avatar img{
-  width: 20px;
-  height: 20px;
-}
-
-
-.team_mission_list{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  margin-top: 10vh;
-}
-
-.team_mission_table{
-  width: 100%;
-}
-
-
-
-.collective_mission_participants_modal{
-  width: 30%;
-  min-height: 40vh;
-  max-height:80vh;
-  font-size: 2rem;
-}
-
-.team_resource_modal{
-  width: 30%;
-  min-height: 40vh;
-  max-height:80vh;
-  font-size: 2rem;
-}
-
-.comment_section{
-  margin: 3rem;
-  width: 90%;
-
-}
-
-/*_----------------------------------------------------MISSION*/
-
-
-.mission_container{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  height: 100vh;
-}
-
-.top_container_mission_detail{
-  display: flex;
-  flex-direction: row;
-  width: 90%;
-  justify-content: flex-end;
-  justify-content: space-between;
-  min-heigh:20vh ;
-  max-height: 30vh;
-}
-
-.main_detail_project{
-  display: flex;
-  flex-direction: column;
-  max-width: 60%;
-  min-width: 50%;
-  max-height: 35vh;
-  min-height:25vh;
-  overflow: auto;
-}
-
-.mission_description{
-  max-width: 99%;
-  min-width: 80%;
-  max-height: 30vh;
-  min-height: 20vh;
-  box-shadow: 5px 5px 5px #80cbc4;
-  overflow: auto;
-
-}
-
-.attributed_to_view{
-  display: flex;
-  flex-direction: column;
-  max-height: 35vh;
-  height: 35vh;
-  width: 30%;
-  max-width: 30%;
-}
-
-div p.mission_description_text{
-  font-size: 1rem;
-  word-wrap: break-word;
-  width: 90%;
-  min-height: 25%;
-
-}
-
-.mission_extra_detail_box{
-  display: flex;
-  flex-direction:row;
-  width: 90%;
-  height: 25%;
-
-}
-
-
-
-
-.mission_resource_list{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height:70%;
-  width: 80%;
-  margin-top: 3rem;
-  background-color: white;
-}
-
-
-.mission_resource{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width:40%;
-  margin-left: 1rem;
-}
-
-.mission_detail_extra{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
-  width: 100%;
-  height: 100%;
-  margin-right: 1rem;
-
-}
-
-.table_detail_mission{
-  display: flex;
-  width: 100%;
-  margin-top: 0px;
-  justify-content: flex-start;
-  align-items: flex-end;
-  flex-wrap:wrap;
-
-}
-
-.table_detail_mission ul{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 80%;
-}
-
-.detail_title{
-  max-height: 20%;
-  margin-left: 2rem;
-}
-.mission_detail_box{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 70%;
-  height: 100%;
-  overflow: auto;
-}
-
-.mission_detail_box li{
-  height: 1rem ;
-  padding-left: 20px;
-  margin: 0 0 4px 0;
-  width: 100;
-}
-
-
-
-.mission_detail_box ul{
-  height: 80%;
-}
-
-.mission_detail_box li span{
-  height: 1rem ;
-  font-size: 1rem;
-  width: 80%;
-  font-weight: normal;
-}
-
-
-/*.mission_detail_edit_button{*/
-/*  display: flex;*/
-/*  margin-right:10% ;*/
-
-/*}*/
-
-
-.mission_resource_add_button{
-  display: flex;
-  justify-content:flex-end ;
-  margin-right:10% ;
-}
-
-.table_detail_mission ul li span{
-  height:1rem;
-  width: 100%;
-}
-
-.detail_container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height:70%;
-  width: 80%;
-  margin-top: 3rem;
-  background-color: white;
-
-}
-.acquired_skills{
-
-  width: 50%;
-  overflow: auto;
-
-}
-
-
-
-.answer_status{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: black solid 2px;
-
-}
-.mission_status{
-  display: flex;
-}
-
-.mission_status h5{
-  border: 1px solid;
-  padding: 5px;
-}
-
-.attributed_to_view p{
-  font-size: 2rem;
-}
-
-.attributed_to_view{
-
-}
-
-.mission_attributed_to{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-
-
-.answer{
-  display: flex;
-  flex-direction: column;
-}
-
-.answer_content{
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  height: 30%;
-}
-
-.grade_content{
-  display: flex;
-}
-
-
-
-/*_________________________________REsource */
-
-.resource_modal{
-  max-height: 60%;
-}
-
-.container_resource{
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-}
-
-
-.resource_info{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: 3rem;
-}
-.resource_detail{
-  display : flex;
-  flex-direction:row;
-  margin-top: 3rem;
-
-}
-
-.resource_description_box{
-  width: 50%;
-}
-
-.resource_description{
-  width: 100%;
-  font-size: medium;
-}
-
-.resource_img_box{
-  display: flex;
-  width: 50%;
-  justify-content: flex-end;
-}
-
-
-
-
-/*____________________________________________ANSWER*/
-
-
-
-
-.answer_block{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 2rem;
-
-  align-content: center;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*_____________________GLOBAL*/
-
-.launguage{
-  width: 5rem;
-}
-
-
-
-.section_header {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.section_header h3{
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-table{
-  background-color: white;
-  width: 100%;
-}
-.inline{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  justify-content: space-between;
-  width: 100%;
-}
-/*.table_column td{*/
-/*  width: 30%;*/
-/*}*/
-
-.title{
-  font-weight: bold;
-  font-size: x-large;
-}
-
-.medium_title{
-  font-weight: bold;
-  font-size: 2rem;
-  margin-bottom: 30px;
-}
-
-.small_title{
-  font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 30px;
-}
-.table_detail_project{
-  font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 0px;
-  color: #0d3349;
-}
-
-/*span{*/
-/*  font-size: small;*/
-
-/*}*/
-
-list_text{
-
-}
-
-.list_text{
-  font-weight:bold;
-  font-size: medium;
-}
-
-
-speaker_video_intro{
-  display: flex;
-  align-items: flex-start;
-  background-color: yellow;
-}
-
-.video_speaker {
-  display: flex;
-  align-items: flex-start;
+#background{
+  background-image: url("../images/kiwep/kiwep.png");
+  background-repeat: no-repeat;
+  width: 716px;
+  height: 614px;
+  display: block;
+  margin-top: 55px;
+  margin-left: 120px;
+}
+
+#opacity{
+  opacity: 0.8;
   width: 650px;
+  height: 530px;
+  background-color: white;
+  margin-left: 30px;
+  padding-top: 50px;
+  position: relative;
+  top: 40px;
+} 
+
+.aligning{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 110px;
+  background-color: transparent;
 }
 
-.scrolling_list{
-  max-height: 35vh;
-  overflow: auto;
+.aligning1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 18px;
+  background-color: transparent;
 }
 
-
-.header_title{
-  font-weight: lighter;
-  font-size: larger;
+.aligning2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 30px;
+  left: 150px;
 }
 
-label{
-  font-size: large;
+.aligning3{
+  width: 30px;
+  height: 40px;
+  position: relative;
+  left: 150px;
+}
+
+.aligning4{
+  position: relative;
+  left: 130px;
+}
+
+button a:hover{
+  color: white;
+}
+
+div > button{
+  margin-left: 18px;
+}
+
+#wrapper{
+  margin: 0 auto;
+  width: 1000px;
+}
+
+#rememcheck{
+  position: relative;
+  bottom: 30px;
+  left: 14px;
+  background-color: transparent;
+}
+
+.fonts{
+  text-decoration: none;
+  font-weight: bold;
+  font-size: small;
+  color:rgb(0, 174, 255);
+  background-color: transparent;
+
+}
+
+.formfont{
   font-weight: bold;
 }
-/*------------------------------------------------------COMMENT -DISCUSSION*/
-.discussion_table{
-  width: 100%;
+
+.forms{
+  background-color: transparent;
 }
 
-.disucssion_box{
-  display: flex;
-  flex-direction: column;
-  position: relative;
+div a{
+  background-color: transparent;
 }
 
-
-
-
-.discussion_box_modal{
-  /*background-color: #0b2e13;*/
-
-
+/*------NAVBAR--------- */
+#user{
+  width: 70px;
+  height: 70px;
+  background-color: aqua;
+  margin-right: 25px;
 }
 
-.modal-content{
-  height: 200%;
-  width: 90%;
-}
-.modal.bottom-sheet{
-  min-height: 70%;
-  max-height: 70%;
-  width: 90%;
-  margin-left:5rem ;
+span{
+  white-space: nowrap;
+  background-color: transparent;
 }
 
-
-.speech-bubble-left {
-  position: relative;
-  background: #7000bb;
-  border-radius: .4em;
+#name span{
+  font-size: small;
 }
 
-.speech-bubble-left:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 0;
-  height: 0;
-  border: 0.969em solid transparent;
-  border-right-color: #7000bb;
-  border-left: 0;
-  border-bottom: 0;
-  margin-top: -0.484em;
-  margin-left: -0.969em;
-}
-
-.speech-bubble-right {
-  position: relative;
-  background: orange;
-  border-radius: .4em;
-}
-
-.speech-bubble-right:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: 0;
-  height: 0;
-  border: 20px solid transparent;
-  border-left-color: #00aabb;
-  border-right: 0;
-  border-bottom: 0;
-  margin-top: -10px;
-  margin-right: -20px;
-}
+/*------SIDENAV----MENU PANEL----*/
+/*------7 Modal------*/
+/*------COLORS------*/
+/*------BUTTONS------*/
+/*------PROJECT------*/
+/*------PROJECT LIST------*/
+/*------TEAM------*/
+/*------MISSION------*/
+/*------RESOURCE------*/
+/*------ANSWER------*/
+/*------GLOBAL------*/
+/*------COMMENT-DISCUSSION------*/
+/*------DISCUSSION------*/
 
 
-/*---------------------------------------------DISCUSSION*/
+/* RESPONSIVE */
+@media (max-width: 670px) {
+  
+  /* REGISTER/LOGIN */
+  #wrapper{
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  #background{
+    background-image: none;
+    background-color: rgb(163, 163, 163);
+    background-repeat: no-repeat;
+    width: 380px;
+    height: 580px;
+    display: block; 
+    margin: 50px 
+  }
 
+  #opacity{
+    opacity: 0.8;
+    width: 350px;
+    height: 530px;
+    background-color: rgb(184, 181, 181);
+    position: relative;
+    top: 26px;
+    right: 15px;
+  } 
 
-/*.discussion_content{*/
-/*  display: flex;*/
-/*  background-color: grey;*/
-/*}*/
+  #logotitle{
+    width: 100px;
+    position: relative;
+    left: 10px;
+  }
 
-.discussion_detail{
-  min-height: 70%;
-  max-height: 70%;
-}
+  
+  .aligning{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 100px;
+    background-color: transparent;
+  }
 
+  a > h1{
+    background-color: rgb(184, 181, 181); 
+  }
 
-.dialog_box {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-width: 70%;
-  max-width: 70%;
-  background-color: grey;
-}
+  .formfont{
+    font-weight: bold;
+    font-size:smaller;
 
+  }
 
-.dialog_box div{
-  margin-bottom: 10px;
-  width: 60%;
+  .aligning2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 30px;
+    left: 80px;
+    background-color: transparent;
+  }
 
-}
-
-
-.user_comment{
-  background-color: green;
-  justify-content: center;
-
-}
-
-.profile_comment{
-  justify-content: right;
-
-}
-
-
-.discussion_list{
-  width: 100%;
+  .aligning3{
+    width: 30px;
+    height: 40px;
+    position: relative;
+    left: 80px;
+    background-color: transparent;
+  }
+  
+  .aligning4{
+    position: relative;
+    left: 58px;
+  }
 }
