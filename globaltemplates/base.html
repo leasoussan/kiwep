@@ -20,11 +20,11 @@
 
 
 
-    <div class = "container" style="background-color: yellow;">
+
     {% block css %}
 
     {% endblock css %}
-    </div>
+
 </head>
 
 
@@ -32,113 +32,106 @@
 
 
 
-
-
-
-
 <body>
-    <!-- NAVBAR SHOULD NOT APPEAR AT LOGIN PAGE/REGISTER PAGE -->
-    {% include 'navbar.html' %}
-    <div>
-        <div>
-            <div>
-                <div>
-                    {# --------------------------------------------------#}
-                    {% if user.is_speaker %}
-                    <ul class="collapsible expandable menu_panel_color collapsible_no_border ">
-                        <li>
-                            <a class="link-side-panel" href="{% url 'dashboard' %}">
-                                <div class="collapsible-header menu_panel_color"> {% trans 'home' %}</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="link-side-panel" href="{% url 'project_list' %}">
-                                <div class="collapsible-header menu_panel_color">{% trans 'projects ' %}</div>
-                            </a>
-                            {# <div class="collapsible-body"><span>Other page</span></div>#}
-                        </li>
-                        <li>
-                            <a class="link-side-panel" href="{% url 'team_list' %}">
-                                <div class="collapsible-header menu_panel_color">{% trans 'teams' %}</div>
-                            </a>
-                            {# <div class="collapsible-body"><span>Other page</span></div>#}
-                        </li>
-
-                    </ul>
-
-                    {% elif user.is_student %}
-
-                    <ul class="collapsible expandable menu_panel_color collapsible_no_border">
-                        <li>
-                            <div class="collapsible-header menu_panel_color"> <a class="link-side-panel"
-                                    href="{% url 'dashboard' %}">{% trans 'home' %}</a></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header menu_panel_color"><a class="link-side-panel"
-                                    href="{% url 'team_list' %}">{% trans 'my_projects' %}</a></div>
-                            {# <div class="collapsible-body"><span class="sub_menu">Other page</span></div>#}
-                        </li>
-                        <li>
-                            <div class="collapsible-header menu_panel_color"><a class="link-side-panel"
-                                    href="{% url 'my_mission_list' %}">{% trans 'my_missions' %}</a></div>
-                            {# <div class="collapsible-body"><span class="sub_menu">Other page</span></div>#}
-                        </li>
-                        {# <li>#}
-                            {# <div class="collapsible-header menu_panel_color"> <a class="link-side-panel"
-                                    href="{% url 'todo_list'%}">{% trans 'todo' %}</a></div>#}
-                            {# <div class="collapsible-body"><span class="sub_menu">Other page</span></div>#}
-                            {# </li>#}
-                        {# <li>#}
-                            {# <div class="collapsible-header"><a class="link-side-panel"
-                                    href="{% url 'student_available_project_list' %}">{% trans 'availiable_projects'
-                                    %}</a></div>#}
-                            {# <div class="collapsible-body"><span>Other page</span></div>#}
-                            {# </li>#}
-                    </ul>
+<!-- NAVBAR SHOULD NOT APPEAR AT LOGIN PAGE/REGISTER PAGE -->
+{% include 'navbar.html' %}
 
 
-                    {% endif %}
+{#<div>#}
+    {# --------------------------------------------------#}
+{#    {% if user.is_speaker %}#}
+{#        <ul class="collapsible expandable menu_panel_color collapsible_no_border ">#}
+{#            <li>#}
+{#                <a class="link-side-panel" href="{% url 'dashboard' %}">#}
+{#                    <div class="collapsible-header menu_panel_color"> {% trans 'home' %}</div>#}
+{#                </a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a class="link-side-panel" href="{% url 'project_list' %}">#}
+{#                    <div class="collapsible-header menu_panel_color">{% trans 'projects ' %}</div>#}
+{#                </a>#}
+                {# <div class="collapsible-body"><span>Other page</span></div>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a class="link-side-panel" href="{% url 'team_list' %}">#}
+{#                    <div class="collapsible-header menu_panel_color">{% trans 'teams' %}</div>#}
+{#                </a>#}
+                {# <div class="collapsible-body"><span>Other page</span></div>#}
+{#            </li>#}
+{##}
+{#        </ul>#}
+{##}
+{#    {% elif user.is_student %}#}
+{##}
+{#        <ul class="collapsible expandable menu_panel_color collapsible_no_border">#}
+{#            <li>#}
+{#                <div class="collapsible-header menu_panel_color"> <a class="link-side-panel"#}
+{#                                                                     href="{% url 'dashboard' %}">{% trans 'home' %}</a></div>#}
+{#            </li>#}
+{#            <li>#}
+{#                <div class="collapsible-header menu_panel_color"><a class="link-side-panel"#}
+{#                                                                    href="{% url 'team_list' %}">{% trans 'my_projects' %}</a></div>#}
+                {# <div class="collapsible-body"><span class="sub_menu">Other page</span></div>#}
+{#            </li>#}
+{#            <li>#}
+{#                <div class="collapsible-header menu_panel_color"><a class="link-side-panel"#}
+{#                                                                    href="{% url 'my_mission_list' %}">{% trans 'my_missions' %}</a></div>#}
+                {# <div class="collapsible-body"><span class="sub_menu">Other page</span></div>#}
+{#            </li>#}
+            {# <li>#}
+{#             <div class="collapsible-header menu_panel_color"> <a class="link-side-panel"#}
+{#                                                                    href="{% url 'todo_list'%}">{% trans 'todo' %}</a></div>#}
+{#             <div class="collapsible-body"><span class="sub_menu">Other page</span></div>#}
+{#             </li>#}
+{#             <li>#}
+{#             <div class="collapsible-header"><a class="link-side-panel"#}
+{#                                                  href="{% url 'student_available_project_list' %}">{% trans 'availiable_projects'#}
+{#            %}</a></div>#}
+            {# <div class="collapsible-body"><span>Other page</span></div>#}
+            {# </li>#}
+{#        </ul>#}
+{##}
+{##}
+{#    {% endif %}#}
+{##}
+{#</div>#}
 
-                </div>
-            </div>
 
 
-            <div>
-                <div>
-                    {% block content %}
+<div>
+    <div class="main_base_content_block">
+        {% block content %}
 
 
-                    {% endblock %}
-                </div>
-            </div>
-
-
-        </div>
+        {% endblock %}
     </div>
+</div>
 
 
 
 
-    <script>
-        // $(document).ready(function () {
 
-        //     {#// Initialize materialize data picker#}
-        //         {#$('.datepicker').datepicker({ 'format': 'yyyy-mm-dd' });# }
-        //         $('select').formSelect();
 
-        //         $('.dropdown-trigger').dropdown();
+<script>
+    // $(document).ready(function () {
 
-        //         var elem = document.querySelector('.collapsible.expandable');
-        //         var instance = M.Collapsible.init(elem, {
-        //             accordion: false
-        //         });
+    //     {#// Initialize materialize data picker#}
+    //         {#$('.datepicker').datepicker({ 'format': 'yyyy-mm-dd' });# }
+    //         $('select').formSelect();
 
-        //         {#$('.collapsible').collapsible();# }
-        //     });
+    //         $('.dropdown-trigger').dropdown();
 
-    </script>
+    //         var elem = document.querySelector('.collapsible.expandable');
+    //         var instance = M.Collapsible.init(elem, {
+    //             accordion: false
+    //         });
 
-    <!-- {#commment out to make work forms check if needed TODO:#}
+    //         {#$('.collapsible').collapsible();# }
+    //     });
+
+</script>
+
+<!-- {#commment out to make work forms check if needed TODO:#}
     {#
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>#}
     {#

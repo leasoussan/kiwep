@@ -2,36 +2,67 @@
 {% load i18n %}
 
 {% block navbar %}
-<!-- NAVBAR -->
-{% if user.is_authenticated %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div><span>KIWEP</span></div>
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a>
+    <!-- NAVBAR -->
+    {% if user.is_authenticated %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div><span>KIWEP</span></div>
+            <div class="container-fluid">
+                {#        TODO: what is it for ? ther is nothing here NITZAN#}
+                {#        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"#}
+                {#            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">#}
+                {#            <span class="navbar-toggler-icon"></span>#}
+                {#        </button>#}
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a>
+                        </li>
+                        {% if user.is_speaker %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'project_list' %}">{% trans 'projects' %}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'answer_mission_list' %}">{% trans 'answer_board' %}</a>
+                            </li>
+                        {% elif user.is_student %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'project_list' %}">{% trans 'projects' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'my_mission_list' %}">{% trans 'My_missions' %}</a>
+                            </li>
+                        {% elif user.is_representative %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'my_mission_list' %}">{% trans 'My_missions' %}</a>
+                            </li>
+
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div id="user"></div>
+                <div id="name"><span>Hello, User!</span></div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="">ICON-HERE</i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a id = "#" href="{% url 'edit_profile' %}">{% trans 'edit_profile'  %}</a></li>
+                        <li><a id = "#" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a id = "#" href="#">{% trans 'other' %}</a></li>
+
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Answers</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div>
-        <div id="user"></div>
-        <div id="name"><span>Hello, User!</span></div>
-    </div>
-    
-</nav>
-{% endif %}
+
+
+            </div>
+
+        </nav>
+    {% endif %}
 {% endblock %}
 
 
@@ -72,9 +103,9 @@
                         <a href="{% url 'profile' user.id  %}"><i>account_circle</i></a>
                     </a></li> -->
 
-<!-- Dropdown Structure -->
+    <!-- Dropdown Structure -->
 
-<!-- <li><a href="#!" data-target="dropdown1"><i>arrow_drop_down</i></a></li>
+    <!-- <li><a href="#!" data-target="dropdown1"><i>arrow_drop_down</i></a></li>
                     <ul>
                         <li><a href="{% url 'edit_profile' %}">{% trans 'edit_profile'  %}</a></li>
                         <li><a href="{% url 'logout' %}">{% trans 'logout' %}</a></li>

@@ -26,7 +26,6 @@ urlpatterns = [
     path('profile_view/<int:pk>', ProfileView.as_view(), name = "profile_view"),
     path('institution-invite/<str:key>', InstitutionInviteView.as_view(), name = "institution_invite"),
     path('speaker-invite/', SpeakerInviteView.as_view(), name="speaker_invite"),
-
 ]
 
 
