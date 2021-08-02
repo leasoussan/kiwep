@@ -14,7 +14,7 @@
     <div class="container-fluid">
 
         <div class="collapse navbar-collapse menu_navbar_right">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                 <li class="nav-item">
                     <!-- Need to add Selected on each page we choose -->
                     <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a>
@@ -48,15 +48,14 @@
 
 
 
+    <div>
+        <div class="btn-group">
 
-    <!-- Example single danger button -->
-    <div class="btn-group">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="/static/backend/images/kiwep/userpic.png" width="65" height="65" alt="logo">
+            </a>
 
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-        aria-expanded="false">
-            <img src="/static/backend/images/kiwep/userpic.png" width="65" height="65" alt="logo">
-        </a>
-           
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'edit_profile' %}">{% trans 'edit_profile' %}</a></li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
@@ -65,9 +64,10 @@
                 </li>
                 <li><a class="dropdown-item" href="#">{% trans 'other' %}</a></li>
             </ul>
+
         </div>
         <div id="username"><span>Hello, User!</span></div>
-
+    </div>
 
 
 
