@@ -201,9 +201,7 @@ class CreateProfile(View):
                 institution= invites.first().institution
                 profile_form.fields['group'].queryset = institution.group_set.all()
 
-        return render(request, 'accounts/profile/edit_profile.html', {'profile_form': profile_form,
-                                                                      'user_form': user_form,}
-                      )
+        return render(request, 'accounts/profile/edit_profile.html', {'profile_form': profile_form,'user_form': user_form,})
 
 
     def post(self, request):

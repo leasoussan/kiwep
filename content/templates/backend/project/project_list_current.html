@@ -49,7 +49,7 @@
                         {% for project in user.profile.project_set.personal_projects %}
 
                             <tr class="table_headers table_row table_column">
-                                <td><a class= "link-table"href="{% url 'project_detail' project.id %}">{{project.name}}</a> </td>
+                                <td </td>
                                  <td class="content_table inline">
                                     {% if not project.team %}
                                         <a class= "btn"href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a>

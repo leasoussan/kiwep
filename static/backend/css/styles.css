@@ -47,11 +47,15 @@ h1{
   color: rgb(92, 92, 92);
 }
 
-#logotitle{
-  width: 150px;
-  margin: auto;
+.navsize{
+  width: 90%;
+  height: 50px;
+  /* margin-left: 100px; */
+  /* margin-right: 0; */
   position: relative;
-  left: 40px;
+  top: -5px;
+  left: 120px;
+
 }
 
 a{
@@ -61,6 +65,8 @@ a{
 .smallfont{
   font-size: small;
 }
+
+
 #background{
   background-image: url("../images/kiwep/kiwep.png");
   background-repeat: no-repeat;
@@ -88,7 +94,6 @@ a{
   align-items: center;
   position: relative;
   top: 110px;
-  background-color: transparent;
 }
 
 .aligning1{
@@ -162,28 +167,143 @@ div a{
 }
 
 /*------NAVBAR--------- */
-#user{
-  width: 70px;
-  height: 70px;
-  background-color: aqua;
-  margin-right: 25px;
+
+#navbarSupportedContent{
+  margin: 0;
+  padding: 0;
+  text-align: right;
 }
+
+#logotitle-nav{
+  width: 150px;
+  position: relative;
+  left: 10px;
+  top: 20px;
+  background-color: transparent;
+}
+
+#profile_info{
+  padding-bottom: 15px;
+}
+
+.bg-custom-1 {
+  background-color: #85144b;
+}
+
+.bg-custom-2 {
+background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+}
+/* 
+#user{
+  width: 65px;
+  height: 65px;
+  background-image: url("../images/kiwep/userpic.png");
+  margin-right: 25px;
+} */
 
 span{
   white-space: nowrap;
   background-color: transparent;
 }
 
-#name span{
-  font-size: small;
+#username span{
+  font-size: smaller;
+ 
 }
 
+ul li{
+  list-style-type:none;
+}
+
+nav{
+  display: block;
+  width: 100%;
+}
+
+.menu_navbar_right{
+  display: flex;
+  justify-content: flex-end;
+  background-color: #000000;
+}
+/* .navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  float: right;
+} */
+
+.navlinks{
+  display: flex;
+  padding-left: 0;
+  margin-left: 0;
+  
+}
+
+.navitem{
+  padding: 10px 0 0 20px;
+  font-size: x-large;
+}
+
+/*------BREADCRUMBS------*/
+
+.breadcrumbs{
+  position: relative;
+  width: 60%;
+  bottom: 7px;
+  right: 10px;
+}
+
+.inline{
+  display: inline-block;
+  font-size: small;
+}
 /*------SIDENAV----MENU PANEL----*/
+/*------DASHBOARD------*/
+
+
+.video_sp{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+.video_speaker {
+  width: 650px;
+}
 /*------7 Modal------*/
 /*------COLORS------*/
 /*------BUTTONS------*/
 /*------PROJECT------*/
 /*------PROJECT LIST------*/
+
+.aligning-h{
+  display: flex;
+  justify-content: center;
+}
+
+.buttons{
+  display: flex;
+  float: right;
+  position: relative;
+  bottom: 47px;
+  right: 96px;
+}
+
+.project_details_box{
+  width:80%;
+  margin-top: 15px;
+  margin-left: 35px;
+}
+
+.project_details{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+
 /*------TEAM------*/
 /*------MISSION------*/
 /*------RESOURCE------*/
@@ -276,8 +396,8 @@ span{
 
 
 /*ADDED BY LEA TO REPROCESS */
-
+/* base.html */
 .main_base_content_block {
   width: 100%;
-  background: #0a0a0a;
+  /* background: #0a0a0a; */
 }

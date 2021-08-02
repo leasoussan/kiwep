@@ -5,16 +5,79 @@
 
 
 {% block content %}
-<div class="top_projet_list_panel" style="background-color: red;">
-
-
-herkk
-
+<div>
+<div>
+    <div class="aligning-h">
+        <h2><b>Projects</b></h2>
+    </div>
+    <div class="buttons_project_list">
+        <a class="" href="#add_project">{% trans 'add_project' %}</a>
+        <a class="" href="#add_bulk_mission">{% trans 'add_mission' %}</a>
+        <!-- <button class="btn btn-primary" type="button">Create A New Project</button>
+        <button class="btn btn-primary" type="button">Template Project List</button> -->
+    </div>
 
 </div>
 
 
+{{project_list}}
 
+{% for project in user.profile.project_set.personal_projects %}
+<div class="project_details_box">
+    <ul class="project_details">
+        <li><a href="{% url 'project_detail' project.id %}">{{project.name}}</a></li>
+        <li class=""><label>{% if not project.field.exists %}
+            {% trans 'no_fields' %}
+            {% else %}
+            {{project.field.name}}
+            {% endif %} </label></li>
+        <li><label>{{project.time_to_complete}} {% trans 'in_days' %}</label></li>
+        <div></div>
+        <li class="">  {% if user.is_speaker %} 
+                    <a href="{% url 'update_project' project.id %}"><i>edit</i></a>
+       <a href="{#   url 'duplicate_create_project' project.id team.id  #}"> <i>content_copy</i></a>
+       <a href="{% url 'delete_project' project.id %}" > <i>{% trans 'delete' %}</i></a>
+       {% endif %}
+        </li>
+     
+    </ul>
+
+
+
+
+
+
+
+    <!-- <a class="" href="{% url 'project_detail' project.id %}">{{project.name}}</a>
+    <label>{% if not project.field.exists %}
+        {% trans 'no_fields' %}
+        {% else %}
+        {{project.field.name}}
+        {% endif %} </label>
+        <label>{{project.time_to_complete}} {% trans 'in_days' %}</label>
+        <a href="{% url 'update_project' project.id %}"> <i>edit</i></a>
+        <a href="{#   url 'duplicate_create_project' project.id team.id  #}"> <i>content_copy</i></a>
+        <a href="{% url 'delete_project' project.id %}" > <i>{% trans 'delete' %}</i></a> -->
+
+</div>
+{% endfor %}
+
+<!-- <div class="project_list_main_container ">
+
+</div> -->
+
+<!-- 
+<div class="but_grou">
+Button_group
+</div>
+
+</div>
+
+
+</div> -->
+
+
+</div>
 
 
 {% endblock %}
