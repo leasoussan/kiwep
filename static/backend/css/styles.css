@@ -399,5 +399,6 @@ nav{
 /* base.html */
 .main_base_content_block {
   width: 100%;
+  padding: 20px;
   /* background: #0a0a0a; */
 }

@@ -49,7 +49,6 @@
 
 
 
-    <!-- Example single danger button -->
     <div class="btn-group">
 
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
@@ -66,32 +65,12 @@
                 <li><a class="dropdown-item" href="#">{% trans 'other' %}</a></li>
             </ul>
         </div>
-        <div id="username"><span>Hello, User!</span></div>
-
-
-
-
-
-    <!-- ---------------------------LEA--------------------- -->
-    <!-- <li class="nav-item dropdown profile_nav_section">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <i class="">ICON-HERE</i>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a id="#" href="{% url 'edit_profile' %}">{% trans 'edit_profile' %}</a></li>
-                <li><a id="#" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a id="#" href="#">{% trans 'other' %}</a></li>
-
-            </ul>
-        </li> -->
-    <!-- ------------------------------------------------------- -->
+        <div id="username"><span>{% trans 'hello' %} {{ user.first_name }}</span></div>
 
 
 </nav>
+
+{#    TODO: Not sure this should  be here- let's talk about it #}
 <div class="breadcrumbs">
     <ul>
         <!-- insert IF cond. - if user is at Home page -->
