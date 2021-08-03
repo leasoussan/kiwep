@@ -35,6 +35,20 @@
 <body>
 {% include 'navbar.html' %}
 
+{% if user.is_authenticated %}
+<!-- BREADCRUMBS -->
+<div class="breadcrumbs">
+    <ul>
+        <!-- insert IF cond. - if user is at Home page -->
+        <li class="inline"><a href="{% url 'dashboard' %}">Home</a></li>
+        <!-- insert IF cond. - if user is at Project list page -->
+        <li class="inline"><span> > </span><a href="{% url 'project_list' %}">All Projects</a></li>
+        <!-- insert IF cond. - if user is at Answer Board page -->
+        <li class="inline"><span> > </span><a href="{% url 'answer_mission_list' %}">Answer Board</a></li>
+    </ul>
+
+</div>
+{% endif %}
 
 {#<div>#}
     {# --------------------------------------------------#}
