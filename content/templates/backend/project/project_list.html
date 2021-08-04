@@ -27,24 +27,27 @@
                 <ul class="project_details">
                     <li><a href="{% url 'project_detail' project.id %}">{{project.name}}</a></li>
                     <li>{% if not project.team %}
-                        <a class= "btn"href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a>
+                        <a class= "btn" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a>
                     {% else %}
                         <a class= "link-table" href="{% url 'team_detail' project.team.id %}">{{ project.team.name }}</a>
-                        <a href="{% url 'update_team' project.team.id %}">  <i class="material-icons">edit</i></a></td>
+                        <a href="{% url 'update_team' project.team.id %}"><i class="material-icons">edit</i></a></td>
 
 
                     {% endif %}</li>
-                    <li class=""><label>{% if not project.field.exists %}
-                        {% trans 'no_fields' %}
-                    {% else %}
-                        {{project.field.name}}
-                    {% endif %} </label></li>
+                    <li>
+                        <label>{% if not project.field.exists %}
+                                    {% trans 'no_fields' %}
+                               {% else %}
+                                    {{project.field.name}}
+                                {% endif %} 
+                        </label>
+                    </li>
                     <li><label>{{project.time_to_complete}} {% trans 'in_days' %}</label></li>
 
-                    <li class="">  {% if user.is_speaker %}
-                        <a href="{% url 'update_project' project.id %}"><i>edit</i></a>
-                        <a href="{#   url 'duplicate_create_project' project.id team.id  #}"> <i>content_copy</i></a>
-                        <a href="{% url 'delete_project' project.id %}" > <i>{% trans 'delete' %}</i></a>
+                    <li class="projectmodify_projectlist">  {% if user.is_speaker %}
+                        <a href="{% url 'update_project' project.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"> </a>
+                        <a href="{#   url 'duplicate_create_project' project.id team.id  #}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>
+                        <a href="{% url 'delete_project' project.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"> </a>
                     {% endif %}
                     </li>
 

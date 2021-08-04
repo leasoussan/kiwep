@@ -1,20 +1,20 @@
 /*1. Project Detail*/
 
-.editproject_movebutton{
-
+.editproject_movebutton button{
+    position: relative;
+    left: 100px;
 }
 
 .project_detail_container{
     
 }
 
-
 .image_animation{
     width: 480px;
 }
 .project_detail_details{
  position: relative;
- left: 200px;
+ right: 50%;
 }
 .detail_context_text{
 
@@ -26,7 +26,7 @@
 }
 
 .move{
-    margin-bottom: 10px;
+ 
 }
 
 .project_detail_header
@@ -44,11 +44,18 @@
 .project_mission_header
 .medium_title
 .btn_control_project{
-
+    /* position: relative;
+    left: 60%;
+    bottom: 150px; */
 }
 .project_mission_items
-.project_resource_list_items
-.project_resource_header
+.project_resource_list_items{
+    /* border: 1px solid black; */
+}
+
+.project_resource_header{
+
+}
 .medium_title
 .btn_control_project
 

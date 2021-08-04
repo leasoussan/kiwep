@@ -8,29 +8,32 @@
   <div id="background">
     <div id="opacity">
       <div id="logotitle">
-        <a href="{% url 'login' %}"><h1>KIWEP</h1></a>
+        <a href="{% url 'login' %}">
+          <h1>KIWEP</h1>
+        </a>
       </div>
-        <div class="aligning">
-          <form class="formfont forms" method="post" style="text-align: center;">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <br>
-            <div class="forms">
-              <div id="rememcheck">
-                <label class="smallfont" for="exampleCheck1">{% trans 'remeber_me_login'%}</label>
-                <input type="checkbox">
-            </div>
-              <button type="submit" class="btn btn-primary">{% trans 'login'%}</button>
-              <!-- ASK WHY THIS BUTTON IS REDIRECTING ME AND MINE ISN'T -->
-              <!-- <button type="submit" class="form-control mb-3 btn btn-block btn-submit button_login" >{% trans 'login' %}</button> -->
-            </div>
-          </form>
+      <div class="aligning">
+        <form class="formfont forms" method="post" style="text-align: center;">
+          {% csrf_token %}
+          {{ form.as_p }}
           <br>
-          <div class="aligning1">
-            <div class="forms"><a class="fonts" href="{{ 'password_reset' }}">{% trans 'forgot_password?'%}</a></div>
-            <div class="forms"><a class="fonts" href="{% url 'register' %}">{% trans 'Do_not_have_an_account_yet?'%}</a></div>
+          <div class="forms">
+            <div id="rememcheck">
+              <label class="smallfont" for="exampleCheck1">{% trans 'remeber_me_login'%}</label>
+              <input type="checkbox">
+            </div>
+            <button type="submit" class="btn btn-primary">{% trans 'login'%}</button>
+            <!-- ASK WHY THIS BUTTON IS REDIRECTING ME AND MINE ISN'T -->
+            <!-- <button type="submit" class="form-control mb-3 btn btn-block btn-submit button_login" >{% trans 'login' %}</button> -->
+          </div>
+        </form>
+        <br>
+        <div class="aligning1">
+          <div class="forms"><a class="fonts" href="{{ 'password_reset' }}">{% trans 'forgot_password?'%}</a></div>
+          <div class="forms"><a class="fonts" href="{% url 'register' %}">{% trans 'Do_not_have_an_account_yet?'%}</a>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </div>

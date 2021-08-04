@@ -67,8 +67,9 @@ a{
 
 
 #background{
-  background-image: url("../images/kiwep/kiwep.png");
-  background-repeat: no-repeat;
+  /* background-image: url("../images/kiwep/kiwep.png");
+  background-repeat: no-repeat; */
+  background-color: rgb(187, 187, 187);
   width: 716px;
   height: 614px;
   display: block;
@@ -126,10 +127,6 @@ a{
 
 button a:hover{
   color: white;
-}
-
-div > button{
-  margin-left: 18px;
 }
 
 #wrapper{
@@ -300,6 +297,97 @@ nav{
 /*------COLORS------*/
 /*------BUTTONS------*/
 /*------PROJECT------*/
+
+.darker-edit-btn:hover{
+  color: #000000;
+}
+.project_detail_title{
+  display: flex;
+  justify-content: center;
+}
+
+.editproject_movebutton{
+  width: 120px;
+  position: relative;
+  left: 85%;
+  bottom: 47px;
+} 
+
+.project_detail_main_content{
+  display: flex;
+  justify-content: space-between;
+}
+
+.project_mission_items{
+  border: 1px solid black;
+  width: 32.1%;
+  height: 30px;
+}
+.project_detail_details{
+  position: relative;
+  right: 50%;
+ }
+
+ 
+.btn_control_project1{
+  position: relative;
+  left: 63.5%;
+  bottom: 115px;
+}
+
+/* Missions Box */
+
+.medium_mission_title{
+  margin-top: 35px;
+}
+
+.move_missionbutton{
+  position: relative;
+  left: 224px;
+  bottom: 22px;
+}
+
+.missions_box{
+  border: 1px solid black;
+  width: 32.1%;
+}
+
+.mission_details{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Resource Box */
+.medium_resource_title{
+  position: relative;
+  left: 40%;
+  bottom: 95px;
+}
+
+.project_resource_header{
+ width: 100%  ;
+}
+
+.project_resource_list{
+  width: 35%;
+}
+
+.project_resource_list_items{
+  border: 1px solid black;
+  width: 32.1%;
+  height: 30px;
+  position: relative;
+  left: 40%;
+  bottom: 90px;
+
+}
+.resource_details{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 /*------PROJECT LIST------*/
 
 .aligning-h{
@@ -321,6 +409,10 @@ nav{
   margin-left: 35px;
 }
 
+.projectmodify_projectlist > a{
+  margin: 5px;
+}
+
 .project_details{
   display: flex;
   flex-direction: row;
@@ -328,8 +420,67 @@ nav{
   border: 1px solid black;
 }
 
+
+li .btn{
+  height: 10px;
+  position: relative;
+  bottom: 15px;
+}
+
+
 /*------TEAM------*/
+
+.team_detail_title{
+  display: flex;
+  justify-content: center;
+}
+
+.speaker_btn_group{
+  position: relative;
+  left: 90%;
+  bottom: 43px;
+  margin-right: 50px;
+}
+
+.darker-edit-mission-btn:hover{
+  color:#000000;
+}
+
+.readmore-project-of-team{
+  color: #000000;
+  font-weight: bold;
+  font-size:large;
+}
+
+.resources-link{
+  color: rgb(2, 90, 2);
+  font-weight: bold;
+  font-size:large;
+  position: relative;
+  bottom: 12px;
+}
+
+.darker-gallery-btn{
+  color:#000000;
+}
+.photo-gallery{
+  float: right;
+  position: relative;
+  bottom: 64px;
+  right: 52px;
+}
+.photo-gallery button{
+  margin-bottom: 10px;
+}
+.photo-gallery div{
+  width: 220px;
+  height: 220px;
+  border: 1px solid grey;
+}
+
+
 /*------MISSION------*/
+
 /*------RESOURCE------*/
 /*------ANSWER------*/
 /*------GLOBAL------*/
@@ -368,8 +519,8 @@ nav{
 
   #logotitle{
     width: 100px;
-    position: relative;
-    left: 10px;
+    display: flex;
+    justify-content: center;
   }
 
   

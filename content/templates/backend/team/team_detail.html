@@ -11,12 +11,12 @@
     <div class="team_detail_container">
         <div class="team_detail_header">
             <div class="team_detail_title">
-                <h3 class=""> {{ team.name }}</h3>
+                <h2 class=""> {{ team.name }}</h2>
             </div>
             <div class="team_btn_control">
                 <div class="speaker_btn_group">
                     {% if user.is_speaker %}
-                        <a class="#" href="{% url 'update_team' team.id %}">{% trans 'edit'%}</a>
+                        <button type="button" class="btn btn-warning"><a class="darker-edit-mission-btn" href="{% url 'update_team' team.id %}">{% trans 'Edit Team'%}</a></button>
                     {% endif %}
 
                 </div>
@@ -27,19 +27,26 @@
 
                 {% if team.project %}
                     <div>
-                        <a href ="{% url 'project_detail' team.project.id %}">{% trans 'read_more_project' %}</a>
+                        <div>
+                            <h3><b>Team's Project Name</b></h3>
+                        </div>
+                        <br>
+                        <p><a class="readmore-project-of-team" href ="{% url 'project_detail' team.project.id %}">{% trans 'Read More About Project' %}</a></p>
+                        <a class="resources-link" href ="#">{% trans 'Resources' %}</a>
+                        
                     </div>
                 {% endif %}
 
                 <!-- Button trigger modal -->
-                <button type="button" class="" data-bs-toggle="modal" data-bs-target="#resource_modal ">
-                    Resource
+                <!-- <button type="button" class="btn btn-success darker-res-btn" data-bs-toggle="modal" data-bs-target="#resource_modal ">
+                    Resources
+                </button> -->
+                <div class="photo-gallery">
+                <button type="button" class="btn btn-info darker-gallery-btn" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">
+                    Photo Gallery
                 </button>
-
-                <button type="button" class="" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">
-                    photo gallery
-                </button>
-
+                <div></div>
+                </div>
             </div>
 
         </div>

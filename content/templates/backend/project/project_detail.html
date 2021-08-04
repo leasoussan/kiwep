@@ -16,22 +16,22 @@
 <div class="project_detail_container">
     <div class="project_detail_header">
         <div class="project_detail_title">
-            <h3 class=""><b>{{ project.name }}</b></h3>
+            <h2 class=""><b>{{ project.name }}</b></h2>
         </div>
         <div class="project_btn_control">
             <div class="speaker_btn_group_project_detail">
                 {% if user.is_speaker %}
 
-                {% if project.is_template %}
-                <a class="waves-effect btn edit_button" href="{% url 'chose_project_detail' project.id %}">{% trans 'select'%}</a>
-                
-                {% else %}
-                <div class="editproject_movebutton">
-                    <button type="button" class="btn btn-secondary">
-                        <a href="{% url 'update_project' project.id %}">{% trans 'edit'%}</a>
-                    </button>
-                </div>
-                {% endif %}
+                    {% if project.is_template %}
+                    <a class="waves-effect btn edit_button" href="{% url 'chose_project_detail' project.id %}">{% trans 'select'%}</a>
+                    
+                    {% else %}
+                    <div class="editproject_movebutton">
+                        <button type="button" class="btn btn-secondary">
+                            <a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'Edit Project'%}</a>
+                        </button>
+                    </div>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
@@ -73,30 +73,38 @@
 
         <div class="project_mission_list_items">
             <div class="project_mission_header">
-                <div class="medium_title">
-
+                <div class="medium_mission_title">
+                   <b>{% trans 'Missions' %}</b> 
                 </div>
 
-                <button type="button" class="btn btn-primary move" data-bs-toggle="modal" data-bs-target="#add_mission">
+                <button type="button" class="btn btn-primary move_missionbutton" data-bs-toggle="modal" data-bs-target="#add_mission">
                     Add Mission modal with 2 forms
                 </button>
                 <div class="btn_control_project">
                     <!-- Button trigger modal add Mission -->
-
+                    <!-- <div class="missions_box">
+                       <ul class="mission_details">
+                           <li><a href="">Mission Name</a></li>
+                           <li>Type</li>
+                           <li>Date</li>
+                           <li><a href=""><img src="/static/backend/images/kiwep/trash.png" alt="trash"></a></li>
+                       </ul>
+                    </div> -->
+                    
                 </div>
             </div>
             <div class="project_mission_items">
                 {% for mission in project.individualmission_set.all %}
-                <a class="link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
-                ****{{ mission.due_date }}****{{ mission.mission_type }}
-                {% if user.is_speaker %}
-                <a href="{% url 'delete_individual_mission' mission.id %}"> <i>{% trans 'delete' %}</i></a>
-                <a scope="col" href="{% url 'update_individual_mission' mission.id %}"> <i>edit</i></a>
-                {% endif %}
+                <tr>
+                    <a class="link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a> 
+                    ****{{ mission.due_date }}****{{ mission.mission_type }}
+                    {% if user.is_speaker %}
+                    <a href="{% url 'delete_individual_mission' mission.id %}"><i>{% trans 'delete' %}</i></a>
+                    <a scope="col" href="{% url 'update_individual_mission' mission.id %}"> <i>edit</i></a>
+                    {% endif %}
                 </tr>
                 {% endfor %}
-
-
+               
 
                 {% for mission in project.collectivemission_set.all %}
                 <tr>
@@ -118,16 +126,16 @@
 
         {# here is the Resource List #}
 
-        <div class="project_resource_list_items">
+        <div class="project_resource_list">
             <div class="project_resource_header">
-                <div class="medium_title">
-                    {% trans 'resrouces' %}
+                <div class="medium_resource_title">
+                   <b>{% trans 'Resources' %}</b> 
                 </div>
 
-                <div class="btn_control_project">
+                <div class="btn_control_project1">
                     <!-- Button trigger modal add Resource -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource">
-                        add resource
+                        Add Resource
                     </button>
 
                 </div>
@@ -135,15 +143,30 @@
 
 
             <div class="project_resource_list_items">
+                {% if project.resources.exists %}
                 {% for resource in project.resources.all %}
+                <div class="resource_box">
+                    <ul class="resource_details">
+                        <li> <a href="{% url 'resource_detail' resource.id project.id %}"> {{ resource.name }} </a></li>
+                        {% if user.is_speaker %}
+                        <li><a href="{% url 'delete_resource' resource.id %}"> <i>{% trans 'delete' %}</i></a></li>
+                        <li><a scope="col" href="{% url 'update_resource' resource.id %}"><i>edit</i></a></li>
+                        {% endif %}
+
+                    </ul>
+                 </div>
+            
+
+                <!-- {# added in "project_resource_list_items" #}
                 <a href="{% url 'resource_detail' resource.id project.id %}"> {{ resource.name }} </a>
 
                 {% if user.is_speaker %}
                 <a href="{% url 'delete_resource' resource.id %}"> <i>{% trans 'delete' %}</i></a>
                 <a scope="col" href="{% url 'update_resource' resource.id %}"><i>edit</i></a>
-                {% endif %}
+                {% endif %} -->
 
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
 
