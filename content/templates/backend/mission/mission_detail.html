@@ -16,114 +16,114 @@
 
 {% block content %}
 
-<div class="mission_detail_container">
-    <div class="mission_detail_header">
-        <div class="mission_detail_title">
-            mission of project   <h3 class=""> {{ object.name }}</h3>
-        </div>
-        <div class="mission_btn_control">
-
-            <div class="speaker_btn_group">
-                {% if user.is_speaker %}
-                    <a href="{% url 'update_mission' object.id %}">{% trans 'edit'%}</a>
-                {% endif %}
-
+    <div class="mission_detail_container">
+        <div class="mission_detail_header">
+            <div class="mission_detail_title">
+                mission of project   <h3 class=""> {{ object.name }}</h3>
             </div>
-        </div>
+            <div class="mission_btn_control">
 
-    </div>
-
-    <div class="mission_detail_main_content">
-        <div class="image_animation">
-            Image/gif
-        </div>
-        <div class="mission_detail_details">
-            <div class="detail_context_text">
-                <p>{{object.description}}</p>
-            </div>
-
-            <div class="detail_time_to_complete">
-                {{object.time_to_complete}} {% trans 'days' %}
-            </div>
-
-            <div class="mission_learning_info" >
-                <div>
-                    <h4 class ="">{% trans 'acquired_skills' %}</h4>
-                    {% for skill in object.acquired_skills.all %}
-                        <li class="">{{skill.name}},  </li>
-                    {% endfor %}
-                    </ul>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="mission_related_elements_content">
-
-        {# here is the Resource List #}
-
-        <div class="mission_resource_list_items">
-            <div class="mission_resource_header">
-
-                <div class="btn_control_mission">
-                    <!-- Button trigger modal add Resource -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource">
-                        add resource
-                    </button>
+                <div class="speaker_btn_group">
+                    {% if user.is_speaker %}
+                        <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a>
+                    {% endif %}
 
                 </div>
             </div>
 
+        </div>
 
-            <div class="mission_resource_items">
-                {% if object.project.resources %}
+        <div class="mission_detail_main_content">
+            <div class="image_animation">
+                Image/gif
+            </div>
+            <div class="mission_detail_details">
+                <div class="detail_context_text">
+                    <p>{{object.description}}</p>
+                </div>
 
-                    {% for resource in object.project.resources.all   %}
+                <div class="detail_time_to_complete">
+                    {{object.time_to_complete}} {% trans 'days' %}
+                </div>
+
+                <div class="mission_learning_info" >
                     <div>
-                        <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+                        <h4 class ="">{% trans 'acquired_skills' %}</h4>
+                        {% for skill in object.acquired_skills.all %}
+                            <li class="">{{skill.name}},  </li>
+                        {% endfor %}
+                        </ul>
                     </div>
-                {% if user.is_speaker %}
-                    <a href="{% url 'delete_resource' resource.id %}" > <i>{% trans 'delete' %}</i></a>
-                    <a href="{% url 'update_resource' resource.id %}"><i>edit</i></a>
-                {% endif %}
 
-                {% endfor %}
-            {% endif %}
+                </div>
+
             </div>
+
+        </div>
+
+
+        <div class="mission_related_elements_content">
+
+            {# here is the Resource List #}
+
+            <div class="mission_resource_list_items">
+                <div class="mission_resource_header">
+
+                    <div class="btn_control_mission">
+                        <!-- Button trigger modal add Resource -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource">
+                            add resource
+                        </button>
+
+                    </div>
+                </div>
+
+
+                <div class="mission_resource_items">
+                    {% if object.project.resources %}
+
+                        {% for resource in object.project.resources.all   %}
+                            <div>
+                                <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+                            </div>
+                            {% if user.is_speaker %}
+                                <a href="{% url 'delete_resource' resource.id %}" > <i>{% trans 'delete' %}</i></a>
+                                <a href="{% url 'update_resource' resource.id %}"><i>edit</i></a>
+                            {% endif %}
+
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
         </div>
 
     </div>
 
-</div>
 
 
 
 
 
 
-
-<!-- Modal ADD RESOURCES-->
-<div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="add_resourceLable" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="add_resourceLable">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                HERE YOU CAN PUT THE FORM
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+    <!-- Modal ADD RESOURCES-->
+    <div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="add_resourceLable" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="add_resourceLable">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    HERE YOU CAN PUT THE FORM
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
