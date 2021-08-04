@@ -5,50 +5,58 @@
 
 
 {% block content %}
-<div>
-<div>
-    <div class="aligning-h">
-        <h2><b>Projects</b></h2>
-    </div>
-    <div class="buttons_project_list">
-        <a class="" href="#add_project">{% trans 'add_project' %}</a>
-        <a class="" href="#add_bulk_mission">{% trans 'add_mission' %}</a>
-        <!-- <button class="btn btn-primary" type="button">Create A New Project</button>
-        <button class="btn btn-primary" type="button">Template Project List</button> -->
-    </div>
+    <div>
+        <div>
+            <div class="aligning-h">
+                <h2><b>Projects</b></h2>
+            </div>
+            <div class="buttons_project_list">
+                <a class="" href="#add_project">{% trans 'add_project' %}</a>
+                <a class="" href="#add_bulk_mission">{% trans 'add_mission' %}</a>
+                <!-- <button class="btn btn-primary" type="button">Create A New Project</button>
+                <button class="btn btn-primary" type="button">Template Project List</button> -->
+            </div>
 
-</div>
-
-
-{{project_list}}
-
-{% for project in user.profile.project_set.personal_projects %}
-<div class="project_details_box">
-    <ul class="project_details">
-        <li><a href="{% url 'project_detail' project.id %}">{{project.name}}</a></li>
-        <li class=""><label>{% if not project.field.exists %}
-            {% trans 'no_fields' %}
-            {% else %}
-            {{project.field.name}}
-            {% endif %} </label></li>
-        <li><label>{{project.time_to_complete}} {% trans 'in_days' %}</label></li>
-        <div></div>
-        <li class="">  {% if user.is_speaker %} 
-                    <a href="{% url 'update_project' project.id %}"><i>edit</i></a>
-       <a href="{#   url 'duplicate_create_project' project.id team.id  #}"> <i>content_copy</i></a>
-       <a href="{% url 'delete_project' project.id %}" > <i>{% trans 'delete' %}</i></a>
-       {% endif %}
-        </li>
-     
-    </ul>
+        </div>
 
 
+        {{project_list}}
+
+        {% for project in user.profile.project_set.personal_projects %}
+            <div class="project_details_box">
+                <ul class="project_details">
+                    <li><a href="{% url 'project_detail' project.id %}">{{project.name}}</a></li>
+                    <li>{% if not project.team %}
+                        <a class= "btn"href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a>
+                    {% else %}
+                        <a class= "link-table" href="{% url 'team_detail' project.team.id %}">{{ project.team.name }}</a>
+                        <a href="{% url 'update_team' project.team.id %}">  <i class="material-icons">edit</i></a></td>
+
+
+                    {% endif %}</li>
+                    <li class=""><label>{% if not project.field.exists %}
+                        {% trans 'no_fields' %}
+                    {% else %}
+                        {{project.field.name}}
+                    {% endif %} </label></li>
+                    <li><label>{{project.time_to_complete}} {% trans 'in_days' %}</label></li>
+
+                    <li class="">  {% if user.is_speaker %}
+                        <a href="{% url 'update_project' project.id %}"><i>edit</i></a>
+                        <a href="{#   url 'duplicate_create_project' project.id team.id  #}"> <i>content_copy</i></a>
+                        <a href="{% url 'delete_project' project.id %}" > <i>{% trans 'delete' %}</i></a>
+                    {% endif %}
+                    </li>
+
+                </ul>
 
 
 
 
 
-    <!-- <a class="" href="{% url 'project_detail' project.id %}">{{project.name}}</a>
+
+
+                <!-- <a class="" href="{% url 'project_detail' project.id %}">{{project.name}}</a>
     <label>{% if not project.field.exists %}
         {% trans 'no_fields' %}
         {% else %}
@@ -59,25 +67,25 @@
         <a href="{#   url 'duplicate_create_project' project.id team.id  #}"> <i>content_copy</i></a>
         <a href="{% url 'delete_project' project.id %}" > <i>{% trans 'delete' %}</i></a> -->
 
-</div>
-{% endfor %}
+            </div>
+        {% endfor %}
 
-<!-- <div class="project_list_main_container ">
+        <!-- <div class="project_list_main_container ">
 
-</div> -->
+        </div> -->
 
-<!-- 
-<div class="but_grou">
-Button_group
-</div>
+        <!--
+        <div class="but_grou">
+        Button_group
+        </div>
 
-</div>
-
-
-</div> -->
+        </div>
 
 
-</div>
+        </div> -->
+
+
+    </div>
 
 
 {% endblock %}

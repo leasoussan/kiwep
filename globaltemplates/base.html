@@ -53,28 +53,16 @@
 
 
 
-<!-- {#commment out to make work forms check if needed TODO:#}
-    {#
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>#}
-    {#
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>#}
-    <script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>
-
     {% block javascript %}
+<script>
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
 
-    <script>
-        // Add active class to the current button (highlight it)
-        var header = document.getElementById("menu_panel");
-        var btns = header.getElementsByClassName("link-side-panel");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
-            });
-        }
-    </script>
-    {% endblock javascript %} -->
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
+</script>
+    {% endblock javascript %}
 </body>
 
  <!-- <footer>
