@@ -1,17 +1,41 @@
 /*1. Project Detail*/
 
+.editproject_movebutton{
 
-
+}
 
 .project_detail_container{
     
+}
+
+
+.image_animation{
+    width: 480px;
+}
+.project_detail_details{
+ position: relative;
+ left: 200px;
+}
+.detail_context_text{
+
+
+}
+.skill_decoration{
+    list-style-type: none;
+    /* color: blue; */
+}
+
+.move{
+    margin-bottom: 10px;
 }
 
 .project_detail_header
 
 .project_detail_title
 
-.project_btn_control
+.project_btn_control{
+
+}
 .project_detail_main_content
 .image_animation
 .project_detail_details
@@ -19,18 +43,19 @@
 .project_mission_list_items
 .project_mission_header
 .medium_title
-.btn_control_project
+.btn_control_project{
+
+}
 .project_mission_items
 .project_resource_list_items
 .project_resource_header
 .medium_title
 .btn_control_project
 
-.speaker_btn_group_project_detail
+.speaker_btn_group_project_detail{
+}
 .project_acquired_skills
 .detail_time_to_complete
-
-}
 
 .project_learning_info
 

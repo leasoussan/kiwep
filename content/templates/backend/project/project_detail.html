@@ -6,220 +6,239 @@
 {% load crispy_forms_tags %}
 
 {% block css %}
-    <link href="{% static 'backend/css/project_styles.css' %}" rel="stylesheet" >
+<link href="{% static 'backend/css/project_styles.css' %}" rel="stylesheet">
 {% endblock css %}
 
 
 
 {% block content %}
 
-    <div class="project_detail_container">
-        <div class="project_detail_header">
-            <div class="project_detail_title">
-                <h3 class=""> {{ project.name }}</h3>
-            </div>
-            <div class="project_btn_control">
-                <div class="speaker_btn_group">
-                    {% if user.is_speaker %}
-                        {% if project.is_template %}
-                            <a class="waves-effect btn edit_button" href="{% url 'chose_project_detail' project.id %}">{% trans 'select'%}</a>
-
-                        {% else %}
-                            <a class="waves-effect btn edit_button" href="{% url 'update_project' project.id %}">{% trans 'edit'%}</a>
-                        {% endif %}
-                    {% endif %}
-                </div>
-            </div>
-
+<div class="project_detail_container">
+    <div class="project_detail_header">
+        <div class="project_detail_title">
+            <h3 class=""><b>{{ project.name }}</b></h3>
         </div>
+        <div class="project_btn_control">
+            <div class="speaker_btn_group_project_detail">
+                {% if user.is_speaker %}
 
-        <div class="project_detail_main_content">
-            <div class="image_animation">
-                Image/gif
-            </div>
-            <div class="project_detail_details">
-                <div class="detail_context_text">
-                    <p>{{project.description}}</p>
-                </div>
-
-                <div class="detail_time_to_complete">
-                    {{project.time_to_complete}} {% trans 'days' %}
-                </div>
-
-                <div class="project_learning_info" >
-                    <div>
-                        <h4 class ="">{% trans 'acquired_skills' %}</h4>
-                        {% for skill in project.acquired_skills.all %}
-                            <li class="">{{skill.name}},  </li>
-                        {% endfor %}
-                        </ul>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="project_related_elements_content">
-            {#   Here is the mission List #}
-
-            <div class="project_mission_list_items">
-                <div class="project_mission_header">
-                    <div class="medium_title">
-
-                    </div>
-
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_mission">
-                        add Mission modal with 2 forms
+                {% if project.is_template %}
+                <a class="waves-effect btn edit_button" href="{% url 'chose_project_detail' project.id %}">{% trans 'select'%}</a>
+                
+                {% else %}
+                <div class="editproject_movebutton">
+                    <button type="button" class="btn btn-secondary">
+                        <a href="{% url 'update_project' project.id %}">{% trans 'edit'%}</a>
                     </button>
-                    <div class="btn_control_project">
-                        <!-- Button trigger modal add Mission -->
-
-                    </div>
                 </div>
-                <div class="project_mission_items">
-                    {% for mission in project.individualmission_set.all %}
-                        <a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
-                        ****{{ mission.due_date }}****{{ mission.mission_type }}
-                        {% if user.is_speaker %}
-                            <a href="{% url 'delete_individual_mission' mission.id %}" > <i>{% trans 'delete' %}</i></a>
-                            <a scope="col" href="{% url 'update_individual_mission' mission.id %}"> <i>edit</i></a>
-                        {% endif %}
-                        </tr>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="project_detail_main_content">
+        <div class="image_animation">
+            <img src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
+        </div>
+        <div class="project_detail_details">
+            <div class="detail_context_text">
+                <p>{{project.description}}</p>
+            </div>
+
+            <div class="detail_time_to_complete">
+                {{project.time_to_complete}} {% trans 'days' %}
+            </div>
+
+            <div class="project_learning_info">
+                <div>
+                    <h4 class="">{% trans 'acquired_skills' %}</h4>
+                    {% for skill in project.acquired_skills.all %}
+                    <ul>
+                    <li class="skill_decoration">{{skill.name}}</li>
                     {% endfor %}
-
-
-
-                    {% for mission in project.collectivemission_set.all %}
-                        <tr>
-                            <a href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
-                            ***{{ mission.due_date }}
-                            ****{{ mission.due_date }}****{{ mission.mission_type }}
-                            {% if user.is_speaker %}
-                                <a href="{% url 'delete_collective_mission' mission.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>
-                                <a href="{% url 'update_collective_mission' mission.id %}"><i></i></a>
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
-
-
+                    </ul>
                 </div>
 
             </div>
 
-            {# here is the Resource List #}
+        </div>
+
+    </div>
+
+
+    <div class="project_related_elements_content">
+        {# Here is the mission List #}
+
+        <div class="project_mission_list_items">
+            <div class="project_mission_header">
+                <div class="medium_title">
+
+                </div>
+
+                <button type="button" class="btn btn-primary move" data-bs-toggle="modal" data-bs-target="#add_mission">
+                    Add Mission modal with 2 forms
+                </button>
+                <div class="btn_control_project">
+                    <!-- Button trigger modal add Mission -->
+
+                </div>
+            </div>
+            <div class="project_mission_items">
+                {% for mission in project.individualmission_set.all %}
+                <a class="link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                ****{{ mission.due_date }}****{{ mission.mission_type }}
+                {% if user.is_speaker %}
+                <a href="{% url 'delete_individual_mission' mission.id %}"> <i>{% trans 'delete' %}</i></a>
+                <a scope="col" href="{% url 'update_individual_mission' mission.id %}"> <i>edit</i></a>
+                {% endif %}
+                </tr>
+                {% endfor %}
+
+
+
+                {% for mission in project.collectivemission_set.all %}
+                <tr>
+                    <a href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+                    ***{{ mission.due_date }}
+                    ****{{ mission.due_date }}****{{ mission.mission_type }}
+                    {% if user.is_speaker %}
+                    <a href="{% url 'delete_collective_mission' mission.id %}"> <i
+                            class="small material-icons delete">{% trans 'delete' %}</i></a>
+                    <a href="{% url 'update_collective_mission' mission.id %}"><i></i></a>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+
+
+            </div>
+
+        </div>
+
+        {# here is the Resource List #}
+
+        <div class="project_resource_list_items">
+            <div class="project_resource_header">
+                <div class="medium_title">
+                    {% trans 'resrouces' %}
+                </div>
+
+                <div class="btn_control_project">
+                    <!-- Button trigger modal add Resource -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource">
+                        add resource
+                    </button>
+
+                </div>
+            </div>
+
 
             <div class="project_resource_list_items">
-                <div class="project_resource_header">
-                    <div class="medium_title">
-                        {% trans 'resrouces' %}
-                    </div>
+                {% for resource in project.resources.all %}
+                <a href="{% url 'resource_detail' resource.id project.id %}"> {{ resource.name }} </a>
 
-                    <div class="btn_control_project">
-                        <!-- Button trigger modal add Resource -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource">
-                            add resource
-                        </button>
+                {% if user.is_speaker %}
+                <a href="{% url 'delete_resource' resource.id %}"> <i>{% trans 'delete' %}</i></a>
+                <a scope="col" href="{% url 'update_resource' resource.id %}"><i>edit</i></a>
+                {% endif %}
 
-                    </div>
-                </div>
-
-
-                <div class="project_resource_list_items">
-                    {% for resource in project.resources.all %}
-                        <a href="{% url 'resource_detail' resource.id project.id %}"> {{ resource.name }} </a>
-
-                        {% if user.is_speaker %}
-                            <a href="{% url 'delete_resource' resource.id %}" > <i>{% trans 'delete' %}</i></a>
-                            <a scope="col" href="{% url 'update_resource' resource.id %}"><i>edit</i></a>
-                        {% endif %}
-
-                    {% endfor %}
-                </div>
+                {% endfor %}
             </div>
-
         </div>
 
     </div>
 
+</div>
 
 
 
 
 
-    <!-- Modal ADD Mission-->
-    <div class="modal fade" id="add_mission_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="add_missionLable" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="add_missionLable">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
 
-                    <nav>
-                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <button class="nav-link active" id="add_individual_mission" data-bs-toggle="tab" data-bs-target="#add_individual_mission" type="button" role="tab" aria-controls="add_individual" aria-selected="true">Indiv</button>
-                            <button class="nav-link" id="add_collective_mission" data-bs-toggle="tab" data-bs-target="#add_collective_mission" type="button" role="tab" aria-controls="add_collective" aria-selected="false">Collect</button>
+<!-- Modal ADD Mission-->
+<div class="modal fade" id="add_mission_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="add_missionLable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="add_missionLable">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
-                        </div>
-                    </nav>
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="add_individual_mission" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                            INDIVIDUAL
-                            <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' project.id %}' >
-                                {% csrf_token %}
-                                {{ individual_form|crispy }}
-                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
-                                    {% trans 'save'%}</button>
-                            </form>
-                        </div>
-                        <div class="tab-pane fade" id="add_collective_mission" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            COLLECTIVE
-                            <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' project.id %}' >
-                                {% csrf_token %}
-                                {{ collective_form|crispy }}
-                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
-                                    {% trans 'save' %}</button>
-                            </form>
-                        </div>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="add_individual_mission" data-bs-toggle="tab"
+                            data-bs-target="#add_individual_mission" type="button" role="tab"
+                            aria-controls="add_individual" aria-selected="true">Indiv</button>
+                        <button class="nav-link" id="add_collective_mission" data-bs-toggle="tab"
+                            data-bs-target="#add_collective_mission" type="button" role="tab"
+                            aria-controls="add_collective" aria-selected="false">Collect</button>
+
                     </div>
-
-
-
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="add_individual_mission" role="tabpanel"
+                        aria-labelledby="nav-home-tab">...</div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        INDIVIDUAL
+                        <form method="POST" class="form-horizontal" action='{% url ' create_individual_mission'
+                            project.id %}'>
+                            {% csrf_token %}
+                            {{ individual_form|crispy }}
+                            <button class="btn waves-effect waves-light modal-action modal-close add_button"
+                                type="submit" name="action">
+                                {% trans 'save'%}</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="add_collective_mission" role="tabpanel"
+                        aria-labelledby="nav-contact-tab">
+                        COLLECTIVE
+                        <form method="POST" class="form-horizontal" action='{% url ' create_collective_mission'
+                            project.id %}'>
+                            {% csrf_token %}
+                            {{ collective_form|crispy }}
+                            <button class="btn waves-effect waves-light modal-action modal-close add_button"
+                                type="submit" name="action">
+                                {% trans 'save' %}</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
             </div>
         </div>
     </div>
+</div>
 
 
 
 
-    <!-- Modal ADD RESOURCES-->
-    <div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="add_resourceLable" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="add_resourceLable">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    HERE YOU CAN PUT THE FORM
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
+<!-- Modal ADD RESOURCES-->
+<div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="add_resourceLable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="add_resourceLable">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                HERE YOU CAN PUT THE FORM
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -233,296 +252,318 @@
 
 
 
-{#  {{ project.name.title }}#}
-{##}
-{#                <p>{{project.description}}</p>#}
-{##}
-{#                {% if user.is_speaker %}#}
-{#                    {% if project.is_template %}#}
-{##}
-{#                        <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select'%}</a>#}
-{##}
-{#                    {% else %}#}
-{#                        <a class="waves-effect btn edit_button" href="{% url 'update_project' project.id %}">{% trans 'edit'%}</a>#}
-{#                        <a href="{% url 'delete_project' project.id %}" > <i class="small material-icons delete garbege">{% trans 'delete' %}</i></a></td>#}
-{##}
-{#                    {% endif %}#}
-{#                {% endif %}#}
-{#            </div>#}
-{##}
-{#    <h4>{% trans 'details_header' %}</h4>#}
-{#                    <ul >#}
-{#                        <li>#}
-{#                            <span class="label">{% trans 'field' %}:</span>#}
-{#                        {{ project.field }}#}
-{#                            {% for filed in project.field.all %}#}
-{#                            <span class="value">{{project.field}}</span>#}
-{#                            {% endfor %}#}
-{#                        </li>#}
-{#                        <li>#}
-{#                            <span>{% trans 'time_to_complete' %}:</span>#}
-{#                            <span>{{project.time_to_complete}} {% trans 'days' %}</span>#}
-{#                        </li>#}
-{#                        <li >#}
-{#                            <span>{% trans 'difficulty ' %}:</span>#}
-{#                            <span>{{project.difficulty}}</span>#}
-{#                        </li>#}
-{#                        <li>#}
-{#                            <span>{% trans 'points' %}:</span>#}
-{#                            <span>{{project.points}}</span>#}
-{#                        </li>#}
-{#                    </ul>#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{##}
-{#            <div>#}
-{#                <div>#}
-{#                    <h4 class ="title">{% trans 'acquired_skills' %}</h4>#}
-{#                    {% for skill in project.acquired_skills.all %}#}
-{#                        <li>{{skill.name}}</li>#}
-{#                    {% endfor %}#}
-{#                    </ul>#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{##}
-{#        </div>#}
-{##}
-{##}
-{#        <div class="project_extra_detail">#}
-{##}
-{#            <div>#}
-{#                <div>#}
-{#                    <div>#}
-{#                        <h3>        {% trans 'missions_title' %}</h3>#}
-{#                    </div>#}
-{#                    <div>#}
-{##}
-{#                        <!-- Modal Trigger -->#}
-{#                        <button data-target="add_mission">{% trans 'add' %}</button>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="scrolling_list">#}
-{#                    <table>#}
-{#                        <thead>#}
-{#                        <tr>#}
-{#                            <th>{% trans 'mission_name' %}</th>#}
-{#                            <th>{% trans 'dead_line' %}</th>#}
-{#                            <th>{% trans 'mission_type' %}</th>#}
-{#                            {% if user.is_speaker %}#}
-{#                                <th>{% trans 'delete' %}#}
-{#                                    {% trans 'edit' %}</th>#}
-{#                            {% endif %}#}
-{#                        </tr>#}
-{#                        </thead>#}
-{#                        <tbody>#}
-{##}
-{#                        {% for mission in project.mission_set.all %}#}
-{##}
-{#                            <tr>#}
-{#                                <td class="content_table">{% if mission.individualmission %}#}
-{#                                    <a class= "link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>#}
-{#                                {% else %}#}
-{#                                    <a class= "link-table" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>#}
-{#                                {% endif %}#}
-{#                                </td>#}
-{##}
-{#                                <td class="content_table">{{mission.due_date}}</td>#}
-{#                                <td class="content_table">{{ mission.get_mission_type_display }}</td>#}
-{##}
-{#                                {% if user.is_speaker %}#}
-{##}
-{#                                    <td>#}
-{#                                        {% if mission.individualmission %}#}
-{#                                            <a href="{% url 'delete_individual_mission' mission.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>#}
-{#                                        {% else %}#}
-{#                                            <a href="{% url 'delete_collective_mission' mission.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>#}
-{#                                        {% endif %}#}
-{#                                        {% if mission.individualmission %}#}
-{##}
-{#                                            <a scope="col" href="{% url 'update_individual_mission' mission.id %}" > <i class="material-icons">edit</i>#}
-{#                                                {% else %}#}
-{#                                                <a scope="col" href="{% url 'update_collective_mission' mission.id %}" >    <i class="material-icons">edit</i></a></td>#}
-{#                                        {% endif %}#}
-{##}
-{##}
-{#                                {% endif %}#}
-{#                            </tr>#}
-{#                        {% endfor %}#}
-{##}
-{#                        </tbody>#}
-{#                    </table>#}
-{##}
-{##}
-{#                </div>#}
-{##}
-{#            </div>#}
-{##}
-{##}
-{#            <div>#}
-{#                <div>#}
-{#                    <div>#}
-{#                        <h3>        {% trans 'resource' %}</h3>#}
-{#                    </div>#}
-{#                    <div>#}
-{##}
-{#                        <!-- Modal Trigger -->#}
-{#                        <button href="#add_resource">{% trans 'add' %}</button>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="scrolling_list">#}
-{#                    <table>#}
-{#                        <thead>#}
-{#                        <tr>#}
-{#                            <th>{% trans 'resource_name' %}</th>#}
-{#                            {% if user.is_speaker %}#}
-{#                                <th>{% trans 'delete' %}</th>#}
-{##}
-{#                            {% endif %}#}
-{#                        </tr>#}
-{#                        </thead>#}
-{#                        <tbody>#}
-{##}
-{##}
-{##}
-{#                        {% for resource in project.resource_set.all %}#}
-{#                            <tr>#}
-{#                                <td class="content_table"><a href="{% url 'resource_detail' resource.id %}"> {{ resource.name }} </a></td>#}
-{#                                {% if user.is_speaker %}#}
-{#                                    <td>#}
-{#                                        <a href="{% url 'delete_resource' resource.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a>#}
-{#                                        <a scope="col" href="{% url 'update_resource' project.id %}" class="waves-effect waves-light btn edit_btn_tbl"><i class="material-icons">edit</i></a>#}
-{#                                    </td>#}
-{#                                {% endif %}#}
-{##}
-{#                            </tr>#}
-{#                        {% endfor %}#}
-{#                        </tbody>#}
-{#                    </table>#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{#        </div>#}
-{##}
-{##}
-{##}
-{##}
-{#    </div>#}
-{##}
-{##}
-{#    <-- -----------MODAL WITH MATERIALIZE MISSIONS-------- -->#}
-{##}
-{#    <!-- Modal Structure -->#}
-{#    <div>#}
-{#        <div>#}
-{#            <div>#}
-{#                <div>#}
-{#                    <ul>#}
-{#                        <li><a href="#AddIndividualMission">{% trans 'individual_mission'%}</a></li>#}
-{#                        <li><a href="#AddCollectiveMission">{% trans 'collective_mission'%}</a></li>#}
-{#                    </ul>#}
-{##}
-{##}
-{#                </div>#}
-{#                <div>#}
-{#                    <div>#}
-{#                        <h4>{% trans 'individual_mission'%}</h4>#}
-{##}
-{#                        <form method="POST" action='{% url 'create_individual_mission' project.id %}' >#}
-{#                            {% csrf_token %}#}
-{##}
-{#                            {{ individual_form|materializecss }}#}
-{#                            <button type="submit" name="action">#}
-{#                                {% trans 'save'%}</button>#}
-{#                        </form>#}
-{##}
-{#                    </div>#}
-{##}
-{##}
-{##}
-{#                    <div>#}
-{#                        <h4>{% trans 'collective_mission'%}</h4>#}
-{##}
-{#                        <form method="POST" action='{% url 'create_collective_mission' project.id %}' >#}
-{#                            {% csrf_token %}#}
-{##}
-{#                            {{ collective_form|materializecss }}#}
-{#                            <button type="submit" name="action">#}
-{#                                {% trans 'save' %}</button>#}
-{#                        </form>#}
-{##}
-{#                    </div>#}
-{##}
-{#                </div>#}
-{##}
-{#                <div class="modal-footer">#}
-{#                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat green-btn">close</a>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{#    ----------------------------------------------------------------Add Resource Modal#}
-{##}
-{#    <div id="add_resource" class="modal">#}
-{#        <div class="modal-content">#}
-{#            {% trans 'add_resource' %}#}
-{##}
-{#            <form method="POST" class="form-horizontal" action='{% url 'create_resource' project.id %}' >#}
-{#                {% csrf_token %}#}
-{#                {{ resources_form|materializecss }}#}
-{#                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">#}
-{#                    {% trans 'save'%}</button>#}
-{#            </form>#}
-{#        </div>#}
-{#        <div class="modal-footer">#}
-{#            <a href="#!" class="modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{##}
-{#{% endblock %}#}
-{##}
-{##}
-{##}
-{##}
-{##}
-{#{% block javascript %}#}
-{#    <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>#}
-{#    <script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>#}
-{##}
-{##}
-{##}
-{##}
-{#    <script>#}
-{#        $(document).ready(function(){#}
-{#            $('.modal').modal();#}
-{##}
-{##}
-{#            $('.tabs').tabs();#}
-{##}
-{#        });#}
-{#    </script>#}
-{##}
-{##}
-{##}
-{##}
-{#{% endblock javascript %}#}
+{# {{ project.name.title }}#}
+{##}
+{# <p>{{project.description}}</p>#}
+{##}
+{# {% if user.is_speaker %}#}
+{# {% if project.is_template %}#}
+{##}
+{# <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select'%}</a>#}
+{##}
+{# {% else %}#}
+{# <a class="waves-effect btn edit_button" href="{% url 'update_project' project.id %}">{% trans 'edit'%}</a>#}
+{# <a href="{% url 'delete_project' project.id %}"> <i class="small material-icons delete garbege">{% trans 'delete'
+        %}</i></a></td>#}
+{##}
+{# {% endif %}#}
+{# {% endif %}#}
+{# </div>#}
+{##}
+{# <h4>{% trans 'details_header' %}</h4>#}
+{# <ul>#}
+    {# <li>#}
+        {# <span class="label">{% trans 'field' %}:</span>#}
+        {# {{ project.field }}#}
+        {# {% for filed in project.field.all %}#}
+        {# <span class="value">{{project.field}}</span>#}
+        {# {% endfor %}#}
+        {# </li>#}
+    {# <li>#}
+        {# <span>{% trans 'time_to_complete' %}:</span>#}
+        {# <span>{{project.time_to_complete}} {% trans 'days' %}</span>#}
+        {# </li>#}
+    {# <li>#}
+        {# <span>{% trans 'difficulty ' %}:</span>#}
+        {# <span>{{project.difficulty}}</span>#}
+        {# </li>#}
+    {# <li>#}
+        {# <span>{% trans 'points' %}:</span>#}
+        {# <span>{{project.points}}</span>#}
+        {# </li>#}
+    {# </ul>#}
+{# </div>#}
+{##}
+{# </div>#}
+{##}
+{# <div>#}
+    {# <div>#}
+        {# <h4 class="title">{% trans 'acquired_skills' %}</h4>#}
+        {# {% for skill in project.acquired_skills.all %}#}
+        {# <li>{{skill.name}}</li>#}
+        {# {% endfor %}#}
+        {# </ul>#}
+        {# </div>#}
+    {##}
+    {# </div>#}
+{##}
+{# </div>#}
+{##}
+{##}
+{# <div class="project_extra_detail">#}
+    {##}
+    {# <div>#}
+        {# <div>#}
+            {# <div>#}
+                {# <h3> {% trans 'missions_title' %}</h3>#}
+                {# </div>#}
+            {# <div>#}
+                {##}
+                {#
+                <!-- Modal Trigger -->#}
+                {# <button data-target="add_mission">{% trans 'add' %}</button>#}
+                {#
+            </div>#}
+            {# </div>#}
+        {##}
+        {# <div class="scrolling_list">#}
+            {# <table>#}
+                {# <thead>#}
+                    {# <tr>#}
+                        {# <th>{% trans 'mission_name' %}</th>#}
+                        {# <th>{% trans 'dead_line' %}</th>#}
+                        {# <th>{% trans 'mission_type' %}</th>#}
+                        {# {% if user.is_speaker %}#}
+                        {# <th>{% trans 'delete' %}#}
+                            {# {% trans 'edit' %}</th>#}
+                        {# {% endif %}#}
+                        {# </tr>#}
+                    {# </thead>#}
+                {# <tbody>#}
+                    {##}
+                    {# {% for mission in project.mission_set.all %}#}
+                    {##}
+                    {# <tr>#}
+                        {# <td class="content_table">{% if mission.individualmission %}#}
+                            {# <a class="link-table" href="{% url 'individual_mission_detail' mission.id %}">{{
+                                mission.name }}</a>#}
+                            {# {% else %}#}
+                            {# <a class="link-table" href="{% url 'collective_mission_detail' mission.id %}">{{
+                                mission.name }}</a>#}
+                            {# {% endif %}#}
+                            {# </td>#}
+                        {##}
+                        {# <td class="content_table">{{mission.due_date}}</td>#}
+                        {# <td class="content_table">{{ mission.get_mission_type_display }}</td>#}
+                        {##}
+                        {# {% if user.is_speaker %}#}
+                        {##}
+                        {# <td>#}
+                            {# {% if mission.individualmission %}#}
+                            {# <a href="{% url 'delete_individual_mission' mission.id %}"> <i
+                                    class="small material-icons delete">{% trans 'delete' %}</i></a>#}
+                            {# {% else %}#}
+                            {# <a href="{% url 'delete_collective_mission' mission.id %}"> <i
+                                    class="small material-icons delete">{% trans 'delete' %}</i></a>#}
+                            {# {% endif %}#}
+                            {# {% if mission.individualmission %}#}
+                            {##}
+                            {# <a scope="col" href="{% url 'update_individual_mission' mission.id %}"> <i
+                                    class="material-icons">edit</i>#}
+                                {# {% else %}#}
+                                {# <a scope="col" href="{% url 'update_collective_mission' mission.id %}"> <i
+                                        class="material-icons">edit</i></a></td>#}
+                        {# {% endif %}#}
+                        {##}
+                        {##}
+                        {# {% endif %}#}
+                        {# </tr>#}
+                    {# {% endfor %}#}
+                    {##}
+                    {# </tbody>#}
+                {# </table>#}
+            {##}
+            {##}
+            {# </div>#}
+        {##}
+        {# </div>#}
+    {##}
+    {##}
+    {# <div>#}
+        {# <div>#}
+            {# <div>#}
+                {# <h3> {% trans 'resource' %}</h3>#}
+                {# </div>#}
+            {# <div>#}
+                {##}
+                {#
+                <!-- Modal Trigger -->#}
+                {# <button href="#add_resource">{% trans 'add' %}</button>#}
+                {#
+            </div>#}
+            {# </div>#}
+        {##}
+        {# <div class="scrolling_list">#}
+            {# <table>#}
+                {# <thead>#}
+                    {# <tr>#}
+                        {# <th>{% trans 'resource_name' %}</th>#}
+                        {# {% if user.is_speaker %}#}
+                        {# <th>{% trans 'delete' %}</th>#}
+                        {##}
+                        {# {% endif %}#}
+                        {# </tr>#}
+                    {# </thead>#}
+                {# <tbody>#}
+                    {##}
+                    {##}
+                    {##}
+                    {# {% for resource in project.resource_set.all %}#}
+                    {# <tr>#}
+                        {# <td class="content_table"><a href="{% url 'resource_detail' resource.id %}"> {{ resource.name
+                                }} </a></td>#}
+                        {# {% if user.is_speaker %}#}
+                        {# <td>#}
+                            {# <a href="{% url 'delete_resource' resource.id %}"> <i
+                                    class="small material-icons delete">{% trans 'delete' %}</i></a>#}
+                            {# <a scope="col" href="{% url 'update_resource' project.id %}"
+                                class="waves-effect waves-light btn edit_btn_tbl"><i
+                                    class="material-icons">edit</i></a>#}
+                            {# </td>#}
+                        {# {% endif %}#}
+                        {##}
+                        {# </tr>#}
+                    {# {% endfor %}#}
+                    {# </tbody>#}
+                {# </table>#}
+            {# </div>#}
+        {##}
+        {# </div>#}
+    {# </div>#}
+{##}
+{##}
+{##}
+{##}
+{# </div>#}
+{##}
+{##}
+{# <-- -----------MODAL WITH MATERIALIZE MISSIONS-------- -->#}
+    {##}
+    {#
+    <!-- Modal Structure -->#}
+    {# <div>#}
+        {# <div>#}
+            {# <div>#}
+                {# <div>#}
+                    {# <ul>#}
+                        {# <li><a href="#AddIndividualMission">{% trans 'individual_mission'%}</a></li>#}
+                        {# <li><a href="#AddCollectiveMission">{% trans 'collective_mission'%}</a></li>#}
+                        {# </ul>#}
+                    {##}
+                    {##}
+                    {# </div>#}
+                {# <div>#}
+                    {# <div>#}
+                        {# <h4>{% trans 'individual_mission'%}</h4>#}
+                        {##}
+                        {# <form method="POST" action='{% url ' create_individual_mission' project.id %}'>#}
+                            {# {% csrf_token %}#}
+                            {##}
+                            {# {{ individual_form|materializecss }}#}
+                            {# <button type="submit" name="action">#}
+                                {# {% trans 'save'%}</button>#}
+                            {# </form>#}
+                        {##}
+                        {# </div>#}
+                    {##}
+                    {##}
+                    {##}
+                    {# <div>#}
+                        {# <h4>{% trans 'collective_mission'%}</h4>#}
+                        {##}
+                        {# <form method="POST" action='{% url ' create_collective_mission' project.id %}'>#}
+                            {# {% csrf_token %}#}
+                            {##}
+                            {# {{ collective_form|materializecss }}#}
+                            {# <button type="submit" name="action">#}
+                                {# {% trans 'save' %}</button>#}
+                            {# </form>#}
+                        {##}
+                        {# </div>#}
+                    {##}
+                    {# </div>#}
+                {##}
+                {# <div class="modal-footer">#}
+                    {# <a href="#!"
+                        class="modal-action modal-close waves-effect waves-green btn-flat green-btn">close</a>#}
+                    {# </div>#}
+                {# </div>#}
+            {# </div>#}
+        {# </div>#}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {# ----------------------------------------------------------------Add Resource Modal#}
+    {##}
+    {# <div id="add_resource" class="modal">#}
+        {# <div class="modal-content">#}
+            {# {% trans 'add_resource' %}#}
+            {##}
+            {# <form method="POST" class="form-horizontal" action='{% url ' create_resource' project.id %}'>#}
+                {# {% csrf_token %}#}
+                {# {{ resources_form|materializecss }}#}
+                {# <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit"
+                    name="action">#}
+                    {# {% trans 'save'%}</button>#}
+                {# </form>#}
+            {# </div>#}
+        {# <div class="modal-footer">#}
+            {# <a href="#!" class="modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>#}
+            {# </div>#}
+        {# </div>#}
+    {##}
+    {##}
+    {#{% endblock %}#}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#{% block javascript %}#}
+    {#
+    <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>#}
+    {#
+    <script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>#}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#
+    <script>#}
+        {#        $(document).ready(function () {# }
+{ #            $('.modal').modal(); # }
+{ ## }
+{ ## }
+{ #            $('.tabs').tabs(); # }
+{ ## }
+{ #        });#
+        }
+        {#</script>#}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#{% endblock javascript %}#}
