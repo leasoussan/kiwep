@@ -1,74 +1,178 @@
 /*1. Project Detail*/
 
-.editproject_movebutton button{
-    position: relative;
-    left: 100px;
+.project_detail_container{
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+    width: 100% ;
+    min-height: 100vh;
+    padding: 0rem 5rem;
 }
 
-.project_detail_container{
-    
+.project_detail_header{
+    display: flex;
+    flex-direction: row;
+    margin-bottom:2rem;
+    max-width: 95%;
+    align-content: center;
+}
+.project_detail_title{
+    width: 70%;
+    justify-content: flex-start;
+}
+
+.project_title{
+    display: flex;
+    width: 70%;
+    justify-content: center;
+}
+
+.project_detail_details{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.project_detail_description{
+    min-height: 50%;
+}
+.speaker_action_btn_group{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    justify-content: flex-end;
+
+}
+.animation_div{
+    display: flex;
+    justify-content: flex-end;
+    width: 40%;
 }
 
 .image_animation{
-    width: 480px;
+    width: 400px;
+    align-content: flex-end;
 }
-.project_detail_details{
- position: relative;
- right: 50%;
-}
-.detail_context_text{
 
 
-}
+
+
 .skill_decoration{
     list-style-type: none;
     /* color: blue; */
 }
 
 .move{
- 
-}
-
-.project_detail_header
-
-.project_detail_title
-
-.project_btn_control{
 
 }
-.project_detail_main_content
-.image_animation
-.project_detail_details
-.project_related_elements_content
-.project_mission_list_items
-.project_mission_header
-.medium_title
-.btn_control_project{
-    /* position: relative;
-    left: 60%;
-    bottom: 150px; */
+
+
+.project_detail_main_content {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+  justify-content: space-between;
+    margin-top: 2rem;
 }
-.project_mission_items
-.project_resource_list_items{
-    /* border: 1px solid black; */
+
+.project_related_elements_content {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    min-height: 30vh;
+    margin-top: 3rem;
+
+}
+
+
+.darker-edit-btn:hover{
+  color: #000000;
+}
+.project_detail_title{
+  display: flex;
+  justify-content: center;
+}
+
+.project_mission_list_items{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    /*border: solid black 2px;*/
+    width: 60%;
+    margin-left: 2rem;
+    padding: 1rem;
+    max-height: 70vh;
+}
+
+.project_mission_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:90%;
+    margin-left: 10%;
+}
+
+.project_mission_items{
+    width: 70%;
+    height: 5rem;
+    border: black solid 1px;
+    margin-left: 10%;
+}
+
+
+.project_mission_items{
+    width: 80%;
+
+    min-height: 5rem;
+    margin-top: 2rem;
+}
+
+
+.project_resource_content{
+    display: flex;
+    flex-direction: column;
+    /*border: solid black 2px;*/
+    width:40%;
+    margin-left: 2rem;
+    padding: 1rem;
 }
 
 .project_resource_header{
-
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
-.medium_title
-.btn_control_project
 
-.speaker_btn_group_project_detail{
+
+/*---------------------------PROJECT LIST__________________________*/
+
+.project_list_container{
+    width: 90%;
+    padding: 0rem 5rem;
 }
-.project_acquired_skills
-.detail_time_to_complete
 
-.project_learning_info
+.project_list_page_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+.buttons_project_list{
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+    justify-content: flex-end;
+    justify-content: space-between;
+}
 
-
-
-/*Project List*/
-
-
+.project_details_box{
+    display: flex;
+    flex-direction: row;
+    border: red 2px solid;
+    min-height: 5rem;
+    min-width: 80%;
+    padding: 2rem;
+    margin-top: 3rem;
+    justify-content: space-between;
+}

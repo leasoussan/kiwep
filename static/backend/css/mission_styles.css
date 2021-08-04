@@ -1,1 +1,73 @@
-.detail_time_to_complete
+.mission_detail_container{
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+    width: 100% ;
+    min-height: 100vh;
+    padding: 0rem 5rem;
+}
+
+.mission_detail_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:90%;
+    margin-left: 10%;
+}
+
+.mission_detail_main_content{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+.mission_detail_details{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.mission_detail_description{
+        min-height: 50%;
+}
+
+.mission_related_elements_content{
+  display: flex;
+    flex-direction: row;
+    width: 95%;
+    min-height: 30vh;
+    margin-top: 3rem;
+    justify-content: flex-end;
+}
+
+.animation_div{
+    display: flex;
+    justify-content: flex-end;
+    width: 40%;
+}
+
+.btn_control_mission{
+    display: flex;
+    justify-content: flex-end;
+}
+.resource_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+.mission_resource_list_items{
+    display: flex;
+    flex-direction: column;
+      width: 100%;
+   /*border:2px solid red;*/
+}
+
+.missions_detail_resource{
+    width: 10rem;
+    height: 10rem;
+    border: red solid 2px;
+    margin: 1rem;
+}

@@ -1,0 +1,73 @@
+.team_detail_container{
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+    width: 100% ;
+    min-height: 100vh;
+    padding: 0rem 5rem;
+}
+
+.team_detail_header{
+    display: flex;
+    flex-direction: row;
+    margin-bottom:2rem;
+    width: 95%;
+    justify-content: space-evenly;
+}
+
+.team_detail_title{
+    width: 50%;
+    justify-content: flex-start;
+}
+
+.speaker_action_btn_group{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: flex-end;
+
+}
+
+.team_navigation_extra_button {
+    display: flex;
+    flex-direction: row;
+}
+/*----------------*/
+
+
+
+/*.darker-edit-mission-btn:hover{*/
+/*  color:#000000;*/
+/*}*/
+
+/*.readmore-project-of-team{*/
+/*  color: #000000;*/
+/*  font-weight: bold;*/
+/*  font-size:large;*/
+/*}*/
+
+/*.resources-link{*/
+/*  color: rgb(2, 90, 2);*/
+/*  font-weight: bold;*/
+/*  font-size:large;*/
+/*  position: relative;*/
+/*  bottom: 12px;*/
+/*}*/
+
+/*.darker-gallery-btn{*/
+/*  color:#000000;*/
+/*}*/
+/*.photo-gallery{*/
+/*  float: right;*/
+/*  position: relative;*/
+/*  bottom: 64px;*/
+/*  right: 52px;*/
+/*}*/
+/*.photo-gallery button{*/
+/*  margin-bottom: 10px;*/
+/*}*/
+/*.photo-gallery div{*/
+/*  width: 220px;*/
+/*  height: 220px;*/
+/*  border: 1px solid grey;*/
+}
