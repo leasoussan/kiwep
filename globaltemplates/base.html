@@ -35,79 +35,21 @@
 <body>
 {% include 'navbar.html' %}
 
-{% if user.is_authenticated %}
+<!-- {% if user.is_authenticated %} -->
 <!-- BREADCRUMBS -->
-<div class="breadcrumbs">
-    <ul>
+<!-- <div class="breadcrumbs">
+    <ul> -->
         <!-- insert IF cond. - if user is at Home page -->
-        <li class="inline"><a href="{% url 'dashboard' %}">Home</a></li>
+        <!-- <li class="inline"><a href="{% url 'dashboard' %}">Home</a></li> -->
         <!-- insert IF cond. - if user is at Project list page -->
-        <li class="inline"><span> > </span><a href="{% url 'project_list' %}">All Projects</a></li>
+        <!-- <li class="inline"><span> > </span><a href="{% url 'project_list' %}">All Projects</a></li> -->
         <!-- insert IF cond. - if user is at Answer Board page -->
-        <li class="inline"><span> > </span><a href="{% url 'answer_mission_list' %}">Answer Board</a></li>
+        <!-- <li class="inline"><span> > </span><a href="{% url 'answer_mission_list' %}">Answer Board</a></li>
     </ul>
 
-</div>
-{% endif %}
+</div> -->
+<!-- {% endif %} -->
 
-{#<div>#}
-    {# --------------------------------------------------#}
-{#    {% if user.is_speaker %}#}
-{#        <ul class="collapsible expandable menu_panel_color collapsible_no_border ">#}
-{#            <li>#}
-{#                <a class="link-side-panel" href="{% url 'dashboard' %}">#}
-{#                    <div class="collapsible-header menu_panel_color"> {% trans 'home' %}</div>#}
-{#                </a>#}
-{#            </li>#}
-{#            <li>#}
-{#                <a class="link-side-panel" href="{% url 'project_list' %}">#}
-{#                    <div class="collapsible-header menu_panel_color">{% trans 'projects ' %}</div>#}
-{#                </a>#}
-                {# <div class="collapsible-body"><span>Other page</span></div>#}
-{#            </li>#}
-{#            <li>#}
-{#                <a class="link-side-panel" href="{% url 'team_list' %}">#}
-{#                    <div class="collapsible-header menu_panel_color">{% trans 'teams' %}</div>#}
-{#                </a>#}
-                {# <div class="collapsible-body"><span>Other page</span></div>#}
-{#            </li>#}
-{##}
-{#        </ul>#}
-{##}
-{#    {% elif user.is_student %}#}
-{##}
-{#        <ul class="collapsible expandable menu_panel_color collapsible_no_border">#}
-{#            <li>#}
-{#                <div class="collapsible-header menu_panel_color"> <a class="link-side-panel"#}
-{#                                                                     href="{% url 'dashboard' %}">{% trans 'home' %}</a></div>#}
-{#            </li>#}
-{#            <li>#}
-{#                <div class="collapsible-header menu_panel_color"><a class="link-side-panel"#}
-{#                                                                    href="{% url 'team_list' %}">{% trans 'my_projects' %}</a></div>#}
-                {# <div class="collapsible-body"><span class="sub_menu">Other page</span></div>#}
-{#            </li>#}
-{#            <li>#}
-{#                <div class="collapsible-header menu_panel_color"><a class="link-side-panel"#}
-{#                                                                    href="{% url 'my_mission_list' %}">{% trans 'my_missions' %}</a></div>#}
-                {# <div class="collapsible-body"><span class="sub_menu">Other page</span></div>#}
-{#            </li>#}
-            {# <li>#}
-{#             <div class="collapsible-header menu_panel_color"> <a class="link-side-panel"#}
-{#                                                                    href="{% url 'todo_list'%}">{% trans 'todo' %}</a></div>#}
-{#             <div class="collapsible-body"><span class="sub_menu">Other page</span></div>#}
-{#             </li>#}
-{#             <li>#}
-{#             <div class="collapsible-header"><a class="link-side-panel"#}
-{#                                                  href="{% url 'student_available_project_list' %}">{% trans 'availiable_projects'#}
-{#            %}</a></div>#}
-            {# <div class="collapsible-body"><span>Other page</span></div>#}
-            {# </li>#}
-{#        </ul>#}
-{##}
-{##}
-{#    {% endif %}#}
-{##}
-{#</div>#}
 
 
 
@@ -124,25 +66,6 @@
 
 
 
-
-<script>
-    // $(document).ready(function () {
-
-    //     {#// Initialize materialize data picker#}
-    //         {#$('.datepicker').datepicker({ 'format': 'yyyy-mm-dd' });# }
-    //         $('select').formSelect();
-
-    //         $('.dropdown-trigger').dropdown();
-
-    //         var elem = document.querySelector('.collapsible.expandable');
-    //         var instance = M.Collapsible.init(elem, {
-    //             accordion: false
-    //         });
-
-    //         {#$('.collapsible').collapsible();# }
-    //     });
-
-</script>
 
 <!-- {#commment out to make work forms check if needed TODO:#}
     {#

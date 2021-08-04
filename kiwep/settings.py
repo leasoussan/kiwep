@@ -171,8 +171,7 @@ LOGOUT_URL = "homepage"
 
 APPEND_SLASH=False
 
-# CRISPY_TEMPLATE_PACK = 'bootstrap4'
-CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Activate Django-Heroku.

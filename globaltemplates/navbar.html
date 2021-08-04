@@ -3,7 +3,7 @@
 
 {% block navbar %}
 <!-- NAVBAR -->
-{% if user.is_authenticated %}
+<!-- {% if user.is_authenticated %}
 
 <div id="logotitle-nav"><a href="{% url 'dashboard' %}" id="logotitle-nav">
         <h4><b>KIWEP</b></h4>
@@ -15,85 +15,142 @@
 
         <div class="collapse navbar-collapse menu_navbar_right">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                <li class="nav-item">
+                <li class="nav-item"> -->
                     <!-- Need to add Selected on each page we choose -->
-                    <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a>
+                    <!-- <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a>
                 </li>
                 {% if user.is_speaker %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'project_list' %}">{% trans 'projects' %}</a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'answer_mission_list' %}">{% trans 'answer_board' %}</a>
-                </li>
-                {% elif user.is_student %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'project_list' %}">{% trans 'projects' %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'my_mission_list' %}">{% trans 'My_missions' %}</a>
-                </li>
-                {% elif user.is_representative %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'my_mission_list' %}">{% trans 'My_missions' %}</a>
-                </li>
-
                 {% endif %}
+        {% endif %} -->
+    <!-- NAVBAR -->
+    <!-- {% if user.is_authenticated %}
 
-            </ul>
-        </div>
-    </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div>
+                    <a class="navbar-brand" href="{% url 'dashboard' %}">KIWEP</a>
+
+                </div>
+
+                <div class="collapse navbar-collapse navbar_items" >
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav_alignment_right">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+ -->
 
 
 
 
-    <div>
-        <div class="btn-group">
-
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="/static/backend/images/kiwep/userpic.png" width="65" height="65" alt="logo">
-            </a>
-
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'edit_profile' %}">{% trans 'edit_profile' %}</a></li>
-                <li><a class="dropdown-item" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">{% trans 'other' %}</a></li>
-            </ul>
-
-        </div>
-        <div id="username"><span>Hello, User!</span></div>
-    </div>
 
 
 
 
-    <!-- ---------------------------LEA--------------------- -->
-    <!-- <li class="nav-item dropdown profile_nav_section">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <i class="">ICON-HERE</i>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a id="#" href="{% url 'edit_profile' %}">{% trans 'edit_profile' %}</a></li>
-                <li><a id="#" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a id="#" href="#">{% trans 'other' %}</a></li>
 
-            </ul>
-        </li> -->
-    <!-- ------------------------------------------------------- -->
 
-</nav>
 
-{% endif %}
-{% endblock %}
+        <nav class="navbar">
+        <div id="logotitle-nav">
+            <a  id="logotitle-nav">
+                <h4><b>KIWEP</b></h4>
+            </a></div>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navsize">
+            <!-- <div id="logotitle-nav"><span>KIWEP</span></div> -->
+            <div class="container-fluid">
+
+                <div class="collapse navbar-collapse menu_navbar_right">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item"> -->
+                            <!-- Need to add Selected on each page we choose -->
+                            <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a>
+                        </li>
+                        {% if user.is_speaker %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'project_list' %}">{% trans 'projects' %}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'answer_mission_list' %}">{% trans 'answer_board' %}</a>
+                            </li>
+                        {% elif user.is_student %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'project_list' %}">{% trans 'projects' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'my_mission_list' %}">{% trans 'My_missions' %}</a>
+                            </li>
+                        {% elif user.is_representative %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'my_mission_list' %}">{% trans 'My_missions' %}</a>
+                            </li>
+
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+
+ 
+
+
+            <div>
+                <div class="btn-group">
+
+
+                    <div class="btn-group">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/static/backend/images/kiwep/userpic.png" width="65" height="65" alt="logo">
+                        </a>
+
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'edit_profile' %}">{% trans 'edit_profile' %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">{% trans 'other' %}</a></li>
+                        </ul>
+
+                    </div>
+
+                    <div id="username"><span>{% trans 'hello' %} {{ user.first_name }}</span></div>
+
+        </nav>
+
+    {% endif %}
+{% endblock %} -->
 
 
 
@@ -133,9 +190,9 @@
                         <a href="{% url 'profile' user.id  %}"><i>account_circle</i></a>
                     </a></li> -->
 
-<!-- Dropdown Structure -->
+    <!-- Dropdown Structure -->
 
-<!-- <li><a href="#!" data-target="dropdown1"><i>arrow_drop_down</i></a></li>
+    <!-- <li><a href="#!" data-target="dropdown1"><i>arrow_drop_down</i></a></li>
                     <ul>
                         <li><a href="{% url 'edit_profile' %}">{% trans 'edit_profile'  %}</a></li>
                         <li><a href="{% url 'logout' %}">{% trans 'logout' %}</a></li>
