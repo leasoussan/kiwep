@@ -182,7 +182,9 @@ class IndividualMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
             'field', 
             'level',
             'description',
-            'resources',]
+            'resources',
+            'acquired_skill',
+            'due_date']
     template_name = 'crud/update.html'  
 
 

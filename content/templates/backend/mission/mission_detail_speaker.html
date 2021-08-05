@@ -1,0 +1,173 @@
+{% load mytags %}
+
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<div class="mission_detail_container">
+
+        <div class="mission_detail_header">
+
+                <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
+
+            <h3 class=""> {{ object.name }}</h3>
+
+
+            <div class="speaker_action_btn_group">
+                {% if user.is_speaker %}
+                    <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+            <div class="mission_detail_main_content">
+                <div class="animation_div">
+                    <img class="image_animation" src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
+                </div>
+                <div class="mission_detail_details">
+
+                    <p class="mission_detail_description">{{object.description}}</p>
+
+
+                    <div class="detail_time_to_complete">
+                        {{object.time_to_complete}} {% trans 'days' %}
+                    </div>
+
+                    <div class="mission_learning_info" >
+
+                        <h4 class ="">{% trans 'acquired_skills' %}</h4>
+                        {% for skill in object.acquired_skill.all %}
+                            <li class="">{{skill.name}},  </li>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+        <div class="mission_related_elements_content">
+
+            {# here is the Resource List #}
+
+            <div class="mission_resource_list_items">
+
+                <div class="btn_control_mission">
+                    <!-- Button trigger modal add Resource -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
+                        {% trans "add_resource" %}
+                    </button>
+
+
+                </div>
+
+                <div class="resource_container">
+                    {% if object.project.resource_set.exists %}
+
+                        {% for resource in object.project.resource_set.all   %}
+                            <div class="missions_detail_resource">
+                                <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+
+                                {% if user.is_speaker %}
+                                    <a href="{% url 'delete_resource' resource.id %}" > <i>{% trans 'delete' %}</i></a>
+                                    <a href="{% url 'update_resource' resource.id %}"><i>edit</i></a>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Modal ADD RESOURCES-->
+    <div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="add_resourceLable" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="add_resourceLable">{% trans 'add_resource' %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="add_resource_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="add_resource" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="add_resource" data-bs-toggle="tab" data-bs-target="#add_resource" type="button" role="tab" aria-controls="add_resource" aria-selected="true">
+                                {% trans 'add_resource'%}</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="chose_resource" data-bs-toggle="tab" data-bs-target="#chose_resource" type="button" role="tab" aria-controls="chose_resource" aria-selected="false">
+                                {%  trans 'chose_resource' %}</button>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="modal-body">
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="add_resource" role="tabpanel" aria-labelledby="add_resource-tab">
+                            {% if object %}
+                                <form method="POST" class="form-horizontal" action='{% url 'create_resource' object.project.id %}' >
+                                    {% csrf_token %}
+                                    {{ resources_form|crispy }}
+                                    <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                        {% trans 'save'%}</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                        <div class="tab-pane fade" id="chose_resource" role="tabpanel" aria-labelledby="chose_resource-tab">
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+

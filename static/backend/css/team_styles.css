@@ -9,10 +9,17 @@
 
 .team_detail_header{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin-top: 2rem;
     margin-bottom:2rem;
     width: 95%;
-    justify-content: space-evenly;
+
+}
+
+.team_project_detail{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2rem;
 }
 
 .team_detail_title{
@@ -25,49 +32,94 @@
     flex-direction: row;
     width: 50%;
     justify-content: flex-end;
-
 }
 
 .team_navigation_extra_button {
     display: flex;
     flex-direction: row;
+    width: 50%;
+    justify-content: space-between;
+    align-content: center;
+    margin: auto;
 }
-/*----------------*/
+
+.project_link_extra{
+
+    border-bottom: solid 2px red;
+}
+
+
+.team_detail_main_content{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 90%;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    border:solid 2px red;
+
+}
+
+.team_mission_list{
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    min-height: 90%;
+    max-height: 80vh;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    border:solid 2px orange;
+}
+
+.team_mission_detail{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 250px;
+    margin: 2rem;
+    border:solid 2px black;
+    padding: 2rem;
+    justify-content: space-between;
+    align-items: center;
+
+/*}*/
+
+.team_extra_information{
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    width: 30%;
+    height: 80vh;
+}
+
+.team_participant_container{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 50%;
+    padding-top: 1rem;
+}
+
+/*_______STUDENT TEAM DETAL STYLE_____________________*/
+
+.team_project_status{
+    background-color: yellow;
+}
 
 
 
-/*.darker-edit-mission-btn:hover{*/
-/*  color:#000000;*/
-/*}*/
+/*___________________________STUDENT LIST MISSION*/
+.student_team_list_container{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
 
-/*.readmore-project-of-team{*/
-/*  color: #000000;*/
-/*  font-weight: bold;*/
-/*  font-size:large;*/
-/*}*/
+.student_mission_table{
+    background-color: black;
+    min-width: 80%;
+    max-width: 80%;
+    justify-content: center;
+    margin: auto;
 
-/*.resources-link{*/
-/*  color: rgb(2, 90, 2);*/
-/*  font-weight: bold;*/
-/*  font-size:large;*/
-/*  position: relative;*/
-/*  bottom: 12px;*/
-/*}*/
-
-/*.darker-gallery-btn{*/
-/*  color:#000000;*/
-/*}*/
-/*.photo-gallery{*/
-/*  float: right;*/
-/*  position: relative;*/
-/*  bottom: 64px;*/
-/*  right: 52px;*/
-/*}*/
-/*.photo-gallery button{*/
-/*  margin-bottom: 10px;*/
-/*}*/
-/*.photo-gallery div{*/
-/*  width: 220px;*/
-/*  height: 220px;*/
-/*  border: 1px solid grey;*/
 }

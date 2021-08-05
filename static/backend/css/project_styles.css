@@ -74,6 +74,7 @@
     width: 90%;
   justify-content: space-between;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .project_related_elements_content {
@@ -144,7 +145,20 @@
     justify-content: space-between;
 }
 
+.project_resource_list_items{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
 
+}
+
+.resource_details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: black 1px solid;
+    min-height: ;
+}
 /*---------------------------PROJECT LIST__________________________*/
 
 .project_list_container{
