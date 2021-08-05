@@ -14,8 +14,8 @@
                         <a class="btn" href="{% url 'chose_project_detail' project.id %}">{% trans 'select'%}</a>
 
                     {% else %}
-
-                        <a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a>
+                    <button type="button" class="btn btn-secondary"><a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a></button>
+                        <!-- <a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a> -->
 
                     {% endif %}
 
@@ -30,8 +30,8 @@
 
                 <p class="project_detail_description">{{project.description}}</p>
 
-
                 <p class="detail_time_to_complete">
+                    <span>Time Left To Complete (days):</span>
                     {{project.time_to_complete}} {% trans 'days' %}
                 </p>
 
@@ -55,9 +55,9 @@
 
             <div class="project_mission_list_items overflow-auto">
                 <div class="project_mission_header">
-                    <p>{% trans 'Missions' %}</p>
+                    <p><b>{% trans 'missions' %}</b></p>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_mission_modal">
-                        Add Mission
+                        add_mission
                     </button>
 
                 </div>
@@ -71,16 +71,20 @@
                         {% if user.is_speaker %}
                             {% if mission.individualmission %}
                                 yosdfgdsgf
-                                <a href="{% url 'delete_individual_mission' mission.id %}"><i>{% trans 'delete' %}</i></a>
+
+                                <!--  <a href="{% url 'update_project' project.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"> </a>
+                        <a href="{#   url 'duplicate_create_project' project.id team.id  #}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>
+                        <a href="{% url 'delete_project' project.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"> </a> -->
+                                <a href="{% url 'delete_individual_mission' mission.id %}"><img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
                             {% else %}
-                                <a href="{% url 'delete_collective_mission' mission.id %}"><i>{% trans 'delete' %}</i></a>
+                                <a href="{% url 'delete_collective_mission' mission.id %}"><img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
                             {% endif %}
 
                             {% if mission.individualmission %}
-                                <a href="{% url 'update_individual_mission' mission.id %}"> <i>edit</i></a>
+                                <a href="{% url 'update_individual_mission' mission.id %}"> <img src="/static/backend/images/kiwep/edit.png" alt="edit"></a>
 
                             {% else %}
-                                <a href="{% url 'update_collective_mission' mission.id %}"> <i>edit</i></a>
+                                <a href="{% url 'update_collective_mission' mission.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a>
                             {% endif %}
 
                         {% endif %}
@@ -96,7 +100,7 @@
             <div class="project_resource_content">
                 <div class="project_resource_header">
                     <div class="medium_resource_title">
-                        <b>{% trans 'Resources' %}</b>
+                        <b>{% trans 'resources' %}</b>
                     </div>
 
                     <div class="btn_control_project1">
@@ -116,8 +120,8 @@
                             <ul class="resource_details">
                                 <li> <a href="{% url 'resource_detail' resource.id %}"> {{ resource.name }} </a></li>
                                 {% if user.is_speaker %}
-                                    <li><a href="{% url 'delete_resource' resource.id %}"> <i>{% trans 'delete' %}</i></a>
-                                  <a scope="col" href="{% url 'update_resource' resource.id %}"><i>edit</i></a></li>
+                                    <li><a href="{% url 'delete_resource' resource.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
+                                  <a scope="col" href="{% url 'update_resource' resource.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a></li>
                                 {% endif %}
 
                             </ul>

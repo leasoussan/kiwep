@@ -12,7 +12,22 @@
     flex-direction: row;
     justify-content: space-between;
     width:90%;
-    margin-left: 10%;
+    margin-left: 6%;
+}
+
+.btn-light:hover{
+    color: #000000;
+}
+
+.back_btn{
+}
+
+.btn-sm{
+    height: 40px;
+}
+
+button .edit_button{
+    line-height: 3px;
 }
 
 .mission_detail_main_content{
@@ -50,7 +65,11 @@
 
 .btn_control_mission{
     display: flex;
-    justify-content: flex-end;
+    justify-content:flex-end;
+}
+
+.btn_control_mission button{
+    margin-left: 50px;
 }
 .resource_container{
     display: flex;
@@ -70,6 +89,10 @@
     height: 10rem;
     border: red solid 2px;
     margin: 1rem;
+}
+
+.missions_detail_resource a{
+    margin-left: 7.5%;
 }
 
 .mission_learning_info{

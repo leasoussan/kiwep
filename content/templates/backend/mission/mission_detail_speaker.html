@@ -7,15 +7,16 @@
 <div class="mission_detail_container">
 
         <div class="mission_detail_header">
-
-                <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>
+            <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' object.project.id %}">{% trans 'back_to_project_button' %}</a></button>
+                <!-- <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a> -->
 
             <h3 class=""> {{ object.name }}</h3>
 
 
             <div class="speaker_action_btn_group">
                 {% if user.is_speaker %}
-                    <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a>
+                <button type="button" class="btn btn-secondary btn-sm"><a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a></button>
+                    <!-- <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a> -->
                 {% endif %}
 
             </div>
@@ -32,9 +33,9 @@
                     <p class="mission_detail_description">{{object.description}}</p>
 
 
-                    <div class="detail_time_to_complete">
-                        {{object.time_to_complete}} {% trans 'days' %}
-                    </div>
+                    <p class="detail_time_to_complete">
+                        <span>Time Left To Complete (days):</span>{{object.time_to_complete}} {% trans 'days' %}
+                    </p>
 
                     <div class="mission_learning_info" >
 
@@ -63,8 +64,6 @@
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
                         {% trans "add_resource" %}
                     </button>
-
-
                 </div>
 
                 <div class="resource_container">
@@ -75,8 +74,12 @@
                                 <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
 
                                 {% if user.is_speaker %}
-                                    <a href="{% url 'delete_resource' resource.id %}" > <i>{% trans 'delete' %}</i></a>
-                                    <a href="{% url 'update_resource' resource.id %}"><i>edit</i></a>
+                                <a href="{% url 'update_resource' resource.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"> </a>
+                                <a href="{% url 'delete_resource' resource.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"> </a>
+
+
+                                    <!-- <a href="{% url 'delete_resource' resource.id %}" > <i>{% trans 'delete' %}</i></a>
+                                    <a href="{% url 'update_resource' resource.id %}"><i>edit</i></a> -->
                                 {% endif %}
                             </div>
                         {% endfor %}

@@ -63,10 +63,6 @@
     /* color: blue; */
 }
 
-.move{
-
-}
-
 
 .project_detail_main_content {
     display: flex;
@@ -83,7 +79,6 @@
     width: 95%;
     min-height: 30vh;
     margin-top: 3rem;
-
 }
 
 
@@ -110,7 +105,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width:90%;
+    width:80%;
     margin-left: 10%;
 }
 
@@ -143,12 +138,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
 }
 
 .project_resource_list_items{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    margin-top: 34px;
+    width: 100%;
 
 }
 
@@ -157,9 +154,17 @@
     flex-direction: row;
     justify-content: space-between;
     border: black 1px solid;
-    min-height: ;
 }
-/*---------------------------PROJECT LIST__________________________*/
+/*-------PROJECT LIST------*/
+
+.width_project_name_projlist{
+   max-width: 10%;
+}
+
+.create_project_btn_projlist:hover{
+    color:#000000;
+    background-color: transparent;
+}
 
 .project_list_container{
     width: 90%;
@@ -170,6 +175,21 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.project_list_tbl_project_modifications{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+/* .align_items_project_projecttbl{
+    position: relative;
+    right: 120px;
+} */
+
+.project_list_tbl_project_modifications > a{
+    margin: 0 0 10px 10px;
 }
 
 .buttons_project_list{
@@ -183,10 +203,61 @@
 .project_details_box{
     display: flex;
     flex-direction: row;
-    border: red 2px solid;
+    border:  2px solid red;
     min-height: 5rem;
     min-width: 80%;
     padding: 2rem;
     margin-top: 3rem;
     justify-content: space-between;
+}
+
+/* RESPONSIVE */
+@media (max-width: 670px){
+
+    .project_list_container{
+        width: 90%;
+        padding: 0rem 5rem;
+        /* margin: 5px; */
+    }
+
+    .buttons_project_list{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-right: 20px; 
+        column-gap: 15px;
+        width: 35%;
+    }
+
+    .project_list_page_header {
+        width: 300px;
+        padding: 20px;
+    }
+
+    .project_details_box{
+        display: flex;
+        flex-direction: row;
+        border:  2px solid black;
+        min-height: 0;
+        min-width: 0%;
+        padding: 1rem;
+        /* margin-top: 3rem; */
+        justify-content: space-between;
+    }
+
+    .width_project_name_projlist{
+        max-width: 5%;
+     }
+     
+     .team_name{
+         margin-top: 27px;
+         margin-right: 8px;
+         white-space: nowrap;
+     }
+     .createproj_btn{
+         height: 30px;
+         margin-top: 30px;
+     }
+
 }

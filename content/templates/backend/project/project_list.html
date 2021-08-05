@@ -14,11 +14,13 @@
     <div class="project_list_container">
         <div class="project_list_page_header">
 
-            <h2>{% trans 'project' %}</h2>
+            <div class="projects_title"><h2>{% trans 'project' %}</h2></div>
 
             <div class="buttons_project_list">
-                <a class="" href="#add_project">{% trans 'add_project' %}</a>
-                <a class="" href="#add_bulk_mission">{% trans 'add_mission' %}</a>
+                <button type="button" class="btn btn-primary">{% trans 'add_project' %}</button>
+                <button type="button" class="btn btn-primary">{% trans 'add_mission' %}</button>
+                <!-- <a class="" href="#add_project">{% trans 'add_project' %}</a> -->
+                <!-- <a class="" href="#add_bulk_mission">{% trans 'add_mission' %}</a> -->
                 <!-- <button class="btn btn-primary" type="button">Create A New Project</button>
                 <button class="btn btn-primary" type="button">Template Project List</button> -->
             </div>
@@ -29,24 +31,25 @@
         {% for project in user.profile.project_set.personal_projects %}
             <div class="project_details_box">
 
-                <a href="{% url 'project_detail' project.id %}">{{project.name}}</a>
+                <a class="width_project_name_projlist" href="{% url 'project_detail' project.id %}">{{project.name}}</a>
                 {% if not project.team %}
-                    <a class= "btn" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a>
+                    <button type="button" class="btn btn-outline-primary btn-sm createproj_btn"><a class= ".create_project_btn_projlist" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a></button>
+                    <!-- <a class= "btn" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a> -->
                 {% else %}
-                    <a class= "link-table" href="{% url 'team_detail' project.team.id %}">{{ project.team.name }}</a>
-                    <a href="{% url 'update_team' project.team.id %}"><i class="material-icons">edit</i></a>
-
+                    <div class="team_name"><a href="{% url 'team_detail' project.team.id %}">{{ project.team.name }}</a>
+                    <a class="align_items_project_projecttbl" href="{% url 'update_team' project.team.id %}"><i><b>edit</b></i></a>
+                    </div>
                 {% endif %}
 
                 {% if not project.field.exists %}
-                    <label>   {% trans 'no_fields' %}</label>
+                 <label>   {% trans 'no_fields' %}</label>
                 {% else %}
                     <label>   {{project.field.name}}</label>
                 {% endif %}
 
                 <label>{{project.time_to_complete}} {% trans 'in_days' %}</label>
 
-                <div class="">
+                <div class="project_list_tbl_project_modifications">
                     {% if user.is_speaker %}
                         <a href="{% url 'update_project' project.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"> </a>
                         <a href="{#   url 'duplicate_create_project' project.id team.id  #}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>

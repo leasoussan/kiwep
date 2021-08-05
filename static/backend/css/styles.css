@@ -390,7 +390,16 @@ nav{
     position: relative;
     left: 58px;
   }
+
+  /* DASHBOARD */
+
+  .video_speaker {
+ 
+    width: 450px;
+
+  }
 }
+
 
 
 
