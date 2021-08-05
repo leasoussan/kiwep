@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load mytags %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 <div class="team_detail_container">
     <div class="team_detail_header">
@@ -19,6 +20,7 @@
                 </div>
             {% endif %}
         {% endif %}
+
 
         </div>
 
@@ -94,28 +96,39 @@
 
 
             <div class="team_extra_information">
-<div class="team_participant_container">
-<div class="participants_team_header">
+                <div class="team_participant_container">
+
+                    <div class="participants_team_header">
+
+                        {% if user.is_speaker %}
+                            <a  href="{% url 'add_member_team' team.id %}"><i class="material-icons">add</i></a>
+                        {%  endif %}
+
+                        <h4 class="participants_title">{% trans 'participants' %}</h4>
+                    </div>
+                    <div class="participants_list_icon">
+                        {% for participant in team.participants.all %}
 
 
- {% if user.is_speaker %}
-                                <a  href="{% url 'add_member_team' team.id %}"><i class="material-icons">add</i></a>
-                            {%  endif %}
-    <label>{% trans 'participants' %}</label>
-</div>
-    <div class="participants_icon">
-        <img>
-    </div>
+                            <img class="avatar" src="{{ user.profile.profilepic_or_default }}" alt="">
 
-</div>
-            <div>
-                disucs
-            </div>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div class="team_discussion">
+                    <h4>{% trans 'discussions' %}</h4>
+                    <div class="discussion_list">
+                        {% include 'comments/discussion.html' %}
+                    </div>
+                </div>
             </div>
 
 
         {% endif %}
 
-   </div>
+    </div>
 
 </div>

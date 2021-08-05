@@ -2,28 +2,56 @@
 
 
 
-.container-fluid{
-    display: flex;
-    flex-direction: row;
-    margin-top: 50px;
-}
-
-
-.card_round{
+.dashboard_container{
     display: flex;
     flex-direction: column;
-    width: 150px;
-    height: 150px;
-    background-color: coral;
-    align-self: center;
-    justify-content: center;
-    align-items: center;
+    min-width: 90%;
+    margin: auto;
 }
 
+.dashboard_top_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 
-.number_tag{
-    width: 70px;
-    height: 70px;
-    font-family:"Aharoni CLM" ;
-    font-size: 3rem;
+.dashboard_logo{
+    width: 40%;
+}
+.video_dashboard_speaker{
+    display: flex;
+    justify-content: flex-end;
+    width: 60%;
+    padding: 5rem;
+}
+
+.dashboard_extra_navigation_link{
+    display: flex;
+    flex-direction: row;
+    min-width: 50%;
+    max-width: 60%;
+    min-height: 30%;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.dashboard_navigation_link_item{
+    width: 200px;
+    height: 200px;
+    border: solid black 4px;
+}
+
+.dashboard_speaker_information_header{
+    display: flex;
+    flex-direction: column;
+    font-weight: bolder;
+    font-size: larger;
+    color: #1c7430;
+    justify-content: center;
+    margin: auto;
+}
+
+.number_count_info{
+    font-size: larger;
+    font-weight: bolder;
 }

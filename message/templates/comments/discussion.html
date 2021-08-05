@@ -6,8 +6,8 @@
 
 
 
-<span class="small_title">{% trans 'welcome_to'%}: {{object}} {% trans 'discussion_board' %}</span>
-{#{% if object %}#}
+<span class="small_title"> {{object.name}} {% trans 'discussion_board' %}</span>
+
     {% if not object.discussion %}
  <a class="waves-effect waves-light btn modal-trigger" href="#add_discussion_box">{% trans 'start_discussion' %}</a>
     {% else %}

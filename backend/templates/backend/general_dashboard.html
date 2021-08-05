@@ -6,12 +6,11 @@
 
 
     {% block extrahead %}
-          <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet" >
+          <link href="{% static 'backend/css/dashboard.css' %}" rel="stylesheet" >
     {% endblock extrahead %}
 
 
-     <div id="username"><span>{% trans 'hello' %} {{ user.first_name }}</span></div>
-
+  <div><h3>{% trans 'welcome'%} {{user.first_name}}</h3></div>
 {% if user.is_representative %}
 
 {% include 'backend/representative_dashboard.html' %}

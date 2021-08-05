@@ -1,99 +1,135 @@
 {% load i18n %}
 {% load mytags %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 <div class="team_detail_container">
     <div class="team_detail_header">
 
         {% if not team.project %}
+            {% trans 'no_project_yet' %}
+        {% else %}
+
+
+            <h3 ><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name.title }} </a></h3>
 
         {% endif %}
 
-        <div class="team_project_status">
-
-            {% if not team.project %}
-
-            {% trans 'there_is_not_project_yet' %}
-
+                {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+                    <a class="waves-effect waves-light btn" href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a>
+                {% elif team.group_Institution == request.user.profile.class_level and request.user.profile in team.participants.all %}
+                    <a class="btn" href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a>
                 {% endif %}
 
         </div>
-    </div>
 
 
-    <div class="team_navigation_extra_button">
 
-        {% if team.project %}
-            <h2>{% trans 'team_name' %}</h2>
-            <p><a class="" href ="{% url 'project_detail' team.project.id %}">{% trans 'read_more_about_the_project' %}</a></p>
+        <div class="team_navigation_extra_button">
+
+            {% if team.project %}
+
+                <a class="btn project_link_extra" href ="{% url 'project_detail' team.project.id %}">{% trans 'read_more_about_the_project' %}</a></a>
+
+
+                {#    Button Modal Resources#}
+                <button type="button" class="btn project_link_extra" data-bs-toggle="modal" data-bs-target="#resource_modal ">
+                    {% trans 'resources' %}
+                </button>
+                <div class="photo-gallery">
+                    <button type="button" class="btn project_link_extra" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">
+                        {% trans 'photo_gallery' %}
+                    </button>
+
+                </div>
+            {% endif %}
+        </div>
+
+
+
+
+    <div class="team_detail_main_content">
+        {% if user.profile in team.participants.all or user.is_speaker  %}
+            <div class="team_mission_list overflow-auto">
+{% if team.project %}
+                {% for mission in team.project.mission_set.individual.available_mission %}
+
+                    <div class="team_mission_detail">
+
+                        <a class= "" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                        <lable class="team_mission_detail_attributed_to">
+
+                            {% if user.is_student %}
+                                {% if not mission.attributed_to %}
+                                    <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
+                                {% else %}
+                                    {% trans 'available_mission' %}
+                                {% endif %}
+                            {% endif %}
+                        </lable>
+                        <lable class="team_mission_detail_due_date">
+                            {{mission.due_date}}
+                        </lable>
+                        <label class="team_mission_detail_m_type">
+                            {{mission.get_mission_type_display}}
+                        </label>
+
+                        <label class="team_detail_mission_answer_status">
+
+                            {% if mission.answer.status %}
+                                {{answer.status}}
+                            {% else %}
+                                <p>{% trans 'no_answer' %}</p>
+                            {% endif %}
+                        </label>
+
+                    </div>
+                {% endfor %}
+
+    {% else %}
+                {% trans 'no_project_no_mission' %}
+    {% endif %}
+            </div>
+
+
+            <div class="team_extra_information">
+                <div class="team_participant_container">
+
+                    <div class="participants_team_header">
+
+                        {% if user.is_speaker %}
+                            <a  href="{% url 'join-team' team.id %}"><i class="material-icons">add</i></a>
+                        {%  endif %}
+
+                        <h4 class="participants_title">{% trans 'participants' %}</h4>
+                    </div>
+                    <div class="participants_list_icon">
+                        {% for participant in team.participants.all %}
+
+
+                            <img class="avatar" src="{{ user.profile.profilepic_or_default }}" alt="">
+
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div class="team_discussion">
+
+                    <div class="discussion_list">
+                        {% include 'comments/discussion.html' %}
+                    </div>
+                </div>
+            </div>
+
 
         {% endif %}
 
-        {#    Button Modal Resources#}
-        <button type="button" class="btn btn-success darker-res-btn" data-bs-toggle="modal" data-bs-target="#resource_modal ">
-            Resources
-        </button>
-        <div class="photo-gallery">
-            <button type="button" class="btn btn-info darker-gallery-btn" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">
-                Photo Gallery
-            </button>
-            <div></div>
-        </div>
     </div>
 
 </div>
 
-<div class="team_detail_main_content">
-
-    {% if user.profile in team.participants.all or user.is_speaker  %}
-        {% for mission in team.project.mission_set.individual.available_mission %}
-
-            <div class="team_mission_detail">
-
-                <a class= "" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
-                <div class="team_mission_detail_attributed_to">
-                    {% if user.is_speaker %}
-                        {% if mission.attributed_to %}
-                            {% trans 'attributed_to' %}
-                        {% else %}
-                            {% trans 'mission_unclaimed_yet' %}
-                        {% endif %}
-
-                    {% elif user.is_student %}
-                        {% if not mission.attributed_to %}
-                            <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
-                        {% else %}
-                            {% trans 'available_mission' %}
-                        {% endif %}
-                    {% endif %}
-                </div>
-                <div class="eam_mission_detail_due_date">
-                    {{mission.due_date}}
-                </div>
-                <div class="team_mission_detail_m_type">
-                    {{mission.get_mission_type_display}}
-                </div>
-
-                <div class="team_detail_mission_answer_status">
-
-                    {% if mission.answer.status %}
-                        {{answer.status}}
-                    {% else %}
-                        <p>{% trans 'no_answer' %}</p>
-                    {% endif %}
-                </div>
-
-            </div>
-
-
-            <div class="team_detail_right_section">
-
-            <div class="team_detail_participants">
-
-            </div>
-
-            <div class="team_detail_discussion_container">
-            </div>
 
 
 
@@ -101,15 +137,120 @@
 
 
 
-        {% endfor %}
-    {% endif %}
 
 
-
-
-
-    </div>
-
-
-
-</div>
+{#{% load i18n %}#}
+{#{% load mytags %}#}
+{#{% load crispy_forms_tags %}#}
+{##}
+{#<div class="team_detail_container">#}
+{#    <div class="team_detail_header">#}
+{##}
+{#        {% if not team.project %}#}
+{##}
+{#        {% endif %}#}
+{##}
+{#        <div class="team_project_status">#}
+{##}
+{#            {% if not team.project %}#}
+{##}
+{#            {% trans 'there_is_not_project_yet' %}#}
+{##}
+{#                {% endif %}#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{##}
+{##}
+{#    <div class="team_navigation_extra_button">#}
+{##}
+{#        {% if team.project %}#}
+{#            <h2>{% trans 'team_name' %}</h2>#}
+{#            <p><a class="" href ="{% url 'project_detail' team.project.id %}">{% trans 'read_more_about_the_project' %}</a></p>#}
+{##}
+{#        {% endif %}#}
+{##}
+{#    Button Modal Resources#}
+{#        <button type="button" class="btn btn-success darker-res-btn" data-bs-toggle="modal" data-bs-target="#resource_modal ">#}
+{#            Resources#}
+{#        </button>#}
+{#        <div class="photo-gallery">#}
+{#            <button type="button" class="btn btn-info darker-gallery-btn" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">#}
+{#                Photo Gallery#}
+{#            </button>#}
+{#            <div></div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#</div>#}
+{##}
+{#<div class="team_detail_main_content">#}
+{##}
+{#    {% if user.profile in team.participants.all or user.is_speaker  %}#}
+{#        {% for mission in team.project.mission_set.individual.available_mission %}#}
+{##}
+{#            <div class="team_mission_detail">#}
+{##}
+{#                <a class= "" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>#}
+{#                <div class="team_mission_detail_attributed_to">#}
+{#                    {% if user.is_speaker %}#}
+{#                        {% if mission.attributed_to %}#}
+{#                            {% trans 'attributed_to' %}#}
+{#                        {% else %}#}
+{#                            {% trans 'mission_unclaimed_yet' %}#}
+{#                        {% endif %}#}
+{##}
+{#                    {% elif user.is_student %}#}
+{#                        {% if not mission.attributed_to %}#}
+{#                            <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>#}
+{#                        {% else %}#}
+{#                            {% trans 'available_mission' %}#}
+{#                        {% endif %}#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#                <div class="eam_mission_detail_due_date">#}
+{#                    {{mission.due_date}}#}
+{#                </div>#}
+{#                <div class="team_mission_detail_m_type">#}
+{#                    {{mission.get_mission_type_display}}#}
+{#                </div>#}
+{##}
+{#                <div class="team_detail_mission_answer_status">#}
+{##}
+{#                    {% if mission.answer.status %}#}
+{#                        {{answer.status}}#}
+{#                    {% else %}#}
+{#                        <p>{% trans 'no_answer' %}</p>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="team_detail_right_section">#}
+{##}
+{#            <div class="team_detail_participants">#}
+{##}
+{#            </div>#}
+{##}
+{#            <div class="team_detail_discussion_container">#}
+{#            </div>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#    </div>#}
+{##}
+{##}
+{##}
+{#</div>#}

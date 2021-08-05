@@ -3,19 +3,42 @@
 {% load static%}
 
 
-<div class="video_sp">
-    <div><h3><b>{% trans 'welcome'%} {{user.first_name}}</b></h3></div>
 
-    <video class="video_speaker" controls >
-        <source src="{% static 'backend/images/video/en_speaker_intro.mp4' %}" type="video/mp4">
-        <b>{{video.title}}</b>
-    </video>
+<div class="dashboard_container">
+
+    <div class="dashboard_top_container">
+
+        <div class="dashboard_logo">
+            LOGO
+        </div>
+
+        <div class="video_dashboard_speaker">
+
+
+            <video class="video_speaker" controls >
+                <source src="{% static 'backend/images/video/en_speaker_intro.mp4' %}" type="video/mp4">
+                <b>{{video.title}}</b>
+            </video>
+        </div>
+
+    </div>
+
+
+
+    <div class="dashboard_extra_navigation_link">
+        <ul class="dashboard_navigation_link_item">
+         <h3 class="dashboard_speaker_information_header">   {% trans 'you-currently_have' %}
+           <label class="number_count_info"> {{ user.profile.team_set.all.count }}</label>
+            <a class="nav-link" href="{% url 'team_list' %}">{% trans 'team' %}</a></h3>
+        </ul>
+
+        <ul class="dashboard_navigation_link_item">            sdgsdgf
+        </ul>
+
+        <ul class="dashboard_navigation_link_item">
+        sdfsdfsd
+    </ul>
+
+
+    </div>
 </div>
-
-
-<!-- TODO: please lea lmk kjhslkjhds -->
-<!-- 
-{#to add in new version#}
-
-
-    <a class="nav-link" href="{% url 'team_list' %}">{% trans 'team' %}</a> -->
