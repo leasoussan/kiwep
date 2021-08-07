@@ -65,16 +65,16 @@
                 {% for mission in project.mission_set.all %}
 
                     <div class="project_mission_items">
+                          {% if mission.individualmission %}
                         <a class="link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
-                        ****{{ mission.due_date }}
-                        ****{{ mission.get_mission_type_display }}
+                    {% else %}
+                        <a class="link-table" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+                    {% endif %}
+                        {% trans 'due_date' %}{{ mission.due_date }}
+                                    __{{ mission.get_mission_type_display }}
                         {% if user.is_speaker %}
                             {% if mission.individualmission %}
-                                yosdfgdsgf
 
-                                <!--  <a href="{% url 'update_project' project.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"> </a>
-                        <a href="{#   url 'duplicate_create_project' project.id team.id  #}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>
-                        <a href="{% url 'delete_project' project.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"> </a> -->
                                 <a href="{% url 'delete_individual_mission' mission.id %}"><img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
                             {% else %}
                                 <a href="{% url 'delete_collective_mission' mission.id %}"><img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
@@ -204,7 +204,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    HERE YOU CAN PUT THE FORM
+                    <form method="POST" class="form-horizontal" action='{% url 'create_resource' project.id %}' >
+                {% csrf_token %}
+                {{ resources_form|crispy }}
+                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                    {% trans 'save'%}</button>
+            </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

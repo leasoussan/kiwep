@@ -1,1 +1,575 @@
->
+{% load mytags %}
+
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<div class="mission_detail_container">
+
+    <div class="mission_detail_header">
+        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' object.project.id %}">{% trans 'back_to_project_button' %}</a></button>
+        <!-- <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a> -->
+
+        <h3 class=""> {{ object.name }}</h3>
+
+
+        <div class="speaker_action_btn_group">
+            {% if user.is_speaker %}
+                <button type="button" class="btn btn-secondary btn-sm"><a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a></button>
+                <!-- <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a> -->
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <div class="mission_detail_main_content">
+        <div class="animation_div">
+            <img class="image_animation" src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
+        </div>
+        <div class="mission_detail_details">
+
+            <p class="mission_detail_description">{{object.description}}</p>
+
+
+            <p class="detail_time_to_complete">
+                <span>Time Left To Complete (days):</span>{{object.time_to_complete}} {% trans 'days' %}
+            </p>
+
+            <div class="mission_learning_info" >
+
+                <h4 class ="">{% trans 'acquired_skills' %}</h4>
+                {% for skill in object.acquired_skill.all %}
+                    <li class="">{{skill.name}},  </li>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="mission_related_elements_content">
+
+        {# here is the Resource List #}
+
+        <div class="mission_resource_list_items">
+
+
+
+            <div class="resource_container overflow-auto">
+                {% if object.project.resource_set.exists %}
+
+                    {% for resource in object.project.resource_set.all   %}
+
+
+                        <div class="resource_item_detail">
+
+                            <div class="resource_cover">
+
+                                <img class="image_resource" src="{{ resource.get_resourceImg_or_default }}">
+
+                            </div>
+
+
+                            <div class="missions_detail_resource">
+                                <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="mission_status_box">
+
+            {% if user.profile in object.project.team.participants.all %}
+                {% if individualmission and not object.attributed_to  %}
+
+                    <a class="btn claim_mission_button" href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>
+
+
+                {% elif individualmission and object.attributed_to %}
+
+                    {% if object.attributed_to == request.user.profile %}
+                        <div class="mission_attributed_to">
+
+
+                                <h4 class="small_title">{% trans 'mission_is_attributed_to_you' %}
+                                    {{ object.attributed_to }}</h4>
+                                <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a>
+
+
+                        </div>
+                          <div class="answer_content">
+                            <form method="POST" action="">
+                    {% csrf_token %}
+                    {{ answer.status_form }}
+                </form>
+                                {% include "answer/answer.html"  with object=object %}
+
+                            </div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{##}
+{##}
+{#-----------------------------------------------------------------CURRENT#}
+{#{% block content %}#}
+{#    <div class="mission_container">#}
+{##}
+{#        <div>#}
+{#            <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a>#}
+{#        </div>#}
+{##}
+{#        <div class=" mission_description">#}
+{#            <h3 class="title">{{ object.project.name }}</h3>#}
+{#            <p class="mission_description_text"> {{ object.description }}</p>#}
+{#            <div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{##}
+{##}
+{#        <div class="row mission_extra_detail_box" >#}
+{#            <div class="col mission_resource">#}
+{#                <div class="mission_resource_add_btn">#}
+{#                    <!-- Modal Trigger -->#}
+{#                    <button data-target="add_resource" class="btn modal-trigger add_button">{% trans 'add' %}</button>#}
+{##}
+{#                </div>#}
+{#                <div class="mission_resource_list">#}
+{##}
+{#{% if object.project.resources %}#}
+{##}
+{#                    {% for resource in object.project.resources.all   %}#}
+{#                        <div>#}
+{#                            <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
+{#{% endif %}#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="col mission_detail_extra" >#}
+{#                <div class="mission_detail_edit_button">#}
+{#                    {% if user.is_speaker %}#}
+{#                        <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#                <div class="detail_container">#}
+{#                    <div class ="col mission_detail_box">#}
+{##}
+{#                        <div class ="detail_title">#}
+{#                            <h5 class ="small_title">{% trans 'details_header' %}</h5>#}
+{#                        </div>#}
+{##}
+{##}
+{#                        <div class="table_detail_mission ">#}
+{#                            <ul>#}
+{#                                <li>#}
+{#                                    <span class="label">{% trans 'field' %}:</span>#}
+{#                                    <span class="value">{{object.field}}</span>#}
+{##}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <span class="label">{% trans 'dead_line' %}:</span>#}
+{#                                    <span class="value">{{object.due_date}}</span>#}
+{#                                </li>#}
+{#                                <li >#}
+{#                                    <span class="label">{% trans 'difficulty ' %}:</span>#}
+{#                                    <span class="value">{{object.level}}</span>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <span class="label">{% trans 'points' %}:</span>#}
+{#                                    <span class="value">{{object.points}}</span>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <span class="label">{% trans 'typ' %}:</span>#}
+{#                                    <span class="value">{{object.points}}</span>#}
+{#                                </li>#}
+{#                            </ul>#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <div class="col acquired_skills">#}
+{#                        <h5 class ="small_title">{% trans 'acquired_skills' %}</h5>#}
+{##}
+{#                        <div>#}
+{#                            {% for skill in object.acquired_skill.all %}#}
+{#                                <li class="collection-item">{{skill.name}}</li>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div class ="answer_block">#}
+{##}
+{# --------  Speaker__________________________________#}
+{# ______________________________________________________________________________________________________________________________INDIVIDUAL attributed_to___ CALL_______________#}
+{##}
+{#            {% if user.is_speaker %}#}
+{##}
+{#                {% if individualmission  %}#}
+{#                    {% if not object.attributed_to  %}#}
+{#                        <div class="mission_status">#}
+{#                        <h5>{% trans 'mission_status' %}:</h5>#}
+{#                        </div>#}
+{#                        <p>   {% trans 'mission_unclaimed' %}</p>#}
+{#                    {% else %}#}
+{#                        <div>#}
+{#                            <h3>{% trans 'mission_is_attributed_to' %}{{ object.attributed_to }}</h3>#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{##}
+{##}
+{##}
+{#                {% elif collectivemission  %}#}
+{#                    {% if not object.attributed_to.all.exists %}#}
+{##}
+{#                        <div>{% trans 'no_one_joined_yet' %}</div>#}
+{#                        {% if user.profile ==  object.team.manager %}#}
+{#                            <div>  <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a></div>#}
+{#                        {% endif %}#}
+{##}
+{#                    {% else %}#}
+{#                        {% for participant in object.attributed_to.all %}#}
+{#                            <li> {{ participant }}</li>#}
+{##}
+{#                        {% endfor %}#}
+{#                    {% endif %}#}
+{##}
+{#                {% endif %}#}
+{##}
+{##}
+{#            {% elif user.is_student %}#}
+{##}
+{#                {% if user.profile in object.project.team.participants.all %}#}
+{#                    {% if individualmission and not object.attributed_to  %}#}
+{#                        <div>#}
+{#                            <a href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>#}
+{#                        </div>#}
+{##}
+{#                    {% elif individualmission and object.attributed_to %}#}
+{##}
+{#                        {% if object.attributed_to == request.user.profile %}#}
+{#                            <div class="mission_attributed_to">#}
+{##}
+{#                                <h4 class="small_title">{% trans 'mission_is_attributed_to_you' %}:#}
+{#                                    {{ object.attributed_to }}</h4>#}
+{##}
+{#                                <div class="answer_content">#}
+{#                                    {% include "answer/answer.html"  with object=object %}#}
+{##}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                        {% endif %}#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#                ______________________________________________________________________________________________________________________________________________COLLECTIVE attributed_to Call#}
+{#                    {% elif collectivemission and not object.attributed_to.all.exists %}#}
+{##}
+{#                        <h5 class="small_title">   {% trans 'no_one_joined_yet' %}</h5>#}
+{##}
+{#                    {% elif collectivemission  %}#}
+{#                        <div>#}
+{#                            <h5 class="small_title">{% trans 'as_of_now_' %} {{ object.attributed_to.all.count }} {% trans 'joined_the_mission' %}</h5>#}
+{##}
+{#                            {% if user.profile not in object.attributed_to.all %}#}
+{##}
+{#                                <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_mission' %}</a>#}
+{##}
+{#                            {% else %}#}
+{#                                <a href="{% url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>#}
+{#                            {% endif %}#}
+{#                        </div>>#}
+{#                    {% endif %}#}
+{##}
+{#                {% endif %}#}
+{#            {% endif %}#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{#        <div class ="answer_status">#}
+{#            <div class="answer">#}
+{##}
+{#            {% if user.is_speaker %}#}
+{##}
+{#                {% for answer in object.answer.all  %}#}
+{##}
+{#                    {% if answer.response_comment or answer.response_file %}#}
+{#                        <li>     {% trans 'file_lable' %} :{{answer.response_file}}</li>#}
+{#                        <li>{% trans 'text_lable' %}: {{answer.response_comment}}</li>#}
+{##}
+{#                        <div class="answer_content">#}
+{#                        <form method="POST" action="{% url 'answer_edit_status' answer.id %}">#}
+{#                            {% csrf_token %}#}
+{##}
+{#                            {{ answer.status_form }}#}
+{#                        </form>#}
+{##}
+{#                        {% if answer.status == 'a' %}#}
+{##}
+{#                            {% if not answer.grade %}#}
+{#                                <div class="grade_content">#}
+{#                                <form method="POST" action="{% url 'answer_grade_add' answer.id %}">#}
+{#                                    {% csrf_token %}#}
+{##}
+{#                                    {{ answer.grade_form }}#}
+{#                                </form>#}
+{#                            {% else %}#}
+{#                                <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>#}
+{#                            {% endif %}#}
+{#                        </div>#}
+{#                        {% else %}#}
+{##}
+{#                            {% trans 'mission_wasnt_accepted_yet' %}#}
+{#                        {% endif %}#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{##}
+{#                {% if user.is_student %}#}
+{##}
+{##}
+{#                    {% if answer.response_comment or answer.response_file %}#}
+{##}
+{#                        <div class="answer_content">#}
+{#                            <h3>{% trans 'add_new_answer' %}</h3>#}
+{#                            <form method="POST" action="{% url 'answer_edit_status' answer.id %}">#}
+{#                                {% csrf_token %}#}
+{##}
+{#                                {{ answer.status_form }}#}
+{#                            </form>#}
+{##}
+{#                            {% if answer.status %}#}
+{#                                <p> {% trans 'answer_status' %}: {{ answer.status }} </p>#}
+{#                            {% elif answer.status == 'a' %}#}
+{#                                {% if not answer.grade %}#}
+{##}
+{#                                    <p>{% trans 'mission_not_graded' %}</p>#}
+{#                                {% else %}#}
+{#                                    {% trans 'grade_for_mission ' %}: {{ answer.grade }}#}
+{#                                {% endif %}#}
+{#                                </div>#}
+{#                            {% else %}#}
+{##}
+{#                                <p> {% trans 'mission_wasnt_accepted_yet' %}</p>#}
+{#                            {% endif %}#}
+{#                        </div>#}
+{#                        </div>#}
+{##}
+{#                    {% endif %}#}
+{#                {% endif %}#}
+{#        <div class="comment_section">#}
+{##}
+{#            {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}#}
+{##}
+{#                <!-- Modal Trigger -->#}
+{#                <a class="waves-effect waves-light btn modal-trigger" href="#add_discussion">{% trans 'discussion_mission' %}</a>#}
+{##}
+{##}
+{#                <ul class="collapsible discussion_table">#}
+{#                    {% for discussion in object.discussions.all %}#}
+{#                        <li>#}
+{#                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ discussion.title }}</div>#}
+{##}
+{#                            <div class="collapsible-body">#}
+{#                                {% if not discussion.replies.exists %}#}
+{##}
+{#                                    <div class="add_comment_input">#}
+{##}
+{#                                        <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}">#}
+{#                                            {% csrf_token %}#}
+{#                                            {{ discussion.comment_form|materializecss }}#}
+{#                                            <div class="col s1">#}
+{#                                                <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
+{#                                            </div>#}
+{#                                        </form>#}
+{##}
+{##}
+{#                                    </div>#}
+{##}
+{#                                {% else %}#}
+{##}
+{##}
+{#                                    {% for comment in discussion.replies.all %}#}
+{#                                        {% if comment.user.profile == request.user.profile %}#}
+{##}
+{#                                            <div class="speech-bubble-left user_comment">#}
+{#                                                {{ comment.comment_text }}#}
+{#                                            </div>#}
+{#                                        {% else %}#}
+{#                                            <div class="speech-bubble-right profile_comment">#}
+{#                                                {{ comment.comment_text}}#}
+{#                                            </div>#}
+{#                                        {% endif %}#}
+{#                                    {% endfor %}#}
+{##}
+{##}
+{#                                    <div class="add_comment_input">#}
+{##}
+{#                                    <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >#}
+{#                                        {% csrf_token %}#}
+{#                                        {{ discussion.comment_form|materializecss }}#}
+{#                                        <div class="col s1">#}
+{#                                            <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
+{#                                        </div>#}
+{#                                    </form>#}
+{#                                {% endif %}#}
+{##}
+{#                        </ul>#}
+{#                    {% endfor %}#}
+{#            {% endif %}#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#    ________________________________________________________MODALS#}
+{##}
+{##}
+{#    <div id="add_resource" class="modal resource_modal">#}
+{#        <div class="row modal-content">#}
+{#            <div class="col s12">#}
+{#                <ul class="tabs">#}
+{#                    <li class="tab col s3"><a href="#new_resource">{%  trans 'project_mission_resource' %}</a></li>#}
+{#                    <li class="tab col s3"><a class="active" href="#choose_resource">{% trans 'choose_resource' %}</a></li>#}
+{##}
+{#                </ul>#}
+{#            </div>#}
+{##}
+{##}
+{#            <div id="new_resource" class="col s12">#}
+{#                {% if object %}#}
+{#                    <form method="POST" class="form-horizontal" action='{% url 'create_resource' object.project.id %}' >#}
+{#                        {% csrf_token %}#}
+{#                        {{ resources_form|materializecss }}#}
+{#                        <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">#}
+{#                            {% trans 'save'%}</button>#}
+{#                    </form>#}
+{#                {% endif %}#}
+{#            </div>#}
+{#            <div id="choose_resource" class="col s12">#}
+{#                Chose from  resource in project#}
+{#            </div>#}
+{##}
+{##}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{##}
+{##}
+{##}
+{#    <!-- Modal Structure  Discussion -->#}
+{##}
+{#    <div id="add_discussion" class="modal bottom-sheet">#}
+{#        <div class="row modal-content">#}
+{##}
+{#            <h4>{% trans 'start_disucssion' %}</h4>#}
+{#            {% if individualmission %}#}
+{##}
+{#                {% include 'comments/discussion.html' with object=individualmission %}#}
+{##}
+{#            {% else %}#}
+{##}
+{#                {% include 'comments/discussion.html' with object=collectivemission %}#}
+{#            {% endif %}#}
+{##}
+{##}
+{##}
+{#        </div>#}
+{##}
+{#        <div class="modal-footer">#}
+{#            <a class="modal-action modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#{% endblock %}#}
+{##}
+{##}
+{##}
+{##}
+{#{% block javascript %}#}
+{##}
+{#    <script>#}
+{#        $(document).ready(function(){#}
+{#            $('.modal').modal();#}
+{##}
+{#            $('.tabs').tabs();#}
+{##}
+{#            $('.collapsible').collapsible();#}
+{##}
+{#        });#}
+{#    </script>#}
+{##}
+{#    <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>#}
+{#    <script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>#}
+{##}
+{#{% endblock javascript %}#}

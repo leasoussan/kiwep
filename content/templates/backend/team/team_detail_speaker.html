@@ -53,7 +53,7 @@
         {% if user.profile in team.participants.all or user.is_speaker  %}
             <div class="team_mission_list overflow-auto">
 
-                {% for mission in team.project.mission_set.individual.available_mission %}
+                {% for mission in team.project.mission_set.all.available_mission %}
 
                     <div class="team_mission_detail">
 

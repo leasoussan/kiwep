@@ -22,33 +22,33 @@
                 {% with answers=object.answer.all.last %}
 
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i><label>{% trans 'your_last_answer' %}</label></div>
-                          {% trans 'status' %}: {{ object.answer.get_status_display }}
+                    <div class="collapsible-header"><i class="material-icons">filter_drama</i><label>{% trans 'your_last_answer' %}</label></div>
+                    {% trans 'status' %}: {{ object.answer.get_status_display }}
 
-                        {% if answer.grade %}
-                            {% trans 'and_graded :' %}
-                            {{ answer.grade }}
+                    {% if answer.grade %}
+                        {% trans 'and_graded :' %}
+                        {{ answer.grade }}
 
-                            {% if answer.status %}
-                                <p> {% trans 'answer_status' %}: {{ answer.status }} </p>
-                            {% elif answer.status == 'a' %}
-                                {% if not answer.grade %}
+                        {% if answer.status %}
+                            <p> {% trans 'answer_status' %}: {{ answer.status }} </p>
+                        {% elif answer.status == 'a' %}
+                            {% if not answer.grade %}
 
-                                    <p>{% trans 'mission_not_graded' %}</p>
-                                {% else %}
-                                    {% trans 'grade_for_mission ' %}: {{ answer.grade }}
-                                {% endif %}
-
+                                <p>{% trans 'mission_not_graded' %}</p>
                             {% else %}
-
-                                <p> {% trans 'mission_wasnt_accepted_yet' %}</p>
+                                {% trans 'grade_for_mission ' %}: {{ answer.grade }}
                             {% endif %}
 
+                        {% else %}
 
+                            <p> {% trans 'mission_wasnt_accepted_yet' %}</p>
                         {% endif %}
-{% endwith %}
-                    </li>
-  {% with answers=object.answer.all %}
+
+
+                    {% endif %}
+                {% endwith %}
+            </li>
+                {% with answers=object.answer.all %}
                     {% for answer in answers %}
                         <li class="#">
                         <div class="collapsible-header answer_line">
@@ -124,44 +124,14 @@
                 {#                                </div>#}
                 {#                                </div>#}
                 {#                            {% endwith %}#}
+            {% else %}
+
+                {% trans 'no_answered_yet' %}
+
             {% endif %}
-
-
     {% endif %}
 {% endif %}
 
 
 
 
-
-{#                    <div class="answer_content" style="background-color: yellow">#}
-{#                        <h3>{% trans 'add_new_answer' %}</h3>#}
-{#                        <form method="POST" action="{% url 'answer_edit_status' answer.id %}">#}
-{#                            {% csrf_token %}#}
-{##}
-{##}
-{#                            {{ answer.status_form }}#}
-{#                            <button type="submit">{% trans 'send_answer' %}</button>#}
-{#                        </form>#}
-{#                    </div>#}
-{#                        </form>#}
-
-{##}
-{##}
-{#<div class="add_answer">#}
-{##}
-{#    <span class="answer_label">{% trans 'add_answer'%} to  {{object}} </span>#}
-{#    <form method="POST" action = "{% url 'answer_add' %}?next={{ request.path }} " enctype="multipart/form-data" >#}
-{#        {% csrf_token %}#}
-{##}
-{##}
-{#        {{ object.answer_form|materializecss }}#}
-{##}
-{##}
-{#        <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'save_answer' %}#}
-{#        </button>#}
-{#    </form>#}
-{##}
-{#</div>#}
-{##}
-{##}
