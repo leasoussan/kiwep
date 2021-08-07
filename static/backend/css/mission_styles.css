@@ -101,3 +101,18 @@ button .edit_button{
 
 
 
+/*--------------------------SPEAKAER ANSWER BOARD*/
+
+.speaker_answer_board{
+    width: 80%;
+
+    border: solid orangered 1px;
+}
+
+.table_missions_list{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+        border: solid purple 1px;
+}
