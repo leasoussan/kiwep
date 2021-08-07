@@ -13,7 +13,6 @@
     margin-top: 2rem;
     margin-bottom:2rem;
     width: 95%;
-
 }
 
 .team_project_detail{
@@ -22,16 +21,25 @@
     margin-bottom: 2rem;
 }
 
-.team_detail_title{
+.team_project_detail > h2{
+    margin-left: 75px;
+}
+
+/* .team_detail_title{
     width: 50%;
     justify-content: flex-start;
-}
+} */
 
 .speaker_action_btn_group{
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 90%;
     justify-content: flex-end;
+
+}
+
+.speaker_action_btn_group > button{
+    margin-left: 20px;
 }
 
 .team_navigation_extra_button {
@@ -57,7 +65,6 @@
     min-height: 90%;
     flex-wrap: wrap;
     margin-top: 2rem;
-
 }
 
 .team_mission_list{
@@ -68,6 +75,7 @@
     max-height: 80vh;
     flex-wrap: wrap;
     margin-top: 2rem;
+
 }
 
 .team_mission_detail{
@@ -76,7 +84,7 @@
     width: 25%;
     height: 250px;
     margin: 2rem;
-    border:solid 2px black;
+    border: 2px solid black;
     padding: 2rem;
     justify-content: space-between;
     align-items: center;
@@ -95,12 +103,12 @@
 .team_participant_container{
     display: flex;
     flex-direction: column;
-
     width: 60%;
     min-height: 30%;
     max-height: 50%;
     padding: 1rem;
-    border: 3px solid ghostwhite;
+    border: 3px solid rgb(233, 233, 233);
+    margin-left: 110px;
 }
 .participants_title{
     font-size: larger;
@@ -113,6 +121,9 @@
     flex-direction: row;
 }
 
+.add_person{
+    margin-left: 10px;
+}
 .participants_list_icon{
     display: flex;
     flex-direction: row;
@@ -130,13 +141,14 @@
 }
 
 
-.team_discussion{
+.team_discussion_container{
     display: flex;
     flex-direction: column;
-    min-width: 30%;
+    max-width: 60%;
     min-height: 30%;
-    border: teal 2px solid;
+    border: 2px solid teal;
     margin-top: 4rem;
+    margin-left: 110px;
 }
 
 .discussion_list{
@@ -145,8 +157,12 @@
     width: 80%;
 }
 
+.add_mission{
+   margin-left: 75px;
+    
+}
 
-/*_______STUDENT TEAM DETAL STYLE_____________________*/
+/*_______STUDENT TEAM DETAIL STYLE_____________________*/
 
 .team_project_status{
     background-color: yellow;
@@ -168,4 +184,70 @@
     justify-content: center;
     margin: auto;
 
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 670px){
+    
+    .team_detail_header{
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+        margin-bottom:2rem;
+        width: 60%;
+    }
+
+    .team_project_detail{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 0;
+    }
+
+    .team_project_detail > h2{
+        margin-left: 0px;
+    }
+
+    .speaker_action_btn_group{
+        margin-left: 100px;
+    }
+
+    .speaker_action_btn_group > button{
+        margin-left: 8px;
+
+    }
+
+    .sm-btn{
+        height: 35px;
+    }
+
+    .team_navigation_extra_button {
+        position: relative;
+        right: 70px;
+        margin-top: 1rem;
+    }
+
+    
+    .add_mission{
+        margin-left: 5px;
+    }
+
+    .team_participant_container{
+        width: 80%;
+        position: relative;
+        right: 180px;
+        
+    }
+
+    .team_discussion_container{
+        max-width: 80%;
+        position: relative;
+        bottom: 232px;
+        left: 135px;
+        margin-left: 0;
+    }
+
+    .team_detail_main_content{
+        margin-top: 1rem;
+    }
 }

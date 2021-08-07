@@ -5,24 +5,22 @@
 
 <div class="team_detail_container">
     <div class="team_detail_header">
-
         {% if not team.project %}
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ChoseProject">{% trans 'choose_project_team' %}</button>
         {% else %}
 
             <div class="team_project_detail">
-            <h3 ><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name.title }} </a></h3>
+                <h2><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name.title }} </a></h2>
             {% if request.user.profile == team.manager %}
                 <div class="speaker_action_btn_group">
-                    <a class="waves-effect waves-light btn" href="{% url 'update_team' team.id %}">{% trans 'edit team' %}</a>
-
-                    <a href="{% url 'delete_team' team.id %}" > <i></i>{% trans 'delete_team' %}</a>
+                    <button type="button" class="btn btn-warning sm-btn"><a href="{% url 'update_team' team.id %}">{% trans 'edit' %}</a></button>
+                    <button type="button" class="btn btn-secondary sm-btn"> <a href="{% url 'delete_team' team.id %}" >{% trans 'delete_team' %}</a></button>
                 </div>
             {% endif %}
         {% endif %}
 
 
-        </div>
+            </div>
 
 
 
@@ -30,15 +28,15 @@
 
             {% if team.project %}
 
-                <a class="btn project_link_extra" href ="{% url 'project_detail' team.project.id %}">{% trans 'read_more_about_the_project' %}</a></a>
+                <a class="btn project_link_extra btn-sm" href ="{% url 'project_detail' team.project.id %}">{% trans 'read_more_about_the_project' %}</a></a>
 
 
                 {#    Button Modal Resources#}
-                <button type="button" class="btn project_link_extra" data-bs-toggle="modal" data-bs-target="#resource_modal ">
+                <button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#resource_modal ">
                     {% trans 'resources' %}
                 </button>
                 <div class="photo-gallery">
-                    <button type="button" class="btn project_link_extra" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">
+                    <button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">
                         {% trans 'photo_gallery' %}
                     </button>
 
@@ -51,14 +49,15 @@
 
     <div class="team_detail_main_content">
         {% if user.profile in team.participants.all or user.is_speaker  %}
+     
             <div class="team_mission_list overflow-auto">
-
+                <div class="add_mission"><a href="#"><b>Add Mission</b></a></div>
                 {% for mission in team.project.mission_set.individual.available_mission %}
 
                     <div class="team_mission_detail">
 
                         <a class= "" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
-                        <lable class="team_mission_detail_attributed_to">
+                        <label class="team_mission_detail_attributed_to">
                             {% if user.is_speaker %}
                                 {% if mission.attributed_to %}
                                     {% trans 'attributed_to' %}
@@ -73,10 +72,10 @@
                                     {% trans 'available_mission' %}
                                 {% endif %}
                             {% endif %}
-                        </lable>
-                        <lable class="team_mission_detail_due_date">
+                        </label>
+                        <label class="team_mission_detail_due_date">
                             {{mission.due_date}}
-                        </lable>
+                        </label>
                         <label class="team_mission_detail_m_type">
                             {{mission.get_mission_type_display}}
                         </label>
@@ -99,12 +98,13 @@
                 <div class="team_participant_container">
 
                     <div class="participants_team_header">
+                        <h4 class="participants_title">{% trans 'participants' %}</h4>
 
                         {% if user.is_speaker %}
-                            <a  href="{% url 'add_member_team' team.id %}"><i class="material-icons">add</i></a>
+                            <div class="add_person"><a href="{% url 'add_member_team' team.id %}"><img src="/static/backend/images/kiwep/addperson.png" alt="add"></a></div>
                         {%  endif %}
 
-                        <h4 class="participants_title">{% trans 'participants' %}</h4>
+                        
                     </div>
                     <div class="participants_list_icon">
                         {% for participant in team.participants.all %}
@@ -118,7 +118,7 @@
                     </div>
                 </div>
 
-                <div class="team_discussion">
+                <div class="team_discussion_container">
                     <h4>{% trans 'discussions' %}</h4>
                     <div class="discussion_list">
                         {% include 'comments/discussion.html' %}
