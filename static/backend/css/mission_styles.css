@@ -53,6 +53,7 @@ button .edit_button{
     flex-direction: row;
     width: 95%;
     min-height: 30vh;
+    max-height: 60vh;
     margin-top: 3rem;
     justify-content: flex-end;
 }
@@ -63,32 +64,56 @@ button .edit_button{
     width: 40%;
 }
 
-.btn_control_mission{
+.mission_status_box{
     display: flex;
-    justify-content:flex-end;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 3rem;
+    width: 50%;
+    align-items: center;
 }
 
-.btn_control_mission button{
+.mission_attributed_to{
+display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.mission_status_box button{
     margin-left: 50px;
 }
+
+.small_title{
+    font-weight: bolder;
+}
+
 .resource_container{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-
+    width: 100%;
+    flex-wrap: wrap;
+    min-height: 30%;
+    max-height: 60%;
 }
+
 .mission_resource_list_items{
     display: flex;
-    flex-direction: column;
-      width: 100%;
+    flex-direction: row;
+      width: 50%;
+
+
    /*border:2px solid red;*/
 }
 
+
+.image_resource{
+    min-width: 10rem;
+    min-height: 1rem;
+}
+
 .missions_detail_resource{
-    width: 10rem;
-    height: 10rem;
-    border: red solid 2px;
-    margin: 1rem;
+
 }
 
 .missions_detail_resource a{
@@ -99,5 +124,27 @@ button .edit_button{
 
 }
 
+.claim_mission_button{
+    background-color: gold;
 
+}
 
+.unclaim_mission_button{
+    background-color:lawngreen;
+    margin-top: 2rem;
+    width: 10rem;
+}
+
+/*--------------------------SPEAKER ANSWER BOARD*/
+
+.speaker_answer_board{
+    width: 80%;
+}
+
+.table_missions_list{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+
+}
