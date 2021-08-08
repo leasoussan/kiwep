@@ -49,15 +49,10 @@
 
     <div class="team_detail_main_content">
         {% if user.profile in team.participants.all or user.is_speaker  %}
-     
+    
             <div class="team_mission_list overflow-auto">
-<<<<<<< HEAD
                 <div class="add_mission"><a href="#"><b>Add Mission</b></a></div>
-                {% for mission in team.project.mission_set.individual.available_mission %}
-=======
-
                 {% for mission in team.project.mission_set.all.available_mission %}
->>>>>>> ux_features
 
                     <div class="team_mission_detail">
 

@@ -4,7 +4,8 @@
     display: flex;
     flex-direction: column;
     justify-content:start;
-    width: 100% ;
+    width: 100%;
+    margin: 0 auto;
     min-height: 100vh;
     padding: 0rem 5rem;
 }
@@ -16,6 +17,7 @@
     max-width: 95%;
     align-content: center;
 }
+
 .project_detail_title{
     width: 70%;
     justify-content: flex-start;
@@ -32,18 +34,20 @@
     flex-direction: column;
     width: 50%;
     justify-content: space-between;
+    margin-right: 45px;
 }
 
 .project_detail_description{
     min-height: 50%;
 }
+
 .speaker_action_btn_group{
     display: flex;
     flex-direction: row;
     width: 40%;
     justify-content: flex-end;
-
 }
+
 .animation_div{
     display: flex;
     justify-content: flex-end;
@@ -96,7 +100,7 @@
     align-content: center;
     /*border: solid black 2px;*/
     width: 60%;
-    margin-left: 2rem;
+    /* margin-left: 2rem; */
     padding: 1rem;
     max-height: 70vh;
 }
@@ -109,19 +113,25 @@
     margin-left: 10%;
 }
 
-.project_mission_items{
-    width: 70%;
-    height: 5rem;
-    border: black solid 1px;
-    margin-left: 10%;
-}
 
+/* .mission_items_font{
+    color: rgb(53, 173, 212);
+} */
 
 .project_mission_items{
     width: 80%;
-
     min-height: 5rem;
-    margin-top: 2rem;
+    margin-top: 2rem; 
+    border: 1px solid black;
+    margin-left: 10%;
+}
+
+.project_mission_items .mission_name{
+    margin-left: 5px;
+}
+
+.project_mission_items span {
+    margin-left: 40px;
 }
 
 
@@ -200,10 +210,15 @@
     justify-content: space-between;
 }
 
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    border: none !important;
+    background-color: rgb(99, 162, 185) !important;
+}
 .project_details_box{
     display: flex;
     flex-direction: row;
-    border:  2px solid red;
+    border:  2px solid rgb(211, 211, 211);
     min-height: 5rem;
     min-width: 80%;
     padding: 2rem;
@@ -212,7 +227,56 @@
 }
 
 /* RESPONSIVE */
-@media (max-width: 670px){
+@media only screen and (max-width: 670px){
+
+    .project_detail_header{
+        margin-bottom:1rem;
+        width: 100%;
+        align-content: none;
+    }   
+
+    .project_title{
+        display: flex;
+        width: 70%;
+        justify-content: none;
+        margin-right: 30px;
+        position: relative;
+        right: 73px;
+    }
+
+    .speaker_action_btn_group{
+        width: 40%;
+        justify-content: flex-end;
+        margin-left: 120px;
+    }
+
+    .animation_div{
+       min-width: 50%;
+    }
+    
+    .image_animation{
+        width: 200px;
+        height: 200px;
+        /* margin-right: 5; */
+    }
+
+    .project_detail_container{
+       flex-wrap: wrap;
+    }
+
+    .project_detail_main_content {
+        flex-wrap: wrap;
+        width: 100%;
+        /* justify-content: flex-start; */
+        margin-right: auto;
+        /* margin-top: 2rem;
+        margin-bottom: 2rem; */
+    }
+    .project_detail_details{
+        min-width: 50%;
+        flex-direction: column;
+        justify-content: none;
+    }
 
     .project_list_container{
         width: 90%;
@@ -230,9 +294,42 @@
         width: 35%;
     }
 
-    .project_list_page_header {
+    .project_list_page_header{
         width: 300px;
         padding: 20px;
+    }
+     
+    .project_related_elements_content{
+        width: 100%;
+    }
+
+    .project_mission_list_items{
+        width: 100%;
+        margin-left: 0;
+        margin-right: auto;
+        padding: 0;
+        max-height: 70vh;
+    }
+
+    .project_mission_header{
+        flex-direction: column;
+        justify-content: none;
+        width: 100%;
+        /* margin-left: 0;
+        margin-right: auto; */
+    }
+
+    .sm_btn{
+        width: 100px;
+        height: 30px;
+        line-height: 5px;
+        font-size: smaller;
+    }
+    .sm_btn1{
+        width: 100px;
+        height: 30px;
+        line-height: 10px;
+        font-size: smaller;
     }
 
     .project_details_box{
@@ -260,4 +357,16 @@
          margin-top: 30px;
      }
 
+     .project_resource_header{
+         flex-direction: column;
+     }
+
+     .medium_resource_title{
+        /* padding: 6px 12px; */
+     }
+
+
+     .project_resource_content{
+        width:100%;
+     }
 }
