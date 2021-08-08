@@ -31,13 +31,13 @@
                 <p class="project_detail_description">{{project.description}}</p>
 
                 <p class="detail_time_to_complete">
-                    <span>Time Left To Complete (days):</span>
+                    <span><b>{% trans 'time_to_complete' %}:</b></span>
                     {{project.time_to_complete}} {% trans 'days' %}
                 </p>
 
                 <div class="project_learning_info">
 
-                    <h4 class="">{% trans 'acquired_skills' %}</h4>
+                   <span><b>{% trans 'acquired_skills' %}</b><span>
                     {% for skill in mission.acquired_skills.all %}
 
                         <li class="skill_decoration">{{skill.name}}</li>
@@ -56,7 +56,7 @@
             <div class="project_mission_list_items overflow-auto">
                 <div class="project_mission_header">
                     <p><b>{% trans 'missions' %}</b></p>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_mission_modal">
+                    <button type="button" class="btn btn-primary sm_btn" data-bs-toggle="modal" data-bs-target="#add_mission_modal">
                         add_mission
                     </button>
 
@@ -66,27 +66,28 @@
 
                     <div class="project_mission_items">
                           {% if mission.individualmission %}
-                        <a class="link-table" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                        <a class="mission_name" href="{% url 'individual_mission_detail' mission.id %}"><b>{{ mission.name }}</b></a>
                     {% else %}
-                        <a class="link-table" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+                        <a class="mission_name" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
                     {% endif %}
-                        {% trans 'due_date' %}{{ mission.due_date }}
-                                    __{{ mission.get_mission_type_display }}
+                        <span>{% trans 'due_date' %}{{ mission.due_date }}</span>
+                                   <span><b>{{ mission.get_mission_type_display }}</b></span>
+                        
                         {% if user.is_speaker %}
                             {% if mission.individualmission %}
-
+                            <span>
                                 <a href="{% url 'delete_individual_mission' mission.id %}"><img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
                             {% else %}
                                 <a href="{% url 'delete_collective_mission' mission.id %}"><img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
                             {% endif %}
 
                             {% if mission.individualmission %}
-                                <a href="{% url 'update_individual_mission' mission.id %}"> <img src="/static/backend/images/kiwep/edit.png" alt="edit"></a>
+                                <a href="{% url 'update_individual_mission' mission.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a>
 
                             {% else %}
                                 <a href="{% url 'update_collective_mission' mission.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a>
                             {% endif %}
-
+                            </span>
                         {% endif %}
                     </div>
                 {% endfor %}
@@ -105,7 +106,7 @@
 
                     <div class="btn_control_project1">
                         <!-- Button trigger modal add Resource -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource">
+                        <button type="button" class="btn btn-primary sm_btn1" data-bs-toggle="modal" data-bs-target="#add_resource">
                             {% trans 'add_resource' %}
                         </button>
 
@@ -118,7 +119,7 @@
                         {% for resource in project.resource_set.all %}
 
                             <ul class="resource_details">
-                                <li> <a href="{% url 'resource_detail' resource.id %}"> {{ resource.name }} </a></li>
+                                <li><a href="{% url 'resource_detail' resource.id %}"><b>{{ resource.name }}</b></a></li>
                                 {% if user.is_speaker %}
                                     <li><a href="{% url 'delete_resource' resource.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
                                   <a scope="col" href="{% url 'update_resource' resource.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a></li>

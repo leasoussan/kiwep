@@ -19,9 +19,6 @@
     color: #000000;
 }
 
-.back_btn{
-}
-
 .btn-sm{
     height: 40px;
 }
@@ -49,7 +46,7 @@ button .edit_button{
 }
 
 .mission_related_elements_content{
-  display: flex;
+    display: flex;
     flex-direction: row;
     width: 95%;
     min-height: 30vh;
@@ -94,18 +91,22 @@ display: flex;
     width: 100%;
     flex-wrap: wrap;
     min-height: 30%;
-    max-height: 60%;
+    max-height: 90%;
+    margin-top: 67px;
 }
 
 .mission_resource_list_items{
     display: flex;
     flex-direction: row;
-      width: 50%;
-
-
-   /*border:2px solid red;*/
+    width: 100%;
 }
 
+.mission_resource_list_items div{
+    /* margin-left: auto; */
+}
+.btn_control_mission{
+    margin-left: auto;
+}
 
 .image_resource{
     min-width: 10rem;
@@ -113,7 +114,9 @@ display: flex;
 }
 
 .missions_detail_resource{
-
+    border: 1px solid black;
+    width: 15%;
+    /* min-height: 120px; */
 }
 
 .missions_detail_resource a{
