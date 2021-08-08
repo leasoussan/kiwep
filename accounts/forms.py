@@ -82,7 +82,7 @@ class StudentProfileCreationForm(forms.ModelForm):
             attrs={'type': 'date'}),
         # input_formats=('%d-%m-%Y',),
     )
-    join_code = forms.CharField(max_length=10, default=None, required=False)
+    join_code = forms.CharField(max_length=10, required=False)
 
 class SpeakerProfileCreationForm(forms.ModelForm):
     class Meta:
