@@ -117,7 +117,7 @@ class Student(models.Model):
     user = models.OneToOneField(MyUser, on_delete = models.CASCADE)
     class_level = models.ForeignKey('backend.Group', on_delete=models.CASCADE)
     dob = models.DateField()
-    softs_skills = models.ManyToManyField('content.Skills', through = 'backend.StudentSoftSkillRating', related_name= "student_skills_scores" )
+    softs_skills = models.ManyToManyField('content.Skills', through='backend.StudentSoftSkillRating', related_name= "student_skills_scores" )
 
 
     def __str__(self):
