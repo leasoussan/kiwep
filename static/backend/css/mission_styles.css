@@ -142,9 +142,5 @@ display: flex;
 }
 
 .table_missions_list{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
 
 }
