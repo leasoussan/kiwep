@@ -24,7 +24,7 @@
                             <a class="nav-link" href="{% url 'team_list' %}">{% trans 'projects' %}</a>
                             <a class="nav-link" href="{% url 'my_mission_list' %}">{% trans 'My_missions' %}</a>
                         {% elif user.is_representative %}
-                            <a class="nav-link" href="{% url 'speaker-invite' %}">{% trans 'speaker-invite' %}</a>
+                        {% trans 'welcome_to_kiwep_intstitution' %}
 
                         {% endif %}
 
