@@ -77,9 +77,9 @@ class Register(View):
                     invite.save()
 
             user.save()
-            user = authenticate(username= username, password = password, usertype =usertype)
+            user = authenticate(username= username, password = password, usertype=usertype)
             login(request, user)
-            send_welcome_signup(user)
+            # send_welcome_signup(user)
 
 
             return redirect(reverse('create_profile'), form.cleaned_data['usertype'])
@@ -177,6 +177,7 @@ def get_user_profile_form(request, edit=False):
 
     elif user.is_representative:
         profile_form = InstitutionAddForm(data)
+
 
     return profile_form
 
@@ -402,4 +403,3 @@ class SpeakerInviteView(View):
             return redirect('speaker_invite')
 
         return redirect('speaker_invite')
-
