@@ -53,9 +53,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'bootstrap4',
-    'materialize',
-     'materializecssform',
-
 ]
 
 
