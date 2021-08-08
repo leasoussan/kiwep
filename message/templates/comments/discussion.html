@@ -2,7 +2,7 @@
 
 {% load static %}
 {% load i18n %}
-{% load materializecss %}
+{% load crispy_forms_tags %}
 
 
 
@@ -25,7 +25,7 @@
     <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }} " >
 
         {% csrf_token %}
-        {{ object.discussion_form|materializecss }}
+        {{ object.discussion_form|crispy }}
 
         <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'start_discussion' %}
         </button>
@@ -71,7 +71,7 @@
 
                 <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >
                     {% csrf_token %}
-                    {{ discussion.comment_form|materializecss }}
+                    {{ discussion.comment_form|crispy }}
                     <div class="col s1">
                         <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>
                     </div>

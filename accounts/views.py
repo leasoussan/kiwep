@@ -167,7 +167,6 @@ def get_user_profile_form(request, edit=False):
     data = request.POST or None
 
     if user.is_student:
-
         profile_form = StudentProfileCreationForm(data, instance=instance )
 
 
@@ -189,7 +188,7 @@ class CreateProfile(View):
     """ Any one who creats an accounts will be directed to create a Profile,
     and wont be able to do any actions unless this is done"""
 
-    def get(self, request ):
+    def get(self, request):
 
         user_form = UserForm(instance =request.user)
         profile_form = get_user_profile_form(request)

@@ -74,7 +74,7 @@ class UserForm(forms.ModelForm):
 class StudentProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Student
-        exclude = ['user', 'softs_skills']
+        exclude = ['user', 'softs_skills', 'class_level']
 
     dob = forms.DateField(
         widget=django.forms.DateInput(
