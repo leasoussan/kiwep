@@ -9,7 +9,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic import View, RedirectView
 from django.urls import reverse
 
-from backend.models import Institution
+from backend.models import Institution, Group
 from .forms import (
     MyUserCreationForm,
     UserForm,
@@ -217,20 +217,20 @@ class CreateProfile(View):
             object= profile_form.save(commit=False)
 
 
-
-            if request.user.is_representative:
-                object.representative = Representative.objects.get_or_create(user=request.user)[0]
-            else:
-                object.user = request.user
-            object.save()
             if user.is_speaker:
                 for invite in user.received_invites.all():
                     object.institution.add(invite.institution)
+                    object.user = request.user
+                    object.save()
 
             elif user.is_student:
                 join_code = profile_form.cleaned_data['join_code']
-                if Institution.objects.filter(join_code = join_code).exists():
-                    inst = Institution.objects.get(join_code=join_code)
+                if Group.objects.filter(join_code=join_code).exists():
+                    join_group = Group.objects.get(join_code=join_code)
+
+                    object.user = request.user
+                    object.class_level=join_group
+                    object.save()
 
 
             return redirect('dashboard')
