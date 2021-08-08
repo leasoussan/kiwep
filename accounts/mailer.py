@@ -14,7 +14,7 @@ def send_welcome_signup(user):
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [user.email,]
 
-    send_mail(subject, message,  email_from, recipient_list, fail_silently = False, html_message=html_message )
+    send_mail(subject, message,  email_from, recipient_list, fail_silently=False, html_message=html_message )
 
 
 def send_institution_signup_invit(email):
@@ -33,7 +33,7 @@ def send_institution_signup_invit(email):
 def send_speaker_signup_invit(email, institution):
     wlcm_msg = _('speaker_invitation_registration')
     kiwep = _('to_kiwep')
-    subject = f' {wlcm_msg} {email} {kiwep} '
+    subject = f' {wlcm_msg} {kiwep} '
     message = _('registration_invitation_email_subject')
     # translation.activate(email.language_code)
     html_message = render_to_string('emails/welcome.html', {'user': email, 'institution':institution})
