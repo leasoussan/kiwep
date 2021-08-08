@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% load mytags %}
-
+{% load crispy_forms_tags %}
 
 {% block css %}
     <link href="{% static 'backend/css/project_styles.css' %}" rel="stylesheet">
@@ -17,12 +17,15 @@
             <div class="projects_title"><h2>{% trans 'project' %}</h2></div>
 
             <div class="buttons_project_list">
-                <button type="button" class="btn btn-primary">{% trans 'add_project' %}</button>
-                <button type="button" class="btn btn-primary">{% trans 'add_mission' %}</button>
-                <!-- <a class="" href="#add_project">{% trans 'add_project' %}</a> -->
-                <!-- <a class="" href="#add_bulk_mission">{% trans 'add_mission' %}</a> -->
-                <!-- <button class="btn btn-primary" type="button">Create A New Project</button>
-                <button class="btn btn-primary" type="button">Template Project List</button> -->
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_project">
+                    {% trans 'add_project' %}
+                </button>
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_bulk_mission">
+                    {% trans 'add_mission' %}    </button>
+
+
             </div>
 
         </div>
@@ -37,12 +40,12 @@
                     <!-- <a class= "btn" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a> -->
                 {% else %}
                     <div class="team_name"><a href="{% url 'team_detail' project.team.id %}">{{ project.team.name }}</a>
-                    <a class="align_items_project_projecttbl" href="{% url 'update_team' project.team.id %}"><i><b>edit</b></i></a>
+                        <a class="align_items_project_projecttbl" href="{% url 'update_team' project.team.id %}"><i><b>edit</b></i></a>
                     </div>
                 {% endif %}
 
                 {% if not project.field.exists %}
-                 <label>   {% trans 'no_fields' %}</label>
+                    <label>   {% trans 'no_fields' %}</label>
                 {% else %}
                     <label>   {{project.field.name}}</label>
                 {% endif %}
@@ -60,6 +63,188 @@
 
         {% endfor %}
     </div>
+
+
+
+
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="add_project" tabindex="-1" aria-labelledby="add_projectLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="add_projectLabel">{% trans 'add_project' %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-create-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create" aria-selected="true">
+                                {% trans 'crfeate_project' %}</button>
+                            <button class="nav-link" id="nav-choose-tab" data-bs-toggle="tab" data-bs-target="#nav-choose" type="button" role="tab" aria-controls="nav-choose" aria-selected="false">
+                                {% trans 'chose_from_template' %}</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
+                            <form method="post" action="{% url 'create_project' %}">
+                                {% csrf_token %}
+                                {{ project_form|crispy }}
+                                <button type="submit">Save</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="nav-choose" role="tabpanel" aria-labelledby="nav-choose-tab">
+                            <table class="centered my_table" >
+                                <thead>
+                                <tr class="table_headers">
+                                    <th class="link-table" scope="col">{% trans 'project_name_table_header' %}</th>
+                                    <th class="link-table" scope="col">{% trans 'speaker_table_header' %}</th>
+                                    {#                            <th class="link-table" scope="col">{% trans 'field_table_header' %}</th>#}
+                                    <th class="link-table" scope="col">{% trans 'time_to_complete_table_header' %}</th>
+                                    <th class="link-table" scope="col">{% trans 'see_project' %}</th>
+                                    <th class="link-table" scope="col">{% trans 'speaker_select_project' %}</th>
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for project in project_list %}
+                                    <tr class="table_headers">
+                                        <td><a class= "link-table" href="{% url 'project_detail' project.id %}">{{project.name}}</a></td>
+                                        <td>{{project.speaker.user.first_name}}</td>
+                                        {#                                <td>{% if not project.field.exists %}#}
+                                        {#                                {% trans 'no_fields' %}#}
+                                        {#                            {% else %}#}
+                                        {#                                {{project.field.name}}#}
+                                        {#                                {% endif %}#}
+                                        {#                            </td>#}
+                                        <td>{{project.time_to_complete}} {% trans 'days' %}</td>
+                                        <td> <a href="{% url 'project_detail' project.id %}"> <i class="material-icons">pageview</i> </a></td>
+                                        <td> <a class= "link-table speaker_select_project" href="{% url 'chose_project_detail' project.id %}">{% trans 'speaker_select_project' %}</a> </td>
+                                    </tr>
+                                {% endfor %}
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal BULK MISSION-->
+    <div class="modal fade" id="add_bulk_mission" tabindex="-1" aria-labelledby="add_bulk_missionLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="add_bulk_missionLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-bulk-individual-tab" data-bs-toggle="tab" data-bs-target="#nav-bulk-individual" type="button" role="tab" aria-controls="nav-bulk-individual" aria-selected="true">
+                                {% trans 'bulk_individual_mission' %}</button>
+                            <button class="nav-link active" id="nav-bulk-collective-tab" data-bs-toggle="tab" data-bs-target="#nav-bulk-collective" type="button" role="tab" aria-controls="nav-bulk-collective" aria-selected="true">
+                                {% trans 'bulk_collective_mission' %}</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-bulk-individual" role="tabpanel" aria-labelledby="nav-nav-bulk-individual">
+                            <form method="post" action="{% url 'bulk_add_individual_mission' %}">
+                                {% csrf_token %}
+                                {{ individual_form|crispy }}
+                                {{ mission_bulk_form|crispy }}
+
+                                <button type="submit">{% trans 'save' %}</button>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade show active" id="nav-bulk-collective" role="tabpanel" aria-labelledby="nav-nav-bulk-collective">
+                            <form method="post" action="{% url 'bulk_add_collective_mission' %}">
+                                {% csrf_token %}
+                                {{ mission_bulk_form|crispy }}
+                                {{ individual_form|crispy }}
+                                <button type="submit">{% trans 'save' %}</button>
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="add_bulk_mission" class="modal">
+            <div class="modal-content">
+
+                <div class="row">
+                    <div class="col s12">
+                        <ul class="tabs">
+
+                            <li class="tab col s3"><a class="active" href="#bulk_individual_mission">{% trans 'bulk_individual_mission' %}</a></li>
+                            <li class="tab col s3"><a href="#bulk_collective_mission">{% trans 'bulk_collective_mission' %}</a></li>
+
+                        </ul>
+                    </div>
+                    <div id="bulk_individual_mission" class="col s12">
+
+                        <div style="background-color: #0a0a0a">
+
+
+                        </div>
+
+                        <form method="post" action="{% url 'bulk_add_individual_mission' %}">
+                            {% csrf_token %}
+                            {{ individual_form|crispy }}
+                            {{ mission_bulk_form|crispy }}
+
+                            <button type="submit">{% trans 'save' %}</button>
+                        </form>
+
+                    </div>
+
+                    <div id="bulk_collective_mission" class="col s12">
+                        <form method="post" action="{% url 'bulk_add_collective_mission' %}">
+                            {% csrf_token %}
+                            {{ mission_bulk_form|crispy }}
+                            {{ individual_form|crispy }}
+                            <button type="submit">{% trans 'save' %}</button>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
+            </div>
+        </div>
+
+
 
 
 
