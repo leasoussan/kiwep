@@ -120,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # this is to gonfig the Database connection on Heroku and create confing var
-DATABASE_URL = {'default': dj_database_url.config()}
+DATABASE = {'default': dj_database_url.config()}
 
 AUTHENTICATION_BACKENDS = (
     'accounts.backends.EmailBackend',
