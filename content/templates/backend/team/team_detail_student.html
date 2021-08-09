@@ -16,9 +16,9 @@
         {% endif %}
 
                 {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
-                    <a class="waves-effect waves-light btn" href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a>
+                    <a class="btn btn_action" href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a>
                 {% elif team.group_Institution == request.user.profile.class_level and request.user.profile in team.participants.all %}
-                    <a class="btn" href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a>
+                    <a class="btn_action" href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a>
                 {% endif %}
 
         </div>

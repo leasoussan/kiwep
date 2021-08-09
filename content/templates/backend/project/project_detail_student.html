@@ -1,10 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load mytags %}
 
-</body>
-</html>
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+    <div class="project_detail_container">
+        <div class="project_detail_header">
+            <h2 class="project_title">{{ project.name }}</h2>
+
+            <div class="speaker_action_btn_group">
+
+                    {% if project.is_template %}
+                        <a class="btn" href="{% url 'chose_project_detail' project.id %}">{% trans 'select'%}</a>
+
+                    {% else %}
+                    <button type="button" class="btn btn-secondary"><a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a></button>
+                        <!-- <a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a> -->
+
+                    {% endif %}
+
+            </div>
+        </div>
+
+        <div class="project_detail_main_content">
+            <div class="animation_div">
+                <img class="image_animation" src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
+            </div>
+            <div class="project_detail_details">
+
+                <p class="project_detail_description">{{project.description}}</p>
+
+                <p class="detail_time_to_complete">
+                    <span><b>{% trans 'time_to_complete' %}:</b></span>
+                    {{project.time_to_complete}} {% trans 'days' %}
+                </p>
+
+                <div class="project_learning_info">
+
+                   <span><b>{% trans 'acquired_skills' %}</b><span>
+                    {% for skill in mission.acquired_skills.all %}
+
+                        <li class="skill_decoration">{{skill.name}}</li>
+                    {% endfor %}
+                       <button class="btn" style="background-color: whitesmoke">{% trans 'add_skills' %}</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="project_related_elements_content">
+            {# Here is the mission List #}
+
+            <div class="project_mission_list_items overflow-auto">
+                <div class="project_mission_header">
+                    <p><b>{% trans 'missions' %}</b></p>
+
+
+                </div>
+
+                {% for mission in project.mission_set.all %}
+
+                    <div class="project_mission_items">
+                          {% if mission.individualmission %}
+                        <a class="mission_name" href="{% url 'individual_mission_detail' mission.id %}"><b>{{ mission.name }}</b></a>
+                    {% else %}
+                        <a class="mission_name" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+                    {% endif %}
+                        <span>{{ mission.due_date }}</span>
+                                   <span><b>{{ mission.get_mission_type_display }}</b></span>
+                        
+                        {% if user.is_speaker %}
+                            {% if mission.individualmission %}
+                            <span>
+                                <a href="{% url 'delete_individual_mission' mission.id %}"><img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
+                            {% else %}
+                                <a href="{% url 'delete_collective_mission' mission.id %}"><img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
+                            {% endif %}
+
+                            {% if mission.individualmission %}
+                                <a href="{% url 'update_individual_mission' mission.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a>
+
+                            {% else %}
+                                <a href="{% url 'update_collective_mission' mission.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a>
+                            {% endif %}
+                            </span>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+
+
+            {# here is the Resource List #}
+
+            <div class="project_resource_content">
+                <div class="project_resource_header">
+                    <div class="medium_resource_title">
+                        <b>{% trans 'resources' %}</b>
+                    </div>
+
+
+                </div>
+
+
+                <div class="project_resource_list_items overflow-auto">
+                    {% if project.resource_set.exists %}
+                        {% for resource in project.resource_set.all %}
+
+                            <ul class="resource_details">
+                                <li><a href="{% url 'resource_detail' resource.id %}"><b>{{ resource.name }}</b></a></li>
+                                {% if user.is_speaker %}
+                                    <li><a href="{% url 'delete_resource' resource.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
+                                  <a scope="col" href="{% url 'update_resource' resource.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a></li>
+                                {% endif %}
+
+                            </ul>
+
+
+
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
