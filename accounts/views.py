@@ -9,7 +9,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic import View, RedirectView
 from django.urls import reverse
 
-from backend.models import Institution
+from backend.models import Institution, Group
 from .forms import (
     MyUserCreationForm,
     UserForm,
@@ -77,9 +77,9 @@ class Register(View):
                     invite.save()
 
             user.save()
-            user = authenticate(username= username, password = password, usertype =usertype)
+            user = authenticate(username= username, password = password, usertype=usertype)
             login(request, user)
-            send_welcome_signup(user)
+            # send_welcome_signup(user)
 
 
             return redirect(reverse('create_profile'), form.cleaned_data['usertype'])
@@ -167,7 +167,6 @@ def get_user_profile_form(request, edit=False):
     data = request.POST or None
 
     if user.is_student:
-
         profile_form = StudentProfileCreationForm(data, instance=instance )
 
 
@@ -177,6 +176,7 @@ def get_user_profile_form(request, edit=False):
 
     elif user.is_representative:
         profile_form = InstitutionAddForm(data)
+
 
     return profile_form
 
@@ -188,7 +188,7 @@ class CreateProfile(View):
     """ Any one who creats an accounts will be directed to create a Profile,
     and wont be able to do any actions unless this is done"""
 
-    def get(self, request ):
+    def get(self, request):
 
         user_form = UserForm(instance =request.user)
         profile_form = get_user_profile_form(request)
@@ -217,20 +217,20 @@ class CreateProfile(View):
             object= profile_form.save(commit=False)
 
 
-
-            if request.user.is_representative:
-                object.representative = Representative.objects.get_or_create(user=request.user)[0]
-            else:
-                object.user = request.user
-            object.save()
             if user.is_speaker:
                 for invite in user.received_invites.all():
                     object.institution.add(invite.institution)
+                    object.user = request.user
+                    object.save()
 
             elif user.is_student:
                 join_code = profile_form.cleaned_data['join_code']
-                if Institution.objects.filter(join_code = join_code).exists():
-                    inst = Institution.objects.get(join_code=join_code)
+                if Group.objects.filter(join_code=join_code).exists():
+                    join_group = Group.objects.get(join_code=join_code)
+
+                    object.user = request.user
+                    object.class_level=join_group
+                    object.save()
 
 
             return redirect('dashboard')
@@ -402,4 +402,3 @@ class SpeakerInviteView(View):
             return redirect('speaker_invite')
 
         return redirect('speaker_invite')
-

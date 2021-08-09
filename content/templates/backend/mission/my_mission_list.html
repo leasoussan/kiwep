@@ -20,8 +20,9 @@
 
         <div class="speaker_answer_board">
         <h5 class="">{% trans 'my_answer_mission_board_title' %}</h5>
-        <thead class="table_missions_list">
-        <tr>
+        <table class="table">
+  <thead>
+    <tr>
             <th scope="col">{% trans 'mission_name' %}</th>
             <th scope="col">{% trans 'team_name' %}</th>
             <th scope="col">{% trans 'project_name' %}</th>
@@ -29,16 +30,12 @@
             <th scope="col">{% trans 'answer' %}</th>
             <th scope="col">{% trans 'validate_title' %}</th>
             <th scope="col">{% trans 'action' %}</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <tr>
-            {% for mission in answers_mission_list %}
-
-                <tr>
-                    {{ mission }}
-                    <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
+    </tr>
+  </thead>
+  <tbody>
+   {% for mission in answers_mission_list %}
+    <tr>
+     <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
                     {% if mission.project.team %}
                         <td><a href="{% url 'team_detail'  mission.project.team.id %}">{{ mission.project.team.name }}</a></td>
                     {% else %}
@@ -64,6 +61,30 @@
                     {% endif %}
 
                     </td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+
+
+        <thead class="table_missions_list">
+        <tr>
+
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr>
+
+
+
+                <tr>
+                    {{ mission }}
+
                 </tr>
             {% endfor %}
         </tbody>

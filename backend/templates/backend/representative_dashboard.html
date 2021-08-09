@@ -9,7 +9,7 @@ invite speaker
 
 <form method="post" action="{% url 'speaker_invite' %}">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_p|crispy }}
     <button type="submit">{% trans 'send_invite' %}</button>
 </form>
 
