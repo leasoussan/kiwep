@@ -47,7 +47,7 @@ class Register(View):
     def get(self, request):
         form = MyUserCreationForm()
 
-        if 'key' in  request.GET:
+        if 'key' in request.GET:
             form = MySpeakerCreationForm(initial={'usertype': 'is_speaker'})
 
         context = {
@@ -215,31 +215,30 @@ class CreateProfile(View):
 
             user_form.save()
             object= profile_form.save(commit=False)
-
+            object.user = request.user
+            object.save()
 
             if user.is_speaker:
                 for invite in user.received_invites.all():
                     object.institution.add(invite.institution)
-                    object.user = request.user
-                    object.save()
 
             elif user.is_student:
                 join_code = profile_form.cleaned_data['join_code']
                 if Group.objects.filter(join_code=join_code).exists():
                     join_group = Group.objects.get(join_code=join_code)
 
-                    object.user = request.user
                     object.class_level=join_group
                     object.save()
 
 
             return redirect('dashboard')
 
-
+        else:
+            print("user*****", user_form.errors, "profile**", profile_form.errors)
 
         # messages.add_message(request, messages.ERROR, 'You have an error in your form')
 
-        return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'form': profile_form, 'institution_form':institution_form})
+        return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'form': profile_form})
 
 
 
@@ -395,9 +394,10 @@ class SpeakerInviteView(View):
                 speaker_invite = form.save(commit=False)
                 email = form.cleaned_data["email"]
                 user = self.request.user
-                speaker_invite, created = InstitutionInvite.objects.get_or_create(user=request.user, email=email)
 
-                send_speaker_signup_invit(email)
+                speaker_invite, created = SpeakerInvite.objects.get_or_create(user=request.user, email=email, institution=request.user.profile().institution)
+
+                send_speaker_signup_invit(email, speaker_invite )
 
             return redirect('speaker_invite')
 
