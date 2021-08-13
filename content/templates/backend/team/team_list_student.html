@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load static %}
-{% load materializecss %}
+{% load crispy_forms_tags %}
 
 <div class="student_team_list_container">
 <h2 class="medium_title">{% trans 'my_teams'%}</h2>
@@ -9,23 +9,24 @@
     <tr>
         <th>{% trans 'team_name' %}</th>
         <th>{% trans 'participants' %}</th>
-        <th>{% trans 'project' %}</th>
         <th>{% trans 'due_date' %}</th>
+        <th>{% trans 'project_name' %}</th>
 
     </tr>
     </thead>
     <tbody>
-    <tr>
+
 
         {% for team in team_list %}
+             <tr>
             <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
             <th>{{ team.participants.count }}</th>
             <th>{{team.project.time_to_complete}}</th>
-            <th>{{teamp.project.field}}</th>
-
-        {% endfor %}
+            <th>{{team.project}}</th>
     </tr>
-    <tr>
+        {% endfor %}
+
+
 
     </tbody>
 </table>

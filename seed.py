@@ -41,10 +41,9 @@ institution_category_list = ['High-School', 'University', 'organization']
 def pop_institution_category_list(institution_category_list):
     for institution in institution_category_list:
         institution_i = InstitutionCategory.objects.get_or_create(
-            name =institution,
+            name=institution,
         )
         fields = list(Field.objects.all())
-        print(fields)
         institution_i.fields.add(*random.sample(fields, 2))
 
         print(f"the Institution Category {institution_i} was created")
