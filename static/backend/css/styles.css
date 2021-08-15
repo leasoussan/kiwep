@@ -216,7 +216,6 @@ span{
   background-color: transparent;
 }
 
-
 #username{
   background-color: transparent;
   margin-left: 17px;
@@ -341,12 +340,6 @@ nav{
     top: 26px;
     right: 15px;
   } 
-
-  #logotitle{
-    width: 100px;
-    display: flex;
-    justify-content: center;
-  }
 
   
   .aligning{
