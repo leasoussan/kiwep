@@ -212,11 +212,15 @@ class CreateProfile(View):
         user = request.user
 
         if profile_form.is_valid() and user_form.is_valid():
-
             user_form.save()
-            object= profile_form.save(commit=False)
-            object.user = request.user
+            object = profile_form.save(commit=False)
+
+            if request.user.is_representative:
+                object.representative = Representative.objects.get_or_create(user=request.user)[0]
+            else:
+                object.user = request.user
             object.save()
+
 
             if user.is_speaker:
                 for invite in user.received_invites.all():
