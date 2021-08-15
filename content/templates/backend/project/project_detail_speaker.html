@@ -42,7 +42,7 @@
 
                         <li class="skill_decoration">{{skill.name}}</li>
                     {% endfor %}
-
+                       <button class="btn" style="background-color: whitesmoke">{% trans 'add_skills' %}</button>
                 </div>
 
             </div>
@@ -70,7 +70,7 @@
                     {% else %}
                         <a class="mission_name" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
                     {% endif %}
-                        <span>{% trans 'due_date' %}{{ mission.due_date }}</span>
+                        <span>{{ mission.due_date }}</span>
                                    <span><b>{{ mission.get_mission_type_display }}</b></span>
                         
                         {% if user.is_speaker %}

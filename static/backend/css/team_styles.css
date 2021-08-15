@@ -9,10 +9,12 @@
 
 .team_detail_header{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-top: 2rem;
     margin-bottom:2rem;
     width: 95%;
+    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .team_project_detail{
@@ -158,8 +160,8 @@
 }
 
 .add_mission{
-   margin-left: 75px;
-    
+    margin-left: 75px;
+
 }
 
 /*_______STUDENT TEAM DETAIL STYLE_____________________*/
@@ -174,11 +176,10 @@
 .student_team_list_container{
     display: flex;
     flex-direction: column;
-    background-color: black;
 }
 
 .student_mission_table{
-    background-color: black;
+
     min-width: 80%;
     max-width: 80%;
     justify-content: center;
@@ -186,16 +187,27 @@
 
 }
 
+.btn_action{
+    display: flex;
+    background-color: wheat;
+    width: 8rem ;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10%;
+}
 
 /* RESPONSIVE */
 @media (max-width: 670px){
-    
+
     .team_detail_header{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         margin-top: 2rem;
         margin-bottom:2rem;
         width: 60%;
+        justify-content: flex-end;
+        justify-content: space-between;
+
     }
 
     .team_project_detail{
@@ -227,7 +239,7 @@
         margin-top: 1rem;
     }
 
-    
+
     .add_mission{
         margin-left: 5px;
     }
@@ -236,7 +248,7 @@
         width: 80%;
         position: relative;
         right: 180px;
-        
+
     }
 
     .team_discussion_container{

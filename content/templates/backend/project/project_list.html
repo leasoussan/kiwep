@@ -44,18 +44,14 @@
                     </div>
                 {% endif %}
 
-                {% if not project.field.exists %}
-                    <label>   {% trans 'no_fields' %}</label>
-                {% else %}
-                    <label>   {{project.field.name}}</label>
-                {% endif %}
+
 
                 <label>{{project.time_to_complete}} {% trans 'in_days' %}</label>
 
                 <div class="project_list_tbl_project_modifications">
                     {% if user.is_speaker %}
                         <a href="{% url 'update_project' project.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"> </a>
-                        <a href="{#   url 'duplicate_create_project' project.id team.id  #}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>
+{#                        <a href="{% url 'duplicate_create_project' project.id team.id %}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>#}
                         <a href="{% url 'delete_project' project.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"> </a>
                     {% endif %}
                 </div>
@@ -193,56 +189,6 @@
 
 
 
-
-        <div id="add_bulk_mission" class="modal">
-            <div class="modal-content">
-
-                <div class="row">
-                    <div class="col s12">
-                        <ul class="tabs">
-
-                            <li class="tab col s3"><a class="active" href="#bulk_individual_mission">{% trans 'bulk_individual_mission' %}</a></li>
-                            <li class="tab col s3"><a href="#bulk_collective_mission">{% trans 'bulk_collective_mission' %}</a></li>
-
-                        </ul>
-                    </div>
-                    <div id="bulk_individual_mission" class="col s12">
-
-                        <div style="background-color: #0a0a0a">
-
-
-                        </div>
-
-                        <form method="post" action="{% url 'bulk_add_individual_mission' %}">
-                            {% csrf_token %}
-                            {{ individual_form|crispy }}
-                            {{ mission_bulk_form|crispy }}
-
-                            <button type="submit">{% trans 'save' %}</button>
-                        </form>
-
-                    </div>
-
-                    <div id="bulk_collective_mission" class="col s12">
-                        <form method="post" action="{% url 'bulk_add_collective_mission' %}">
-                            {% csrf_token %}
-                            {{ mission_bulk_form|crispy }}
-                            {{ individual_form|crispy }}
-                            <button type="submit">{% trans 'save' %}</button>
-
-                        </form>
-
-
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
-            </div>
-        </div>
 
 
 

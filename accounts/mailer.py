@@ -30,15 +30,16 @@ def send_institution_signup_invit(email):
     send_mail(subject, message, email_from, recipient_list, fail_silently=False, html_message=html_message)
 
 
-def send_speaker_signup_invit(email, institution):
+def send_speaker_signup_invit(email,speaker_invite):
     wlcm_msg = _('speaker_invitation_registration')
     kiwep = _('to_kiwep')
     subject = f' {wlcm_msg} {kiwep} '
     message = _('registration_invitation_email_subject')
+    invitation= {speaker_invite.key}
     # translation.activate(email.language_code)
-    html_message = render_to_string('emails/welcome.html', {'user': email, 'institution':institution})
+    html_message = render_to_string('emails/welcome.html', {'user': email, 'institution':speaker_invite.institution, 'token':invitation})
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = [email.email, ]
+    recipient_list = [email, ]
 
     send_mail(subject, message, email_from, recipient_list, fail_silently=False, html_message=html_message)
 

@@ -6,23 +6,32 @@
 
 
 
-<span class="small_title"> {{object.name}} {% trans 'discussion_board' %}</span>
+<span class="small_title">{% trans 'discussion_board_of' %} :  {{object.name}} </span>
 
     {% if not object.discussion %}
- <a class="waves-effect waves-light btn modal-trigger" href="#add_discussion_box">{% trans 'start_discussion' %}</a>
+        <!-- Button trigger modal -->
+<button type="button" style="width: 12rem" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
+ {% trans 'start_discussion' %}
+</button>
     {% else %}
-        <a class="waves-effect waves-light btn modal-trigger" href="#add_discussion_box">{% trans 'add_new_discussion' %}</a>
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
+ {% trans 'add_discussion' %}</button>
 {% endif     %}
 
 
 
 
-
-<!-- Modal Structure -->
-  <div id="add_discussion_box" class="modal">
+<!-- Modal -->
+<div class="modal fade" id="add_discussion_box" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
-
-    <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }} " >
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }} " >
 
         {% csrf_token %}
         {{ object.discussion_form|crispy }}
@@ -30,15 +39,33 @@
         <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'start_discussion' %}
         </button>
     </form>
+      </div>
 
-    </div>
-
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
     </div>
   </div>
+</div>
 
-
+{#<!-- Modal Structure -->#}
+{#  <div id="add_discussion_box" class="modal">#}
+{#    <div class="modal-content">#}
+{##}
+{#    <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }} " >#}
+{##}
+{#        {% csrf_token %}#}
+{#        {{ object.discussion_form|crispy }}#}
+{##}
+{#        <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'start_discussion' %}#}
+{#        </button>#}
+{#    </form>#}
+{##}
+{#    </div>#}
+{##}
+{#    <div class="modal-footer">#}
+{#      <a href="#!" class="modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{##}
 
 
 {#---------------------------------FOR DISCUSSION BOARD#}
@@ -53,6 +80,7 @@
                 <div class="dialog_box">
                       <h3>{{ discussion.title }}</h3>
                         {% if discussion %}
+                            {{ discussion.comment_text }}
                     {% for comment in discussion.replies.all %}
                         {% if comment.user.profile == request.user.profile %}
 

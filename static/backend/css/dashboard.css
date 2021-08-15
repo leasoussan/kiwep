@@ -13,10 +13,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    /*width: 40%;*/
 }
 
 .dashboard_logo{
     width: 40%;
+    min-height: 30%;
+    max-height: 40%;
 }
 .video_dashboard_speaker{
     display: flex;

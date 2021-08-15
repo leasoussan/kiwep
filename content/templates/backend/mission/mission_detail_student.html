@@ -100,24 +100,24 @@
                         <div class="mission_attributed_to">
 
 
-                                <h4 class="small_title">{% trans 'mission_is_attributed_to_you' %}
-                                    {{ object.attributed_to }}</h4>
-                                <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a>
+                            <h4 class="small_title">{% trans 'mission_is_attributed_to_you' %}
+                                {{ object.attributed_to }}</h4>
+                            <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a>
 
 
                         </div>
-                          <div class="answer_content">
-                            <form method="POST" action="">
-                    {% csrf_token %}
-                    {{ answer.status_form }}
-                </form>
-                                {% include "answer/answer.html"  with object=object %}
+                        <div class="answer_content">
 
-                            </div>
+
+                            {% include "answer/answer.html"  with object=object %}
+
+                        </div>
                     {% endif %}
                 {% endif %}
             {% endif %}
         </div>
+
+    {% include 'comments/discussion.html' %}
     </div>
 
 
