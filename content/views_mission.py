@@ -379,11 +379,13 @@ def assign_mission(request, pk):
 
 
 def clean_bulk_mission(mission, projects):
-    missions=[]
 
     for project in projects:
         print('los projetctos', projects)
-        # project.id = project_id
+        mission.id=None
+        mission.mission_ptr.id =None
+        new_mission_ptr = mission.mission_ptr.save()
+        mission.mission_ptr = new_mission_ptr
         mission.project = project
         mission.created_date = timezone.now()
         mission.due_date = timezone.now()
@@ -392,9 +394,9 @@ def clean_bulk_mission(mission, projects):
             mission.attributed_to = None
             print("mission cleaned", mission)
             mission.save()
-        missions.append(mission)
-    mission.individualmission.objects.bulk_create(missions)
-    print("missions", missions)
+        mission.save()
+    print("missions", )
+
 
 def bulk_add_individual_mission(request, **kwargs):
 

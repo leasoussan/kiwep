@@ -168,15 +168,16 @@
                             </form>
                         </div>
 
-                        <div class="tab-pane fade show active" id="nav-bulk-collective" role="tabpanel" aria-labelledby="nav-nav-bulk-collective">
-                            <form method="post" action="{% url 'bulk_add_collective_mission' %}">
-                                {% csrf_token %}
-                                {{ mission_bulk_form|crispy }}
-                                {{ individual_form|crispy }}
-                                <button type="submit">{% trans 'save' %}</button>
-
-                            </form>
-                        </div>
+{#                        <div class="tab-pane fade show active" id="nav-bulk-collective" role="tabpanel" aria-labelledby="nav-nav-bulk-collective">#}
+{#                            <form method="post" action="{% url 'bulk_add_collective_mission' %}">#}
+{#                                {% csrf_token %}#}
+{##}
+{#                                {{ individual_form|crispy }}#}
+{#                                  {{ mission_bulk_form|crispy }}#}
+{#                                <button type="submit">{% trans 'save' %}</button>#}
+{##}
+{#                            </form>#}
+{#                        </div>#}
 
                     </div>
                     <div class="modal-footer">
