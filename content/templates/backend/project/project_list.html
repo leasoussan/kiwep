@@ -34,7 +34,7 @@
         {% for project in user.profile.project_set.personal_projects %}
             <div class="project_details_box">
 
-                <a class="project_detail_title_responsive" href="{% url 'project_detail' project.id %}">{{project.name}}</a>
+                <div class="project_detail_name_responsive"><a href="{% url 'project_detail' project.id %}">{{project.name}}</a></div>
                 {% if not project.team %}
                     <div class="create_team"><button type="button" class="btn btn-outline-primary btn-sm createproj_btn"><a class="create_project_btn_projlist" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a></button></div>
                     <!-- <a class= "btn" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a> -->

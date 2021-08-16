@@ -322,7 +322,7 @@
 
     .project_details_box{
         display: flex;
-        flex-direction: row;
+        flex-direction: none;
         /*border:  2px solid rgb(211, 211, 211);
         min-height: 5rem;
         min-width: 80%;
@@ -330,7 +330,7 @@
         margin-top: 3rem;*/
         justify-content: space-between; 
         flex-wrap: wrap;
-        border:  2px solid black;
+        border: 2px solid rgb(211, 211, 211);
         min-height: none;
         min-width: none;
         width: 100%;
@@ -338,28 +338,40 @@
     }
 
     .project_details_box a{
-        border: 1px solid red;
+        /* border: 1px solid red; */
+        justify-content: space-between; 
         width: 20%;
     }
 
+    .project_details_box div{
+        /* border: 1px solid red; */
+        /* justify-content: space-between;  */
+        width: 25%;
+    }
     .create_team{
         display: flex;
         align-items: flex-start;
+        flex: 50%;
     }
 
-    .project_detail_title_responsive{
-       
+    .project_detail_name_responsive{
+       border: 1px solid orange;
+       height: 10%;
+       /* width: 10%; */
+       flex: 50%;
      }
      
      .team_name{
         display: flex;
-        width: 25%;
+        width: 40%;
+        flex: 30%;
         white-space: nowrap;
      }
 
      .time_to_complete{
         display: flex;
         flex-direction: column;
+        flex: 50%;
         /* width: 25%; */
         
        /*  flex-direction: column; */
@@ -384,7 +396,7 @@
      }
 
      .project_list_speaker_project_detail_btn{
-        /* justify-content: none; */
+        flex: 10%;
         padding: none;
     }
     
