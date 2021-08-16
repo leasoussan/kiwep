@@ -389,7 +389,7 @@ nav{
   .video_speaker {
  
     width: 450px;
-
+    /* float: right; */
   }
 }
 
