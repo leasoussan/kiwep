@@ -36,11 +36,12 @@
 
                 <div class="project_detail_name_responsive"><a href="{% url 'project_detail' project.id %}">{{project.name}}</a></div>
                 {% if not project.team %}
-                    <div class="create_team"><button type="button" class="btn btn-outline-primary btn-sm createproj_btn"><a class="create_project_btn_projlist" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a></button></div>
+                   <button type="button" class="btn btn-outline-primary btn-sm createproj_btn project_list_box_create_team_btn"><a class="create_project_btn_projlist" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a></button>
                     <!-- <a class= "btn" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a> -->
                 {% else %}
-                    <div class="team_name"><a href="{% url 'team_detail' project.team.id %}">{{ project.team.name }}</a>
-                        <a class="align_items_project_projecttbl" href="{% url 'update_team' project.team.id %}"><i><b>edit</b></i></a>
+                    <div class="project_list_box_team_name">
+                        <a href="{% url 'team_detail' project.team.id %}">{{ project.team.name }}</a>
+                        <a class="edit_team_project_detail_box" href="{% url 'update_team' project.team.id %}"><i><b>edit</b></i></a>
                     </div>
                 {% endif %}
 
@@ -51,7 +52,7 @@
                 <div class="project_list_speaker_project_detail_btn">
                     {% if user.is_speaker %}
                         <a href="{% url 'update_project' project.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"> </a>
-{#                        <a href="{% url 'duplicate_create_project' project.id team.id %}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>#}
+{#                      <a href="{% url 'duplicate_create_project' project.id team.id %}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>#}
                         <a href="{% url 'delete_project' project.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"> </a>
                     {% endif %}
                 </div>

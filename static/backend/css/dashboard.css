@@ -58,6 +58,11 @@
     font-weight: bolder;
 }
 
+.dashboard_item_title{
+    display: flex;
+    margin-right: 35px;
+}
+
 /* RESPONSIVE */
 @media (max-width: 670px) {
 
@@ -70,6 +75,12 @@
         min-width: none;
         max-width: none;
         width: 100%;
+    }
+
+    .dashboard_navigation_link_item{
+        width: 100%;
+        min-height: 60%;
+        border: solid black 4px;
     }
 
     .dashboard_extra_navigation_link ul {

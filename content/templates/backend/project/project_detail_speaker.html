@@ -104,7 +104,7 @@
                         <b>{% trans 'resources' %}</b>
                     </div>
 
-                    <div class="btn_control_project1">
+                    <div class="btn_control_project">
                         <!-- Button trigger modal add Resource -->
                         <button type="button" class="btn btn-primary sm_btn1" data-bs-toggle="modal" data-bs-target="#add_resource">
                             {% trans 'add_resource' %}
@@ -119,10 +119,16 @@
                         {% for resource in project.resource_set.all %}
 
                             <ul class="resource_details">
-                                <li><a href="{% url 'resource_detail' resource.id %}"><b>{{ resource.name }}</b></a></li>
+                                <div class="resource_detail_resourcename">
+                                    <li><a href="{% url 'resource_detail' resource.id %}"><b>{{ resource.name }}</b></a></li>
+                                </div>
                                 {% if user.is_speaker %}
-                                    <li><a href="{% url 'delete_resource' resource.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
-                                  <a scope="col" href="{% url 'update_resource' resource.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a></li>
+                                   <div class="project_detail_resource_items">
+                                       <li>
+                                        <a href="{% url 'delete_resource' resource.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
+                                        <a scope="col" href="{% url 'update_resource' resource.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a>
+                                       </li>
+                                    </div> 
                                 {% endif %}
 
                             </ul>
