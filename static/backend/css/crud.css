@@ -5,14 +5,26 @@
 
 }
 
-
-
 .form_container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
-    padding-left: 2rem;
+    width: 55%;
+    /* padding-left: 2rem; */
+    /* justify-content: flex-start; */
+    margin-right: auto;
+}
+
+.update_project_title{
+    display: flex;
+    /* border: 2px solid blueviolet; */
+    margin-right: 120px;
+    margin-bottom: 30px;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    border: none !important;
+    background-color: rgb(36, 174, 224) !important;
 }
 
 .form_design_create{
@@ -34,20 +46,35 @@
 .image_placeholder{
     width: 70%;
     height: 40%;
-    background-image: ;
+    /* background-image: ; */
 }
+
 .video_placeholder{
     width: 70%;
     height: 40%;
 }
 
-
-
-/*upodat*/
+/*update*/
 
 .update_form_container{
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     width: 90% ;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 670px){
+
+    .update_form_container{
+        flex-wrap: wrap;
+        width: 100% ;
+    }
+
+    .form_container{
+        width: 100%;
+        margin-right: auto;
+    }
 
 }
