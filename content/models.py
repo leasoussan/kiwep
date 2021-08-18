@@ -129,7 +129,7 @@ class Mission(AnswerModel):
     description = models.TextField()
     resources = models.ManyToManyField(Resource, blank=True)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    points = models.PositiveIntegerField()
+    points = models.PositiveIntegerField(null=True, blank=True)
     acquired_skill = models.ManyToManyField(Skills)
     created_date = models.DateField(auto_now_add=True)
     due_date = models.DateField(default=timezone.now)

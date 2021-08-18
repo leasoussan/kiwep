@@ -6,11 +6,12 @@
 <div class="team_detail_container">
     <div class="team_detail_header">
         {% if not team.project %}
+
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ChoseProject">{% trans 'choose_project_team' %}</button>
         {% else %}
 
             <div class="team_project_detail">
-                <h2><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name.title }} </a></h2>
+            <h2><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name.title }} </a></h2>
             {% if request.user.profile == team.manager %}
                 <div class="speaker_action_btn_group">
                     <button type="button" class="btn btn-warning sm-btn"><a href="{% url 'update_team' team.id %}">{% trans 'edit' %}</a></button>
@@ -20,7 +21,7 @@
         {% endif %}
 
 
-            </div>
+        </div>
 
 
 
@@ -49,7 +50,7 @@
 
     <div class="team_detail_main_content">
         {% if user.profile in team.participants.all or user.is_speaker  %}
-    
+
             <div class="team_mission_list overflow-auto">
                 <div class="add_mission"><a href="#"><b>Add Mission</b></a></div>
                 {% for mission in team.project.mission_set.all.available_mission %}
@@ -104,7 +105,7 @@
                             <div class="add_person"><a href="{% url 'add_member_team' team.id %}"><img src="/static/backend/images/kiwep/addperson.png" alt="add"></a></div>
                         {%  endif %}
 
-                        
+
                     </div>
                     <div class="participants_list_icon">
                         {% for participant in team.participants.all %}
@@ -131,4 +132,65 @@
 
     </div>
 
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="ChoseProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create" aria-selected="true">
+                            {% trans 'create_project' %}</button>
+                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-chose" type="button" role="tab" aria-controls="nav-chose" aria-selected="false">
+                            {% trans 'chose' %}</button>
+                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-duplicate" type="button" role="tab" aria-controls="nav-duplicate" aria-selected="false">
+                            {% trans 'duplicate' %}</button>
+                    </div>
+                </nav>
+
+
+            </div>
+            <div class="modal-body">
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
+                        <form method="post" action="{% url 'create_team_project' team.id %}">
+                        {% csrf_token %}
+                        {{ project_form|crispy }}
+                        <button type="submit">{% trans 'save' %}</button>
+                    </form>
+                    </div>
+                    <div class="tab-pane fade" id="nav-chose" role="tabpanel" aria-labelledby="nav-chose-tab">
+
+                         {% for project in templates %}
+                        <div class="duplicate_table">
+
+                            <h4 class="small_title">{{ project.name }}</h4>
+                            <a href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select' %}</a>
+
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div class="tab-pane fade" id="nav-duplicate" role="tabpanel" aria-labelledby="nav-duplicate-tab">
+                        {% for project in old_projects  %}
+                        <div class="duplicate_table">
+                            <h4 class="small_title">{{ project.name }}</h4>
+                            <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>

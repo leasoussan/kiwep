@@ -32,28 +32,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 
 
-class ChooseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
-    """Select a project will make you own a version of the project
-    This View will make himself a speaker to the project -
-    as a copy to enable using it after with a team and make changes"""
-
-    # query_sting = False >>this is false by default
-    pattern_name = 'update_project'
-
-    def get_redirect_url(self,  *args, **kwargs):
-        project = get_object_or_404(Project, pk=kwargs['pk'])
-        project.id = None
-        project.is_template = False
-        project.is_global= False
-        project.is_premium= False
-        project.speaker = self.request.user.profile()
-        project.save()
-        del kwargs['pk']
-        kwargs['pk'] = project.pk
-        return super().get_redirect_url(*args, **kwargs)
-
-
-
 
 
 class ChooseTeamProjectView(SpeakerStatuPassesTestMixin, RedirectView):
@@ -241,6 +219,44 @@ def get_due_date(self, **kwargs):
     context = super(ProjectTeamCreateView, self).get_due_date(**kwargs)
     context['options_list'] = Option.objects.all()
     return context
+
+
+
+class ChooseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
+    """Select a project will make you own a version of the project
+    This View will make himself a speaker to the project -
+    as a copy to enable using it after with a team and make changes"""
+
+    # query_sting = False >>this is false by default
+    pattern_name = 'update_project'
+
+    def get_redirect_url(self,  *args, **kwargs):
+        project = get_object_or_404(Project, pk=kwargs['pk'])
+        pk = self.kwargs.get("team_id")
+        print(project,'pk')
+        team = get_object_or_404(Team, pk=pk)
+        print(team, 'team')
+        missions = project.mission_set.all()
+        print('mission', missions)
+        resources = project.resource_set.all()
+        project.id=None
+        project.is_template=False
+        project.is_global=False
+        project.is_premium=False
+        project.speaker = self.request.user.profile()
+        project.save()
+        clean_missions(project.id, missions)
+        clean_resource(project.id, resources)
+        team.project = project
+        del kwargs['team_id']
+        kwargs['pk'] = project.pk
+        return super().get_redirect_url(*args, **kwargs)
+
+
+
+
+
+
 
 
 class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
