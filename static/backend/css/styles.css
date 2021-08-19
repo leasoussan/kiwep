@@ -182,7 +182,14 @@ div a{
   background-color: #0c8b51;
 }
 
+#logotitle{
+  display: flex;
+  justify-content: center;
+}
 
+#logotitle h1{
+  background-color: transparent;
+}
 
 #logotitle-nav{
   width: 150px;
@@ -321,6 +328,14 @@ nav{
     width: 100%;
   }
   
+  #logotitle{
+      background-color: transparent;
+  }
+
+  #logotitle h1{
+    background-color: transparent;
+  }
+
   #background{
     background-image: none;
     background-color: rgb(163, 163, 163);
@@ -331,11 +346,12 @@ nav{
     margin: 50px 
   }
 
+  
   #opacity{
     opacity: 0.8;
     width: 350px;
     height: 530px;
-    background-color: rgb(184, 181, 181);
+    background-color: white;
     position: relative;
     top: 26px;
     right: 15px;

@@ -14,7 +14,7 @@
                         <a class="btn" href="{% url 'chose_project_detail' project.id %}">{% trans 'select'%}</a>
 
                     {% else %}
-                    <button type="button" class="btn btn-secondary"><a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a></button>
+                    <button type="button" class="btn btn-warning"><a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a></button>
                         <!-- <a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a> -->
 
                     {% endif %}

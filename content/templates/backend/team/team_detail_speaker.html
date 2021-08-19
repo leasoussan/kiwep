@@ -119,7 +119,10 @@
                 </div>
 
                 <div class="team_discussion_container">
-                    <h4>{% trans 'discussions' %}</h4>
+                    <div class="team_discussion_header">
+                        <h4>{% trans 'discussions' %}</h4>
+                        <div class="discussion_icon_team_detail"></div>
+                    </div>
                     <div class="discussion_list">
                         {% include 'comments/discussion.html' %}
                     </div>
