@@ -19,6 +19,7 @@ class ProjectAddForm(ModelForm):
             'time_to_complete',
             'field',
             'points',
+            'is_template'
         ]
 
         # exclude = ['completed', 'created_by']

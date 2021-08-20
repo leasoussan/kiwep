@@ -52,7 +52,11 @@
                 <div class="project_list_speaker_project_detail_btn">
                     {% if user.is_speaker %}
                         <a href="{% url 'update_project' project.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"> </a>
+<<<<<<< HEAD
 {#                      <a href="{% url 'duplicate_create_project' project.id team.id %}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>#}
+=======
+                        {#                        <a href="{% url 'duplicate_create_project' project.id team.id %}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>#}
+>>>>>>> dev
                         <a href="{% url 'delete_project' project.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"> </a>
                     {% endif %}
                 </div>
@@ -79,9 +83,11 @@
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-create-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create" aria-selected="true">
-                                {% trans 'crfeate_project' %}</button>
+                                {% trans 'create_project' %}</button>
                             <button class="nav-link" id="nav-choose-tab" data-bs-toggle="tab" data-bs-target="#nav-choose" type="button" role="tab" aria-controls="nav-choose" aria-selected="false">
                                 {% trans 'chose_from_template' %}</button>
+                            <button class="nav-link" id="nav-duplicate-tab" data-bs-toggle="tab" data-bs-target="#nav-duplicate" type="button" role="tab" aria-controls="nav-duplicate" aria-selected="false">
+                                {% trans 'duplicate' %}</button>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -107,6 +113,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
                                 {% for project in project_list %}
                                     <tr class="table_headers">
                                         <td><a class= "link-table" href="{% url 'project_detail' project.id %}">{{project.name}}</a></td>
@@ -119,13 +126,22 @@
                                         {#                            </td>#}
                                         <td>{{project.time_to_complete}} {% trans 'days' %}</td>
                                         <td> <a href="{% url 'project_detail' project.id %}"> <i class="material-icons">pageview</i> </a></td>
-                                        <td> <a class= "link-table speaker_select_project" href="{% url 'chose_project_detail' project.id %}">{% trans 'speaker_select_project' %}</a> </td>
+{#                                        <td> <a class= "link-table speaker_select_project" href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'speaker_select_project' %}</a> </td>#}
                                     </tr>
                                 {% endfor %}
 
 
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="tab-pane fade" id="nav-duplicate" role="tabpanel" aria-labelledby="nav-duplicate-tab">
+
+                            {% for project in old_projects %}
+                                <div class="duplicate_table">
+                                    <h4 class="small_title">{{ project.name }}</h4>
+                                    <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
 
@@ -169,15 +185,16 @@
                             </form>
                         </div>
 
-                        <div class="tab-pane fade show active" id="nav-bulk-collective" role="tabpanel" aria-labelledby="nav-nav-bulk-collective">
-                            <form method="post" action="{% url 'bulk_add_collective_mission' %}">
-                                {% csrf_token %}
-                                {{ mission_bulk_form|crispy }}
-                                {{ individual_form|crispy }}
-                                <button type="submit">{% trans 'save' %}</button>
-
-                            </form>
-                        </div>
+                        {#                        <div class="tab-pane fade show active" id="nav-bulk-collective" role="tabpanel" aria-labelledby="nav-nav-bulk-collective">#}
+                        {#                            <form method="post" action="{% url 'bulk_add_collective_mission' %}">#}
+                        {#                                {% csrf_token %}#}
+                        {##}
+                        {#                                {{ individual_form|crispy }}#}
+                        {#                                  {{ mission_bulk_form|crispy }}#}
+                        {#                                <button type="submit">{% trans 'save' %}</button>#}
+                        {##}
+                        {#                            </form>#}
+                        {#                        </div>#}
 
                     </div>
                     <div class="modal-footer">
