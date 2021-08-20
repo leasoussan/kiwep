@@ -390,7 +390,7 @@ def clean_bulk_mission(mission, projects):
         mission.created_date = timezone.now()
         mission.due_date = timezone.now()
         mission.completed = False
-        if mission == IndividualMission:
+        if mission.mission_type =='i':
             mission.attributed_to = None
             print("mission cleaned", mission)
             mission.save()

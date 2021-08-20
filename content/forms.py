@@ -7,6 +7,7 @@ from django.forms import inlineformset_factory
 from django.http import Http404
 from django.utils.translation import ugettext as _
 from accounts.models import Student
+from backend.models import Field
 from .models import Project, Team, Resource, Mission, CollectiveMission, IndividualMission, IndividualCollectiveMission
 
 
@@ -17,7 +18,6 @@ class ProjectAddForm(ModelForm):
             'name',
             'description',
             'time_to_complete',
-            'field',
             'points',
             'is_template'
         ]
@@ -97,10 +97,7 @@ mission_fields = [
     'stage',
     'response_type',
     'name',
-    'field',
-    'level',
     'description',
-    'resources',
     'points',
     'acquired_skill',
     'due_date',
@@ -202,6 +199,24 @@ class ResourceAddForm(ModelForm):
 #     fields=mission_fields,
 #     extra=1)
 #
+
+
+
+# {TODO}
+class addSkillsForm(forms.Form):
+    field = Field.objects.all()
+    name = forms.CharField(max_length=20)
+
+
+    def save_add_skill(self):
+
+        object.acquired_skills = self.cleaned_data['name']
+
+
+
+
+
+
 
 
 

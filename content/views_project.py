@@ -73,7 +73,8 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
         context['mission_bulk_form'] = BulkAddMissionForm(projects=self.request.user.profile().project_set.personal_projects())
         context['individual_form'] = IndividualMissionAddForm()
         context['collective_form'] = CollectiveMissionAddForm()
-
+        context['templates'] = Project.objects.personal_templates().filter(speaker=self.request.user.profile())
+        context['old_projects'] = self.request.user.profile().project_set.all()
         return context
 
     def get_queryset(self):
@@ -94,6 +95,7 @@ class StudentAvailableTeamList(ProfileCheckPassesTestMixin, ListView):
     def get_queryset(self):
         if self.request.user.is_student:
             return self.request.user.profile().class_level.team_set.filter(project__isnull=True)
+
 
 
 # ----------------PROJECT------Detail_View/
@@ -181,12 +183,14 @@ def clean_missions(project_id, *querysets):
             mission.created_date = None
             mission.due_date = timezone.now()
             mission.completed=False
+
             if qs.model == IndividualMission:
                 mission.attributed_to = None
                 mission.accepted = False
-
+            print(dir(mission))
             objects.append(mission)
         qs.model.objects.bulk_create(objects)
+
 
 
 def clean_resource(project_id, queryset):
@@ -331,8 +335,6 @@ class ProjectUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateV
         'name',
         'description',
         'time_to_complete',
-        'field',
-        'difficulty',
         'points',
         'acquired_skills',
     ]

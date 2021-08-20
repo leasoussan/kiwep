@@ -8,12 +8,12 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import user_passes_test, login_required
 
 from django.views.generic import (
-    CreateView, 
-    DetailView, 
-    ListView, 
-    DetailView, 
-    UpdateView, 
-    DeleteView
+    CreateView,
+    DetailView,
+    ListView,
+    DetailView,
+    UpdateView,
+    DeleteView, RedirectView
 )
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -67,7 +67,15 @@ class ResourceCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
         return render(request, 'crud/create.html', {'form': form})
 
 
+# {TODO:}
+class AddResourceToMission(CreateView):
 
+    pass
+
+
+
+class SelectResourceFromProject(RedirectView):
+    pass
 
 
 
@@ -91,11 +99,20 @@ class ResourceUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Update
         return reverse_lazy('resource_detail', kwargs={'pk': self.object.id})
 
 
+
 class ResourceDeleteView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, DeleteView):
     model = Resource
     template_name = 'crud/delete.html'
-    success_url = reverse_lazy('resource_list')
+    # success_url = reverse_lazy('project_detail')
 
     def get_object(self):
         pk = self.kwargs.get('pk')
+        print('pk', pk)
         return get_object_or_404(Resource, pk=pk)
+
+# {TODO}
+    def get_context_data(self, **kwargs):
+        pass
+
+    def get_success_url(self):
+        return reverse_lazy('project_detail', kwargs={'pk': self.object.id})

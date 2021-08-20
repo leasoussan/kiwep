@@ -62,9 +62,9 @@
 
 
             <div class="resource_container overflow-auto">
-                {% if object.project.resource_set.exists %}
-
-                    {% for resource in object.project.resource_set.all   %}
+                {% if object.resources %}
+                    here
+                    {% for resource in object.resources.all  %}
                         <div class="resource_item_detail">
 
                             <div class="resource_cover">
@@ -99,83 +99,59 @@
             </div>
 
 
-        <div class="btn_control_mission">
-            <!-- Button trigger modal add Resource -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
-                {% trans "add_resource" %}
-            </button>
+            <div class="btn_control_mission">
+                <!-- Button trigger modal add Resource -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
+                    {% trans "add_resource" %}
+                </button>
+            </div>
         </div>
-    </div>
 
 
 
 
-<div class="mission_status_box">
+        <div class="mission_status_box">
 
-    {% if individualmission  %}
+            {% if individualmission  %}
 
-        {% if not object.attributed_to  %}
-            {% trans 'mission_unclaimed' %}
+                {% if not object.attributed_to  %}
+                    {% trans 'mission_unclaimed' %}
 
-    {% else %}
-        <h3>{% trans 'mission_is_attributed_to' %}{{ object.attributed_to }}</h3>
+                {% else %}
+                    <h3>{% trans 'mission_is_attributed_to' %}{{ object.attributed_to }}</h3>
 
-    {% endif %}
+                {% endif %}
 
 
 
-    {% elif collectivemission  %}
-        {% if not object.attributed_to.all.exists %}
-            {% trans 'no_one_joined_yet' %}
-            {% if user.profile ==  object.team.manager %}
+            {% elif collectivemission  %}
+                {% if not object.attributed_to.all.exists %}
+                    {% trans 'no_one_joined_yet' %}
+                    {% if user.profile ==  object.team.manager %}
 
-                <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
+                        <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
+                    {% endif %}
+
+                {% else %}
+                    {% for participant in object.attributed_to.all %}
+                        <li> {{ participant }}</li>
+
+                    {% endfor %}
+                {% endif %}
+
             {% endif %}
 
-        {% else %}
-            {% for participant in object.attributed_to.all %}
-                <li> {{ participant }}</li>
 
-            {% endfor %}
-        {% endif %}
+            <div>
+                {% include "answer/answer.html"  with object=object %}</div>
 
-    {% endif %}
+        </div>
 
-
-<div>
-  {% include "answer/answer.html"  with object=object %}</div>
-
-</div>
-
-</div>
+    </div>
 </div>
 
 
 <!-- Modal ADD RESOURCES-->
-<div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="add_resourceLable" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="add_resourceLable">{% trans 'add_resource' %}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
 
 
 
@@ -184,46 +160,51 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="add_resource" data-bs-toggle="tab" data-bs-target="#add_resource" type="button" role="tab" aria-controls="add_resource" aria-selected="true">
-                            {% trans 'add_resource'%}</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="chose_resource" data-bs-toggle="tab" data-bs-target="#chose_resource" type="button" role="tab" aria-controls="chose_resource" aria-selected="false">
-                            {%  trans 'chose_resource' %}</button>
-                    </li>
+                <nav>
 
-                </ul>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                        <button class="nav-link active" id="nav-create-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-chose" aria-selected="true">{%  trans 'create_resource' %}</button>
+
+                        <button class="nav-link active" id="nav-choose-tab" data-bs-toggle="tab" data-bs-target="#nav-chose" type="button" role="tab" aria-controls="nav-chose" aria-selected="true">{%  trans 'chose_resource' %}</button>
+
+                    </ul>
+                </nav>
             </div>
             <div class="modal-body">
+                <div class="tab-content" id="nav-tabContent">
 
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="add_resource" role="tabpanel" aria-labelledby="add_resource-tab">
-                        {% if object %}
-                            <form method="POST" class="form-horizontal" action='{% url 'create_resource' object.project.id %}' >
-                                {% csrf_token %}
-                                {{ resources_form|crispy }}
-                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
-                                    {% trans 'save'%}</button>
-                            </form>
-                        {% endif %}
+                    <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
+                        <form method="post" action="{% url 'create_resource' object.project.id %}">
+                        {% csrf_token %}
+                        {{ resources_form|crispy }}
+                        <button type="submit">{% trans 'save' %}</button>
+                    </form>
                     </div>
-                    <div class="tab-pane fade" id="chose_resource" role="tabpanel" aria-labelledby="chose_resource-tab">
+                    <div class="tab-pane fade" id="nav-chose" role="tabpanel" aria-labelledby="nav-chose-tab">
 
+                         {% for resource in object.ressources_set.all %}
+                        <div class="duplicate_table">
+
+                            <h4 class="small_title">{{ project.name }}</h4>
+                            <a href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select' %}</a>
+
+                        </div>
+                        {% endfor %}
                     </div>
 
                 </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
             </div>
         </div>
     </div>
+
+
 </div>
-
-
 
 
