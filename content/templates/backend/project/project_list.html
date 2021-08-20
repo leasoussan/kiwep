@@ -52,11 +52,7 @@
                 <div class="project_list_speaker_project_detail_btn">
                     {% if user.is_speaker %}
                         <a href="{% url 'update_project' project.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"> </a>
-<<<<<<< HEAD
 {#                      <a href="{% url 'duplicate_create_project' project.id team.id %}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>#}
-=======
-                        {#                        <a href="{% url 'duplicate_create_project' project.id team.id %}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>#}
->>>>>>> dev
                         <a href="{% url 'delete_project' project.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"> </a>
                     {% endif %}
                 </div>
