@@ -29,17 +29,19 @@
 
             {% if team.project %}
 
-                <a class="btn project_link_extra btn-sm" href ="{% url 'project_detail' team.project.id %}">{% trans 'read_more_about_the_project' %}</a></a>
-
+                <div>
+                    <span class="project_link_extra_underline"><a class="btn project_link_extra btn-sm" href ="{% url 'project_detail' team.project.id %}">{% trans 'read_more_about_the_project' %}</a>
+                    </span></div>
 
                 {#    Button Modal Resources#}
-                <button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#resource_modal ">
+                <div><span class="project_link_extra_underline1"><button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#resource_modal">
                     {% trans 'resources' %}
-                </button>
+                </button></span>
+                </div>
                 <div class="photo-gallery">
-                    <button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">
-                        {% trans 'photo_gallery' %}
-                    </button>
+                <div><span class="project_link_extra_underline2"><button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">
+                    {% trans 'photo_gallery' %}
+                </button></span></div>
 
                 </div>
             {% endif %}

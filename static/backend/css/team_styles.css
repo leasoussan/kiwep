@@ -52,7 +52,7 @@
 .team_navigation_extra_button {
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 60%;
     justify-content: space-between;
     align-content: center;
     margin: auto;
@@ -248,13 +248,13 @@
         margin-top: 2rem;
         margin-bottom:2rem;
         width: 100%;
-        /* flex-wrap: wrap; */
+        flex-wrap: wrap;
 
     }
 
     .team_project_detail{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         margin-bottom: 0;
     }
 
@@ -263,7 +263,11 @@
     }
 
     .speaker_action_btn_group{
-        margin-left: 90px;
+        margin-top: 15px;
+        margin-right: auto;
+        justify-content: flex-start;
+        position: relative;
+        right: 7px;
     }
 
     .speaker_action_btn_group > button{
@@ -276,6 +280,26 @@
     }
 
     .project_link_extra{
+        border-bottom: none;
+        position: relative;
+        right: 8px;
+        /* border-bottom: 1px solid rgb(121, 121, 121); */
+    }
+    .project_link_extra_underline{
+        width: 90%;
+        display: inline-block;
+        border-bottom: 1px solid rgb(121, 121, 121);
+    }
+
+    .project_link_extra_underline1{
+        width: 30%;
+        display: inline-block;
+        border-bottom: 1px solid rgb(121, 121, 121);
+    }
+
+    .project_link_extra_underline2{
+        width: 40%;
+        display: inline-block;
         border-bottom: 1px solid rgb(121, 121, 121);
     }
 
@@ -283,7 +307,7 @@
         margin-top: 2rem;
         flex-direction: column;
         position: relative;
-        right: 92px;
+        right: 70px;
     }
 
     .add_mission{
