@@ -159,6 +159,7 @@
 .team_discussion_header{
     display: flex;
     flex-direction: row;
+    margin-top: 10px;
 }
 .team_discussion_header > h4{
     margin-left: 10px;
@@ -179,11 +180,21 @@
     width: 80%;
 }
 
-.add_mission{
-    margin-left: 75px;
-
+.discussion_detail{
+    margin-top: 20px;
+    margin-left: 40px;
 }
 
+.add_mission{
+    margin-left: 75px;
+}
+
+.start_discussion_btn_team_detail_speaker{
+    display: flex;
+    justify-content: center;
+    margin-left: 50px;
+    margin-top: 9px;
+}
 /*_______STUDENT TEAM DETAIL STYLE_____________________*/
 
 .team_project_status{
@@ -214,6 +225,18 @@
     align-items: center;
     justify-content: center;
     border-radius: 10%;
+}
+
+.discussion_board_row{
+    border: 1px solid maroon;
+    width: 100%;
+    margin-left: 23px;
+    margin-top: 10px;
+}
+
+.discussion_sub_title{
+    margin: 10px 0 0 10px;
+    
 }
 
 /* RESPONSIVE */
@@ -268,9 +291,10 @@
     }
 
     .team_extra_information{
-        /* margin-right: auto; */
+        min-width: none;
         position: relative;
         right: 50px;
+        width: 100%;
     } 
 
     .team_participant_container{
@@ -281,16 +305,32 @@
     }
 
     .team_discussion_container{
-      width:100%;
-        /* position: relative;
-        bottom: 232px;
-        left: 135px; */
+        width:100%;   
         min-height: none;
         height: 40%;
         margin-left: 0;
     }
 
+    .discussion_list{
+        width: 100%;
+    }
+
+    .start_discussion_btn_team_detail_speaker{
+        margin: 9px auto auto auto;
+    }
+
     .team_detail_main_content{
         margin-top: 1rem;
+    }
+
+    .discussion_board_row{
+        border: 1px solid maroon;
+        width: 90%;
+        margin: 10px auto auto auto;
+    }
+
+    .discussion_sub_title{
+        margin: 10px 0 0 10px;
+        
     }
 }

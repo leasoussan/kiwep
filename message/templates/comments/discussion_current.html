@@ -6,14 +6,13 @@
 
 
 
-<span class="discussion_sub_title"><b>{% trans 'discussion_board_of' %} :  {{object.name}}</b></span>
+<span class="small_title">{% trans 'discussion_board_of' %} :  {{object.name}} </span>
 
     {% if not object.discussion %}
         <!-- Button trigger modal -->
-  <div class="start_discussion_btn_team_detail_speaker"> <button type="button" style="width: 9rem; margin: auto; margin-top: 5px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
+<button type="button" style="width: 12rem" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
  {% trans 'start_discussion' %}
 </button>
-</div> 
     {% else %}
         <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
@@ -71,9 +70,9 @@
 
 {#---------------------------------FOR DISCUSSION BOARD#}
 
-<div class="discussion_board_row">
+<div class="row">
 
-   <div class="col s12 m6 l8 discussion_detail" >
+    <div class="col s12 m6 l8 discussion_detail" >
 
         <div id="current_discussion">
 
@@ -112,7 +111,7 @@
 
 
         </div>
-    </div> 
+    </div>
     {#    <div class="col s12 m6 l4">#}
     {#        <div class="row discussion_list">#}
     {##}
