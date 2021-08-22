@@ -123,7 +123,7 @@ class Mission(AnswerModel):
     
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     stage = models.CharField(max_length=10, choices=STAGE_CHOICE, default='start')
-    response_type = models.CharField(max_length=200, choices=RESPONSE_TYPE, default=None)
+    response_type = models.CharField(max_length=200, choices=RESPONSE_TYPE, default=None, blank= True, null= True)
     name = models.CharField(max_length=200)
     field = models.ForeignKey(Field, on_delete=models.CASCADE, blank= True, null= True)
     level = models.ForeignKey(Level, on_delete=models.CASCADE, blank= True, null= True)

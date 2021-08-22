@@ -171,7 +171,8 @@
                          {% for project in templates %}
                         <div class="duplicate_table">
 
-                            <h4 class="small_title">{{ project.name }}</h4>
+
+                            <a href="{% url 'project_detail' project.id %}"> <h4 class="small_title">{{ project.name }}</h4></a>
                             <a href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select' %}</a>
 
                         </div>

@@ -219,18 +219,17 @@ class CreateProfile(View):
                 object.representative = Representative.objects.get_or_create(user=request.user)[0]
             else:
                 object.user = request.user
-            object.save()
+
 
 
             if user.is_speaker:
                 for invite in user.received_invites.all():
                     object.institution.add(invite.institution)
-
+                    object.save()
             elif user.is_student:
                 join_code = profile_form.cleaned_data['join_code']
                 if Group.objects.filter(join_code=join_code).exists():
                     join_group = Group.objects.get(join_code=join_code)
-
                     object.class_level=join_group
                     object.save()
 

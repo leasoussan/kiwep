@@ -27,7 +27,7 @@ urlpatterns = [
 
 
     # mission
-    path('mission-list/', IndividualMissionListView.as_view(), name="mission_list"),
+    # path('mission-list/', IndividualMissionListView.as_view(), name="mission_list"),
     path('my_mission-list/', IndividualMissionListView.as_view(), name="my_mission_list"),
     path('answer-mission-list/', AnswerBoardMissionListView.as_view(), name="answer_mission_list"),
     path('individual-mission-detail/<int:pk>', IndividualMissionDetailView.as_view(), name="individual_mission_detail"),
@@ -55,7 +55,7 @@ urlpatterns = [
     path('team-list/', TeamListView.as_view(), name = "team_list"),
     path('team-detail/<int:pk>', TeamDetailView.as_view(), name = "team_detail"),
     path('create-team/', TeamCreateView.as_view(), name = "create_team"),
-    path('chose-project-team/<int:pk>/<int:team_pk>', ChooseTeamProjectView.as_view(), name = "chose_team_project"),
+    # path('chose-project-team/<int:pk>/<int:team_pk>', ChooseTeamProjectView.as_view(), name = "chose_team_project"),
     path('create-team-project/<int:pk>', ProjectTeamCreateView.as_view(), name = "create_team_project"),
     path('create-team-to-project/<int:pk>', ProjectToTeamCreateView.as_view(), name="create_team_to_project"),
 
