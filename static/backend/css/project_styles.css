@@ -181,6 +181,11 @@
     padding: 0rem 5rem;
 }
 
+.btn-outline-danger, .btn-outline-danger:hover, .btn-outline-danger:active, .btn-outline-danger:visited {
+    border-color: rgb(125, 158, 201);
+    background-color: transparent !important; 
+}
+
 .project_list_page_header{
     display: flex;
     flex-direction: row;
@@ -215,12 +220,29 @@
 .project_details_box{
     display: flex;
     flex-direction: row;
-    border:  2px solid rgb(211, 211, 211);
+    background-color: rgb(247, 250, 253);
     min-height: 5rem;
     min-width: 80%;
     padding: 2rem;
     margin-top: 3rem;
     justify-content: space-between;
+}
+
+.project_list_box_create_team_btn{
+    height: 37px;    
+}
+
+
+.edit_team_project_detail_box b{
+    background-color: rgb(247, 250, 253);
+}
+
+.time_to_complete label{
+    background-color: rgb(247, 250, 253);
+}
+
+.project_details_box div{
+    background-color: transparent;
 }
 
 /* RESPONSIVE */
@@ -275,15 +297,13 @@
     }
 
     .buttons_project_list{
-        justify-content: space-evenly;
-        margin-top: 40px;
-        padding-right: 64px;
+        margin-top: 20px;
+        padding-right: 30px;
         width: 100%;
     }
 
     .project_list_page_header{
         flex-direction: column;
-        justify-content: none; 
         width: 100%;
     }
 
@@ -326,10 +346,9 @@
     }
     .project_details_box{
         display: flex;
-        flex-direction: column;
+        /* flex-direction: column; */
         justify-content: space-between; 
         flex-wrap: wrap;
-        border: 2px solid rgb(211, 211, 211);
         min-height: none;
         min-width: none;
         width: 100%;
@@ -343,21 +362,18 @@
     }
 
     .project_details_box div{
-        /* border: 1px solid red; */
-        /* justify-content: space-between;  */
         width: 25%;
     }
-    .project_list_box_create_team_btn{
-        /* display: inline-block; */
-        position: relative;
-        bottom: 30px;
-    }
-
+   
     .project_detail_name_responsive{
         height: 30px;
         flex: 25%;
      }
      
+     .project_list_box_create_team_btn{
+        height: auto;  
+    }
+
      .project_list_box_team_name{
         display: flex;
         /* border: 1px solid pink; */
@@ -369,18 +385,9 @@
 
      .time_to_complete{
         display: flex;
-        /* flex-direction: column; */
         flex: 50%;
-        /* align-items:flex-start; */
-        /* width: 25%; */
-        
-       /*  flex-direction: column; */
-        /* width: 25%; */
      }
-     .createproj_btn{
-         height: 30px;
-         margin-top: 30px;
-     }
+    
 
      .project_resource_header{
          flex-direction: column;
@@ -400,6 +407,7 @@
    .edit_team_project_detail_box{
         margin-left: 25px;
     }
+    
 
     .resource_details{
         margin: 5px 5px 5px 0; padding: 5px;

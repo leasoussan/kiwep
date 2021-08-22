@@ -1,3 +1,36 @@
+/* TEAM-LIST */
+
+#wrapper{
+    margin: 0 auto;
+    width: 1000px;
+    background-color: aqua;
+}
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    border: none !important;
+    background-color: rgb(99, 162, 185) !important;
+}
+
+.add_team_button{
+    color: white;
+}
+
+.team_list_btn_gp{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 30px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.button_left{
+    margin-right: 15px;
+    /* height: 33px; */
+    
+}
+
+
+
 /* TEAM-DETAIL */
 .team_detail_container{
     display: flex;
