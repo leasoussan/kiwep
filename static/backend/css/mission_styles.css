@@ -68,9 +68,12 @@ button .edit_button{
 .mission_status_box {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: flex-start;
     padding: 1rem;
-    width: 30%;
+    width: 50%;
+    min-height: 30%;
+    max-height: 50%;
     align-items: center;
     background-color: #d5dbd5;
     margin-left: 10rem;
@@ -78,13 +81,20 @@ button .edit_button{
 
 }
 
+.discussion_include_div{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    width: 60%;
+    /*justify-content: flex-end;*/
+}
 .mission_attributed_to{
 display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.lable_mission_status{
+.table_mission_status{
     display: flex;
     justify-items: center;
     justify-content: center;

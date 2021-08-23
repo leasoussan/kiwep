@@ -86,41 +86,51 @@
                 {% endif %}
             </div>
         </div>
-        <div class="mission_status_box">
-
-            {% if user.profile in object.project.team.participants.all %}
-                {% if individualmission and not object.attributed_to  %}
-
-                    <a class="btn claim_mission_button" href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>
 
 
-                {% elif individualmission and object.attributed_to %}
+            <div class="mission_status_box" style="background-color: red">
 
-                    {% if object.attributed_to == request.user.profile %}
-                        <div class="mission_attributed_to">
+                {% if user.profile in object.project.team.participants.all %}
+                    {% if individualmission and not object.attributed_to  %}
 
-
-                            <h4 class="small_title">{% trans 'mission_is_attributed_to_you' %}
-                                {{ object.attributed_to }}</h4>
-                            <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a>
+                        <a class="btn claim_mission_button" href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>
 
 
-                        </div>
-                        <div class="answer_content">
+                    {% elif individualmission and object.attributed_to %}
+
+                        {% if object.attributed_to == request.user.profile %}
+                            <div class="mission_attributed_to">
 
 
-                            {% include "answer/answer.html"  with object=object %}
+                                <h4 class="small_title">{% trans 'mission_is_attributed_to_you' %}
+                                    {{ object.attributed_to }}</h4>
+                                <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a>
 
-                        </div>
+
+                            </div>
+                            <div class="answer_content">
+
+
+                                {% include "answer/answer.html"  with object=object %}
+
+                            </div>
+                        {% endif %}
                     {% endif %}
                 {% endif %}
-            {% endif %}
-        </div>
-
-    {% include 'comments/discussion.html' %}
-    </div>
+            </div>
 
 
+
+
+
+
+
+  </div>
+
+   <div class="discussion_include_div">
+                {% include 'comments/discussion.html' %}
+
+            </div>
 </div>
 
 
