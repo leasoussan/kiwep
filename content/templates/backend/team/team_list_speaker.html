@@ -4,34 +4,37 @@
 <div id="wrapper">
     <div class="row">
         <div class="col s12 m12 l12">
-            <h2 class="medium_title">{% trans 'my_teams'%}</h2>
-            <div class="team_list_btn_gp">
-
-                <div class="button_left">
-                    {% if user.is_speaker %}
-                        <button type="button" class="btn btn-success"><a href="{% url 'answer_mission_list' %}">{% trans 'answers_board' %}</a></button>
-                    {% elif user.is_student %}
-                        <a href="{% url 'mission_list' %}" class="waves-effect waves-light btn secondary_button">{% trans 'my_mission_board' %}</a>
-                    {% endif %}
+           <div class="team_list_header">
+                    <h2 class="medium_title">{% trans 'my_teams'%}</h2>
+                    <div class="team_list_btn_gp">
+                
+                    <div class="button_left">
+                        {% if user.is_speaker %}
+                            <button type="button" class="btn btn-success"><a href="{% url 'answer_mission_list' %}">{% trans 'answers_board' %}</a></button>
+                        {% elif user.is_student %}
+                            <a href="{% url 'mission_list' %}" class="waves-effect waves-light btn secondary_button">{% trans 'my_mission_board' %}</a>
+                        {% endif %}
+                    </div>
+            
+                    <div class="button_right">
+                        <button type="button" class="btn btn-primary"><a href="{% url 'create_team' %}" class="add_team_button">{% trans 'create_a_new_team' %}</a></button>
+                    </div>
                 </div>
-        
-                <div class="button_right">
-                    <button type="button" class="btn btn-primary"><a href="{% url 'create_team' %}" class="add_team_button">{% trans 'create_a_new_team' %}</a></button>
-                </div>
-            </div>
+           </div>
             <!-- <div class="my_table"> -->
-            <table class="team_list_table" >
-
+            <table class="table">
+                <!--   <table class="team_list_table"> -->
                 <thead>
-                <tr class="table_headers">
-                    <th>{% trans 'team_name' %}</th>
-                    <th>{% trans 'participants' %}</th>
-                    <th>{% trans 'has_project' %}</th>
-                    <th>{% trans 'delete' %}</th>
+                <!-- <tr class="table_headers"> -->
+                    <tr>
+                    <th scope="col">{% trans 'team_name' %}</th>
+                    <th scope="col">{% trans 'participants' %}</th>
+                    <th scope="col">{% trans 'has_project' %}</th>
+                    <th scope="col" class="col_width">{% trans 'edit_or_delete' %}</th>
                 </tr>
                 </thead>
-                <tbody><br>
-
+                <tbody>
+                    <br>
                 {% for team in team_list %}
                     <tr>
                         <td class="content_table"><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></td>
@@ -46,8 +49,16 @@
 
                             {% endif %}
                         </td>
-                        <td><a scope="col" href="{% url 'update_team' team.id %}" class="waves-effect waves-light btn edit_btn">{% trans 'edit_the_team' %}</a>
-                            <a href="{% url 'delete_team' team.id %}" > <i class="small material-icons delete">{% trans 'delete' %}</i></a></td>
+                        <td>
+                            <div class="team_list_tbl_edit_delete_icons">
+                                <div class="team_list_tbl_edit_delete">
+                                    <a scope="col" href="{% url 'update_team' team.id %}" class=""><img src="/static/backend/images/kiwep/edit.png"></a>
+                                </div>
+                                <div class="team_list_tbl_edit_delete">
+                                    <a href="{% url 'delete_team' team.id %}"><img src="/static/backend/images/kiwep/trash.png"></a>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -56,7 +67,6 @@
         </div>
     </div>
 </div>
-
 
 
 
@@ -79,7 +89,6 @@
                             {% trans 'duplicate' %}</button>
                     </div>
                 </nav>
-
 
             </div>
             <div class="modal-body">
@@ -126,3 +135,5 @@
 </div>
 
 </div>
+
+

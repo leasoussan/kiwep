@@ -1,10 +1,23 @@
-/* TEAM-LIST */
+x/* TEAM-LIST */
 
 #wrapper{
     margin: 0 auto;
     width: 1000px;
     background-color: aqua;
 }
+.team_list_header{
+    display: flex;
+    flex-direction: row;
+}
+
+.team_list_btn_gp{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 0;
+    width: 100%;
+}
+
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     border: none !important;
     background-color: rgb(99, 162, 185) !important;
@@ -14,23 +27,23 @@
     color: white;
 }
 
-.team_list_btn_gp{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-right: 30px;
-    width: 100%;
-    margin-top: 50px;
-}
-
 .button_left{
     margin-right: 15px;
     /* height: 33px; */
     
 }
 
+.team_list_tbl_edit_delete_icons{
+    display: flex;
+}
+.team_list_tbl_edit_delete{
+    display: inline-block;
+    margin-left: 9.5px;
+}
 
-
+.col_width{
+    width: 10%;
+}
 /* TEAM-DETAIL */
 .team_detail_container{
     display: flex;

@@ -310,6 +310,7 @@
 
     .project_related_elements_content{
         width: 100%;
+        flex-wrap: wrap;
     }
 
     .project_mission_list_items{
@@ -395,6 +396,8 @@
 
      .project_resource_content{
         width:100%;
+        margin: 40px 0 0 auto;
+        /* border: 1px solid salmon; */
         padding: 0;
      }
      
@@ -423,6 +426,7 @@
 
     .project_detail_resource_items{
         width: 80%;
-        flex: 50%;
+        flex: 0%;
+        margin-left: 20px;
     }
 }
