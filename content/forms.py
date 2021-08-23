@@ -180,7 +180,6 @@ class ResourceAddForm(ModelForm):
             'image',
             'file_rsc',
         ]
-
     link= forms.URLField(initial='http://', required=False)
 
 

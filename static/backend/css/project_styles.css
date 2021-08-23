@@ -17,10 +17,15 @@
     max-width: 95%;
     align-content: center;
 }
-
 .project_detail_title{
     width: 70%;
     justify-content: flex-start;
+}
+.edit_project_btn{
+    border: black 2px solid;
+    background-color: #8e918e;
+    font-weight: bold;
+    color: whitesmoke;
 }
 
 .project_title{

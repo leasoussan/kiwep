@@ -43,7 +43,7 @@
                 {% for skill in object.acquired_skill.all %}
                     <li class="">{{skill.name}},  </li>
                 {% endfor %}
-
+  <button class="btn" style="background-color: whitesmoke">{% trans 'add_skills' %}</button>
             </div>
 
         </div>
@@ -62,9 +62,9 @@
 
 
             <div class="resource_container overflow-auto">
-                {% if object.resources %}
-                    here
-                    {% for resource in object.resources.all  %}
+                {% if object.resource_set.exists %}
+
+                    {% for resource in object.resource_set.all %}
                         <div class="resource_item_detail">
 
                             <div class="resource_cover">
@@ -81,8 +81,8 @@
 
                                     </div>
                                     <div class="resource_detail_button_control">
-                                        <a href="{% url 'update_resource' resource.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"> </a>
-                                        <a href="{% url 'delete_resource' resource.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"> </a>
+                                        <a href="{% url 'update_resource' resource.id %}"><img src="{% static 'backend/images/kiwep/edit.png' %}" alt="edit"> </a>
+                                        <a href="{% url 'delete_resource' resource.id %}"> <img src="{% static 'backend/images/kiwep/trash.png' %}" alt="delete"> </a>
 
                                     </div>
 
@@ -115,7 +115,7 @@
             {% if individualmission  %}
 
                 {% if not object.attributed_to  %}
-                    {% trans 'mission_unclaimed' %}
+                   <h3 class="medium_title lable_mission_status"> {% trans 'mission_unclaimed' %}</h3>
 
                 {% else %}
                     <h3>{% trans 'mission_is_attributed_to' %}{{ object.attributed_to }}</h3>
@@ -142,7 +142,7 @@
             {% endif %}
 
 
-            <div>
+            <div class="mission_answer_include">
                 {% include "answer/answer.html"  with object=object %}</div>
 
         </div>
@@ -175,7 +175,7 @@
                 <div class="tab-content" id="nav-tabContent">
 
                     <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
-                        <form method="post" action="{% url 'create_resource' object.project.id %}">
+                        <form method="post" action="{% url 'mission_create_resource' object.id %}">
                         {% csrf_token %}
                         {{ resources_form|crispy }}
                         <button type="submit">{% trans 'save' %}</button>
@@ -183,7 +183,7 @@
                     </div>
                     <div class="tab-pane fade" id="nav-chose" role="tabpanel" aria-labelledby="nav-chose-tab">
 
-                         {% for resource in object.ressources_set.all %}
+                         {% for resource in object.ressource_set.all %}
                         <div class="duplicate_table">
 
                             <h4 class="small_title">{{ project.name }}</h4>

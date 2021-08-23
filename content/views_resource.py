@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, HttpResponse,redirect
 from django.views import View
 
-from .models import Resource, Project
+from .models import Resource, Project, Mission
 from django.forms import ModelForm
 from .forms import ResourceAddForm
 from django.urls import reverse_lazy
@@ -40,7 +40,7 @@ class ResourceDetailView(ProfileCheckPassesTestMixin, DetailView):
 
 
 
-class ResourceCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
+class ResourceProjectCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
 
     def get(self, request, *args, **kwargs):
         form = ResourceAddForm()
@@ -67,10 +67,31 @@ class ResourceCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
         return render(request, 'crud/create.html', {'form': form})
 
 
-# {TODO:}
-class AddResourceToMission(CreateView):
 
-    pass
+
+class ResourceMissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, View):
+    def get(self, request, *args, **kwargs):
+        form = ResourceAddForm()
+
+    def post(self, request, *args, **kwargs):
+        mission = Mission.objects.get(id=self.kwargs['mission_id'])
+        form = ResourceAddForm(request.POST, request.FILES,)
+
+        if request.method == "POST":
+            if form.is_valid():
+                resource =form.save(commit=False)
+                resource.project = mission.project
+                print('project', mission.project)
+                resource.mission = mission
+                resource.owner=self.request.user
+                resource.save()
+                print('your resource was saved to"', mission.id)
+
+            return redirect('resource_detail', resource.id)
+
+        return render(request, 'crud/create.html', {'form': form})
+
+
 
 
 
@@ -103,16 +124,16 @@ class ResourceUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Update
 class ResourceDeleteView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, DeleteView):
     model = Resource
     template_name = 'crud/delete.html'
-    # success_url = reverse_lazy('project_detail')
+    success_url = reverse_lazy('project_list')
 
     def get_object(self):
         pk = self.kwargs.get('pk')
         print('pk', pk)
         return get_object_or_404(Resource, pk=pk)
 
-# {TODO}
-    def get_context_data(self, **kwargs):
-        pass
-
-    def get_success_url(self):
-        return reverse_lazy('project_detail', kwargs={'pk': self.object.id})
+# # {TODO}
+#     def get_context_data(self, **kwargs):
+#         pass
+#
+#     def get_success_url(self):
+#         return reverse_lazy('project_detail', kwargs={'pk': self.object.id})
