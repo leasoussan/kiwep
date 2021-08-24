@@ -37,6 +37,7 @@ class Resource(DiscussionModel):
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE,  blank=True, null =True)
     project = models.ForeignKey('Project', on_delete=models.CASCADE)
+    mission = models.ForeignKey('Mission', on_delete=models.CASCADE, null=True)
     objects = ResourceModelManager()
 
     def __str__(self):
@@ -122,12 +123,11 @@ class Mission(AnswerModel):
     
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     stage = models.CharField(max_length=10, choices=STAGE_CHOICE, default='start')
-    response_type = models.CharField(max_length=200, choices=RESPONSE_TYPE, default=None)
+    response_type = models.CharField(max_length=200, choices=RESPONSE_TYPE, default=None, blank= True, null= True)
     name = models.CharField(max_length=200)
-    field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    field = models.ForeignKey(Field, on_delete=models.CASCADE, blank= True, null= True)
     level = models.ForeignKey(Level, on_delete=models.CASCADE, blank= True, null= True)
     description = models.TextField()
-    resources = models.ManyToManyField(Resource, blank=True)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     points = models.PositiveIntegerField(null=True, blank=True)
     acquired_skill = models.ManyToManyField(Skills)
@@ -154,6 +154,20 @@ class Mission(AnswerModel):
             if value.objects.filter(mission=self).exists():
                 # TODO: We need to check if there is the Individual Mission
                 return key
+
+
+    #
+    # def mission_due_date(self, ):
+    #     if self.mission:
+    #         due_date = self.start_date + timedelta(days=self.project.time_to_complete)
+    #
+    #         return due_date
+    #
+    # def mission_days_left(self):
+    #
+    #     now = datetime.now().date()
+    #     days_left = (self.due_date() - now)
+    #     return days_left.days
 
 
 

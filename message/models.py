@@ -112,9 +112,6 @@ class Answer(DiscussionModel):
         return f'answer by: {self.content_object.attributed_to.user.first_name}'
 
 
-    def __str__(self):
-        return f'answer by: {self.content_object.attributed_to.user.first_name}'
-
     def status_form(self):
         from .forms import MissionSpeakerStatusAnswerForm
         return MissionSpeakerStatusAnswerForm(instance=self)

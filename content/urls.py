@@ -27,7 +27,7 @@ urlpatterns = [
 
 
     # mission
-    path('mission-list/', IndividualMissionListView.as_view(), name="mission_list"),
+    # path('mission-list/', IndividualMissionListView.as_view(), name="mission_list"),
     path('my_mission-list/', IndividualMissionListView.as_view(), name="my_mission_list"),
     path('answer-mission-list/', AnswerBoardMissionListView.as_view(), name="answer_mission_list"),
     path('individual-mission-detail/<int:pk>', IndividualMissionDetailView.as_view(), name="individual_mission_detail"),
@@ -55,7 +55,7 @@ urlpatterns = [
     path('team-list/', TeamListView.as_view(), name = "team_list"),
     path('team-detail/<int:pk>', TeamDetailView.as_view(), name = "team_detail"),
     path('create-team/', TeamCreateView.as_view(), name = "create_team"),
-    path('chose-project-team/<int:pk>/<int:team_pk>', ChooseTeamProjectView.as_view(), name = "chose_team_project"),
+    # path('chose-project-team/<int:pk>/<int:team_pk>', ChooseTeamProjectView.as_view(), name = "chose_team_project"),
     path('create-team-project/<int:pk>', ProjectTeamCreateView.as_view(), name = "create_team_project"),
     path('create-team-to-project/<int:pk>', ProjectToTeamCreateView.as_view(), name="create_team_to_project"),
 
@@ -79,7 +79,8 @@ urlpatterns = [
     # ressource
     path('resource-list/<int:pk>', ProjectResourceListView.as_view(), name = "resource_list"),
     path('resource-detail/<int:pk>/', ResourceDetailView.as_view(), name = "resource_detail"),
-    path('create-resource/<int:project_id>', ResourceCreateView.as_view(), name = "create_resource"),
+    path('project-create-resource/<int:project_id>', ResourceProjectCreateView.as_view(), name = "project_create_resource"),
+    path('mission-create-resource/<int:mission_id>', ResourceMissionCreateView.as_view(), name = "mission_create_resource"),
     path('update-resource/<int:pk>/', ResourceUpdateView.as_view(), name = "update_resource"),
     path('delete-resource/<int:pk>', ResourceDeleteView.as_view(), name = "delete_resource"),
 
