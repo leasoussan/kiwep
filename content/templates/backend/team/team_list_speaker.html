@@ -65,38 +65,16 @@
             {% endfor %}
             </tbody>
         </table>
->>>>>>> dev
+
 
     </div>
 
 
 
 
-<<<<<<< HEAD
-<!-- Modal -->
-<div class="modal fade" id="ChoseProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-=======
-
-
->>>>>>> dev
 
 
 
-<<<<<<< HEAD
-            </div>
-            <div class="modal-body">
-
-                <div class="tab-content" id="nav-tabContent">
-                    {% with team=team_list.first %}
-                        <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
-                        <form method="post" action="{% url 'create_team_project' team.id %}">
-                            {% csrf_token %}
-                            {{ project_form|crispy }}
-                            <button type="submit">{% trans 'save' %}</button>
-                        </form>
-                    {% endwith %}
-                    </div>
-=======
     <!-- Modal -->
     <div class="modal fade" id="ChoseProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
@@ -105,7 +83,7 @@
                 <div class="modal-header">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
->>>>>>> dev
+
 
                             <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create" aria-selected="true">
                                 {% trans 'create_project' %}</button>
