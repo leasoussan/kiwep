@@ -43,7 +43,7 @@
 
             {% for team in team_list %}
                 <tr>
-                    <td class="content_table">{{ team.group_Institution }}</a></td>
+                    <td class="content_table">{{ team.group_Institution }}</td>
                     <td class="content_table"><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></td>
                     <td class="content_table">{{ team.participants.count }}</td>
                     <td class="content_table">
@@ -55,7 +55,7 @@
                            <a class= "link-table" href="{% url 'project_detail' team.project.id %}">{{team.project.name}}</a>
 
                         {% endif %}
-                    </div>
+
             
                     <div class="button_right">
                         <button type="button" class="btn btn-primary"><a href="{% url 'create_team' %}" class="add_team_button">{% trans 'create_a_new_team' %}</a></button>
@@ -76,7 +76,7 @@
                     <td><a scope="col" href="{% url 'update_team' team.id %}" class="waves-effect waves-light btn edit_btn">{% trans 'edit_the_team' %}</a>
                         {#                        <button type="button" class="btn btn-danger delete_button" data-bs-toggle="modal" data-bs-target="#delete_modal"#}
                         {#                        href="{% url 'delete_team' team.id %}">{% trans 'delete' %}</button>#}
-                        <a class="delete_button" href="{% url 'delete_team' team.id %}" > {% trans 'delete' %}</i></a></td>
+                        <a class="delete_button" href="{% url 'delete_team' team.id %}" > {% trans 'delete' %}</a></td>
 
                 </tr>
             {% endfor %}

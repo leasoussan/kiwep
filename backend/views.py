@@ -24,7 +24,7 @@ def dashboard(request):
 
     context= {
         'form': SpeakerInviteForm(),
-        'teams': Team.objects.filter(manger=request.user.profile().id)
+        'teams': Team.objects.filter(manager=request.user.profile().id)
     }
     return render(request, "backend/general_dashboard.html", context)
 
