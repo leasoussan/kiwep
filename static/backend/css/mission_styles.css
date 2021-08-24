@@ -152,6 +152,9 @@ display: flex;
     width: 80%;
 }
 
+.speaker_answer_board > h5{
+    margin-bottom: 30px;
+}
 .table_missions_list{
 
 }
