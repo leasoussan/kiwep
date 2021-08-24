@@ -34,29 +34,29 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 
 
-class ChooseTeamProjectView(SpeakerStatuPassesTestMixin, RedirectView):
-    """Select a project will make you own a version of the project
-    This View will make himself a speaker to the project -
-    as a copy to enable using it after with a team and make changes"""
-
-    # query_sting = False >>this is false by default
-    pattern_name = 'team_detail'
-
-    def get_redirect_url(self,  *args, **kwargs):
-        project = get_object_or_404(Project, pk=kwargs['pk'])
-        team = get_object_or_404(Team, pk=kwargs['team_pk'])
-        project.id = None
-        project.is_template = False
-        project.is_global= False
-        project.is_premium= False
-        project.speaker = self.request.user.profile()
-        project.save()
-        team.project = project
-        team.save()
-        kwargs['pk'] = team.pk
-        del kwargs['team_pk']
-        return super().get_redirect_url(*args, **kwargs)
-
+# class ChooseTeamProjectView(SpeakerStatuPassesTestMixin, RedirectView):
+#     """Select a project will make you own a version of the project
+#     This View will make himself a speaker to the project -
+#     as a copy to enable using it after with a team and make changes"""
+#
+#     # query_sting = False >>this is false by default
+#     pattern_name = 'team_detail'
+#
+#     def get_redirect_url(self,  *args, **kwargs):
+#         project = get_object_or_404(Project, pk=kwargs['pk'])
+#         team = get_object_or_404(Team, pk=kwargs['team_pk'])
+#         project.id = None
+#         project.is_template = False
+#         project.is_global= False
+#         project.is_premium= False
+#         project.speaker = self.request.user.profile()
+#         project.save()
+#         team.project = project
+#         team.save()
+#         kwargs['pk'] = team.pk
+#         del kwargs['team_pk']
+#         return super().get_redirect_url(*args, **kwargs)
+#
 
 
 
@@ -73,7 +73,8 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
         context['mission_bulk_form'] = BulkAddMissionForm(projects=self.request.user.profile().project_set.personal_projects())
         context['individual_form'] = IndividualMissionAddForm()
         context['collective_form'] = CollectiveMissionAddForm()
-
+        context['templates'] = Project.objects.personal_templates().filter(speaker=self.request.user.profile())
+        context['old_projects'] = self.request.user.profile().project_set.all()
         return context
 
     def get_queryset(self):
@@ -94,6 +95,7 @@ class StudentAvailableTeamList(ProfileCheckPassesTestMixin, ListView):
     def get_queryset(self):
         if self.request.user.is_student:
             return self.request.user.profile().class_level.team_set.filter(project__isnull=True)
+
 
 
 # ----------------PROJECT------Detail_View/
@@ -168,28 +170,32 @@ class ProjectTeamCreateView(ProjectCreateView):
 #     return ('content/project_list')
 
 
-def clean_missions(project_id, *querysets):
-
+def clean_missions(request, project_id, *querysets):
     for qs in querysets:
         objects = []
-        if qs.model not in [Mission]:
+        if qs.model not in [IndividualMission, CollectiveMission]:
             print('Function clean mission should be only used on mission query set ')
             return
         for mission in qs:
-            mission.id=None
+            mission.id = None
+            mission.owner = request.user
             mission.project_id = project_id
             mission.created_date = None
             mission.due_date = timezone.now()
-            mission.completed=False
+            mission.completed = False
+            print(dir(mission))
             if qs.model == IndividualMission:
                 mission.attributed_to = None
                 mission.accepted = False
-
+            print('mission_cleaning line 190', mission)
             objects.append(mission)
         qs.model.objects.bulk_create(objects)
 
 
-def clean_resource(project_id, queryset):
+
+
+def clean_p_resource(project_id, queryset):
+
     objects = []
     if queryset.model is not Resource:
         print('Function clean resource should be only used on resource query set ')
@@ -199,6 +205,19 @@ def clean_resource(project_id, queryset):
         resource.project_id = project_id
         objects.append(resource)
     queryset.model.objects.bulk_create(objects)
+
+
+def clean_m_resource(mission_id, queryset):
+    objects = []
+    if queryset.model is not Resource:
+        print('Function clean resource should be only used on resource query set ')
+        return
+    for resource in queryset:
+        resource.id = None
+        resource.mission_id = mission_id
+        objects.append(resource)
+    queryset.model.objects.bulk_create(objects)
+
 
 # TODO: Add other clean
 # def clean_skills(project_id, queryset):
@@ -223,34 +242,59 @@ def get_due_date(self, **kwargs):
 
 
 class ChooseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
-    """Select a project will make you own a version of the project
+    """Select a template project will make you own a version of the project
     This View will make himself a speaker to the project -
-    as a copy to enable using it after with a team and make changes"""
+    as a copy to enable using it after with a team and make changes -From Team Page"""
 
     # query_sting = False >>this is false by default
     pattern_name = 'update_project'
 
-    def get_redirect_url(self,  *args, **kwargs):
+    def get_redirect_url(self, *args, **kwargs):
         project = get_object_or_404(Project, pk=kwargs['pk'])
         pk = self.kwargs.get("team_id")
-        print(project,'pk')
         team = get_object_or_404(Team, pk=pk)
-        print(team, 'team')
-        missions = project.mission_set.all()
-        print('mission', missions)
-        resources = project.resource_set.all()
-        project.id=None
-        project.is_template=False
-        project.is_global=False
-        project.is_premium=False
-        project.speaker = self.request.user.profile()
-        project.save()
-        clean_missions(project.id, missions)
-        clean_resource(project.id, resources)
+        missions = project.mission_set.filter(mission_type='i')
+        print('mission_line 257', missions)
+        project.id = None
         team.project = project
-        del kwargs['team_id']
+        project.is_template = False
+        project.is_global = False
+        project.is_premium = False
+        project.speaker = self.request.user.profile()
+        p_resources = project.resource_set.all()
+
+        clean_missions(project.id, missions)
+        clean_p_resource(project.id, p_resources)
+        project.save()
+        team.save()
+        print('team_save')
+        # del kwargs['pk']
         kwargs['pk'] = project.pk
+        del kwargs['team_id']
         return super().get_redirect_url(*args, **kwargs)
+
+    # def get_redirect_url(self,  *args, **kwargs):
+    #     project = get_object_or_404(Project, pk=kwargs['pk'])
+    #     pk = self.kwargs.get("team_id")
+    #     team = get_object_or_404(Team, pk=pk)
+    #     # print(team, 'team')
+    #     missions = project.mission_set.all()
+    #     individual_mission = missions.filter(individualmission=True)
+    #     print('mission', missions)
+    #     p_resources = project.resource_set.all()
+    #
+    #     project.id=None
+    #     project.is_template=False
+    #     project.is_global=False
+    #     project.is_premium=False
+    #     project.speaker = self.request.user.profile()
+    #     project.save()
+    #     clean_missions(project.id, individual_mission)
+    #     clean_p_resource(project.id, p_resources)
+    #     team.project = project
+    #     del kwargs['team_id']
+    #     kwargs['pk'] = project.pk
+    #     return super().get_redirect_url(*args, **kwargs)
 
 
 
@@ -273,7 +317,7 @@ class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
         project.id =None
         project.save()
         clean_missions(project.id, missions)
-        clean_resource(project.id, resources)
+        clean_p_resource(project.id, resources)
         team.project = project
         # {TODO:why team.project }
         team.save()
@@ -331,8 +375,6 @@ class ProjectUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateV
         'name',
         'description',
         'time_to_complete',
-        'field',
-        'difficulty',
         'points',
         'acquired_skills',
     ]
@@ -365,5 +407,7 @@ class ProjectDeleteView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, DeleteV
 
 # author = Project.objects.get(name=)
 # formset = BookFormSet(instance=author)
+
+
 
 

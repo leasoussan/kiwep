@@ -1,95 +1,88 @@
 {% load i18n %}
 {% load static %}
 {% load crispy_forms_tags %}
-<div id="wrapper">
-    <div class="row">
-        <div class="col s12 m12 l12">
-           <div class="team_list_header">
-                    <h2 class="medium_title">{% trans 'my_teams'%}</h2>
-                    <div class="team_list_btn_gp">
-                
-                    <div class="button_left">
-                        {% if user.is_speaker %}
-                            <button type="button" class="btn btn-success"><a href="{% url 'answer_mission_list' %}">{% trans 'answers_board' %}</a></button>
-                        {% elif user.is_student %}
-                            <a href="{% url 'mission_list' %}" class="waves-effect waves-light btn secondary_button">{% trans 'my_mission_board' %}</a>
-                        {% endif %}
-                    </div>
-            
-                    <div class="button_right">
-                        <button type="button" class="btn btn-primary"><a href="{% url 'create_team' %}" class="add_team_button">{% trans 'create_a_new_team' %}</a></button>
-                    </div>
-                </div>
-           </div>
-            <!-- <div class="my_table"> -->
-            <table class="table">
-                <!--   <table class="team_list_table"> -->
-                <thead>
-                <!-- <tr class="table_headers"> -->
-                    <tr>
-                    <th scope="col">{% trans 'team_name' %}</th>
-                    <th scope="col">{% trans 'participants' %}</th>
-                    <th scope="col">{% trans 'has_project' %}</th>
-                    <th scope="col" class="col_width">{% trans 'edit_or_delete' %}</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <br>
-                {% for team in team_list %}
-                    <tr>
-                        <td class="content_table"><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></td>
-                        <td class="content_table">{{ team.participants.count }}</td>
-                        <td class="content_table">
-                            {% if not team.project %}
-                                <div>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ChoseProject">{% trans 'choose_project_team' %}</button>
-                                </div>
-                            {% else %}
-                                {{team.project.name}}
 
-                            {% endif %}
-                        </td>
-                        <td>
-                            <div class="team_list_tbl_edit_delete_icons">
-                                <div class="team_list_tbl_edit_delete">
-                                    <a scope="col" href="{% url 'update_team' team.id %}" class=""><img src="/static/backend/images/kiwep/edit.png"></a>
-                                </div>
-                                <div class="team_list_tbl_edit_delete">
-                                    <a href="{% url 'delete_team' team.id %}"><img src="/static/backend/images/kiwep/trash.png"></a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <!-- </div> -->
+
+
+<div class="team_list_page_container">
+    <div class="team_list_btn_gp">
+
+        <div  class="navigation_btn" >
+            {% if user.is_speaker %}
+                <a href="{% url 'answer_mission_list' %}" class="btn mission_list_btn">{% trans 'answers_board' %}</a>
+            {% elif user.is_student %}
+                <a href="{% url 'mission_list' %}" class="btn">{% trans 'my_mission_board' %}</a>
+            {% endif %}
         </div>
+
+
+        <a href="{% url 'create_team' %}" class="btn add_team_button">{% trans 'create_a_new_team' %}</a>
+
     </div>
-</div>
 
 
 
 
+    <div class="team_list_main_container">
+        <h2 class="medium_title">{% trans 'my_teams_list'%}</h2>
+<br>
+        <table>
 
+            <thead>
+            <tr class="table_headers">
+                <th>{% trans 'group_name' %}</th>
+
+                <th>{% trans 'team_name' %}</th>
+                <th>{% trans 'participants' %}</th>
+                <th>{% trans 'has_project' %}</th>
+                <th>{% trans 'delete' %}</th>
+            </tr>
+            </thead>
+            <br>
+            <tbody>
+
+            {% for team in team_list %}
+                <tr>
+                    <td class="content_table">{{ team.group_Institution }}</a></td>
+                    <td class="content_table"><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></td>
+                    <td class="content_table">{{ team.participants.count }}</td>
+                    <td class="content_table">
+                        {% if not team.project %}
+                            <div>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ChoseProject">{% trans 'choose_project_team' %}</button>
+                            </div>
+                        {% else %}
+                           <a class= "link-table" href="{% url 'project_detail' team.project.id %}">{{team.project.name}}</a>
+
+                        {% endif %}
+                    </td>
+                    <td><a scope="col" href="{% url 'update_team' team.id %}" class="waves-effect waves-light btn edit_btn">{% trans 'edit_the_team' %}</a>
+                        {#                        <button type="button" class="btn btn-danger delete_button" data-bs-toggle="modal" data-bs-target="#delete_modal"#}
+                        {#                        href="{% url 'delete_team' team.id %}">{% trans 'delete' %}</button>#}
+                        <a class="delete_button" href="{% url 'delete_team' team.id %}" > {% trans 'delete' %}</i></a></td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+>>>>>>> dev
+
+    </div>
+
+
+
+
+<<<<<<< HEAD
 <!-- Modal -->
 <div class="modal fade" id="ChoseProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+=======
 
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
-                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create" aria-selected="true">
-                            {% trans 'create_project' %}</button>
-                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-chose" type="button" role="tab" aria-controls="nav-chose" aria-selected="false">
-                            {% trans 'chose' %}</button>
-                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-duplicate" type="button" role="tab" aria-controls="nav-duplicate" aria-selected="false">
-                            {% trans 'duplicate' %}</button>
-                    </div>
-                </nav>
+>>>>>>> dev
 
+
+
+<<<<<<< HEAD
             </div>
             <div class="modal-body">
 
@@ -103,36 +96,95 @@
                         </form>
                     {% endwith %}
                     </div>
+=======
+    <!-- Modal -->
+    <div class="modal fade" id="ChoseProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                    <div class="tab-pane fade" id="nav-chose" role="tabpanel" aria-labelledby="nav-chose-tab">
-{#                {% with project = project.object.all.templates %}#}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+>>>>>>> dev
 
-                        {% for project in templates %}
-                            <div class="duplicate_table">
-                                <h4 class="small_title">{{ project.name }}</h4>
-                                <a href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select' %}</a>
+                            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create" aria-selected="true">
+                                {% trans 'create_project' %}</button>
+                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-chose" type="button" role="tab" aria-controls="nav-chose" aria-selected="false">
+                                {% trans 'chose' %}</button>
+                            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-duplicate" type="button" role="tab" aria-controls="nav-duplicate" aria-selected="false">
+                                {% trans 'duplicate' %}</button>
+                        </div>
+                    </nav>
 
-                            </div>
-                        {% endfor %}
-                    </div>
-                    {#                    <div class="tab-pane fade" id="nav-duplicate" role="tabpanel" aria-labelledby="nav-duplicate-tab">#}
-                    {#                        {% for project in old_projects  %}#}
-                    {#                            <div class="duplicate_table">#}
-                    {#                                <h4 class="small_title">{{ project.name }}</h4>#}
-                    {#                                <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>#}
-                    {#                            </div>#}
-                    {#                        {% endfor %}#}
-                    {#                    </div>#}
-{#{% endwith %}#}
+
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+                <div class="modal-body">
 
+                    <div class="tab-content" id="nav-tabContent">
+                        {% with team=team_list.first %}
+                            <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
+                            <form method="post" action="{% url 'create_team_project' team.id %}">
+                                {% csrf_token %}
+                                {{ project_form|crispy }}
+                                <button type="submit">{% trans 'save' %}</button>
+                            </form>
+                        {% endwith %}
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-chose" role="tabpanel" aria-labelledby="nav-chose-tab">
+                            {#                {% with project = project.object.all.templates %}#}
+
+                            {% for project in templates %}
+                                <div class="duplicate_table">
+                                    <h4 class="small_title">{{ project.name }}</h4>
+                                    <a href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select' %}</a>
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {#                    <div class="tab-pane fade" id="nav-duplicate" role="tabpanel" aria-labelledby="nav-duplicate-tab">#}
+                        {#                        {% for project in old_projects  %}#}
+                        {#                            <div class="duplicate_table">#}
+                        {#                                <h4 class="small_title">{{ project.name }}</h4>#}
+                        {#                                <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>#}
+                        {#                            </div>#}
+                        {#                        {% endfor %}#}
+                        {#                    </div>#}
+                        {#{% endwith %}#}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% include 'crud/delete.html' with pk=team.id %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </div>
 
