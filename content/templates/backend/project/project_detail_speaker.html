@@ -232,7 +232,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" class="form-horizontal" action='{% url 'create_resource' project.id %}' >
+                    <form method="POST" class="form-horizontal" action="{% url 'project_create_resource' project.id %}">
                 {% csrf_token %}
                 {{ resources_form|crispy }}
                 <button class="btn btn-primary" type="submit" name="action">
