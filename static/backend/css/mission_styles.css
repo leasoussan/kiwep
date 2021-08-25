@@ -176,7 +176,7 @@ display: flex;
     width: 10rem;
 }
 
-/*--------------------------SPEAKER ANSWER BOARD*/
+/*------SPEAKER ANSWER BOARD-----*/
 
 .speaker_answer_board{
     width: 80%;
@@ -187,4 +187,22 @@ display: flex;
 }
 .table_missions_list{
 
+}
+
+/* RESPONSIVE */
+@media (max-width: 670px) {
+
+    /* ANSWER-MISSION-LIST Table */
+
+    tbody, thead{ 
+        float: left;    
+    }
+
+    thead{ 
+        min-width: 40%;
+    }
+
+    td,th { 
+        display: block;
+    }
 }
