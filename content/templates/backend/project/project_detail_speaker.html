@@ -174,7 +174,7 @@
                             <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' project.id %}' >
                                 {% csrf_token %}
                                 {{ individual_form|crispy }}
-                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                <button class="btn btn-primary" type="submit" name="action">
                                     {% trans 'save'%}</button>
                             </form>
                         </div>
@@ -182,7 +182,7 @@
                             <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' project.id %}' >
                                 {% csrf_token %}
                                 {{ collective_form|crispy }}
-                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                <button class="btn btn-primary" type="submit" name="action">
                                     {% trans 'save' %}</button>
                             </form>
                         </div>
@@ -214,7 +214,7 @@
                     <form method="POST" class="form-horizontal" action='{% url 'create_resource' project.id %}' >
                 {% csrf_token %}
                 {{ resources_form|crispy }}
-                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                <button class="btn btn-primary" type="submit" name="action">
                     {% trans 'save'%}</button>
             </form>
                 </div>

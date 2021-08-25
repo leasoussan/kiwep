@@ -10,6 +10,12 @@ x/* TEAM-LIST */
     flex-direction: row;
 }
 
+.team_list_header_student{
+    display: flex;
+    margin-left: 95px;
+    margin-bottom: 25px;
+}
+
 .team_list_btn_gp{
     display: flex;
     flex-direction: row;
@@ -282,8 +288,8 @@ x/* TEAM-LIST */
 
 .discussion_sub_title{
     margin: 10px 0 0 10px;
-    
 }
+
 
 /* RESPONSIVE */
 @media (max-width: 670px){
@@ -402,5 +408,11 @@ x/* TEAM-LIST */
     .discussion_sub_title{
         margin: 10px 0 0 10px;
         
+    }
+
+    .team_list_header_student{
+        display: flex;
+        margin-left: 45px;
+        margin-bottom: 25px;
     }
 }
