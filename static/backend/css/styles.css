@@ -54,8 +54,8 @@ h1{
   /* margin-right: 0; */
   position: relative;
   padding: 15px;
-
 }
+
 
 a{
   text-decoration: none;
@@ -297,7 +297,7 @@ nav{
 }
 
 .video_speaker {
-  width: 650px;
+  width: 600px;
 }
 /*------7 Modal------*/
 /*------COLORS------*/
@@ -404,13 +404,15 @@ nav{
 
   .video_speaker {
  
-    width: 450px;
-    /* float: right; */
+    width: 390px;
   }
 }
 
 
-
+/* NAVBAR */
+.navbar_width{
+  width:98%;
+}
 
 
 /*ADDED BY LEA TO REPROCESS */
