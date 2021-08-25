@@ -7,16 +7,15 @@
            <div class="team_list_header">
                     <h2 class="medium_title">{% trans 'my_teams'%}</h2>
                     <div class="team_list_btn_gp">
-                
+
                     <div class="button_left">
                         {% if user.is_speaker %}
                             <button type="button" class="btn btn-success"><a href="{% url 'answer_mission_list' %}">{% trans 'answers_board' %}</a></button>
                         {% elif user.is_student %}
                             <a href="{% url 'mission_list' %}" class="waves-effect waves-light btn secondary_button">{% trans 'my_mission_board' %}</a>
                         {% endif %}
-
                     </div>
-            
+
                     <div class="button_right">
                         <button type="button" class="btn btn-primary"><a href="{% url 'create_team' %}" class="add_team_button">{% trans 'create_a_new_team' %}</a></button>
                     </div>
@@ -66,7 +65,6 @@
             </table>
             <!-- </div> -->
         </div>
-
     </div>
 </div>
 
@@ -137,5 +135,3 @@
 </div>
 
 </div>
-
-
