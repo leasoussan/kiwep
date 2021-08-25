@@ -29,9 +29,6 @@ x/* TEAM-LIST */
     background-color: rgb(99, 162, 185) !important;
 }
 
-.add_team_button{
-    color: white;
-}
 
 .button_left{
     margin-right: 15px;
@@ -281,14 +278,11 @@ x/* TEAM-LIST */
 }
 
 .add_team_button {
-  background-color: #1565c0;
-  font-weight: bold;
-  font-size: large;
   color: white;
-
 }
+
 .mission_list_btn{
-    background-color: #1668c2;
+  background-color: #1668c2;
   font-weight: bold;
   font-size: large;
   color: white;
