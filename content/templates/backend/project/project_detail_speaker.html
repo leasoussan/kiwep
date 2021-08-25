@@ -221,27 +221,6 @@
 
 
 
-<<<<<<< HEAD
-<!-- Modal ADD RESOURCES-->
-<div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="add_resourceLable" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="add_resourceLable">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" class="form-horizontal" action='{% url 'project_create_resource' project.id %}' >
-                    {% csrf_token %}
-                    {{ resources_form|crispy }}
-                    <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
-                        {% trans 'save'%}</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
-=======
 
     <!-- Modal ADD RESOURCES-->
     <div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -263,7 +242,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
->>>>>>> dev
             </div>
         </div>
     </div>
