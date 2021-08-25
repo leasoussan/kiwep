@@ -110,7 +110,8 @@
                                 </thead>
                                 <tbody>
 
-                                {% for project in project_list %}
+                                {% for project in templates %}
+                                    {{ templates }}
                                     <tr class="table_headers">
                                         <td><a class= "link-table" href="{% url 'project_detail' project.id %}">{{project.name}}</a></td>
                                         <td>{{project.speaker.user.first_name}}</td>
@@ -131,11 +132,10 @@
                             </table>
                         </div>
                         <div class="tab-pane fade" id="nav-duplicate" role="tabpanel" aria-labelledby="nav-duplicate-tab">
-
                             {% for project in old_projects %}
                                 <div class="duplicate_table">
                                     <h4 class="small_title">{{ project.name }}</h4>
-                                    <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
+{#                                    <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>#}
                                 </div>
                             {% endfor %}
                         </div>

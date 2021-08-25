@@ -4,140 +4,47 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-    <div class="project_detail_container">
-        <div class="project_detail_header">
-            <h2 class="project_title">{{ project.name }}</h2>
+<div class="project_detail_container">
+    <div class="project_detail_header">
+        <h2 class="project_title">{{ project.name }}</h2>
 
-            <div class="speaker_action_btn_group">
+        <div class="speaker_action_btn_group">
 
-                    {% if project.is_template %}
-{#                        <a class="btn" href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select'%}</a>#}
+            {% if project.is_template %}
+                {#                        <a class="btn" href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select'%}</a>#}
 
-                    {% else %}
-                    <button type="button" class="btn btn-warning"><a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a></button>
-                        <!-- <a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a> -->
+            {% else %}
+                <button type="button" class="btn edit_project_btn"><a href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a></button>
+                <!-- <a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a> -->
+                {#<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete_modal">#}
+                {#                            {% trans 'delete' %}</button>#}
+                <a class="btn delete_button" href="{% url 'delete_project' project.id %}" >{% trans 'delete' %}</a></td>
 
-                    {% endif %}
-
-            </div>
+            {% endif %}
         </div>
+    </div>
 
-        <div class="project_detail_main_content">
-            <div class="animation_div">
-                <img class="image_animation" src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
-            </div>
-            <div class="project_detail_details">
+    <div class="project_detail_main_content">
+        <div class="animation_div">
+            <img class="image_animation" src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
+        </div>
+        <div class="project_detail_details">
 
-                <p class="project_detail_description">{{project.description}}</p>
+            <p class="project_detail_description">{{project.description}}</p>
 
-                <p class="detail_time_to_complete">
-                    <span><b>{% trans 'time_to_complete' %}:</b></span>
-                    {{project.time_to_complete}} {% trans 'days' %}
-                </p>
+            <p class="detail_time_to_complete">
+                <span><b>{% trans 'time_to_complete' %}:</b></span>
+                {{project.time_to_complete}} {% trans 'days' %}
+            </p>
 
-                <div class="project_learning_info">
+            <div class="project_learning_info">
 
                    <span><b>{% trans 'acquired_skills' %}</b><span>
-                    {% for skill in mission.acquired_skills.all %}
+                    {% for skill in project.mission_set.acquired_skills.all %}
 
                         <li class="skill_decoration">{{skill.name}}</li>
                     {% endfor %}
-                       <button class="btn" style="background-color: whitesmoke">{% trans 'add_skills' %}</button>
-                </div>
 
-            </div>
-
-        </div>
-
-
-        <div class="project_related_elements_content">
-            {# Here is the mission List #}
-
-            <div class="project_mission_list_items overflow-auto">
-                <div class="project_mission_header">
-                    <p><b>{% trans 'missions' %}</b></p>
-                    <button type="button" class="btn btn-primary sm_btn" data-bs-toggle="modal" data-bs-target="#add_mission_modal">
-                        add_mission
-                    </button>
-
-                </div>
-
-                {% for mission in project.mission_set.all %}
-
-                    <div class="project_mission_items">
-                          {% if mission.individualmission %}
-                        <a class="mission_name" href="{% url 'individual_mission_detail' mission.id %}"><b>{{ mission.name }}</b></a>
-                    {% else %}
-                        <a class="mission_name" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
-                    {% endif %}
-                        <span>{{ mission.due_date }}</span>
-                                   <span><b>{{ mission.get_mission_type_display }}</b></span>
-                        
-                        {% if user.is_speaker %}
-                            {% if mission.individualmission %}
-                            <span>
-                                <a href="{% url 'delete_individual_mission' mission.id %}"><img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
-                            {% else %}
-                                <a href="{% url 'delete_collective_mission' mission.id %}"><img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
-                            {% endif %}
-
-                            {% if mission.individualmission %}
-                                <a href="{% url 'update_individual_mission' mission.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a>
-
-                            {% else %}
-                                <a href="{% url 'update_collective_mission' mission.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a>
-                            {% endif %}
-                            </span>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-
-            </div>
-
-
-
-            {# here is the Resource List #}
-
-            <div class="project_resource_content">
-                <div class="project_resource_header">
-                    <div class="medium_resource_title">
-                        <b>{% trans 'resources' %}</b>
-                    </div>
-
-                    <div class="btn_control_project">
-                        <!-- Button trigger modal add Resource -->
-                        <button type="button" class="btn btn-primary sm_btn1" data-bs-toggle="modal" data-bs-target="#add_resource">
-                            {% trans 'add_resource' %}
-                        </button>
-
-                    </div>
-                </div>
-
-
-                <div class="project_resource_list_items overflow-auto">
-                    {% if project.resource_set.exists %}
-                        {% for resource in project.resource_set.all %}
-
-                            <ul class="resource_details">
-                                <div class="resource_detail_resourcename">
-                                    <li><a href="{% url 'resource_detail' resource.id %}"><b>{{ resource.name }}</b></a></li>
-                                </div>
-                                {% if user.is_speaker %}
-                                   <div class="project_detail_resource_items">
-                                       <li>
-                                        <a href="{% url 'delete_resource' resource.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
-                                        <a scope="col" href="{% url 'update_resource' resource.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a>
-                                       </li>
-                                    </div> 
-                                {% endif %}
-
-                            </ul>
-
-
-
-                        {% endfor %}
-                    {% endif %}
-                </div>
             </div>
 
         </div>
@@ -145,26 +52,104 @@
     </div>
 
 
+    <div class="project_related_elements_content">
+        {# Here is the mission List #}
+
+        <div class="project_mission_list_items overflow-auto">
+            <div class="project_mission_header">
+                <p><b>{% trans 'missions' %}</b></p>
+                <button type="button" class="btn btn-primary sm_btn" data-bs-toggle="modal" data-bs-target="#add_mission_modal">
+                    {% trans 'add_mission' %}
+                </button>
+
+            </div>
+
+            {% for mission in project.mission_set.all %}
+
+                <div class="project_mission_items">
+                    {% if mission.individualmission %}
+                        <a class="mission_name" href="{% url 'individual_mission_detail' mission.id %}"><b>{{ mission.name }}</b></a>
+                    {% else %}
+                        <a class="mission_name" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+                    {% endif %}
+                    <span>{{ mission.due_date }}</span>
+                    <span><b>{{ mission.get_mission_type_display }}</b></span>
+
+                    {% if user.is_speaker %}
+                        {% if mission.individualmission %}
+                            <span>
+                            <a href="{% url 'delete_individual_mission' mission.id %}"><img src="{% static "backend/images/kiwep/trash.png" %}" alt="delete"></a>
+                        {% else %}
+                            <a href="{% url 'delete_collective_mission' mission.id %}"><img src="{% static "backend/images/kiwep/trash.png" %}" alt="delete"></a>
+                        {% endif %}
+
+                    {% if mission.individualmission %}
+                        <a href="{% url 'update_individual_mission' mission.id %}"><img src="{% static 'backend/images/kiwep/edit.png' %}" alt="edit"></a>
+
+                    {% else %}
+                        <a href="{% url 'update_collective_mission' mission.id %}"><img src="{% static 'backend/images/kiwep/edit.png' %}" alt="edit"></a>
+                    {% endif %}
+                    </span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+        </div>
 
 
 
 
-    <!-- Modal ADD Mission-->
-    <div class="modal fade" id="add_mission_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="add_missionLable" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#individual_mission" type="button" role="tab" aria-controls="individual_mission" aria-selected="true">
-                                {% trans 'individual_mission'%}</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#collective_mission" type="button" role="tab" aria-controls="profile" aria-selected="false">
-                                {%  trans 'collective_mission' %}</button>
-                        </li>
 
+        <div class="project_resource_content">
+            <div class="project_resource_header">
+                <div class="medium_resource_title">
+                    <b>{% trans 'resources' %}</b>
+                </div>
+
+                <div class="btn_control_project1">
+                    <!-- Button trigger modal add Resource -->
+                    <button type="button" class="btn btn-primary sm_btn1" data-bs-toggle="modal" data-bs-target="#add_resource">
+                        {% trans 'add_resource' %}
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <div class="project_resource_list_items overflow-auto">
+                {% if project.resource_set.exists %}
+
+                    {% for resource in project.resource_set.all %}
+                        {%  if resource in project.resource_set.exists and resource not in project.mission_set.resource_set.exists %}
+                            kjher
+                        {% else %}
+                            <ul class="resource_details">
+                            <li><a href="{% url 'resource_detail' resource.id %}"><b>{{ resource.name }}</b></a></li>
+                            {% if user.is_speaker %}
+                                <li><a href="{% url 'delete_resource' resource.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>
+                                    <a scope="col" href="{% url 'update_resource' resource.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"></a></li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+
+
+
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<<<<<<< HEAD
                     </ul>
                 </div>
                 <div class="modal-body">
@@ -186,43 +171,99 @@
                                     {% trans 'save' %}</button>
                             </form>
                         </div>
+=======
+<!-- Modal ADD Mission-->
+<div class="modal fade" id="add_mission_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="add_missionLable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#individual_mission" type="button" role="tab" aria-controls="individual_mission" aria-selected="true">
+                            {% trans 'individual_mission'%}</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#collective_mission" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                            {%  trans 'collective_mission' %}</button>
+                    </li>
+>>>>>>> 0a66cea017ec11dc511b06585edffc02bb549993
 
+                </ul>
+            </div>
+            <div class="modal-body">
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="individual_mission" role="tabpanel" aria-labelledby="individual_mission-tab">
+                        <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' project.id %}' >
+                            {% csrf_token %}
+                            {{ individual_form|crispy }}
+                            <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                {% trans 'save'%}</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="collective_mission" role="tabpanel" aria-labelledby="collective_mission-tab">
+                        <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' project.id %}' >
+                            {% csrf_token %}
+                            {{ collective_form|crispy }}
+                            <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                {% trans 'save' %}</button>
+                        </form>
                     </div>
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
             </div>
         </div>
     </div>
+</div>
 
 
 
-
-    <!-- Modal ADD RESOURCES-->
-    <div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="add_resourceLable" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="add_resourceLable">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" class="form-horizontal" action='{% url 'create_resource' project.id %}' >
-                {% csrf_token %}
-                {{ resources_form|crispy }}
-                <button class="btn btn-primary" type="submit" name="action">
-                    {% trans 'save'%}</button>
-            </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+<!-- Modal ADD RESOURCES-->
+<div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="add_resourceLable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="add_resourceLable">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" class="form-horizontal" action='{% url 'project_create_resource' project.id %}' >
+                    {% csrf_token %}
+                    {{ resources_form|crispy }}
+                    <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                        {% trans 'save'%}</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
             </div>
         </div>
     </div>
+</div>
 
 
+
+<!-- Modal  Delete project-->
+<div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% include 'crud/delete.html' %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+            </div>
+        </div>
+    </div>
+</div>
