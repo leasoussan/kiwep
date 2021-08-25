@@ -2,8 +2,10 @@
 
 <div class ="answer_status">
     <div class="answer">
+
+
         {% if not object.answer.all.exists %}
-            <h3 class="medium_title answer_status_lable"> {% trans 'no_asnwer_yet' %}</h3>
+            {% trans 'no_asnwer_yet' %}
 
         {% else %}
               {% with answer=object.answer.all.last %}
