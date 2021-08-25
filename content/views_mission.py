@@ -228,11 +228,11 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
 class IndividualMissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
     model = IndividualMission
     template_name = 'crud/delete.html' 
-    success_url = reverse_lazy('mission_list')
+    success_url = reverse_lazy('project_list')
 
 
     def get_object(self, queryset=None):
-        pk = self.kwargs.get['pk']
+        pk = self.kwargs['pk']
         return get_object_or_404(IndividualMission, pk=pk)
 # ----------------------------------------------------------------------------------------------------------------
 
@@ -240,11 +240,11 @@ class IndividualMissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
 class CollectiveMissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
     model = CollectiveMission
     template_name = 'crud/delete.html'
-    success_url = reverse_lazy('mission_list')
+    success_url = reverse_lazy('project_list')
 
 
     def get_object(self, queryset=None):
-        pk = self.kwargs.get['pk']
+        pk = self.kwargs['pk']
         return get_object_or_404(CollectiveMission, pk=pk)
 # ----------------------------------------------------------------------------------------------------------------
 
@@ -390,7 +390,7 @@ def clean_bulk_mission(mission, projects):
         mission.created_date = timezone.now()
         mission.due_date = timezone.now()
         mission.completed = False
-        if mission == IndividualMission:
+        if mission.mission_type =='i':
             mission.attributed_to = None
             print("mission cleaned", mission)
             mission.save()

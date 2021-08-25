@@ -11,11 +11,11 @@
 
 
 {% if user.is_speaker %}
-    <div>
+
         {% include 'answer/speaker_mission_answer.html' with mission=object %}
 
 
-    </div>
+
 
 {% elif user.is_student %}
     <div class="student_answer_box">

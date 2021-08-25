@@ -21,8 +21,10 @@ User = get_user_model()
 @login_required
 @user_passes_test(check_profile, login_url='create_profile')
 def dashboard(request):
+
     context= {
-        'form': SpeakerInviteForm()
+        'form': SpeakerInviteForm(),
+        'teams': Team.objects.filter(manager=request.user.profile().id)
     }
     return render(request, "backend/general_dashboard.html", context)
 
