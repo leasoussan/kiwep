@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+    {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
 {% load mytags %}
@@ -91,7 +91,7 @@
                             <form method="post" action="{% url 'create_project' %}">
                                 {% csrf_token %}
                                 {{ project_form|crispy }}
-                                <button type="submit">Save</button>
+                                <button class="btn btn-primary" type="submit">Save</button>
                             </form>
                         </div>
                         <div class="tab-pane fade" id="nav-choose" role="tabpanel" aria-labelledby="nav-choose-tab">
@@ -177,7 +177,7 @@
                                 {{ individual_form|crispy }}
                                 {{ mission_bulk_form|crispy }}
 
-                                <button type="submit">{% trans 'save' %}</button>
+                                <button class="btn btn-primary" type="submit">{% trans 'save' %}</button>
                             </form>
                         </div>
 

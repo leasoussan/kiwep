@@ -164,6 +164,27 @@
                         <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#collective_mission" type="button" role="tab" aria-controls="profile" aria-selected="false">
                             {%  trans 'collective_mission' %}</button>
                     </li>
+                    </ul>
+                </div>
+                <div class="modal-body">
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="individual_mission" role="tabpanel" aria-labelledby="individual_mission-tab">
+                            <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' project.id %}' >
+                                {% csrf_token %}
+                                {{ individual_form|crispy }}
+                                <button class="btn btn-primary" type="submit" name="action">
+                                    {% trans 'save'%}</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="collective_mission" role="tabpanel" aria-labelledby="collective_mission-tab">
+                            <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' project.id %}' >
+                                {% csrf_token %}
+                                {{ collective_form|crispy }}
+                                <button class="btn btn-primary" type="submit" name="action">
+                                    {% trans 'save' %}</button>
+                            </form>
+                        </div>
 
                 </ul>
             </div>
@@ -200,6 +221,7 @@
 
 
 
+<<<<<<< HEAD
 <!-- Modal ADD RESOURCES-->
 <div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="add_resourceLable" aria-hidden="true">
@@ -219,6 +241,29 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+=======
+
+    <!-- Modal ADD RESOURCES-->
+    <div class="modal fade" id="add_resource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="add_resourceLable" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="add_resourceLable">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" class="form-horizontal" action='{% url 'create_resource' project.id %}' >
+                {% csrf_token %}
+                {{ resources_form|crispy }}
+                <button class="btn btn-primary" type="submit" name="action">
+                    {% trans 'save'%}</button>
+            </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+>>>>>>> dev
             </div>
         </div>
     </div>
