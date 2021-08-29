@@ -6,7 +6,10 @@
 
 
 
-<span class="discussion_sub_title"><b>{% trans 'discussion_board_of' %} :  {{object.name}}</b></span>
+<span class="discussion_sub_title">
+    <lable class="">{% trans 'discussion_board_of' %} :<lable>
+<br>
+    <lable>  {{object.name}}</lable>
 
     {% if not object.discussion %}
         <!-- Button trigger modal -->

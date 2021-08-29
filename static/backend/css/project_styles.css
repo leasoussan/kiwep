@@ -28,6 +28,9 @@
     color: whitesmoke;
 }
 
+.team_button_from_project{
+    background-color: lightgreen;
+}
 .project_title{
     display: flex;
     width: 70%;
@@ -79,7 +82,7 @@
     display: flex;
     flex-direction: row;
     width: 90%;
-  justify-content: space-between;
+    justify-content: space-between;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
@@ -94,11 +97,11 @@
 
 
 .darker-edit-btn:hover{
-  color: #000000;
+    color: #000000;
 }
 .project_detail_title{
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .project_mission_list_items{
@@ -124,20 +127,26 @@
 } */
 
 .project_mission_items{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     width: 80%;
     min-height: 5rem;
-    margin-top: 2rem; 
+    margin-top: 2rem;
     border: 1px solid black;
     margin-left: 10%;
 }
 
 .project_mission_items .mission_name{
     margin-left: 5px;
+    min-width: 30%;
+    max-width: 30%;
+    border: black solid 3px;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+
 }
 
-.project_mission_items span {
-    margin-left: 40px;
-}
 
 
 .project_resource_content{
@@ -153,7 +162,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
 }
 
 .project_resource_list_items{
@@ -173,7 +182,7 @@
 /*-------PROJECT LIST------*/
 
 .width_project_name_projlist{
-   max-width: 10%;
+    max-width: 10%;
 }
 
 .create_project_btn_projlist:hover{
@@ -188,7 +197,7 @@
 
 .btn-outline-danger, .btn-outline-danger:hover, .btn-outline-danger:active, .btn-outline-danger:visited {
     border-color: rgb(125, 158, 201);
-    background-color: transparent !important; 
+    background-color: transparent !important;
 }
 
 .project_list_page_header{
@@ -234,7 +243,7 @@
 }
 
 .project_list_box_create_team_btn{
-    height: 37px;    
+    height: 37px;
 }
 
 
@@ -257,7 +266,7 @@
         margin-bottom:1rem;
         width: 100%;
         align-content: none;
-    }   
+    }
 
     .project_title{
         width: 100%;
@@ -270,9 +279,9 @@
     }
 
     .animation_div{
-       min-width: 50%;
+        min-width: 50%;
     }
-    
+
     .image_animation{
         width: 300px;
         height: 200px;
@@ -280,7 +289,7 @@
     }
 
     .project_detail_container{
-       flex-wrap: wrap;
+        flex-wrap: wrap;
     }
 
     .project_detail_main_content {
@@ -353,7 +362,7 @@
     .project_details_box{
         display: flex;
         /* flex-direction: column; */
-        justify-content: space-between; 
+        justify-content: space-between;
         flex-wrap: wrap;
         min-height: none;
         min-width: none;
@@ -363,64 +372,64 @@
 
     .project_details_box a{
         /* border: 1px solid red; */
-        justify-content: space-between; 
+        justify-content: space-between;
         width: 20%;
     }
 
     .project_details_box div{
         width: 25%;
     }
-   
+
     .project_detail_name_responsive{
         height: 30px;
         flex: 25%;
-     }
-     
-     .project_list_box_create_team_btn{
-        height: auto;  
     }
 
-     .project_list_box_team_name{
+    .project_list_box_create_team_btn{
+        height: auto;
+    }
+
+    .project_list_box_team_name{
         display: flex;
         /* border: 1px solid pink; */
         text-align: center;
         justify-content: flex-end;
         flex: 30%;
-        white-space: nowrap;    
-     }
+        white-space: nowrap;
+    }
 
-     .time_to_complete{
+    .time_to_complete{
         display: flex;
         flex: 50%;
-     }
-    
+    }
 
-     .project_resource_header{
-         flex-direction: column;
-     }
 
-     .project_resource_content{
+    .project_resource_header{
+        flex-direction: column;
+    }
+
+    .project_resource_content{
         width:100%;
         margin: 40px 0 0 auto;
         /* border: 1px solid salmon; */
         padding: 0;
-     }
-     
-     .project_list_speaker_project_detail_btn{
+    }
+
+    .project_list_speaker_project_detail_btn{
         flex: 10%;
         padding: none;
         justify-content: space-evenly;
     }
 
-   .edit_team_project_detail_box{
+    .edit_team_project_detail_box{
         margin-left: 25px;
     }
-    
+
 
     .resource_details{
         margin: 5px 5px 5px 0; padding: 5px;
     }
-    
+
     .resource_detail_resourcename{
         width: 50%;
         flex: 50%;

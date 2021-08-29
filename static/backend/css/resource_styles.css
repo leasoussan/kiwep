@@ -1,0 +1,19 @@
+.resource_detail_container{
+    display: flex;
+    flex-direction: column;
+    border: black 2px solid;
+}
+
+.resource_description{
+    min-height: 20%;
+    max-height: 40%;
+    background-color: whitesmoke;
+    min-width: 500px;
+    max-width: 500px;
+    border: black 3px dashed;
+    wrap-option: wrap;
+}
+.resource_image{
+    width: 500px;
+    min-height: 500px;
+}

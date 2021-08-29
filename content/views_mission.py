@@ -9,7 +9,7 @@ from .forms import (
     CollectiveMissionAddForm,
     CollectiveMissionAssign,
     ValidateMissionForm,
-    ResourceAddForm, BulkAddMissionForm,
+    ResourceAddForm, BulkAddMissionForm, ResourceChoseFromModelForm,
 
 )
 from django.urls import reverse_lazy
@@ -132,7 +132,7 @@ class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
     model = IndividualMission
     template_name = 'backend/mission/mission_detail.html'    
     
-    
+
 
     def get_object(self):
         pk = self.kwargs.get('pk')
@@ -141,6 +141,7 @@ class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['chose_resource'] = ResourceChoseFromModelForm()
         context['resources_form'] = ResourceAddForm()
         context['answer_form'] = AddAnswerForm()
         context['status_form'] = MissionSpeakerStatusAnswerForm()
@@ -162,6 +163,8 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['individual_form'] = IndividualMissionAddForm()
+        context['collective_form'] = CollectiveMissionAddForm()
         context['resources_form'] = ResourceAddForm()
         context['answer_form'] = AddAnswerForm()
         context['status_form'] = MissionSpeakerStatusAnswerForm()
@@ -182,7 +185,6 @@ class IndividualMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
             'field', 
             'level',
             'description',
-            'resources',
             'acquired_skill',
             'due_date']
     template_name = 'crud/update.html'  
@@ -205,7 +207,6 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
             'field',
             'level',
             'description',
-            'resources',
             'attributed_to']
     template_name = 'crud/update.html'
 

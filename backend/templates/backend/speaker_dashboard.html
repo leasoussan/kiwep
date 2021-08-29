@@ -36,13 +36,14 @@
     <ul class="dashboard_navigation_link_item">
         <div class="students_dashboard_title">{% trans 'my_students' %}</div>
          <div class="participants_list_icon">
-                        {% for team in teams %}
-                            {% for participants in team.participants.all %}
+
+                            {% for participant in participants %}
+                                {{ participant.user.id }}
                             <img class="avatar" src="{{ user.profile.profilepic_or_default }}" alt="">
 
 
                         {% endfor %}
-                        {% endfor %}
+
 
                     </div>
 

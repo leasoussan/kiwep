@@ -95,9 +95,9 @@ class ResourceMissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,
 
 
 
-class SelectResourceFromProject(RedirectView):
-    pass
+def chose_resource_to_mission(request):
 
+    pass
 
 
 class ResourceUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
@@ -110,9 +110,7 @@ class ResourceUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, Update
 
 
     def get_object(self):
-
         pk = self.kwargs.get('pk')
-
         print('pk', pk)
         return get_object_or_404(Resource, pk=pk)
 

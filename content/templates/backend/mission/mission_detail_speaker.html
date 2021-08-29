@@ -159,40 +159,39 @@
      aria-labelledby="add_resource" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <nav>
 
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-
-                        <button class="nav-link active" id="nav-create-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-chose" aria-selected="true">{%  trans 'create_resource' %}</button>
-
-                        <button class="nav-link active" id="nav-choose-tab" data-bs-toggle="tab" data-bs-target="#nav-chose" type="button" role="tab" aria-controls="nav-chose" aria-selected="true">{%  trans 'chose_resource' %}</button>
-
-                    </ul>
-                </nav>
-            </div>
             <div class="modal-body">
-                <div class="tab-content" id="nav-tabContent">
+                <ul class="nav nav-pills mb-3" id="pills-tab" >
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link " id="pills-create_resource-tab" data-bs-toggle="pill" data-bs-target="#pills-create_resource" type="button" role="tab" aria-controls="pills-create_resource" aria-selected="true">
+                                {% trans 'create' %}</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-chose_resource-tab" data-bs-toggle="pill" data-bs-target="#pills-chose_resource" type="button" role="tab" aria-controls="pills-chose_resource" aria-selected="false">
+                                {% trans 'chose' %}</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-create_resource" role="tabpanel" aria-labelledby="pills-create_resource-tab">
 
-                    <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
-                        <form method="post" action="{% url 'mission_create_resource' object.id %}">
-                        {% csrf_token %}
-                        {{ resources_form|crispy }}
-                        <button type="submit">{% trans 'save' %}</button>
-                    </form>
-                    </div>
-                    <div class="tab-pane fade" id="nav-chose" role="tabpanel" aria-labelledby="nav-chose-tab">
-
-                         {% for resource in object.ressource_set.all %}
-                        <div class="duplicate_table">
-
-                            <h4 class="small_title">{{ project.name }}</h4>
-                            <a href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select' %}</a>
-
+                            <form method="POST" class="form-horizontal" action='{% url 'mission_create_resource' object.id %}' >
+                                {% csrf_token %}
+                                {{ resource_form|crispy }}
+                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                    {% trans 'save'%}</button>
+                            </form>
                         </div>
-                        {% endfor %}
+                        <div class="tab-pane fade" id="pills-chose_resource" role="tabpanel" aria-labelledby="pills-chose_resource-tab">
+                            {% if project.resource_set.exists %}
+                            <form method="POST" class="form-horizontal" action='{% url 'chose_resource' object.id %}' >
+                                {% csrf_token %}
+                                {{ chose_resource|crispy }}
+                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                    {% trans 'save' %}</button>
+                            </form>
+                            {% endif %}
+                        </div>
                     </div>
-
                 </div>
 
 
