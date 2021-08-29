@@ -121,7 +121,6 @@ x/* TEAM-LIST */
 .team_detail_main_content{
     display: flex;
     flex-direction: row;
-    align-content: flex-end;
     width: 100%;
     min-height: 90%;
     flex-wrap: wrap;
@@ -131,11 +130,12 @@ x/* TEAM-LIST */
 .team_mission_list{
     display: flex;
     flex-direction: row;
-    width: 65%;
+    width: 60%;
     min-height: 90%;
     max-height: 80vh;
     flex-wrap: wrap;
     margin-top: 2rem;
+
 }
 
 .team_mission_detail{
@@ -148,15 +148,25 @@ x/* TEAM-LIST */
     padding: 2rem;
     justify-content: space-between;
     align-items: center;
+
+}
+.team_mission_name_title {
+    display: flex;
+    max-width: 90%;
+    min-width: 90%;
+    flex-wrap: wrap;
+    word-break: normal;
+    border: #0b2e13 solid 4px;
 }
 
 .team_extra_information{
     display: flex;
     flex-direction: column;
-    margin-left: 3rem;
+    margin-left: 1rem;
     min-width: 30%;
     min-height: 80vh;
     margin-top: 2rem;
+
 }
 
 .team_participant_container{
@@ -203,30 +213,13 @@ x/* TEAM-LIST */
 .team_discussion_container{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width:90%;
     min-height: 30%;
     border: 2px solid teal;
     margin-top: 4rem;
     margin-left: 110px;
 }
 
-.team_discussion_header{
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-}
-.team_discussion_header > h4{
-    margin-left: 10px;
-}
-
-.discussion_icon_team_detail{
-    width: 25px;
-    height: 25px;
-    background-image: url("/static/backend/images/kiwep/discuss_icon.png");
-    background-repeat: no-repeat;
-    margin-left: 12px;
-    margin-top: 3px;
-}
 
 .discussion_list{
     display: flex;
@@ -291,6 +284,8 @@ x/* TEAM-LIST */
 
 .medium_title{
   margin-bottom: 2rem;
+    font-weight: bolder;
+    font-size: larger;
 }
 
 /*.team_list_table tr{*/
@@ -469,8 +464,20 @@ x/* TEAM-LIST */
         margin: 9px auto auto auto;
     }
 
+    .team_mission_list{
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        min-width: 90%;
+        background-color: #1c7430;
+    }
+
+
     .team_detail_main_content{
+        display: flex;
+        flex-direction: row;
         margin-top: 1rem;
+
     }
 
     .discussion_board_row{

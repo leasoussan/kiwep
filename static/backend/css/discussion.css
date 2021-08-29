@@ -1,0 +1,24 @@
+
+.discussion_icon_team_detail{
+    width: 25px;
+    height: 25px;
+    background-image: url("/static/backend/images/kiwep/discuss_icon.png");
+    background-repeat: no-repeat;
+    margin-left: 12px;
+    margin-top: 3px;
+}
+
+.team_discussion_header{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    min-width:100%;
+    justify-content: space-evenly;
+}
+/*.team_discussion_header > h4{*/
+/*    margin-left: 10px;*/
+/*}*/
+
+.medium_title{
+    margin-left: 1rem;
+}

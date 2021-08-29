@@ -79,7 +79,7 @@
     display: flex;
     flex-direction: row;
     width: 90%;
-  justify-content: space-between;
+    justify-content: space-between;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
@@ -94,11 +94,11 @@
 
 
 .darker-edit-btn:hover{
-  color: #000000;
+    color: #000000;
 }
 .project_detail_title{
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .project_mission_list_items{
@@ -126,7 +126,7 @@
 .project_mission_items{
     width: 80%;
     min-height: 5rem;
-    margin-top: 2rem; 
+    margin-top: 2rem;
     border: 1px solid black;
     margin-left: 10%;
 }
@@ -153,7 +153,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
 }
 
 .project_resource_list_items{
@@ -173,7 +173,7 @@
 /*-------PROJECT LIST------*/
 
 .width_project_name_projlist{
-   max-width: 10%;
+    max-width: 10%;
 }
 
 .create_project_btn_projlist:hover{
@@ -188,7 +188,7 @@
 
 .btn-outline-danger, .btn-outline-danger:hover, .btn-outline-danger:active, .btn-outline-danger:visited {
     border-color: rgb(125, 158, 201);
-    background-color: transparent !important; 
+    background-color: transparent !important;
 }
 
 .project_list_page_header{
@@ -226,7 +226,7 @@
     display: flex;
     flex-direction: row;
     background-color: rgb(247, 250, 253);
-    min-height: 5rem;
+    min-height: 30%;
     min-width: 80%;
     padding: 2rem;
     margin-top: 3rem;
@@ -234,7 +234,7 @@
 }
 
 .project_list_box_create_team_btn{
-    height: 37px;    
+    height: 37px;
 }
 
 
@@ -257,7 +257,7 @@
         margin-bottom:1rem;
         width: 100%;
         align-content: none;
-    }   
+    }
 
     .project_title{
         width: 100%;
@@ -270,9 +270,9 @@
     }
 
     .animation_div{
-       min-width: 50%;
+        min-width: 50%;
     }
-    
+
     .image_animation{
         width: 300px;
         height: 200px;
@@ -280,7 +280,7 @@
     }
 
     .project_detail_container{
-       flex-wrap: wrap;
+        flex-wrap: wrap;
     }
 
     .project_detail_main_content {
@@ -297,8 +297,8 @@
     }
 
     .project_list_container{
-        width: 100%;
-        padding: 0rem 5rem;
+        min-width: 100%;
+        padding: 0rem 1rem;
     }
 
     .buttons_project_list{
@@ -319,6 +319,7 @@
     }
 
     .project_mission_list_items{
+
         width: 100%;
         margin-left: 0;
         margin-right: auto;
@@ -352,75 +353,87 @@
     }
     .project_details_box{
         display: flex;
-        /* flex-direction: column; */
-        justify-content: space-between; 
+        flex-direction: column;
+        /*justify-content: space-between; */
         flex-wrap: wrap;
-        min-height: none;
-        min-width: none;
         width: 100%;
         padding: 1rem;
+        height: 30%;
     }
 
-    .project_details_box a{
-        /* border: 1px solid red; */
-        justify-content: space-between; 
-        width: 20%;
-    }
 
     .project_details_box div{
         width: 25%;
     }
-   
+
     .project_detail_name_responsive{
-        height: 30px;
-        flex: 25%;
-     }
-     
-     .project_list_box_create_team_btn{
-        height: auto;  
+        min-width: 100%;
+        max-width: 100%;
+        border: black 2px solid;
     }
 
-     .project_list_box_team_name{
+    .project_list_box_create_team_btn{
+        height: auto;
+    }
+
+    .project_list_box_team_name{
         display: flex;
-        /* border: 1px solid pink; */
-        text-align: center;
-        justify-content: flex-end;
-        flex: 30%;
-        white-space: nowrap;    
-     }
+        flex-direction: row;
+        justify-content: space-between;
+        min-width: 100%;
+        max-width: 100%;
+    }
 
-     .time_to_complete{
+    .project_list_box_team_name team_name{
+        min-width: 80%;
+        max-width: 80%;
+        flex-wrap: wrap;
+    }
+    .project_list_box_team_name edit_team{
+        max-width: 20%;
+        max-width: 20%;
+
+    }
+
+    .time_to_complete{
         display: flex;
-        flex: 50%;
-     }
-    
+        flex-direction: row;
+        min-width: 60%;
+        align-items: start;
+    }
 
-     .project_resource_header{
-         flex-direction: column;
-     }
+    .time_to_complete p{
+        margin-right: 1rem;
+    }
 
-     .project_resource_content{
+    .project_resource_header{
+        flex-direction: column;
+    }
+
+    .project_resource_content{
         width:100%;
         margin: 40px 0 0 auto;
         /* border: 1px solid salmon; */
         padding: 0;
-     }
-     
-     .project_list_speaker_project_detail_btn{
-        flex: 10%;
-        padding: none;
-        justify-content: space-evenly;
     }
 
-   .edit_team_project_detail_box{
+    .project_list_speaker_project_detail_btn{
+        display: flex;
+        flex-direction: row;
+        align-content: flex-end;
+        border: red 2px solid;
+        min-width: 50%;
+    }
+
+    .edit_team_project_detail_box{
         margin-left: 25px;
     }
-    
+
 
     .resource_details{
         margin: 5px 5px 5px 0; padding: 5px;
     }
-    
+
     .resource_detail_resourcename{
         width: 50%;
         flex: 50%;

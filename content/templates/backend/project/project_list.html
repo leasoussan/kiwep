@@ -1,4 +1,4 @@
-    {% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
 {% load mytags %}
@@ -34,26 +34,31 @@
         {% for project in user.profile.project_set.personal_projects %}
             <div class="project_details_box">
 
-                <div class="project_detail_name_responsive"><a href="{% url 'project_detail' project.id %}">{{project.name}}</a></div>
+                <div class="project_detail_name_responsive"><a href="{% url 'project_detail' project.id %}">{{project.name.title}}</a></div>
                 {% if not project.team %}
-                   <button type="button" class="btn btn-outline-danger btn-sm project_list_box_create_team_btn"><a class="create_project_btn_projlist" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a></button>
+                    <button type="button" class="btn btn-outline-danger btn-sm project_list_box_create_team_btn"><a class="create_project_btn_projlist" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a></button>
                     <!-- <a class= "btn" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a> -->
                 {% else %}
                     <div class="project_list_box_team_name">
-                        <a href="{% url 'team_detail' project.team.id %}">{{ project.team.name }}</a>
-                        <a class="edit_team_project_detail_box" href="{% url 'update_team' project.team.id %}"><i><b>edit</b></i></a>
+                        <a  class ="team_name overflow-auto" href="{% url 'team_detail' project.team.id %}">{{ project.team.name }}</a>
+                        <a  class="edit_team" href="{% url 'update_team' project.team.id %}"><img src="{% static 'backend/images/kiwep/edit.png' %}" alt="edit"> </a>
+
+                        <a class="edit_team_project_detail_box" ></a>
                     </div>
                 {% endif %}
 
 
 
-                <div class="time_to_complete"><label>{{project.time_to_complete}} {% trans 'in_days' %}</label></div>
+                <div class="time_to_complete">
+                    <p>{{project.time_to_complete}}</p>
+                    {% trans 'in_days' %}
+                </div>
 
                 <div class="project_list_speaker_project_detail_btn">
                     {% if user.is_speaker %}
-                        <a href="{% url 'update_project' project.id %}"><img src="/static/backend/images/kiwep/edit.png" alt="edit"> </a>
-{#                      <a href="{% url 'duplicate_create_project' project.id team.id %}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>#}
-                        <a href="{% url 'delete_project' project.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"> </a>
+                        <a href="{% url 'update_project' project.id %}"><img src="{% static 'backend/images/kiwep/edit.png' %}" alt="edit"> </a>
+                        {#                      <a href="{% url 'duplicate_create_project' project.id team.id %}"> <img src="/static/backend/images/kiwep/copy.png" alt="copy"> </a>#}
+                        <a href="{% url 'delete_project' project.id %}"> <img src="{% static 'backend/images/kiwep/trash.png' %}" alt="delete"> </a>
                     {% endif %}
                 </div>
             </div>
@@ -123,7 +128,7 @@
                                         {#                            </td>#}
                                         <td>{{project.time_to_complete}} {% trans 'days' %}</td>
                                         <td> <a href="{% url 'project_detail' project.id %}"> <i class="material-icons">pageview</i> </a></td>
-{#                                        <td> <a class= "link-table speaker_select_project" href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'speaker_select_project' %}</a> </td>#}
+                                        {#                                        <td> <a class= "link-table speaker_select_project" href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'speaker_select_project' %}</a> </td>#}
                                     </tr>
                                 {% endfor %}
 
@@ -135,7 +140,7 @@
                             {% for project in old_projects %}
                                 <div class="duplicate_table">
                                     <h4 class="small_title">{{ project.name }}</h4>
-{#                                    <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>#}
+                                    {#                                    <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>#}
                                 </div>
                             {% endfor %}
                         </div>

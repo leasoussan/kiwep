@@ -54,7 +54,6 @@
 }
 
 .project_link_extra{
-
     border-bottom: solid 2px red;
 }
 
@@ -72,11 +71,13 @@
 .team_mission_list{
     display: flex;
     flex-direction: row;
-    width: 65%;
+    width: 60%;
     min-height: 90%;
     max-height: 80vh;
     flex-wrap: wrap;
     margin-top: 2rem;
+    background-color: yellow;
+    border: 3px deeppink solid ;
 
 }
 
