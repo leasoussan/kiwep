@@ -1,19 +1,31 @@
 
-.discussion_icon_team_detail{
+.discussion_container{
+    display: flex;
+    flex-direction: column;
+
+    width:60%;
+    min-height: 30%;
+    border: 2px solid teal;
+    margin-top: 4rem;
+
+}
+
+.discussion_icon_detail{
     width: 25px;
     height: 25px;
     background-image: url("/static/backend/images/kiwep/discuss_icon.png");
     background-repeat: no-repeat;
-    margin-left: 12px;
+    margin-left: 1rem;
     margin-top: 3px;
 }
 
-.team_discussion_header{
+.discussion_header{
     display: flex;
     flex-direction: row;
     margin-top: 10px;
     min-width:100%;
-    justify-content: space-evenly;
+    justify-content: start;
+    flex-wrap: wrap;
 }
 /*.team_discussion_header > h4{*/
 /*    margin-left: 10px;*/
@@ -21,4 +33,35 @@
 
 .medium_title{
     margin-left: 1rem;
+}
+
+
+
+.dialog_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: 70%;
+  max-width: 70%;
+  background-color: grey;
+}
+
+
+.dialog_box div{
+  margin-bottom: 10px;
+  width: 60%;
+
+
+}
+
+
+.user_comment{
+  background-color: green;
+  justify-content: center;
+
+}
+
+.profile_comment{
+  justify-content: right;
+
 }

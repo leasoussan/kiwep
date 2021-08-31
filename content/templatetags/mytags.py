@@ -39,6 +39,8 @@ def get_mission_type(mission):
     return mission.get_mission_type(mission)
 
 
+
+
 # this lign it to call templates the function according to the left name 
 register.filter('return_objects_name', return_objects_name)
 register.filter('return_class_name', return_class_name)

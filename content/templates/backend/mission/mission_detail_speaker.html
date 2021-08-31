@@ -25,9 +25,7 @@
 
 
     <div class="mission_detail_main_content">
-        <div class="animation_div">
-            <img class="image_animation" src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
-        </div>
+
         <div class="mission_detail_details">
 
             <p class="mission_detail_description">{{object.description}}</p>
@@ -43,11 +41,13 @@
                 {% for skill in object.acquired_skill.all %}
                     <li class="">{{skill.name}},  </li>
                 {% endfor %}
-  <button class="btn" style="background-color: whitesmoke">{% trans 'add_skills' %}</button>
+                <button class="btn" style="background-color: whitesmoke">{% trans 'add_skills' %}</button>
             </div>
 
         </div>
-
+        <div class="animation_div">
+            <img class="image_animation" src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
+        </div>
     </div>
 
 
@@ -115,7 +115,7 @@
             {% if individualmission  %}
 
                 {% if not object.attributed_to  %}
-                   <h3 class="medium_title lable_mission_status"> {% trans 'mission_unclaimed' %}</h3>
+                    <h3 class="medium_title lable_mission_status"> {% trans 'mission_unclaimed' %}</h3>
 
                 {% else %}
                     <h3>{% trans 'mission_is_attributed_to' %}{{ object.attributed_to }}</h3>
@@ -176,20 +176,20 @@
 
                     <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
                         <form method="post" action="{% url 'mission_create_resource' object.id %}">
-                        {% csrf_token %}
-                        {{ resources_form|crispy }}
-                        <button type="submit">{% trans 'save' %}</button>
-                    </form>
+                            {% csrf_token %}
+                            {{ resources_form|crispy }}
+                            <button type="submit">{% trans 'save' %}</button>
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="nav-chose" role="tabpanel" aria-labelledby="nav-chose-tab">
 
-                         {% for resource in object.ressource_set.all %}
-                        <div class="duplicate_table">
+                        {% for resource in object.ressource_set.all %}
+                            <div class="duplicate_table">
 
-                            <h4 class="small_title">{{ project.name }}</h4>
-                            <a href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select' %}</a>
+                                <h4 class="small_title">{{ project.name }}</h4>
+                                <a href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select' %}</a>
 
-                        </div>
+                            </div>
                         {% endfor %}
                     </div>
 

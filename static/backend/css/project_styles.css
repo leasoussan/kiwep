@@ -28,6 +28,10 @@
     color: whitesmoke;
 }
 
+.team_project_button{
+    background-color: rgba(59,95,74,0.77);
+    color: white;
+}
 .project_title{
     display: flex;
     width: 70%;

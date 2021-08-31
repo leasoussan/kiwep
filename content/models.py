@@ -288,6 +288,8 @@ class Team(DiscussionModel):
             days_left = (self.due_date() - now)
             return days_left.days
 
+
+
 # def check_date(sender, instance, *args, **kwargs):
 #         if instance.start_date > instance.due_date:
 #             raise ValueError('Start date must be less than end date')

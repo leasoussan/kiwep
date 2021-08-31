@@ -1,7 +1,7 @@
 .mission_detail_container{
     display: flex;
     flex-direction: column;
-    justify-content:start;
+    align-content:center;
     width: 100% ;
     min-height: 100vh;
     padding: 0rem 5rem;
@@ -29,8 +29,8 @@ button .edit_button{
 
 .mission_detail_main_content{
     display: flex;
-    flex-direction: row;
-    width: 90%;
+    flex-direction: column;
+    width: 100%;
     justify-content: space-between;
     margin-top: 2rem;
 }
@@ -38,6 +38,7 @@ button .edit_button{
     display: flex;
     flex-direction: column;
     width: 50%;
+    min-height: 30vh;
     justify-content: space-between;
 }
 .mission_learning_info{
@@ -46,44 +47,69 @@ button .edit_button{
     justify-content: space-between;
 }
 .mission_detail_description{
-        min-height: 50%;
+    max-height: 50%;
+    min-width: 100%;
+    max-width: 100%;
+    border: #0b2e13 2px solid;
+    background-color: #1c7430;
 }
 
 .mission_related_elements_content{
     display: flex;
     flex-direction: row;
-    width: 95%;
-    min-height: 30vh;
-    max-height: 60vh;
-    margin-top: 3rem;
     justify-content: flex-end;
+    width: 100%;
+    min-height: 20vh;
+    margin-top: 3rem;
 }
 
 .animation_div{
     display: flex;
     justify-content: flex-end;
-    width: 40%;
+    width: 30%;
+    margin-right: 2rem;
+
+}
+
+
+
+
+.image_animation{
+    width: 400px;
+    align-content: flex-end;
 }
 
 .mission_status_box {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     padding: 1rem;
     width: 30%;
+    height: 20%;
     align-items: center;
-    background-color: #d5dbd5;
-    margin-left: 10rem;
-
+    border: #0b2e13 6px solid;
+    margin-left: 5rem;
+    flex-wrap: wrap;
+}
+.mission_attribution_detail{
 
 }
-
 .mission_attributed_to{
-display: flex;
+    display: flex;
     flex-direction: column;
     width: 100%;
 }
 
+.mission_detail_answer_content{
+    display: flex;
+    margin-top: 5rem;
+    width: 40%;
+    border: #1c7430 2px solid;
+    justify-content: center;
+    align-content: flex-end;
+   height: 100%;
+
+}
 .lable_mission_status{
     display: flex;
     justify-items: center;
@@ -92,15 +118,14 @@ display: flex;
     background-color: #82cc81;
     border-radius: 10%;
     width: 95%;
-        padding: 1rem;
+    padding: 1rem;
     color: whitesmoke;
 
 }
 
-
 .mission_answer_include{
     display: flex;
-       margin-top: 2rem;
+    margin-top: 2rem;
 }
 .mission_status_box button{
     margin-left: 50px;
@@ -118,7 +143,7 @@ display: flex;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    width: 100%;
+    width: 50%;
     flex-wrap: wrap;
     min-height: 30%;
     max-height: 90%;
@@ -128,7 +153,7 @@ display: flex;
 .mission_resource_list_items{
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 50%;
 }
 
 .mission_resource_list_items div{
@@ -194,15 +219,15 @@ display: flex;
 
     /* ANSWER-MISSION-LIST Table */
 
-    tbody, thead{ 
-        float: left;    
+    tbody, thead{
+        float: left;
     }
 
-    thead{ 
+    thead{
         min-width: 40%;
     }
 
-    td,th { 
+    td,th {
         display: block;
     }
 }

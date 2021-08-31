@@ -210,16 +210,6 @@ x/* TEAM-LIST */
 }
 
 
-.team_discussion_container{
-    display: flex;
-    flex-direction: column;
-    width:90%;
-    min-height: 30%;
-    border: 2px solid teal;
-    margin-top: 4rem;
-    margin-left: 110px;
-}
-
 
 .discussion_list{
     display: flex;
