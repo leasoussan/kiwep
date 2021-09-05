@@ -19,8 +19,9 @@
                 {#<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete_modal">#}
                 {#                            {% trans 'delete' %}</button>#}
                 <a class="btn delete_button" href="{% url 'delete_project' project.id %}" >{% trans 'delete' %}</a></td>
+                {% if team.project %}
                 <a class="btn team_project_button" href="{% url 'team_detail' project.team.id %}" >{% trans 'team_of_project' %}</a></td>
-
+{% endif %}
             {% endif %}
         </div>
     </div>

@@ -48,6 +48,7 @@
 
 .project_detail_description{
     min-height: 50%;
+
 }
 
 .speaker_action_btn_group{
@@ -128,8 +129,12 @@
 } */
 
 .project_mission_items{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
     width: 80%;
-    min-height: 5rem;
+    min-height: 3rem;
     margin-top: 2rem;
     border: 1px solid black;
     margin-left: 10%;
@@ -137,6 +142,10 @@
 
 .project_mission_items .mission_name{
     margin-left: 5px;
+    min-width: 40%;
+    max-width: 40%;
+        border: 1px solid red;
+
 }
 
 .project_mission_items span {
@@ -246,14 +255,22 @@
     background-color: rgb(247, 250, 253);
 }
 
-.time_to_complete label{
-    background-color: rgb(247, 250, 253);
+.project_list_time_to_complete{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    min-width: 10%;
 }
 
 .project_details_box div{
     background-color: transparent;
 }
 
+
+.project_detail_name_responsive{
+    max-width: 50%;
+    min-width: 50%;
+}
 /* RESPONSIVE */
 @media (max-width: 670px){
 

@@ -1,0 +1,404 @@
+.mission_detail_container{
+    display: flex;
+    flex-direction: column;
+    align-content:center;
+    width: 100% ;
+    min-height: 100vh;
+    padding: 0rem 5rem;
+}
+
+.mission_detail_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:90%;
+    margin-left: 6%;
+}
+
+.btn-light:hover{
+    color: #000000;
+}
+
+.btn-sm{
+    height: 40px;
+}
+
+button .edit_button{
+    line-height: 3px;
+}
+
+.mission_detail_main_content{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    min-height: 65vh;
+    max-height: 65vh;
+    justify-content: space-between;
+    background-color: #F0EFEF;
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.mission_detail_main_panel{
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+    min-height: 80vh;
+}
+
+.mission_detail_panel{
+    display: flex;
+    flex-direction: row;
+    background-color: lightgray;
+}
+
+.speaker_mission_answer_panel{
+    display: flex;
+    flex-direction: column;
+    min-width: 35%;
+    max-width: 35%;
+    min-height: 70% ;
+    max-height:70% ;
+}
+
+.mission_detail_details{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    min-height: 30vh;
+    justify-content: space-between;
+    background-color: transparent;
+}
+
+
+
+.mission_detail_details p{
+    background-color: transparent;
+}
+.mission_detail_details div{
+    background-color: transparent;
+}.mission_detail_details div h4{
+     background-color: transparent;
+ }
+
+.mission_learning_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 35%;
+    min-height:  70%;
+    max-height: 70%;
+    padding-top: 1rem;
+    background-color: transparent;
+}
+
+.mission_learning_info label{
+    background-color: transparent;
+    margin: 5px;
+    font-weight: bolder;
+ }
+.skills_mission{
+    display: flex;
+    flex-direction: column;
+    min-height: 90%;
+    max-height: 90%;
+    min-width: 90%;
+    max-width: 90%;
+    padding: 1rem;
+    background-color: transparent;
+    border: whitesmoke 1px solid;
+    margin-bottom: 1rem;
+}
+.detail_time_to_complete{
+    min-height: 25%;
+    max-height: 25%;
+    min-width: 90%;
+    max-width: 90%;
+    align-content: center;
+    background-color: #E2C3A1;
+    padding-left: 1rem;
+}
+
+.skills_name{
+    min-height: 70%;
+    background-color: transparent;
+}
+.skills_name ul{
+    border: 2px grey solid;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+.skills_mission_header{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 20%;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+
+.plus_button{
+    max-width: 30px;
+    max-height: 30px;
+    background-color: #0b2e13;
+    color: whitesmoke;
+}
+.mission_detail_description{
+    max-height: 50%;
+    min-width: 100%;
+    max-width: 100%;
+    word-wrap: break-word;
+    padding: 1rem;
+}
+.mission_related_elements_content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 20vh;
+    background-color: lightgray;
+    justify-content: flex-end;
+    justify-content: space-between;
+    align-content: flex-end;
+    padding: 1rem;
+
+}
+.animation_div{
+    display: flex;
+    justify-content: flex-end;
+    width: 350px;
+    margin-right: 1rem;
+    background-color: transparent;
+}
+
+
+
+
+.image_animation{
+    width: 100%;
+    align-content: flex-end;
+    border: black solid 3px;
+}
+
+.mission_status_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1rem;
+    min-width: 100%;
+    max-width: 100%;
+    min-height:50%;
+    max-height: 50%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3rem;
+    flex-wrap: wrap;
+}
+
+.mission_status_box button{
+    margin-left: 50px;
+}
+
+.mission_attribution_detail{
+    width: 100%;
+    min-height: 20%;
+}
+
+.mission_attributed_to_label{
+    width: 70%;
+}
+
+.mission_attributed_to_label h2{
+    background-color: #E6AF97;
+    border: deeppink 2px solid;
+
+}
+
+.mission_detail_answer_content{
+    display: flex;
+    margin-top: 5rem;
+    width: 35%;
+    border: #1c7430 2px solid;
+    justify-content: center;
+    align-content: flex-end;
+    height: 100%;
+
+}
+.label_mission_status{
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background-color: #82cc81;
+    border-radius: 10%;
+    width: 95%;
+    padding: 1rem;
+    color: whitesmoke;
+
+}
+
+.mission_answer_include{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    min-height: 70%;
+    max-height: 70%;
+}
+
+.mission_response_type_label{
+    display: flex;
+    flex-direction: row;
+    width:80%;
+    margin: auto;
+    justify-content: space-between;
+    border: #0b2e13 2px solid;
+
+}
+.small_title{
+    font-weight: bolder;
+    background-color: transparent;
+}
+
+.answer_status_lable{
+    padding: 1rem;
+    /*background-color:;*/
+}
+.resource_container{
+    display: flex;
+    flex-direction: row;
+    align-content:start;
+    justify-content: space-between;
+    width: 60%;
+    flex-wrap: wrap;
+    min-height: 70%;
+    max-height: 80%;
+    margin-top: 1rem;
+    background-color: transparent;
+    overflow-scrolling: auto;
+    border: grey 3px solid;
+}
+
+.mission_detail_resources_list_box{
+    display: flex;
+    flex-direction: row;
+    min-width: 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    overflow: auto;
+    max-height: 70%;
+    background-color: whitesmoke;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+
+.header_resource_container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 25%;
+    max-height: 25%;
+    justify-content: space-between;
+    align-content: center;
+    background-color: grey;
+    margin-bottom: 5px;
+
+}
+
+.header_resource_container h3{
+    background-color: transparent;
+        color: white;
+    font-weight: bolder;
+
+}
+.image_resource{
+    min-width: 8rem;
+    max-width: 8rem;
+
+}
+
+.missions_detail_resource{
+    width: 100%;
+    /* min-height: 120px; */
+}
+
+.missions_detail_resource a{
+    margin: auto;
+}
+
+.resource_detail_button_control{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
+
+.resource_detail_button_control a img{
+    background-color: transparent;
+}
+.resource_item_detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    height: 11rem;
+    margin-right: 1rem;
+    width: 45%;
+    margin-bottom: 1rem;
+}
+
+.resource_item_detail div{
+    background-color: transparent;
+}
+.resource_name{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    border: #0b2e13 1px solid;
+}
+.claim_mission_button{
+    background-color: gold;
+
+}
+
+.unclaim_mission_button{
+    background-color:grey;
+    margin-top: 2rem;
+    width: 10rem;
+}
+
+/*------SPEAKER ANSWER BOARD-----*/
+
+.answer_board{
+    width: 80%;
+}
+
+.answer_board > h5{
+    margin-bottom: 30px;
+}
+.table_missions_list{
+
+}
+
+/* RESPONSIVE */
+@media (max-width: 670px) {
+
+    /* ANSWER-MISSION-LIST Table */
+
+    tbody, thead{
+        float: left;
+    }
+
+    thead{
+        min-width: 40%;
+    }
+
+    td,th {
+        display: block;
+    }
+}

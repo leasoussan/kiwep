@@ -130,9 +130,9 @@ class AddCollectiveMissionView(SpeakerStatuPassesTestMixin, View):
 class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
     '''Detail Of General Mission'''
     model = IndividualMission
-    template_name = 'backend/mission/mission_detail.html'    
-    
-    
+    template_name = 'backend/mission/mission_detail.html'
+
+
 
     def get_object(self):
         pk = self.kwargs.get('pk')
@@ -178,13 +178,14 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
 class IndividualMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
     '''Update an Individual Mission'''
     model = IndividualMission
-    fields = ['name', 
-            'field', 
-            'level',
-            'description',
-            'acquired_skill',
-            'due_date']
-    template_name = 'crud/update.html'  
+    fields = ['name',
+              'field',
+              'level',
+              'description',
+              'response_type',
+              'acquired_skill',
+              'due_date']
+    template_name = 'crud/update.html'
 
 
 def get_object(self):
@@ -201,10 +202,11 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
     '''Update a Collective Mission'''
     model = CollectiveMission
     fields = ['name',
-            'field',
-            'level',
-            'description',
-            'attributed_to']
+              'field',
+              'level',
+              'response_type',
+              'description',
+              'attributed_to']
     template_name = 'crud/update.html'
 
 
@@ -225,7 +227,7 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
 
 class IndividualMissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
     model = IndividualMission
-    template_name = 'crud/delete.html' 
+    template_name = 'crud/delete.html'
     success_url = reverse_lazy('project_list')
 
 
@@ -323,13 +325,13 @@ class UnclaimMission(StudentStatuPassesTestMixin, RedirectView):
 
 class JoinCollectiveMissionView(StudentStatuPassesTestMixin, RedirectView):
 
-        pattern_name = 'collective_mission_detail'
+    pattern_name = 'collective_mission_detail'
 
-        def get_redirect_url(self, *args, **kwargs):
-            collective_mission = get_object_or_404(CollectiveMission, pk=kwargs['pk'])
-            IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission, attributed_to=self.request.user.profile())
+    def get_redirect_url(self, *args, **kwargs):
+        collective_mission = get_object_or_404(CollectiveMission, pk=kwargs['pk'])
+        IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission, attributed_to=self.request.user.profile())
 
-            return super().get_redirect_url(*args, **kwargs)
+        return super().get_redirect_url(*args, **kwargs)
 
 
 
@@ -348,7 +350,7 @@ class LeaveCollectiveMissionView(StudentStatuPassesTestMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         collective_mission = get_object_or_404(CollectiveMission, pk=kwargs['pk'])
         IndividualCollectiveMission.objects.get(parent_mission=collective_mission,
-                                                          attributed_to=self.request.user.profile()).delete()
+                                                attributed_to=self.request.user.profile()).delete()
         print(collective_mission, "collective mission ")
         return super().get_redirect_url(*args, **kwargs)
 

@@ -1,12 +1,26 @@
 {% load i18n %}
+{% load static %}
 
-<div class ="answer_status">
-    <div class="answer">
-        {% if not object.answer.all.exists %}
-            <h3 class="medium_title answer_status_lable"> {% trans 'no_asnwer_yet' %}</h3>
+{% block css %}
+    <link href="{% static 'backend/css/speaker_answer.css' %}" rel="stylesheet" >
+{% endblock css %}
 
-        {% else %}
-              {% with answer=object.answer.all.last %}
+
+<div class="answer">
+    <div class="mission_answer_status_label">
+            {% if object.attributed_to %}
+                {% trans 'no_answer_yet' %}
+            {% endif %}
+        </div>
+    {% if not object.answer.all.exists %}
+        <div class="mission_response_type_label">
+            <h3 class="medium_title"> {% trans 'answer_type' %}</h3>
+            <h3>{{ object.response_type }}</h3>
+
+        </div>
+
+    {% else %}
+        {% with answer=object.answer.all.last %}
             {% if answer.response_comment or answer.response_file %}
                 <li>     {% trans 'file_lable' %} :{{answer.response_file}}</li>
                 <li>{% trans 'text_lable' %}: {{answer.response_comment}}</li>
@@ -37,35 +51,34 @@
                     {% endif %}
                 </div>
             {% endif %}
-            {% endwith %}
+        {% endwith %}
 
-        {% endif %}
+    {% endif %}
 
 
-        {#        {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}#}
-        {#        {% if answer.status %}#}
-        {#            <label> {% trans 'answer_status' %}: {{ answer.status }} </label>#}
-        {#        {% elif answer.status == 'a' %}#}
-        {#            {% if not answer.grade %}#}
-        {#                <label>{% trans 'mission_not_graded' %}</label>#}
-        {#            {% else %}#}
-        {#                <label>{% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>#}
-        {#            {% endif %}#}
-        {##}
-        {#        {% else %}#}
-        {##}
-        {#            <label> {% trans 'mission_wasnt_accepted_yet' %}</label>#}
-        {#        {% endif %}#}
-        {#    </div>#}
-        {##}
-        {#    {% endwith %}#}
-        {##}
-        {##}
-        {##}
-        {##}
-        {##}
-        {#    {% endif %}#}
-        {#    {% endif %}#}
+    {#        {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}#}
+    {#        {% if answer.status %}#}
+    {#            <label> {% trans 'answer_status' %}: {{ answer.status }} </label>#}
+    {#        {% elif answer.status == 'a' %}#}
+    {#            {% if not answer.grade %}#}
+    {#                <label>{% trans 'mission_not_graded' %}</label>#}
+    {#            {% else %}#}
+    {#                <label>{% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>#}
+    {#            {% endif %}#}
+    {##}
+    {#        {% else %}#}
+    {##}
+    {#            <label> {% trans 'mission_wasnt_accepted_yet' %}</label>#}
+    {#        {% endif %}#}
+    {#    </div>#}
+    {##}
+    {#    {% endwith %}#}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#    {% endif %}#}
+    {#    {% endif %}#}
 
-    </div>
 </div>

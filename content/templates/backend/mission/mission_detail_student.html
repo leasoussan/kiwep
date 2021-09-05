@@ -3,6 +3,10 @@
 {% load static %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% block css %}
+    <link href="{% static 'backend/css/student_mission_styles.css' %}" rel="stylesheet">
+{% endblock %}
+
 
 <div class="mission_detail_container">
 
@@ -24,8 +28,10 @@
     </div>
 
 
-    <div class="mission_detail_main_content">
-
+    <div class="student_mission_detail_main_content">
+        <div class="animation_div">
+            <img class="image_animation" src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
+        </div>
         <div class="mission_detail_details">
 
             <p class="mission_detail_description">{{object.description}}</p>
@@ -46,15 +52,14 @@
 
         </div>
 
-    <div class="animation_div">
-            <img class="image_animation" src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
-        </div>
-        <div class="mission_status_box">
+        <div class="student_mission_status_box">
 
             <div class="mission_attribution_detail">
 
                 {% if user.profile in object.project.team.participants.all %}
+
                     {% if individualmission and not object.attributed_to  %}
+
 
                         <a class="btn claim_mission_button" href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>
 
@@ -69,79 +74,68 @@
                                     {{ object.attributed_to }}</h4>
                                 <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a>
 
-
                             </div>
-                            </div>
+                        {% else %}
+                            {% trans 'this_missions_belongs_to:' %}
+                            {{ object.attributed_to }}
 
                         {% endif %}
+
+
                     {% endif %}
                 {% endif %}
+            </div>
+
         </div>
 
     </div>
 
-
-    <div class="mission_related_elements_content">
-
-        {# here is the Resource List #}
-
-        <div class="resource_container overflow-auto">
+    <div class="student_mission_related_elements_content">
+        <div class="student_resource_container overflow-auto">
             {% if object.project.resource_set.exists %}
 
                 {% for resource in object.project.resource_set.all   %}
 
 
-                    <div class="resource_item_detail">
+                    <div class="student_resource_item_detail">
 
                         <div class="resource_cover">
 
-                            <img class="image_resource" src="{{ resource.get_resourceImg_or_default }}">
+                            <img class="mission_image_resource" src="{{ resource.get_resourceImg_or_default }}">
 
                         </div>
 
-
                         <div class="missions_detail_resource">
                             <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
-
 
                         </div>
                     </div>
                 {% endfor %}
             {% endif %}
         </div>
+        {% if user.profile in object.project.team.participants.all %}
+
+            {% if object.attributed_to == request.user.profile %}
 
 
-        <div class="mission_detail_answer_content">
+                <div class="discussion_container">
+                    {% include 'comments/discussion.html' %}
+                </div>
 
-            {% if user.profile in object.project.team.participants.all %}
 
-                {% if object.attributed_to == request.user.profile %}
+
+                <div class="mission_detail_answer_content">
 
                     {% include "answer/answer.html"  with object=object %}
 
-
-                {% endif %}
+                </div>
             {% endif %}
-        </div>
+        {% endif %}
 
 
-
-      </div>
-
-
-    <div class="discussion_container">
-        {% include 'comments/discussion.html' %}
     </div>
 
 </div>
-
-
-
-
-
-
-
-
 
 
 

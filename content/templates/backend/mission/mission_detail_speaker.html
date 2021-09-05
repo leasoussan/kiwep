@@ -3,6 +3,10 @@
 {% load static %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% block css %}
+    <link href="{% static 'backend/css/speaker_mission_styles.css' %}" rel="stylesheet">
+{% endblock %}
+
 
 <div class="mission_detail_container">
 
@@ -23,132 +27,156 @@
 
     </div>
 
+    <div class="mission_detail_main_panel">
+        <div class="mission_detail_main_content">
 
-    <div class="mission_detail_main_content">
+            <div class="mission_detail_panel">
+                <div class="animation_div">
+                    <img class="image_animation" src="{% static 'backend/images/content/mission_default.jpeg' %}" alt="this slowpoke moves">
+                </div>
+                <div class="mission_detail_details">
 
-        <div class="mission_detail_details">
-
-            <p class="mission_detail_description">{{object.description}}</p>
+                    <p class="mission_detail_description">{{object.description}}</p>
 
 
-            <p class="detail_time_to_complete">
-                <span>Time Left To Complete (days):</span>{{object.time_to_complete}} {% trans 'days' %}
-            </p>
+                </div>
 
-            <div class="mission_learning_info" >
-
-                <h4 class ="">{% trans 'acquired_skills' %}</h4>
-                {% for skill in object.acquired_skill.all %}
-                    <li class="">{{skill.name}},  </li>
-                {% endfor %}
-                <button class="btn" style="background-color: whitesmoke">{% trans 'add_skills' %}</button>
             </div>
 
-        </div>
-        <div class="animation_div">
-            <img class="image_animation" src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
-        </div>
-    </div>
 
+            <div class="mission_related_elements_content">
 
+                <div class="mission_learning_info">
+                    <label>{{ object.get_mission_type_display }}</label>
+                    <p class="detail_time_to_complete">
+                        <span>{% trans 'time_to_complete' %}</span>{{object.time_to_complete}} {% trans 'days' %}
+                    </p>
+                    <div class="skills_mission">
+                        <div class="skills_mission_header">
+                            <h5 class="small_title">{% trans 'acquired_skills' %}</h5>
 
+                            <button class="btn plus_button"></button>
 
-    <div class="mission_related_elements_content">
+                        </div>
+                        <div class="skills_name">
+                            {% for skill in object.acquired_skill.all %}
+                                <ul class="">{{skill.name}},  </ul>
 
-        {# here is the Resource List #}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
 
-        <div class="mission_resource_list_items">
+                <div class="resource_container">
 
+                    <div class="header_resource_container">
+                        <h3>{% trans 'resource_list' %}</h3>
 
+                        <!-- Button trigger modal add Resource -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
+                            {% trans "add_resource" %}
+                        </button>
 
-            <div class="resource_container overflow-auto">
-                {% if object.resource_set.exists %}
+                    </div>
+                    {% if object.resource_set.exists %}
 
-                    {% for resource in object.resource_set.all %}
-                        <div class="resource_item_detail">
+                        <div class="mission_detail_resources_list_box">
+                            {% for resource in object.resource_set.all %}
+                                <div class="resource_item_detail">
 
-                            <div class="resource_cover">
+                                    <div class="resource_cover">
 
-                                <img class="image_resource" src="{{ resource.get_resourceImg_or_default }}">
-
-                            </div>
-
-
-                            <div class="missions_detail_resource">
-                                <div class="detail_mission_alignment">
-                                    <div class="resource_name">
-                                        <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+                                        <img class="image_resource" src="{{ resource.get_resourceImg_or_default }}">
 
                                     </div>
-                                    <div class="resource_detail_button_control">
-                                        <a href="{% url 'update_resource' resource.id %}"><img src="{% static 'backend/images/kiwep/edit.png' %}" alt="edit"> </a>
-                                        <a href="{% url 'delete_resource' resource.id %}"> <img src="{% static 'backend/images/kiwep/trash.png' %}" alt="delete"> </a>
 
+                                    <div class="missions_detail_resource">
+                                        <div class="resource_name">
+                                            <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+
+                                        </div>
+                                        <div class="resource_detail_button_control">
+                                            <a href="{% url 'update_resource' resource.id %}"><img src="{% static 'backend/images/kiwep/edit.png' %}" alt="edit"> </a>
+                                            <a href="{% url 'delete_resource' resource.id %}"> <img src="{% static 'backend/images/kiwep/trash.png' %}" alt="delete"> </a>
+
+                                        </div>
                                     </div>
-
-
                                 </div>
 
 
-                            </div>
+                            {% endfor %}
                         </div>
-
-
-                    {% endfor %}
-                {% endif %}
-            </div>
-
-
-            <div class="btn_control_mission">
-                <!-- Button trigger modal add Resource -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
-                    {% trans "add_resource" %}
-                </button>
-            </div>
-        </div>
-
-
-
-
-        <div class="mission_status_box">
-
-            {% if individualmission  %}
-
-                {% if not object.attributed_to  %}
-                    <h3 class="medium_title lable_mission_status"> {% trans 'mission_unclaimed' %}</h3>
-
-                {% else %}
-                    <h3>{% trans 'mission_is_attributed_to' %}{{ object.attributed_to }}</h3>
-
-                {% endif %}
-
-
-
-            {% elif collectivemission  %}
-                {% if not object.attributed_to.all.exists %}
-                    {% trans 'no_one_joined_yet' %}
-                    {% if user.profile ==  object.team.manager %}
-
-                        <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
                     {% endif %}
+                </div>
 
-                {% else %}
-                    {% for participant in object.attributed_to.all %}
-                        <li> {{ participant }}</li>
-
-                    {% endfor %}
-                {% endif %}
-
-            {% endif %}
-
-
-            <div class="mission_answer_include">
-                {% include "answer/answer.html"  with object=object %}</div>
+            </div>
 
         </div>
+        <div class="speaker_mission_answer_panel">
+
+            <div class="mission_status_box">
+                <div class="mission_attribution_detail">
+                    {% if individualmission  %}
+
+                        {% if not object.attributed_to  %}
+                            <h3 class="medium_title label_mission_status"> {% trans 'mission_unclaimed' %}</h3>
+
+                        {% else %}
+                            <div class="mission_attributed_to_label">
+                                <h2>{% trans 'mission_is_attributed_to' %}: {{ object.attributed_to }}</h2>
+                            </div>
+                        {% endif %}
+
+                    {% elif collectivemission  %}
+                        {% if not object.attributed_to.all.exists %}
+                            {% trans 'no_one_joined_yet' %}
+                            {% if user.profile ==  object.team.manager %}
+
+                                <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
+                            {% endif %}
+
+                        {% else %}
+                            {% for participant in object.attributed_to.all %}
+                                <li> {{ participant }}</li>
+
+                            {% endfor %}
+                        {% endif %}
+
+                    {% endif %}
+                </div>
+                <div class="mission_answer_include">
+                    {% include "answer/answer.html"  with object=object %}
+                </div>
+
+            </div>
+
+        </div>
+        {% if user.profile == object.team.manager %}
+
+
+            <div class="discussion_container">
+                {% include 'comments/discussion.html' %}
+            </div>
+
+
+
+            <div class="mission_detail_answer_content">
+
+                {% include "answer/answer.html"  with object=object %}
+
+            </div>
+        {% endif %}
 
     </div>
+
+
+
+
+
 </div>
+
+
+
 
 
 <!-- Modal ADD RESOURCES-->
@@ -172,8 +200,8 @@
                 </nav>
             </div>
             <div class="modal-body">
-                <div class="tab-content" id="nav-tabContent">
 
+                <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
                         <form method="post" action="{% url 'mission_create_resource' object.id %}">
                             {% csrf_token %}
@@ -192,10 +220,7 @@
                             </div>
                         {% endfor %}
                     </div>
-
                 </div>
-
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
