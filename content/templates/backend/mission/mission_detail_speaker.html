@@ -112,7 +112,7 @@
             </div>
 
         </div>
-        <div class="speaker_mission_answer_panel">
+        <div class="speaker_mission_action_panel">
 
             <div class="mission_status_box">
                 <div class="mission_attribution_detail">
@@ -144,30 +144,29 @@
 
                     {% endif %}
                 </div>
-                <div class="mission_answer_include">
-                    {% include "answer/answer.html"  with object=object %}
-                </div>
 
             </div>
+
+
+        <div class="speaker_mission_related_elements_content">
+
+        {% if user.profile == object.project.team.manager %}
+
+        <div class="mission_detail_answer_content">
+
+            {% include "answer/answer.html"  with object=object %}
 
         </div>
-        {% if user.profile == object.team.manager %}
+        <div class="discussion_container">
+            {% include 'comments/discussion.html' %}
+        </div>
 
 
-            <div class="discussion_container">
-                {% include 'comments/discussion.html' %}
-            </div>
-
-
-
-            <div class="mission_detail_answer_content">
-
-                {% include "answer/answer.html"  with object=object %}
-
-            </div>
-        {% endif %}
-
+    {% endif %}
     </div>
+  </div>
+
+</div>
 
 
 

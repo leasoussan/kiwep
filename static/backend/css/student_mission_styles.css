@@ -11,7 +11,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width:60%;
+    width:90%;
+    margin-left: 6%;
 }
 
 .btn-light:hover{
@@ -28,26 +29,125 @@ button .edit_button{
 
 .student_mission_detail_main_content{
     display: flex;
-    flex-direction: row;
-    width: 100%;
+    flex-direction: column;
+    width: 65%;
+    min-height: 70vh;
+    max-height: 70vh;
     justify-content: space-between;
-    margin-top: 2rem;
+    background-color: #F0EFEF;
+    padding: 1rem 1rem 1rem 1rem;
 }
+
+.mission_detail_main_panel{
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+    min-height: 80%;
+}
+
+.mission_detail_panel{
+    display: flex;
+    flex-direction: row;
+    background-color: lightgray;
+}
+
+.student_mission_action_panel{
+    display: flex;
+    flex-direction: column;
+    min-width: 35%;
+    max-width: 35%;
+    min-height: 70vh;
+    max-height:120vh;
+    padding: 0rem 2rem;
+    border: 5px solid #9fbfac;
+    justify-content: start;
+}
+
 .mission_detail_details{
     display: flex;
     flex-direction: column;
     width: 45%;
     min-height: 30vh;
     justify-content: space-between;
-    border: grey 5px solid;
-    border-radius: 5px;
-    padding: 1rem;
-
+    background-color: transparent;
 }
+
+
+
+.mission_detail_details p{
+    background-color: transparent;
+}
+.mission_detail_details div{
+    background-color: transparent;
+}.mission_detail_details div h4{
+     background-color: transparent;
+ }
+
 .mission_learning_info{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+    min-width: 35%;
+    min-height:  70%;
+    max-height: 70%;
+    padding-top: 1rem;
+    background-color: transparent;
+}
+
+.mission_learning_info label{
+    background-color: transparent;
+    margin: 5px;
+    font-weight: bolder;
+}
+.skills_mission{
+    display: flex;
+    flex-direction: column;
+    min-height: 90%;
+    max-height: 90%;
+    min-width: 90%;
+    max-width: 90%;
+    padding: 1rem;
+    background-color: transparent;
+    border: whitesmoke 1px solid;
+    margin-bottom: 1rem;
+}
+.detail_time_to_complete{
+    min-height: 25%;
+    max-height: 25%;
+    min-width: 90%;
+    max-width: 90%;
+    align-content: center;
+    background-color: #E2C3A1;
+    padding-left: 1rem;
+}
+
+.skills_name{
+    min-height: 70%;
+    background-color: transparent;
+}
+.skills_name ul{
+    border: 2px grey solid;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+.skills_mission_header{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 20%;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+
+.plus_button{
+    max-width: 30px;
+    max-height: 30px;
+    background-color: #0b2e13;
+    color: whitesmoke;
 }
 .mission_detail_description{
     max-height: 50%;
@@ -57,13 +157,21 @@ button .edit_button{
     padding: 1rem;
 }
 
-.student_mission_related_elements_content{
+
+.mission_related_elements_content{
     display: flex;
     flex-direction: row;
-    /*justify-content: space-between;*/
     width: 100%;
-    min-height: 20vh;
-    margin-top: 3rem;
+    min-height: 35vh;
+    background-color: lightgray;
+    /*justify-content: flex-end;*/
+    justify-content: space-between;
+    align-content: flex-end;
+    padding: 1rem;
+}
+
+.student_mission_related_elements_content{
+ justify-content: flex-start;
 }
 
 .animation_div{
@@ -71,7 +179,7 @@ button .edit_button{
     justify-content: flex-end;
     width: 350px;
     margin-right: 1rem;
-
+    background-color: transparent;
 }
 
 
@@ -80,42 +188,70 @@ button .edit_button{
 .image_animation{
     width: 100%;
     align-content: flex-end;
+    border: black solid 3px;
 }
 
-.student_mission_status_box {
+.mission_status_box {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     padding: 1rem;
-    min-width: 30%;
-    max-width: 30%;
-    min-height: 20%;
-    max-height:30%;
+    min-width: 100%;
+    max-width: 100%;
+    min-height:50%;
+    max-height: 50%;
     align-items: center;
-    border: #0b2e13 6px solid;
-    margin-left: 5rem;
+    justify-content: center;
+    margin-left: 3rem;
     flex-wrap: wrap;
 }
-.mission_attribution_detail{
-    border: #0b2e13 3px solid;
+
+.mission_status_box button{
+    margin-left: 50px;
 }
+
+.mission_attribution_detail{
+    width: 100%;
+    min-height: 20%;
+}
+
 .mission_attributed_to{
     display: flex;
     flex-direction: column;
+    align-content: flex-end;
+}
+
+
+.mission_attributed_to_label{
+    width: 70%;
+}
+
+.banner_attributed_to{
+    display: flex;
+    background-color: #abc7b2;
     width: 100%;
+    height: 4rem;
+    justify-content: center;
+
+}
+
+.mission_attributed_to_label h2{
+    background-color: #E6AF97;
+    border: deeppink 2px solid;
+
 }
 
 .mission_detail_answer_content{
     display: flex;
-    margin-top: 5rem;
-    width: 35%;
-    border: #1c7430 2px solid;
+    margin-top: 2rem;
+    width: 100%;
     justify-content: center;
     align-content: flex-end;
-   height: 100%;
+    min-height: 50%;
+    max-height: 150%;
 
 }
-.lable_mission_status{
+.label_mission_status{
     display: flex;
     justify-items: center;
     justify-content: center;
@@ -130,12 +266,24 @@ button .edit_button{
 
 .mission_answer_include{
     display: flex;
-    margin-top: 2rem;
-}
-.student_mission_status_box button{
-    margin-left: 50px;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    min-height: 70%;
+    max-height: 70%;
 }
 
+.mission_response_type_label{
+    display: flex;
+    flex-direction: row;
+    width:80%;
+    margin: auto;
+    justify-content: space-between;
+    border: #0b2e13 2px solid;
+
+}
 .small_title{
     font-weight: bolder;
 }
@@ -144,35 +292,59 @@ button .edit_button{
     padding: 1rem;
     /*background-color:;*/
 }
-.student_resource_container{
+.resource_container{
     display: flex;
     flex-direction: row;
     align-content:start;
-    width: 35%;
+    justify-content: space-between;
+
+    width: 60%;
     flex-wrap: wrap;
-    min-height: 30%;
-    max-height: 90%;
-    margin-top: 67px;
-    border: 4px grey solid;
-    padding: 1rem;
+    min-height: 70%;
+    max-height: 80%;
+    margin-top: 1rem;
+    background-color: transparent;
     overflow-scrolling: auto;
+    border: grey 3px solid;
+}
+
+.mission_detail_resources_list_box{
+    display: flex;
+    flex-direction: row;
+    min-width: 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    overflow: auto;
+    max-height: 70%;
+    background-color: whitesmoke;
+    justify-content: space-between;
+    margin-top: 1rem;
 }
 
 
+.header_resource_container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 25%;
+    max-height: 25%;
+    justify-content: space-between;
+    align-content: center;
+    background-color: grey;
+    margin-bottom: 5px;
 
-.mission_resource_list_items div{
-    /* margin-left: auto; */
-}
-.btn_control_mission{
-    margin-left: auto;
 }
 
-.mission_image_resource{
+.header_resource_container h3{
+    background-color: transparent;
+    color: white;
+    font-weight: bolder;
+
+}
+.image_resource{
     min-width: 8rem;
     max-width: 8rem;
-    min-height: 8rem;
-    max-height: 8rem;
-    background-color: #1c7430;
+
 }
 
 .missions_detail_resource{
@@ -183,26 +355,36 @@ button .edit_button{
 .missions_detail_resource a{
     margin: auto;
 }
-.detail_mission_alignment{
-    display: flex;
-    flex-direction: row;
-}
+
 .resource_detail_button_control{
     display: flex;
     flex-direction: row;
+    width: 50%;
 }
 
-.student_resource_item_detail{
-    border: #0b2e13 3px solid;
-    height: 10rem;
+.resource_detail_button_control a img{
+    background-color: transparent;
+}
+.resource_item_detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    height: 11rem;
     margin-right: 1rem;
+    width: 45%;
+    margin-bottom: 1rem;
 }
 
-
+.resource_item_detail div{
+    background-color: transparent;
+}
 .resource_name{
     display: flex;
     flex-wrap: wrap;
-    max-width: 50%;
+    max-width: 100%;
+    border: #0b2e13 1px solid;
 }
 .claim_mission_button{
     background-color: gold;
@@ -210,18 +392,24 @@ button .edit_button{
 }
 
 .unclaim_mission_button{
-    background-color:grey;
-    margin-top: 2rem;
+    background-color:lightsalmon;
+    /*margin-top: 3px;*/
     width: 10rem;
+    color: whitesmoke;
+    font-size: normal;
+    font-weight: bold;
 }
 
-/*------SPEAKER ANSWER BOARD-----*/
 
-.speaker_answer_board{
+
+
+/*------student ANSWER BOARD-----*/
+
+.answer_board{
     width: 80%;
 }
 
-.speaker_answer_board > h5{
+.answer_board > h5{
     margin-bottom: 30px;
 }
 .table_missions_list{

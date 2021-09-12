@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load mytags %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'backend/css/mission_styles.css' %}" rel="stylesheet">
+{% endblock css %}
+
 {% block content %}
-    {% load static %}
-    {% block css %}
-        <link href="{% static 'backend/css/mission_styles.css' %}" rel="stylesheet">
-    {% endblock css %}
 
 
     {% if user.is_speaker %}
@@ -33,36 +35,39 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for mission in answers_mission_list %}
-                    <tr>
-                        <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
-                        {% if mission.project.team %}
-                            <td><a href="{% url 'team_detail'  mission.project.team.id %}">{{ mission.project.team.name }}</a></td>
-                        {% else %}
-                            <td> not team</td>
-                        {% endif %}
-                        <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ mission.project.name }}</a></td>
-                        <td>{{mission.due_date}}</td>
 
-                        <td>  {% if mission.answer.all.exists %}
-                            {{ mission.answer.last.get_status_display }}
-                        {% else  %}
-                            {% trans 'not_answer_yet' %}
-                        {% endif %}
-                        </td>
-                        <td>{{mission.due_date}}</td>
-                        <td>{% if user.is_speaker %}
-                            {#                            <form method = "post">#}
-                            {#                                {% csrf_token %}#}
-                            {#                                <input type="checkbox" id="mission_validate" name="mission_validate" value="validate">#}
-                            {#                                <label for="validate">{% trans 'validate' %}</label><br>#}
-                            {#                                <input type = "submit" value = "validate">#}
-                            {#                            </form>#}
-                        {% endif %}
 
-                        </td>
-                    </tr>
-{% endfor %}
+                    {% for mission in answers_mission_list|get_speaker_answer_board:user.profile %}
+                        <tr>
+                            <td><a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
+                            {% if mission.project.team %}
+                                <td><a href="{% url 'team_detail'  mission.project.team.id %}">{{ mission.project.team.name }}</a></td>
+                            {% else %}
+                                <td> not team</td>
+                            {% endif %}
+                            <td><a href="{% url 'project_detail'  mission.project.pk %}">{{ mission.project.name }}</a></td>
+                            <td>{{mission.due_date}}</td>
+
+                            <td>  {% if mission.answer.all.exists %}
+                                {{ mission.answer.last.get_status_display }}
+                            {% else  %}
+                                {% trans 'not_answer_yet' %}
+                            {% endif %}
+                            </td>
+                            <td>{{mission.due_date}}</td>
+                            <td>{% if user.is_speaker %}
+                                {#                            <form method = "post">#}
+                                {#                                {% csrf_token %}#}
+                                {#                                <input type="checkbox" id="mission_validate" name="mission_validate" value="validate">#}
+                                {#                                <label for="validate">{% trans 'validate' %}</label><br>#}
+                                {#                                <input type = "submit" value = "validate">#}
+                                {#                            </form>#}
+                            {% endif %}
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+
                     </tbody>
                 </table>
 

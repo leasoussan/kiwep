@@ -3,6 +3,7 @@
 
 {% block css %}
     <link href="{% static 'backend/css/speaker_answer.css' %}" rel="stylesheet" >
+    <link href="{% static 'backend/css/discussion.css' %}" rel="stylesheet" >
 {% endblock css %}
 
 
@@ -22,8 +23,14 @@
     {% else %}
         {% with answer=object.answer.all.last %}
             {% if answer.response_comment or answer.response_file %}
-                <li>     {% trans 'file_lable' %} :{{answer.response_file}}</li>
-                <li>{% trans 'text_lable' %}: {{answer.response_comment}}</li>
+                <ul class="answer_file_label">
+                    <lable>{% trans 'file' %} :</lable>
+                    {% if not answer.response_file %}
+                        test
+{#                   <a href="{{answer.response_file.url}}" download>{{answer.title}}</a>#}
+                        {% endif %}
+                </ul>
+                <ul>{% trans 'text_lable' %}:{{answer.response_comment}}</ul>
                 {% trans 'answer_by' %} {{ object.answer.all.first.content_object.attributed_to.user.get_full_name }}
                 <div class="answer_content">
                     <form method="POST" action="{% url 'answer_edit_status' answer.id %}">

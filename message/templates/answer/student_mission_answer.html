@@ -13,71 +13,75 @@
 
     <div class="answer_box">
 
-    {% if object.answer.all.exists %}
+        {% if object.answer.all.exists %}
 
-        {% with answer=object.answer.all.last %}
-
-
-            <div class="last_answer_container">
+            {% with answer=object.answer.all.last %}
                 <label class="last_answer_label">{% trans 'your_last_answer' %}</label>
-                <br>
-                <p class="comment_text_last_answer">{{ answer.response_comment }}</p>
-                <br>
-                <p>{{ answer.response_file }}</p>
+                <div class="last_answer_container">
+                    <div>
+                        {% if answer.response_file %}
+                            <img src="{% static 'backend/images/kiwep/file.png' %}">
+
+                        {% else %}
+                            <p class="file_place_holder">{% trans  'no_file_yet' %}</p>
+
+                        {% endif %}
+                    </div>
+
+                    <p class="comment_text_last_answer">{{ answer.response_comment }}</p>
 
 
-                <label style="font-weight: bold">{% trans 'status' %}: {{ object.answer.get_status_display }}</label>
 
-            </div>
-
-
-            {% if answer.status %}
-                <div class="answer_status_view_student">
+                </div>
 
 
-                <p> {% trans 'answer_status' %}: {{ answer.get_status_display }} </p>
-                {% if answer.grade %}
-                    {% trans 'and_graded :' %}
-                    {{ answer.grade }}
+                {% if answer.status %}
+                    <div class="answer_status_view_student">
 
 
-                {% elif answer.status == 'a' %}
-                    {% if not answer.grade %}
+                    <p> {% trans 'answer_status' %}: {{ answer.get_status_display }} </p>
+                    {% if answer.grade %}
+                        <p>  {% trans 'and_graded :' %}
+                            {{ answer.grade }}</p>
 
-                        <p>{% trans 'mission_not_graded' %}</p>
+
+                    {% elif answer.status == 'a' %}
+                        {% if not answer.grade %}
+
+                            <label>{% trans 'mission_not_graded' %}</label>
+                        {% else %}
+                            <label> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>
+                        {% endif %}
+
                     {% else %}
-                        {% trans 'grade_for_mission ' %}: {{ answer.grade }}
+
+                        <p> {% trans 'mission_wasnt_accepted_yet' %}</p>
                     {% endif %}
 
-                {% else %}
 
-                    <p> {% trans 'mission_wasnt_accepted_yet' %}</p>
                 {% endif %}
+            {% endwith %}
+
+        </div>
 
 
-            {% endif %}
-        {% endwith %}
+            <div class=""><span>{{answer.response_comment}}</span>
 
-    </div>
+        {% else %}
 
-
-        <div class=""><span>{{answer.response_comment}}</span>
-
-    {% else %}
-
-        <label> {% trans 'no_answered_yet' %}</label>
-        <form method="POST" action = "{% url 'answer_add' %}?next={{ request.path }} " enctype="multipart/form-data" >
-            {% csrf_token %}
+            <label> {% trans 'no_answered_yet' %}</label>
+            <form method="POST" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >
+                {% csrf_token %}
 
 
-            {{ object.answer_form|crispy }}
+                {{ object.answer_form|crispy }}
 
 
-            <button class="btn" type="submit" name="action">{% trans 'save_answer' %}
-            </button>
-        </form>
-    {% endif %}
-</div>
+                <button class="btn" type="submit" name="action">{% trans 'save_answer' %}
+                </button>
+            </form>
+        {% endif %}
+        </div>
     </div>
 
 

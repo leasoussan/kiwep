@@ -30,7 +30,7 @@ def collective_student_missions(mission_qs, team):
 
 @register.filter
 def student_available_projects(project_qs, student):
-    return project_qs.filter(speaker__group = student.class_level_id)
+    return project_qs.filter(speaker__group=student.class_level_id)
 
 
 
@@ -40,9 +40,13 @@ def get_mission_type(mission):
 
 
 
+def get_speaker_answer_board(answers_qs, speaker):
+    return answers_qs.filter(project__team__manager=speaker)
+
 
 # this lign it to call templates the function according to the left name 
 register.filter('return_objects_name', return_objects_name)
 register.filter('return_class_name', return_class_name)
 register.filter('get_mission_type', get_mission_type)
+register.filter('get_speaker_answer_board', get_speaker_answer_board)
 
