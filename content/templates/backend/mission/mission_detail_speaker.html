@@ -12,7 +12,7 @@
 
     <div class="mission_detail_header">
         <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' object.project.id %}">{% trans 'back_to_project_button' %}</a></button>
-        <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_team' %}</a></button>
+        <!-- <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a> -->
 
         <h3 class=""> {{ object.name }}</h3>
 
@@ -152,9 +152,7 @@
 
         {% if user.profile == object.project.team.manager %}
 
-                {% if not object.attributed_to  %}
-                   <h3 class="medium_title table_mission_status"> {% trans 'mission_unclaimed' %}</h3>
-
+        <div class="mission_detail_answer_content">
 
             {% include "answer/answer.html"  with object=object %}
 
