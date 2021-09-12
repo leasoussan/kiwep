@@ -1,15 +1,70 @@
+x/* TEAM-LIST */
+
+#wrapper{
+    margin: 0 auto;
+    width: 1000px;
+    background-color: aqua;
+}
+.team_list_header{
+    display: flex;
+    flex-direction: row;
+}
+
+.team_list_header_student{
+    display: flex;
+    margin-left: 95px;
+    margin-bottom: 25px;
+}
+
+.team_list_btn_gp{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 0;
+    width: 100%;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    border: none !important;
+    background-color: rgb(99, 162, 185) !important;
+}
+
+
+.button_left{
+    margin-right: 15px;
+    /* height: 33px; */
+    
+}
+
+.team_list_tbl_edit_delete_icons{
+    display: flex;
+}
+.team_list_tbl_edit_delete{
+    display: inline-block;
+    margin-left: 9.5px;
+}
+
+.col_width{
+    width: 10%;
+}
+
+.col_width1{
+    width: 20%;
+}
+
+/* TEAM-DETAIL */
 .team_detail_container{
     display: flex;
     flex-direction: column;
     justify-content:start;
     width: 100% ;
     min-height: 100vh;
-    padding: 0rem 5rem;
+    padding: 0rem 2rem;
 }
 
 .team_detail_header{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 2rem;
     margin-bottom:2rem;
     width: 95%;
@@ -40,6 +95,10 @@
 
 }
 
+.sm-btn{
+    height: 35px;
+    line-height: 5px;
+}
 .speaker_action_btn_group > button{
     margin-left: 20px;
 }
@@ -47,22 +106,21 @@
 .team_navigation_extra_button {
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 60%;
     justify-content: space-between;
     align-content: center;
     margin: auto;
 }
 
 .project_link_extra{
-
-    border-bottom: solid 2px red;
+    border-bottom: 2px solid rgb(121, 121, 121);
+    border-radius: 0px;
 }
 
 
 .team_detail_main_content{
     display: flex;
     flex-direction: row;
-    align-content: flex-end;
     width: 100%;
     min-height: 90%;
     flex-wrap: wrap;
@@ -72,7 +130,7 @@
 .team_mission_list{
     display: flex;
     flex-direction: row;
-    width: 65%;
+    width: 60%;
     min-height: 90%;
     max-height: 80vh;
     flex-wrap: wrap;
@@ -90,12 +148,21 @@
     padding: 2rem;
     justify-content: space-between;
     align-items: center;
+
+}
+.team_mission_name_title {
+    display: flex;
+    max-width: 90%;
+    min-width: 90%;
+    flex-wrap: wrap;
+    word-break: normal;
+    border: #0b2e13 solid 4px;
 }
 
 .team_extra_information{
     display: flex;
     flex-direction: column;
-    margin-left: 3rem;
+    margin-left: 1rem;
     min-width: 30%;
     min-height: 80vh;
     margin-top: 2rem;
@@ -143,15 +210,6 @@
 }
 
 
-.team_discussion_container{
-    display: flex;
-    flex-direction: column;
-    max-width: 60%;
-    min-height: 30%;
-    border: 2px solid teal;
-    margin-top: 4rem;
-    margin-left: 110px;
-}
 
 .discussion_list{
     display: flex;
@@ -159,9 +217,21 @@
     width: 80%;
 }
 
+.discussion_detail{
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
 .add_mission{
     margin-left: 75px;
+}
 
+
+.start_discussion_btn_team_detail_speaker{
+    display: flex;
+    justify-content: center;
+    margin-left: 50px;
+    margin-top: 9px;
 }
 
 /*SPEAKER------------------LIST_TEAM*/
@@ -191,14 +261,11 @@
 }
 
 .add_team_button {
-  background-color: #1565c0;
-  font-weight: bold;
-  font-size: large;
   color: white;
-
 }
+
 .mission_list_btn{
-    background-color: #1668c2;
+  background-color: #1668c2;
   font-weight: bold;
   font-size: large;
   color: white;
@@ -207,6 +274,8 @@
 
 .medium_title{
   margin-bottom: 2rem;
+    font-weight: bolder;
+    font-size: larger;
 }
 
 /*.team_list_table tr{*/
@@ -215,6 +284,7 @@
 /*    flex-direction: row;*/
 /*    justify-content: space-evenly;*/
 /*}*/
+
 /*_______STUDENT TEAM DETAIL STYLE_____________________*/
 
 .team_project_status{
@@ -227,6 +297,7 @@
 .student_team_list_container{
     display: flex;
     flex-direction: column;
+    min-width: 100%;
 }
 
 .student_mission_table{
@@ -247,23 +318,55 @@
     border-radius: 10%;
 }
 
+.discussion_board_row{
+    border: 1px solid maroon;
+    width: 100%;
+    margin-left: 23px;
+    margin-top: 10px;
+}
+
+.discussion_sub_title{
+    margin: 10px 0 0 10px;
+}
+
+
 /* RESPONSIVE */
 @media (max-width: 670px){
 
-    .team_detail_header{
+    .team_list_header{
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .team_detail_header{
+        display: flex;
+        flex-direction: column;
         margin-top: 2rem;
         margin-bottom:2rem;
-        width: 60%;
-        justify-content: flex-end;
-        justify-content: space-between;
+        width: 100%;
+        flex-wrap: wrap;
 
+    }
+
+    
+    .col_width{
+        width: 10%;
+    }
+
+    .col_width1{
+        width: 20%;
+    }
+        
+    .team_list_btn_gp{
+        margin-top: 20px;
+        margin-bottom: 15px;
+        justify-content: flex-start;
     }
 
     .team_project_detail{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         margin-bottom: 0;
     }
 
@@ -272,7 +375,11 @@
     }
 
     .speaker_action_btn_group{
-        margin-left: 100px;
+        margin-top: 15px;
+        margin-right: auto;
+        justify-content: flex-start;
+        position: relative;
+        right: 7px;
     }
 
     .speaker_action_btn_group > button{
@@ -284,33 +391,100 @@
         height: 35px;
     }
 
-    .team_navigation_extra_button {
+    .project_link_extra{
+        border-bottom: none;
+        position: relative;
+        right: 8px;
+        /* border-bottom: 1px solid rgb(121, 121, 121); */
+    }
+    .project_link_extra_underline{
+        width: 90%;
+        display: inline-block;
+        border-bottom: 1px solid rgb(121, 121, 121);
+    }
+
+    .project_link_extra_underline1{
+        width: 30%;
+        display: inline-block;
+        border-bottom: 1px solid rgb(121, 121, 121);
+    }
+
+    .project_link_extra_underline2{
+        width: 40%;
+        display: inline-block;
+        border-bottom: 1px solid rgb(121, 121, 121);
+    }
+
+    .team_navigation_extra_button { 
+        margin-top: 2rem;
+        flex-direction: column;
         position: relative;
         right: 70px;
-        margin-top: 1rem;
     }
-
 
     .add_mission{
-        margin-left: 5px;
+        margin-left: 2px;
     }
+
+    .team_extra_information{
+        min-width: none;
+        position: relative;
+        right: 50px;
+        width: 100%;
+    } 
 
     .team_participant_container{
-        width: 80%;
-        position: relative;
-        right: 180px;
-
-    }
-
-    .team_discussion_container{
-        max-width: 80%;
-        position: relative;
-        bottom: 232px;
-        left: 135px;
+        width: 100%;
+        height: 40%;
+        justify-items: center;
         margin-left: 0;
     }
 
+    .team_discussion_container{
+        width:100%;   
+        min-height: none;
+        height: 40%;
+        margin-left: 0;
+    }
+
+    .discussion_list{
+        width: 100%;
+    }
+
+    .start_discussion_btn_team_detail_speaker{
+        margin: 9px auto auto auto;
+    }
+
+    .team_mission_list{
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        min-width: 90%;
+        background-color: #1c7430;
+    }
+
+
     .team_detail_main_content{
+        display: flex;
+        flex-direction: row;
         margin-top: 1rem;
+
+    }
+
+    .discussion_board_row{
+        border: 1px solid maroon;
+        width: 90%;
+        margin: 10px auto auto auto;
+    }
+
+    .discussion_sub_title{
+        margin: 10px 0 0 10px;
+        
+    }
+
+    .team_list_header_student{
+        display: flex;
+        margin-left: 45px;
+        margin-bottom: 25px;
     }
 }

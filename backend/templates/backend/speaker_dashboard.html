@@ -9,36 +9,49 @@
     <div class="dashboard_top_container">
 
         <div class="dashboard_logo">
-            <img src="{% static 'backend/images/kiwep/dietly.jpeg' %}">
+            <img src="{% static 'backend/images/kiwep/dietly.jpg' %}">
         </div>
-
         <div class="video_dashboard_speaker">
 
 
-            <video class="video_speaker" controls >
-                <source src="{% static 'backend/images/video/en_speaker_intro.mp4' %}" type="video/mp4">
-                <b>{{video.title}}</b>
-            </video>
+        <video class="video_speaker" controls >
+            <source src="{% static 'backend/images/video/en_speaker_intro.mp4' %}" type="video/mp4">
+            <b>{{video.title}}</b>
+        </video>
         </div>
-
     </div>
 
+</div>
 
 
-    <div class="dashboard_extra_navigation_link">
-        <ul class="dashboard_navigation_link_item">
-         <h3 class="dashboard_speaker_information_header">   {% trans 'you-currently_have' %}
-           <label class="number_count_info"> {{ user.profile.team_set.all.count }}</label>
-            <a class="nav-link" href="{% url 'team_list' %}">{% trans 'team' %}</a></h3>
-        </ul>
 
-        <ul class="dashboard_navigation_link_item">            sdgsdgf
-        </ul>
+<div class="dashboard_extra_navigation_link">
+    <ul class="dashboard_navigation_link_item">
+        <div class="dashboard_item_title"><h3 class="dashboard_speaker_information_header">   {% trans 'you-currently_have' %}
+            <label class="number_count_info"> {{ user.profile.team_set.all.count }}</label>
+            <a class="nav-link" href="{% url 'team_list' %}">{% trans 'team' %}</a></h3></div>
+    </ul>
 
-        <ul class="dashboard_navigation_link_item">
-        sdfsdfsd
+    <ul class="dashboard_navigation_link_item">
+        <div class="students_dashboard_title">{% trans 'my_students' %}</div>
+         <div class="participants_list_icon">
+
+                            {% for participant in participants %}
+                                {{ participant.user.id }}
+                            <img class="avatar" src="{{ user.profile.profilepic_or_default }}" alt="">
+
+
+                        {% endfor %}
+
+
+                    </div>
+
+    </ul>
+
+    <ul class="dashboard_navigation_link_item">
+        <div class="dashboard_item_title">BlaBla</div>
     </ul>
 
 
-    </div>
+</div>
 </div>

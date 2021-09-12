@@ -21,7 +21,7 @@
         <div class="form_container">
 
             {% if model %}
-
+                {#    or  {% if model %}#}
                 <h2>{% trans 'create_title' %} {{model|return_class_name}}</h2>
             {% endif %}
 
@@ -45,8 +45,8 @@
 
 
                 <!-- </table> -->
-                <div id="button_left">
-                    <button class="btn btn-primary" type="submit" value="Save">{% trans 'save' %}</button>
+                <div id=" button_left">
+                    <button class="waves-effect waves-light btn" type="submit" value="Save">{% trans 'save' %}</button>
                 </div>
             </form>
 

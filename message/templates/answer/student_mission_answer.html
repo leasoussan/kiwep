@@ -1,154 +1,191 @@
-{% load i18n %}
+{% load mytags %}
+
 {% load static %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block css %}
-    <link href="{% static 'backend/css/answer.css' %}" rel="stylesheet" >
 
+{% block css %}
+    <link href="{% static 'backend/css/discussion.css' %}" rel="stylesheet">
 {% endblock css %}
 
 
+<div class="discussion_header">
+    <h4 class="title_box_discussion">{% trans 'discussions_board_of : ' %} </h4>
 
-{% if user.profile == object.attributed_to %}
+    <p class="discussion_object_title">{{object.name.title}}
+        {% if not object.discussions %}
+            <!-- Button trigger modal -->
+            <div class="start_discussion_btn_team_detail_speaker">
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
+                    <i class="bi bi-plus-square btn-lg"></i>
+                </button>
+            </div>
+        {% else %}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-lg" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
+                <i class="bi bi-plus-square"></i></button>
+        {% endif %}
+    </p>
 
-    <div class="answer_list_box">
 
-    {% if object.answer.all.exists %}
-
-        {% with answer=object.answer.all.last %}
+</div>
 
 
-            <div><label>{% trans 'your_last_answer' %}</label><br>
-                {% trans 'answer' %} {{ answer.response_comment }}<br>{{ answer.response_file }}
-                <br>
-                <label style="font-weight: bold">{% trans 'status' %}: {{ object.answer.get_status_display }}</label>
 
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="add_discussion_box" tabindex="-1" aria-labelledby="add_discussion_box" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="add_discussion_box">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }} " >
+
+                    {% csrf_token %}
+                    {{ object.discussion_form|crispy }}
+
+                    <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'start_discussion' %}
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+{#---------------------------------FOR DISCUSSION BOARD#}
+<div class="discussion_list">
+    {% with discussions=object.discussions.all %}
+
+        {% for discussion in discussions %}
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn title_discussion_button" data-bs-toggle="modal" data-bs-target="#_{{ discussion.id }}_discussion">
+                {{discussion.title.title}}
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade modal_discussion" id="_{{ discussion.id }}_discussion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog dialog_modal_overwrite">
+                    <div class="modal-content modal_discussion_display">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="_{{ discussion.id }}_discussionLable">{{discussion.title.title}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body discussion_window">
+                            {% if discussion.replies %}
+                                <div class="card card-body view_comments_list_discussion">
+                                    {% for comment in discussion.replies.all %}
+
+
+                                        {% if comment.user.profile == request.user.profile %}
+
+                                            <div class="speech-bubble-left user_comment">
+                                                <label class="date_label">
+                                                    {{ comment.date_posted }} {% trans 'by' %} {{ comment.user.username }}
+                                                </label>
+                                               <p> {{ comment.comment_text }}</p>
+                                            </div>
+                                        {% else %}
+                                            <div class="speech-bubble-right profile_comment">
+                                             <label class="date_label">
+                                                    {{ comment.date_posted }} {% trans 'by' %} {{ comment.user.username }}
+                                                </label>
+                                               <p class="comment_text"> {{ comment.comment_text }}</p>
+                                            </div>
+                                        {% endif %}
+
+
+                                    {% endfor %}
+                                </div>
+                                <div class="add_comment_input">
+
+                                    <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" class="form_comment_input">
+                                        {% csrf_token %}
+                                        {{ discussion.comment_form|crispy }}
+
+                                            <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>
+
+                                    </form>
+
+
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
-            {% if answer.status %}
-                <div class="answer_status_label">
-                    <p> {% trans 'answer_status' %}: {{ answer.get_status_display }} </p>
-                    {% if answer.grade %}
-                        {% trans 'and_graded :' %}
-                        {{ answer.grade }}
-                        </div>
+        {% endfor %}
 
-                    {% elif answer.status == 'a' %}
-                        <div class="answer_status_grad_label">
+    {% endwith %}
+      </div>
 
-                            {% if not answer.grade %}
-                                <p>{% trans 'mission_not_graded' %}</p>
-                            {% else %}
-                                {% trans 'grade_for_mission ' %}: {{ answer.grade }}
-                            {% endif %}
-
-                        </div>
-
-                    {% else %}
-                        <div class="unaccepted_mission_label">
-                            <p> {% trans 'mission_wasnt_accepted_yet' %}</p>
-                        </div>
-                    {% endif %}
-
-            {% endif %}
-        {% endwith %}
-
-    {% else %}
-        <div>
-            <h3 class="medium_title answer_status_lable">  {% trans 'add_answer' %}</h3>
-            <form method="POST" action = "{% url 'answer_add' %}?next={{ request.path }} " enctype="multipart/form-data" >
-                {% csrf_token %}
-
-                {{ object.answer_form|crispy }}
-
-
-                <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'save_answer' %}
-                </button>
-            </form>
-
-        </div>
-
-    {% endif %}
-{% endif %}
-
-
-
-
-</li>
-{#            {% with answers=object.answer.all %}#}
-{#                {% for answer in answers %}#}
-{#                    <li class="#">#}
-{#                    <div class="collapsible-header answer_line">#}
-{#                   #}
-{#                    <label>{% trans 'your_past_answer' %}</label>#}
-{#                    {% trans 'status' %}: {{ object.answer.get_status_display }}#}
-{##}
-{#                    {% if answer.grade %}#}
-{#                        {% trans 'and_graded :' %}#}
-{#                        {{ answer.grade }}#}
-{##}
-{#                        {% if answer.status %}#}
-{#                            <p> {% trans 'answer_status' %}: {{ answer.status }} </p>#}
-{#                        {% elif answer.status == 'a' %}#}
-{#                            {% if not answer.grade %}#}
-{##}
-{#                                <p>{% trans 'mission_not_graded' %}</p>#}
-{#                            {% else %}#}
-{#                                {% trans 'grade_for_mission ' %}: {{ answer.grade }}#}
-{#                            {% endif %}#}
-{##}
-{#                        {% else %}#}
-{##}
-{#                            <p> {% trans 'mission_wasnt_accepted_yet' %}</p>#}
-{#                        {% endif %}#}
 {##}
 {##}
+{##}
+{#            <div class="discussion_board_row">#}
+{#                <p>#}
+{#                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#discussion_box_detail" role="button" aria-expanded="false" aria-controls="discussion_box_detail">#}
+{#                        {{discussion.title.title }}   </a>#}
+{##}
+{#                </p>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#        {% if discussion.replies %}#}
+{#            {% for comment in discussion.replies.all %}#}
+{#                <div class="collapse" id="discussion_box_detail">#}
+{##}
+{#                <div class="card card-body">#}
+{#                    {% if comment.user.profile == request.user.profile %}#}
+{##}
+{#                        <div class="speech-bubble-left user_comment">#}
+{#                            {{ comment.comment_text }}#}
+{#                        </div>#}
+{#                    {% else %}#}
+{#                        <div class="speech-bubble-right profile_comment">#}
+{#                            {{ comment.comment_text}}#}
+{#                        </div>#}
 {#                    {% endif %}#}
+{#                </div>#}
+{#            {% endfor %}#}
 {##}
-{#                {% endfor %}#}
-{#            {% endwith %}#}
-
-</div>
-
-<div class="collapsible-body"><span>{{answer.response_comment}}</span>
-    {##}
-
-
-    {#                                    {% if user.is_speaker %}#}
-    {#                                        <form method="POST" action = "{% url 'answer_edit_status' answer.id %}?next={{ request.path }} " enctype="multipart/form-data" >#}
-    {#                                            {% csrf_token %}#}
-    {##}
-    {#                                            {{ answer.status_form|materializecss }}#}
-    {##}
-    {#                                            <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'save_answer' %}#}
-    {#                                            </button>#}
-    {#                                        </form>#}
-    {#                                    {% endif %}#}
-
-</div>
-
-</li>
-
-
-</div>
-
+{#            <div class="add_comment_input">#}
 {##}
-{#                            {% with answer=object.answer.last %}#}
+{#            <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >#}
+{#                {% csrf_token %}#}
+{#                {{ discussion.comment_form|crispy }}#}
+{#                <div class="col s1">#}
+{#                    <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
+{#                </div>#}
+{#            </form>#}
 {##}
-{#                                <div class="answer_content" style="background-color: yellow">#}
-{#                                    <h3>{% trans 'add_new_answer' %}</h3>#}
-{#                                    <form method="POST" action="{% url 'answer_edit_status' answer.id %}">#}
-{#                                        {% csrf_token %}#}
+{#        {% endif %}#}
+{#        </div>#}
 {##}
 {##}
-{#                                        {{ answer.status_form }}#}
-{#                                        <button type="submit">{% trans 'send_answer' %}</button>#}
-{#                                    </form>#}
 {##}
-{#                                    </form>#}
+{#        </div>#}
 {##}
 {##}
-{#                                </div>#}
-{#                                </div>#}
-{#                            {% endwith %}#}
+{#    {% endwith %}#}
+
+
+{% block javascript %}
+    <script>
+
+    </script>
+{% endblock javascript %}

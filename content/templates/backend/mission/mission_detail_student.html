@@ -3,6 +3,10 @@
 {% load static %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% block css %}
+    <link href="{% static 'backend/css/student_mission_styles.css' %}" rel="stylesheet">
+{% endblock %}
+
 
 <div class="mission_detail_container">
 
@@ -24,130 +28,165 @@
     </div>
 
 
-    <div class="mission_detail_main_content">
-        <div class="animation_div">
-            <img class="image_animation" src="https://media.giphy.com/media/xT5LMVKCjhlKlhkdJm/giphy.gif" alt="this slowpoke moves">
-        </div>
-        <div class="mission_detail_details">
-
-            <p class="mission_detail_description">{{object.description}}</p>
 
 
-            <p class="detail_time_to_complete">
-                <span>{% trans 'time_left_to_complete' %} (days):</span>{{object.time_to_complete}} {% trans 'days' %}
-            </p>
+    <div class="mission_detail_main_panel">
 
-            <div class="mission_learning_info" >
 
-                <h4 class ="">{% trans 'acquired_skills' %}</h4>
-                {% for skill in object.acquired_skill.all %}
-                    <li class="">{{skill.name}},  </li>
-                {% endfor %}
+        <div class="student_mission_detail_main_content">
+
+            <div class="mission_detail_panel">
+                <div class="animation_div">
+                    <img class="image_animation" src="{% static 'backend/images/content/mission_default.jpeg' %}" alt="this slowpoke moves">
+                </div>
+                <div class="mission_detail_details">
+
+                    <p class="mission_detail_description">{{object.description}}</p>
+
+
+                </div>
 
             </div>
 
-        </div>
 
-    </div>
+            <div class="mission_related_elements_content">
 
+                <div class="mission_learning_info">
+                    <label>{{ object.get_mission_type_display }}</label>
+                    <p class="detail_time_to_complete">
+                        <span>{% trans 'time_to_complete' %}</span>{{object.time_to_complete}} {% trans 'days' %}
+                    </p>
+                    <div class="skills_mission">
+                        <div class="skills_mission_header">
+                            <h5 class="small_title">{% trans 'acquired_skills' %}</h5>
 
+                            <button class="btn plus_button"></button>
 
-
-    <div class="mission_related_elements_content">
-
-        {# here is the Resource List #}
-
-        <div class="mission_resource_list_items">
-
-
-
-            <div class="resource_container overflow-auto">
-                {% if object.project.resource_set.exists %}
-
-                    {% for resource in object.project.resource_set.all   %}
-
-
-                        <div class="resource_item_detail">
-
-                            <div class="resource_cover">
-
-                                <img class="image_resource" src="{{ resource.get_resourceImg_or_default }}">
-
-                            </div>
-
-
-                            <div class="missions_detail_resource">
-                                <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
-
-
-                            </div>
                         </div>
-                    {% endfor %}
-                {% endif %}
+                        <div class="skills_name">
+                            {% for skill in object.acquired_skill.all %}
+                                <ul class="">{{skill.name}},  </ul>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource_container">
+
+                    <div class="header_resource_container">
+                        <h3>{% trans 'resource_list' %}</h3>
+
+                        <!-- Button trigger modal add Resource -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
+                            {% trans "add_resource" %}
+                        </button>
+
+                    </div>
+                    {% if object.resource_set.exists %}
+
+                        <div class="mission_detail_resources_list_box">
+                            {% for resource in object.resource_set.all %}
+                                <div class="resource_item_detail">
+
+                                    <div class="resource_cover">
+
+                                        <img class="image_resource" src="{{ resource.get_resourceImg_or_default }}">
+
+                                    </div>
+
+                                    <div class="missions_detail_resource">
+                                        <div class="resource_name">
+                                            <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
+
+                                        </div>
+                                        <div class="resource_detail_button_control">
+                                            <a href="{% url 'update_resource' resource.id %}"><img src="{% static 'backend/images/kiwep/edit.png' %}" alt="edit"> </a>
+                                            <a href="{% url 'delete_resource' resource.id %}"> <img src="{% static 'backend/images/kiwep/trash.png' %}" alt="delete"> </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
             </div>
+
         </div>
 
+        <div class="student_mission_action_panel">
 
-            <div class="mission_status_box" style="background-color: red">
+            <div class="student_mission_status_box">
 
-                {% if user.profile in object.project.team.participants.all %}
-                    {% if individualmission and not object.attributed_to  %}
+                <div class="mission_attribution_detail">
 
-                        <a class="btn claim_mission_button" href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>
+                    {% if user.profile in object.project.team.participants.all %}
 
-
-                    {% elif individualmission and object.attributed_to %}
-
-                        {% if object.attributed_to == request.user.profile %}
-                            <div class="mission_attributed_to">
+                        {% if individualmission and not object.attributed_to  %}
 
 
-                                <h4 class="small_title">{% trans 'mission_is_attributed_to_you' %}
-                                    {{ object.attributed_to }}</h4>
-                                <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a>
+                            <a class="btn claim_mission_button" href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>
 
 
-                            </div>
-                            <div class="answer_content">
+                        {% elif individualmission and object.attributed_to %}
+
+                            {% if object.attributed_to == request.user.profile %}
+                                <div class="mission_attributed_to">
 
 
-                                {% include "answer/answer.html"  with object=object %}
+                                    <h4 class="small_title banner_attributed_to">{% trans 'mission_is_attributed_to' %}
+                                        {{ object.attributed_to }}</h4>
+                                    <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' object.id %}">{% trans 'unclaim_mission' %}</a>
 
-                            </div>
+                                </div>
+                            {% else %}
+                                {% trans 'this_missions_belongs_to:' %}
+                                {{ object.attributed_to }}
+
+                            {% endif %}
+
+
                         {% endif %}
                     {% endif %}
+                </div>
+
+            </div>
+
+
+
+        <div class="student_mission_related_elements_content">
+
+            {% if user.profile in object.project.team.participants.all %}
+
+                {% if object.attributed_to == request.user.profile %}
+
+
+                    <div class="mission_detail_answer_content">
+
+                        {% include "answer/answer.html"  with object=object %}
+
+                    </div>
+                    <div class="discussion_container">
+                        {% include 'comments/discussion.html' %}
+                    </div>
+
+
+
                 {% endif %}
-            </div>
+            {% endif %}
 
 
+        </div>
+    </div>
 
-
-
-
-
-  </div>
-
-   <div class="discussion_include_div">
-                {% include 'comments/discussion.html' %}
-
-            </div>
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 
 

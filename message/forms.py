@@ -10,7 +10,6 @@ class AddDiscussionForm(forms.ModelForm):
         # exclude = ['user']
         fields = ['title', 'comment_text', 'content_type', 'object_id']
         widgets={
-            'comment_text': forms.Textarea(attrs={'rows': 2, 'cols': 5}),
             'content_type':forms.HiddenInput(),
             'object_id': forms.HiddenInput()
         }
@@ -20,16 +19,16 @@ class AddDiscussionForm(forms.ModelForm):
 
 
 class AddCommentForm(forms.ModelForm):
-
     class Meta:
         model = Comment
+        # exclude = ['user']
         fields = ['comment_text', 'content_type', 'object_id']
-
         widgets={
-            'comment_text':forms.Textarea(attrs={'rows': 2, 'cols': 8}),
+            'comment_text': forms.Textarea(attrs={"rows": 1, "cols": 6}),
             'content_type':forms.HiddenInput(),
-            'object_id': forms.HiddenInput()
+            'object_id': forms.HiddenInput(),
         }
+
 
 
 
@@ -38,10 +37,11 @@ class AddAnswerForm(forms.ModelForm):
         model = Answer
         fields = ['response_comment','response_file', 'content_type', 'object_id']
         widgets = {
-            'response_comment':forms.Textarea(attrs={'rows': 2, 'cols':5}),
+            'response_comment': forms.Textarea(attrs={"rows": 1, "cols": 6}),
             'content_type': forms.HiddenInput(),
             'object_id': forms.HiddenInput(),
         }
+
 
 
 class MissionSpeakerStatusAnswerForm(forms.ModelForm):

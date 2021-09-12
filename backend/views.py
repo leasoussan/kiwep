@@ -8,6 +8,7 @@ from accounts.decorators import check_profile
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
 
+from accounts.models import Student
 from content.models import Project, Team, Mission, Resource
 from .models import Institution
 from content.managers import ProjectModelManager, TeamModelManager, MissionModelManager, ResourceModelManager
@@ -21,8 +22,12 @@ User = get_user_model()
 @login_required
 @user_passes_test(check_profile, login_url='create_profile')
 def dashboard(request):
+    teams = request.user.profile().team_set.all()
+    participants = Student.objects.filter(team__in=teams).distinct()
+
     context= {
-        'form': SpeakerInviteForm()
+        'form': SpeakerInviteForm(),
+        'participants':participants,
     }
     return render(request, "backend/general_dashboard.html", context)
 
@@ -40,5 +45,3 @@ def my_calendar_view(request):
 def team_board(request):
 
     return render(request, "backend/team_board.html" )
-
-

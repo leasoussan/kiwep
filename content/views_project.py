@@ -88,14 +88,14 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
 
 class StudentAvailableTeamList(ProfileCheckPassesTestMixin, ListView):
     model = Team
-    template_name = 'backend/project/team_list.html'
+    template_name = 'backend/project/team_list_student.html'
     context_object_name = "available_projects"
 
 
     def get_queryset(self):
         if self.request.user.is_student:
-            return self.request.user.profile().class_level.team_set.filter(project__isnull=True)
-
+            return self.request.user.profile().class_level.team_set.filter(student__not_in=team.participants)
+# filter(project__isnull=True)
 
 
 # ----------------PROJECT------Detail_View/
@@ -111,7 +111,6 @@ class ProjectDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['individual_form'] = IndividualMissionAddForm()
         context['collective_form'] = CollectiveMissionAddForm()
         context['resources_form'] = ResourceAddForm()
@@ -376,7 +375,6 @@ class ProjectUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateV
         'description',
         'time_to_complete',
         'points',
-        'acquired_skills',
     ]
     template_name = 'crud/update.html'
 

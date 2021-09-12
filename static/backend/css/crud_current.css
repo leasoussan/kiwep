@@ -1,0 +1,53 @@
+.create_form_container{
+    display: flex;
+    flex-direction: row;
+    width: 90% ;
+
+}
+
+
+
+.form_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    padding-left: 2rem;
+}
+
+.form_design_create{
+    width: 50%;
+    height: 60vh;
+}
+
+.create_page_extra {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    height: 70vh;
+
+}
+
+
+.image_placeholder{
+    width: 70%;
+    height: 40%;
+    background-image: ;
+}
+.video_placeholder{
+    width: 70%;
+    height: 40%;
+}
+
+
+
+/*upodat*/
+
+.update_form_container{
+    display: flex;
+    flex-direction: row;
+    width: 90% ;
+
+}
