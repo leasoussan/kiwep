@@ -9,7 +9,7 @@ from .forms import (
     CollectiveMissionAddForm,
     CollectiveMissionAssign,
     ValidateMissionForm,
-    ResourceAddForm, BulkAddMissionForm,
+    ResourceAddForm, BulkAddMissionForm, ResourceChoseFromModelForm,
 
 )
 from django.urls import reverse_lazy
@@ -134,6 +134,7 @@ class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
 
 
 
+
     def get_object(self):
         pk = self.kwargs.get('pk')
         return get_object_or_404(IndividualMission, pk=pk)
@@ -141,6 +142,7 @@ class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['chose_resource'] = ResourceChoseFromModelForm()
         context['resources_form'] = ResourceAddForm()
         context['answer_form'] = AddAnswerForm()
         context['status_form'] = MissionSpeakerStatusAnswerForm()
@@ -162,6 +164,8 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['individual_form'] = IndividualMissionAddForm()
+        context['collective_form'] = CollectiveMissionAddForm()
         context['resources_form'] = ResourceAddForm()
         context['answer_form'] = AddAnswerForm()
         context['status_form'] = MissionSpeakerStatusAnswerForm()
@@ -178,6 +182,7 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
 class IndividualMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
     '''Update an Individual Mission'''
     model = IndividualMission
+
     fields = ['name',
               'field',
               'level',
@@ -186,6 +191,7 @@ class IndividualMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
               'acquired_skill',
               'due_date']
     template_name = 'crud/update.html'
+
 
 
 def get_object(self):
@@ -207,6 +213,7 @@ class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
               'response_type',
               'description',
               'attributed_to']
+
     template_name = 'crud/update.html'
 
 

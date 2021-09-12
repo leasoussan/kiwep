@@ -39,7 +39,7 @@
                 </button></span>
                 </div>
                 <div class="photo-gallery">
-                <div><span class="project_link_extra_underline2"><button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">
+                    <div><span class="project_link_extra_underline2"><button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">
                     {% trans 'photo_gallery' %}
                 </button></span></div>
 
@@ -54,7 +54,9 @@
         {% if user.profile in team.participants.all or user.is_speaker  %}
 
             <div class="team_mission_list overflow-auto">
-                <div class="add_mission"><a href="#"><b>Add Mission</b></a></div>
+                <button type="button" class="btn btn-primary sm_btn" data-bs-toggle="modal" data-bs-target="#add_mission_modal">
+                    {% trans 'add_mission' %}
+                </button>
                 {% for mission in team.project.mission_set.all.available_mission %}
 
                     <div class="team_mission_detail">
@@ -162,30 +164,30 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
                         <form method="post" action="{% url 'create_team_project' team.id %}">
-                        {% csrf_token %}
-                        {{ project_form|crispy }}
-                        <button type="submit">{% trans 'save' %}</button>
-                    </form>
+                            {% csrf_token %}
+                            {{ project_form|crispy }}
+                            <button type="submit">{% trans 'save' %}</button>
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="nav-chose" role="tabpanel" aria-labelledby="nav-chose-tab">
 
-                         {% for project in templates %}
-                        <div class="duplicate_table">
+                        {% for project in templates %}
+                            <div class="duplicate_table">
 
 
-                            <a href="{% url 'project_detail' project.id %}"> <h4 class="small_title">{{ project.name }}</h4></a>
-                            <a href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select' %}</a>
+                                <a href="{% url 'project_detail' project.id %}"> <h4 class="small_title">{{ project.name }}</h4></a>
+                                <a href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select' %}</a>
 
-                        </div>
-                    {% endfor %}
+                            </div>
+                        {% endfor %}
                     </div>
                     <div class="tab-pane fade" id="nav-duplicate" role="tabpanel" aria-labelledby="nav-duplicate-tab">
                         {% for project in old_projects  %}
-                        <div class="duplicate_table">
-                            <h4 class="small_title">{{ project.name }}</h4>
-                            <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
-                        </div>
-                    {% endfor %}
+                            <div class="duplicate_table">
+                                <h4 class="small_title">{{ project.name }}</h4>
+                                <a href="{% url 'duplicate_create_project' project.id team.id %}">{% trans 'copy' %}</a>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -196,3 +198,59 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+{% if team.project %}
+    <!-- Modal ADD Mission-->
+    <div class="modal fade" id="add_mission_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="add_missionLable" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+
+
+                    <ul class="nav nav-pills mb-3" id="pills-tab" >
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link " id="pills-individual-tab" data-bs-toggle="pill" data-bs-target="#pills-individual" type="button" role="tab" aria-controls="pills-individual" aria-selected="true">
+                                {% trans 'individual' %}</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-collective-tab" data-bs-toggle="pill" data-bs-target="#pills-collective" type="button" role="tab" aria-controls="pills-collective" aria-selected="false">
+                                {% trans 'collective' %}</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+
+                        <div class="tab-pane fade show active" id="pills-individual" role="tabpanel" aria-labelledby="pills-individual-tab">
+                            <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' team.project.id %}' >
+                                {% csrf_token %}
+                                {{ individual_form|crispy }}
+                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                    {% trans 'save'%}</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="pills-collective" role="tabpanel" aria-labelledby="pills-collective-tab">
+                            <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' team.project.id %}' >
+                                {% csrf_token %}
+                                {{ collective_form|crispy }}
+                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
+                                    {% trans 'save' %}</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+{% endif %}

@@ -1,4 +1,3 @@
-/*1. Project Detail*/
 
 .project_detail_container{
     display: flex;
@@ -135,8 +134,8 @@
     align-content: space-between;
     width: 80%;
     min-height: 3rem;
-    margin-top: 2rem;
-    border: 1px solid black;
+    margin-top: 3px;
+background-color: lightgray;
     margin-left: 10%;
 }
 
@@ -144,7 +143,6 @@
     margin-left: 5px;
     min-width: 40%;
     max-width: 40%;
-        border: 1px solid red;
 
 }
 

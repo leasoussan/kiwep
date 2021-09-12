@@ -184,20 +184,17 @@ class ResourceAddForm(ModelForm):
 
 
 
+class ResourceChoseFromModelForm(forms.Form):
+    resources = forms.ModelMultipleChoiceField(queryset=Resource.objects.all(), widget=forms.CheckboxSelectMultiple)
 
-#
-# CollectiveMissionFormSet = inlineformset_factory(
-#     Project,
-#     CollectiveMission,
-#     fields=mission_fields,
-#     extra=1)
-#
-# IndividualMissionFormSet = inlineformset_factory(
-#     Project,
-#     IndividualMission,
-#     fields=mission_fields,
-#     extra=1)
-#
+    def __init__(self, resources=None, *args, **kwargs):
+        super(ResourceChoseFromModelForm, self).__init__(*args, **kwargs)
+        self.fields['resources'].queryset = resources
+
+
+
+
+
 
 
 

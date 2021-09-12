@@ -63,15 +63,18 @@
     flex-direction: row;
     align-content: flex-end;
     width: 100%;
-    min-height: 90%;
+    /*min-height: 90%;*/
     flex-wrap: wrap;
     margin-top: 2rem;
+
+    border: #1c7430 12px solid;
 }
 
 .team_mission_list{
     display: flex;
     flex-direction: row;
     width: 60%;
+
     min-height: 90%;
     max-height: 80vh;
     flex-wrap: wrap;
@@ -262,5 +265,6 @@
 
     .team_detail_main_content{
         margin-top: 1rem;
+
     }
 }

@@ -3,10 +3,14 @@
 {% load static %}
 {% load mytags %}
 {% load crispy_forms_tags %}
+{% block css %}
+    <link href="{% static 'backend/css/resource_styles.css' %}" rel="stylesheet">
+{% endblock css %}
+
 {% block content %}
 
 
-    <div class="content">
+    <div class="resource_detail_container">
 
         <div class="speaker_btn_group">
             <a class="btn edit_btn_resource" href="{% url 'update_resource' resource.id %}">{% trans 'update_resource' %}</a>
@@ -15,7 +19,7 @@
         <div class="navigation_btn">
                 <a class="btn" href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a>
 
-            {% if resource in resource.project_set %}
+            {% if resource in resource.project_set.all %}
 
                 <a href="{% url  'individual_mission_detail' resource.mission_set.id %}">{% trans 'back_to_mission' %}</a>
             {% elif collectivemission %}
@@ -36,11 +40,11 @@
 
             <div class="resource_detail">
                 <div class="resource_description_box">
-                    <p class="resource_description">{{resource.text}}</p>
+                    <p class="resource_description overflow-auto">{{resource.text}}</p>
                 </div>
                 <div class="resource_img_box">
 
-                    <img class="item_img"  src="{{ resource.get_resourceImg_or_default }}" alt="{{ resource.title }}" style = 'width: 300px; height: 300px;;'>
+                    <img class="resource_image"  src="{{ resource.get_resourceImg_or_default }}" alt="{{ resource.title }}">
                 </div>
 
             </div>
@@ -48,89 +52,7 @@
         </div>
     </div>
 
-{#    <div>#}
-{#        <!-- Modal Trigger -->#}
-{#        <a class="waves-effect waves-light btn modal-trigger" href="#discussion_board">{% trans 'discussion_board' %}</a>#}
-{##}
-{#    </div>#}
-{#{{ object.project_set.team_set }}#}
-{#    {% if user.profile in object.project_set.team.participants.all and  request.user.profile == object.project_set.team.manager%}#}
-{##}
-{#    <!-- Modal Trigger -->#}
-{#    <a class="waves-effect waves-light btn modal-trigger" href="#add_discussion">{% trans 'discussion_mission' %}</a>#}
-{##}
-{##}
-{#    <ul class="collapsible discussion_table">#}
-{#        {% for discussion in object.discussions.all %}#}
-{#            <li>#}
-{#                <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ discussion.title }}</div>#}
-{#            </li>#}
-{##}
-{#            <div class="collapsible-body">#}
-{#            {% if not discussion.replies.exists %}#}
-{##}
-{#                <div class="add_comment_input">#}
-{##}
-{#                    <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}">#}
-{#                        {% csrf_token %}#}
-{#                        {{ discussion.comment_form|materializecss }}#}
-{#                        <div class="col s1">#}
-{#                            <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
-{#                        </div>#}
-{#                    </form>#}
-{##}
-{##}
-{#                </div>#}
-{##}
-{#            {% else %}#}
-{##}
-{##}
-{#                {% for comment in discussion.replies.all %}#}
-{#                    {% if comment.user.profile == request.user.profile %}#}
-{##}
-{#                        <div class="speech-bubble-left user_comment">#}
-{#                            {{ comment.comment_text }}#}
-{#                        </div>#}
-{#                    {% else %}#}
-{#                        <div class="speech-bubble-right profile_comment">#}
-{#                            {{ comment.comment_text}}#}
-{#                        </div>#}
-{#                    {% endif %}#}
-{#                {% endfor %}#}
-{##}
-{##}
-{#                <div class="add_comment_input">#}
-{##}
-{#                <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >#}
-{#                    {% csrf_token %}#}
-{#                    {{ discussion.comment_form|materializecss }}#}
-{#                    <div class="col s1">#}
-{#                        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
-{#                    </div>#}
-{#                </form>#}
-{#            {% endif %}#}
-{##}
-{##}
-{#        {% endfor %}#}
-{#    </ul>#}
-{#            {% endif %}#}
-{##}
-{##}
 
-    <!-- Modal Structure -->
-    <div id="discussion_board" class="modal">
-        <div class="row modal-content">
-
-            <h4>{% trans 'start_disucssion' %}</h4>
-
-
-            {% include 'comments/discussion.html' with object=resource %}
-
-        </div>
-
-        <div class="modal-footer">
-            <a class="modal-action modal-close waves-effect waves-green btn-flat">{% trans 'close' %}</a>
-        </div>
 
     </div>
 
@@ -139,17 +61,5 @@
 
 {% block javascript %}
 
-    <script>
-        $(document).ready(function(){
-            $('.modal').modal();
-
-            $('.tabs').tabs();
-            $('.collapsible').collapsible();
-
-        });
-    </script>
-
-    <script src="{% static  'backend/js/project_api_details.js'%}" type="text/javascript"></script>
-    <script src="{% static  'backend/js/plugin.js'%}" type="text/javascript"></script>
 
 {% endblock javascript %}

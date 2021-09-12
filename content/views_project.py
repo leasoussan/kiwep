@@ -111,7 +111,6 @@ class ProjectDetailView(ProfileCheckPassesTestMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['individual_form'] = IndividualMissionAddForm()
         context['collective_form'] = CollectiveMissionAddForm()
         context['resources_form'] = ResourceAddForm()

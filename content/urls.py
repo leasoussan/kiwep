@@ -81,6 +81,7 @@ urlpatterns = [
     path('resource-detail/<int:pk>/', ResourceDetailView.as_view(), name = "resource_detail"),
     path('project-create-resource/<int:project_id>', ResourceProjectCreateView.as_view(), name = "project_create_resource"),
     path('mission-create-resource/<int:mission_id>', ResourceMissionCreateView.as_view(), name = "mission_create_resource"),
+    path('mission-chose-resource/<int:mission_id>', chose_resource_to_mission , name = "chose_resource"),
     path('update-resource/<int:pk>/', ResourceUpdateView.as_view(), name = "update_resource"),
     path('delete-resource/<int:pk>', ResourceDeleteView.as_view(), name = "delete_resource"),
 
