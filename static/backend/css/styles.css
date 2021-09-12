@@ -54,8 +54,8 @@ h1{
   /* margin-right: 0; */
   position: relative;
   padding: 15px;
-
 }
+
 
 a{
   text-decoration: none;
@@ -182,7 +182,14 @@ div a{
   background-color: #0c8b51;
 }
 
+#logotitle{
+  display: flex;
+  justify-content: center;
+}
 
+#logotitle h1{
+  background-color: transparent;
+}
 
 #logotitle-nav{
   width: 150px;
@@ -216,7 +223,6 @@ span{
   background-color: transparent;
 }
 
-
 #username{
   background-color: transparent;
   margin-left: 17px;
@@ -233,7 +239,6 @@ ul li{
 nav{
   display: block;
   width: 100%;
-  margin-bottom: 2rem;
 }
 
 .menu_navbar_right{
@@ -291,7 +296,7 @@ nav{
 }
 
 .video_speaker {
-  width: 650px;
+  width: 600px;
 }
 /*------7 Modal------*/
 /*------COLORS------*/
@@ -322,6 +327,14 @@ nav{
     width: 100%;
   }
   
+  #logotitle{
+      background-color: transparent;
+  }
+
+  #logotitle h1{
+    background-color: transparent;
+  }
+
   #background{
     background-image: none;
     background-color: rgb(163, 163, 163);
@@ -332,21 +345,16 @@ nav{
     margin: 50px 
   }
 
+  
   #opacity{
     opacity: 0.8;
     width: 350px;
     height: 530px;
-    background-color: rgb(184, 181, 181);
+    background-color: white;
     position: relative;
     top: 26px;
     right: 15px;
   } 
-
-  #logotitle{
-    width: 100px;
-    display: flex;
-    justify-content: center;
-  }
 
   
   .aligning{
@@ -395,13 +403,15 @@ nav{
 
   .video_speaker {
  
-    width: 450px;
-
+    width: 370px;
   }
 }
 
 
-
+/* NAVBAR */
+.navbar_width{
+  width: 95%;
+}
 
 
 /*ADDED BY LEA TO REPROCESS */

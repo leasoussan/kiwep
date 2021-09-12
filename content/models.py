@@ -31,7 +31,7 @@ from message.models import DiscussionModel,AnswerModel
 class Resource(DiscussionModel):
     name = models.CharField(max_length=200)
     link = models.URLField(max_length=200,  blank=True, null =True)
-    image = models.ImageField(upload_to='resources', default ='resources/default.png', )
+    image = models.ImageField(upload_to='resources/', default ='resources/default.png', )
     file_rsc = models.FileField(null=True, blank=True)
     text = models.TextField()
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
@@ -69,7 +69,6 @@ class Project(DiscussionModel):
     title = models.CharField(max_length=300)
     description = models.TextField()
     required_skills = models.ManyToManyField(Skills, related_name="required_skills")
-    acquired_skills = models.ManyToManyField(Skills, default=None)
     time_to_complete = models.PositiveIntegerField()
     field = models.ManyToManyField(Field)
     difficulty = models.ForeignKey(Level, on_delete=models.CASCADE, null=True, blank=True)
@@ -79,7 +78,7 @@ class Project(DiscussionModel):
     is_template = models.BooleanField(default=False)
     is_global = models.BooleanField(default=False)
     is_premium = models.BooleanField(default=False)
-
+    image = models.ImageField(upload_to='project/', default = 'project/default_project.png', blank = True, null = True)
     objects = ProjectModelManager()
 
     class Meta:
@@ -287,6 +286,8 @@ class Team(DiscussionModel):
             now = datetime.now().date()
             days_left = (self.due_date() - now)
             return days_left.days
+
+
 
 # def check_date(sender, instance, *args, **kwargs):
 #         if instance.start_date > instance.due_date:

@@ -87,7 +87,7 @@ class CommentCreateView(RequestUserSaveFormMixin, GenericCustomRedirectView):
 
 
 class AnswerCreateView(StudentStatuPassesTestMixin, GenericCustomRedirectView):
-    pattern_name = "answer_add"
+    pattern_name = "create_answer"
     form_class = AddAnswerForm
 
 
@@ -96,6 +96,8 @@ class AnswerCreateView(StudentStatuPassesTestMixin, GenericCustomRedirectView):
         if self.request.user == mission.attributed_to.user:
             return True
         return False
+
+
 
 
 

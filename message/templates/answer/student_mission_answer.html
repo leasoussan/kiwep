@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block css %}
-    <link href="{% static 'backend/css/answer.css' %}" rel="stylesheet" >
+    <link href="{% static 'backend/css/student_answer.css' %}" rel="stylesheet" >
 
 {% endblock css %}
 
@@ -11,34 +11,46 @@
 
 {% if user.profile == object.attributed_to %}
 
-    <ul class="collapsible popout answer_list_box">
+    <div class="answer_box">
 
         {% if object.answer.all.exists %}
 
             {% with answer=object.answer.all.last %}
+                <label class="last_answer_label">{% trans 'your_last_answer' %}</label>
+                <div class="last_answer_container">
+                    <div>
+                        {% if answer.response_file %}
+                            <img src="{% static 'backend/images/kiwep/file.png' %}">
+
+                        {% else %}
+                            <p class="file_place_holder">{% trans  'no_file_yet' %}</p>
+
+                        {% endif %}
+                    </div>
+
+                    <p class="comment_text_last_answer">{{ answer.response_comment }}</p>
 
 
-                <div><label style="font-weight: bold">{% trans 'your_last_answer' %}</label><br>
-                    {% trans 'answer' %} {{ answer.response_comment }}<br>{{ answer.response_file }}
-                    <br>
-                    <label style="font-weight: bold">{% trans 'status' %}: {{ object.answer.get_status_display }}</label>
 
                 </div>
 
 
                 {% if answer.status %}
+                    <div class="answer_status_view_student">
+
+
                     <p> {% trans 'answer_status' %}: {{ answer.get_status_display }} </p>
                     {% if answer.grade %}
-                        {% trans 'and_graded :' %}
-                        {{ answer.grade }}
+                        <p>  {% trans 'and_graded :' %}
+                            {{ answer.grade }}</p>
 
 
                     {% elif answer.status == 'a' %}
                         {% if not answer.grade %}
 
-                            <p>{% trans 'mission_not_graded' %}</p>
+                            <label>{% trans 'mission_not_graded' %}</label>
                         {% else %}
-                            {% trans 'grade_for_mission ' %}: {{ answer.grade }}
+                            <label> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>
                         {% endif %}
 
                     {% else %}
@@ -49,97 +61,30 @@
 
                 {% endif %}
             {% endwith %}
-            </li>
-            {#            {% with answers=object.answer.all %}#}
-            {#                {% for answer in answers %}#}
-            {#                    <li class="#">#}
-            {#                    <div class="collapsible-header answer_line">#}
-            {#                   #}
-            {#                    <label>{% trans 'your_past_answer' %}</label>#}
-            {#                    {% trans 'status' %}: {{ object.answer.get_status_display }}#}
-            {##}
-            {#                    {% if answer.grade %}#}
-            {#                        {% trans 'and_graded :' %}#}
-            {#                        {{ answer.grade }}#}
-            {##}
-            {#                        {% if answer.status %}#}
-            {#                            <p> {% trans 'answer_status' %}: {{ answer.status }} </p>#}
-            {#                        {% elif answer.status == 'a' %}#}
-            {#                            {% if not answer.grade %}#}
-            {##}
-            {#                                <p>{% trans 'mission_not_graded' %}</p>#}
-            {#                            {% else %}#}
-            {#                                {% trans 'grade_for_mission ' %}: {{ answer.grade }}#}
-            {#                            {% endif %}#}
-            {##}
-            {#                        {% else %}#}
-            {##}
-            {#                            <p> {% trans 'mission_wasnt_accepted_yet' %}</p>#}
-            {#                        {% endif %}#}
-            {##}
-            {##}
-            {#                    {% endif %}#}
-            {##}
-            {#                {% endfor %}#}
-            {#            {% endwith %}#}
 
-            </div>
-
-            <div class="collapsible-body"><span>{{answer.response_comment}}</span>
-                {##}
+        </div>
 
 
-                {#                                    {% if user.is_speaker %}#}
-                {#                                        <form method="POST" action = "{% url 'answer_edit_status' answer.id %}?next={{ request.path }} " enctype="multipart/form-data" >#}
-                {#                                            {% csrf_token %}#}
-                {##}
-                {#                                            {{ answer.status_form|materializecss }}#}
-                {##}
-                {#                                            <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'save_answer' %}#}
-                {#                                            </button>#}
-                {#                                        </form>#}
-                {#                                    {% endif %}#}
+            <div class=""><span>{{answer.response_comment}}</span>
 
-            </div>
-
-            </li>
-
-
-            </ul>
-
-            {##}
-            {#                            {% with answer=object.answer.last %}#}
-            {##}
-            {#                                <div class="answer_content" style="background-color: yellow">#}
-            {#                                    <h3>{% trans 'add_new_answer' %}</h3>#}
-            {#                                    <form method="POST" action="{% url 'answer_edit_status' answer.id %}">#}
-            {#                                        {% csrf_token %}#}
-            {##}
-            {##}
-            {#                                        {{ answer.status_form }}#}
-            {#                                        <button type="submit">{% trans 'send_answer' %}</button>#}
-            {#                                    </form>#}
-            {##}
-            {#                                    </form>#}
-            {##}
-            {##}
-            {#                                </div>#}
-            {#                                </div>#}
-            {#                            {% endwith %}#}
         {% else %}
 
-            {% trans 'no_answered_yet' %}
-            <form method="POST" action = "{% url 'answer_add' %}?next={{ request.path }} " enctype="multipart/form-data" >
+            <label> {% trans 'no_answered_yet' %}</label>
+            <form method="POST" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >
                 {% csrf_token %}
 
 
                 {{ object.answer_form|crispy }}
 
 
-                <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'save_answer' %}
+                <button class="btn" type="submit" name="action">{% trans 'save_answer' %}
                 </button>
             </form>
         {% endif %}
+        </div>
+    </div>
+
+
 {% endif %}
 
 

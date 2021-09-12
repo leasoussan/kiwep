@@ -2,7 +2,8 @@ from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team, CollectiveMission, Project, Mission, IndividualMission
 from django.forms import ModelForm
-from .forms import TeamAddForm, AddMemberTeamForm, ProjectAddForm, UpdateTeamForm, ProjectTeamAddForm
+from .forms import TeamAddForm, AddMemberTeamForm, ProjectAddForm, UpdateTeamForm, ProjectTeamAddForm, IndividualMissionAddForm, CollectiveMissionAddForm
+
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
 
@@ -63,6 +64,10 @@ class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
             context['project_form'] = ProjectAddForm()
             context['templates'] = self.request.user.profile().project_set.personal_templates()
             context['old_projects'] = self.request.user.profile().project_set.all()
+
+        elif self.object.project:
+            context['individual_form'] = IndividualMissionAddForm()
+            context['collective_form'] = CollectiveMissionAddForm()
         return context
 
     def get_object(self):
