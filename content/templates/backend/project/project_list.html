@@ -128,7 +128,7 @@
                                         {#                            </td>#}
                                         <td>{{project.time_to_complete}} {% trans 'days' %}</td>
                                         <td> <a href="{% url 'project_detail' project.id %}"> <i class="material-icons">pageview</i> </a></td>
-                                        {#                                        <td> <a class= "link-table speaker_select_project" href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'speaker_select_project' %}</a> </td>#}
+                                        <td> <a class= "link-table speaker_select_project" href="{% url 'chose_project_detail' project.id %}">{% trans 'speaker_select_project' %}</a> </td>
                                     </tr>
                                 {% endfor %}
 

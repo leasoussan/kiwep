@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.urls import reverse_lazy
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 
@@ -23,24 +24,23 @@ def send_institution_signup_invit(email):
     subject = f' {wlcm_msg} {email} {kiwep} '
     message = _('registration_invitation_email_subject')
     # translation.activate(email.language_code)
-    html_message = render_to_string('emails/welcome.html', {'user': email})
+    html_message = render_to_string('emails/speaker_invite.html', {'user': email})
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email.email, ]
 
     send_mail(subject, message, email_from, recipient_list, fail_silently=False, html_message=html_message)
 
 
-def send_speaker_signup_invit(email,speaker_invite):
+def send_speaker_signup_invit(speaker_invite):
     wlcm_msg = _('speaker_invitation_registration')
     kiwep = _('to_kiwep')
     subject = f' {wlcm_msg} {kiwep} '
     message = _('registration_invitation_email_subject')
-    invitation= {speaker_invite.key}
     # translation.activate(email.language_code)
-    html_message = render_to_string('emails/welcome.html', {'user': email, 'institution':speaker_invite.institution, 'token':invitation})
+    html_message = render_to_string('emails/speaker_invite.html', {'speaker_invite': speaker_invite})
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = [email, ]
-
+    recipient_list = [speaker_invite.email ]
+    print(reverse_lazy('register') + f'key={speaker_invite.key}')
     send_mail(subject, message, email_from, recipient_list, fail_silently=False, html_message=html_message)
 
 
