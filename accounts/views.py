@@ -395,10 +395,9 @@ class SpeakerInviteView(View):
 
             if form.is_valid():
                 speaker_invite = form.save(commit=False)
-                speaker_invite, created = SpeakerInvite.objects.get_or_create(user=request.user, email=speaker_invite.email, institution=request.user.profile().institution_set)
-
+                speaker_invite, created = SpeakerInvite.objects.get_or_create(user=request.user, email=speaker_invite.email, institution=request.user.profile().institution)
                 send_speaker_signup_invit(speaker_invite)
-
+                print(speaker_invite.institution)
             return redirect('speaker_invite')
 
         return redirect('speaker_invite')
