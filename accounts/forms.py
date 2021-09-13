@@ -111,4 +111,4 @@ class SpeakerProfileCreationForm(forms.ModelForm):
 class SpeakerInviteForm(forms.ModelForm):
     class Meta:
         model = SpeakerInvite
-        fields = ['email', 'institution']
+        fields = ['email']

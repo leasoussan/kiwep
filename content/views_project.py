@@ -250,26 +250,18 @@ class ChooseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         project = get_object_or_404(Project, pk=kwargs['pk'])
-        pk = self.kwargs.get("team_id")
-        team = get_object_or_404(Team, pk=pk)
         missions = project.mission_set.filter(mission_type='i')
-        print('mission_line 257', missions)
+        print('mission', missions)
         project.id = None
-        team.project = project
         project.is_template = False
         project.is_global = False
         project.is_premium = False
         project.speaker = self.request.user.profile()
         p_resources = project.resource_set.all()
-
         clean_missions(project.id, missions)
         clean_p_resource(project.id, p_resources)
         project.save()
-        team.save()
-        print('team_save')
-        # del kwargs['pk']
         kwargs['pk'] = project.pk
-        del kwargs['team_id']
         return super().get_redirect_url(*args, **kwargs)
 
     # def get_redirect_url(self,  *args, **kwargs):

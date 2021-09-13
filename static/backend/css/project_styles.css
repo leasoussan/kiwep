@@ -3,18 +3,20 @@
     display: flex;
     flex-direction: column;
     justify-content:start;
+    align-items: center;
     width: 100%;
-    margin: 0 auto;
+    margin: 0rem 0rem;
     min-height: 100vh;
-    padding: 0rem 5rem;
+    padding: 1rem 1rem;
 }
 
 .project_detail_header{
     display: flex;
     flex-direction: row;
-    margin-bottom:2rem;
-    max-width: 95%;
-    align-content: center;
+    margin-bottom:1rem;
+    min-width: 80%;
+    max-width: 80%;
+    justify-content: space-around;
 }
 .project_detail_title{
     width: 70%;
@@ -41,13 +43,29 @@
     display: flex;
     flex-direction: column;
     width: 50%;
+    min-height: 30vh;
+    max-height: 30vh;
     justify-content: space-between;
-    margin-right: 45px;
+    background-color: #e8ebe9;
 }
 
 .project_detail_description{
+    background-color: transparent;
     min-height: 50%;
 
+}
+
+.detail_time_to_complete{
+    background-color: transparent;
+}
+
+.project_learning_info{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    min-height: 5vh;
+    max-height: 10vh;
+    border: solid green 2px;
 }
 
 .speaker_action_btn_group{
@@ -65,7 +83,8 @@
 .animation_div{
     display: flex;
     justify-content: flex-start;
-    width: 40%;
+    width: 300px;
+    height: 300px ;
 }
 
 .image_animation{
@@ -82,10 +101,15 @@
 .project_detail_main_content {
     display: flex;
     flex-direction: row;
-    width: 90%;
-    justify-content: space-between;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    min-height: 40vh;
+    max-height: 40vh;
+    width: 80%;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2rem;
+    background-color:#d1ded4 ;
+    border:#b4bfb6 solid 1px ;
+
 }
 
 .project_related_elements_content {
@@ -312,7 +336,6 @@ background-color: lightgray;
         margin-top: 30px;
         min-width: 50%;
         flex-direction: column;
-        justify-content: none;
     }
 
     .project_list_container{

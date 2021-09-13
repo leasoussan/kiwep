@@ -12,7 +12,7 @@ urlpatterns = [
     path('', homepage_view, name = 'homepage'),
     # project
 
-    path('chose-project-detail/<int:pk>/<int:team_id>/', ChooseProjectView.as_view(), name = "chose_project_detail"),
+    path('chose-project-detail/<int:pk>/', ChooseProjectView.as_view(), name = "chose_project_detail"),
     path('project-list/', ProjectListView.as_view(), name = "project_list"),
     path('student-available-project-list/', StudentAvailableTeamList.as_view(), name="student_available_project_list"),
     path('project-detail/<int:pk>', ProjectDetailView.as_view(), name = "project_detail"),
@@ -28,7 +28,7 @@ urlpatterns = [
 
     # mission
     # path('mission-list/', IndividualMissionListView.as_view(), name="mission_list"),
-    path('my_mission-list/', IndividualMissionListView.as_view(), name="my_mission_list"),
+    path('my-mission-list/', IndividualMissionListView.as_view(), name="my_mission_list"),
     path('answer-mission-list/', AnswerBoardMissionListView.as_view(), name="answer_mission_list"),
     path('individual-mission-detail/<int:pk>', IndividualMissionDetailView.as_view(), name="individual_mission_detail"),
     path('collective-mission-detail/<int:pk>', CollectiveMissionDetailView.as_view(), name="collective_mission_detail"),

@@ -224,8 +224,8 @@ class CreateProfile(View):
 
             if user.is_speaker:
                 for invite in user.received_invites.all():
-                    object.institution.add(invite.institution)
                     object.save()
+                    object.institution.add(invite.institution)
             elif user.is_student:
                 join_code = profile_form.cleaned_data['join_code']
                 if Group.objects.filter(join_code=join_code).exists():
@@ -395,12 +395,9 @@ class SpeakerInviteView(View):
 
             if form.is_valid():
                 speaker_invite = form.save(commit=False)
-                email = form.cleaned_data["email"]
-                user = self.request.user
+                speaker_invite, created = SpeakerInvite.objects.get_or_create(user=request.user, email=speaker_invite.email, institution=request.user.profile().institution)
 
-                speaker_invite, created = SpeakerInvite.objects.get_or_create(user=request.user, email=email, institution=request.user.profile().institution)
-
-                send_speaker_signup_invit(email, speaker_invite )
+                send_speaker_signup_invit(speaker_invite)
 
             return redirect('speaker_invite')
 

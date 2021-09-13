@@ -12,8 +12,9 @@
 
     <div class="mission_detail_header">
         <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' object.project.id %}">{% trans 'back_to_project_button' %}</a></button>
+        {% if object.project.team %}
         <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_team' %}</a></button>
-
+{% endif %}
         <h3 class=""> {{ object.name }}</h3>
 
 
