@@ -186,7 +186,7 @@ STATICFILES_DIRS = (
 )
 #
 # ONLY OF PRODUCTION
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 MEDIA_URL = '/media/'
