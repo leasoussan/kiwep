@@ -32,7 +32,7 @@ button .edit_button{
     flex-direction: column;
     width: 60%;
     min-height: 70vh;
-    max-height: 70vh;
+    max-height: 80vh;
     justify-content: space-between;
     background-color: #F0EFEF;
     padding: 1rem 1rem 1rem 1rem;
@@ -298,17 +298,16 @@ button .edit_button{
 .resource_container{
     display: flex;
     flex-direction: row;
-    align-content:start;
+    align-items:start;
     justify-content: space-between;
-
     width: 60%;
     flex-wrap: wrap;
-    min-height: 70%;
-    max-height: 80%;
+    min-height: 80%;
+    max-height: 90%;
     margin-top: 1rem;
     background-color: transparent;
     overflow-scrolling: auto;
-    border: grey 3px solid;
+    border: white 3px solid;
 }
 
 .mission_detail_resources_list_box{
@@ -318,10 +317,9 @@ button .edit_button{
     max-width: 100%;
     flex-wrap: wrap;
     overflow: auto;
-    max-height: 70%;
+    max-height:80%;
     background-color: whitesmoke;
     justify-content: space-between;
-    margin-top: 1rem;
 }
 
 
@@ -333,7 +331,7 @@ button .edit_button{
     max-height: 25%;
     justify-content: space-between;
     align-content: center;
-    background-color: grey;
+    background-color: #dae3dc;
     margin-bottom: 5px;
 
 }

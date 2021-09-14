@@ -92,14 +92,14 @@
                                                 <label class="date_label">
                                                     {{ comment.date_posted }} {% trans 'by' %} {{ comment.user.username }}
                                                 </label>
-                                               <p> {{ comment.comment_text }}</p>
+                                                <p> {{ comment.comment_text }}</p>
                                             </div>
                                         {% else %}
                                             <div class="speech-bubble-right profile_comment">
-                                             <label class="date_label">
+                                                <label class="date_label">
                                                     {{ comment.date_posted }} {% trans 'by' %} {{ comment.user.username }}
                                                 </label>
-                                               <p class="comment_text"> {{ comment.comment_text }}</p>
+                                                <p class="comment_text"> {{ comment.comment_text }}</p>
                                             </div>
                                         {% endif %}
 
@@ -112,7 +112,7 @@
                                         {% csrf_token %}
                                         {{ discussion.comment_form|crispy }}
 
-                                            <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>
+                                        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>
 
                                     </form>
 
@@ -132,56 +132,8 @@
         {% endfor %}
 
     {% endwith %}
-      </div>
+</div>
 
-{##}
-{##}
-{##}
-{#            <div class="discussion_board_row">#}
-{#                <p>#}
-{#                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#discussion_box_detail" role="button" aria-expanded="false" aria-controls="discussion_box_detail">#}
-{#                        {{discussion.title.title }}   </a>#}
-{##}
-{#                </p>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        {% if discussion.replies %}#}
-{#            {% for comment in discussion.replies.all %}#}
-{#                <div class="collapse" id="discussion_box_detail">#}
-{##}
-{#                <div class="card card-body">#}
-{#                    {% if comment.user.profile == request.user.profile %}#}
-{##}
-{#                        <div class="speech-bubble-left user_comment">#}
-{#                            {{ comment.comment_text }}#}
-{#                        </div>#}
-{#                    {% else %}#}
-{#                        <div class="speech-bubble-right profile_comment">#}
-{#                            {{ comment.comment_text}}#}
-{#                        </div>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#            {% endfor %}#}
-{##}
-{#            <div class="add_comment_input">#}
-{##}
-{#            <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" >#}
-{#                {% csrf_token %}#}
-{#                {{ discussion.comment_form|crispy }}#}
-{#                <div class="col s1">#}
-{#                    <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>#}
-{#                </div>#}
-{#            </form>#}
-{##}
-{#        {% endif %}#}
-{#        </div>#}
-{##}
-{##}
-{##}
-{#        </div>#}
-{##}
-{##}
-{#    {% endwith %}#}
 
 
 {% block javascript %}
