@@ -116,7 +116,6 @@
                                 <tbody>
 
                                 {% for project in templates %}
-                                    {{ templates }}
                                     <tr class="table_headers">
                                         <td><a class= "link-table" href="{% url 'project_detail' project.id %}">{{project.name}}</a></td>
                                         <td>{{project.speaker.user.first_name}}</td>
