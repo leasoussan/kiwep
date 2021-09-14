@@ -77,7 +77,7 @@ class Register(View):
                     invite.save()
 
             user.save()
-            user = authenticate(username= username, password = password, usertype=usertype)
+            user = authenticate(username=username, password=password, usertype=usertype)
             login(request, user)
             # send_welcome_signup(user)
 

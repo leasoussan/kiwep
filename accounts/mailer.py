@@ -9,11 +9,11 @@ def send_welcome_signup(user):
     wlcm_msg= _('welcome')
     kiwep = _('to KIWEP')
     subject = f' {wlcm_msg} {user} {kiwep} '
-    message =  _('registration_email_subject')
+    message = _('registration_email_subject')
     translation.activate(user.language_code)
     html_message = render_to_string('emails/welcome.html', {'user':user})
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = [user.email,]
+    recipient_list = [user.email]
 
     send_mail(subject, message,  email_from, recipient_list, fail_silently=False, html_message=html_message )
 
