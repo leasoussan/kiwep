@@ -219,7 +219,7 @@ class CreateProfile(View):
                 object.representative = Representative.objects.get_or_create(user=request.user)[0]
             else:
                 object.user = request.user
-
+            object.save()
 
 
             if user.is_speaker:
