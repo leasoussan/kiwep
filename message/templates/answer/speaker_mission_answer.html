@@ -9,10 +9,10 @@
 
 <div class="answer">
     <div class="mission_answer_status_label">
-            {% if object.attributed_to %}
-                {% trans 'no_answer_yet' %}
-            {% endif %}
-        </div>
+        {% if object.attributed_to %}
+            {% trans 'space' %}
+        {% endif %}
+    </div>
     {% if not object.answer.all.exists %}
         <div class="mission_response_type_label">
             <h3 class="medium_title"> {% trans 'answer_type' %}</h3>
@@ -26,10 +26,16 @@
                 <ul class="answer_file_label">
                     <lable>{% trans 'file' %} :</lable>
                     {% if not answer.response_file %}
-                        test
-{#                   <a href="{{answer.response_file.url}}" download>{{answer.title}}</a>#}
-                        {% endif %}
+                        <p>{% trans 'no_file_was_submited' %}</p>
+                    {% else %}
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
+                            {% trans 'see_file' %} </button>
+
+
+                    {% endif %}
                 </ul>
+
                 <ul>{% trans 'text_lable' %}:{{answer.response_comment}}</ul>
                 {% trans 'answer_by' %} {{ object.answer.all.first.content_object.attributed_to.user.get_full_name }}
                 <div class="answer_content">
@@ -89,3 +95,26 @@
     {#    {% endif %}#}
 
 </div>
+
+
+
+<!-- Modal -->
+{% with answer=object.answer.last %}
+<div class="modal fade" id="see_file_modal" tabindex="-1" aria-labelledby="see_file_modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog_view_document">
+    <div class="modal-content view_document_modal_content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <img src="{{ answer.response_file.url }}">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endwith %}

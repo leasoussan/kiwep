@@ -31,8 +31,8 @@ button .edit_button{
     display: flex;
     flex-direction: column;
     width: 50%;
-    min-height: 70vh;
-    max-height: 70vh;
+    min-height: 80vh;
+    max-height: 80vh;
     justify-content: space-between;
     background-color: #F0EFEF;
     padding: 1rem 1rem 1rem 1rem;
@@ -54,8 +54,9 @@ button .edit_button{
 .speaker_mission_action_panel{
     display: flex;
     flex-direction: column;
-    min-width: 25%;
-    max-width: 25%;
+    justify-content: space-between;
+    min-width: 28%;
+    max-width: 30%;
     min-height: 70% ;
     max-height:70% ;
     padding-left: 2rem;
@@ -186,8 +187,6 @@ button .edit_button{
 .mission_status_box {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    padding: 1rem;
     min-width: 100%;
     max-width: 100%;
     min-height:20%;
@@ -206,27 +205,49 @@ button .edit_button{
 }
 
 .mission_attributed_to_label{
+    padding: 5px;
     width: 100%;
+    background-color: #ebddd3;
+    color: grey;
+
 }
 
 .mission_attributed_to_label h2{
-    background-color: #E6AF97;
-    border: deeppink 2px solid;
+    background-color: transparent;
+    color: darkgrey;
 
 }
 
+.mission_attr_name{
+    font-size: 25px;
+    font-weight: bolder;
+    font-family: Helvetica;
+    width: 100%;
+    height: 3rem;
+    padding: 6px;
+    background-color: whitesmoke;
+    color: grey;
+
+}
+.speaker_mission_related_elements_content{
+display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 80%;
+    max-height: 80%;
+}
 .mission_detail_answer_content{
     display: flex;
     margin-top: 1rem;
     width: 100%;
-    border: #1c7430 2px solid;
+    background-color: ;
     justify-content: center;
     align-content: flex-end;
-    min-height: 15%;
-    max-height: 100%;
-
-
+    min-height: 50%;
+    max-height: 70%;
 }
+
+
 .label_mission_status{
     display: flex;
     justify-items: center;
@@ -251,9 +272,7 @@ button .edit_button{
     max-height: 70%;
 }
 
-.discussion_container{
 
-}
 
 
 .mission_response_type_label{
@@ -277,17 +296,16 @@ button .edit_button{
 .resource_container{
     display: flex;
     flex-direction: row;
-    align-content:start;
+    align-items:start;
     justify-content: space-between;
-
     width: 60%;
     flex-wrap: wrap;
-    min-height: 70%;
-    max-height: 80%;
+    min-height: 95%;
+    max-height: 95%;
     margin-top: 1rem;
     background-color: transparent;
     overflow-scrolling: auto;
-    border: grey 3px solid;
+    border: white 3px solid;
 }
 
 .mission_detail_resources_list_box{
@@ -297,10 +315,9 @@ button .edit_button{
     max-width: 100%;
     flex-wrap: wrap;
     overflow: auto;
-    max-height: 70%;
+    max-height:80%;
     background-color: whitesmoke;
     justify-content: space-between;
-    margin-top: 1rem;
 }
 
 
@@ -312,7 +329,7 @@ button .edit_button{
     max-height: 25%;
     justify-content: space-between;
     align-content: center;
-    background-color: grey;
+    background-color: #dbe8da;
     margin-bottom: 5px;
 
 }

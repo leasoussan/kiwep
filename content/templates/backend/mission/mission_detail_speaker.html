@@ -76,7 +76,7 @@
                         <h3>{% trans 'resource_list' %}</h3>
 
                         <!-- Button trigger modal add Resource -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
+                        <button type="button" class="btn btn-primary add_resource_button" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
                             {% trans "add_resource" %}
                         </button>
 
@@ -126,7 +126,9 @@
 
                         {% else %}
                             <div class="mission_attributed_to_label">
-                                <h2>{% trans 'mission_is_attributed_to' %}: {{ object.attributed_to }}</h2>
+                                <h2>{% trans 'mission_is_attributed_to' %}:</h2>
+                                <label class="mission_attr_name"> {{ object.attributed_to }}</label>
+
                             </div>
                         {% endif %}
 
