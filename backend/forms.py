@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Institution
+from .models import Institution, Group
 from django import forms
 
 class InstitutionAddForm(ModelForm):
@@ -11,4 +11,7 @@ class InstitutionAddForm(ModelForm):
 
 
 
-
+class InstitutionAddGroupForm(ModelForm):
+    class Meta:
+        model=Group
+        exclude = ['institution']

@@ -6,10 +6,40 @@
 
 
 
+<div class="dashboard_container">
 
-<form method="post" action="{% url 'speaker_invite' %}">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit">{% trans 'send_invite' %}</button>
-</form>
+    <div class="dashboard_top_container_institution">
 
+        <div class="speaker_invite_form">
+            <h3 class="medium_title_speaker_invite">{% trans 'Invite_a_speaker' %}</h3>
+            <form method="post" action="{% url 'speaker_invite' %}">
+                {% csrf_token %}
+                {{ speaker_invite_form|crispy }}
+                <button type="submit">{% trans 'send_invite' %}</button>
+            </form>
+        </div>
+
+
+
+
+        <div class="institution_group_container">
+            <div class="add_group_form">
+                <form method="post" action="{% url 'add_group' %}">
+                    {% csrf_token %}
+                    {{ add_group_form|crispy }}
+                    <button type="submit">{% trans 'add_group' %}</button>
+                </form>
+
+            </div>
+            <div class="group_list">
+            <h3> {% trans 'groups_list' %}</h3>
+                {% for group in institution_group %}
+
+                    <label>{{ group.name }}</label>
+                {% endfor %}
+            </div>
+        </div>
+
+
+    </div>
+</div>
