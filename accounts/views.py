@@ -219,7 +219,7 @@ class CreateProfile(View):
                 object.representative = Representative.objects.get_or_create(user=request.user)[0]
             else:
                 object.user = request.user
-
+            object.save()
 
 
             if user.is_speaker:
@@ -272,7 +272,7 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
     def get(self, request):
         user_form = UserForm(instance =request.user)
 
-        profile_form = get_user_profile_form(request, edit =True)
+        profile_form = get_user_profile_form(request, edit=True)
 
 
         return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'profile_form': profile_form})
@@ -281,7 +281,7 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
     def post(self, request):
         user_form = UserForm(request.POST, request.FILES, instance=request.user)
         print(user_form)
-        profile_form = get_user_profile_form(request, edit =True)
+        profile_form = get_user_profile_form(request, edit=True)
 
         if user_form.is_valid() and profile_form.is_valid():
             print(user_form)
