@@ -32,7 +32,7 @@ class Resource(DiscussionModel):
     name = models.CharField(max_length=200)
     link = models.URLField(max_length=200,  blank=True, null =True)
     image = models.ImageField(upload_to='resources/', default ='resources/default.png', )
-    file_rsc = models.FileField(null=True, blank=True)
+    file_rsc = models.FileField(upload_to='resources/', default ='static/file.png',null=True, blank=True)
     text = models.TextField()
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE,  blank=True, null =True)

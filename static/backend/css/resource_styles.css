@@ -2,18 +2,103 @@
     display: flex;
     flex-direction: column;
     border: black 2px solid;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 85vh;
 }
 
 .resource_description{
-    min-height: 20%;
-    max-height: 40%;
+    min-height: 200px;
+    max-height: 250px;
     background-color: whitesmoke;
     min-width: 500px;
     max-width: 500px;
-    border: black 3px dashed;
+    border: gainsboro 3px solid;
     wrap-option: wrap;
+    margin: 1rem 1rem 2rem 0rem;
 }
 .resource_image{
-    width: 500px;
+    width:500px;
     min-height: 500px;
+    border: grey solid 3px;
+
+}
+
+.speaker_btn_group{
+    border: solid 4px purple;
+}
+
+.container_resource{
+    border: solid 4px #dce8e0;
+    display: flex;
+    flex-direction: column;
+    min-width: 80%;
+    max-width: 80%;
+    min-height: 80vh;
+    max-height: 80vh;
+    background-color: #e1ebe4 ;
+    margin-top: 3rem;
+    padding: 1rem;
+}
+
+.container_resource div, img, h3, p{
+    background-color: transparent;
+}
+.resource_detail{
+    display: flex;
+    flex-direction: row;
+}
+.resource_info{
+    display: flex;
+    flex-direction: row;
+    border: yellow 5px solid;
+    justify-content: space-between;
+}
+
+.resource_link_btn{
+    background-color: #0b2e13;
+    width: 200px;
+    color: white;
+    font-weight: bolder;
+    font-family: Helvetica;
+    font-size: larger;
+}
+.resource_img_box{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    min-width: 50%;
+    max-width: 50%;
+    align-items: flex-end;
+}
+
+.see_file_resource_button{
+    max-height: 3rem;
+    min-width: 10rem;
+    max-width: 10rem;
+    border: #0b2e13 solid 4px;
+}
+
+.resource_additional{
+    display: flex;
+    flex-direction: column;
+    background-color: #d9dbda !important;
+    min-width: 500px;
+    max-width: 500px;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+.link_resource_box{
+    min-height3:4rem ;
+    max-height: 4rem;
+        border: grey solid 4px;
+
+}
+
+.additional_file_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2rem;
 }
