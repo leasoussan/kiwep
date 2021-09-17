@@ -28,8 +28,10 @@
     <div class="dashboard_extra_navigation_link">
         <ul class="dashboard_navigation_link_item">
          <h3 class="dashboard_speaker_information_header">   {% trans 'you-currently_have' %}
+             {% if user.profile.team_set.exists %}
            <label class="number_count_info"> {{ user.profile.team_set.all.count }}</label>
             <a class="nav-link" href="{% url 'team_list' %}">{% trans 'team' %}</a></h3>
+            {% endif %}
         </ul>
 
         <ul class="dashboard_navigation_link_item">
