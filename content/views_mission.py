@@ -257,7 +257,7 @@ class CollectiveMissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
 
 
 
-class ClaimMission(ProfileCheckPassesTestMixin, RedirectView):
+class ClaimMission(StudentStatuPassesTestMixin, RedirectView):
     ''' Own a mission -student'''
     # query_sting = False >>this is false by default     
     pattern_name = 'my_mission_list'
