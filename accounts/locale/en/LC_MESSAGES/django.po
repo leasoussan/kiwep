@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 22:55+0300\n"
+"POT-Creation-Date: 2021-09-17 14:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,90 +18,132 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: forms.py:18
+#: forms.py:25 forms_current.py:25
 msgid "student"
 msgstr "Etudien "
 
-#: forms.py:19
+#: forms.py:26 forms_current.py:26
 #, fuzzy
 #| msgid "speaker_info_bio"
 msgid "speaker"
 msgstr "Biographie"
 
-#: forms.py:20
-msgid "representative"
-msgstr "Representative"
-
-#: mailer.py:8
+#: mailer.py:9
 #, fuzzy
 #| msgid "welcome_message"
 msgid "welcome"
 msgstr "Dear User. We are happy to have you On Board"
 
-#: mailer.py:9
+#: mailer.py:10
 msgid "to KIWEP"
 msgstr "To Kiwep"
 
-#: mailer.py:11
+#: mailer.py:12
 msgid "registration_email_subject"
 msgstr "Email"
 
-#: models.py:46
+#: mailer.py:22
+msgid "institution_invitation_ registration"
+msgstr ""
+
+#: mailer.py:23 mailer.py:36
+msgid "to_kiwep"
+msgstr ""
+
+#: mailer.py:25 mailer.py:38
+#, fuzzy
+#| msgid "registration_email_subject"
+msgid "registration_invitation_email_subject"
+msgstr "Email"
+
+#: mailer.py:35
+#, fuzzy
+#| msgid "message_intro_registration"
+msgid "speaker_invitation_registration"
+msgstr ""
+"We are delighted to welcome you to the KIWEP platform: we look forward to "
+"getting to know you better and to help you grow as the projects you carry "
+"out on the platform progress."
+
+#: models.py:52
 msgid "language"
 msgstr "Language"
 
-#: templates/accounts/profile/edit_profile.html:8
+#: models.py:177
+msgid "invitor"
+msgstr ""
+
+#: models.py:191
+msgid "institution_invite_for"
+msgstr ""
+
+#: models.py:201
+#, fuzzy
+#| msgid "speaker_info_bio"
+msgid "speaker_invite_for"
+msgstr "Biographie"
+
+#: templates/accounts/invite/invite.html:13
+msgid "send"
+msgstr ""
+
+#: templates/accounts/profile/edit_profile.html:10
 msgid "profile_edit"
 msgstr "Edit Profile"
 
-#: templates/accounts/profile/representative_profile.html:12
-#: templates/accounts/profile/speaker_profile.html:12
+#: templates/accounts/profile/edit_profile.html:15
+msgid "form_user"
+msgstr ""
+
+#: templates/accounts/profile/edit_profile.html:20
+#, fuzzy
+#| msgid "profile_edit"
+msgid "profile_form"
+msgstr "Edit Profile"
+
+#: templates/accounts/profile/edit_profile.html:22
+msgid "institution form_form"
+msgstr ""
+
+#: templates/accounts/profile/speaker_profile.html:13
 #: templates/accounts/profile/student_profile.html:12
 msgid "about"
 msgstr "About"
 
-#: templates/accounts/profile/representative_profile.html:17
-#: templates/accounts/profile/speaker_profile.html:17
+#: templates/accounts/profile/speaker_profile.html:18
 msgid "study_hisitory"
 msgstr "Education History"
 
-#: templates/accounts/profile/representative_profile.html:21
-#: templates/accounts/profile/speaker_profile.html:21
+#: templates/accounts/profile/speaker_profile.html:22
 #: templates/accounts/profile/student_profile.html:18
 msgid "from"
 msgstr "From"
 
-#: templates/accounts/profile/representative_profile.html:25
-#: templates/accounts/profile/speaker_profile.html:25
+#: templates/accounts/profile/speaker_profile.html:26
 msgid "what_would_you_like_to_know"
 msgstr "What Would you like to Know"
 
-#: templates/accounts/profile/representative_profile.html:36
-#: templates/accounts/profile/speaker_profile.html:36
+#: templates/accounts/profile/speaker_profile.html:37
 msgid "active"
 msgstr "Active"
 
-#: templates/accounts/profile/representative_profile.html:39
-#: templates/accounts/profile/speaker_profile.html:39
+#: templates/accounts/profile/speaker_profile.html:40
 msgid "edit_profile"
 msgstr "Edit Profile"
 
-#: templates/accounts/profile/representative_profile.html:44
-#: templates/accounts/profile/speaker_profile.html:44
+#: templates/accounts/profile/speaker_profile.html:45
 #: templates/accounts/profile/student_profile.html:47
 msgid "contact_info"
 msgstr "Contact Information"
 
-#: templates/accounts/profile/representative_profile.html:47
-#: templates/accounts/profile/speaker_profile.html:47
+#: templates/accounts/profile/speaker_profile.html:48
 #: templates/accounts/profile/student_profile.html:50
 #, fuzzy
 #| msgid "lives_in"
 msgid "live_in"
 msgstr "Currently living in: "
 
-#: templates/accounts/profile/representative_profile.html:60
-#: templates/accounts/profile/speaker_profile.html:60
+#: templates/accounts/profile/speaker_profile.html:61
 #: templates/accounts/profile/student_profile.html:63
 msgid "speaker_info_bio"
 msgstr "Biographie"
@@ -128,61 +170,69 @@ msgstr "What Information wold you like to see?"
 msgid "edit_profile_button"
 msgstr "Edit Profile"
 
-#: templates/emails/welcome.html:3
+#: templates/emails/registration_invitation.html:3
+#: templates/emails/speaker_invite.html:3 templates/emails/welcome.html:3
 msgid "welcome_message"
 msgstr "Dear Kiwep users,"
 
-#: templates/emails/welcome.html:5
+#: templates/emails/registration_invitation.html:5
+#: templates/emails/speaker_invite.html:5 templates/emails/welcome.html:5
 msgid "hi"
 msgstr "Dear"
 
-#: templates/emails/welcome.html:8
+#: templates/emails/registration_invitation.html:8
+#: templates/emails/welcome.html:9
 #, fuzzy
 #| msgid "message_intro_registration"
 msgid "message_intro_registration_1"
-msgstr "We are delighted to welcome you to the KIWEP platform: we look forward to getting to know you better and to help you grow as the projects you carry out on the platform progress."
+msgstr ""
+"We are delighted to welcome you to the KIWEP platform: we look forward to "
+"getting to know you better and to help you grow as the projects you carry "
+"out on the platform progress."
 
-#: templates/emails/welcome.html:9
+#: templates/emails/registration_invitation.html:9
+#: templates/emails/welcome.html:10
 #, fuzzy
 #| msgid "message_intro_registration"
 msgid "message_intro_registration_2"
 msgstr "We wish you many great adventures, See you soon!"
 
-#: templates/emails/welcome.html:10
+#: templates/emails/registration_invitation.html:10
+#: templates/emails/welcome.html:11
 #, fuzzy
 #| msgid "message_intro_registration"
 msgid "message_intro_registration_3"
 msgstr "The KIWEP team 🥝"
 
-#: templates/emails/welcome.html:12
+#: templates/emails/registration_invitation.html:12
+#: templates/emails/welcome.html:13
 #, fuzzy
 #| msgid "message_intro_registration"
 msgid "message_intro_registration_4"
-msgstr "PS: We ask you a little favor: give us your opinion on KIWEP as soon as you have 5 minutes by clicking on the following link."
-
-#: templates/registration/login.html:10
-msgid "login in to your kiwep account!"
-msgstr "Login to your Kiwep Account"
-
-#: templates/registration/login.html:15
-msgid "login"
-msgstr "Login"
+msgstr ""
+"PS: We ask you a little favor: give us your opinion on KIWEP as soon as you "
+"have 5 minutes by clicking on the following link."
 
 #: templates/registration/login.html:22
+#: templates/registration/‏‏login_current.html:26
 msgid "remeber_me_login"
 msgstr "Remember Me"
 
-#: templates/registration/login.html:24
+#: templates/registration/login.html:25
+#: templates/registration/‏‏login_current.html:19
+msgid "login"
+msgstr "Login"
+
+#: templates/registration/login.html:30
+#: templates/registration/‏‏login_current.html:28
 #, fuzzy
 #| msgid "forgot_password_link"
-msgid "forgot password"
+msgid "forgot_password?"
 msgstr "Forgot Password?"
 
-#: templates/registration/login.html:25
-#, fuzzy
-#| msgid "reste_password_link"
-msgid "reset password"
-msgstr "Reset Password"
+#: templates/registration/login.html:31
+msgid "Do_not_have_an_account_yet?"
+msgstr ""
 
 #: templates/registration/password_change_done.html:5
 msgid "password_change"
@@ -203,7 +253,9 @@ msgid "password_reset_done"
 msgstr "Password Reset Done"
 
 #: templates/registration/password_reset_done.html:9
+#: templates/registration/register.html:18
 #: templates/registration/register.html:19
+#: templates/registration/‏‏register_current.html:19
 msgid "back_to_login"
 msgstr "Back to Login"
 
@@ -211,6 +263,37 @@ msgstr "Back to Login"
 msgid "send_passsword_reste_link"
 msgstr "Sent Passwor Reset"
 
-#: templates/registration/register.html:13
+#: templates/registration/register.html:12
+#: templates/registration/‏‏register_current.html:13
 msgid "sign up"
 msgstr "Sign UP"
+
+#: templates/registration/‏‏login_current.html:13
+#, fuzzy
+#| msgid "login in to your kiwep account!"
+msgid "login_in_to_your_kiwep_account!"
+msgstr "Login to your Kiwep Account"
+
+#: templates/registration/‏‏login_current.html:29
+msgid "Do not have an account yet?"
+msgstr ""
+
+#: views.py:99
+msgid "invite_used"
+msgstr ""
+
+#: views.py:103
+msgid "your_invite_expired"
+msgstr ""
+
+#: views.py:106
+msgid "no_key_to_register"
+msgstr ""
+
+#~ msgid "representative"
+#~ msgstr "Representative"
+
+#, fuzzy
+#~| msgid "reste_password_link"
+#~ msgid "reset password"
+#~ msgstr "Reset Password"

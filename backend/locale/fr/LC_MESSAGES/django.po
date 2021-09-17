@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 23:33+0300\n"
+"POT-Creation-Date: 2021-09-17 14:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,121 +18,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: templates/backend/general_dashboard.html:35
+#: templates/backend/general_dashboard.html:12
+#: templates/backend/representative_dashboard.html:5
+#: templates/backend/speaker_dashboard_current.html:7
+msgid "welcome"
+msgstr "Bienvenue"
+
+#: templates/backend/general_dashboard.html:34
 msgid "edit_profile"
 msgstr "Editer Votre Profile"
 
-#: templates/backend/speaker_dashboard.html:8
-#: templates/backend/student_dashboard.html:6
-msgid "welcome"
-msgstr "Welcome"
+#: templates/backend/representative_dashboard.html:14
+msgid "Invite_a_speaker"
+msgstr "Inviter un Intervenant"
 
-#: templates/backend/speaker_dashboard.html:19
+#: templates/backend/representative_dashboard.html:18
+msgid "send_invite"
+msgstr "Envoyer L'invitation"
+
+#: templates/backend/representative_dashboard.html:30
+msgid "add_group"
+msgstr "Ajouter une Equipe"
+
+#: templates/backend/representative_dashboard.html:35
 #, fuzzy
-#| msgid "create_team"
-msgid "current teams"
-msgstr "Creer une Equipe"
+#| msgid "projects_list"
+msgid "groups_list"
+msgstr "Liste de Projets"
 
-#: templates/backend/speaker_dashboard.html:31
-#, fuzzy
-#| msgid "create_project"
-msgid "selected project"
-msgstr "Creer un Project"
+#: templates/backend/speaker_dashboard.html:30
+#: templates/backend/student_dashboard.html:30
+msgid "you-currently_have"
+msgstr "Vous avez a Present"
 
-#: templates/backend/speaker_dashboard.html:41
-#: templates/backend/student_dashboard.html:39
-msgid "groups_dasboard_title"
-msgstr "Mes Groups"
+#: templates/backend/speaker_dashboard.html:32
+#: templates/backend/speaker_dashboard_current.html:21
+#: templates/backend/student_dashboard.html:32
+msgid "team"
+msgstr ""
 
-#: templates/backend/student_dashboard.html:17
-msgid "current_teams_dashboard_title"
-msgstr "Mes Equipes"
-
-#: templates/backend/student_dashboard.html:29
-#, fuzzy
-#| msgid "my_team_projects_title"
-msgid "selected_project_dashboard_title"
-msgstr "Mes Equipes"
-
-#, fuzzy
-#~| msgid "to_your_dashboard"
-#~ msgid "to_your_dashboard_title_welcome_to"
-#~ msgstr "Tableau de Bord"
-
-#~ msgid "available_projects_title"
-#~ msgstr "Projets Disponibles"
-
-#~ msgid "Team_name_title_table_head"
-#~ msgstr "Nom De L'equipe"
-
-#~ msgid "project_name_table_head"
-#~ msgstr "Nom du Projet"
-
-#~ msgid "field_table_head"
-#~ msgstr "Domaine"
-
-#~ msgid "status_table_head"
-#~ msgstr "Status"
-
-#~ msgid "missions_title"
-#~ msgstr "Missions"
-
-#~ msgid "mission_board_link"
-#~ msgstr "Tableau des Missions"
-
-#~ msgid "my_team_projects_title"
-#~ msgstr "Mes Equipes"
-
-#~ msgid "time_to_complete"
-#~ msgstr "Temps de la mission"
-
-#~ msgid "in_process"
-#~ msgstr "En  cours"
-
-#~ msgid "project_is_done"
-#~ msgstr "Projet Terminee"
-
-#~ msgid "hello"
-#~ msgstr "Bonjour"
-
-#~ msgid "projects_title"
-#~ msgstr "Titre Du Projet"
-
-#~ msgid "projects_list"
-#~ msgstr "Liste de Projets"
-
-#~ msgid "id_table_head"
-#~ msgstr "No:"
-
-#~ msgid "name_table_head"
-#~ msgstr "Nom"
-
-#~ msgid "group_table_head"
-#~ msgstr "Groupe"
-
-#~ msgid "team_title"
-#~ msgstr "Equipe"
-
-#~ msgid "team_list"
-#~ msgstr "List des Equipes"
-
-#~ msgid "participants"
-#~ msgstr "Participants"
-
-#~ msgid "create_mission"
-#~ msgstr "Creer une Mission"
-
-#~ msgid "mission_list"
-#~ msgstr "Liste des Missions"
-
-#~ msgid "Resource_title"
-#~ msgstr "Resource"
-
-#~ msgid "create_resource"
-#~ msgstr "Creer Une Resource"
-
-#~ msgid "resource_list"
-#~ msgstr "Resource List"
-
-#~ msgid "refresh"
-#~ msgstr "Refresh"
+#: templates/backend/speaker_dashboard.html:36
+msgid "my_students"
+msgstr "Mes Etudients"

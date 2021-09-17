@@ -12,13 +12,15 @@
     <form method="post">
 
         {% csrf_token %}
-      <h3>{% trans 'formuser' %}</h3>
+      <h3>{% trans 'form_user' %}</h3>
         <div>
             {{ user_form.as_p }}
         </div>
 <hr>
         <h3>{% trans 'profile_form' %}</h3>
-
+{% if user.is_representative %}
+            <h3>{% trans 'institution form_form' %}</h3>
+        {% endif %}
         <div>
             {{ profile_form.as_p }}
 

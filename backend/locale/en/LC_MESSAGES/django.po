@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 23:33+0300\n"
+"POT-Creation-Date: 2021-09-17 14:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,37 +18,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/backend/general_dashboard.html:35
-msgid "edit_profile"
-msgstr "Edit Profile"
-
-#: templates/backend/speaker_dashboard.html:8
-#: templates/backend/student_dashboard.html:6
+#: templates/backend/general_dashboard.html:12
+#: templates/backend/representative_dashboard.html:5
+#: templates/backend/speaker_dashboard_current.html:7
 msgid "welcome"
 msgstr "Welcome"
 
-#: templates/backend/speaker_dashboard.html:19
+#: templates/backend/general_dashboard.html:34
+msgid "edit_profile"
+msgstr "Edit Profile"
+
+#: templates/backend/representative_dashboard.html:14
+msgid "Invite_a_speaker"
+msgstr ""
+
+#: templates/backend/representative_dashboard.html:18
+msgid "send_invite"
+msgstr ""
+
+#: templates/backend/representative_dashboard.html:30
+msgid "add_group"
+msgstr ""
+
+#: templates/backend/representative_dashboard.html:35
+msgid "groups_list"
+msgstr ""
+
+#: templates/backend/speaker_dashboard.html:30
+#: templates/backend/student_dashboard.html:30
+msgid "you-currently_have"
+msgstr ""
+
+#: templates/backend/speaker_dashboard.html:32
+#: templates/backend/speaker_dashboard_current.html:21
+#: templates/backend/student_dashboard.html:32
+msgid "team"
+msgstr ""
+
+#: templates/backend/speaker_dashboard.html:36
+msgid "my_students"
+msgstr ""
+
 #, fuzzy
-#| msgid "create_team"
-msgid "current teams"
-msgstr "Create Team"
+#~| msgid "create_team"
+#~ msgid "current teams"
+#~ msgstr "Create Team"
 
-#: templates/backend/speaker_dashboard.html:31
 #, fuzzy
-#| msgid "create_project"
-msgid "selected project"
-msgstr "Create Project"
+#~| msgid "create_project"
+#~ msgid "selected project"
+#~ msgstr "Create Project"
 
-#: templates/backend/speaker_dashboard.html:41
-#: templates/backend/student_dashboard.html:39
-msgid "groups_dasboard_title"
-msgstr "Groups"
+#~ msgid "groups_dasboard_title"
+#~ msgstr "Groups"
 
-#: templates/backend/student_dashboard.html:17
-msgid "current_teams_dashboard_title"
-msgstr "Current Teams"
+#~ msgid "current_teams_dashboard_title"
+#~ msgstr "Current Teams"
 
-#: templates/backend/student_dashboard.html:29
-
-msgid "selected_project_dashboard_title"
-msgstr "My Projects Team"
+#~ msgid "selected_project_dashboard_title"
+#~ msgstr "My Projects Team"
