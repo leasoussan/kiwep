@@ -20,7 +20,7 @@
                 <div class="last_answer_container">
                     <div>
                         {% if answer.response_file %}
-                            <img src="{% static 'backend/images/kiwep/file.png' %}">
+                            <img  class="response_file_img" src="{% static 'backend/images/kiwep/file.png' %}">
 
                         {% else %}
                             <p class="file_place_holder">{% trans  'no_file_yet' %}</p>

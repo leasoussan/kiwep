@@ -10,7 +10,7 @@
 <div class="answer">
     <div class="mission_answer_status_label">
         {% if object.attributed_to %}
-            {% trans 'space' %}
+{#            {% trans 'space' %}#}
         {% endif %}
     </div>
     {% if not object.answer.all.exists %}
@@ -23,7 +23,7 @@
     {% else %}
         {% with answer=object.answer.all.last %}
             {% if answer.response_comment or answer.response_file %}
-                <ul class="answer_file_label">
+                <label class="answer_file_label">
                     <lable>{% trans 'file' %} :</lable>
                     {% if not answer.response_file %}
                         <p>{% trans 'no_file_was_submited' %}</p>
@@ -34,9 +34,9 @@
 
 
                     {% endif %}
-                </ul>
+                </label>
 
-                <ul>{% trans 'text_lable' %}:{{answer.response_comment}}</ul>
+                <p class="speaker_answer_comment_text_view">{% trans 'text_lable' %}:{{answer.response_comment}}</p>
                 {% trans 'answer_by' %} {{ object.answer.all.first.content_object.attributed_to.user.get_full_name }}
                 <div class="answer_content">
                     <form method="POST" action="{% url 'answer_edit_status' answer.id %}">

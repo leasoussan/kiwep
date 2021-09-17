@@ -36,7 +36,10 @@ class ResourceDetailView(ProfileCheckPassesTestMixin, DetailView):
     model = Resource
     template_name = 'backend/resource/resource_detail.html'
 
-
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        print('pk', pk)
+        return get_object_or_404(Resource, pk=pk)
 
 
 

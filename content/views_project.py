@@ -268,6 +268,7 @@ class ChooseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
         clean_missions(project.id, missions)
         clean_resource(project.id, resources)
         team.project = project
+        team.save()
         del kwargs['team_id']
         kwargs['pk'] = project.pk
         return super().get_redirect_url(*args, **kwargs)

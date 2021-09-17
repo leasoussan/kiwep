@@ -234,7 +234,7 @@
 
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
-                        <form method="post" action="{% url 'mission_create_resource' object.id %}">
+                        <form method="post" action="{% url 'project_create_resource' object.id %}">
                             {% csrf_token %}
                             {{ resources_form|crispy }}
                             <button type="submit">{% trans 'save' %}</button>

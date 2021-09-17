@@ -8,37 +8,39 @@
             {% trans 'no_asnwer_yet' %}
 
         {% else %}
-              {% with answer=object.answer.all.last %}
-            {% if answer.response_comment or answer.response_file %}
-                <li>     {% trans 'file_lable' %} :{{answer.response_file}}</li>
-                <li>{% trans 'text_lable' %}: {{answer.response_comment}}</li>
-                {% trans 'answer_by' %} {{ object.answer.all.first.content_object.attributed_to.user.get_full_name }}
+            {% with answer=object.answer.all.last %}
                 <div class="answer_content">
-                    <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
-                        {% csrf_token %}
 
-                        {{ answer.status_form }}
-                    </form>
+                {% if answer.response_comment or answer.response_file %}
+                    <li>     {% trans 'file_lable' %} :{{answer.response_file}}</li>
+                    <li>{% trans 'text_lable' %}: {{answer.response_comment}}</li>
+                    {% trans 'answer_by' %} {{ object.answer.all.first.content_object.attributed_to.user.get_full_name }}
+                    <div class="answer_content">
+                        <form method="POST" class="answer_content_form" action="{% url 'answer_edit_status' answer.id %}">
+                            {% csrf_token %}
 
-                    {% if answer.status == 'a' %}
+                            {{ answer.status_form }}
+                        </form>
 
-                        {% if not answer.grade %}
-                            <div class="grade_content">
-                            <form method="POST" action="{% url 'answer_grade_add' answer.id %}">
-                                {% csrf_token %}
+                        {% if answer.status == 'a' %}
 
-                                {{ answer.grade_form }}
-                            </form>
+                            {% if not answer.grade %}
+                                <div class="grade_content">
+                                <form method="POST" action="{% url 'answer_grade_add' answer.id %}">
+                                    {% csrf_token %}
+
+                                    {{ answer.grade_form }}
+                                </form>
+                            {% else %}
+                                <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>
+                            {% endif %}
+                        </div>
                         {% else %}
-                            <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>
+
+                            {% trans 'mission_wasnt_accepted_yet' %}
                         {% endif %}
                     </div>
-                    {% else %}
-
-                        {% trans 'mission_wasnt_accepted_yet' %}
-                    {% endif %}
-                </div>
-            {% endif %}
+                {% endif %}
             {% endwith %}
 
         {% endif %}
@@ -69,5 +71,5 @@
         {#    {% endif %}#}
         {#    {% endif %}#}
 
+        </div>
     </div>
-</div>

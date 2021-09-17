@@ -156,11 +156,11 @@
     flex-direction: row;
     justify-content: space-around;
     min-width: 80%;
-    max-width: 80%;
+    max-width: 100%;
     min-height: 3rem;
     margin-top: 3px;
 background-color: lightgray;
-    margin-left: 10%;
+    margin-left: 2rem;
     border: orangered 2px solid;
 }
 

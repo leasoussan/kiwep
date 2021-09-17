@@ -32,7 +32,7 @@
     background-color: transparent;
 }
 
-.last_answer_container {
+.last_answer_container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -44,6 +44,10 @@
     background-color: transparent;
 }
 
+.response_file_img{
+    width: 100px;
+    height: 100px;
+}
 .comment_text_last_answer{
     word-wrap: break-word;
     max-width: 60%;
