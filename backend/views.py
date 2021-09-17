@@ -37,10 +37,10 @@ def dashboard(request):
             teams = request.user.profile().team_set.all()
             participants = Student.objects.filter(team__in=teams).distinct()
 
-            context= {
-                'add_group_form': InstitutionAddGroupForm(),
-                'participants':participants,
-            }
+        context= {
+            'add_group_form': InstitutionAddGroupForm(),
+            'participants':participants,
+        }
         return render(request, "backend/general_dashboard.html", context)
 
 
