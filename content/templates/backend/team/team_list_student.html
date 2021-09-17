@@ -4,63 +4,63 @@
 {% load mytags %}
 
 <div class="student_team_list_container">
-<div class="team_list_header_student"><h2 class="medium_title">{% trans 'my_teams'%}</h2></div>
-<table class="table student_mission_table">
-    <thead>
-    <tr>
-        <th scope="col">{% trans 'team_name' %}</th>
-        <th scope="col">{% trans 'participants' %}</th>
-        <th scope="col">{% trans 'due_date' %}</th>
-        <th scope="col">{% trans 'project_name' %}</th>
+    <div class="team_list_header_student"><h2 class="medium_title">{% trans 'my_teams'%}</h2></div>
+    <table class="table student_mission_table">
+        <thead>
+        <tr>
+            <th scope="col">{% trans 'team_name' %}</th>
+            <th scope="col">{% trans 'participants' %}</th>
+            <th scope="col">{% trans 'due_date' %}</th>
+            <th scope="col">{% trans 'project_name' %}</th>
 
-    </tr>
-    </thead>
-    <tbody>
+        </tr>
+        </thead>
+        <tbody>
 
 
         {% for team in team_list %}
-             <tr>
-            <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
-            <th>{{ team.participants.count }}</th>
-            <th>{{team.project.time_to_complete}}</th>
-            <th><a href="{% url 'project_detail' team.project.id %}">{{team.project}} </a></th>
-    </tr>
+            <tr>
+                <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
+                <th>{{ team.participants.count }}</th>
+                <th>{{team.project.time_to_complete}}</th>
+                <th><a href="{% url 'project_detail' team.project.id %}">{{team.project}} </a></th>
+            </tr>
         {% endfor %}
 
 
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
 
-<br>
+    <br>
 
-<table class="table student_mission_table">
-    <thead>
-    <tr>
-        <th>{% trans 'team_name' %}</th>
-        <th>{% trans 'participants' %}</th>
-        <th>{% trans 'project' %}</th>
-        <th>{% trans 'due_date' %}</th>
+    <table class="table student_mission_table">
+        <thead>
+        <tr>
+            <th>{% trans 'team_name' %}</th>
+            <th>{% trans 'participants' %}</th>
+            <th>{% trans 'project' %}</th>
+            <th>{% trans 'due_date' %}</th>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-{{ available_projects }}
-        {% for team in available_projects %}
+        </tr>
+        </thead>
+        <tbody>
 
-            <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
-            <th>{{ team.participants.count }}</th>
-            <th>{{team.project.time_to_complete}}</th>
-            <th>{{teamp.project.field}}</th>
 
+        {% for team in  request.user.profile.class_level.team_set.all %}
+            <tr>
+                <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
+                <th>{{ team.participants.count }}</th>
+                <th>{{team.project.time_to_complete}}</th>
+                <th>{{teamp.project.field}}</th>
+
+
+            </tr>
         {% endfor %}
-    </tr>
-    <tr>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
 </div>
 

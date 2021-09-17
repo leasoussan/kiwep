@@ -89,13 +89,18 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
 class StudentAvailableTeamList(ProfileCheckPassesTestMixin, ListView):
     model = Team
     template_name = 'backend/project/team_list_student.html'
-    context_object_name = "available_projects"
+    # context_object_name = "available_projects"
 
+    #
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super().get_context_data(*args, **kwargs)
+    #     student = self.request.user.profile()
+    #     context['available_projects'] = student.class_level.team_set.all()
+    #     return context
 
     def get_queryset(self):
         if self.request.user.is_student:
-            return self.request.user.profile().class_level.team_set.filter(student__not_in=team.participants)
-# filter(project__isnull=True)
+            return self.request.user.profile().group_Institution_set.team_set.all()
 
 
 # ----------------PROJECT------Detail_View/
