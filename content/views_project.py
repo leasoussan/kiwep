@@ -169,32 +169,30 @@ class ProjectTeamCreateView(ProjectCreateView):
 #     return ('content/project_list')
 
 
-def clean_missions(request, project_id, *querysets):
+def clean_missions(project_id, *querysets):
+
     for qs in querysets:
         objects = []
-        if qs.model not in [IndividualMission, CollectiveMission]:
+        if qs.model not in [Mission]:
             print('Function clean mission should be only used on mission query set ')
             return
         for mission in qs:
-            mission.id = None
-            mission.owner = request.user
+            mission.id=None
             mission.project_id = project_id
             mission.created_date = None
             mission.due_date = timezone.now()
-            mission.completed = False
-            print(dir(mission))
+            mission.completed=False
+
             if qs.model == IndividualMission:
                 mission.attributed_to = None
                 mission.accepted = False
-            print('mission_cleaning line 190', mission)
+            print(dir(mission))
             objects.append(mission)
         qs.model.objects.bulk_create(objects)
 
 
 
-
-def clean_p_resource(project_id, queryset):
-
+def clean_resource(project_id, queryset):
     objects = []
     if queryset.model is not Resource:
         print('Function clean resource should be only used on resource query set ')
@@ -204,6 +202,7 @@ def clean_p_resource(project_id, queryset):
         resource.project_id = project_id
         objects.append(resource)
     queryset.model.objects.bulk_create(objects)
+
 
 
 def clean_m_resource(mission_id, queryset):
@@ -240,57 +239,65 @@ def get_due_date(self, **kwargs):
 
 
 
+
+
+
 class ChooseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
-    """Select a template project will make you own a version of the project
+    """Select a project will make you own a version of the project
     This View will make himself a speaker to the project -
-    as a copy to enable using it after with a team and make changes -From Team Page"""
+    as a copy to enable using it after with a team and make changes"""
 
     # query_sting = False >>this is false by default
     pattern_name = 'update_project'
 
-    def get_redirect_url(self, *args, **kwargs):
+    def get_redirect_url(self,  *args, **kwargs):
         project = get_object_or_404(Project, pk=kwargs['pk'])
-        missions = project.mission_set.filter(mission_type='i')
+        pk = self.kwargs.get("team_id")
+        print(project,'pk')
+        team = get_object_or_404(Team, pk=pk)
+        print(team, 'team')
+        missions = project.mission_set.all()
         print('mission', missions)
-        project.id = None
-        project.is_template = False
-        project.is_global = False
-        project.is_premium = False
+        resources = project.resource_set.all()
+        project.id=None
+        project.is_template=False
+        project.is_global=False
+        project.is_premium=False
         project.speaker = self.request.user.profile()
-        p_resources = project.resource_set.all()
-        clean_missions(project.id, missions)
-        clean_p_resource(project.id, p_resources)
         project.save()
+        clean_missions(project.id, missions)
+        clean_resource(project.id, resources)
+        team.project = project
+        del kwargs['team_id']
         kwargs['pk'] = project.pk
         return super().get_redirect_url(*args, **kwargs)
 
-    # def get_redirect_url(self,  *args, **kwargs):
-    #     project = get_object_or_404(Project, pk=kwargs['pk'])
-    #     pk = self.kwargs.get("team_id")
-    #     team = get_object_or_404(Team, pk=pk)
-    #     # print(team, 'team')
-    #     missions = project.mission_set.all()
-    #     individual_mission = missions.filter(individualmission=True)
-    #     print('mission', missions)
-    #     p_resources = project.resource_set.all()
-    #
-    #     project.id=None
-    #     project.is_template=False
-    #     project.is_global=False
-    #     project.is_premium=False
-    #     project.speaker = self.request.user.profile()
-    #     project.save()
-    #     clean_missions(project.id, individual_mission)
-    #     clean_p_resource(project.id, p_resources)
-    #     team.project = project
-    #     del kwargs['team_id']
-    #     kwargs['pk'] = project.pk
-    #     return super().get_redirect_url(*args, **kwargs)
 
 
 
 
 
+# class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
+#     """"""
+#
+#     pattern_name = 'update_project'
+#
+#     def get_redirect_url(self, *args, **kwargs):
+#         project = get_object_or_404(Project, pk=kwargs['pk'])
+#         pk = self.kwargs.get("team_id")
+#         team = get_object_or_404(Team, pk=pk)
+#         missions = project.mission_set.all()
+#         resources = project.resource_set.all()
+#         project.id =None
+#         project.save()
+#         clean_missions(project.id, missions)
+#         clean_p_resource(project.id, resources)
+#         team.project = project
+#         # {TODO:why team.project }
+#         team.save()
+#         kwargs['pk'] = project.pk
+#         del kwargs['team_id']
+#         return super().get_redirect_url(*args, **kwargs)
 
 
 
@@ -308,48 +315,13 @@ class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
         project.id =None
         project.save()
         clean_missions(project.id, missions)
-        clean_p_resource(project.id, resources)
+        clean_resource(project.id, resources)
         team.project = project
         # {TODO:why team.project }
         team.save()
         kwargs['pk'] = project.pk
         del kwargs['team_id']
         return super().get_redirect_url(*args, **kwargs)
-
-
-
-
-#
-#
-# class CreateProjectMissionView(SpeakerStatuPassesTestMixin, View):
-#     """ Once a Project IS created the missions have to be set, Deadline, attribution etc...."""
-#
-#     def get(self, request, *args, **kwargs):
-#
-#         project = Project.objects.get(id=self.kwargs['pk'])
-#
-#         formset_collective = CollectiveMissionFormSet(instance=project)
-#         formset_individual = IndividualMissionFormSet(instance=project)
-#         formsets = {'individual':formset_individual, 'collective': formset_collective}
-#
-#
-#         return render(request, 'crud/create_missions.html', {'formsets': formsets})
-#
-#     def post(self, request, *args, **kwargs):
-#
-#         project = Project.objects.get(id=self.kwargs['pk'])
-#
-#         individual_missions = IndividualMissionFormSet(request.POST, instance=project)
-#
-#         collective_missions = CollectiveMissionFormSet(request.POST, instance=project)
-#
-#         if individual_missions.is_valid():
-#             individual_missions.save()
-#             return redirect('project_detail', project.id)
-#
-#         return render(request, 'crud/create_project_missions.html', {'formset': individual_missions})
-#
-#
 
 
 
