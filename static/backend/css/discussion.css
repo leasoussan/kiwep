@@ -2,13 +2,14 @@
 .discussion_container{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width:100%;
-    min-height: 35%;
-    max-height: 40%;
+    min-height: 20rem;
+    max-height:20rem;
     margin-top: 2rem;
     padding: 0rem 1rem;
     background-color: whitesmoke;
-    border: 1px solid #5e5a52;
+    border: 2px solid #f59042;
 
 
 
@@ -51,7 +52,7 @@
 
 .title_discussion_button{
     width: 90%;
-    background-color: #c7bca7;
+    background-color: #fcc59a;
     padding: 5px;
     margin-top: 1rem;
 }
@@ -70,10 +71,12 @@
     min-height: 2rem;
     max-height: 3rem;
     font-size: 20px;
-    color: grey;
+    color: #87837f;
     font-weight: bolder;
     background-color: transparent;
     border: solid 1px white;
+    padding: 5px ;
+
 }
 
 .title_box_discussion{
@@ -174,10 +177,11 @@
 .discussion_list{
     display: flex;
     flex-direction: column;
-    overflow: auto;
+    margin-bottom: 1rem;
     background-color: transparent;
+    min-height: 40%;
     max-height: 60%;
-    background-color: yellow;
+    overflow: auto;
 }
 
 

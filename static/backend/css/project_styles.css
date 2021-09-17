@@ -71,7 +71,7 @@
 .speaker_action_btn_group{
     display: flex;
     flex-direction: row;
-    width: 40%;
+    width: 30%;
     justify-content: flex-end;
 }
 
@@ -154,15 +154,21 @@
 .project_mission_items{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-content: space-between;
-    width: 80%;
+    justify-content: space-around;
+    min-width: 80%;
+    max-width: 80%;
     min-height: 3rem;
     margin-top: 3px;
 background-color: lightgray;
     margin-left: 10%;
+    border: orangered 2px solid;
 }
 
+.mission_type_label_place_holder{
+    min-width: 25%;
+    max-width: 25%;
+
+}
 .project_mission_items .mission_name{
     margin-left: 5px;
     min-width: 40%;
@@ -179,7 +185,7 @@ background-color: lightgray;
     display: flex;
     flex-direction: column;
     /*border: solid black 2px;*/
-    width:40%;
+    width:30%;
     margin-left: 2rem;
     padding: 1rem;
 }

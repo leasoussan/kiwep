@@ -53,10 +53,12 @@
     <div class="team_detail_main_content">
         {% if user.profile in team.participants.all or user.is_speaker  %}
 
-            <div class="team_mission_list overflow-auto">
-                <button type="button" class="btn btn-primary sm_btn" data-bs-toggle="modal" data-bs-target="#add_mission_modal">
+         <div class="mission_list_box_team_detail">
+         <button type="button" class="btn btn-primary sm_btn" data-bs-toggle="modal" data-bs-target="#add_mission_modal">
                     {% trans 'add_mission' %}
                 </button>
+            <div class="team_mission_list">
+
                 {% for mission in team.project.mission_set.all.available_mission %}
 
                     <div class="team_mission_detail">
@@ -98,6 +100,8 @@
                 {% endfor %}
             </div>
 
+         </div>
+
 
             <div class="team_extra_information">
                 <div class="team_participant_container">
@@ -125,7 +129,7 @@
 
                 <div class="discussion_container">
 
-                        {% include 'comments/discussion.html' %}
+                    {% include 'comments/discussion.html' %}
 
                 </div>
             </div>

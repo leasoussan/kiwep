@@ -384,6 +384,26 @@ def assign_mission(request, pk):
             print(repr(form), 'form')
     return render(request, "crud/create.html", {'form': form})
 
+#
+# def clean_bulk_mission(mission, projects):
+#
+#     for project in projects:
+#         print('los projetctos', projects)
+#         mission.id=None
+#         mission.mission_ptr.id =None
+#         new_mission_ptr = mission.mission_ptr.save()
+#         mission.mission_ptr = new_mission_ptr
+#         mission.project = project
+#         mission.created_date = timezone.now()
+#         mission.due_date = timezone.now()
+#         mission.completed = False
+#         if mission.mission_type =='i':
+#             mission.attributed_to = None
+#             print("mission cleaned", mission)
+#             mission.save()
+#         mission.save()
+#     print("missions", )
+
 
 def clean_bulk_mission(mission, projects):
 
@@ -437,6 +457,38 @@ def bulk_add_individual_mission(request, **kwargs):
 
 
 
+# def bulk_add_individual_mission(request, **kwargs):
+#
+#     ''' Add bulk Mission in Project '''
+#
+#     individual_form = IndividualMissionAddForm(request.POST)
+#     mission_bulk_form = BulkAddMissionForm(data=request.POST)
+#
+#     if request.method == "POST":
+#         if individual_form.is_valid() and mission_bulk_form.is_valid():
+#             projects = mission_bulk_form.cleaned_data['projects']
+#             project = projects.first()
+#             print('project', project)
+#             mission = individual_form.save(commit=False)
+#             mission.owner = request.user
+#             mission.mission_type='i'
+#             mission.project =project
+#             mission.save()
+#             clean_bulk_mission(mission, projects.exclude(id=mission.project.id))
+#
+#
+#             print('*****mission_form***', mission)
+#             print('mission_id ***', mission.id)
+#
+#             print(f'mission for project {project}')
+#
+#
+#             return redirect('individual_mission_detail', mission.id)
+#
+#     return render(request, 'backend/project/project_list.html', {'individual_form':individual_form,'mission_bulk_form': mission_bulk_form})
+#
+#
+#
 
 
 
