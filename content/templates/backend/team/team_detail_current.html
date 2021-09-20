@@ -359,7 +359,7 @@
                     {% for project in templates  %}
                         <div class="duplicate_table">
                             <h4 class="small_title">{{ project.name }}</h4>
-                            <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>
+                            <a href="{% url 'choose_project_for_team_adetail' project.id %}">{% trans 'select' %}</a>
 
                         </div>
                     {% endfor %}
@@ -813,7 +813,7 @@
 {#                        {% for project in templates  %}#}
 {##}
 {#                            <h2>{{ project.name }}</h2>#}
-{#                            <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>#}
+{#                            <a href="{% url 'choose_project_for_team_adetail' project.id %}">{% trans 'select' %}</a>#}
 {#                        {% endfor %}#}
 {#                    </div>#}
 {#                    <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">#}
@@ -866,7 +866,7 @@
 {#                        {% for project in templates  %}#}
 {##}
 {#                            <h2>{{ project.name }}</h2>#}
-{#                            <a href="{% url 'chose_project_detail' project.id %}">{% trans 'select' %}</a>#}
+{#                            <a href="{% url 'choose_project_for_team_adetail' project.id %}">{% trans 'select' %}</a>#}
 {#                        {% endfor %}#}
 {#                    </div>#}
 {#                    <div class="tab-pane fade" id="pills-duplicate" role="tabpanel" aria-labelledby="pills-duplicate-tab">#}

@@ -28,7 +28,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin, StudentStatuPassesTestMixin
 
 
-
+from django.forms.models import model_to_dict
 
 # ----------------------------------------------------------------------------------------------------------------
 
@@ -131,8 +131,6 @@ class IndividualMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
     '''Detail Of General Mission'''
     model = IndividualMission
     template_name = 'backend/mission/mission_detail.html'
-
-
 
 
     def get_object(self):
@@ -385,43 +383,25 @@ def assign_mission(request, pk):
     return render(request, "crud/create.html", {'form': form})
 
 #
-# def clean_bulk_mission(mission, projects):
-#
-#     for project in projects:
-#         print('los projetctos', projects)
-#         mission.id=None
-#         mission.mission_ptr.id =None
-#         new_mission_ptr = mission.mission_ptr.save()
-#         mission.mission_ptr = new_mission_ptr
-#         mission.project = project
-#         mission.created_date = timezone.now()
-#         mission.due_date = timezone.now()
-#         mission.completed = False
-#         if mission.mission_type =='i':
-#             mission.attributed_to = None
-#             print("mission cleaned", mission)
-#             mission.save()
-#         mission.save()
-#     print("missions", )
 
-
-def clean_bulk_mission(mission, projects):
-
+def clean_bulk_mission(form_data, projects):
+    # mission_data=model_to_dict(mission, exclude=['project', 'id'])
+    print('clean bulk form data', form_data)
+    skills=form_data.pop('acquired_skill')
+    attributed_to = form_data.pop('attributed_to')
     for project in projects:
         print('los projetctos', projects)
-        mission.id=None
-        mission.mission_ptr.id =None
-        new_mission_ptr = mission.mission_ptr.save()
-        mission.mission_ptr = new_mission_ptr
-        mission.project = project
-        mission.created_date = timezone.now()
-        mission.due_date = timezone.now()
-        mission.completed = False
-        if mission.mission_type =='i':
-            mission.attributed_to = None
-            print("mission cleaned", mission)
-            mission.save()
-        mission.save()
+        print('form_data', form_data)
+        if form_data['mission_type'] == 'i':
+            mission=IndividualMission.objects.create(**form_data, project=project)
+            mission.acquired_skill.add(*skills)
+
+        elif form_data['mission_type'] == 'c':
+            print('mission col"')
+            mission = CollectiveMission.objects.create(**form_data, project=project)
+            mission.attributed_to.add(*attributed_to)
+            mission.acquired_skill.add(*skills)
+
     print("missions", )
 
 
@@ -442,8 +422,9 @@ def bulk_add_individual_mission(request, **kwargs):
             mission.mission_type='i'
             mission.project =project
             mission.save()
-            clean_bulk_mission(mission, projects.exclude(id=mission.project.id))
-
+            form_data = individual_form.cleaned_data.copy()
+            form_data.update({'owner':request.user, 'mission_type':'i'})
+            clean_bulk_mission(form_data, projects.exclude(id=mission.project.id))
 
             print('*****mission_form***', mission)
             print('mission_id ***', mission.id)
@@ -457,67 +438,36 @@ def bulk_add_individual_mission(request, **kwargs):
 
 
 
-# def bulk_add_individual_mission(request, **kwargs):
-#
-#     ''' Add bulk Mission in Project '''
-#
-#     individual_form = IndividualMissionAddForm(request.POST)
-#     mission_bulk_form = BulkAddMissionForm(data=request.POST)
-#
-#     if request.method == "POST":
-#         if individual_form.is_valid() and mission_bulk_form.is_valid():
-#             projects = mission_bulk_form.cleaned_data['projects']
-#             project = projects.first()
-#             print('project', project)
-#             mission = individual_form.save(commit=False)
-#             mission.owner = request.user
-#             mission.mission_type='i'
-#             mission.project =project
-#             mission.save()
-#             clean_bulk_mission(mission, projects.exclude(id=mission.project.id))
-#
-#
-#             print('*****mission_form***', mission)
-#             print('mission_id ***', mission.id)
-#
-#             print(f'mission for project {project}')
-#
-#
-#             return redirect('individual_mission_detail', mission.id)
-#
-#     return render(request, 'backend/project/project_list.html', {'individual_form':individual_form,'mission_bulk_form': mission_bulk_form})
-#
-#
-#
 
 
-
-def bulk_add_collective_mission(request, *kwargs):
+def bulk_add_collective_mission(request, **kwargs):
     ''' Add bulk Mission in Project '''
 
-    collective_form = CollectiveMissionAddForm()
-    mission_bulk_form = BulkAddMissionForm(request.POST)
-    projects= mission_bulk_form.cleaned_data['projects']
-    print(projects)
+    collective_form = CollectiveMissionAddForm(request.POST)
+    mission_bulk_form = BulkAddMissionForm(data =request.POST)
+
     if request.method == "POST":
         if collective_form.is_valid() and mission_bulk_form.is_valid():
-            mission = mission_bulk_form.save(commit=False)
-            mission_form = collective_form.save(commit=False)
-            mission.id = None
-            mission.mission_type = mission_bulk_form.cleaned_data['mission_type']
+            projects = mission_bulk_form.cleaned_data['projects']
+            project = projects.first()
+            print('project', project)
+            mission = collective_form.save(commit=False)
             mission.owner = request.user
-            projects = mission_bulk_form.cleaned_data['projects'].filter(speaker=request.user)
-            for project in projects:
-                mission.project_id = project.id
-
-            del kwargs['pk']
-            print(f'mission for project {project}', mission)
+            mission.mission_type = 'c'
+            mission.project = project
             mission.save()
+            form_data = collective_form.cleaned_data.copy()
+            form_data.update({'owner': request.user, 'mission_type': 'c'})
+            clean_bulk_mission(form_data, projects.exclude(id=mission.project.id))
 
-        return redirect('individual_mission_detail', mission.id)
+            print('****Col*mission_form***', mission)
+            print('col_mission_id ***', mission.id)
 
-    return render(request, 'backend/mission/mission_detail.html', {'mission_bulk_form': mission_bulk_form})
+            print(f'Col mission for project {project}')
 
+            return redirect('collective_mission_detail', mission.id)
+
+    return render(request, 'backend/project/project_list.html', {'individual_form':collective_form,'mission_bulk_form': mission_bulk_form})
 
 
 

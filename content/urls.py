@@ -12,7 +12,7 @@ urlpatterns = [
     path('', homepage_view, name = 'homepage'),
     # project
 
-    path('chose-project-detail/<int:pk>/<int:team_id>/', ChooseProjectView.as_view(), name = "chose_project_detail"),
+    path('chose-project-detail/<int:pk>/<int:team_id>/', ChooseProjectForTeamView.as_view(), name = "choose_project_for_team_adetail"),
     path('project-list/', ProjectListView.as_view(), name = "project_list"),
     path('student-available-project-list/', StudentAvailableTeamList.as_view(), name="student_available_project_list"),
     path('project-detail/<int:pk>', ProjectDetailView.as_view(), name = "project_detail"),

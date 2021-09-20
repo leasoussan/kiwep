@@ -16,7 +16,7 @@
         <div class="speaker_action_btn_group">
 
             {% if project.is_template %}
-                {#                        <a class="btn" href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select'%}</a>#}
+{#                                        <a class="btn" href="{% url 'choose_project_for_team_adetail' project.id %}">{% trans 'select'%}</a>#}
 
             {% else %}
                 <button type="button" class="btn edit_project_btn"><a href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a></button>
@@ -79,7 +79,7 @@
             {% for mission in project.mission_set.all %}
 
                 <div class="project_mission_items">
-                    {% if mission.individualmission %}
+                    {% if mission.mission_type == "i" %}
                         <a class="mission_name" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
                     {% else %}
                         <a class="mission_name" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
@@ -88,7 +88,7 @@
                     <span class="mission_type_label_place_holder">{{ mission.get_mission_type_display }}</span>
 
                     {% if user.is_speaker %}
-                        {% if mission.individualmission %}
+                    {% if mission.mission_type == "i" %}
                             <span>
                             <a href="{% url 'delete_individual_mission' mission.id %}"><img src="{% static "backend/images/kiwep/trash.png" %}" alt="delete"></a>
                         {% else %}
@@ -246,7 +246,7 @@
                             <div class="duplicate_table">
 
                                 <h4 class="small_title">{{ project.name }}</h4>
-                                <a href="{% url 'chose_project_detail' project.id team.id %}">{% trans 'select' %}</a>
+                                <a href="{% url 'choose_project_for_team_adetail' project.id team.id %}">{% trans 'select' %}</a>
 
                             </div>
                         {% endfor %}
