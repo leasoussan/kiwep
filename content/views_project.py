@@ -174,27 +174,36 @@ class ProjectTeamCreateView(ProjectCreateView):
 #     return ('content/project_list')
 
 
-def clean_missions(project_id, *querysets):
+def clean_missions(project_id, missions):
+    print('misions-clean', missions)
+    for mission in missions:
 
-    for qs in querysets:
-        objects = []
-        if qs.model not in [Mission]:
-            print('Function clean mission should be only used on mission query set ')
-            return
-        for mission in qs:
-            mission.id=None
-            mission.project_id = project_id
-            mission.created_date = None
-            mission.due_date = timezone.now()
-            mission.completed=False
+        mission.id = None
+        if mission.mission_type == 'i':
+            individual_mission_copy = IndividualMission.objects.create(
+                id=None,
+                name = mission.name,
+                project_id = project_id,
+                created_date = None,
+                due_date = timezone.now(),
+                mission_type='i',
+                owner_id= mission.project.speaker.id,
+                attributed_to=None,
+            )
 
-            if qs.model == IndividualMission:
-                mission.attributed_to = None
-                mission.accepted = False
-            print(dir(mission))
-            objects.append(mission)
-        qs.model.objects.bulk_create(objects)
-
+        elif mission.mission_type == 'c':
+            attributed_to = []
+            collective_mission_copy = CollectiveMission.objects.create(
+                id=None,
+                name=mission.name,
+                project_id=project_id,
+                created_date=None,
+                due_date=timezone.now(),
+                mission_type= 'c',
+                owner_id=mission.project.speaker.id,
+            )
+            collective_mission_copy.attributed_to.set(attributed_to)
+            print('collective_mission_copy',collective_mission_copy)
 
 
 def clean_resource(project_id, queryset):
@@ -207,7 +216,6 @@ def clean_resource(project_id, queryset):
         resource.project_id = project_id
         objects.append(resource)
     queryset.model.objects.bulk_create(objects)
-
 
 
 def clean_m_resource(mission_id, queryset):
@@ -247,7 +255,7 @@ def get_due_date(self, **kwargs):
 
 
 
-class ChooseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
+class ChooseProjectForTeamView(SpeakerStatuPassesTestMixin, RedirectView):
     """Select a project will make you own a version of the project
     This View will make himself a speaker to the project -
     as a copy to enable using it after with a team and make changes"""
@@ -283,7 +291,7 @@ class ChooseProjectView(SpeakerStatuPassesTestMixin, RedirectView):
 
 
 
-# class DuplicateProjectCreateView(SpeakerStatuPassesTestMixin, RedirectView):
+# class DuplicateProjectCreateView(SpeakerStatusPassesTestMixin, RedirectView):
 #     """"""
 #
 #     pattern_name = 'update_project'

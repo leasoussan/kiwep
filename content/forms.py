@@ -142,12 +142,8 @@ class BulkAddMissionForm(forms.Form):
         super(BulkAddMissionForm, self).__init__(*args, **kwargs)
         if projects:
             self.fields['projects'].queryset = projects
-
-    # def save_bulk_mission(self, mission):
-    #     print('valid')
-    #     for project in self.cleaned_data['projects']:
-    #         mission = project.mission
-    #         mission.id=None
+        else:
+            print('there ar no selected project')
 
 
 class CollectiveMissionAssign(forms.Form):

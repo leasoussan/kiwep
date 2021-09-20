@@ -227,11 +227,16 @@ class CreateProfile(View):
                 for invite in user.received_invites.all():
                     object.save()
                     object.institution.add(invite.institution)
+
             elif user.is_student:
                 join_code = profile_form.cleaned_data['join_code']
+                print('joint_code', join_code)
                 if Group.objects.filter(join_code=join_code).exists():
                     join_group = Group.objects.get(join_code=join_code)
-                    object.class_level=join_group
+
+                    print('join_group', join_group)
+                    object.class_level_id=join_group
+                    print(object.class_level)
                     object.save()
 
 

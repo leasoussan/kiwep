@@ -44,7 +44,6 @@ def dashboard(request):
 
 
 
-
 class InstitutionAddGroupView(ProfileCheckPassesTestMixin, View):
 
 
