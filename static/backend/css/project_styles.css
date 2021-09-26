@@ -39,6 +39,10 @@
     justify-content: flex-start;
 }
 
+.templates_tag{
+    background-color: orangered;
+    width: 100%;
+}
 .project_detail_details{
     display: flex;
     flex-direction: column;

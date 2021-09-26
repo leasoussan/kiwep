@@ -40,7 +40,7 @@ class TeamListView(ProfileCheckPassesTestMixin, ListView):
 
         if self.request.user.is_speaker:
             context['project_form'] = ProjectAddForm()
-            context['templates'] = Project.objects.global_template_projects()
+            context['templates'] = Project.objects.personal_templates()
             context['old_projects'] = self.request.user.profile().project_set.all()
         return context
 
