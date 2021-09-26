@@ -41,8 +41,9 @@
 
                 <div class="project_detail_name_responsive"><a href="{% url 'project_detail' project.id %}">{{project.name.title}}</a></div>
                 {% if not project.team %}
-                    <button type="button" class="btn btn-outline-danger btn-sm project_list_box_create_team_btn"><a class="create_project_btn_projlist" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a></button>
-                    <!-- <a class= "btn" href="{% url 'create_team_to_project' project.id %}">{% trans 'create_team' %}</a> -->
+                    <button type="button" class="btn btn-outline-danger btn-sm project_list_box_create_team_btn">
+                        <a class="create_project_btn_projlist" href="{% url 'create_team_to_project' project.id %}">
+                            {% trans 'create_team' %}</a></button>
                 {% else %}
                     <div class="project_list_box_team_name">
                         <a  class ="team_name overflow-auto" href="{% url 'team_detail' project.team.id %}">{{ project.team.name }}</a>

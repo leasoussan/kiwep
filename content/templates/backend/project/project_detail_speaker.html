@@ -6,6 +6,7 @@
 
 <div class="project_detail_container">
     <div class="project_detail_header">
+
         <h2 class="project_title">{{ project.name }}</h2>
 
         {% if project.team %}
@@ -16,7 +17,10 @@
         <div class="speaker_action_btn_group">
 
             {% if project.is_template %}
+<h3 class="templates_tag">{% trans 'this_is_a_template' %}</h3>
+
 {#                                        <a class="btn" href="{% url 'choose_project_for_team_adetail' project.id %}">{% trans 'select'%}</a>#}
+                <button type="button" class="btn edit_project_btn"><a href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a></button>
 
             {% else %}
                 <button type="button" class="btn edit_project_btn"><a href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a></button>
