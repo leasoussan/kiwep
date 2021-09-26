@@ -56,15 +56,18 @@
                     </div>
 
                 </div>
-                <div class="resource_img_box">
-                    {% if resource.image or resource.file_rsc %}
-                        <img class="resource_image"  src="{{ resource.get_resourceImg_or_default }}" alt="{{ resource.title }}">
-
-
-                    {% endif %}
-                </div>
-
-            </div>
+{#                <div class="resource_img_box">#}
+{#                    {% if resource.image %}#}
+{#                        <img class="resource_image"  src="{{ resource.get_resourceImg_or_default }}" alt="{{ resource.title }}">#}
+{##}
+{##}
+{#                    {% endif %}#}
+{#                {% if resource.file_rsc %}#}
+{#                    {{ resource.file_rsc }}#}
+{#                {% endif  %}#}
+{#                </div>#}
+{##}
+{#            </div>#}
 
         </div>
     </div>
@@ -82,7 +85,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img class="resource_image"  src="{{ resource.file_rsc.url }}" alt="{{ resource.title }}">
+{#                    <img class="resource_image"  src="{{ resource.file_rsc.url }}" alt="{{ resource.title }}">#}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
