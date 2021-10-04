@@ -1,10 +1,6 @@
 x/* TEAM-LIST */
 
-#wrapper{
-    margin: 0 auto;
-    width: 1000px;
-    background-color: aqua;
-}
+
 .team_list_header{
     display: flex;
     flex-direction: row;
@@ -18,11 +14,14 @@ x/* TEAM-LIST */
 
 .team_list_btn_gp{
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-right: 0;
-    width: 100%;
+    flex-direction: column;
+    width: 30%;
+    min-height: 15%;
+    max-height: 300%;
+    justify-content: space-between;
+    padding-left: 1rem;
 }
+
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     border: none !important;
@@ -33,7 +32,22 @@ x/* TEAM-LIST */
 .button_left{
     margin-right: 15px;
     /* height: 33px; */
-    
+
+}
+
+.team_board_container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: flex-start;
+    height: 85vh;
+}
+
+.team_board_manager{
+    width: 70%;
+    max-height: 100%;
+    overflow: auto;
+
 }
 
 .team_list_tbl_edit_delete_icons{
@@ -129,7 +143,7 @@ x/* TEAM-LIST */
 .mission_list_box_team_detail{
     display: flex;
     flex-direction: column;
-      min-width: 60%;
+    min-width: 60%;
     max-width: 60%;
     min-height: 90%;
     max-height: 90%;
@@ -140,7 +154,7 @@ x/* TEAM-LIST */
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 2rem;
-background-color: #d8e8cf;
+    background-color: #d8e8cf;
     overflow: auto;
     min-height: 60%;
     max-height: 70%;
@@ -254,7 +268,7 @@ background-color: #d8e8cf;
     flex-direction: column;
     width: 95%;
     margin: auto;
-      padding: 1rem 1rem;
+    padding: 1rem 1rem;
 }
 .team_list_main_container{
     display: flex;
@@ -263,27 +277,21 @@ background-color: #d8e8cf;
     margin: auto;
     padding-top: 3rem;
 }
-.team_list_btn_gp{
-    display: flex;
-    flex-direction: row;
-    margin:0%  5% ;
-    justify-content: flex-end;
-}
 
 .add_team_button {
-  color: white;
+    color: white;
 }
 
 .mission_list_btn{
-  background-color: #1668c2;
-  font-weight: bold;
-  font-size: large;
-  color: white;
+    background-color: #1668c2;
+    font-weight: bold;
+    font-size: large;
+    color: white;
 
 }
 
 .medium_title{
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
     font-weight: bolder;
     font-size: larger;
 }
@@ -359,7 +367,7 @@ background-color: #d8e8cf;
 
     }
 
-    
+
     .col_width{
         width: 10%;
     }
@@ -367,7 +375,7 @@ background-color: #d8e8cf;
     .col_width1{
         width: 20%;
     }
-        
+
     .team_list_btn_gp{
         margin-top: 20px;
         margin-bottom: 15px;
@@ -425,7 +433,7 @@ background-color: #d8e8cf;
         border-bottom: 1px solid rgb(121, 121, 121);
     }
 
-    .team_navigation_extra_button { 
+    .team_navigation_extra_button {
         margin-top: 2rem;
         flex-direction: column;
         position: relative;
@@ -441,7 +449,7 @@ background-color: #d8e8cf;
         position: relative;
         right: 50px;
         width: 100%;
-    } 
+    }
 
     .team_participant_container{
         width: 100%;
@@ -451,7 +459,7 @@ background-color: #d8e8cf;
     }
 
     .team_discussion_container{
-        width:100%;   
+        width:100%;
         min-height: none;
         height: 40%;
         margin-left: 0;
@@ -489,7 +497,7 @@ background-color: #d8e8cf;
 
     .discussion_sub_title{
         margin: 10px 0 0 10px;
-        
+
     }
 
     .team_list_header_student{
