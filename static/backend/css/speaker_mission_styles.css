@@ -48,7 +48,6 @@ button .edit_button{
 .mission_detail_panel{
     display: flex;
     flex-direction: row;
-    background-color: lightgray;
 }
 
 .speaker_mission_action_panel{
@@ -94,9 +93,11 @@ button .edit_button{
 }
 
 .mission_learning_info label{
-    background-color: transparent;
-    margin: 5px;
+    background-color: white;
     font-weight: bolder;
+    min-width: 90%;
+    max-width: 90%;
+    margin-bottom: 1rem;
 }
 .skills_mission{
     display: flex;
@@ -106,8 +107,7 @@ button .edit_button{
     min-width: 90%;
     max-width: 90%;
     padding: 1rem;
-    background-color: transparent;
-    border: whitesmoke 1px solid;
+    background-color: white;
     margin-bottom: 1rem;
 }
 .detail_time_to_complete{
@@ -116,8 +116,9 @@ button .edit_button{
     min-width: 90%;
     max-width: 90%;
     align-content: center;
-    background-color: #E2C3A1;
     padding-left: 1rem;
+    background-color: white;
+
 }
 
 .skills_name{
@@ -160,8 +161,6 @@ button .edit_button{
     flex-direction: row;
     width: 100%;
     min-height: 35vh;
-    background-color: lightgray;
-    /*justify-content: flex-end;*/
     justify-content: space-between;
     align-content: flex-end;
     padding: 1rem;
@@ -230,7 +229,7 @@ button .edit_button{
 
 }
 .speaker_mission_related_elements_content{
-display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 80%;
@@ -298,26 +297,33 @@ display: flex;
     flex-direction: row;
     align-items:start;
     justify-content: space-between;
-    width: 60%;
+    width: 40%;
     flex-wrap: wrap;
     min-height: 95%;
     max-height: 95%;
     margin-top: 1rem;
     background-color: transparent;
     overflow-scrolling: auto;
-    border: white 3px solid;
 }
+
+.add_resource_button{
+    min-width: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    max-height: 50px;
+    border: 1px solid lightgray
+}
+
 
 .mission_detail_resources_list_box{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     min-width: 100%;
     max-width: 100%;
-    flex-wrap: wrap;
+    min-height: 70%;
+    max-height: 70%;
     overflow: auto;
-    max-height:80%;
-    background-color: whitesmoke;
-    justify-content: space-between;
+
 }
 
 
@@ -329,25 +335,26 @@ display: flex;
     max-height: 25%;
     justify-content: space-between;
     align-content: center;
-    background-color: #dbe8da;
     margin-bottom: 5px;
 
 }
 
 .header_resource_container h3{
     background-color: transparent;
-    color: white;
     font-weight: bolder;
 
 }
 .image_resource{
-    min-width: 8rem;
-    max-width: 8rem;
+    min-width: 5rem;
+    max-width: 5rem;
 
 }
 
 .missions_detail_resource{
+    display: flex;
+    flex-direction: row;
     width: 100%;
+    border: yellow solid 5px;
     /* min-height: 120px; */
 }
 
@@ -366,13 +373,14 @@ display: flex;
 }
 .resource_item_detail{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background-color: transparent;
-    height: 11rem;
-    margin-right: 1rem;
-    width: 45%;
+    height: 7rem;
+    /*margin-right: 1rem;*/
+    min-width: 70%;
+    max-width: 70%;
     margin-bottom: 1rem;
 }
 
