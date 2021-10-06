@@ -126,7 +126,7 @@
 
                         {% else %}
                             <div class="mission_attributed_to_label">
-                                <h2>{% trans 'mission_is_attributed_to' %}:</h2>
+                                <h3>{% trans 'attributed_to' %}:</h3>
                                 <label class="mission_attr_name"> {{ object.attributed_to }}</label>
 
                             </div>
@@ -162,6 +162,14 @@
             {% include "answer/answer.html"  with object=object %}
 
         </div>
+
+
+    {% endif %}
+    </div>
+        <div>
+           {% if user.profile == object.project.team.manager %}
+
+
         <div class="discussion_container">
             {% include 'comments/discussion.html' %}
         </div>
@@ -170,6 +178,7 @@
     {% endif %}
     </div>
   </div>
+
 
 </div>
 

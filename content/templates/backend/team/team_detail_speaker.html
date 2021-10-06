@@ -11,7 +11,10 @@
         {% else %}
 
             <div class="team_project_detail">
+            <div class="team_project_title">
             <h2><a href="{% url 'project_detail' team.project.id %}"> {{ team.project.name.title }} </a></h2>
+
+            </div>
             {% if request.user.profile == team.manager %}
                 <div class="speaker_action_btn_group">
                     <button type="button" class="btn btn-warning sm-btn"><a href="{% url 'update_team' team.id %}">{% trans 'edit' %}</a></button>
@@ -25,29 +28,30 @@
 
 
 
-        <div class="team_navigation_extra_button">
 
-            {% if team.project %}
-
-                <div>
-                    <span class="project_link_extra_underline"><a class="btn project_link_extra btn-sm" href ="{% url 'project_detail' team.project.id %}">{% trans 'read_more_about_the_project' %}</a>
-                    </span></div>
-
+{#        <div class="team_navigation_extra_button">#}
+{##}
+{#            {% if team.project %}#}
+{##}
+{#              <div class="team_project_view_container">#}
+{#              <p>{{  team.project.description }}</p>#}
+{#              </div>#}
+{##}
                 {#    Button Modal Resources#}
-                <div><span class="project_link_extra_underline1"><button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#resource_modal">
-                    {% trans 'resources' %}
-                </button></span>
-
-
-                </div>
-                <div class="photo-gallery">
-                    <div><span class="project_link_extra_underline2"><button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">
-                    {% trans 'photo_gallery' %}
-                </button></span></div>
-
-                </div>
-            {% endif %}
-        </div>
+{#                <div><span class="project_link_extra_underline1"><button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#resource_modal">#}
+{#                    {% trans 'resources' %}#}
+{#                </button></span>#}
+{##}
+{##}
+{#                </div>#}
+{#                <div class="photo-gallery">#}
+{#                    <div><span class="project_link_extra_underline2"><button type="button" class="btn project_link_extra btn-sm" data-bs-toggle="modal" data-bs-target="#photot_gallery_modal">#}
+{#                    {% trans 'photo_gallery' %}#}
+{#                </button></span></div>#}
+{##}
+{#                </div>#}
+{#            {% endif %}#}
+{#        </div>#}
 
     </div>
 
