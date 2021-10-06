@@ -45,23 +45,25 @@
                         {{ answer.status_form }}
                     </form>
 
-                    {% if answer.status == 'a' %}
+{#                TODO: grading >>    this is grading system #}
 
-                        {% if not answer.grade %}
-                            <div class="grade_content">
-                            <form method="POST" action="{% url 'answer_grade_add' answer.id %}">
-                                {% csrf_token %}
-
-                                {{ answer.grade_form }}
-                            </form>
-                        {% else %}
-                            <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>
-                        {% endif %}
-                    </div>
-                    {% else %}
-
-                        {% trans 'mission_wasnt_accepted_yet' %}
-                    {% endif %}
+{#                    {% if answer.status == 'a' %}#}
+{##}
+{#                        {% if not answer.grade %}#}
+{#                            <div class="grade_content">#}
+{#                            <form method="POST" action="{% url 'answer_grade_add' answer.id %}">#}
+{#                                {% csrf_token %}#}
+{##}
+{#                                {{ answer.grade_form }}#}
+{#                            </form>#}
+{#                        {% else %}#}
+{#                            <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>#}
+{#                        {% endif %}#}
+{#                    </div>#}
+{#                    {% else %}#}
+{##}
+{#                        {% trans 'mission_wasnt_accepted_yet' %}#}
+{#                    {% endif %}#}
                 </div>
             {% endif %}
         {% endwith %}
