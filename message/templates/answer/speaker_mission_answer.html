@@ -110,7 +110,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+          {% if answer.response_file %}
           <img src="{{ answer.response_file.url }}">
+          {% else %}
+          {% trans 'there_is_no_file_yet"' %}
+          {% endif %}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
