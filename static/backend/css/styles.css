@@ -21,8 +21,7 @@ INDEX:
 
 /*------BASE------*/
 body *{
-  font-family: 'Open Sans', sans-serif;
-  background-color: #ffffff;
+  font-family: Helvetica, sans-serif;
   color: #000000;
 }
 
@@ -271,9 +270,7 @@ nav{
   margin-top: 30px;
 }
 
-.video_speaker {
-  width: 600px;
-}
+
 /*------7 Modal------*/
 /*------COLORS------*/
 /*------BUTTONS------*/

@@ -15,8 +15,8 @@
         <!-- <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a> -->
 
         {% if object.project.team %}
-        <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_team' %}</a></button>
-{% endif %}
+            <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_team' %}</a></button>
+        {% endif %}
         <h3 class=""> {{ object.name }}</h3>
 
 
@@ -77,10 +77,11 @@
 
                         <!-- Button trigger modal add Resource -->
                         <button type="button" class="btn btn-primary add_resource_button" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
-                            {% trans "add_resource" %}
+                            <i class="bi bi-plus-square"></i>
                         </button>
 
                     </div>
+
                     {% if object.resource_set.exists %}
 
                         <div class="mission_detail_resources_list_box">
@@ -115,6 +116,8 @@
             </div>
 
         </div>
+
+
         <div class="speaker_mission_action_panel">
 
             <div class="mission_status_box">
@@ -126,7 +129,7 @@
 
                         {% else %}
                             <div class="mission_attributed_to_label">
-                                <h2>{% trans 'mission_is_attributed_to' %}:</h2>
+                                <h3>{% trans 'attributed_to' %}:</h3>
                                 <label class="mission_attr_name"> {{ object.attributed_to }}</label>
 
                             </div>
@@ -153,31 +156,38 @@
             </div>
 
 
-        <div class="speaker_mission_related_elements_content">
+            <div class="speaker_mission_related_elements_content">
 
-        {% if user.profile == object.project.team.manager %}
+                {% if user.profile == object.project.team.manager %}
 
-        <div class="mission_detail_answer_content">
+                    <div class="mission_detail_answer_content">
 
-            {% include "answer/answer.html"  with object=object %}
+                        {% include "answer/answer.html"  with object=object %}
+
+                    </div>
+
+
+                {% endif %}
+
+            <div class="comments_mission_container">            {% if user.profile == object.project.team.manager %}
+
+                <div class="discussion_container_mission">
+                    {% include 'comments/discussion.html' %}
+                </div>
+
+            {% endif %}
+            </div>
+</div>
 
         </div>
-        <div class="discussion_container">
-            {% include 'comments/discussion.html' %}
-        </div>
 
-
-    {% endif %}
     </div>
-  </div>
-
-</div>
-
-
-
 
 
 </div>
+
+
+
 
 
 

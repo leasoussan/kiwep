@@ -4,7 +4,8 @@
     align-content:center;
     width: 100% ;
     min-height: 100vh;
-    padding: 0rem 1rem;
+    padding: 0rem 3rem;
+
 }
 
 .mission_detail_header{
@@ -30,12 +31,14 @@ button .edit_button{
 .mission_detail_main_content{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
     min-height: 80vh;
     max-height: 80vh;
     justify-content: space-between;
-    background-color: #F0EFEF;
+    background-color: #f2f2f2;
     padding: 1rem 1rem 1rem 1rem;
+    border: 1px #d7dbd7 solid;
+    border-radius: 10px;
 }
 
 .mission_detail_main_panel{
@@ -43,23 +46,28 @@ button .edit_button{
     flex-direction: row;
     padding-top: 1rem;
     min-height: 80vh;
+    margin-top: 2rem;
+    justify-content: space-between;
 }
 
 .mission_detail_panel{
     display: flex;
     flex-direction: row;
-    background-color: lightgray;
 }
 
 .speaker_mission_action_panel{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width: 28%;
-    max-width: 30%;
-    min-height: 70% ;
-    max-height:70% ;
-    padding-left: 2rem;
+    min-width: 35%;
+    max-width: 35%;
+    min-height: 100%;
+    max-height:100% ;
+    padding: 0rem 1rem ;
+    margin-left: 3rem;
+    background-color: #f2f2f2;
+    border: 1px #d7dbd7 solid;
+    border-radius: 10px;
 }
 
 .mission_detail_details{
@@ -94,9 +102,11 @@ button .edit_button{
 }
 
 .mission_learning_info label{
-    background-color: transparent;
-    margin: 5px;
+    background-color: white;
     font-weight: bolder;
+    min-width: 90%;
+    max-width: 90%;
+    margin-bottom: 1rem;
 }
 .skills_mission{
     display: flex;
@@ -106,8 +116,7 @@ button .edit_button{
     min-width: 90%;
     max-width: 90%;
     padding: 1rem;
-    background-color: transparent;
-    border: whitesmoke 1px solid;
+    background-color: white;
     margin-bottom: 1rem;
 }
 .detail_time_to_complete{
@@ -116,8 +125,9 @@ button .edit_button{
     min-width: 90%;
     max-width: 90%;
     align-content: center;
-    background-color: #E2C3A1;
     padding-left: 1rem;
+    background-color: white;
+
 }
 
 .skills_name{
@@ -160,8 +170,6 @@ button .edit_button{
     flex-direction: row;
     width: 100%;
     min-height: 35vh;
-    background-color: lightgray;
-    /*justify-content: flex-end;*/
     justify-content: space-between;
     align-content: flex-end;
     padding: 1rem;
@@ -205,34 +213,38 @@ button .edit_button{
 }
 
 .mission_attributed_to_label{
-    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;padding: 5px;
     width: 100%;
-    background-color: #ebddd3;
+    /*background-color: #ebddd3;*/
     color: grey;
 
 }
 
-.mission_attributed_to_label h2{
+.mission_attributed_to_label h3{
     background-color: transparent;
     color: darkgrey;
 
 }
 
 .mission_attr_name{
+    display: flex;
+    justify-content: flex-start;
     font-size: 25px;
     font-weight: bolder;
     font-family: Helvetica;
-    width: 100%;
+    width: 70%;
     height: 3rem;
     padding: 6px;
     background-color: whitesmoke;
     color: grey;
-
+    margin-left: 1rem
 }
 .speaker_mission_related_elements_content{
-display: flex;
+    display: flex;
     flex-direction: column;
-    justify-content: space-between;
     min-height: 80%;
     max-height: 80%;
 }
@@ -240,11 +252,11 @@ display: flex;
     display: flex;
     margin-top: 1rem;
     width: 100%;
-    background-color: ;
     justify-content: center;
     align-content: flex-end;
     min-height: 50%;
-    max-height: 70%;
+    max-height: 50%;
+    border-radius: 10px;
 }
 
 
@@ -257,7 +269,7 @@ display: flex;
     border-radius: 10%;
     width: 95%;
     padding: 1rem;
-    color: whitesmoke;
+    color: grey;
 
 }
 
@@ -298,26 +310,33 @@ display: flex;
     flex-direction: row;
     align-items:start;
     justify-content: space-between;
-    width: 60%;
+    width: 50%;
     flex-wrap: wrap;
-    min-height: 95%;
+    min-height: 80%;
     max-height: 95%;
     margin-top: 1rem;
     background-color: transparent;
     overflow-scrolling: auto;
-    border: white 3px solid;
 }
+
+.add_resource_button{
+    min-width: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    max-height: 50px;
+    border: 1px solid lightgray
+}
+
 
 .mission_detail_resources_list_box{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     min-width: 100%;
     max-width: 100%;
-    flex-wrap: wrap;
+    min-height: 70%;
+    max-height: 70%;
     overflow: auto;
-    max-height:80%;
-    background-color: whitesmoke;
-    justify-content: space-between;
+
 }
 
 
@@ -325,29 +344,30 @@ display: flex;
     display: flex;
     flex-direction: row;
     width: 100%;
-    min-height: 25%;
-    max-height: 25%;
+    min-height: 15%;
+    max-height: 15%;
     justify-content: space-between;
     align-content: center;
-    background-color: #dbe8da;
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
 
 }
 
 .header_resource_container h3{
     background-color: transparent;
-    color: white;
     font-weight: bolder;
 
 }
 .image_resource{
-    min-width: 8rem;
-    max-width: 8rem;
+    min-width: 5rem;
+    max-width: 5rem;
 
 }
 
 .missions_detail_resource{
+    display: flex;
+    flex-direction: row;
     width: 100%;
+    border: yellow solid 5px;
     /* min-height: 120px; */
 }
 
@@ -366,13 +386,14 @@ display: flex;
 }
 .resource_item_detail{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     background-color: transparent;
-    height: 11rem;
-    margin-right: 1rem;
-    width: 45%;
+    height: 7rem;
+    /*margin-right: 1rem;*/
+    min-width: 90%;
+    max-width: 90%;
     margin-bottom: 1rem;
 }
 
@@ -382,7 +403,8 @@ display: flex;
 .resource_name{
     display: flex;
     flex-wrap: wrap;
-    max-width: 100%;
+    min-width: 85%;
+    max-width: 80%;
     border: #0b2e13 1px solid;
 }
 .claim_mission_button{

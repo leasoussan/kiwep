@@ -1,10 +1,6 @@
 x/* TEAM-LIST */
 
-#wrapper{
-    margin: 0 auto;
-    width: 1000px;
-    background-color: aqua;
-}
+
 .team_list_header{
     display: flex;
     flex-direction: row;
@@ -18,11 +14,14 @@ x/* TEAM-LIST */
 
 .team_list_btn_gp{
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-right: 0;
-    width: 100%;
+    flex-direction: column;
+    width: 30%;
+    min-height: 15%;
+    max-height: 300%;
+    justify-content: space-between;
+    padding-left: 1rem;
 }
+
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     border: none !important;
@@ -33,7 +32,23 @@ x/* TEAM-LIST */
 .button_left{
     margin-right: 15px;
     /* height: 33px; */
-    
+
+}
+
+.team_board_container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: flex-start;
+    height: 85vh;
+}
+
+.team_board_manager{
+    width: 70%;
+    max-height: 100%;
+    overflow: auto;
+    padding-right: 3rem;
+
 }
 
 .team_list_tbl_edit_delete_icons{
@@ -62,26 +77,80 @@ x/* TEAM-LIST */
     padding: 0rem 2rem;
 }
 
-.team_detail_header{
+.description_team_project{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 60%;
+    width: 60%;
+
+
+}
+
+.description_team_project h3{
+    padding-left: 10rem;
+}
+
+.team_detail_header{
+    display: flex;
+    flex-direction: row;
     margin-top: 2rem;
     margin-bottom:2rem;
-    width: 95%;
-    justify-content: flex-end;
+    width: 100%;
+    min-height:30vh;
+    max-height: 30vh;
     justify-content: space-between;
+
+
+}
+
+.choose_project_button{
+    width: 80%;
+    height:20%;
+    background-color: #6e8066;
+    border-radius: 10px;
+    color: white;
+    font-weight: bolder;
+    font-family: Helvetica;
+    font-size: x-large;
+    margin-top: 3rem;
+    margin-left: 5rem;
 }
 
 .team_project_detail{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 70%;
+    max-height: 70%;
+       background-color: #f2f2f2;
+    border: 1px #d7dbd7 solid;
+    border-radius: 10px;
+}
+
+.team_project_description{
+    display: flex;
+    flex-direction: column;
+        margin-left: 1rem;
+
+}
+.team_project_title{
+    width: 95%;
+    height: 3rem;
     margin-bottom: 2rem;
 }
 
-.team_project_detail > h2{
-    margin-left: 75px;
+.project_detail_team_page{
+    min-width: 85%;
+    max-width: 85%;
+    min-height: 50%;
+    max-height:100% ;
+    margin-top: 1rem;
+    overflow: auto;
 }
-
 /* .team_detail_title{
     width: 50%;
     justify-content: flex-start;
@@ -89,9 +158,11 @@ x/* TEAM-LIST */
 
 .speaker_action_btn_group{
     display: flex;
-    flex-direction: row;
-    width: 90%;
-    justify-content: flex-end;
+    flex-direction: column;
+    width: 10%;
+    justify-content: flex-start;
+    padding: 1rem;
+
 
 }
 
@@ -103,15 +174,35 @@ x/* TEAM-LIST */
     margin-left: 20px;
 }
 
+.img_team_project{
+    max-width: 30%;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+.image_size{
+    min-width: 200px;
+    max-width: 300px;
+    min-height: 200px;
+    max-height: 300px;
+}
 .team_navigation_extra_button {
     display: flex;
     flex-direction: row;
-    width: 60%;
+    width: 100%;
     justify-content: space-between;
-    align-content: center;
-    margin: auto;
+    /*align-content: center;*/
+    /*margin: auto;*/
+    border: solid 3px orangered;
 }
 
+.project_learning_info{
+    width: 15%;
+    padding: 5px;
+    color: darkgrey;
+    min-height: 100%;
+    max-height: 100%;
+}
 .project_link_extra{
     border-bottom: 2px solid rgb(121, 121, 121);
     border-radius: 0px;
@@ -122,36 +213,41 @@ x/* TEAM-LIST */
     display: flex;
     flex-direction: row;
     width: 100%;
-    min-height: 90%;
+    min-height: 70%;
+    max-height: 90%;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    background-color: #f2f2f2;
+    border: 1px #d7dbd7 solid;
+    padding: 1rem;
+    justify-content: space-between;
 }
 .mission_list_box_team_detail{
     display: flex;
     flex-direction: column;
-      min-width: 60%;
-    max-width: 60%;
+    min-width: 65%;
+    max-width: 65%;
     min-height: 90%;
     max-height: 90%;
 }
 
 .team_mission_list{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     margin-top: 2rem;
-background-color: #d8e8cf;
     overflow: auto;
     min-height: 60%;
     max-height: 70%;
+    min-width: 100%;
+    max-width: 100%;
+
 }
 
 .team_mission_detail{
     display: flex;
-    flex-direction: column;
-    width: 25%;
-    height: 250px;
-    margin: 2rem;
+    flex-direction: row;
+    width:100%;
+    height: 50px;
     border: 2px solid white;
     padding: 2rem;
     justify-content: space-between;
@@ -160,8 +256,8 @@ background-color: #d8e8cf;
 }
 .team_mission_name_title {
     display: flex;
-    min-width: 90%;
-    max-width: 90%;
+    min-width: 40%;
+    max-width: 60%;
     flex-wrap: wrap;
     word-break: normal;
     word-break: normal;
@@ -172,22 +268,27 @@ background-color: #d8e8cf;
 .team_extra_information{
     display: flex;
     flex-direction: column;
-    margin-left: 1rem;
-    min-width: 30%;
-    min-height: 80vh;
-    margin-top: 2rem;
+    padding-top: 1rem;
+    width: 25%;
+    min-height: 100%;
+    max-height: 100%;
+    align-items: flex-end;
+
 
 }
 
 .team_participant_container{
     display: flex;
     flex-direction: column;
-    width: 60%;
-    min-height: 30%;
-    max-height: 50%;
+    width: 80%;
+    min-height: 80%;
+    max-height: 80%;
     padding: 1rem;
-    border: 3px solid rgb(233, 233, 233);
-    margin-left: 110px;
+    background-color: #f2f2f2;
+    border: 1px #d7dbd7 solid;
+    border-radius: 10px;
+
+
 }
 .participants_title{
     font-size: larger;
@@ -198,6 +299,7 @@ background-color: #d8e8cf;
 .participants_team_header{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .add_person{
@@ -207,9 +309,12 @@ background-color: #d8e8cf;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    overflow: auto;
     justify-content: space-between;
-    margin: 1rem;
-    width: 80%;
+    margin: 2px;
+    width: 100%;
+    min-height: 80%;
+    background-color: white;
 }
 
 .avatar{
@@ -254,7 +359,7 @@ background-color: #d8e8cf;
     flex-direction: column;
     width: 95%;
     margin: auto;
-      padding: 1rem 1rem;
+    padding: 1rem 1rem;
 }
 .team_list_main_container{
     display: flex;
@@ -263,42 +368,28 @@ background-color: #d8e8cf;
     margin: auto;
     padding-top: 3rem;
 }
-.team_list_btn_gp{
-    display: flex;
-    flex-direction: row;
-    margin:0%  5% ;
-    justify-content: flex-end;
-}
 
 .add_team_button {
-  color: white;
+    color: white;
 }
 
 .mission_list_btn{
-  background-color: #1668c2;
-  font-weight: bold;
-  font-size: large;
-  color: white;
+    background-color: #1668c2;
+    font-weight: bold;
+    font-size: large;
+    color: white;
 
 }
 
 .medium_title{
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
     font-weight: bolder;
     font-size: larger;
 }
 
-/*.team_list_table tr{*/
-/*    width: 100%;*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: space-evenly;*/
-/*}*/
-
 /*_______STUDENT TEAM DETAIL STYLE_____________________*/
 
 .team_project_status{
-    background-color: yellow;
 }
 
 
@@ -359,7 +450,7 @@ background-color: #d8e8cf;
 
     }
 
-    
+
     .col_width{
         width: 10%;
     }
@@ -367,7 +458,7 @@ background-color: #d8e8cf;
     .col_width1{
         width: 20%;
     }
-        
+
     .team_list_btn_gp{
         margin-top: 20px;
         margin-bottom: 15px;
@@ -425,7 +516,7 @@ background-color: #d8e8cf;
         border-bottom: 1px solid rgb(121, 121, 121);
     }
 
-    .team_navigation_extra_button { 
+    .team_navigation_extra_button {
         margin-top: 2rem;
         flex-direction: column;
         position: relative;
@@ -441,7 +532,7 @@ background-color: #d8e8cf;
         position: relative;
         right: 50px;
         width: 100%;
-    } 
+    }
 
     .team_participant_container{
         width: 100%;
@@ -451,7 +542,7 @@ background-color: #d8e8cf;
     }
 
     .team_discussion_container{
-        width:100%;   
+        width:100%;
         min-height: none;
         height: 40%;
         margin-left: 0;
@@ -489,7 +580,7 @@ background-color: #d8e8cf;
 
     .discussion_sub_title{
         margin: 10px 0 0 10px;
-        
+
     }
 
     .team_list_header_student{

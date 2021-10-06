@@ -14,17 +14,17 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a>
 
                         {% if user.is_speaker %}
-                            <a class="nav-link" href="{% url 'project_list' %}">{% trans 'projects' %}</a>
+                            <a class="nav-link" href="{% url 'team_list' %}">{% trans 'team_board' %}</a>
+                            <a class="nav-link" href="{% url 'project_list' %}">{% trans 'templates_project' %}</a>
                             <a class="nav-link" href="{% url 'answer_mission_list' %}">{% trans 'answer_board' %}</a>
 
                         {% elif user.is_student %}
                             <a class="nav-link" href="{% url 'team_list' %}">{% trans 'projects' %}</a>
                             <a class="nav-link" href="{% url 'my_mission_list' %}">{% trans 'My_missions' %}</a>
                         {% elif user.is_representative %}
-                        {% trans 'welcome_to_kiwep_intstitution' %}
+                            {% trans 'welcome_to_kiwep_intstitution' %}
 
                         {% endif %}
 

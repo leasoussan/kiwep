@@ -8,8 +8,10 @@
     max-width: 100%;
     min-height: 100%;
     max-height: 200%;
-    background-color: antiquewhite;
     padding-top: 1rem;
+    border: white 2px solid;
+
+
 }
 
 
@@ -53,13 +55,18 @@
 .mission_response_type_label{
     display: flex;
     flex-direction: row;
-    width:95%;
-    min-height: 20%;
-    max-height: 20%;
-    background-color: #e4ebed;
+    width:80%;
+    min-height: 3rem;
+    max-height: 3rem;
     justify-content: space-between;
     align-items: center;
 }
+
+.see_file_modal_button{
+    width: 7rem;
+    background-color: #6e8066;
+}
+/*student*/
 .last_answer_container{
     display: flex;
     flex-direction: column;
