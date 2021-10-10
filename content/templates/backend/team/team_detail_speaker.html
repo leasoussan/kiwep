@@ -28,9 +28,10 @@
                 </div>
                 <div class="participants_list_icon">
                     {% for participant in team.participants.all %}
-
-
-                        <img class="avatar" src="{{ user.profile.profilepic_or_default }}" alt="">
+                        <div class="avatar">
+                        {{ user.profile.profilepic_or_default}}
+                     <a href="{% url 'profile_view' participant.id  %} "  > <img src="{{user.profilepic_or_default}}" class="profile_pic_rounded" height="50px" width="50px"></a>
+                        </div>
 
 
                     {% endfor %}

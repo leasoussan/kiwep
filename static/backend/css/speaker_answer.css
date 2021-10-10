@@ -2,13 +2,12 @@
 .answer{
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: flex-start;
     min-width: 100%;
     max-width: 100%;
     min-height: 100%;
     max-height: 200%;
-    padding-top: 1rem;
+    padding: 1rem 1rem;
     border: white 2px solid;
 
 
@@ -19,38 +18,63 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
 }
 
 .mission_answer_status_label{
-    margin-left: 1rem;
     display: flex;
     flex-direction: row;
     width:80%;
-    justify-content: space-between;
-    background-color: #e4ebed;
+    justify-content: flex-start;
+    color: grey;
+    font-size: x-large;
+    margin-bottom: 5px;
 }
 .answer_content{
-    padding-top: 1rem;
-    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     justify-content:space-between;
     align-items: flex-start;
-    margin-left: 1rem;
     background-color: transparent;
     width: 80%;
-    height: 20%;
+    height: 5rem;
+    padding:5px 0px ;
+
 }
 
+.answer_content_box_view{
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    min-height:70%;
+    max-height: 80%;
+    min-width: 100%;
+    max-width: 100%;
+    justify-content: flex-start;
+}
+
+
+.answer_file_label{
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    width: 30%;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+}
 .speaker_answer_comment_text_view{
-    min-width: 90%;
-    min-height: 30%;
-    max-height: 50%;
+    min-width: 70%;
+    max-width: 70%;
+    min-height: 80%;
+    max-height: 90%;
     overflow: auto;
-    margin-top: 1rem;
+    border: lightgray solid 2px;
+    color: dimgrey;
+    border-radius: 10px;
+    background-color: white;
 }
 .mission_response_type_label{
     display: flex;
@@ -60,6 +84,7 @@
     max-height: 3rem;
     justify-content: space-between;
     align-items: center;
+    margin: auto;
 }
 
 .see_file_modal_button{
@@ -100,6 +125,9 @@
 .medium_title{
     background-color: transparent;
 }
+
+
+
 .mission_response_type_label h3{
     background-color: transparent;
 }

@@ -23,7 +23,7 @@ urlpatterns = [
     path('create-profile/', CreateProfile.as_view(), name='create_profile'),
     path('profile/<int:id>',MyProfileView.as_view(), name="profile"),
     path('edit-profile/', EditProfile.as_view(), name="edit_profile"),
-    path('profile_view/<int:pk>', ProfileView.as_view(), name = "profile_view"),
+    path('profile_view/<int:profile_pk>', ProfileView.as_view(), name = "profile_view"),
     path('institution-invite/<str:key>', InstitutionInviteView.as_view(), name = "institution_invite"),
     path('speaker-invite/', SpeakerInviteView.as_view(), name="speaker_invite"),
 ]

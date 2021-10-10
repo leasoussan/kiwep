@@ -47,6 +47,7 @@ class Comment(models.Model):
     class Meta:
         ordering = ['date_posted']
 
+
     def __str__(self):
         return f'posted by: {self.user.username}'
 
@@ -58,8 +59,11 @@ class Comment(models.Model):
 class Discussion(Comment):
     title = models.CharField(max_length=50)
 
+    class Meta:
+        verbose_name_plural = "Discussions"
+
     def __str__(self):
-        return f'iscrussion title: {self.title}'
+        return f'discussion_title: {self.title}'
 
     def get_absolute_url(self):
         return reverse("team_comments_list", kwargs={"pk":self.pk})

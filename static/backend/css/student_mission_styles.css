@@ -217,11 +217,15 @@ button .edit_button{
     width: 100%;
     min-height: 20%;
 }
-
 .mission_attributed_to{
     display: flex;
     flex-direction: column;
-    align-content: flex-end;
+    justify-content: space-between;
+    align-items: flex-end;padding: 5px;
+    width: 100%;
+    /*background-color: #ebddd3;*/
+    color: grey;
+
 }
 
 
@@ -231,18 +235,13 @@ button .edit_button{
 
 .banner_attributed_to{
     display: flex;
-    background-color: #abc7b2;
     width: 100%;
     height: 4rem;
     justify-content: center;
 
 }
 
-.mission_attributed_to_label h2{
-    background-color: #E6AF97;
-    border: deeppink 2px solid;
 
-}
 
 .mission_detail_answer_content{
     display: flex;
@@ -289,6 +288,7 @@ button .edit_button{
 }
 .small_title{
     font-weight: bolder;
+    color: gray;
 }
 
 .answer_status_lable{

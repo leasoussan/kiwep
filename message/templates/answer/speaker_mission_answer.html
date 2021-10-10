@@ -9,13 +9,16 @@
 
 <div class="answer">
     <div class="mission_answer_status_label">
-        {% if object.attributed_to %}
-{#            {% trans 'space' %}#}
+        {% if object.attributed_to and object.answer.exists %}
+            {{ object.answer.all.first.content_object.attributed_to.user.get_full_name }}   {% trans 'answers' %}:
         {% endif %}
     </div>
     {% if not object.answer.all.exists %}
+                <h4>{% trans 'student_didnt_respond' %}</h4>
+
         <div class="mission_response_type_label">
-            <h3 class="medium_title"> {% trans 'answer_type' %}</h3>
+
+            <h3 class="medium_title"> {% trans 'response_type' %}</h3>
             <h3>{{ object.response_type }}</h3>
 
         </div>
@@ -23,48 +26,52 @@
     {% else %}
         {% with answer=object.answer.all.last %}
             {% if answer.response_comment or answer.response_file %}
-                <label class="answer_file_label">
-                    <lable>{% trans 'file' %} :</lable>
-                    {% if not answer.response_file %}
-                        <p>{% trans 'no_file_was_submited' %}</p>
-                    {% else %}
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
-                            {% trans 'see_file' %} </button>
+                <div class="answer_content_box_view">
+                    <p class="speaker_answer_comment_text_view">{% trans 'text_lable' %}:{{answer.response_comment}}</p>
+                    <div class="answer_file_label">
+                        <lable>{% trans 'see_file' %} :</lable>
+                        {% if not answer.response_file %}
+                            <p>{% trans 'no_file_was_submited' %}</p>
+                        {% else %}
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
+                                {% trans 'sent_file' %} </button>
 
 
-                    {% endif %}
-                </label>
+                        {% endif %}
+                    </div>
+                 </div>
+                    <div class="answer_content">
+                        <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
+                            {% csrf_token %}
 
-                <p class="speaker_answer_comment_text_view">{% trans 'text_lable' %}:{{answer.response_comment}}</p>
-                {% trans 'answer_by' %} {{ object.answer.all.first.content_object.attributed_to.user.get_full_name }}
-                <div class="answer_content">
-                    <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
-                        {% csrf_token %}
+                            {{ answer.status_form }}
+                        </form>
 
-                        {{ answer.status_form }}
-                    </form>
+                        {#                TODO: grading >>    this is grading system #}
 
-{#                TODO: grading >>    this is grading system #}
+                        {#                    {% if answer.status == 'a' %}#}
+                        {##}
+                        {#                        {% if not answer.grade %}#}
+                        {#                            <div class="grade_content">#}
+                        {#                            <form method="POST" action="{% url 'answer_grade_add' answer.id %}">#}
+                        {#                                {% csrf_token %}#}
+                        {##}
+                        {#                                {{ answer.grade_form }}#}
+                        {#                            </form>#}
+                        {#                        {% else %}#}
+                        {#                            <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>#}
+                        {#                        {% endif %}#}
+                        {#                    </div>#}
+                        {#                    {% else %}#}
+                        {##}
+                        {#                        {% trans 'mission_wasnt_accepted_yet' %}#}
+                        {#                    {% endif %}#}
+                    </div>
 
-{#                    {% if answer.status == 'a' %}#}
-{##}
-{#                        {% if not answer.grade %}#}
-{#                            <div class="grade_content">#}
-{#                            <form method="POST" action="{% url 'answer_grade_add' answer.id %}">#}
-{#                                {% csrf_token %}#}
-{##}
-{#                                {{ answer.grade_form }}#}
-{#                            </form>#}
-{#                        {% else %}#}
-{#                            <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>#}
-{#                        {% endif %}#}
-{#                    </div>#}
-{#                    {% else %}#}
-{##}
-{#                        {% trans 'mission_wasnt_accepted_yet' %}#}
-{#                    {% endif %}#}
-                </div>
+
+
+
             {% endif %}
         {% endwith %}
 
@@ -102,25 +109,25 @@
 
 <!-- Modal -->
 {% with answer=object.answer.last %}
-<div class="modal fade" id="see_file_modal" tabindex="-1" aria-labelledby="see_file_modalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog_view_document">
-    <div class="modal-content view_document_modal_content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          {% if answer.response_file %}
-          <img src="{{ answer.response_file.url }}">
-          {% else %}
-          {% trans 'there_is_no_file_yet"' %}
-          {% endif %}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+    <div class="modal fade" id="see_file_modal" tabindex="-1" aria-labelledby="see_file_modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog_view_document">
+            <div class="modal-content view_document_modal_content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% if answer.response_file %}
+                        <img src="{{ answer.response_file.url }}">
+                    {% else %}
+                        {% trans 'there_is_no_file_yet"' %}
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
 
-      </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 {% endwith %}

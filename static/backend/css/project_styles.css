@@ -69,7 +69,7 @@
     background-color: transparent;
     min-height: 5vh;
     max-height: 10vh;
-    border: solid green 2px;
+    border: solid whitesmoke 2px;
 }
 
 .speaker_action_btn_group{
@@ -102,19 +102,34 @@
 }
 
 
-.project_detail_main_content {
+.project_detail_main_content{
+    display: flex;
+    flex-direction: column;
+     background-color:#edebdf ;
+
+    border:#b4bfb6 solid 1px ;
+
+}
+
+.delete_button{
+    border:lightgray 1px solid ;
+    margin: auto;
+}
+
+.project_header_section{
     display: flex;
     flex-direction: row;
     min-height: 40vh;
     max-height: 40vh;
-    width: 80%;
+    width: 90%;
     align-items: center;
     justify-content: space-around;
-    margin: 2rem;
-    background-color:#d1ded4 ;
+    margin: auto;
+    margin-top: 1rem;
+    background-color:whitesmoke ;
     border:#b4bfb6 solid 1px ;
-
 }
+
 
 .project_related_elements_content {
     display: flex;
@@ -148,6 +163,7 @@
     justify-content: space-between;
     width: 80%;
     margin-left: 10%;
+    margin-bottom: 2rem;
 }
 
 
@@ -162,10 +178,9 @@
     min-width: 80%;
     max-width: 100%;
     min-height: 3rem;
-    margin-top: 3px;
-background-color: lightgray;
+    margin-top: 1rem;
+background-color: whitesmoke;
     margin-left: 2rem;
-    border: orangered 2px solid;
 }
 
 .mission_type_label_place_holder{
@@ -204,7 +219,7 @@ background-color: lightgray;
 .project_resource_list_items{
     display: flex;
     flex-direction: column;
-    margin-top: 34px;
+    margin-top: 2rem;
     /* width: 100%; */
 }
 
@@ -257,10 +272,11 @@ background-color: lightgray;
     display: flex;
     flex-direction: row;
     width: 40%;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
-
+.add_project_template_button{
+background-color: #84a184;}
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     border: none !important;
     background-color: rgb(99, 162, 185) !important;
@@ -382,7 +398,7 @@ background-color: lightgray;
         flex-direction: column;
         justify-content: none;
         width: 100%;
-        margin-left: 0;
+        margin-bottom: 1rem;
     }
 
     .sm_btn{

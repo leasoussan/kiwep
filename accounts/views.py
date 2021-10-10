@@ -328,28 +328,28 @@ class MyLoginView(LoginView):
 
 
 
-
-def get_profile(request):
-    if request.profile.is_student:
-        return Student.objects.get(pk=pk)
-
-
-    if request.profile.is_speaker:
-        return Speaker.objects.get(pk=pk)
-
-    if request.profile.is_institution:
-        return Institution.objects.get(pk=pk)
-
-    else:
-        return "you dont have access here"
+    def get_profile(request):
+        if request.profile.is_student:
+            return Student.objects.get(pk=pk)
 
 
+        if request.profile.is_speaker:
+            return Speaker.objects.get(pk=pk)
 
-class ProfileView(DetailView):
+        if request.profile.is_institution:
+            return Institution.objects.get(pk=pk)
 
-    def get(self, request):
-        """ View to show profile view - other logged in User"""
-        return get_profile(request)
+        else:
+            return "you dont have access here"
+
+
+
+class ProfileView(ProfileCheckPassesTestMixin, DetailView):
+    template_name = "accounts/profile/profile.html"
+
+    def get_object(self):
+        profile_pk = self.kwargs.get("pk")
+        return get_object_or_404(MyUser, pk=profile_pk)
 
 
 

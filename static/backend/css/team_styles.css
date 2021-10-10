@@ -74,13 +74,15 @@ x/* TEAM-LIST */
     justify-content:start;
     width: 100% ;
     min-height: 100vh;
-    padding: 0rem 2rem;
+    padding: 0rem 5px;
 }
 
 .description_team_project{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
+    align-content: center;
+    justify-items: center;
     height: 60%;
     width: 60%;
 
@@ -94,11 +96,10 @@ x/* TEAM-LIST */
 .team_detail_header{
     display: flex;
     flex-direction: row;
-    margin-top: 2rem;
     margin-bottom:2rem;
     width: 100%;
-    min-height:30vh;
-    max-height: 30vh;
+    min-height:25vh;
+    max-height:25vh;
     justify-content: space-between;
 
 
@@ -126,7 +127,7 @@ x/* TEAM-LIST */
     max-width: 100%;
     min-height: 70%;
     max-height: 70%;
-       background-color: #f2f2f2;
+    background-color: #f2f2f2;
     border: 1px #d7dbd7 solid;
     border-radius: 10px;
 }
@@ -134,7 +135,7 @@ x/* TEAM-LIST */
 .team_project_description{
     display: flex;
     flex-direction: column;
-        margin-left: 1rem;
+    margin-left: 1rem;
 
 }
 .team_project_title{
@@ -281,8 +282,8 @@ x/* TEAM-LIST */
     display: flex;
     flex-direction: column;
     width: 80%;
-    min-height: 80%;
-    max-height: 80%;
+    min-height: 100%;
+    max-height: 100%;
     padding: 1rem;
     background-color: #f2f2f2;
     border: 1px #d7dbd7 solid;
@@ -324,7 +325,11 @@ x/* TEAM-LIST */
     border: black 1px solid;
 }
 
-
+.profile_pic_rounded{
+    width: 95%;
+    max-height: 95%;
+    border-radius: 50%;
+}
 
 .discussion_list{
     display: flex;
@@ -369,9 +374,25 @@ x/* TEAM-LIST */
     padding-top: 3rem;
 }
 
-.add_team_button {
-    color: white;
+.add_team_button{
+    width:40%;
+    height: 3rem;
+    border-radius: 10px;
+    margin: 2rem;
+    background-color: #84a184;
+
 }
+
+
+.add_bulk_mission{
+    width:40%;
+    height: 3rem;
+    border-radius: 10px;
+    margin: 2rem;
+        background-color: #84a184;
+
+}
+
 
 .mission_list_btn{
     background-color: #1668c2;

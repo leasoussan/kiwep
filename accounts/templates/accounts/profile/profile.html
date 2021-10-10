@@ -8,29 +8,20 @@
 
 
 
-<div>
+    <div>
 
-    {% if user.is_representative %}
-
-    {% include 'accounts/profile/representative_profile.html' %}
-
-
-
-    {% elif user.is_speaker %}
-
-    {% include 'accounts/profile/speaker_profile.html' %}
-    <!-- speaker Profile -->
-
-    {% elif user.is_student %}
-
-    {% include 'accounts/profile/student_profile.html' %}
-
-    <!-- student Profile -->
-
-    {% endif %}
+        {% if user.is_representative %}
+            {% include 'accounts/profile/representative_profile.html' %}
+        {% elif user.is_speaker %}
+            {% include 'accounts/profile/speaker_profile.html' %}
+            <!-- speaker Profile -->
+        {% elif user.is_student %}
+            {% include 'accounts/profile/student_profile.html' %}
+            <!-- student Profile -->
+        {% endif %}
 
 
 
-</div>
+    </div>
 
 {% endblock %}

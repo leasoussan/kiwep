@@ -20,7 +20,10 @@
                 <div class="last_answer_container">
                     <div>
                         {% if answer.response_file %}
-                            <img  class="response_file_img" src="{% static 'backend/images/kiwep/file.png' %}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
+                                {% trans 'sent_file' %} </button>
+{#                            <img  class="response_file_img" src="{{ answer.response_file.url }}" width="70px" height="90px">#}
 
                         {% else %}
                             <p class="file_place_holder">{% trans  'no_file_yet' %}</p>
@@ -87,3 +90,30 @@
 
 {% endif %}
 
+
+
+
+<!-- Modal -->
+{% with answer=object.answer.last %}
+    <div class="modal fade" id="see_file_modal" tabindex="-1" aria-labelledby="see_file_modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog_view_document">
+            <div class="modal-content view_document_modal_content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% if answer.response_file %}
+                        <img src="{{ answer.response_file.url }}">
+                    {% else %}
+                        {% trans 'there_is_no_file_yet"' %}
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endwith %}

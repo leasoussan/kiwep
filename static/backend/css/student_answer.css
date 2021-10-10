@@ -9,6 +9,12 @@
     background-color: yellow;
 }
 
+.modal-dialog_view_document{
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    max-height: 100%;
+}
 
 .student_answer_box{
     display: flex;

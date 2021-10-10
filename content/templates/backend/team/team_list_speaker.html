@@ -4,17 +4,9 @@
 <div class="team_board_container">
     <div class="team_list_btn_gp">
 
-        <div class="button_left">
-            {% if user.is_speaker %}
-{#                <button type="button" class="btn btn-success"><a href="{% url 'answer_mission_list' %}">{% trans 'answers_board' %}</a></button>#}
-            {% elif user.is_student %}
-                <a href="{% url 'mission_list' %}" class="waves-effect waves-light btn secondary_button">{% trans 'my_mission_board' %}</a>
-            {% endif %}
-        </div>
-
-        <div class="button_right">
-            <button type="button" class="btn btn-primary"><a href="{% url 'create_team' %}" class="add_team_button">{% trans 'create_a_new_team' %}</a></button>
-        </div>
+            <button class="add_team_button"><a href="{% url 'create_team' %}">{% trans 'create_a_new_team' %}</a></button>
+            <button class="add_bulk_mission" data-bs-toggle="modal" data-bs-target="#add_bulk_mission">
+                {% trans 'add_mission' %}    </button>
     </div>
     <div class="team_board_manager">
         <div class="team_list_header">
@@ -68,4 +60,61 @@
         <!-- </div> -->
     </div>
 </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="add_bulk_mission" tabindex="-1" aria-labelledby="add_bulk_missionLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="add_bulk_mission">{% trans 'add_bulk_mission' %}</h5>
+
+                </div>
+                <div class="modal-body">
+
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-bulk_add_individual-tab" data-bs-toggle="tab" data-bs-target="#nav-bulk_add_individual" type="button" role="tab" aria-controls="nav-bulk-individual" aria-selected="true">
+                                {% trans 'add_bulk_indidv' %}</button>
+                            <button class="nav-link" id="nav-bulk_add_collective-tab" data-bs-toggle="tab" data-bs-target="#nav-bulk_add_collective" type="button" role="tab" aria-controls="nav-bulk-collective" aria-selected="false">
+                                {% trans 'add_collective' %}</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-bulk_add_individual" role="tabpanel" aria-labelledby="nav-bulk-individual">
+
+                            <form method="post" action="{% url 'bulk_add_individual_mission' %}">
+                                {% csrf_token %}
+                                {{ individual_form|crispy }}
+                                {{ mission_bulk_form|crispy }}
+
+                                <button class="btn btn-primary" type="submit">{% trans 'save' %}</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="nav-bulk_add_collective" role="tabpanel" aria-labelledby="nav-bulk-collective">
+
+                            <form method="post" action="{% url 'bulk_add_collective_mission' %}">
+                                {% csrf_token %}
+
+                                {{ collective_form|crispy }}
+                                {{ mission_bulk_form|crispy }}
+                                <button type="submit">{% trans 'save' %}</button>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 

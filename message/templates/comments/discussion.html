@@ -11,10 +11,15 @@
 
 
 <div class="discussion_header">
-{% if object.contente_object.model == Mission %}
-    <h4 class="title_box_discussion">{% trans 'comment_on_answer : ' %} </h4>
-{% else %}
-    <h4 class="title_box_discussion">{% trans 'discussions_board_of : ' %} </h4>
+
+{% if object|return_class_name == 'Team' %}
+        <h4 class="title_box_discussion">{% trans 'discussions_board_of : ' %} </h4>
+
+{% elif object|return_objects_name == 'IndividualMission' or object|return_objects_name == 'CollectiveMission' %}
+        <h4 class="title_box_discussion">{% trans 'comment_on_answer : ' %} </h4>
+
+    {% else %}
+    {% trans 'this_page_should_not_have_discussion' %}
 {% endif %}
     <p class="discussion_object_title">{{object.name.title}}
         {% if not object.discussions %}

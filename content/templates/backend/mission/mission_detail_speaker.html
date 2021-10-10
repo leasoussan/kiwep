@@ -11,18 +11,21 @@
 <div class="mission_detail_container">
 
     <div class="mission_detail_header">
-        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' object.project.id %}">{% trans 'back_to_project_button' %}</a></button>
-        <!-- <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a> -->
+        {#        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' object.project.id %}">{% trans 'back_to_project_button' %}</a></button>#}
+        {#        <!-- <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a> -->#}
 
         {% if object.project.team %}
             <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_team' %}</a></button>
+            {% if object.attributed_to %}
+                <button type="button" class="btn btn-light back_btn"><a href="{% url 'answer_mission_list' %}">{% trans 'back_to_answer' %}</a></button>
+            {% endif %}
         {% endif %}
         <h3 class=""> {{ object.name }}</h3>
 
 
         <div class="speaker_action_btn_group">
             {% if user.is_speaker %}
-                <button type="button" class="btn btn-secondary btn-sm"><a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a></button>
+                <button type="button" class="btn edit_button_team_speaker"><a href="{{ object.get_update_url }}">{% trans 'edit' %}</a></button>
                 <!-- <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a> -->
             {% endif %}
 
@@ -169,15 +172,15 @@
 
                 {% endif %}
 
-            <div class="comments_mission_container">            {% if user.profile == object.project.team.manager %}
+                <div class="comments_mission_container">            {% if user.profile == object.project.team.manager %}
 
-                <div class="discussion_container_mission">
-                    {% include 'comments/discussion.html' %}
+                    <div class="discussion_container_mission">
+                        {% include 'comments/discussion.html' %}
+                    </div>
+
+                {% endif %}
                 </div>
-
-            {% endif %}
             </div>
-</div>
 
         </div>
 
