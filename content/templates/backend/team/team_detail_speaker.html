@@ -7,7 +7,7 @@
 
     <div class="team_detail_header">
         <div class="description_team_project">
-       <h3>   {% trans 'team' %}:   {{ team.name.title }}</h3>
+       <h3>  {{ team.name.title }}</h3>
 
             {% if not team.project %}
                 <button type="button" class="choose_project_button" data-bs-toggle="modal" data-bs-target="#ChoseProject">{% trans 'choose_project_team' %}</button>
@@ -28,9 +28,10 @@
                 </div>
                 <div class="participants_list_icon">
                     {% for participant in team.participants.all %}
+
                         <div class="avatar">
-                        {{ user.profile.profilepic_or_default}}
-                     <a href="{% url 'profile_view' participant.id  %} "  > <img src="{{user.profilepic_or_default}}" class="profile_pic_rounded" height="50px" width="50px"></a>
+                        {{ participant.profilepic_or_default}}
+                     <a href="{% url 'profile_view' participant.id  %} "  > <img src="{{ participant.user.profilepic_or_default }}" class="profile_pic_rounded" height="50px" width="50px"></a>
                         </div>
 
 
@@ -42,8 +43,8 @@
 
         {% if request.user.profile == team.manager %}
             <div class="speaker_action_btn_group">
-                <button type="button" class="btn btn-warning sm-btn"><a href="{% url 'update_team' team.id %}">{% trans 'edit' %}</a></button>
-                <button type="button" class="btn btn-secondary sm-btn"> <a href="{% url 'delete_team' team.id %}" >{% trans 'delete_team' %}</a></button>
+                <button type="button" class="edit_team_button_team_detail"><a href="{% url 'update_team' team.id %}">{% trans 'edit' %}</a></button>
+                <button type="button" class="delete_team_button_team_detail"> <a href="{% url 'delete_team' team.id %}" >{% trans 'delete_team' %}</a></button>
             </div>
         {% endif %}
     </div>
@@ -84,7 +85,7 @@
 
             <div class="team_project_description">
                 <div class="team_project_title">
-                    <h2> {% trans "project_name" %} : <a href="{% url 'project_detail' team.project.id %}" >{{ team.project.name.title }}</a></h2>
+                    <h2>{{ team.project.name.title }}</h2>
                 </div>
                 <p class="project_detail_team_page"> {{ team.project.description }}</p>
 
@@ -94,13 +95,15 @@
                     <span>{% trans 'time_to_complete' %}:</span>
                     {{team.project.time_to_complete}} {% trans 'days' %}
                 </div>
-                <div>
+                <div class="acquired_skills_team_page">
                    <span>{% trans 'acquired_skills' %}<span>
                     {% for skill in project.mission_set.acquired_skills.all %}
 
                         <li class="skill_decoration">{{skill.name}}</li>
                     {% endfor %}
                 </div>
+
+                <a class="edit_project_team_page" href="{% url 'project_detail' team.project.id %}" >{% trans 'edit_project' %}</a>
             </div>
         </div>
 
@@ -108,9 +111,9 @@
                 {% if user.profile in team.participants.all or user.is_speaker  %}
 
                     <div class="mission_list_box_team_detail">
-                        <button type="button" class="btn btn-primary sm_btn" data-bs-toggle="modal" data-bs-target="#add_mission_modal">
-                            {% trans 'add_mission' %}
-                        </button>
+{#                        <button type="button" class="btn btn-primary sm_btn" data-bs-toggle="modal" data-bs-target="#add_mission_modal">#}
+{#                            {% trans 'add_mission' %}#}
+{#                        </button>#}
                         <div class="team_mission_list">
 
                             {% for mission in team.project.mission_set.all.available_mission %}

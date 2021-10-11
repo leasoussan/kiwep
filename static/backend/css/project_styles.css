@@ -23,11 +23,17 @@
     justify-content: flex-start;
 }
 .edit_project_btn{
-    border: black 2px solid;
-    background-color: #8e918e;
+    background-color: #ebd96c;
     font-weight: bold;
     color: whitesmoke;
+    border-radius: 5px;
+    border: yellow 1px solid;
+    width: 120px;
+    height: 40px;
 }
+
+
+
 
 .team_project_button{
     background-color: rgba(59,95,74,0.77);
@@ -49,18 +55,23 @@
     width: 50%;
     min-height: 30vh;
     max-height: 30vh;
-    justify-content: space-between;
-    background-color: #e8ebe9;
+    justify-content: flex-start;
+    background-color: whitesmoke;
+
 }
 
 .project_detail_description{
     background-color: transparent;
-    min-height: 50%;
-
+    height: 10rem;
+    padding-left: 10px;
 }
 
 .detail_time_to_complete{
     background-color: transparent;
+    height: 2rem;
+}
+.detail_time_to_complete span{
+    font-weight: bolder;
 }
 
 .project_learning_info{
@@ -72,6 +83,10 @@
     border: solid whitesmoke 2px;
 }
 
+.acquired_skills_project_detail span{
+    font-weight: bolder;
+
+}
 .speaker_action_btn_group{
     display: flex;
     flex-direction: row;
@@ -87,12 +102,15 @@
 .animation_div{
     display: flex;
     justify-content: flex-start;
-    width: 300px;
-    height: 300px ;
+    min-width: 30vh;
+    max-width: 30vh;
+    min-height: 30vh ;
+    max-height: 30vh ;
 }
 
 .image_animation{
     width: 400px;
+    max-height: 90%;
     align-content: flex-end;
 }
 
@@ -105,15 +123,22 @@
 .project_detail_main_content{
     display: flex;
     flex-direction: column;
-     background-color:#edebdf ;
-
+     background-color:#e9f0e4 ;
     border:#b4bfb6 solid 1px ;
 
 }
 
 .delete_button{
-    border:lightgray 1px solid ;
-    margin: auto;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    border: lightgray solid 1px;
+}
+
+.delete_button:hover {
+    background-color: red;
+
 }
 
 .project_header_section{
@@ -123,10 +148,9 @@
     max-height: 40vh;
     width: 90%;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: auto;
-    margin-top: 1rem;
-    background-color:whitesmoke ;
+    background-color:white ;
     border:#b4bfb6 solid 1px ;
 }
 
@@ -190,8 +214,8 @@ background-color: whitesmoke;
 }
 .project_mission_items .mission_name{
     margin-left: 5px;
-    min-width: 40%;
-    max-width: 40%;
+    min-width: 20%;
+    max-width: 20%;
 
 }
 
@@ -220,6 +244,8 @@ background-color: whitesmoke;
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
+    min-height: 12rem;
+    max-height: 12rem;
     /* width: 100%; */
 }
 

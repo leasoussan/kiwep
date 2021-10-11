@@ -260,10 +260,10 @@ class CreateProfile(View):
 
 class MyProfileView(ProfileCheckPassesTestMixin, View):
     """ This view is to show the User Profile view"""
-    def get(self, request, id):
-        user = MyUser.objects.get(id=id)
-        profile_view = user.profile
-        return render(request, 'accounts/profile/profile.html', {'user':user, 'profile_view': profile_view})
+
+
+    def get(self, request):
+        return render(request, 'accounts/profile/profile.html', {'profile_view': request.user.profile()})
 
 
 
@@ -348,8 +348,8 @@ class ProfileView(ProfileCheckPassesTestMixin, DetailView):
     template_name = "accounts/profile/profile.html"
 
     def get_object(self):
-        profile_pk = self.kwargs.get("pk")
-        return get_object_or_404(MyUser, pk=profile_pk)
+        pk = self.kwargs.get("pk")
+        return get_object_or_404(MyUser, pk=pk)
 
 
 

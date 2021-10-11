@@ -152,28 +152,47 @@ x/* TEAM-LIST */
     margin-top: 1rem;
     overflow: auto;
 }
+.speaker_action_btn_group{
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    min-height: 7rem;
+    max-height: 10rem;
+    justify-content: space-between;
+    padding: 1rem 0rem;
+
+
+}
+
 /* .team_detail_title{
     width: 50%;
     justify-content: flex-start;
 } */
 
-.speaker_action_btn_group{
-    display: flex;
-    flex-direction: column;
-    width: 10%;
-    justify-content: flex-start;
-    padding: 1rem;
-
-
+.delete_team_button_team_detail{
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    border: lightgray solid 1px;
 }
 
+.delete_team_button_team_detail:hover {
+    background-color: red;
+
+}
+.edit_team_button_team_detail{
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #fae66e;
+    border: yellow solid 1px;
+}
 .sm-btn{
     height: 35px;
     line-height: 5px;
 }
-.speaker_action_btn_group > button{
-    margin-left: 20px;
-}
+
 
 .img_team_project{
     max-width: 30%;
@@ -198,6 +217,9 @@ x/* TEAM-LIST */
 }
 
 .project_learning_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 15%;
     padding: 5px;
     color: darkgrey;
@@ -243,6 +265,32 @@ x/* TEAM-LIST */
     max-width: 100%;
 
 }
+
+
+.detail_time_to_complete span{
+    background-color: transparent;
+    font-weight: bolder;
+}
+.acquired_skills_team_page span{
+    font-weight: bold;
+}
+
+.edit_project_team_page{
+    width: 200px;
+    height: 3rem;
+    padding: 5px 1rem;
+    background-color: white;
+    border: 1px #d7dbd7 solid;
+    border-radius: 10px;
+    color: gray;
+    font-size: x-large;
+}
+
+.edit_project_team_page:hover{
+    color: #84a184;
+    font-weight: bolder;
+}
+
 
 .team_mission_detail{
     display: flex;
@@ -316,6 +364,7 @@ x/* TEAM-LIST */
     width: 100%;
     min-height: 80%;
     background-color: white;
+    padding: 10px;
 }
 
 .avatar{
@@ -323,6 +372,7 @@ x/* TEAM-LIST */
     height: 50px;
     border-radius: 50%;
     border: black 1px solid;
+    margin: 5px;
 }
 
 .profile_pic_rounded{
@@ -389,7 +439,7 @@ x/* TEAM-LIST */
     height: 3rem;
     border-radius: 10px;
     margin: 2rem;
-        background-color: #84a184;
+    background-color: #84a184;
 
 }
 
