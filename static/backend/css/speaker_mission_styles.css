@@ -104,19 +104,25 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width: 35%;
+    width: 35%;
     min-height:  70%;
     max-height: 70%;
     padding-top: 1rem;
-    background-color: transparent;
+     align-content: center;
+    padding-left: 1rem;
 }
 
 .mission_learning_info label{
-    background-color: white;
-    font-weight: bolder;
+       display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 25%;
+    max-height: 25%;
     min-width: 90%;
     max-width: 90%;
-    margin-bottom: 1rem;
+    padding-left: 1rem;
+    background-color: white;
+    margin-bottom: 5px;
 }
 .skills_mission{
     display: flex;
@@ -130,13 +136,16 @@
     margin-bottom: 1rem;
 }
 .detail_time_to_complete{
+        display: flex;
+    justify-content: flex-start;
+    align-items: center;
     min-height: 25%;
     max-height: 25%;
     min-width: 90%;
     max-width: 90%;
-    align-content: center;
     padding-left: 1rem;
     background-color: white;
+    x-large
 
 }
 
@@ -378,7 +387,7 @@
 
 .resource_detail_button_control{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 50%;
 }
 
@@ -407,16 +416,6 @@
     min-width: 85%;
     max-width: 80%;
     border: #0b2e13 1px solid;
-}
-.claim_mission_button{
-    background-color: gold;
-
-}
-
-.unclaim_mission_button{
-    background-color:grey;
-    margin-top: 2rem;
-    width: 10rem;
 }
 
 /*------SPEAKER ANSWER BOARD-----*/

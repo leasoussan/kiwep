@@ -64,7 +64,7 @@
 
 .title_discussion_button{
     width: 90%;
-    background-color: #fcc59a;
+    background-color: #90b0aa;
     padding: 5px;
     margin-top: 1rem;
 }
@@ -79,7 +79,7 @@
 .discussion_object_title{
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 20%%;
     min-height: 2rem;
     max-height: 3rem;
     font-size: 20px;
@@ -93,13 +93,12 @@
 
 .title_box_discussion{
     display: flex;
-    background-color: #fce9c7;
-    width: 100%;
+    background-color: lightgray;
+    width: 80%;
     min-height: 2rem;
     padding-top: 3px;
     justify-content: center;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px ;
+    border-radius: 10px;
 }
 
 

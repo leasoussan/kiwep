@@ -18,7 +18,7 @@
             {% with answer=object.answer.all.last %}
                 <label class="last_answer_label">{% trans 'your_last_answer' %}</label>
                 <div class="last_answer_container">
-                    <div>
+                    <div class="action_button_answer_student">
                         {% if answer.response_file %}
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
@@ -29,9 +29,12 @@
                             <p class="file_place_holder">{% trans  'no_file_yet' %}</p>
 
                         {% endif %}
+                    <div class="edit_answer_button">
+                        <a href="{% url 'update_answer' answer.id %}" >{% trans 'edit_answer' %}</a>
+                    </div>
                     </div>
 
-                    <p class="comment_text_last_answer">{{ answer.response_comment }}</p>
+                    <p class="answer_text_last_answer">{{ answer.response_comment }}</p>
 
 
 
@@ -41,25 +44,24 @@
                 {% if answer.status %}
                     <div class="answer_status_view_student">
 
-
                     <p> {% trans 'answer_status' %}: {{ answer.get_status_display }} </p>
-                    {% if answer.grade %}
-                        <p>  {% trans 'and_graded :' %}
-                            {{ answer.grade }}</p>
-
-
-                    {% elif answer.status == 'a' %}
-                        {% if not answer.grade %}
-
-                            <label>{% trans 'mission_not_graded' %}</label>
-                        {% else %}
-                            <label> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>
-                        {% endif %}
-
-                    {% else %}
-
-                        <p> {% trans 'mission_wasnt_accepted_yet' %}</p>
-                    {% endif %}
+{#                    {% if answer.grade %}#}
+{#                        <p>  {% trans 'and_graded :' %}#}
+{#                            {{ answer.grade }}</p>#}
+{##}
+{##}
+{#                    {% elif answer.status == 'a' %}#}
+{#                        {% if not answer.grade %}#}
+{##}
+{#                            <label>{% trans 'mission_not_graded' %}</label>#}
+{#                        {% else %}#}
+{#                            <label> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>#}
+{#                        {% endif %}#}
+{##}
+{#                    {% else %}#}
+{##}
+{#                        <p> {% trans 'mission_wasnt_accepted_yet' %}</p>#}
+{#                    {% endif %}#}
 
 
                 {% endif %}
@@ -73,7 +75,7 @@
         {% else %}
 
             <label> {% trans 'no_answered_yet' %}</label>
-            <form method="POST" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >
+            <form method="POST" class="student_answer_form" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >
                 {% csrf_token %}
 
 

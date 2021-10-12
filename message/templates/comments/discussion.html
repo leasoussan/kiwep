@@ -17,11 +17,7 @@
 
 {% elif object|return_objects_name == 'IndividualMission' or object|return_objects_name == 'CollectiveMission' %}
         <h4 class="title_box_discussion">{% trans 'comment_on_answer : ' %} </h4>
-
-    {% else %}
-    {% trans 'this_page_should_not_have_discussion' %}
-{% endif %}
-    <p class="discussion_object_title">{{object.name.title}}
+    <div class="discussion_object_title">
         {% if not object.discussions %}
             <!-- Button trigger modal -->
             <div class="start_discussion_btn_team_detail_speaker">
@@ -34,7 +30,11 @@
             <button type="button" class="btn btn-lg" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
                 <i class="bi bi-plus-square"></i></button>
         {% endif %}
-    </p>
+    </div>
+    {% else %}
+    {% trans 'this_page_should_not_have_discussion' %}
+{% endif %}
+
 
 
 </div>

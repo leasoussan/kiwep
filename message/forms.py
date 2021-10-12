@@ -43,6 +43,18 @@ class AddAnswerForm(forms.ModelForm):
         }
 
 
+class StudentEditAnswerFrom(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields =['response_comment','response_file',]
+        widgets = {
+            'response_comment': forms.Textarea(attrs={"rows": 1, "cols": 6}),
+
+        }
+
+
+
+
 
 class MissionSpeakerStatusAnswerForm(forms.ModelForm):
 
