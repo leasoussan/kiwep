@@ -45,9 +45,9 @@ class TeamModelQuerySet(models.QuerySet):
 
 
     def get_speaker_teams(self):
-        return self.filter(manager = self.request.user)
-    
-    
+        return self.filter(manager=self.request.user)
+
+
 
 class TeamModelManager(models.Manager):
     """ Managers are a way to get specifi data from a Model with the help of a queryset """

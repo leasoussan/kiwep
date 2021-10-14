@@ -1,0 +1,86 @@
+
+
+
+.profile_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: 100vh;
+}
+
+.profile_main_information_display {
+
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    min-height: 40vh;
+    margin-top: 3rem;
+
+}
+
+.profile_image_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 30%;
+    max-width: 30%;
+    min-height: 400px;
+    max-height: 400px;
+}
+
+.image_size{
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.basic_info_profile_container{
+    display: flex;
+    flex-direction: column;
+    min-width: 60%;
+    max-width: 60%;
+    min-height: 80%;
+    max-height: 80%;
+    margin-left: 1rem;
+
+}
+
+.user_details{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.information_data_display{
+    display: flex;
+    flex-direction: column;
+    max_width: 70%;
+    min-width: 70%;
+    min-height: 100%;
+    max-height: 100%;
+
+}
+.information_label{
+    font-size: larger;
+    font-weight: bolder;
+    min-width: 10rem;
+    min-width: 10rem;
+}
+
+.user_data_profile_display{
+    display: flex;
+
+}
+
+.groups_display{
+    width: 20%;
+}
+.ul_display{
+    display: flex;
+    flex-direction: row;
+
+    min-width: 70%;
+    max-width: 70%;
+    min-height:1rem;
+    max-height: 2rem;
+}

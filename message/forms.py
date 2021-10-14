@@ -8,7 +8,7 @@ class AddDiscussionForm(forms.ModelForm):
     class Meta:
         model = Discussion
         # exclude = ['user']
-        fields = ['title', 'comment_text', 'content_type', 'object_id']
+        fields = ['title', 'content_type', 'object_id']
         widgets={
             'content_type':forms.HiddenInput(),
             'object_id': forms.HiddenInput()

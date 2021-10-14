@@ -1,16 +1,6 @@
 x/* TEAM-LIST */
 
 
-.team_list_header{
-    display: flex;
-    flex-direction: row;
-}
-
-.team_list_header_student{
-    display: flex;
-    margin-left: 95px;
-    margin-bottom: 25px;
-}
 
 .team_list_btn_gp{
     display: flex;
@@ -314,6 +304,9 @@ x/* TEAM-LIST */
     font-weight: bolder;
 }
 
+.team_mission_detail_due_date{
+    width: %;
+}
 .team_extra_information{
     display: flex;
     flex-direction: column;
@@ -376,7 +369,7 @@ x/* TEAM-LIST */
 }
 
 .profile_pic_rounded{
-    width: 95%;
+    max-width: 95%;
     max-height: 95%;
     border-radius: 50%;
 }
@@ -429,20 +422,42 @@ x/* TEAM-LIST */
     height: 3rem;
     border-radius: 10px;
     margin: 2rem;
-    background-color: #84a184;
-
+    background-color: #92b392;
+    border: #92b392 solid 1px;
+    font-weight: bolder;
+    color: white;
 }
 
+.add_team_button h4{
+    color: white;
+    max-width: 90%;
+    font-size: larger;
+}
+
+.add_team_button h4:hover{
+    color: yellow;
+}
 
 .add_bulk_mission{
     width:40%;
     height: 3rem;
     border-radius: 10px;
     margin: 2rem;
-    background-color: #84a184;
-
+    background-color: #92b392;
+    border: #92b392 solid 1px;
+    font-weight: bolder;
 }
 
+
+.add_bulk_mission h4{
+    color: white;
+    max-width: 90%;
+    font-size: larger;
+}
+
+.add_bulk_mission h4:hover{
+    color: yellow;
+}
 
 .mission_list_btn{
     background-color: #1668c2;
@@ -457,6 +472,41 @@ x/* TEAM-LIST */
     font-weight: bolder;
     font-size: larger;
 }
+
+/*______STUDENT TEAM LIST ________*/
+
+.join_team_btn_group{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    min-height: 10vh;
+    max-height: 10vh;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.join_team_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+     width: 50%;
+    height:7rem;
+    background-color: #ebd96c;
+}
+
+.leave_team_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+     width: 50%;
+    height: 7rem;
+    background-color: #f7ebad;
+}
+
+
 
 /*_______STUDENT TEAM DETAIL STYLE_____________________*/
 
@@ -481,14 +531,6 @@ x/* TEAM-LIST */
 
 }
 
-.btn_action{
-    display: flex;
-    background-color: wheat;
-    width: 8rem ;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10%;
-}
 
 .discussion_board_row{
     border: 1px solid maroon;
@@ -505,11 +547,7 @@ x/* TEAM-LIST */
 /* RESPONSIVE */
 @media (max-width: 670px){
 
-    .team_list_header{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
+
 
     .team_detail_header{
         display: flex;
@@ -654,9 +692,5 @@ x/* TEAM-LIST */
 
     }
 
-    .team_list_header_student{
-        display: flex;
-        margin-left: 45px;
-        margin-bottom: 25px;
-    }
+
 }

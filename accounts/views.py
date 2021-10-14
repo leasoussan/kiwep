@@ -277,9 +277,7 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
     """ Edit Profile """
     def get(self, request):
         user_form = UserForm(instance =request.user)
-
         profile_form = get_user_profile_form(request, edit=True)
-
 
         return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'profile_form': profile_form})
 
@@ -293,7 +291,7 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
             print(user_form)
             user_form.save()
             profile_form.save()
-            return redirect('profile',request.user.id)
+            return redirect('profile')
 
         return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'profile_form': profile_form})
 

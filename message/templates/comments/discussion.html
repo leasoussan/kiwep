@@ -12,11 +12,13 @@
 
 <div class="discussion_header">
 
-{% if object|return_class_name == 'Team' %}
-        <h4 class="title_box_discussion">{% trans 'discussions_board_of : ' %} </h4>
+    {% if object|return_class_name == 'Team' %}
+        <h4 class="title_box_discussion">{% trans 'discussions_board: ' %} </h4>
 
-{% elif object|return_objects_name == 'IndividualMission' or object|return_objects_name == 'CollectiveMission' %}
+    {% elif object|return_objects_name == 'IndividualMission' or object|return_objects_name == 'CollectiveMission' %}
+
         <h4 class="title_box_discussion">{% trans 'comment_on_answer : ' %} </h4>
+    {% endif %}
     <div class="discussion_object_title">
         {% if not object.discussions %}
             <!-- Button trigger modal -->
@@ -28,12 +30,9 @@
         {% else %}
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-lg" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
-                <i class="bi bi-plus-square"></i></button>
+                <i class="bi bi-plus-square "></i></button>
         {% endif %}
     </div>
-    {% else %}
-    {% trans 'this_page_should_not_have_discussion' %}
-{% endif %}
 
 
 
@@ -91,9 +90,8 @@
                         <div class="modal-body discussion_window">
                             {% if discussion.replies %}
                                 <div class="card card-body view_comments_list_discussion">
+
                                     {% for comment in discussion.replies.all %}
-
-
                                         {% if comment.user.profile == request.user.profile %}
 
                                             <div class="speech-bubble-left user_comment">

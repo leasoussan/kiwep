@@ -4,9 +4,9 @@
     flex-direction: column;
     justify-content: space-between;
     width:30%;
-    min-height: 10rem;
-    max-height:20rem;
-    margin-top: 10rem;
+    min-height: 5rem;
+    max-height:15rem;
+    margin-top: 2rem;
     padding: 1rem 1rem;
     background-color: whitesmoke;
     border: 2px solid #f59042;

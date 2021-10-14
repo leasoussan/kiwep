@@ -21,7 +21,7 @@
         {% else %}
 
             <div class="speaker_answer_board">
-                <h5><b>{% trans 'my_answer_mission_board_title' %}</b></h5>
+                <h5 class="mission_board_title"> {% trans 'my_answer_mission_board_title' %}</h5>
                 <table class="table">
                     <thead>
                     <tr>
@@ -81,15 +81,14 @@
     {% elif user.is_student %}
 
 
-        <div>
-        <h5 class="card-header">{% trans 'my_mission_board_title' %}</h5>
+        <div class="student_missions_board">
+        <h3 class="mission_board_title">{% trans 'my_mission_board_title' %}</h3>
         <table class="table table-hover">
             <thead>
             <tr>
 
                 <th>{% trans 'mission_name' %}</th>
                 <th>{% trans 'team_name' %}</th>
-                <th>{% trans 'project_name' %}</th>
                 <th>{% trans 'due_date' %}</th>
                 <th>{% trans 'answer' %}</th>
                 <th>{% trans 'status' %}</th>
@@ -101,12 +100,13 @@
             <tbody>
 
             {% for mission in mission_list  %}
-
-                <tr>
+                <tr class="table_row_mission_answer_table">
                     <td>   <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
-                    {#                        <td>   <a href="{% url 'team_detail' mission.project.team_set.id %}">{{ mission.team.name }}</a></td>#}
-                    <td></td>
-                    <td>   <a href="{% url 'project_detail' mission.project.id %}">{{ mission.team.name }}</a></td>
+                    {%  if mission.project.team %}
+                        <td> <a class="team_name_link" href="{% url 'team_detail'  mission.project.team.pk %}">{{ mission.project.team.name }}</a></td>
+                    {% else %}
+                       <td> {% trans 'no_team' %}</td>
+                    {% endif %}
                     <td>{{ mission.due_date }}</td>
                     <td>{% if mission.response_comment or mission.response_file %}
                         <a href="{% url 'individual_mission_detail'  mission.id %}">{% trans 'see_answer' %}</a>
@@ -116,7 +116,7 @@
                     <td>{% if not mission.answer.first %}
                         <lable>{% trans 'mission_not_answered_yet' %}</lable>
                     {% else %}
-                        {{mission.answer.status}}
+                        {{mission.answer.first.get_status_display}}
                     {% endif %}
                     </td>
                     <td><a href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a></td>

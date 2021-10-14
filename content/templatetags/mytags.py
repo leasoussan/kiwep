@@ -29,8 +29,8 @@ def collective_student_missions(mission_qs, team):
     return mission_qs.filter(parent_mission__team=team)
 
 @register.filter
-def student_available_projects(project_qs, student):
-    return project_qs.filter(speaker__group=student.class_level_id)
+def student_available_projects(team_qs, student):
+    return team_qs.filter(manager__group=student.class_level_id)
 
 
 
