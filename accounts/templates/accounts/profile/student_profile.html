@@ -1,73 +1,68 @@
-
 {% load i18n %}
-<body class="app-profile">
+{% load static %}
 
-  <div class="main-wrapper">
-    <div class="profile-header">
-        <div class="row">
-            <div class="col-md-4">
-              <div class="card profile_card">
-                <img src="{{ 'user.profilepic_or_default' }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">{% trans 'about'%}</h5>
-                      <div class="">
+{% block css %}
+    <link href="{% static 'backend/css/profile.css' %}" rel="stylesheet">
+{% endblock css %}
 
-                        <ul class="list-unstyled profile-about-list">
-                            <li><i class="material-icons details_icon">school</i><span>{% trans 'Studing' %} --------- at <a href="#">{{user.profile.institution.name}}</a></span></li>
 
-                            <li><i class="material-icons details_icon">my_location</i><span>{% trans 'from' %} <a href="#">{{user.city}}</a></span></li>
-                            <li>{% trans 'part_of_lable' %} {{ user.profile.class_level.institution.name }} </li>
-                            <li>{% trans 'group_name_lable' %} {{ user.profile.class_level.name }} </li>
-                            <li>
 
-                                <!-- <button class="btn btn-block btn-secondary m-t-lg">Message</button> -->
-                            </li>
-                        </ul>
-                      </div><br>
+<div class="profile_container">
 
-                      <p class="card-text">{%  trans 'what_relevant_info_will_you_find_interesting?' %}</p>
+    <div class="profile_main_information_display">
+        <div class="profile_image_container">
+            <img class="image_size" src="{{user.profilepic_or_default}}" width="300px" height="300px">
+        </div>
 
-                    </div>
-              </div>
-                  <div class="profile-menu">
-                  </div>
-              </div>
-              <div class="col-md-8">
-                  <div class="card profile_card">
-                      <div class="card-body">
-                          <h3 class="card-title">{{user.username}} <span>{{ user.get_user_type }}</span></h3>
-                          <i> Active</i>
-                      </div>
-                      <div>
-                        <button type="button" name="button" class="btn" ><a href="{% url 'edit_profile' %}">{% trans 'edit_profile_button'%}</a></button>
-                  </div>
-                  </div>
-                  <div class="card profile_card">
-                      <div class="card-body">
-                          <h5 class="card-title">{% trans 'contact_info'%}</h5>
-                          <ul class="list-unstyled profile-about-list">
-                              <li><i class="material-icons details_icon">mail_outline</i><span>{{user.email}}</span></li>
-                              <li><i class="material-icons details_icon">home</i><span>{% trans 'live_in' %}<a href="#">{{user.city}}</a></span></li>
-                              <li><i class="material-icons details_icon">local_phone</i><span>{{user.phone_number}}</span></li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="profile-content">
-          <div class="row">
-              <div class="col-md-8">
-                  <div class="card profile_card">
-                      <div class="card-body">
-                          {% trans 'speaker_info_bio'%}
-                      </div>
-                  </div>
+        <div class="basic_info_profile_container">
 
-              </div>
+            <div class="user_details">
 
-          </div>
-      </div>
-  </div>
+                <div class="information_data_display">
+                    <ul class="ul_display"><lable class="information_label">{% trans 'first_name' %}   </lable>
+                        <p class="user_data_profile_display">{{ user.first_name }}</p>
+                    </ul>
 
-</body>
+                    <ul class="ul_display"><lable class="information_label">{% trans 'last_name' %}   </lable>
+                        <p class="user_data_profile_display">{{ user.last_name }} </p>
+                    </ul>
+
+                    <ul class="ul_display"><lable class="information_label">{% trans 'phone_number' %}   </lable>
+                        <p class="user_data_profile_display">{{ user.phone_number  }}</p>
+                    </ul>
+
+                    <ul class="ul_display"><lable class="information_label">{% trans 'city' %}   </lable>
+                        <p class="user_data_profile_display">{{ user.city }}</p>
+                    </ul>
+
+                    <ul class="ul_display"><lable class="information_label">{% trans 'institution' %}   </lable>
+                        <p class="user_data_profile_display">{{ user.profile.class_level.name }}</p>
+                    </ul>
+
+
+                    <ul class="ul_display"><lable class="information_label">{% trans 'status' %}   </lable>
+                            <p class="user_data_profile_display">{{user.get_user_type}}</p>
+
+                    </ul>
+
+                </div>
+
+                <div class="groups_display">
+
+                    <ul class="ul_display"><lable class="information_label">{% trans 'teams' %}   </lable>
+                        <div class="groups_list"  >
+
+                        {% for team in user.profile.team_set.all %}
+                            <p class="group_label">{{ team.name}}</p>
+                        {% endfor %}
+                        </div>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+

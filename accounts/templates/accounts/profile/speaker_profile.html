@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-    <link href="{% static 'backend/css/speaker_profile.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/css/profile.css' %}" rel="stylesheet">
 {% endblock css %}
 
 
@@ -41,14 +41,8 @@
 
 
                     <ul class="ul_display"><lable class="information_label">{% trans 'status' %}   </lable>
-                        {% if user.get_user_type == "is_student" %}
-                            <p class="user_data_profile_display">{% trans 'student' %}</p>
-                        {% elif user.get_user_type == 'is_speaker' %}
-                            <p class="user_data_profile_display">{% trans 'student' %}</p>
-                        {% elif user.get_user_type == 'is_speaker' %}
-                        {%  else %}
-                            <p class="user_data_profile_display">{% trans 'not_registered' %}</p>
-                        {% endif %}
+                            <p class="user_data_profile_display">{{user.get_user_type}}</p>
+
                     </ul>
 
                 </div>
@@ -58,9 +52,10 @@
                     <ul class="ul_display"><lable class="information_label">{% trans 'groups' %}   </lable>
                         <div class="groups_list">
 
-                        {% for group in user.profile.group.all %}
+                          {% for group in user.profile.group.all %}
 
-                            <p class="user_data_profile_display">{{ user.first_name }}</p>
+
+                            <p class="user_data_profile_display">{{ group.name }}</p>
                         {% endfor %}
                         </div>
                     </ul>
