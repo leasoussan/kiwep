@@ -30,14 +30,20 @@ def dashboard(request):
             'add_group_form': InstitutionAddGroupForm(),
             'institution_group': institution_groups,
         }
+        return render(request, "backend/general_dashboard.html", context)
 
-    else:
-
+    elif request.user.is_speaker:
         teams = request.user.profile().team_set.all()
         participants = Student.objects.filter(team__in=teams).distinct()
         context= {
             'add_group_form': InstitutionAddGroupForm(),
             'participants':participants,
+        }
+        return render(request, "backend/general_dashboard.html", context)
+
+    else:
+        context = {
+
         }
         return render(request, "backend/general_dashboard.html", context)
 

@@ -1,0 +1,8 @@
+{% load i18n %}
+
+<h2> {% trans 'welcome_message' %} </h2>
+
+<p>{% trans 'hi' %} {{user.email}}</p>
+
+
+ <a href="http://kiweplive.herokuapp.com{% url 'register' %}?key={{ user.key }}">{% trans 'go_to_register' %}</a>

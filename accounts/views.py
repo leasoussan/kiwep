@@ -155,7 +155,7 @@ class InstitutionInviteView(View):
 
 def get_user_profile_form(request, edit=False):
 
-    """ This function allows is to check which profile is requested, 
+    """ This function allows is to check which profile is requested,
     and to know what page/authorization to direct it to"""
     user = request.user
 
@@ -343,7 +343,7 @@ class MyLoginView(LoginView):
 
 
 class ProfileView(ProfileCheckPassesTestMixin, DetailView):
-    template_name = "accounts/profile/profile.html"
+    template_name = "accounts/profile/profile_visitor.html"
 
     def get_object(self):
         pk = self.kwargs.get("pk")

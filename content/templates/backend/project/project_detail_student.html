@@ -19,7 +19,7 @@
             {% else %}
                 {% if project.team %}
                     {% with team=project.team %}
-                        <a class="btn team_button_from_project" href="{% url 'team_detail' team.id %}">{% trans 'team' %}</a>
+                        <a class="btn team_button_from_project" href="{% url 'team_detail' team.id %}">{% trans 'back_to_team' %}</a>
                     {% endwith %}
                 {% endif %}
             {% endif %}
