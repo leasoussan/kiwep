@@ -61,7 +61,7 @@
                         <div class="skills_mission_header">
                             <h5 class="small_title">{% trans 'acquired_skills' %}</h5>
 
-{#                            <button class="btn plus_button"></button>#}
+                            {#                            <button class="btn plus_button"></button>#}
 
                         </div>
                         <div class="skills_name">
@@ -223,7 +223,8 @@
                         <form method="post" action="{% url 'mission_create_resource' object.id %}">
                             {% csrf_token %}
                             {{ resources_form|crispy }}
-                            <button type="submit">{% trans 'save' %}</button>
+                            <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
+                            </button>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="nav-chose" role="tabpanel" aria-labelledby="nav-chose-tab">
@@ -239,7 +240,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
 
                 </div>
             </div>

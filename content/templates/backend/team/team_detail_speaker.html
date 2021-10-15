@@ -157,36 +157,38 @@
                         {% endfor %}
 
                     </div>
-                    asdfsd
                     <div class="team_mission_log">
+                        <h3>{% trans 'attributed_mission_log' %}</h3>
+                        <div class="mission_list_log_container">
+                            {% for mission in team.project.mission_set.all.get_attributed_mission  %}
 
-                        {% for mission in team.project.mission_set.all.get_attributed_mission  %}
+                                <div class="team_mission_detail">
 
-                            <div class="team_mission_detail">
+                                    <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                    <label class="team_mission_detail_attributed_to">
+                                        {{ mission.individualmission.attributed_to }}
 
-                                <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
-                                <label class="team_mission_detail_attributed_to">
-                                    {{ mission.attributed_to }}
+                                    </label>
+                                    <label class="team_mission_detail_due_date">
+                                        {{mission.due_date}}
+                                    </label>
+                                    <label class="team_mission_detail_m_type">
+                                        {{mission.get_mission_type_display}}
+                                    </label>
 
-                                </label>
-                                <label class="team_mission_detail_due_date">
-                                    {{mission.due_date}}
-                                </label>
-                                <label class="team_mission_detail_m_type">
-                                    {{mission.get_mission_type_display}}
-                                </label>
+                                    <label class="team_detail_mission_answer_status">
+                                        {% if mission.individualmission.attributed_to %}
+                                            {% if mission.answer.status %}
+                                                {{answer.status}}
+                                            {% else %}
+                                                <p>{% trans 'no_answer_yet' %}</p>
+                                            {% endif %}
+                                        {% endif %}
+                                    </label>
 
-                                <label class="team_detail_mission_answer_status">
-
-                                    {% if mission.answer.status %}
-                                        {{answer.status}}
-                                    {% else %}
-                                        <p>{% trans 'no_answer' %}</p>
-                                    {% endif %}
-                                </label>
-
-                            </div>
-                        {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
 
 
@@ -260,8 +262,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
             </div>
         </div>
     </div>
@@ -304,8 +306,8 @@
                             <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' team.project.id %}' >
                                 {% csrf_token %}
                                 {{ collective_form|crispy }}
-                                <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
-                                    {% trans 'save' %}</button>
+                                <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
+                                </button>
                             </form>
                         </div>
                     </div>

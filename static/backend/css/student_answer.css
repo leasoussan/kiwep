@@ -75,6 +75,13 @@
     width: 100px;
     height: 100px;
 }
+
+
+.see_file_modal_button{
+    width: 6rem;
+    height: 7rem;
+    background-color:#d1d9cc ;
+}
 .answer_text_last_answer{
     word-wrap: break-word;
     min-width: 75%;

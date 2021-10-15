@@ -11,6 +11,7 @@ from accounts.managers import MyUserManager
 from todo.models import Task, PersonalTask, TeamTask
 
 from .managers import *
+from accounts.validators import validate_minimum_size
 
 
 class Country(models.Model):
@@ -46,7 +47,7 @@ class MyUser(AbstractUser):
 
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=30, blank = True, null = True)
-    profile_pic = models.ImageField(upload_to='profile/', default='profile/avatar.png', blank = True, null = True)
+    profile_pic = models.ImageField(upload_to='profile/',default='profile/avatar.png',blank=True, null=True,)
     joined_date = models.DateField(auto_now_add=True, blank = True, null = True)
     city = models.ForeignKey(City,on_delete=models.CASCADE, null=True, blank=True)
     language_code = models.CharField(_('language'), choices = settings.LANGUAGES, default = 'en', max_length=50)
@@ -58,10 +59,6 @@ class MyUser(AbstractUser):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
-
-
-
-
 
     def __str__(self):
         return f"{self.id},{str(self.username)}, {self.email}"

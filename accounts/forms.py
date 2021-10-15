@@ -31,9 +31,14 @@ class MyUserCreationForm(UserCreationForm):
         model = MyUser
         fields = ['username', 'email', 'password1', 'password2', 'language_code']
 
-        #   labels ={
+
+
+
+    # labels ={
         #     'language_code': 'Language'
         # }
+
+
 
 
 
@@ -68,6 +73,24 @@ class UserForm(forms.ModelForm):
             'profile_pic',
             'city']
 
+    # def clean(self):
+    #     super(UserForm, self).clean()
+    #     first_name = self.cleaned_data.get('first_name')
+    #     last_name = self.cleaned_data.get('first_name')
+    #     profile_pic = self.cleaned_data.get('profile_pic')
+    #     phone_number =self.cleaned_data.get('phone_number')
+    #     if not first_name:
+    #         raise forms.ValidationError(_('please_enter_first_nsame'), code='invalid')
+    #
+    #     if not last_name:
+    #         raise forms.ValidationError(_('please_enter_last_nsame'), code='invalid')
+    #
+    #     # if phone_number < len(10) or phone_number > len(10):
+    #     #     raise forms.ValidationError(_('invalid_number_message'), code='invalid')
+    #     # if profile_pic:
+    #     #     if profile_pic._height > 1920 or profile_pic._width > 1080:
+    #     #         raise forms.ValidationError("Height or Width is larger than what is allowed")
+    #     return self.cleaned_data
 
 # Form To create Profile
 
@@ -83,6 +106,7 @@ class StudentProfileCreationForm(forms.ModelForm):
         # input_formats=('%d-%m-%Y',),
     )
     join_code = forms.CharField(max_length=10, required=False)
+
 
 class SpeakerProfileCreationForm(forms.ModelForm):
     class Meta:

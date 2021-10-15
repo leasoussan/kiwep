@@ -4,6 +4,7 @@
 
 {% block css %}
     <link href="{% static 'backend/css/student_answer.css' %}" rel="stylesheet" >
+    <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet" >
 
 {% endblock css %}
 
@@ -21,7 +22,7 @@
                     <div class="action_button_answer_student">
                         {% if answer.response_file %}
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
+                            <button type="button" class="btn see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
                                 {% trans 'sent_file' %} </button>
 {#                            <img  class="response_file_img" src="{{ answer.response_file.url }}" width="70px" height="90px">#}
 
@@ -82,8 +83,8 @@
                 {{ object.answer_form|crispy }}
 
 
-                <button class="btn" type="submit" name="action">{% trans 'save_answer' %}
-                </button>
+<button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save_answer' %}</p>
+                    </button>                </button>
             </form>
         {% endif %}
         </div>
@@ -102,7 +103,7 @@
             <div class="modal-content view_document_modal_content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">her</button>
                 </div>
                 <div class="modal-body">
                     {% if answer.response_file %}

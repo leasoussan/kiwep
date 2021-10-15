@@ -7,7 +7,7 @@
         <a class="btn add_team_button" href="{% url 'create_team' %}">
             <h4>{% trans 'create_a_new_team' %}</h4></a>
         <button class="add_bulk_mission" data-bs-toggle="modal" data-bs-target="#add_bulk_mission">
-           <h4> {% trans 'add_mission' %} </h4>
+            <h4> {% trans 'add_mission' %} </h4>
         </button>
     </div>
 
@@ -90,8 +90,8 @@
                             {{ individual_form|crispy }}
                             {{ mission_bulk_form|crispy }}
 
-                            <button class="btn btn-primary" type="submit">{% trans 'save' %}</button>
-                        </form>
+                            <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
+                            </button>                        </form>
                     </div>
                     <div class="tab-pane fade" id="nav-bulk_add_collective" role="tabpanel" aria-labelledby="nav-bulk-collective">
 
@@ -100,8 +100,8 @@
 
                             {{ collective_form|crispy }}
                             {{ mission_bulk_form|crispy }}
-                            <button type="submit">{% trans 'save' %}</button>
-
+                            <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
+                            </button>
                         </form>
 
                     </div>

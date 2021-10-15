@@ -7,6 +7,8 @@
 
 {% block css %}
     <link href="{% static 'backend/css/discussion.css' %}" rel="stylesheet">
+        <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet" >
+
 {% endblock css %}
 
 
@@ -57,7 +59,7 @@
                     {% csrf_token %}
                     {{ object.discussion_form|crispy }}
 
-                    <button class="btn waves-effect waves-light secondary_button" type="submit" name="action">{% trans 'start_discussion' %}
+                    <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'start_discussion' %}</p>
                     </button>
                 </form>
             </div>
@@ -118,7 +120,7 @@
                                         {% csrf_token %}
                                         {{ discussion.comment_form|crispy }}
 
-                                        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">send</i></button>
+                                        <button type="submit" class="btn modal_save_button"><i class="material-icons">send</i></button>
 
                                     </form>
 

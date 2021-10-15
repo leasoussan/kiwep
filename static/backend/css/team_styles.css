@@ -240,8 +240,8 @@ x/* TEAM-LIST */
     flex-direction: column;
     min-width: 65%;
     max-width: 65%;
-    min-height: 90%;
-    max-height: 90%;
+    min-height: 30%;
+    max-height: 50%;
 }
 
 .team_mission_list{
@@ -249,13 +249,37 @@ x/* TEAM-LIST */
     flex-direction: column;
     margin-top: 2rem;
     overflow: auto;
-    min-height: 60%;
-    max-height: 70%;
+    min-height: 30%;
+    max-height: 50%;
     min-width: 100%;
     max-width: 100%;
 
 }
 
+
+.team_mission_log{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 10%;
+    max-height: 30%;
+    /*padding-left: 2rem;*/
+}
+
+.mission_list_log_container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    overflow: auto;
+    min-height: 90%;
+    max-height: 90%;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.team_mission_log h3{
+    margin-left: 30%;
+}
 
 .detail_time_to_complete span{
     background-color: transparent;
@@ -299,13 +323,12 @@ x/* TEAM-LIST */
     max-width: 60%;
     flex-wrap: wrap;
     word-break: normal;
-    word-break: normal;
     font-size: larger;
     font-weight: bolder;
 }
 
 .team_mission_detail_due_date{
-    width: %;
+
 }
 .team_extra_information{
     display: flex;
@@ -473,6 +496,31 @@ x/* TEAM-LIST */
     font-size: larger;
 }
 
+
+.team_mission_log{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 10%;
+    max-height: 30%;
+    /*padding-left: 2rem;*/
+}
+
+.mission_list_log_container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    overflow: auto;
+    min-height: 90%;
+    max-height: 90%;
+    min-width: 100%;
+    max-width: 100%;
+    border: yellow solid 2px;
+}
+
+.team_mission_log h3{
+    margin-left: 30%;
+}
 /*______STUDENT TEAM LIST ________*/
 
 .join_team_btn_group{
@@ -523,13 +571,12 @@ x/* TEAM-LIST */
 }
 
 .student_mission_table{
-
     min-width: 80%;
     max-width: 80%;
     justify-content: center;
     margin: auto;
 
-}
+}!important
 
 
 .discussion_board_row{

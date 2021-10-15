@@ -89,7 +89,8 @@
 
 .see_file_modal_button{
     width: 7rem;
-    background-color: #6e8066;
+    height: 10rem;
+    background-color:lightsalmon ;
 }
 /*student*/
 .last_answer_container{

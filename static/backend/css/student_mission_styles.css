@@ -63,6 +63,7 @@ button .edit_button{
     justify-content: space-between;
     min-height: 60%;
     max-height: 60%;
+    padding-left: 5px;
 
 }
 
@@ -76,6 +77,11 @@ button .edit_button{
     justify-content: start;
 }
 
+.edit_answer_button{
+    background-color: #ebd96c;
+    width: 6rem;
+    margin-top: 1rem;
+}
 .mission_detail_details{
     display: flex;
     flex-direction: column;
@@ -125,8 +131,8 @@ button .edit_button{
 .skills_mission{
     display: flex;
     flex-direction: column;
-    min-height: 90%;
-    max-height: 90%;
+    min-height:80%;
+    max-height: 80%;
     min-width: 90%;
     max-width: 90%;
     padding: 1rem;
@@ -412,7 +418,7 @@ button .edit_button{
 }
 
 .unclaim_mission_button{
-    background-color:lightsalmon;
+    background-color:lightgray;
     /*margin-top: 3px;*/
     width: 12rem;
     color: whitesmoke;

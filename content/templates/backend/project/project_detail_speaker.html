@@ -193,16 +193,16 @@
                         <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' project.id %}' >
                             {% csrf_token %}
                             {{ individual_form|crispy }}
-                            <button class="btn btn-primary" type="submit" name="action">
-                                {% trans 'save'%}</button>
+                                    <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
+                            </button>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="collective_mission" role="tabpanel" aria-labelledby="collective_mission-tab">
                         <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' project.id %}' >
                             {% csrf_token %}
                             {{ collective_form|crispy }}
-                            <button class="btn btn-primary" type="submit" name="action">
-                                {% trans 'save' %}</button>
+                                      <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
+                            </button>
                         </form>
                     </div>
                     </ul>
@@ -245,7 +245,8 @@
                         <form method="post" action="{% url 'project_create_resource' object.id %}">
                             {% csrf_token %}
                             {{ resources_form|crispy }}
-                            <button type="submit">{% trans 'save' %}</button>
+                                   <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
+                            </button>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="nav-chose" role="tabpanel" aria-labelledby="nav-chose-tab">
@@ -261,7 +262,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
 
                 </div>
             </div>

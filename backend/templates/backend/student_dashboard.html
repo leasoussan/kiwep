@@ -6,42 +6,65 @@
 
 <div class="dashboard_container">
 
-    <div class="dashboard_top_container">
+    <div class="team_list_spaker_dashboard">
+        {#        <ul class="dashboard_navigation_link_item">#}
+        {#            <div class="dashboard_item_title"><h3 class="dashboard_speaker_information_header">   {% trans 'you-currently_have' %}#}
+        {#                <label class="number_count_info"> {{ user.profile.team_set.all.count }}</label>#}
+        {#                <a class="nav-link" href="{% url 'team_list' %}">{% trans 'team' %}</a></h3></div>#}
+        {#        </ul>#}
+    </div>
 
-        <div class="dashboard_logo">
-            LOGO
-        </div>
+    <div class="dashboard_intro_container">
+
+        {#        <div class="dashboard_logo">#}
+        {#            <img src="{% static 'backend/images/kiwep/logo.png' %}">#}
+        {#        </div>#}
+
 
         <div class="video_dashboard_speaker">
 
 
-            <video class="video_speaker" controls >
+            <video class="video_speaker" controls>
                 <source src="{% static 'backend/images/video/en_speaker_intro.mp4' %}" type="video/mp4">
                 <b>{{video.title}}</b>
             </video>
         </div>
 
+        <div class="feedback_container">
+            <h3>{% trans 'feeb_back_request' %}</h3>
+            <button class="feedback_button">
+                <a href="https://www.docs.google.com/forms/d/e/1FAIpQLSeadXbweLfXs2nAeGPbdlWZr5UsjJqWZOk8uYOBGNURiDU2TQ/viewform">  {% trans 'feedback' %}</a>
+            </button>
+        </div>
     </div>
 
 
 
-    <div class="dashboard_extra_navigation_link">
-        <ul class="dashboard_navigation_link_item">
-         <h3 class="dashboard_speaker_information_header">   {% trans 'you-currently_have' %}
-             {% if user.profile.team_set.exists %}
-           <label class="number_count_info"> {{ user.profile.team_set.all.count }}</label>
-            <a class="nav-link" href="{% url 'team_list' %}">{% trans 'team' %}</a></h3>
-            {% endif %}
-        </ul>
 
-        <ul class="dashboard_navigation_link_item">
-            To Be Defined
-        </ul>
-
-        <ul class="dashboard_navigation_link_item">
-     To Be Defined
-    </ul>
-
-
-    </div>
+    {#    <div class="dashboard_extra_navigation_link">#}
+    {##}
+    {##}
+    {#        <ul class="dashboard_navigation_link_item">#}
+    {#            <div class="students_dashboard_title">{% trans 'my_students' %}</div>#}
+    {#            <div class="participants_list_icon">#}
+    {##}
+    {#                {% for participant in participants %}#}
+    {#                    {{ participant.user.id }}#}
+    {#                    <img class="avatar" src="{{ user.profile.profilepic_or_default }}" alt="">#}
+    {##}
+    {##}
+    {#                {% endfor %}#}
+    {##}
+    {##}
+    {#            </div>#}
+    {##}
+    {#        </ul>#}
+    {##}
+    {#        <ul class="dashboard_navigation_link_item">#}
+    {#            <div class="dashboard_item_title">BlaBla</div>#}
+    {#        </ul>#}
+    {##}
+    {##}
+    {#    </div>#}
+    {#</div>#}
 </div>

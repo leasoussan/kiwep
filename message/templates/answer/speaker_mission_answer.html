@@ -4,6 +4,8 @@
 {% block css %}
     <link href="{% static 'backend/css/speaker_answer.css' %}" rel="stylesheet" >
     <link href="{% static 'backend/css/discussion.css' %}" rel="stylesheet" >
+        <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet" >
+
 {% endblock css %}
 
 
@@ -34,7 +36,7 @@
                             <p>{% trans 'no_file_was_submited' %}</p>
                         {% else %}
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
+                            <button type="button" class="btn see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
                                 {% trans 'sent_file' %} </button>
 
 
