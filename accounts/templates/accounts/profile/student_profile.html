@@ -41,7 +41,7 @@
 
 
                     <ul class="ul_display"><lable class="information_label">{% trans 'status' %}   </lable>
-                            <p class="user_data_profile_display">{{user.get_user_type}}</p>
+                        <p class="user_data_profile_display">{{user.get_user_type}}</p>
 
                     </ul>
 
@@ -51,10 +51,11 @@
 
                     <ul class="ul_display"><lable class="information_label">{% trans 'teams' %}   </lable>
                         <div class="groups_list"  >
-
-                        {% for team in user.profile.team_set.all %}
-                            <p class="group_label">{{ team.name}}</p>
-                        {% endfor %}
+                            {% if user.profile.team.exists  %}
+                                {% for team in user.profile.team_set.all %}
+                                    <p class="group_label">{{ team.name}}</p>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </ul>
 

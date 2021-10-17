@@ -106,10 +106,12 @@ def chose_resource_to_mission(request):
 class ResourceUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
     model = Resource
     template_name = 'crud/update.html'
-    fields = ['name', 
-            'link',
-            'text',
-            'image']
+    fields = ['name',
+              'link',
+              'text',
+              'image',
+              'file_rsc',
+              ]
 
 
     def get_object(self):

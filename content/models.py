@@ -28,6 +28,8 @@ from message.models import DiscussionModel,AnswerModel
 
 
 
+# class VideoEmbid
+
 class Resource(DiscussionModel):
     name = models.CharField(max_length=200)
     link = models.URLField(max_length=200,  blank=True, null =True)
@@ -47,9 +49,14 @@ class Resource(DiscussionModel):
         return reverse("project_detail", kwargs={"pk":self.pk})
 
 
-    def get_resourceImg_or_default(self, default_path= 'resources/default.png'):
+    def get_resourceImg_or_default(self, default_path= 'static/backend/images/kiwep/resource.jpg'):
         if self.image:
             return self.image.url
+        return default_path
+
+    def get_resourceFILEor_default(self, default_path='static/backend/images/kiwep/resource.jpg'):
+        if self.file_rsc:
+            return self.file_rsc.url
         return default_path
 
 
@@ -261,7 +268,7 @@ class Team(DiscussionModel):
     name = models.CharField(max_length=200)
     project = models.OneToOneField(Project, on_delete=models.CASCADE, null=True)
     start_date = models.DateField()
-    group_Institution = models.ForeignKey(Group, on_delete=models.CASCADE)
+    group_institution = models.ForeignKey(Group, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Student, blank = True )
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE)
     project_completed = models.BooleanField(null=True, blank = True)

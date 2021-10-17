@@ -33,15 +33,16 @@ def institution_welcome_email(user):
 
 
 
-def send_institution_signup_invite(user):
+def send_institution_signup_invite(institution_invite):
     wlcm_msg = _('institution_invitation_ registration')
     kiwep = _('to_kiwep')
-    subject = f' {wlcm_msg} {user} {kiwep} '
+    subject = f' {wlcm_msg} {institution_invite.email} {kiwep} '
     message = _('registration_invitation_email_subject')
-    translation.activate(user.language_code)
-    html_message = render_to_string('emails/institution_invite.html', {'user': user})
+    # translation.activate(email.language_code)
+    html_message = render_to_string('emails/institution_email_invite.html', {'institution_invite': institution_invite})
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = [user.email, ]
+    recipient_list = [institution_invite.email, ]
+    # print('institution-invite' + f'{institution_invite.key}')
 
     send_mail(subject, message, email_from, recipient_list, fail_silently=False, html_message=html_message)
 
@@ -55,7 +56,7 @@ def send_speaker_signup_invit(speaker_invite):
     html_message = render_to_string('emails/speaker_invite.html', {'speaker_invite': speaker_invite})
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [speaker_invite.email ]
-    print(reverse_lazy('register') + f'key={speaker_invite.key}')
+    # print(reverse_lazy('register') + f'key={speaker_invite.key}')
     send_mail(subject, message, email_from, recipient_list, fail_silently=False, html_message=html_message)
 
 

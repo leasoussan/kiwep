@@ -30,9 +30,9 @@
             </div>
         </div>
         <div class="join_team_btn_group">
-            {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+            {% if team.group_institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
                 <a class="btn join_team_button" href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a>
-            {% elif team.group_Institution == request.user.profile.class_level and request.user.profile in team.participants.all %}
+            {% elif team.group_institution == request.user.profile.class_level and request.user.profile in team.participants.all %}
                 <a class="btn leave_team_button" href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a>
             {% endif %}
         </div>

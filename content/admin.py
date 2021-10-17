@@ -102,7 +102,7 @@ class CollectiveMissionAdmin(admin.ModelAdmin):
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ("name", "group_Institution")
+    list_display = ("name", "group_institution")
 
 
 

@@ -24,7 +24,8 @@ User = get_user_model()
 @user_passes_test(check_profile, login_url='create_profile')
 def dashboard(request):
     if request.user.is_representative:
-        institution_groups = Group.objects.all()
+
+        institution_groups = request.user.profile().institution.group_set.all()
         context = {
             'speaker_invite_form': SpeakerInviteForm(),
             'add_group_form': InstitutionAddGroupForm(),

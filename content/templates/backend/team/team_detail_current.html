@@ -37,10 +37,10 @@
                         <a href="{% url 'delete_team' team.id %}" > <i class="small material-icons delete">delete</i>{% trans 'delete_team' %}</a>
 
                     </div>
-                {% elif team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+                {% elif team.group_institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
                     <h3>{% trans 'current_amount_participants_lable' %}: {{team.participants.count}}</h3>
                     <a class="waves-effect waves-light btn" href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a>
-                {% elif team.group_Institution == request.user.profile.class_level and request.user.profile in team.participants.all %}
+                {% elif team.group_institution == request.user.profile.class_level and request.user.profile in team.participants.all %}
                     <a class="btn" href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a>
                 {% endif %}
             </div>
@@ -477,7 +477,7 @@
 {#                        {%  endif %}#}
 {#                    </h3>#}
 {#                    <div>#}
-{#                            {% if team.group_Institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}#}
+{#                            {% if team.group_institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}#}
 {#                                <h3>{% trans 'current_amount_participants_lable' %}: {{team.participants.count}}</h3>#}
 {##}
 {#                            {% else %}#}

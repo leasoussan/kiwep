@@ -100,6 +100,7 @@
             <tbody>
 
             {% for mission in mission_list  %}
+                {% if missions.exists %}
                 <tr class="table_row_mission_answer_table">
                     <td>   <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
                     {%  if mission.project.team %}
@@ -121,7 +122,9 @@
                     </td>
                     <td><a href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a></td>
                 </tr>
+                  {% endif %}
             {% endfor %}
+
             </tbody>
         </table>
 

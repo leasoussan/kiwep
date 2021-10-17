@@ -6,7 +6,7 @@ from django.forms import inlineformset_factory
 
 from django.http import Http404
 from django.utils.translation import ugettext as _
-from accounts.models import Student
+from accounts.models import Student, Speaker
 from backend.models import Field
 from .models import Project, Team, Resource, Mission, CollectiveMission, IndividualMission, IndividualCollectiveMission
 
@@ -31,7 +31,7 @@ class TeamAddForm(ModelForm):
         fields = [
             'name',
             'start_date',
-            'group_Institution',
+            'group_institution',
             'participants',
         ]
     #
@@ -40,7 +40,12 @@ class TeamAddForm(ModelForm):
             format='%d/%m/%Y',
             attrs={'type': 'date'}),
     )
+    #
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['group_institution'].queryset = kwargs[''].group_institution.student_set.all()
 
+            # participants
 
 
 
@@ -64,7 +69,7 @@ class AddMemberTeamForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['participants'].queryset = kwargs['instance'].group_Institution.student_set.all()
+        self.fields['participants'].queryset = kwargs['instance'].group_institution.student_set.all()
 
 
 
@@ -84,6 +89,7 @@ class UpdateTeamForm(ModelForm):
         self.fields['project'].queryset = kwargs['instance'].manager.project_set.available_projects()
         if kwargs['instance'].project:
             self.fields['project'].queryset |= Project.objects.filter(id=kwargs['instance'].project.id)
+
 
 class ProjectTeamAddForm(ModelForm):
     class Meta:
@@ -135,10 +141,11 @@ class BulkAddMissionForm(forms.Form):
     #     ('i', _('individual_mission')),
     #     ('c', _('collective_mission')),
     # ]
-    projects=forms.ModelMultipleChoiceField(queryset=Project.objects.all(), widget=forms.CheckboxSelectMultiple)
+    projects=forms.ModelMultipleChoiceField(queryset=Project.objects.none(), widget=forms.CheckboxSelectMultiple)
     # mission_type = forms.Select(choices=MISSION_TYPE)
 
-    def __init__(self, projects=None, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        projects=kwargs.pop('projects')
         super(BulkAddMissionForm, self).__init__(*args, **kwargs)
         if projects:
             self.fields['projects'].queryset = projects

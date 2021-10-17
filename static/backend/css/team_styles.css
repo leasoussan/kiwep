@@ -567,7 +567,13 @@ x/* TEAM-LIST */
 .student_team_list_container{
     display: flex;
     flex-direction: column;
-    min-width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 80%;
+    max-width: 80%;
+    min-height: 40vh;
+    max-height: 80vh;
+    margin: auto;
 }
 
 .student_mission_table{

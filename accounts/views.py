@@ -399,6 +399,6 @@ class SpeakerInviteView(View):
                 speaker_invite, created = SpeakerInvite.objects.get_or_create(user=request.user, email=speaker_invite.email, institution=request.user.profile().institution)
                 send_speaker_signup_invit(speaker_invite)
                 print(speaker_invite.institution)
-            return redirect('speaker_invite')
+            return redirect('dashboard')
 
         return redirect('speaker_invite')

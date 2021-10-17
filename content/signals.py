@@ -1,7 +1,7 @@
 from django.dispatch import receiver
 from django.db.models.signals import post_save, m2m_changed, pre_delete
 from .models import *
-
+from content.signals import send_institution_signup_invite
 
 @receiver(pre_save, sender = 'content.CollectiveMission')
 

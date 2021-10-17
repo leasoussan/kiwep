@@ -14,12 +14,16 @@
         {#        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' object.project.id %}">{% trans 'back_to_project_button' %}</a></button>#}
         {#        <!-- <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a> -->#}
 
-        {% if object.project.team %}
-            <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_team' %}</a></button>
-            {% if object.attributed_to %}
-                <button type="button" class="btn btn-light back_btn"><a href="{% url 'answer_mission_list' %}">{% trans 'back_to_answer' %}</a></button>
-            {% endif %}
-        {% endif %}
+{#        {% if object.project.team %}#}
+{#            <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_team' %}</a></button>#}
+{#            {% if object.attributed_to %}#}
+{#                <button type="button" class="btn btn-light back_btn"><a href="{% url 'answer_mission_list' %}">{% trans 'back_to_answer' %}</a></button>#}
+{#            {% endif %}#}
+{#        {% else %}#}
+{##}
+{##}
+{#    {% endif %}#}
+
         <h3 class=""> {{ object.name }}</h3>
 
 

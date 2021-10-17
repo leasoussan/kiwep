@@ -34,14 +34,18 @@ class TeamListView(ProfileCheckPassesTestMixin, ListView):
 
 
     def get_queryset(self):
+        # return self.request.user.profile().team_set.filter(project__isnull=False, project__completed=False)
+
+        # to get her all- we want only the active ones
         return self.request.user.profile().team_set.all()
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         if self.request.user.is_speaker:
             context['project_form'] = ProjectAddForm()
-            context['mission_bulk_form'] = BulkAddMissionForm(projects=self.request.user.profile().project_set.personal_projects())
+            context['mission_bulk_form'] = BulkAddMissionForm(projects=self.request.user.profile().project_set.all())
             context['individual_form'] = IndividualMissionAddForm()
             context['collective_form'] = CollectiveMissionAddForm()
             context['project_form'] = ProjectAddForm()
@@ -91,7 +95,10 @@ class TeamCreateView(SpeakerStatuPassesTestMixin,  CreateView):
     form_class = TeamAddForm
     template_name = 'crud/create.html'
 
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'].fields['group_institution'].queryset = self.request.user.profile().group.all()
+        return context
 
     def form_valid(self, form):
         self.object = form.save(commit=False)

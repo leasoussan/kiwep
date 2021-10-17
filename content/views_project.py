@@ -100,7 +100,7 @@ class StudentAvailableTeamList(ProfileCheckPassesTestMixin, ListView):
 
     def get_queryset(self):
         if self.request.user.is_student:
-            return self.request.user.profile().group_Institution_set.team_set.all()
+            return self.request.user.profile().group_institution_set.team_set.all()
 
 
 # ----------------PROJECT------Detail_View/

@@ -330,7 +330,7 @@ def pop_team(n):
         name = "team {}"
         project = random.choice(Project.objects.all())
         start_date = ('2021-09-09')
-        group_Institution = random.choice(Group.objects.all())
+        group_institution = random.choice(Group.objects.all())
         final_project = 'file to upload per participant'
         manager = random.choice(Speaker.objects.all())
         stage =  random.choice(STAGE_CHOICE)
@@ -338,7 +338,7 @@ def pop_team(n):
             name=name,
             project=project,
             start_date=start_date,
-            group_Institution=group_Institution,
+            group_institution=group_institution,
             manager=manager,
         )
         t.save()
