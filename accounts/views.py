@@ -143,7 +143,7 @@ class InstitutionInviteView(View):
             user.save()
             user = authenticate(username=username, password=password, usertype=usertype)
             login(request, user)
-            send_welcome_signup(user)
+            institution_welcome_email(user)
 
             return redirect(reverse('create_profile'), form.cleaned_data['usertype'])
 
