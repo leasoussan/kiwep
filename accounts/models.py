@@ -195,7 +195,7 @@ class InstitutionInvite(PlatformInvite):
 
 
 @receiver(post_save, sender='accounts.InstitutionInvite')
-def send_institution_invite_email_receiver(sender, instance,created, *args, **kwargs):
+def send_institution_invite_email_receiver(sender, instance, created, *args, **kwargs):
     """ Send email to Institution when we create one
     """
     if created:
