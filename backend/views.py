@@ -38,7 +38,7 @@ def dashboard(request):
             'add_group_form': InstitutionAddGroupForm(),
             'participants':participants,
         }
-        return render(request, "backend/general_dashboard.html", context)
+    return render(request, "backend/general_dashboard.html", context)
 
 
 
