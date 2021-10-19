@@ -3,14 +3,18 @@ import secrets
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
 from django.urls import reverse
 import datetime
 from django.utils.translation import ugettext_lazy as _
 
 from accounts.managers import MyUserManager
 from todo.models import Task, PersonalTask, TeamTask
+from .mailer import send_institution_signup_invite
 
 from .managers import *
+from accounts.validators import validate_minimum_size
 
 
 class Country(models.Model):
@@ -46,7 +50,7 @@ class MyUser(AbstractUser):
 
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=30, blank = True, null = True)
-    profile_pic = models.ImageField(upload_to='profile', default='profile/avatar.png', blank = True, null = True)
+    profile_pic = models.ImageField(upload_to='profile/',default='profile/avatar.png',blank=True, null=True,)
     joined_date = models.DateField(auto_now_add=True, blank = True, null = True)
     city = models.ForeignKey(City,on_delete=models.CASCADE, null=True, blank=True)
     language_code = models.CharField(_('language'), choices = settings.LANGUAGES, default = 'en', max_length=50)
@@ -58,10 +62,6 @@ class MyUser(AbstractUser):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
-
-
-
-
 
     def __str__(self):
         return f"{self.id},{str(self.username)}, {self.email}"
@@ -170,6 +170,8 @@ def random_token():
     
     
 
+
+
 class PlatformInvite(models.Model):
     key = models.CharField(max_length=200, default=random_token, unique=True)
     used = models.BooleanField(default=False)
@@ -190,6 +192,19 @@ class InstitutionInvite(PlatformInvite):
     def __str__(self):
         inst = _("institution_invite_for")
         return f'{inst} {self.email}'
+
+
+@receiver(post_save, sender='accounts.InstitutionInvite')
+def send_institution_invite_email_receiver(sender, instance, created, *args, **kwargs):
+    """ Send email to Institution when we create one
+    """
+    if created:
+        institution_invite=instance
+        send_institution_signup_invite(institution_invite)
+        print('emailsend')
+        print('instance', instance)
+
+
 
 
 class SpeakerInvite(PlatformInvite):

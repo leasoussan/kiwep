@@ -2,7 +2,8 @@ from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team, CollectiveMission, Project, Mission, IndividualMission
 from django.forms import ModelForm
-from .forms import TeamAddForm, AddMemberTeamForm, ProjectAddForm, UpdateTeamForm, ProjectTeamAddForm, IndividualMissionAddForm, CollectiveMissionAddForm
+from .forms import TeamAddForm, AddMemberTeamForm, ProjectAddForm, UpdateTeamForm, ProjectTeamAddForm, \
+    IndividualMissionAddForm, CollectiveMissionAddForm, BulkAddMissionForm
 
 from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView
@@ -11,11 +12,11 @@ from django.contrib import messages
 
 
 from django.views.generic import (
-    CreateView, 
-    DetailView, 
-    ListView, 
-    DetailView, 
-    UpdateView, 
+    CreateView,
+    DetailView,
+    ListView,
+    DetailView,
+    UpdateView,
     DeleteView,
     View,
 )
@@ -33,12 +34,20 @@ class TeamListView(ProfileCheckPassesTestMixin, ListView):
 
 
     def get_queryset(self):
+        # return self.request.user.profile().team_set.filter(project__isnull=False, project__completed=False)
+
+        # to get her all- we want only the active ones
         return self.request.user.profile().team_set.all()
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         if self.request.user.is_speaker:
+            context['project_form'] = ProjectAddForm()
+            context['mission_bulk_form'] = BulkAddMissionForm(projects=self.request.user.profile().project_set.all())
+            context['individual_form'] = IndividualMissionAddForm()
+            context['collective_form'] = CollectiveMissionAddForm()
             context['project_form'] = ProjectAddForm()
             context['templates'] = Project.objects.personal_templates()
             context['old_projects'] = self.request.user.profile().project_set.all()
@@ -82,11 +91,14 @@ class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
 
 class TeamCreateView(SpeakerStatuPassesTestMixin,  CreateView):
     """Create a Team View """
-    model = Team 
+    model = Team
     form_class = TeamAddForm
     template_name = 'crud/create.html'
-    
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'].fields['group_institution'].queryset = self.request.user.profile().group.all()
+        return context
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -95,7 +107,7 @@ class TeamCreateView(SpeakerStatuPassesTestMixin,  CreateView):
         self.object.save()
         return super().form_valid(form)
 
-    
+
     def get_success_url(self):
         return reverse_lazy('team_detail', kwargs={'pk':self.object.id})
 
@@ -223,7 +235,7 @@ class JoinTeamView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         team = get_object_or_404(Team, pk=kwargs['pk'])
         team.participants.add(self.request.user.profile())
-        
+
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -238,7 +250,7 @@ class LeaveTeamView(LoginRequiredMixin, RedirectView):
 
 
 class AddTeamMemberView(LoginRequiredMixin, UpdateView):
-    model = Team 
+    model = Team
     template_name = 'crud/update.html'
     success_url = ('team_detail')
     form_class = AddMemberTeamForm

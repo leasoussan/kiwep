@@ -16,11 +16,11 @@
 
 
     <div class="create_form_container">
-
+        {{ context}}
 
         <div class="form_container">
 
-            {% if model %}
+            {% if object.model %}
 
                 <h2>{% trans 'create_title' %} {{model|return_class_name}}</h2>
             {% endif %}
@@ -46,15 +46,17 @@
 
                 <!-- </table> -->
                 <div id="button_left">
-                    <button class="btn btn-primary" type="submit" value="Save">{% trans 'save' %}</button>
-                </div>
+                    <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
+                    </button>                </div>
             </form>
 
         </div>
 
 
         <div class="create_page_extra">
-            {% if object == Project %}
+        {% if model %}
+        {{ model|return_class_name }}
+            {% if model|return_class_name == Team %}
 
                 <img class="image_placeholder" src="{% static 'images/kiwep/image_holder.png' %}">
 
@@ -65,7 +67,7 @@
                 <img class="image_placeholder" src="{% static 'images/kiwep/image_holder.png' %}">
 
             {% endif %}
-
+{% endif %}
 
 
         </div>

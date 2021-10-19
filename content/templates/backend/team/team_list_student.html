@@ -4,7 +4,8 @@
 {% load mytags %}
 
 <div class="student_team_list_container">
-    <div class="team_list_header_student"><h2 class="medium_title">{% trans 'my_teams'%}</h2></div>
+<h2>{% trans 'my_team' %}</h2>
+
     <table class="table student_mission_table">
         <thead>
         <tr>
@@ -17,7 +18,6 @@
         </thead>
         <tbody>
 
-
         {% for team in team_list %}
             <tr>
                 <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
@@ -25,9 +25,8 @@
                 <th>{{team.project.time_to_complete}}</th>
                 <th><a href="{% url 'project_detail' team.project.id %}">{{team.project}} </a></th>
             </tr>
+
         {% endfor %}
-
-
 
         </tbody>
     </table>
@@ -35,29 +34,34 @@
 
     <br>
 
+<h2>{% trans 'join_other_team' %}</h2>
     <table class="table student_mission_table">
         <thead>
         <tr>
             <th>{% trans 'team_name' %}</th>
             <th>{% trans 'participants' %}</th>
-            <th>{% trans 'project' %}</th>
             <th>{% trans 'due_date' %}</th>
+            <th>{% trans 'project' %}</th>
+
 
         </tr>
         </thead>
         <tbody>
+        {% if  request.user.profile.class_level.team_set.all|student_available_projects:request.user.profile%}
+
+            {% for team in  request.user.profile.class_level.team_set.all|student_available_projects:request.user.profile %}
+
+                <tr>
+                    <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
+                    <th>{{ team.participants.count }}</th>
+                    <th>{{team.project.time_to_complete}}</th>
+                    <th>{{team.project.name}}</th>
 
 
-        {% for team in  request.user.profile.class_level.team_set.all %}
-            <tr>
-                <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
-                <th>{{ team.participants.count }}</th>
-                <th>{{team.project.time_to_complete}}</th>
-                <th>{{teamp.project.field}}</th>
+                </tr>
+            {% endfor %}
 
-
-            </tr>
-        {% endfor %}
+        {% endif %}
 
         </tbody>
     </table>

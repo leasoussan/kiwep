@@ -9,7 +9,7 @@
 
     <h2>{{ usertype }} {% trans 'profile_edit' %}</h2>
 
-    <form method="post">
+    <form method="post" enctype=multipart/form-data>
 
         {% csrf_token %}
       <h3>{% trans 'form_user' %}</h3>

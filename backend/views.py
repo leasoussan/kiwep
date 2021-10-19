@@ -24,14 +24,16 @@ User = get_user_model()
 @user_passes_test(check_profile, login_url='create_profile')
 def dashboard(request):
     if request.user.is_representative:
-        institution_groups = Group.objects.all()
+
+        institution_groups = request.user.profile().institution.group_set.all()
         context = {
             'speaker_invite_form': SpeakerInviteForm(),
             'add_group_form': InstitutionAddGroupForm(),
             'institution_group': institution_groups,
         }
+        return render(request, "backend/general_dashboard.html", context)
 
-    else:
+    elif request.user.is_speaker:
         teams = request.user.profile().team_set.all()
         participants = Student.objects.filter(team__in=teams).distinct()
         context= {
@@ -39,6 +41,12 @@ def dashboard(request):
             'participants':participants,
         }
     return render(request, "backend/general_dashboard.html", context)
+
+    else:
+        context = {
+
+        }
+        return render(request, "backend/general_dashboard.html", context)
 
 
 

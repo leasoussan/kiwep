@@ -16,8 +16,9 @@
 
 
         <div class="form_container">
+        {% if view.model %}
             <div class="update_project_title"><h2>Update {{view.model|return_class_name}}</h2></div>
-
+        {% endif %}
             {#{{form.media}}#}
 
             <form method="post" enctype="multipart/form-data">
@@ -25,11 +26,12 @@
 
                 {{form.as_p}}
 
-                <button class="btn btn-primary" type="submit">Save</button>
+                <button class="btn btn-primary" type="submit">{% trans 'save' %}</button>
                 <button class="btn" type="submit"><a href="{% url 'dashboard' %}" style="color:#fffefc;">{% trans 'dashboard' %}</a></button>
 
 
             </form>
+
 
 
 

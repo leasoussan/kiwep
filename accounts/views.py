@@ -143,7 +143,7 @@ class InstitutionInviteView(View):
             user.save()
             user = authenticate(username=username, password=password, usertype=usertype)
             login(request, user)
-            send_welcome_signup(user)
+            institution_welcome_email(user)
 
             return redirect(reverse('create_profile'), form.cleaned_data['usertype'])
 
@@ -155,7 +155,7 @@ class InstitutionInviteView(View):
 
 def get_user_profile_form(request, edit=False):
 
-    """ This function allows is to check which profile is requested, 
+    """ This function allows is to check which profile is requested,
     and to know what page/authorization to direct it to"""
     user = request.user
 
@@ -230,13 +230,9 @@ class CreateProfile(View):
 
             elif user.is_student:
                 join_code = profile_form.cleaned_data['join_code']
-                print('joint_code', join_code)
                 if Group.objects.filter(join_code=join_code).exists():
                     join_group = Group.objects.get(join_code=join_code)
-
-                    print('join_group', join_group)
-                    object.class_level_id=join_group
-                    print(object.class_level)
+                    object.class_level=join_group
                     object.save()
 
 
@@ -260,10 +256,10 @@ class CreateProfile(View):
 
 class MyProfileView(ProfileCheckPassesTestMixin, View):
     """ This view is to show the User Profile view"""
-    def get(self, request, id):
-        user = MyUser.objects.get(id=id)
-        profile_view = user.profile
-        return render(request, 'accounts/profile/profile.html', {'user':user, 'profile_view': profile_view})
+
+
+    def get(self, request):
+        return render(request, 'accounts/profile/profile.html', {'profile_view': request.user.profile()})
 
 
 
@@ -277,9 +273,7 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
     """ Edit Profile """
     def get(self, request):
         user_form = UserForm(instance =request.user)
-
         profile_form = get_user_profile_form(request, edit=True)
-
 
         return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'profile_form': profile_form})
 
@@ -293,7 +287,7 @@ class EditProfile(ProfileCheckPassesTestMixin, View):
             print(user_form)
             user_form.save()
             profile_form.save()
-            return redirect('profile',request.user.id)
+            return redirect('profile')
 
         return render(request, 'accounts/profile/edit_profile.html', {'user_form':user_form, 'profile_form': profile_form})
 
@@ -328,28 +322,28 @@ class MyLoginView(LoginView):
 
 
 
-
-def get_profile(request):
-    if request.profile.is_student:
-        return Student.objects.get(pk=pk)
-
-
-    if request.profile.is_speaker:
-        return Speaker.objects.get(pk=pk)
-
-    if request.profile.is_institution:
-        return Institution.objects.get(pk=pk)
-
-    else:
-        return "you dont have access here"
+    def get_profile(request):
+        if request.profile.is_student:
+            return Student.objects.get(pk=pk)
 
 
+        if request.profile.is_speaker:
+            return Speaker.objects.get(pk=pk)
 
-class ProfileView(DetailView):
+        if request.profile.is_institution:
+            return Institution.objects.get(pk=pk)
 
-    def get(self, request):
-        """ View to show profile view - other logged in User"""
-        return get_profile(request)
+        else:
+            return "you dont have access here"
+
+
+
+class ProfileView(ProfileCheckPassesTestMixin, DetailView):
+    template_name = "accounts/profile/profile_visitor.html"
+
+    def get_object(self):
+        pk = self.kwargs.get("pk")
+        return get_object_or_404(MyUser, pk=pk)
 
 
 
@@ -404,6 +398,6 @@ class SpeakerInviteView(View):
                 speaker_invite, created = SpeakerInvite.objects.get_or_create(user=request.user, email=speaker_invite.email, institution=request.user.profile().institution)
                 send_speaker_signup_invit(speaker_invite)
                 print(speaker_invite.institution)
-            return redirect('speaker_invite')
+            return redirect('dashboard')
 
         return redirect('speaker_invite')

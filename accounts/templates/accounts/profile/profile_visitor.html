@@ -1,9 +1,10 @@
+{% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
 
-{% block css %}
-    <link href="{% static 'backend/css/profile.css' %}" rel="stylesheet">
-{% endblock css %}
+{% block content %}
+
+
 
 
 
@@ -36,12 +37,12 @@
                     </ul>
 
                     <ul class="ul_display"><lable class="information_label">{% trans 'institution' %}   </lable>
-                        <p class="user_data_profile_display">{{ user.profile.class_level.name }}</p>
+                        <p class="user_data_profile_display">{{ user.profile.institution.first.name }}</p>
                     </ul>
 
 
                     <ul class="ul_display"><lable class="information_label">{% trans 'status' %}   </lable>
-                        <p class="user_data_profile_display">{{user.get_user_type}}</p>
+                            <p class="user_data_profile_display">{{user.get_user_type}}</p>
 
                     </ul>
 
@@ -49,13 +50,14 @@
 
                 <div class="groups_display">
 
-                    <ul class="ul_display"><lable class="information_label">{% trans 'teams' %}   </lable>
-                        <div class="groups_list"  >
-                            {% if user.profile.team.exists  %}
-                                {% for team in user.profile.team_set.all %}
-                                    <p class="group_label">{{ team.name}}</p>
-                                {% endfor %}
-                            {% endif %}
+                    <ul class="ul_display"><lable class="information_label">{% trans 'groups' %}   </lable>
+                        <div class="groups_list">
+
+                          {% for group in user.profile.group.all %}
+
+
+                            <p class="user_data_profile_display">{{ group.name }}</p>
+                        {% endfor %}
                         </div>
                     </ul>
 
@@ -67,3 +69,4 @@
 
 </div>
 
+{% endblock %}

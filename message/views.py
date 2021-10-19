@@ -9,7 +9,7 @@ from accounts.decorators import check_profile
 from accounts.mixin import StudentStatuPassesTestMixin
 from .models import Comment, Discussion, Answer
 from message.forms import AddDiscussionForm, AddCommentForm, AddAnswerForm, MissionSpeakerStatusAnswerForm, \
-    MissionSpeakerGradeAnswerForm
+    MissionSpeakerGradeAnswerForm, StudentEditAnswerFrom
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -99,6 +99,20 @@ class AnswerCreateView(StudentStatuPassesTestMixin, GenericCustomRedirectView):
 
 
 
+class AnswerUpdateView(StudentStatuPassesTestMixin, UpdateView):
+    model = Answer
+    template_name = 'crud/update.html'
+    fields = ['response_comment', 'response_file', ]
+
+    def get_object(self):
+        pk = self.kwargs.get("pk")
+        return get_object_or_404(Answer, pk=pk)
+
+    def get_success_url(self):
+        return reverse_lazy('my_mission_list')
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 
 class SpeakerAnswerMissionStatusView(UpdateView):
@@ -137,7 +151,6 @@ class SpeakerGradeAnswerView(UpdateView):
 
 
     def form_valid(self, form):
-
         return super().form_valid(form)
 
 

@@ -100,7 +100,7 @@ class StudentAvailableTeamList(ProfileCheckPassesTestMixin, ListView):
 
     def get_queryset(self):
         if self.request.user.is_student:
-            return self.request.user.profile().group_Institution_set.team_set.all()
+            return self.request.user.profile().group_institution_set.team_set.all()
 
 
 # ----------------PROJECT------Detail_View/
@@ -177,7 +177,6 @@ class ProjectTeamCreateView(ProjectCreateView):
 def clean_missions(project_id, missions):
     print('misions-clean', missions)
     for mission in missions:
-
         mission.id = None
         if mission.mission_type == 'i':
             individual_mission_copy = IndividualMission.objects.create(
@@ -187,7 +186,7 @@ def clean_missions(project_id, missions):
                 created_date = None,
                 due_date = timezone.now(),
                 mission_type='i',
-                owner_id= mission.project.speaker.id,
+                owner_id= mission.project.speaker.user.id,
                 attributed_to=None,
             )
 
@@ -200,7 +199,7 @@ def clean_missions(project_id, missions):
                 created_date=None,
                 due_date=timezone.now(),
                 mission_type= 'c',
-                owner_id=mission.project.speaker.id,
+                owner_id=mission.project.speaker.user.id,
             )
             collective_mission_copy.attributed_to.set(attributed_to)
             print('collective_mission_copy',collective_mission_copy)

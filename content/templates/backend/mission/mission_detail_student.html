@@ -11,9 +11,11 @@
 <div class="mission_detail_container">
 
     <div class="mission_detail_header">
-        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' object.project.id %}">{% trans 'back_to_project_button' %}</a></button>
-        <!-- <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a> -->
-
+{#            <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.team.id %}">{% trans 'back_to_project_button' %}</a></button>#}
+{#        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' object.project.id %}">{% trans 'back_to_project_button' %}</a></button>#}
+           {% if mission.project.team %}
+            <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_project' %}</a></button>
+{% endif %}
         <h3 class=""> {{ object.name }}</h3>
 
 
@@ -37,7 +39,7 @@
 
             <div class="mission_detail_panel">
                 <div class="animation_div">
-                    <img class="image_animation" src="{% static 'backend/images/content/mission_default.jpeg' %}" alt="this slowpoke moves">
+                    <img class="image_animation" src="{% static 'backend/images/kiwep/mission_default.jpeg' %}" alt="this slowpoke moves">
                 </div>
                 <div class="mission_detail_details">
 
@@ -60,7 +62,7 @@
                         <div class="skills_mission_header">
                             <h5 class="small_title">{% trans 'acquired_skills' %}</h5>
 
-                            <button class="btn plus_button"></button>
+{#                            <button class="btn plus_button"></button>#}
 
                         </div>
                         <div class="skills_name">
@@ -77,7 +79,6 @@
                     <div class="header_resource_container">
                         <h3>{% trans 'resource_list' %}</h3>
 
-    <label>{{ object.resource_set.count }}</label>
                     </div>
                     {% if object.resource_set.exists %}
 
@@ -96,11 +97,7 @@
                                             <a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a>
 
                                         </div>
-                                        <div class="resource_detail_button_control">
-                                            <a href="{% url 'update_resource' resource.id %}"><img src="{% static 'backend/images/kiwep/edit.png' %}" alt="edit"> </a>
-                                            <a href="{% url 'delete_resource' resource.id %}"> <img src="{% static 'backend/images/kiwep/trash.png' %}" alt="delete"> </a>
 
-                                        </div>
                                     </div>
                                 </div>
 
@@ -123,10 +120,7 @@
                     {% if user.profile in object.project.team.participants.all %}
 
                         {% if individualmission and not object.attributed_to  %}
-
-
                             <a class="btn claim_mission_button" href="{%  url 'claim_mission' object.id %}">{% trans 'claim_mission' %}</a>
-
 
                         {% elif individualmission and object.attributed_to %}
 
@@ -166,7 +160,7 @@
                             {% include "answer/answer.html"  with object=object %}
 
                         </div>
-                        <div class="discussion_container">
+                        <div class="discussion_container_mission">
                             {% include 'comments/discussion.html' %}
                         </div>
 

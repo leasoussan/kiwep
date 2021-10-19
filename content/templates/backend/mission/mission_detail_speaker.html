@@ -11,18 +11,25 @@
 <div class="mission_detail_container">
 
     <div class="mission_detail_header">
-        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' object.project.id %}">{% trans 'back_to_project_button' %}</a></button>
-        <!-- <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a> -->
+        {#        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' object.project.id %}">{% trans 'back_to_project_button' %}</a></button>#}
+        {#        <!-- <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a> -->#}
 
-        {% if object.project.team %}
-        <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_team' %}</a></button>
-{% endif %}
+{#        {% if object.project.team %}#}
+{#            <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_team' %}</a></button>#}
+{#            {% if object.attributed_to %}#}
+{#                <button type="button" class="btn btn-light back_btn"><a href="{% url 'answer_mission_list' %}">{% trans 'back_to_answer' %}</a></button>#}
+{#            {% endif %}#}
+{#        {% else %}#}
+{##}
+{##}
+{#    {% endif %}#}
+
         <h3 class=""> {{ object.name }}</h3>
 
 
         <div class="speaker_action_btn_group">
             {% if user.is_speaker %}
-                <button type="button" class="btn btn-secondary btn-sm"><a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a></button>
+                <button type="button" class="btn edit_button_team_speaker"><a href="{{ object.get_update_url }}">{% trans 'edit' %}</a></button>
                 <!-- <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a> -->
             {% endif %}
 
@@ -35,7 +42,7 @@
 
             <div class="mission_detail_panel">
                 <div class="animation_div">
-                    <img class="image_animation" src="{% static 'backend/images/content/mission_default.jpeg' %}" alt="this slowpoke moves">
+                    <img class="image_animation" src="{% static 'backend/images/kiwep/mission_default.jpeg' %}" alt="this slowpoke moves">
                 </div>
                 <div class="mission_detail_details">
 
@@ -58,7 +65,7 @@
                         <div class="skills_mission_header">
                             <h5 class="small_title">{% trans 'acquired_skills' %}</h5>
 
-                            <button class="btn plus_button"></button>
+                            {#                            <button class="btn plus_button"></button>#}
 
                         </div>
                         <div class="skills_name">
@@ -77,10 +84,11 @@
 
                         <!-- Button trigger modal add Resource -->
                         <button type="button" class="btn btn-primary add_resource_button" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
-                            {% trans "add_resource" %}
+                            <i class="bi bi-plus-square"></i>
                         </button>
 
                     </div>
+
                     {% if object.resource_set.exists %}
 
                         <div class="mission_detail_resources_list_box">
@@ -115,6 +123,8 @@
             </div>
 
         </div>
+
+
         <div class="speaker_mission_action_panel">
 
             <div class="mission_status_box">
@@ -126,7 +136,7 @@
 
                         {% else %}
                             <div class="mission_attributed_to_label">
-                                <h2>{% trans 'mission_is_attributed_to' %}:</h2>
+                                <h3>{% trans 'attributed_to' %}:</h3>
                                 <label class="mission_attr_name"> {{ object.attributed_to }}</label>
 
                             </div>
@@ -153,31 +163,38 @@
             </div>
 
 
-        <div class="speaker_mission_related_elements_content">
+            <div class="speaker_mission_related_elements_content">
 
-        {% if user.profile == object.project.team.manager %}
+                {% if user.profile == object.project.team.manager %}
 
-        <div class="mission_detail_answer_content">
+                    <div class="mission_detail_answer_content">
 
-            {% include "answer/answer.html"  with object=object %}
+                        {% include "answer/answer.html"  with object=object %}
+
+                    </div>
+
+
+                {% endif %}
+
+                <div class="comments_mission_container">            {% if user.profile == object.project.team.manager %}
+
+                    <div class="discussion_container_mission">
+                        {% include 'comments/discussion.html' %}
+                    </div>
+
+                {% endif %}
+                </div>
+            </div>
 
         </div>
-        <div class="discussion_container">
-            {% include 'comments/discussion.html' %}
-        </div>
 
-
-    {% endif %}
     </div>
-  </div>
-
-</div>
-
-
-
 
 
 </div>
+
+
+
 
 
 
@@ -210,7 +227,8 @@
                         <form method="post" action="{% url 'mission_create_resource' object.id %}">
                             {% csrf_token %}
                             {{ resources_form|crispy }}
-                            <button type="submit">{% trans 'save' %}</button>
+                            <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
+                            </button>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="nav-chose" role="tabpanel" aria-labelledby="nav-chose-tab">
@@ -226,7 +244,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
 
                 </div>
             </div>

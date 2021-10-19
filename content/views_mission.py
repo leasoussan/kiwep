@@ -255,7 +255,7 @@ class CollectiveMissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
 
 
 
-class ClaimMission(ProfileCheckPassesTestMixin, RedirectView):
+class ClaimMission(StudentStatuPassesTestMixin, RedirectView):
     ''' Own a mission -student'''
     # query_sting = False >>this is false by default     
     pattern_name = 'my_mission_list'
@@ -410,7 +410,7 @@ def bulk_add_individual_mission(request, **kwargs):
     ''' Add bulk Mission in Project '''
 
     individual_form = IndividualMissionAddForm(request.POST)
-    mission_bulk_form = BulkAddMissionForm(data=request.POST)
+    mission_bulk_form = BulkAddMissionForm(data=request)
 
     if request.method == "POST":
         if individual_form.is_valid() and mission_bulk_form.is_valid():

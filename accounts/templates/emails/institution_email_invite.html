@@ -1,0 +1,10 @@
+{% load i18n %}
+
+<h2> {% trans 'welcome_message' %} </h2>
+
+<p>{% trans 'hi' %} {{institution_invite.email}}</p>
+
+
+{# <a href="https://kiweplive.herokuapp.com{% url 'institution-invite' %}{{ institution_invite.key }}">{% trans 'go_to_register' %}</a>#}
+
+<a href="http://kiweplive.herokuapp.com/accounts/institution-invite/{{ institution_invite.key }}">Clickhere</a>
