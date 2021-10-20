@@ -33,20 +33,33 @@ from django.forms.models import model_to_dict
 # ----------------------------------------------------------------------------------------------------------------
 
 class IndividualMissionListView(ProfileCheckPassesTestMixin, ListView):
-    ''' To See all Missions View'''
+    ''' To See all Missions View  STUDENT '''
     model = IndividualMission
     template_name = 'backend/mission/my_mission_list.html'
     context_object_name = 'mission_list'
 
 
     def get_queryset(self):
+
+        return super().get_queryset().filter(attributed_to=self.request.user.profile())
+
+
+class CollectiveIndividualMissionStudentListView(ProfileCheckPassesTestMixin, ListView):
+    ''' To See all Missions View  STUDENT '''
+    model = IndividualCollectiveMission
+    template_name = 'backend/mission/my_mission_list.html'
+    context_object_name = 'collective_individual_mission_list'
+
+
+    def get_queryset(self):
+
         return super().get_queryset().filter(attributed_to=self.request.user.profile())
 
 
 # ----------------------------------------------------------------------------------------------------------------
 
 class AnswerBoardMissionListView(ProfileCheckPassesTestMixin, ListView):
-    ''' To See all Missions View'''
+    ''' To See all Missions View    SPEAKER '''
     model = IndividualMission
     template_name = 'backend/mission/my_mission_list.html'
     context_object_name = 'answers_mission_list'
@@ -256,7 +269,7 @@ class CollectiveMissionDeleteView(SpeakerStatuPassesTestMixin, DeleteView):
 
 
 class ClaimMission(StudentStatuPassesTestMixin, RedirectView):
-    ''' Own a mission -student'''
+    ''' Own a mission -  STUDENT CLAIM '''
     # query_sting = False >>this is false by default     
     pattern_name = 'my_mission_list'
 
@@ -335,7 +348,6 @@ class JoinCollectiveMissionView(StudentStatuPassesTestMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         collective_mission = get_object_or_404(CollectiveMission, pk=kwargs['pk'])
         IndividualCollectiveMission.objects.get_or_create(parent_mission=collective_mission, attributed_to=self.request.user.profile())
-
         return super().get_redirect_url(*args, **kwargs)
 
 

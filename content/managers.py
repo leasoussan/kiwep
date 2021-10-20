@@ -12,6 +12,7 @@ class ProjectModelQuerySet(models.QuerySet):
     def personal_projects(self):
         return self.filter(is_template=False)
 
+    """FOR STUDENT TO SEE TEAM HE CAN JOIN """
     def available_projects(self):
         return self.filter(is_template=False, is_global=False, team__isnull=True )
 
@@ -30,6 +31,7 @@ class ProjectModelManager(models.Manager):
     def personal_projects(self):
         return self.get_queryset().personal_projects()
 
+    """FOR STUDENT TO SEE TEAM HE CAN JOIN """
     def available_projects(self):
         return self.get_queryset().available_projects()
 

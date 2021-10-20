@@ -198,7 +198,7 @@ def clean_missions(project_id, missions):
                 project_id=project_id,
                 created_date=None,
                 due_date=timezone.now(),
-                mission_type= 'c',
+                mission_type='c',
                 owner_id=mission.project.speaker.user.id,
             )
             collective_mission_copy.attributed_to.set(attributed_to)

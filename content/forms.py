@@ -142,10 +142,12 @@ class BulkAddMissionForm(forms.Form):
     #     ('c', _('collective_mission')),
     # ]
     projects=forms.ModelMultipleChoiceField(queryset=Project.objects.none(), widget=forms.CheckboxSelectMultiple)
-    # mission_type = forms.Select(choices=MISSION_TYPE)
 
+    # TODO: AVI
     def __init__(self, *args, **kwargs):
+        # print('kwargs', kwargs)
         projects=kwargs.pop('projects')
+        # projects=kwargs.pop('projects')
         super(BulkAddMissionForm, self).__init__(*args, **kwargs)
         if projects:
             self.fields['projects'].queryset = projects

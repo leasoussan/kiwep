@@ -17,17 +17,20 @@
         </tr>
         </thead>
         <tbody>
-
         {% for team in team_list %}
+
             <tr>
                 <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
                 <th>{{ team.participants.count }}</th>
                 <th>{{team.project.time_to_complete}}</th>
+                {% if team.project %}
+
                 <th><a href="{% url 'project_detail' team.project.id %}">{{team.project}} </a></th>
+
+                {% endif %}
             </tr>
 
         {% endfor %}
-
         </tbody>
     </table>
 
@@ -47,10 +50,10 @@
         </tr>
         </thead>
         <tbody>
-        {% if  request.user.profile.class_level.team_set.all|student_available_projects:request.user.profile%}
+        {% if  request.user.profile.class_level.team_set.all|student_available_projects:request.user.profile %}
 
             {% for team in  request.user.profile.class_level.team_set.all|student_available_projects:request.user.profile %}
-
+    {% if team not in team_list %}
                 <tr>
                     <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
                     <th>{{ team.participants.count }}</th>
@@ -59,6 +62,7 @@
 
 
                 </tr>
+                {% endif %}
             {% endfor %}
 
         {% endif %}

@@ -240,13 +240,14 @@ class JoinTeamView(LoginRequiredMixin, RedirectView):
 
 
 class LeaveTeamView(LoginRequiredMixin, RedirectView):
-    pattern_name= 'team_detail'
+    pattern_name= 'team_list'
 
     def get_redirect_url(self, *args, **kwargs):
         team = get_object_or_404(Team, pk=kwargs['pk'])
         team.participants.remove(self.request.user.profile())
-
+        del kwargs['pk']
         return super().get_redirect_url(*args, **kwargs)
+
 
 
 class AddTeamMemberView(LoginRequiredMixin, UpdateView):

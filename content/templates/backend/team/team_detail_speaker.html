@@ -120,23 +120,26 @@
 
                             <div class="team_mission_detail">
 
-                                <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
-                                <label class="team_mission_detail_attributed_to">
-                                    {% if user.is_speaker %}
-                                        {% if mission.attributed_to %}
-                                            {% trans 'attributed_to' %}
-                                        {% else %}
-                                            {% trans 'mission_unclaimed_yet' %}
-                                        {% endif %}
-
-                                    {% elif user.is_student %}
-                                        {% if not mission.attributed_to %}
-                                            <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
-                                        {% else %}
-                                            {% trans 'available_mission' %}
-                                        {% endif %}
+                                {% if mission.individuallmission %}
+                                    <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                {% else %}
+                                    <a class="team_mission_name_title"href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                {% endif %}                                <label class="team_mission_detail_attributed_to">
+                                {% if user.is_speaker %}
+                                    {% if mission.attributed_to %}
+                                        {% trans 'attributed_to' %}
+                                    {% else %}
+                                        {% trans 'mission_unclaimed_yet' %}
                                     {% endif %}
-                                </label>
+
+                                {% elif user.is_student %}
+                                    {% if not mission.attributed_to %}
+                                        <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
+                                    {% else %}
+                                        {% trans 'available_mission' %}
+                                    {% endif %}
+                                {% endif %}
+                            </label>
                                 <label class="team_mission_detail_due_date">
                                     {{mission.due_date}}
                                 </label>

@@ -30,6 +30,7 @@ def collective_student_missions(mission_qs, team):
 
 @register.filter
 def student_available_projects(team_qs, student):
+
     return team_qs.filter(manager__group=student.class_level_id)
 
 

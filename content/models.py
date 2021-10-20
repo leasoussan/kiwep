@@ -244,7 +244,6 @@ class CollectiveMission(Mission):
 class IndividualCollectiveMission(AnswerModel):
     """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
 
-
     attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")
     parent_mission = models.ForeignKey(CollectiveMission, on_delete= models.CASCADE)
 

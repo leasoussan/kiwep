@@ -30,11 +30,21 @@ max-width: 90%;
 
 .table_row_mission_answer_table{
     width: 100%;
-    height: 3rem;
-    /*background-color: #0b2e13;*/
+    min-height: 3rem;
 }
 .team_name_link{
     display: inline-block;
     min-width: 100%;
 
+}
+
+.mission_list_height{
+    overflow: auto;
+    min-height: 20%;
+    max-height: 60%;
+    border: turquoise 3px solid;
+}
+
+table{
+    height: 80vh;
 }

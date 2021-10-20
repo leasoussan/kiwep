@@ -97,10 +97,10 @@
 
 
             </thead>
-            <tbody>
+            <tbody class="mission_list_height">
 
             {% for mission in mission_list  %}
-                {% if missions.exists %}
+{#                {% if mission.project.team.id == True %}#}
                 <tr class="table_row_mission_answer_table">
                     <td>   <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
                     {%  if mission.project.team %}
@@ -122,7 +122,34 @@
                     </td>
                     <td><a href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a></td>
                 </tr>
-                  {% endif %}
+{#                  {% endif %}#}
+            {% endfor %}
+
+            {% for mission in collective_individual_mission_list  %}
+                g
+{#                {% if mission.project.team.id == True %}#}
+                <tr class="table_row_mission_answer_table">
+                    <td>   <a href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
+                    {%  if mission.project.team %}
+                        <td> <a class="team_name_link" href="{% url 'team_detail'  mission.project.team.pk %}">{{ mission.project.team.name }}</a></td>
+                    {% else %}
+                       <td> {% trans 'no_team' %}</td>
+                    {% endif %}
+                    <td>{{ mission.due_date }}</td>
+                    <td>{% if mission.response_comment or mission.response_file %}
+                        <a href="{% url 'individual_mission_detail'  mission.id %}">{% trans 'see_answer' %}</a>
+                    {% elif user.profile == mission.attributed_to %}
+                        <lable>{% trans 'submit_mission' %}</lable>
+                    {% endif %}</td>
+                    <td>{% if not mission.answer.first %}
+                        <lable>{% trans 'mission_not_answered_yet' %}</lable>
+                    {% else %}
+                        {{mission.answer.first.get_status_display}}
+                    {% endif %}
+                    </td>
+                    <td><a href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a></td>
+                </tr>
+{#                  {% endif %}#}
             {% endfor %}
 
             </tbody>

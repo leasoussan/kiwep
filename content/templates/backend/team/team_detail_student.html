@@ -79,15 +79,27 @@
                         {% for mission in team.project.mission_set.all.available_mission %}
 
                             <div class="team_mission_detail">
+                                {% if mission.individuallmission %}
+                                    <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                {% else %}
+                                    <a class="team_mission_name_title"href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                {% endif %}
 
-                                <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
                                 <label class="team_mission_detail_attributed_to">
 
-                                    {% if not mission.attributed_to%}
-                                        <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
-                                    {% else %}
-                                        {% trans 'claimed_already' %}
+                                    {% if mission.individualmission %}
+                                        {% if not mission.attributed_to %}
+                                            <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
+                                        {% else %}
+                                            {% trans 'claimed_already' %}
+                                        {% endif %}
+                                    {% else%}
+                                        {%  if request.user.profile not in mission.collectivemission.attributed_to.all %}
+                                            <a href="{% url 'join_collective_mission_detail' mission.id %}">{% trans 'join_collective_mission' %}</a>
+                                        {% else %}
+                                        <a class="team_mission_name_title"href="{% url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_collective' %}</a>
                                     {% endif %}
+                                {% endif %}
                                 </label>
                                 <label class="team_mission_detail_due_date">
                                     {{mission.due_date}}
@@ -116,7 +128,11 @@
 
                                 <div class="team_mission_detail">
 
-                                    <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                    {% if mission.individuallmission %}
+                                        <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                    {% else %}
+                                        <a class="team_mission_name_title"href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                    {% endif %}
                                     <label class="team_mission_detail_attributed_to">
                                         {{ mission.individualmission.attributed_to }}
 
