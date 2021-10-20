@@ -44,11 +44,11 @@ msgstr "Email"
 
 #: mailer.py:22
 msgid "institution_invitation_ registration"
-msgstr ""
+msgstr "Institution Invite"
 
 #: mailer.py:23 mailer.py:36
 msgid "to_kiwep"
-msgstr ""
+msgstr "To KIWEP"
 
 #: mailer.py:25 mailer.py:38
 #, fuzzy
