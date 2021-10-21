@@ -81,8 +81,25 @@ class CollectiveMissionModelManager(models.Manager):
     
 
 
+# ---------------------------------Collective  INDIVIDUAL ProjectMission---Manager__queryset
 
-    
+class CollectiveIndividualMissionQuerySet(models.QuerySet):
+    """Get Manager for Collective Individual Mission"""
+
+    def get_individual_collective_mission(self, user):
+         return self.filter(attributed_to=user)
+
+
+
+class CollectiveIndividualMissionModelManager(models.Manager):
+    """ Managers are a way to get specifi data from a Model with the help of a queryset """
+
+    def get_queryset(self):
+        return CollectiveIndividualMissionQuerySet(self.model, using=self._db)
+
+    def get_individual_collective_mission(self, user):
+        return self.get_queryset().get_individual_collective_mission(user)
+
 
 # ---------------------------------------------------------Individual Project Mission Model Manager
 

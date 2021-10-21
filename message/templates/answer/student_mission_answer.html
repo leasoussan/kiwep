@@ -24,15 +24,15 @@
                             <!-- Button trigger modal -->
                             <button type="button" class="btn see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
                                 {% trans 'sent_file' %} </button>
-{#                            <img  class="response_file_img" src="{{ answer.response_file.url }}" width="70px" height="90px">#}
+                            {#                            <img  class="response_file_img" src="{{ answer.response_file.url }}" width="70px" height="90px">#}
 
                         {% else %}
                             <p class="file_place_holder">{% trans  'no_file_yet' %}</p>
 
                         {% endif %}
-                    <div class="edit_answer_button">
-                        <a href="{% url 'update_answer' answer.id %}" >{% trans 'edit_answer' %}</a>
-                    </div>
+                        <div class="edit_answer_button">
+                            <a href="{% url 'update_answer' answer.id %}" >{% trans 'edit_answer' %}</a>
+                        </div>
                     </div>
 
                     <p class="answer_text_last_answer">{{ answer.response_comment }}</p>
@@ -46,45 +46,35 @@
                     <div class="answer_status_view_student">
 
                     <p> {% trans 'answer_status' %}: {{ answer.get_status_display }} </p>
-{#                    {% if answer.grade %}#}
-{#                        <p>  {% trans 'and_graded :' %}#}
-{#                            {{ answer.grade }}</p>#}
-{##}
-{##}
-{#                    {% elif answer.status == 'a' %}#}
-{#                        {% if not answer.grade %}#}
-{##}
-{#                            <label>{% trans 'mission_not_graded' %}</label>#}
-{#                        {% else %}#}
-{#                            <label> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>#}
-{#                        {% endif %}#}
-{##}
-{#                    {% else %}#}
-{##}
-{#                        <p> {% trans 'mission_wasnt_accepted_yet' %}</p>#}
-{#                    {% endif %}#}
-
+                    {#                    {% if answer.grade %}#}
+                    {#                        <p>  {% trans 'and_graded :' %}#}
+                    {#                            {{ answer.grade }}</p>#}
+                    {##}
+                    {##}
+                    {#                    {% elif answer.status == 'a' %}#}
+                    {#                        {% if not answer.grade %}#}
+                    {##}
+                    {#                            <label>{% trans 'mission_not_graded' %}</label>#}
+                    {#                        {% else %}#}
+                    {#                            <label> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>#}
+                    {#                        {% endif %}#}
+                    {##}
+                    {#                    {% else %}#}
+                    {##}
+                    {#                        <p> {% trans 'mission_wasnt_accepted_yet' %}</p>#}
+                    {#                    {% endif %}#}
 
                 {% endif %}
             {% endwith %}
-
         </div>
-
-
             <div class=""><span>{{answer.response_comment}}</span>
-
         {% else %}
-
             <label> {% trans 'no_answered_yet' %}</label>
             <form method="POST" class="student_answer_form" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >
                 {% csrf_token %}
-
-
                 {{ object.answer_form|crispy }}
-
-
-<button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save_answer' %}</p>
-                    </button>                </button>
+                <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save_answer' %}</p>
+                </button>                </button>
             </form>
         {% endif %}
         </div>

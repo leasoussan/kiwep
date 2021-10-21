@@ -143,18 +143,26 @@
                         {% endif %}
 
                     {% elif collectivemission  %}
+
                         {% if not object.attributed_to.all.exists %}
+
                             {% trans 'no_one_joined_yet' %}
-                            {% if user.profile ==  object.team.manager %}
+
+                            {% if user.profile ==  object.project.team.manager %}
 
                                 <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
                             {% endif %}
 
                         {% else %}
+                  {% if user.profile ==  object.team.manager %}
+
+                                <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
+                            {% endif %}
                             {% for participant in object.attributed_to.all %}
                                 <li> {{ participant }}</li>
 
                             {% endfor %}
+
                         {% endif %}
 
                     {% endif %}

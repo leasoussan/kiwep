@@ -1,0 +1,48 @@
+{% load i18n %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'backend/css/student_answer.css' %}" rel="stylesheet" >
+
+{% endblock css %}
+
+<div class="collective_answer_container">
+    {% for participant in object.attributed_to.all %}
+    {% if participant == request.user.profile %}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#individual_collective_mission">
+    {% trans 'give_my_answer' %}
+</button>
+    {% else %}
+        <br>
+        <button>{{ participant.name }}'s answer</button>
+    {% endif %}
+
+    {% endfor %}
+
+</div>
+
+
+
+
+<!-- Modal STUDENT COLLECTIVE INDIVIDUAL ANSWER-->
+{% with mission=object %}
+<div class="modal fade" id="individual_collective_mission" tabindex="-1" aria-labelledby="individual_collective_missionLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="individual_collective_missionLabel">{% trans 'individual_collective_mission' %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="individual_collective_answer">
+                {% include 'answer/student_mission_answer.html' %}
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endwith %}

@@ -389,13 +389,13 @@ nav{
 
 /*ADDED BY LEA TO REPROCESS */
 /* base.html */
-.main_base_content_block {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  width: 100%;
-  padding: 20px;
-}
+/*.main_base_content_block {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-content: center;*/
+/*  width: 100%;*/
+/*  padding: 20px;*/
+/*}*/
 
 
 

@@ -10,15 +10,26 @@
 {% if user.is_speaker %}
 
 
-        {% include 'answer/speaker_mission_answer.html' with mission=object %}
+    {% if object.individualmission %}
+    {% include 'answer/speaker_mission_answer.html' with mission=object %}
+
+    {% else %}
+    {% include 'answer/speaker_collective_answers.html' with mission=object %}
+    {% endif %}
+
+
 
 
 
 
 {% elif user.is_student %}
+{# or object.individualcollectivemission#}
+    {% if object.individualmission %}
+        {% include 'answer/student_mission_answer.html' with mission=object %}
 
-
-        {% include 'answer/student_mission_answer.html' %}
+    {% else %}
+        {% include 'answer/student_collective_answers.html' with mission=object %}
+    {% endif %}
 
 
 

@@ -68,7 +68,7 @@ class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
     context_object_name = 'project_list'
 
     def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data( *args, **kwargs)
+        context = super().get_context_data(*args, **kwargs)
         context['project_form'] = ProjectAddForm()
         context['mission_bulk_form'] = BulkAddMissionForm(projects=self.request.user.profile().project_set.personal_projects())
         context['individual_form'] = IndividualMissionAddForm()

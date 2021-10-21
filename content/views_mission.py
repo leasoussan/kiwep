@@ -40,20 +40,25 @@ class IndividualMissionListView(ProfileCheckPassesTestMixin, ListView):
 
 
     def get_queryset(self):
-
         return super().get_queryset().filter(attributed_to=self.request.user.profile())
 
 
-class CollectiveIndividualMissionStudentListView(ProfileCheckPassesTestMixin, ListView):
-    ''' To See all Missions View  STUDENT '''
-    model = IndividualCollectiveMission
-    template_name = 'backend/mission/my_mission_list.html'
-    context_object_name = 'collective_individual_mission_list'
-
-
-    def get_queryset(self):
-
-        return super().get_queryset().filter(attributed_to=self.request.user.profile())
+    def get_context_data(self, *args,**kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_student:
+            context['individual_collective_mission'] = IndividualCollectiveMission.objects.get_individual_collective_mission(self.request.user.profile())
+        return context
+# #
+# class CollectiveIndividualMissionStudentListView(ProfileCheckPassesTestMixin, ListView):
+#     ''' To See all Missions View  STUDENT '''
+#     model = IndividualCollectiveMission
+#     template_name = 'backend/mission/my_mission_list.html'
+#     context_object_name = 'collective_individual_mission_list'
+#
+#
+#     def get_queryset(self):
+#
+#         return super().get_queryset().filter(attributed_to=self.request.user.profile())
 
 
 # ----------------------------------------------------------------------------------------------------------------
@@ -184,6 +189,22 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
         return context
 # ----------------------------------------------------------------------------------------------------------------
 
+class IndividualCollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
+    '''Detail Of General Mission'''
+    model = IndividualCollectiveMission
+    template_name = 'backend/mission/mission_detail.html'
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(IndividualCollectiveMission, pk=pk)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+
+
+# ---------------------------
 
 
 
