@@ -35,7 +35,11 @@
         <div class="tab-content" id="nav-tabContent">
             {% for group in user.profile.group.all %}
 
-                <div class="tab-pane fade show" id="nav-{{ group.id }}" role="tabpanel" aria-labelledby="nav-{{ group.id }}-tab">
+                {% if group.first %}
+                <div class="tab-pane fade show active" id="nav-{{ group.id }}" role="tabpanel" aria-labelledby="nav-{{ group.id }}-tab">
+                {% else %}
+                <div class="tab-pane fade" id="nav-{{ group.id }}" role="tabpanel" aria-labelledby="nav-{{ group.id }}-tab">
+                {% endif %}
                     <div class="">
                         <!-- <div class="my_table"> -->
                         <table class="table">
