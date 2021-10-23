@@ -35,6 +35,7 @@ x/* TEAM-LIST */
 
 .team_board_manager{
     width: 70%;
+    min-height: 50%;
     max-height: 100%;
     overflow: auto;
     padding-right: 3rem;

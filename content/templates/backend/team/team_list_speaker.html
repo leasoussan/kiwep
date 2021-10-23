@@ -21,12 +21,11 @@
 
     <div class="team_board_manager">
 
-
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 {% for group in user.profile.group.all %}
 
-                    <button class="nav-link" id="nav-{{ group.name }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ group.name }}" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                    <button class="nav-link" id="nav-{{ group.id }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ group.id }}" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
                         {{ group.name }}</button>
                 {% endfor %}
             </div>
@@ -36,7 +35,7 @@
         <div class="tab-content" id="nav-tabContent">
             {% for group in user.profile.group.all %}
 
-                <div class="tab-pane fade show" id="nav-{{ group.name }}" role="tabpanel" aria-labelledby="nav-{{ group.name }}-tab">
+                <div class="tab-pane fade show" id="nav-{{ group.id }}" role="tabpanel" aria-labelledby="nav-{{ group.id }}-tab">
                     <div class="">
                         <!-- <div class="my_table"> -->
                         <table class="table">
@@ -51,9 +50,6 @@
                             </tr>
                             </thead>
                             <tbody>
-
-
-
 
                             {% for team in team_list %}
                                 {% if team.group_institution == group %}
