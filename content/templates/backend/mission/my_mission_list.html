@@ -136,12 +136,11 @@
 
             <tbody>
 
-
             <div class="mission_list">
                 {% for mission in individual_collective_mission  %}
                     <tr class="table_row_mission_answer_table">
-                        <td><a href="{% url 'individual_collective_mission_detail'  mission.id %}">{{ mission.parent_mission.name }}</a></td>
 
+                        <td><a href="{% url 'individual_collective_mission_detail'  mission.id %}">{{ mission.parent_mission.name }}</a></td>
 
                         {%  if mission.parent_mission.project.team %}
                             <td> <a class="team_name_link" href="{% url 'team_detail'  mission.parent_mission.project.team.pk %}">{{ mission.parent_mission.project.team.name }}</a></td>

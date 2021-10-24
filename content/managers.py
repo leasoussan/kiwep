@@ -68,8 +68,8 @@ class TeamModelManager(models.Manager):
 # ---------------------------------CollectiveProjectMission---Manager__queryset
 
 class CollectiveMissionQuerySet(models.QuerySet):
-    # def get_individual_collective_mission(self, mission):
-    #     return self.filter(mission__parent_mission=mission)
+    def get_individual_collective_mission(self, mission):
+        return self.filter(mission__parent_mission=mission)
     pass
 
 
@@ -79,8 +79,8 @@ class CollectiveMissionModelManager(models.Manager):
     def get_queryset(self):
         return CollectiveMissionQuerySet(self.model, using=self._db)
 
-    # def get_individual_collective_mission(self, mission):
-    #     return self.get_queryset().get_individual_collective_mission(mission)
+    def get_individual_collective_mission(self, mission):
+        return self.get_queryset().get_individual_collective_mission(mission)
 
 
 # ---------------------------------Collective  INDIVIDUAL ProjectMission---Manager__queryset
