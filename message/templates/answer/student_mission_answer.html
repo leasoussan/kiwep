@@ -10,12 +10,10 @@
 
 
 
-{% if user.profile == object.attributed_to %}
+{% if user.profile == object.attributed_to  %}
 
     <div class="answer_box">
-
         {% if object.answer.all.exists %}
-
             {% with answer=object.answer.all.last %}
                 <label class="last_answer_label">{% trans 'your_last_answer' %}</label>
                 <div class="last_answer_container">

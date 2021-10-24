@@ -15,17 +15,21 @@ def return_class_name(value):
 
 @register.filter
 def student_missions(mission_qs, student):
-
     """ """
     return mission_qs.filter(attributed_to=student)
+
+
+@register.filter
+def student_individual_collective_mission(mission_qs, user):
+    """ get in team the individualcollective Mission for joined user"""
+    return mission_qs.filter(mission__parent_mission__attributed_to=user)
 
 
 
 @register.filter
 def collective_student_missions(mission_qs, team):
 
-    """ """
-
+    """ get collective mission _for a student"""
     return mission_qs.filter(parent_mission__team=team)
 
 @register.filter

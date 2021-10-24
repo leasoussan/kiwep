@@ -68,9 +68,9 @@ class TeamModelManager(models.Manager):
 # ---------------------------------CollectiveProjectMission---Manager__queryset
 
 class CollectiveMissionQuerySet(models.QuerySet):
+    # def get_individual_collective_mission(self, mission):
+    #     return self.filter(mission__parent_mission=mission)
     pass
-
-
 
 
 class CollectiveMissionModelManager(models.Manager):
@@ -78,27 +78,24 @@ class CollectiveMissionModelManager(models.Manager):
 
     def get_queryset(self):
         return CollectiveMissionQuerySet(self.model, using=self._db)
-    
+
+    # def get_individual_collective_mission(self, mission):
+    #     return self.get_queryset().get_individual_collective_mission(mission)
 
 
 # ---------------------------------Collective  INDIVIDUAL ProjectMission---Manager__queryset
-
-class CollectiveIndividualMissionQuerySet(models.QuerySet):
-    """Get Manager for Collective Individual Mission"""
-
-    def get_individual_collective_mission(self, user):
-         return self.filter(attributed_to=user)
-
-
-
-class CollectiveIndividualMissionModelManager(models.Manager):
-    """ Managers are a way to get specifi data from a Model with the help of a queryset """
-
-    def get_queryset(self):
-        return CollectiveIndividualMissionQuerySet(self.model, using=self._db)
-
-    def get_individual_collective_mission(self, user):
-        return self.get_queryset().get_individual_collective_mission(user)
+# # TODO Cant it be donn as it a trhought table?
+# class CollectiveIndividualMissionQuerySet(models.QuerySet):
+#     """Get Manager for Collective Individual Mission"""
+#
+#
+#
+# class CollectiveIndividualMissionModelManager(models.Manager):
+#     """ Managers are a way to get specifi data from a Model with the help of a queryset """
+#
+#     def get_queryset(self):
+#         return CollectiveIndividualMissionQuerySet(self.model, using=self._db)
+#
 
 
 # ---------------------------------------------------------Individual Project Mission Model Manager

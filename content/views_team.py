@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Team, CollectiveMission, Project, Mission, IndividualMission
+from .models import Team, CollectiveMission, Project, Mission, IndividualMission, IndividualCollectiveMission
 from django.forms import ModelForm
 from .forms import TeamAddForm, AddMemberTeamForm, ProjectAddForm, UpdateTeamForm, ProjectTeamAddForm, \
     IndividualMissionAddForm, CollectiveMissionAddForm, BulkAddMissionForm
@@ -73,10 +73,11 @@ class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
             context['project_form'] = ProjectAddForm()
             context['templates'] = self.request.user.profile().project_set.personal_templates()
             context['old_projects'] = self.request.user.profile().project_set.all()
-
         elif self.object.project:
             context['individual_form'] = IndividualMissionAddForm()
             context['collective_form'] = CollectiveMissionAddForm()
+            # to get her all individualcollective Mission
+            #     context['individual_collective_mission']= IndividualCollectiveMission.objects.filter(parent_mission__project__id=self.object.project.id, attributed_to=self.request.user.profile())
         return context
 
     def get_object(self):

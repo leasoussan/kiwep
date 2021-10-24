@@ -46,29 +46,10 @@
                     <div class="answer_content">
                         <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
                             {% csrf_token %}
-
                             {{ answer.status_form }}
                         </form>
 
-                        {#                TODO: grading >>    this is grading system #}
 
-                        {#                    {% if answer.status == 'a' %}#}
-                        {##}
-                        {#                        {% if not answer.grade %}#}
-                        {#                            <div class="grade_content">#}
-                        {#                            <form method="POST" action="{% url 'answer_grade_add' answer.id %}">#}
-                        {#                                {% csrf_token %}#}
-                        {##}
-                        {#                                {{ answer.grade_form }}#}
-                        {#                            </form>#}
-                        {#                        {% else %}#}
-                        {#                            <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>#}
-                        {#                        {% endif %}#}
-                        {#                    </div>#}
-                        {#                    {% else %}#}
-                        {##}
-                        {#                        {% trans 'mission_wasnt_accepted_yet' %}#}
-                        {#                    {% endif %}#}
                     </div>
 
 
@@ -78,32 +59,6 @@
         {% endwith %}
 
     {% endif %}
-
-
-    {#        {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}#}
-    {#        {% if answer.status %}#}
-    {#            <label> {% trans 'answer_status' %}: {{ answer.status }} </label>#}
-    {#        {% elif answer.status == 'a' %}#}
-    {#            {% if not answer.grade %}#}
-    {#                <label>{% trans 'mission_not_graded' %}</label>#}
-    {#            {% else %}#}
-    {#                <label>{% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>#}
-    {#            {% endif %}#}
-    {##}
-    {#        {% else %}#}
-    {##}
-    {#            <label> {% trans 'mission_wasnt_accepted_yet' %}</label>#}
-    {#        {% endif %}#}
-    {#    </div>#}
-    {##}
-    {#    {% endwith %}#}
-    {##}
-    {##}
-    {##}
-    {##}
-    {##}
-    {#    {% endif %}#}
-    {#    {% endif %}#}
 
 </div>
 
@@ -133,3 +88,56 @@
         </div>
     </div>
 {% endwith %}
+
+
+
+
+
+
+{#FOR FUTUR REFERENCES#}
+ {#                TODO: grading >>    this is grading system #}
+
+                        {#                    {% if answer.status == 'a' %}#}
+                        {##}
+                        {#                        {% if not answer.grade %}#}
+                        {#                            <div class="grade_content">#}
+                        {#                            <form method="POST" action="{% url 'answer_grade_add' answer.id %}">#}
+                        {#                                {% csrf_token %}#}
+                        {##}
+                        {#                                {{ answer.grade_form }}#}
+                        {#                            </form>#}
+                        {#                        {% else %}#}
+                        {#                            <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>#}
+                        {#                        {% endif %}#}
+                        {#                    </div>#}
+                        {#                    {% else %}#}
+                        {##}
+                        {#                        {% trans 'mission_wasnt_accepted_yet' %}#}
+                        {#                    {% endif %}#}
+
+{##TODO: when more complex answers#}
+
+    {#        {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}#}
+    {#        {% if answer.status %}#}
+    {#            <label> {% trans 'answer_status' %}: {{ answer.status }} </label>#}
+    {#        {% elif answer.status == 'a' %}#}
+    {#            {% if not answer.grade %}#}
+    {#                <label>{% trans 'mission_not_graded' %}</label>#}
+    {#            {% else %}#}
+    {#                <label>{% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>#}
+    {#            {% endif %}#}
+    {##}
+    {#        {% else %}#}
+    {##}
+    {#            <label> {% trans 'mission_wasnt_accepted_yet' %}</label>#}
+    {#        {% endif %}#}
+    {#    </div>#}
+    {##}
+    {#    {% endwith %}#}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#    {% endif %}#}
+    {#    {% endif %}#}

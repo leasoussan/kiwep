@@ -20,15 +20,16 @@
 
 
 
-
-
 {% elif user.is_student %}
-{# or object.individualcollectivemission#}
     {% if object.individualmission %}
+
         {% include 'answer/student_mission_answer.html' with mission=object %}
 
-    {% else %}
+    {% elif object.collectivemission %}
+
         {% include 'answer/student_collective_answers.html' with mission=object %}
+
+        {% else  %}
     {% endif %}
 
 

@@ -139,9 +139,8 @@
 
             <div class="mission_list">
                 {% for mission in individual_collective_mission  %}
-                    {#                {% if mission.project.team.id == True %}#}
                     <tr class="table_row_mission_answer_table">
-                        <td><a href="{% url 'collective_mission_detail'  mission.parent_mission.pk %}">{{ mission.parent_mission.name }}</a></td>
+                        <td><a href="{% url 'individual_collective_mission_detail'  mission.id %}">{{ mission.parent_mission.name }}</a></td>
 
 
                         {%  if mission.parent_mission.project.team %}

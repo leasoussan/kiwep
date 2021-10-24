@@ -42,12 +42,12 @@ class IndividualMissionListView(ProfileCheckPassesTestMixin, ListView):
     def get_queryset(self):
         return super().get_queryset().filter(attributed_to=self.request.user.profile())
 
-
-    def get_context_data(self, *args,**kwargs):
-        context = super().get_context_data(**kwargs)
-        if self.request.user.is_student:
-            context['individual_collective_mission'] = IndividualCollectiveMission.objects.get_individual_collective_mission(self.request.user.profile())
-        return context
+    #
+    # def get_context_data(self, *args,**kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     if self.request.user.is_student:
+    #         context['individual_collective_mission'] = IndividualCollectiveMission.objects.get_individual_collective_mission(self.request.user.profile())
+    #     return context
 # #
 # class CollectiveIndividualMissionStudentListView(ProfileCheckPassesTestMixin, ListView):
 #     ''' To See all Missions View  STUDENT '''
@@ -178,6 +178,7 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
         pk = self.kwargs.get('pk')
         return get_object_or_404(CollectiveMission, pk=pk)
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['individual_form'] = IndividualMissionAddForm()
@@ -185,7 +186,9 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
         context['resources_form'] = ResourceAddForm()
         context['answer_form'] = AddAnswerForm()
         context['status_form'] = MissionSpeakerStatusAnswerForm()
-
+        #
+        # if self.object.attributed_to.exists() and self.request.user in self.object.attributed_to.all():
+        #     context['collective_individual'] = IndividualCollectiveMission.objects.filter(parent_mission__id=get_object_or_404())
         return context
 # ----------------------------------------------------------------------------------------------------------------
 
@@ -204,10 +207,21 @@ class IndividualCollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailV
         return context
 
 
-# ---------------------------
+# --------# This is to selecte a collecitve or individualcollectivemission
+
+# class CollectiveMissionGlobalView(ProfileCheckPassesTestMixin, View):
+# 
+#     def get_individual_collective_mission(self, collective_mission):
+#         if self.request.user.profile in collective_mission.attributed_to.all():
+#             return IndividualCollectiveMissionDetailView
+# 
+#         else:
+#             return CollectiveMissionDetailView
 
 
 
+
+# ___________________________________________________________________________
 
 
 

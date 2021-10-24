@@ -95,7 +95,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    {% if resource.image %}
                     <img class="resource_image_big"  src="{{ resource.image.url }}" alt="{{ resource.title }}">
+                    {% else %}
+                    {% trans 'no_image' %}
+
+                    {% endif %}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
@@ -115,8 +120,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img class="resource_file_big"  src="{{ resource.file_rsc.url }}" alt="{{ resource.title }}">
-                </div>
+                    {% if not resource.file_rsc.exists %}
+              <h1>      {% trans 'no_resource_yet' %}</h1>
+
+                    {% else %}
+                        <img class="resource_file_big"  src="{{ resource.file_rsc.url }}" alt="{{ resource.title }}">
+                    {% endif %}
+                    </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
 
