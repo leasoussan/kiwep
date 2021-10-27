@@ -135,6 +135,8 @@ x/* TEAM-LIST */
     margin-bottom: 2rem;
 }
 
+
+
 .project_detail_team_page{
     min-width: 85%;
     max-width: 85%;
@@ -582,7 +584,7 @@ x/* TEAM-LIST */
     justify-content: center;
     margin: auto;
 
-}!important
+}
 
 
 .discussion_board_row{
@@ -690,7 +692,6 @@ x/* TEAM-LIST */
     }
 
     .team_extra_information{
-        min-width: none;
         position: relative;
         right: 50px;
         width: 100%;
@@ -705,7 +706,6 @@ x/* TEAM-LIST */
 
     .team_discussion_container{
         width:100%;
-        min-height: none;
         height: 40%;
         margin-left: 0;
     }

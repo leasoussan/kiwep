@@ -24,9 +24,7 @@
                 <th>{{ team.participants.count }}</th>
                 <th>{{team.project.time_to_complete}}</th>
                 {% if team.project %}
-
-                <th><a href="{% url 'project_detail' team.project.id %}">{{team.project}} </a></th>
-
+                <th><h5><a href="{% url 'project_detail' team.project.id %}">{{team.project}} </a></h5></th>
                 {% endif %}
             </tr>
 

@@ -78,9 +78,8 @@ button .edit_button{
 }
 
 .edit_answer_button{
-    background-color: #ebd96c;
+    background-color: #fad673;
     width: 6rem;
-    margin-top: 1rem;
 }
 .mission_detail_details{
     display: flex;
@@ -201,8 +200,8 @@ button .edit_button{
 }
 
 .student_mission_related_elements_content{
-    min-height: 50%;
-    max-height: 60%;
+    min-height:20%;
+    max-height: 20%;
     min-width: 95%;
     max-width: 95%;
     justify-content: flex-start;

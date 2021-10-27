@@ -415,9 +415,9 @@ nav{
 
 
 .modal_save_button{
-  margin: 1rem 0rem;
-  margin-left: 70%;
-  background-color: yellow;
+  margin-left: 50%;
+  margin-top: 2rem;
+  background-color: #fad673;
   width: 10rem;
   height: 2rem;
   border:gold 2px solid;
