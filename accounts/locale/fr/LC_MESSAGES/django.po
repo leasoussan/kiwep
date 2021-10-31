@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-17 14:16+0300\n"
+"POT-Creation-Date: 2021-10-27 09:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,61 +20,55 @@ msgstr ""
 
 #: forms.py:25 forms_current.py:25
 msgid "student"
-msgstr "Etudient"
+msgstr "Apprenant"
 
 #: forms.py:26 forms_current.py:26
 msgid "speaker"
 msgstr "Intervenant"
 
-#: mailer.py:9
-#, fuzzy
+#: mailer.py:9 mailer.py:22
 msgid "welcome"
-msgstr "Bienvenue sur la plateforme KIWEP !"
+msgstr "Bienvenue !"
 
-#: mailer.py:10
+#: mailer.py:10 mailer.py:23
 msgid "to KIWEP"
-msgstr "A Kiwep"
+msgstr "KIWEP"
 
-#: mailer.py:12
+#: mailer.py:12 mailer.py:25
 msgid "registration_email_subject"
-msgstr "Email"
+msgstr ""
 
-#: mailer.py:22
+#: mailer.py:37
 msgid "institution_invitation_ registration"
-msgstr "Invitation SignUp Institution"
+msgstr "Invitation pour l’institution"
 
-#: mailer.py:23 mailer.py:36
+#: mailer.py:38 mailer.py:52
 msgid "to_kiwep"
-msgstr "A KIWEP"
+msgstr ""
 
-#: mailer.py:25 mailer.py:38
-#, fuzzy
-#| msgid "registration_email_subject"
+#: mailer.py:40 mailer.py:54
 msgid "registration_invitation_email_subject"
-msgstr "Email"
+msgstr ""
 
-#: mailer.py:35
+#: mailer.py:51
 msgid "speaker_invitation_registration"
-msgstr "Invitation Intervenant"
-"Invitation IntervenantNous sommes ravis de t'accueillir sur la plateforme "
-"KIWEP : nous avons hâte de mieux te connaître et de t'aider à grandir au fur "
-"et à mesure des projets que tu vas réaliser sur la plateforme. "
+msgstr ""
 
-#: models.py:52
+#: models.py:56
 msgid "language"
 msgstr "Langue"
 
-#: models.py:177
+#: models.py:179
 msgid "invitor"
-msgstr "Invite Par"
+msgstr ""
 
-#: models.py:191
+#: models.py:193
 msgid "institution_invite_for"
-msgstr "Invitation SignUP Institution"
+msgstr ""
 
-#: models.py:201
+#: models.py:216
 msgid "speaker_invite_for"
-msgstr "Invitation Intervenant a:"
+msgstr ""
 
 #: templates/accounts/invite/invite.html:13
 msgid "send"
@@ -82,193 +76,176 @@ msgstr "Envoyer"
 
 #: templates/accounts/profile/edit_profile.html:10
 msgid "profile_edit"
-msgstr "Éditer le Profile"
+msgstr "Profile"
 
 #: templates/accounts/profile/edit_profile.html:15
 msgid "form_user"
-msgstr "Form Utilisateur"
+msgstr "Profile"
 
 #: templates/accounts/profile/edit_profile.html:20
-#, fuzzy
-#| msgid "profile_edit"
 msgid "profile_form"
-msgstr "Éditer le Profile"
+msgstr "Profile"
 
 #: templates/accounts/profile/edit_profile.html:22
-#, fuzzy
-#| msgid "institution_invite_for"
-msgid "institution form_form"
-msgstr "Invitation SignUP Institution"
+msgid "institution_form_form"
+msgstr ""
 
-#: templates/accounts/profile/speaker_profile.html:13
-#: templates/accounts/profile/student_profile.html:12
-msgid "about"
-msgstr "A Props"
-
-#: templates/accounts/profile/speaker_profile.html:18
-msgid "study_hisitory"
-msgstr "Education"
-
+#: templates/accounts/profile/profile_visitor.html:23
 #: templates/accounts/profile/speaker_profile.html:22
-#: templates/accounts/profile/student_profile.html:18
-msgid "from"
-msgstr "De"
+#: templates/accounts/profile/student_profile.html:22
+msgid "first_name"
+msgstr "Prénom"
 
+#: templates/accounts/profile/profile_visitor.html:27
 #: templates/accounts/profile/speaker_profile.html:26
-msgid "what_would_you_like_to_know"
-msgstr "Que voudierz vous savoir sur L'etudient?"
+#: templates/accounts/profile/student_profile.html:26
+msgid "last_name"
+msgstr "Nom de famille"
 
-#: templates/accounts/profile/speaker_profile.html:37
-msgid "active"
-msgstr "Actif"
+#: templates/accounts/profile/profile_visitor.html:31
+#: templates/accounts/profile/speaker_profile.html:30
+#: templates/accounts/profile/student_profile.html:30
+msgid "phone_number"
+msgstr "Numéro de téléphone"
 
-#: templates/accounts/profile/speaker_profile.html:40
-msgid "edit_profile"
-msgstr "Editer Votre profile"
+#: templates/accounts/profile/profile_visitor.html:35
+#: templates/accounts/profile/speaker_profile.html:34
+#: templates/accounts/profile/student_profile.html:34
+msgid "city"
+msgstr "Ville"
 
-#: templates/accounts/profile/speaker_profile.html:45
-#: templates/accounts/profile/student_profile.html:47
-msgid "contact_info"
-msgstr "Nous contacter"
+#: templates/accounts/profile/profile_visitor.html:39
+#: templates/accounts/profile/speaker_profile.html:38
+#: templates/accounts/profile/student_profile.html:38
+msgid "institution"
+msgstr "Institution"
 
-#: templates/accounts/profile/speaker_profile.html:48
-#: templates/accounts/profile/student_profile.html:50
-msgid "live_in"
-msgstr "Vie a:"
+#: templates/accounts/profile/profile_visitor.html:44
+#: templates/accounts/profile/speaker_profile.html:43
+#: templates/accounts/profile/student_profile.html:43
+msgid "status"
+msgstr "Rôle"
 
-#: templates/accounts/profile/speaker_profile.html:61
-#: templates/accounts/profile/student_profile.html:63
-msgid "speaker_info_bio"
-msgstr "Biography Intervenant"
+#: templates/accounts/profile/profile_visitor.html:53
+#: templates/accounts/profile/speaker_profile.html:52
+msgid "groups"
+msgstr "Groupes"
 
-#: templates/accounts/profile/student_profile.html:16
-msgid "Studing"
-msgstr "Etudie"
+#: templates/accounts/profile/student_profile.html:52
+msgid "teams"
+msgstr "Equipes"
 
-#: templates/accounts/profile/student_profile.html:19
-msgid "part_of_lable"
-msgstr "Fait partie de :"
-
-#: templates/accounts/profile/student_profile.html:20
-msgid "group_name_lable"
-msgstr "Group"
-
-#: templates/accounts/profile/student_profile.html:28
-msgid "what_relevant_info_will_you_find_interesting?"
-msgstr "Quels informations vous semblent Interessantes"
-
-#: templates/accounts/profile/student_profile.html:42
-#, fuzzy
-#| msgid "edit_profile"
-msgid "edit_profile_button"
-msgstr "Editer Votre profile"
-
+#: templates/emails/institution_email_invite.html:3
+#: templates/emails/institution_welcome.html:3
 #: templates/emails/registration_invitation.html:3
 #: templates/emails/speaker_invite.html:3 templates/emails/welcome.html:3
 msgid "welcome_message"
-msgstr "Chers utilisateurs/utilisatrice Kiwep."
+msgstr ""
 
+#: templates/emails/institution_email_invite.html:5
 #: templates/emails/registration_invitation.html:5
 #: templates/emails/speaker_invite.html:5 templates/emails/welcome.html:5
 msgid "hi"
-msgstr "Cher/Chere"
+msgstr "Bonjour !"
 
+#: templates/emails/institution_welcome.html:5
+msgid "dear"
+msgstr ""
+
+#: templates/emails/institution_welcome.html:9
 #: templates/emails/registration_invitation.html:8
 #: templates/emails/welcome.html:9
 msgid "message_intro_registration_1"
 msgstr ""
-"Nous sommes ravis de t'accueillir sur la plateforme KIWEP : nous avons hâte "
-"de mieux te connaître et de t'aider à grandir au fur et à mesure des projets "
-"que tu vas réaliser sur la plateforme. "
 
+#: templates/emails/institution_welcome.html:10
 #: templates/emails/registration_invitation.html:9
 #: templates/emails/welcome.html:10
 msgid "message_intro_registration_2"
-msgstr "Nous te souhaitons de vivre plein de belles aventures ! A très vite, "
+msgstr ""
 
+#: templates/emails/institution_welcome.html:11
 #: templates/emails/registration_invitation.html:10
 #: templates/emails/welcome.html:11
 msgid "message_intro_registration_3"
-msgstr "L'équipe KIWEP 🥝"
+msgstr ""
 
+#: templates/emails/institution_welcome.html:13
 #: templates/emails/registration_invitation.html:12
 #: templates/emails/welcome.html:13
 msgid "message_intro_registration_4"
 msgstr ""
-"PS : Nous te demandons un petit service : nous donner ton avis sur KIWEP dès "
-"que tu as 5 minutes en cliquant sur le lien suivant. "
 
 #: templates/registration/login.html:22
 #: templates/registration/‏‏login_current.html:26
 msgid "remeber_me_login"
-msgstr "Se souvenir de mon Identifiant."
+msgstr ""
 
 #: templates/registration/login.html:25
 #: templates/registration/‏‏login_current.html:19
 msgid "login"
-msgstr "Se Connecter"
+msgstr ""
 
 #: templates/registration/login.html:30
 #: templates/registration/‏‏login_current.html:28
-#, fuzzy
-#| msgid "change_password"
 msgid "forgot_password?"
-msgstr "Changer de Mot de Pass"
+msgstr "Mot de passe oublié ?"
 
 #: templates/registration/login.html:31
 msgid "Do_not_have_an_account_yet?"
-msgstr ""
+msgstr "Vous n’avez pas de compte ?"
 
 #: templates/registration/password_change_done.html:5
 msgid "password_change"
-msgstr "Mot de Passe Sauvragrdee!"
+msgstr ""
 
 #: templates/registration/password_change_done.html:7
 #: templates/registration/password_change_form.html.html:14
 #: templates/registration/password_reset_form.html:15
 msgid "back_to_dashboard"
-msgstr "Retours au Dashboard"
+msgstr ""
 
 #: templates/registration/password_change_form.html.html:6
 msgid "change_password"
-msgstr "Changer de Mot de Pass"
+msgstr ""
 
 #: templates/registration/password_reset_done.html:7
 msgid "password_reset_done"
-msgstr "Mot de Passe Sauvragrdee!"
+msgstr ""
 
 #: templates/registration/password_reset_done.html:9
 #: templates/registration/register.html:18
 #: templates/registration/register.html:19
 #: templates/registration/‏‏register_current.html:19
 msgid "back_to_login"
-msgstr "Retours au Login"
+msgstr "Retour"
 
 #: templates/registration/password_reset_form.html:7
 msgid "send_passsword_reste_link"
-msgstr "Recevoir Un lien pour Reset votre Mot de Passe"
+msgstr ""
 
 #: templates/registration/register.html:12
 #: templates/registration/‏‏register_current.html:13
 msgid "sign up"
-msgstr "S'enrengistrer"
+msgstr ""
 
 #: templates/registration/‏‏login_current.html:13
 msgid "login_in_to_your_kiwep_account!"
-msgstr "Se Connecter a votre compt"
+msgstr "Se connecter"
 
 #: templates/registration/‏‏login_current.html:29
 msgid "Do not have an account yet?"
-msgstr "Vous n'avez pas de compt?"
+msgstr ""
 
 #: views.py:99
 msgid "invite_used"
-msgstr "Invitation deja utilisee"
+msgstr ""
 
 #: views.py:103
 msgid "your_invite_expired"
-msgstr "Invitation Expiree"
+msgstr "Votre invitation a expiré. Merci de contacter : lea@kiwep.co"
 
 #: views.py:106
 msgid "no_key_to_register"
-msgstr "pas de key"
+msgstr ""
+

@@ -1,3 +1,4 @@
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -8,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-17 14:22+0300\n"
+"POT-Creation-Date: 2021-10-27 09:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,41 +23,39 @@ msgstr ""
 #: templates/backend/representative_dashboard.html:5
 #: templates/backend/speaker_dashboard_current.html:7
 msgid "welcome"
-msgstr "Bienvenue"
+msgstr "Bienvenue !"
 
 #: templates/backend/general_dashboard.html:34
 msgid "edit_profile"
-msgstr "Editer Votre Profile"
+msgstr "Profile"
 
 #: templates/backend/representative_dashboard.html:14
 msgid "Invite_a_speaker"
-msgstr "Inviter un Intervenant"
+msgstr "Inviter un intervenant"
 
 #: templates/backend/representative_dashboard.html:18
 msgid "send_invite"
-msgstr "Envoyer L'invitation"
+msgstr "Envoyer une invitation"
 
 #: templates/backend/representative_dashboard.html:30
 msgid "add_group"
-msgstr "Ajouter une Equipe"
+msgstr "Ajouter un groupe"
 
 #: templates/backend/representative_dashboard.html:35
-#, fuzzy
-#| msgid "projects_list"
 msgid "groups_list"
-msgstr "Liste de Projets"
+msgstr "Groupes"
 
-#: templates/backend/speaker_dashboard.html:30
-#: templates/backend/student_dashboard.html:30
-msgid "you-currently_have"
-msgstr "Vous avez a Present"
-
-#: templates/backend/speaker_dashboard.html:32
-#: templates/backend/speaker_dashboard_current.html:21
-#: templates/backend/student_dashboard.html:32
-msgid "team"
+#: templates/backend/speaker_dashboard.html:34
+#: templates/backend/student_dashboard.html:34
+msgid "feeb_back_request"
 msgstr ""
 
 #: templates/backend/speaker_dashboard.html:36
-msgid "my_students"
-msgstr "Mes Etudients"
+#: templates/backend/student_dashboard.html:36
+msgid "feedback"
+msgstr "Votre retour d’expérience"
+
+#: templates/backend/speaker_dashboard_current.html:21
+msgid "team"
+msgstr "Équipe"
+
