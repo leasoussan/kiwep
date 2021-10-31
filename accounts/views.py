@@ -167,7 +167,7 @@ def get_user_profile_form(request, edit=False):
     data = request.POST or None
 
     if user.is_student:
-        profile_form = StudentProfileCreationForm(data, instance=instance )
+        profile_form = StudentProfileCreationForm(data, instance=instance)
 
 
     elif user.is_speaker:
@@ -213,27 +213,27 @@ class CreateProfile(View):
 
         if profile_form.is_valid() and user_form.is_valid():
             user_form.save()
-            object = profile_form.save(commit=False)
+            profile_object = profile_form.save(commit=False)
 
             if request.user.is_representative:
-                object.representative = Representative.objects.get_or_create(user=request.user)[0]
-                object.save()
+                profile_object.representative = Representative.objects.get_or_create(user=request.user)[0]
+                profile_object.save()
 
             else:
-                object.user = request.user
+                profile_object.user = request.user
 
 
             if user.is_speaker:
                 for invite in user.received_invites.all():
-                    object.save()
-                    object.institution.add(invite.institution)
+                    profile_object.save()
+                    profile_object.institution.add(invite.institution)
 
             elif user.is_student:
                 join_code = profile_form.cleaned_data['join_code']
                 if Group.objects.filter(join_code=join_code).exists():
                     join_group = Group.objects.get(join_code=join_code)
-                    object.class_level=join_group
-                    object.save()
+                    profile_object.class_level=join_group
+                    profile_object.save()
 
 
             return redirect('dashboard')

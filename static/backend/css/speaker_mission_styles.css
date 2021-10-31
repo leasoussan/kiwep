@@ -12,7 +12,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width:90%;
+    min-width:90%;
+    max-width:90%;
+    min-height: 4rem;
+    max-height: 4rem;
+        margin-top:2rem;
 }
 
 .mission_detail_header h3{
@@ -20,10 +24,10 @@
     flex-direction: column;
     min-width: 60%;
     max-width: 75%;
-
     min-height: 5rem;
     max-height: 5rem;
     align-content: flex-end;
+
 }
 
 .edit_button_team_speaker{
@@ -31,19 +35,12 @@
     width: 120px;
     margin-right: -10rem;
 }
-.btn-light:hover{
-    color: #000000;
-}
-
-
-
-
 .mission_detail_main_content{
     display: flex;
     flex-direction: column;
     width: 60%;
-    min-height: 70vh;
-    max-height: 70vh;
+    min-height: 80vh;
+    max-height: 80vh;
     justify-content: space-between;
     background-color: #f2f2f2;
     padding: 1rem 1rem 1rem 1rem;
@@ -51,12 +48,18 @@
     border-radius: 10px;
 }
 
+
+
+
+.btn-light:hover{
+    color: #000000;
+}
+
 .mission_detail_main_panel{
     display: flex;
     flex-direction: row;
     padding-top: 1rem;
     min-height: 80vh;
-    margin-top: 2rem;
     justify-content: space-between;
 }
 
@@ -85,6 +88,7 @@
     flex-direction: column;
     width: 45%;
     min-height: 30vh;
+    max-height: 30vh;
     justify-content: space-between;
     background-color: transparent;
 }
@@ -136,7 +140,7 @@
     margin-bottom: 1rem;
 }
 .detail_time_to_complete{
-        display: flex;
+    display: flex;
     justify-content: flex-start;
     align-items: center;
     min-height: 25%;
@@ -145,10 +149,20 @@
     max-width: 90%;
     padding-left: 1rem;
     background-color: white;
-    x-large
-
 }
 
+.mission_type{
+  display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 25%;
+    max-height: 25%;
+    min-width: 90%;
+    max-width: 90%;
+    padding-left: 1rem;
+    background-color: white;
+    margin-bottom: 1rem;
+}
 .skills_name{
     min-height: 70%;
     background-color: transparent;
@@ -189,6 +203,7 @@
     flex-direction: row;
     width: 100%;
     min-height: 35vh;
+    max-height: 35vh;
     justify-content: space-between;
     align-content: flex-end;
     padding: 1rem;
@@ -272,8 +287,8 @@
     width: 100%;
     justify-content: center;
     align-content: flex-end;
-    min-height: 50%;
-    max-height: 50%;
+    min-height: 60%;
+    max-height: 60%;
     border-radius: 10px;
 }
 
@@ -377,7 +392,6 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    border: yellow solid 5px;
     /* min-height: 120px; */
 }
 
@@ -398,8 +412,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-end;
-    background-color: transparent;
+    align-items: center;
+    background-color: white;
     height: 7rem;
     /*margin-right: 1rem;*/
     min-width: 90%;
@@ -411,13 +425,15 @@
     background-color: transparent;
 }
 .resource_name{
-    display: flex;
-    flex-wrap: wrap;
-    min-width: 85%;
-    max-width: 80%;
-    border: #0b2e13 1px solid;
+    min-width: 60%;
+    max-width: 60%;
 }
 
+.resource_name{
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+}
 /*------SPEAKER ANSWER BOARD-----*/
 
 .answer_board{

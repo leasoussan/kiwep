@@ -457,7 +457,7 @@ def bulk_add_individual_mission(request, **kwargs):
     ''' Add bulk Mission in Project '''
 
     individual_form = IndividualMissionAddForm(request.POST)
-    mission_bulk_form = BulkAddMissionForm(data=request)
+    mission_bulk_form = BulkAddMissionForm(projects =request.user.profile().project_set.all(), data=request.POST)
 
     if request.method == "POST":
         if individual_form.is_valid() and mission_bulk_form.is_valid():

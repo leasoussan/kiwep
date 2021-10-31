@@ -103,11 +103,22 @@ class StudentProfileCreationForm(forms.ModelForm):
         widget=django.forms.DateInput(
             format='%d/%m/%Y',
             attrs={'type': 'date'}),
-        # input_formats=('%d-%m-%Y',),
     )
+
     join_code = forms.CharField(max_length=10, required=False)
+    
+    def __init__(self, *args, **kwargs):
+        if 'instance' in kwargs:
+            kwargs['initial'] = {'join_code':kwargs['instance'].class_level.join_code}
+        super(StudentProfileCreationForm, self).__init__(*args, **kwargs)
+
+        "To have it disabled when editing "
+        if 'instance' in kwargs:
+            self.fields['join_code'].disabled = True
 
 
+        
+        
 class SpeakerProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Speaker

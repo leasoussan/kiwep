@@ -8,7 +8,6 @@ from django.db import models
 from django.contrib import messages
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from django.db.models.signals import pre_save
 from django.contrib.contenttypes.fields import GenericRelation
 from datetime import datetime, timedelta
 
@@ -19,9 +18,8 @@ from django.utils.translation import ugettext as _
 from .managers import *
 # this is like a trans tag - just for the backend 
 from django.utils.translation import ugettext_lazy as _
-# signals
 from django.dispatch import receiver
-from django.db.models.signals import post_save, m2m_changed, pre_delete
+from django.db.models.signals import post_save, m2m_changed, pre_delete, pre_save
 
 from django.utils import timezone
 from message.models import DiscussionModel,AnswerModel

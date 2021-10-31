@@ -188,6 +188,7 @@ def clean_missions(project_id, missions):
                 mission_type='i',
                 owner_id= mission.project.speaker.user.id,
                 attributed_to=None,
+                description=mission.description
             )
 
         elif mission.mission_type == 'c':
@@ -200,6 +201,7 @@ def clean_missions(project_id, missions):
                 due_date=timezone.now(),
                 mission_type='c',
                 owner_id=mission.project.speaker.user.id,
+                description=mission.description
             )
             collective_mission_copy.attributed_to.set(attributed_to)
             print('collective_mission_copy',collective_mission_copy)

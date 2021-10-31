@@ -11,8 +11,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width:90%;
-    margin-left: 6%;
+    min-width:90%;
+    max-width:90%;
+    min-height: 4rem;
+    max-height: 4rem;
+    margin-top:2rem;
 }
 
 .btn-light:hover{
@@ -31,8 +34,8 @@ button .edit_button{
     display: flex;
     flex-direction: column;
     width: 60%;
-    min-height: 70vh;
-    max-height: 70vh;
+    min-height: 80vh;
+    max-height:80vh;
     justify-content: space-between;
     background-color: #f2f2f2;
     padding: 1rem 1rem 1rem 1rem;
@@ -72,9 +75,9 @@ button .edit_button{
     flex-direction: column;
     min-width: 35%;
     max-width: 35%;
-    max-height:120vh;
+    max-height:90vh;
     padding: 0rem 2rem;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .edit_answer_button{
@@ -86,6 +89,7 @@ button .edit_button{
     flex-direction: column;
     width: 45%;
     min-height: 30vh;
+    max-height: 30vh;
     justify-content: space-between;
     background-color: transparent;
 }
@@ -194,14 +198,15 @@ button .edit_button{
     flex-direction: row;
     width: 100%;
     min-height: 35vh;
+    max-height: 35vh;
     justify-content: space-between;
     align-content: flex-end;
     padding: 1rem;
 }
 
 .student_mission_related_elements_content{
-    min-height:20%;
-    max-height: 20%;
+    min-height:50%;
+    max-height: 50%;
     min-width: 95%;
     max-width: 95%;
     justify-content: flex-start;
@@ -410,10 +415,8 @@ button .edit_button{
     background-color: transparent;
 }
 .resource_name{
-    display: flex;
-    flex-wrap: wrap;
-    min-width: 85%;
-    max-width: 80%;
+    min-width: 60%;
+    max-width: 60%;
 }
 .claim_mission_button{
     background-color: gold;

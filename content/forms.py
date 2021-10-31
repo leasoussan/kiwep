@@ -147,7 +147,6 @@ class BulkAddMissionForm(forms.Form):
     def __init__(self, *args, **kwargs):
         # print('kwargs', kwargs)
         projects=kwargs.pop('projects')
-        # projects=kwargs.pop('projects')
         super(BulkAddMissionForm, self).__init__(*args, **kwargs)
         if projects:
             self.fields['projects'].queryset = projects

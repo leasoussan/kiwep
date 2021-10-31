@@ -205,8 +205,8 @@
 
 /*---------------------------------MODAL DISCUSSION*/
 .modal-content{
-    min-width: 150%;
-    max-width: 150%;
+    min-width: 100%;
+    max-width: 100%;
     background-color:  antiquewhite;
 }
 .modal_discussion{

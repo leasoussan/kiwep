@@ -9,15 +9,14 @@ from content.signals import send_institution_signup_invite
 
 
 #TODO This part should be changed to a DEACTIVATE and not delete, that we could keep track on what has been done
-@receiver(pre_delete, sender='content.ProjectMissionRating')
-def update_team_delete_mission(sender, instance, *args,  **kwargs):
-    mission = instance.mission
-    for team in instance.project.team_set.all():
-        if instance.mission.mission_type == 't_m':
-            CollectiveProjectMission.objects.get(mission=mission, team=team).delete()
+@receiver(pre_delete, sender='content.Team')
+def delete_project_team_delete(sender, instance, *args,  **kwargs):
+    # project=instance.project
+    for project in instance.project:
+        if instance.project:
+            Team.objects.get(project=project).delete()
 
-        elif instance.mission.mission_type == 's_m':
-            IndividualProjectMission.objects.get(mission=mission, team=team).delete()
+
 
     # if not reverse:
     #     if action == 'post_remove':

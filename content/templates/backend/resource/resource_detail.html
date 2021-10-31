@@ -17,9 +17,10 @@
 
             <a class="btn" href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a>
 
-            {% if resource in resource.project_set.all %}
 
-                <a href="{% url  'individual_mission_detail' resource.mission_set.id %}">{% trans 'back_to_mission' %}</a>
+            {% if resource.mission %}
+
+                <a href="{% url  'individual_mission_detail' resource.mission.id %}">{% trans 'back_to_mission' %}</a>
             {% elif collectivemission %}
                 here3
                 <a href="{% url  'collective_mission_detail' mission.id %}">{% trans 'back_to_mission' %}"</a>
