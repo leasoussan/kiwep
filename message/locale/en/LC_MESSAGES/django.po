@@ -1,0 +1,155 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-29 11:58+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:101
+msgid "waiting_review"
+msgstr ""
+
+#: models.py:102
+msgid "under_review"
+msgstr ""
+
+#: models.py:103
+msgid "accepted"
+msgstr ""
+
+#: models.py:104
+msgid "rejected"
+msgstr ""
+
+#: models.py:105
+msgid "see_comment"
+msgstr ""
+
+#: templates/answer/speaker_mission_answer.html:15
+msgid "answers"
+msgstr ""
+
+#: templates/answer/speaker_mission_answer.html:19
+msgid "student_didnt_respond"
+msgstr ""
+
+#: templates/answer/speaker_mission_answer.html:23
+msgid "response_type"
+msgstr ""
+
+#: templates/answer/speaker_mission_answer.html:32
+msgid "text_lable"
+msgstr ""
+
+#: templates/answer/speaker_mission_answer.html:34
+msgid "see_file"
+msgstr ""
+
+#: templates/answer/speaker_mission_answer.html:36
+msgid "no_file_was_submited"
+msgstr ""
+
+#: templates/answer/speaker_mission_answer.html:40
+#: templates/answer/student_collective_answers.html:27
+#: templates/answer/student_mission_answer.html:31
+msgid "sent_file"
+msgstr ""
+
+#: templates/answer/speaker_mission_answer.html:73
+#: templates/answer/student_collective_answers.html:100
+#: templates/answer/student_mission_answer.html:98
+msgid "response_file_view"
+msgstr ""
+
+#: templates/answer/speaker_mission_answer.html:80
+#: templates/answer/student_collective_answers.html:107
+#: templates/answer/student_mission_answer.html:105
+msgid "there_is_no_file_yet\""
+msgstr ""
+
+#: templates/answer/speaker_mission_answer.html:84
+#: templates/answer/student_collective_answers.html:111
+#: templates/answer/student_mission_answer.html:109
+msgid "close"
+msgstr ""
+
+#: templates/answer/student_collective_answers.html:21
+#: templates/answer/student_mission_answer.html:20
+msgid "your_last_answer"
+msgstr ""
+
+#: templates/answer/student_collective_answers.html:31
+#: templates/answer/student_mission_answer.html:35
+msgid "no_file_yet"
+msgstr ""
+
+#: templates/answer/student_collective_answers.html:35
+#: templates/answer/student_mission_answer.html:22
+msgid "edit_answer"
+msgstr ""
+
+#: templates/answer/student_collective_answers.html:45
+#: templates/answer/student_mission_answer.html:51
+msgid "answer_status"
+msgstr ""
+
+#: templates/answer/student_collective_answers.html:69
+msgid "you_didnt__answered_yet"
+msgstr ""
+
+#: templates/answer/student_collective_answers.html:73
+#: templates/answer/student_mission_answer.html:79
+msgid "save_answer"
+msgstr ""
+
+#: templates/answer/student_collective_answers.html:84
+msgid "see_student_answer"
+msgstr ""
+
+#: templates/answer/student_collective_answers.html:126
+msgid "see_other_student_answers"
+msgstr ""
+
+#: templates/answer/student_mission_answer.html:75
+msgid "no_answered_yet"
+msgstr ""
+
+#: templates/comments/discussion.html:18
+msgid "discussions_board: "
+msgstr ""
+
+#: templates/comments/discussion.html:22
+msgid "comment_on_answer : "
+msgstr ""
+
+#: templates/comments/discussion.html:62
+#: templates/comments/discussion_current.html:14
+#: templates/comments/discussion_current.html:39
+msgid "start_discussion"
+msgstr ""
+
+#: templates/comments/discussion.html:101
+#: templates/comments/discussion.html:108
+msgid "by"
+msgstr ""
+
+#: templates/comments/discussion_current.html:9
+msgid "discussion_board_of"
+msgstr ""
+
+#: templates/comments/discussion_current.html:19
+msgid "add_discussion"
+msgstr ""
