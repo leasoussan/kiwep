@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-02 00:18+0300\n"
+"POT-Creation-Date: 2021-11-01 20:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,94 +20,73 @@ msgstr ""
 
 #: 404.html:11
 msgid "went_wrong"
-msgstr "Il ya eu une erreur"
+msgstr "Quelque chose a mal tourné"
 
 #: 404.html:16 500.html:17
 msgid "homepage"
-msgstr "Page d'Accueil"
+msgstr "Homepage"
 
 #: 500.html:13
 msgid "internal_server_error"
-msgstr "Erreur De Fonctionalitee"
-
-#: base.html:29 navbar.html:7
-msgid "KIWEP"
-msgstr "KIWEP"
-
-#: base.html:42
-#, fuzzy
-#| msgid "home_"
-msgid "home"
-msgstr "Page d'Accueil"
-
-#: base.html:49
-msgid "my_projects"
-msgstr "Projects"
-
-#: base.html:52
-msgid "teams"
-msgstr "Equipes"
-
-#: base.html:59
-msgid "my_missions"
-msgstr "Mes Missions"
-
-#: base.html:66
-msgid "todo"
-msgstr "A Faire"
-
-#: base.html:73
-msgid "projects"
-msgstr "Projects"
-
-#: base.html:75
-msgid "availiable_projects"
-msgstr "Projets Disponible"
-
-#: homepage.html:49
-msgid "kiwep"
-msgstr "Kiwep"
-
-#: homepage.html:53
-msgid "log_in"
-msgstr "Se Connecter"
-
-#: homepage.html:54
-msgid "signup"
-msgstr "S'enrengistrer"
+msgstr "Problem de notre serveur - Contactez lea@Kiwep.co"
 
 #: navbar.html:19
-msgid "dashboard"
-msgstr "Tableau de Bord"
+msgid "team_board"
+msgstr "Équipes"
 
-#: navbar.html:20 navbar.html:22
-msgid "home_page"
-msgstr "Page d'Accueil"
+#: navbar.html:20
+msgid "templates_project"
+msgstr "Projets"
+
+#: navbar.html:21
+msgid "answer_board"
+msgstr "Réponses"
 
 #: navbar.html:24
-msgid "contact_us"
-msgstr "Nous Contacter"
+msgid "projects"
+msgstr "Projets"
 
-#: navbar.html:26
-msgid "other"
-msgstr "Autre"
+#: navbar.html:25 ‏‏base_current.html:70
+msgid "my_missions"
+msgstr "Mes missions"
 
-#: navbar.html:37
-msgid "welcome"
-msgstr "Bienvenue"
+#: navbar.html:27
+msgid "welcome_to_kiwep_intstitution"
+msgstr "Bienvenue!"
 
-#: navbar.html:88
+#: navbar.html:60
 msgid "profile"
 msgstr "Profil"
 
-#: navbar.html:90
+#: navbar.html:61 ‏‏navbar_current.html:44
+msgid "edit_profile"
+msgstr "Modifier votre profil"
+
+#: navbar.html:62 ‏‏navbar_current.html:45
 msgid "logout"
-msgstr "Se Deconnecter"
+msgstr "Déconnexion"
 
-#: navbar.html:96
-msgid "login"
-msgstr "Se Connecter"
+#: navbar.html:66 ‏‏navbar_current.html:47
+msgid "other"
+msgstr "Autre"
 
-#: navbar.html:99
-msgid "register"
-msgstr "Enrengistrement"
+#: ‏‏base_current.html:46 ‏‏base_current.html:63
+msgid "home"
+msgstr "Home"
+
+#: ‏‏base_current.html:49
+msgid "projects "
+msgstr "Projets"
+
+#: ‏‏base_current.html:53
+msgid "teams"
+msgstr "Équipes"
+
+#: ‏‏base_current.html:66
+msgid "my_projects"
+msgstr "Mes projets"
+
+#: ‏‏navbar_current.html:9
+msgid "welcome"
+msgstr "Bienvenue !"
+

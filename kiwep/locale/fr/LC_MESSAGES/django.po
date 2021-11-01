@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-27 13:13+0300\n"
+"POT-Creation-Date: 2021-11-01 20:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-#: kiwep/settings.py:143
+
+#: settings.py:159
 msgid "English"
-msgstr ""
+msgstr "English"
 
-#: kiwep/settings.py:144
+#: settings.py:160
 msgid "French"
-msgstr ""
-
-#: kiwep/settings.py:145
-msgid "Hebrew"
-msgstr ""
+msgstr "Français"

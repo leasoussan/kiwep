@@ -1,3 +1,5 @@
+
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -153,3 +155,4 @@ msgstr "Conversation"
 #: templates/comments/discussion_current.html:19
 msgid "add_discussion"
 msgstr "Ouvrir une conversation"
+

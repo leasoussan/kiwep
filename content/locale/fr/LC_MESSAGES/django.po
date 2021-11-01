@@ -893,11 +893,11 @@ msgstr "Créer une équipe"
 
 #: templates/backend/team/team_list_speaker.html:52
 msgid "has_project"
-msgstr ""
+msgstr "A un Projet"
 
 #: templates/backend/team/team_list_speaker.html:53
 msgid "edit_or_delete"
-msgstr ""
+msgstr "Modifier ou Supprimer"
 
 #: templates/backend/team/team_list_speaker.html:112
 msgid "add_bulk_mission"
@@ -917,11 +917,8 @@ msgstr "Mon équipe"
 
 #: templates/backend/team/team_list_student.html:40
 msgid "join_other_team"
-msgstr ""
+msgstr "Rejoindre une autre équipe"
 
-#: templates/crud/create.html:25 templates/crud/create_current.html:25
-msgid "create_title"
-msgstr ""
 
 #: templates/crud/create_team_missions.html:42
 msgid "save_button"
@@ -933,7 +930,7 @@ msgstr "Ce projet n’a pas de mission."
 
 #: templates/crud/delete.html:10
 msgid "do_you_want_to_delete_question"
-msgstr ""
+msgstr "Veuillez confirmer que vous souhaitez supprimer"
 
 #: templates/crud/delete.html:15
 msgid "delete_button"
@@ -941,6 +938,6 @@ msgstr "Supprimer"
 
 #: templates/crud/update.html:30 templates/crud/update_current.html:29
 msgid "dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 

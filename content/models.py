@@ -103,7 +103,6 @@ class Project(DiscussionModel):
 
 
 
-
 class Mission(AnswerModel):
     STAGE_CHOICE = [
         ('start', _('start')),

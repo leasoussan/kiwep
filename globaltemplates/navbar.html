@@ -22,7 +22,7 @@
 
                         {% elif user.is_student %}
                             <a class="nav-link" href="{% url 'team_list' %}">{% trans 'projects' %}</a>
-                            <a class="nav-link" href="{% url 'my_mission_list' %}">{% trans 'My_missions' %}</a>
+                            <a class="nav-link" href="{% url 'my_mission_list' %}">{% trans 'my_missions' %}</a>
                         {% elif user.is_representative %}
                             {% trans 'welcome_to_kiwep_intstitution' %}
 
@@ -67,7 +67,7 @@
                     </ul>
 
                 </div>
-
+            </div>
         </nav>
     {% endif %}
 {% endblock %}
