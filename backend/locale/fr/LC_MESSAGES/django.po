@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-27 09:32+0300\n"
+"POT-Creation-Date: 2021-10-25 23:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,46 +17,45 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: templates/backend/general_dashboard.html:12
 #: templates/backend/representative_dashboard.html:5
 #: templates/backend/speaker_dashboard_current.html:7
 msgid "welcome"
-msgstr "Bienvenue !"
+msgstr "Welcome"
 
 #: templates/backend/general_dashboard.html:34
 msgid "edit_profile"
-msgstr "Profile"
+msgstr "Edit profile"
 
 #: templates/backend/representative_dashboard.html:14
 msgid "Invite_a_speaker"
-msgstr "Inviter un intervenant"
+msgstr "Invite a speaker"
 
 #: templates/backend/representative_dashboard.html:18
 msgid "send_invite"
-msgstr "Envoyer une invitation"
+msgstr "Send invite"
 
 #: templates/backend/representative_dashboard.html:30
 msgid "add_group"
-msgstr "Ajouter un groupe"
+msgstr "Add group"
 
 #: templates/backend/representative_dashboard.html:35
 msgid "groups_list"
-msgstr "Groupes"
+msgstr "Groups list"
 
 #: templates/backend/speaker_dashboard.html:34
 #: templates/backend/student_dashboard.html:34
 msgid "feeb_back_request"
-msgstr ""
+msgstr "Your feedback : please give us your feedback about Kiwep !"
 
 #: templates/backend/speaker_dashboard.html:36
 #: templates/backend/student_dashboard.html:36
 msgid "feedback"
-msgstr "Votre retour d’expérience"
+msgstr "Click here"
 
 #: templates/backend/speaker_dashboard_current.html:21
 msgid "team"
-msgstr "Équipe"
-
+msgstr "Team"
 

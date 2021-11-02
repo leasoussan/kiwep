@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-01 20:18+0200\n"
+"POT-Creation-Date: 2021-11-02 09:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,27 +30,27 @@ msgstr "Homepage"
 msgid "internal_server_error"
 msgstr "Problem de notre serveur - Contactez lea@Kiwep.co"
 
-#: navbar.html:19
+#: navbar.html:34
 msgid "team_board"
 msgstr "Équipes"
 
-#: navbar.html:20
+#: navbar.html:35
 msgid "templates_project"
 msgstr "Projets"
 
-#: navbar.html:21
+#: navbar.html:36
 msgid "answer_board"
 msgstr "Réponses"
 
-#: navbar.html:24
+#: navbar.html:39
 msgid "projects"
 msgstr "Projets"
 
-#: navbar.html:25 ‏‏base_current.html:70
+#: navbar.html:40
 msgid "my_missions"
-msgstr "Mes missions"
+msgstr "Mes Missions"
 
-#: navbar.html:27
+#: navbar.html:42
 msgid "welcome_to_kiwep_intstitution"
 msgstr "Bienvenue!"
 
@@ -58,35 +58,14 @@ msgstr "Bienvenue!"
 msgid "profile"
 msgstr "Profil"
 
-#: navbar.html:61 ‏‏navbar_current.html:44
+#: navbar.html:61
 msgid "edit_profile"
 msgstr "Modifier votre profil"
 
-#: navbar.html:62 ‏‏navbar_current.html:45
+#: navbar.html:62
 msgid "logout"
 msgstr "Déconnexion"
 
-#: navbar.html:66 ‏‏navbar_current.html:47
+#: navbar.html:66
 msgid "other"
 msgstr "Autre"
-
-#: ‏‏base_current.html:46 ‏‏base_current.html:63
-msgid "home"
-msgstr "Home"
-
-#: ‏‏base_current.html:49
-msgid "projects "
-msgstr "Projets"
-
-#: ‏‏base_current.html:53
-msgid "teams"
-msgstr "Équipes"
-
-#: ‏‏base_current.html:66
-msgid "my_projects"
-msgstr "Mes projets"
-
-#: ‏‏navbar_current.html:9
-msgid "welcome"
-msgstr "Bienvenue !"
-
