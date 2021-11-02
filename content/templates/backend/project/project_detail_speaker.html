@@ -8,9 +8,9 @@
     <div class="project_detail_header">
 
         <h2 class="project_title">{{ project.name }}</h2>
-
         {% if project != project.is_template %}
-    {% if team.exisists %}
+
+    {% if project.team %}
             {% with team=project.team %}
                 <a class="btn team_button_from_project" href="{% url 'team_detail' team.id %}">{% trans 'back_to_team' %}</a>
             {% endwith %}
@@ -62,14 +62,14 @@
                         <span>{% trans 'time_to_complete' %}:</span>
                         {{project.time_to_complete}} {% trans 'days' %}
                     </div>
-                    <div class="acquired_skills_project_detail">
-                   <span>{% trans 'acquired_skills' %}<span>
-                    {% for skill in project.mission_set.acquired_skills.all %}
-
-                        <li class="skill_decoration">{{skill.name}}</li>
-                    {% endfor %}
-
-                    </div>
+{#                    <div class="acquired_skills_project_detail">#}
+{#                   <span>{% trans 'acquired_skills' %}<span>#}
+{#                    {% for skill in project.mission_set.acquired_skills.all %}#}
+{##}
+{#                        <li class="skill_decoration">{{skill.name}}</li>#}
+{#                    {% endfor %}#}
+{##}
+{#                    </div>#}
 
                 </div>
 

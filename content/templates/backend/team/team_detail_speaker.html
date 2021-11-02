@@ -67,13 +67,13 @@
                     <span>{% trans 'time_to_complete' %}:</span>
                     {{team.project.time_to_complete}} {% trans 'days' %}
                 </div>
-                <div class="acquired_skills_team_page">
-                   <span>{% trans 'acquired_skills' %}</span>
-                    {% for skill in project.mission_set.acquired_skills.all %}
-
-                        <li class="skill_decoration">{{skill.name}}</li>
-                    {% endfor %}
-                   </div>
+{#                <div class="acquired_skills_team_page">#}
+{#                    <span>{% trans 'acquired_skills' %}</span>#}
+{#                    {% for skill in project.mission_set.acquired_skills.all %}#}
+{##}
+{#                        <li class="skill_decoration">{{skill.name}}</li>#}
+{#                    {% endfor %}#}
+{#                </div>#}
                 <a class="edit_project_team_page" href="{% url 'project_detail' team.project.id %}" >{% trans 'edit_project' %}</a>
             </div>
         </div>
@@ -83,7 +83,7 @@
 
                 <div class="mission_list_box_team_detail">
                     <div class="team_mission_list">
-
+                        <h3>{% trans 'mission_not_attributed_list' %}</h3>
                         {# SPEAKER____________________INDIVIDUAL MISSIONS DISPLAY IN TABLE #}
 
                         {% for mission in team.project.mission_set.available_mission %}
@@ -91,7 +91,7 @@
                                 <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
                                 <label class="team_mission_detail_attributed_to">
                                     {% if not mission.attributed_to %}
-                                    {% trans 'not_claimed_' %}
+                                        {% trans 'not_claimed_' %}
                                     {% endif %}
                                 </label>
                                 <label class="team_mission_detail_due_date">
@@ -153,7 +153,7 @@
 
                     {#______SPEAER_____________________________________SEE ALL ATTRIBUTED MISSION#}
                     <div class="team_mission_log">
-                        <h3>{% trans 'attributed_mission_log' %}</h3>
+                        <h3>{% trans 'attributed_missions_team' %}</h3>
                         <div class="mission_list_log_container">
                             {% for mission in team.project.mission_set.all.get_attributed_mission  %}
 

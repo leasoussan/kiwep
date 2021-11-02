@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 09:36+0200\n"
+"POT-Creation-Date: 2021-11-02 11:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,15 +117,6 @@ msgstr "Durée du projet"
 #: templates/backend/team/team_detail_student.html:60
 msgid "days"
 msgstr "Jours"
-
-#: templates/backend/mission/mission_detail_speaker.html:72
-#: templates/backend/mission/mission_detail_student.html:63
-#: templates/backend/project/project_detail_speaker.html:66
-#: templates/backend/project/project_detail_student.html:49
-#: templates/backend/team/team_detail_speaker.html:71
-#: templates/backend/team/team_detail_student.html:63
-msgid "acquired_skills"
-msgstr "Compétences acquises"
 
 #: templates/backend/mission/mission_detail_speaker.html:89
 #: templates/backend/mission/mission_detail_student.html:80
@@ -257,7 +248,7 @@ msgstr "Nom de la mission"
 #: templates/backend/team/team_list_student.html:42
 #: templates/crud/list_view.html:20
 msgid "team_name"
-msgstr "Nom de l’équipe"
+msgstr "Équipe"
 
 #: templates/backend/mission/my_mission_list.html:30
 #: templates/backend/team/team_detail_student.html:52
@@ -332,7 +323,7 @@ msgstr "Projet modèle"
 #: templates/backend/project/project_detail_speaker.html:35
 #: templates/backend/team/team_detail_speaker.html:77
 msgid "edit_project"
-msgstr "Modifier le projet"
+msgstr "Modifier Project"
 
 #: templates/backend/project/project_detail_speaker.html:38
 #, fuzzy
@@ -385,7 +376,7 @@ msgstr ""
 
 #: templates/backend/project/project_list.html:67
 msgid "in_days"
-msgstr "en jours"
+msgstr "En jours"
 
 #: templates/backend/project/project_list.html:93
 msgid "create_template"
@@ -467,6 +458,11 @@ msgstr "Participants"
 msgid "delete_team"
 msgstr "Supprimer"
 
+#: templates/backend/team/team_detail_speaker.html:86
+
+msgid "mission_not_attributed_list"
+msgstr "Mission non attribuées"
+
 #: templates/backend/team/team_detail_speaker.html:94
 msgid "not_claimed_"
 msgstr "Non attribuée"
@@ -487,9 +483,8 @@ msgid "mission_unclaimed_yet"
 msgstr "Mission non attribuée"
 
 #: templates/backend/team/team_detail_speaker.html:156
-#: templates/backend/team/team_detail_student.html:159
-msgid "attributed_mission_log"
-msgstr "Liste des missions attribuées"
+msgid "attributed_missions_team"
+msgstr "Missions attribuées"
 
 #: templates/backend/team/team_detail_speaker.html:179
 #: templates/backend/team/team_detail_student.html:183
@@ -540,7 +535,7 @@ msgstr "Quitter l’équipe"
 
 #: templates/backend/team/team_detail_student.html:90
 msgid "claim_mission_link"
-msgstr "Réclamer la mission"
+msgstr "S'attribuer la mission"
 
 #: templates/backend/team/team_detail_student.html:92
 msgid "claimed_already"
@@ -550,17 +545,21 @@ msgstr "Déjà attribuée"
 msgid "leave_collective"
 msgstr "Quitter"
 
+#: templates/backend/team/team_detail_student.html:159
+msgid "attributed_mission_log"
+msgstr "Missions attribuées"
+
 #: templates/backend/team/team_list_speaker.html:14
 msgid "create_a_new_team"
 msgstr "Créer une équipe"
 
 #: templates/backend/team/team_list_speaker.html:52
 msgid "has_project"
-msgstr "A un Projet"
+msgstr "Projet"
 
 #: templates/backend/team/team_list_speaker.html:53
 msgid "edit_or_delete"
-msgstr "Modifier ou Supprimer"
+msgstr "Modifier"
 
 #: templates/backend/team/team_list_speaker.html:112
 msgid "add_bulk_mission"
@@ -593,7 +592,9 @@ msgid "save_button"
 msgstr "Enregistrer"
 
 #: templates/crud/create_team_missions.html:52
-msgid "This project has no missions yet"
+#, fuzzy
+#| msgid "This project has no missions yet"
+msgid "this_project_has_no_mission"
 msgstr "Ce projet n’a pas de mission."
 
 #: templates/crud/delete.html:10

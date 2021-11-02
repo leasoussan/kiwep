@@ -58,20 +58,20 @@
                     <p class="detail_time_to_complete">
                         <span>{% trans 'time_to_complete' %}</span>{{object.time_to_complete}} {% trans 'days' %}
                     </p>
-                    <div class="skills_mission">
-                        <div class="skills_mission_header">
-                            <h5 class="small_title">{% trans 'acquired_skills' %}</h5>
-
+{#                    <div class="skills_mission">#}
+{#                        <div class="skills_mission_header">#}
+{#                            <h5 class="small_title">{% trans 'acquired_skills' %}</h5>#}
+{##}
                             {#                            <button class="btn plus_button"></button>#}
-
-                        </div>
-                        <div class="skills_name">
-                            {% for skill in object.acquired_skill.all %}
-                                <ul class="">{{skill.name}},  </ul>
-
-                            {% endfor %}
-                        </div>
-                    </div>
+{##}
+{#                        </div>#}
+{#                        <div class="skills_name">#}
+{#                            {% for skill in object.acquired_skill.all %}#}
+{#                                <ul class="">{{skill.name}},  </ul>#}
+{##}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                    </div>#}
                 </div>
 
                 <div class="resource_container">

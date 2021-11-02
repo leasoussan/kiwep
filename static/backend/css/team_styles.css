@@ -175,12 +175,12 @@ x/* TEAM-LIST */
 
 }
 .edit_team_button_team_detail{
-    width: 120px;
+    width: 8rem;
     height: 40px;
     border-radius: 5px;
     background-color: #fae66e;
-    border: yellow solid 1px;
 }
+
 .sm-btn{
     height: 35px;
     line-height: 5px;
@@ -258,7 +258,9 @@ x/* TEAM-LIST */
     max-width: 100%;
 
 }
-
+.team_mission_list h3{
+    margin-left: 30%;
+}
 
 .team_mission_log{
     margin-top: 2rem;
@@ -293,7 +295,8 @@ x/* TEAM-LIST */
 }
 
 .edit_project_team_page{
-    width: 200px;
+    min-width: 15rem;
+    max-width: 15rem;
     height: 3rem;
     padding: 5px 1rem;
     background-color: white;
@@ -444,7 +447,7 @@ x/* TEAM-LIST */
 }
 
 .add_team_button{
-    width:40%;
+    width:45%;
     height: 3rem;
     border-radius: 10px;
     margin: 2rem;
@@ -456,8 +459,8 @@ x/* TEAM-LIST */
 
 .add_team_button h4{
     color: white;
-    max-width: 90%;
-    font-size: larger;
+    max-width: 100%;
+    font-size: large;
 }
 
 .add_team_button h4:hover{
@@ -465,7 +468,7 @@ x/* TEAM-LIST */
 }
 
 .add_bulk_mission{
-    width:40%;
+    width:45%;
     height: 3rem;
     border-radius: 10px;
     margin: 2rem;

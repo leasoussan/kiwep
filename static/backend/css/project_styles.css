@@ -17,6 +17,7 @@
     min-width: 80%;
     max-width: 80%;
     justify-content: space-around;
+    padding: 2rem;
 }
 .project_detail_title{
     width: 70%;
@@ -27,8 +28,7 @@
     font-weight: bold;
     color: whitesmoke;
     border-radius: 5px;
-    border: yellow 1px solid;
-    width: 120px;
+    width: 12rem;
     height: 40px;
 }
 
@@ -46,7 +46,6 @@
 }
 
 .templates_tag{
-    background-color: orangered;
     width: 100%;
 }
 .project_detail_details{

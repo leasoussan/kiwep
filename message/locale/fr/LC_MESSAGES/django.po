@@ -68,7 +68,7 @@ msgstr "Pas de fichier"
 #: templates/answer/student_collective_answers.html:27
 #: templates/answer/student_mission_answer.html:24
 msgid "sent_file"
-msgstr "Envoyer"
+msgstr "Pièce jointe"
 
 #: templates/answer/speaker_mission_answer.html:73
 #: templates/answer/student_collective_answers.html:100

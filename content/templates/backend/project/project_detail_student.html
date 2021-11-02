@@ -45,14 +45,14 @@
                         <span>{% trans 'time_to_complete' %}:</span>
                         {{project.time_to_complete}} {% trans 'days' %}
                     </div>
-                    <div>
-                   <span>{% trans 'acquired_skills' %}<span>
-                    {% for skill in project.mission_set.acquired_skills.all %}
-
-                        <li class="skill_decoration">{{skill.name}}</li>
-                    {% endfor %}
-
-                    </div>
+{#                    <div>#}
+{#                   <span>{% trans 'acquired_skills' %}<span>#}
+{#                    {% for skill in project.mission_set.acquired_skills.all %}#}
+{##}
+{#                        <li class="skill_decoration">{{skill.name}}</li>#}
+{#                    {% endfor %}#}
+{##}
+{#                    </div>#}
 
                 </div>
 

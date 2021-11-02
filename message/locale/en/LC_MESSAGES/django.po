@@ -66,90 +66,90 @@ msgstr ""
 #: templates/answer/student_collective_answers.html:27
 #: templates/answer/student_mission_answer.html:31
 msgid "sent_file"
-msgstr ""
+msgstr "Attached file"
 
 #: templates/answer/speaker_mission_answer.html:73
 #: templates/answer/student_collective_answers.html:100
 #: templates/answer/student_mission_answer.html:98
 msgid "response_file_view"
-msgstr ""
+msgstr "View response file"
 
 #: templates/answer/speaker_mission_answer.html:80
 #: templates/answer/student_collective_answers.html:107
 #: templates/answer/student_mission_answer.html:105
 msgid "there_is_no_file_yet\""
-msgstr ""
+msgstr "File not sent yet"
 
 #: templates/answer/speaker_mission_answer.html:84
 #: templates/answer/student_collective_answers.html:111
 #: templates/answer/student_mission_answer.html:109
 msgid "close"
-msgstr ""
+msgstr "Close"
 
 #: templates/answer/student_collective_answers.html:21
 #: templates/answer/student_mission_answer.html:20
 msgid "your_last_answer"
-msgstr ""
+msgstr "Your last answer"
 
 #: templates/answer/student_collective_answers.html:31
 #: templates/answer/student_mission_answer.html:35
 msgid "no_file_yet"
-msgstr ""
+msgstr "No file submitted yet"
 
 #: templates/answer/student_collective_answers.html:35
 #: templates/answer/student_mission_answer.html:22
 msgid "edit_answer"
-msgstr ""
+msgstr "Edit answer"
 
 #: templates/answer/student_collective_answers.html:45
 #: templates/answer/student_mission_answer.html:51
 msgid "answer_status"
-msgstr ""
+msgstr "Answer status"
 
 #: templates/answer/student_collective_answers.html:69
 msgid "you_didnt__answered_yet"
-msgstr ""
+msgstr "You didnt answer yet"
 
 #: templates/answer/student_collective_answers.html:73
 #: templates/answer/student_mission_answer.html:79
 msgid "save_answer"
-msgstr ""
+msgstr "Save answer"
 
 #: templates/answer/student_collective_answers.html:84
 msgid "see_student_answer"
-msgstr ""
+msgstr "See student answer"
 
 #: templates/answer/student_collective_answers.html:126
 msgid "see_other_student_answers"
-msgstr ""
+msgstr "See others students answers"
 
 #: templates/answer/student_mission_answer.html:75
 msgid "no_answered_yet"
-msgstr ""
+msgstr "No answers yet"
 
 #: templates/comments/discussion.html:18
-msgid "discussions_board: "
-msgstr ""
+msgid "discussions_board:"
+msgstr "Discussion Board"
 
 #: templates/comments/discussion.html:22
 msgid "comment_on_answer : "
-msgstr ""
+msgstr "Comment on answer"
 
 #: templates/comments/discussion.html:62
 #: templates/comments/discussion_current.html:14
 #: templates/comments/discussion_current.html:39
 msgid "start_discussion"
-msgstr ""
+msgstr "Start a Discussion"
 
 #: templates/comments/discussion.html:101
 #: templates/comments/discussion.html:108
 msgid "by"
-msgstr ""
+msgstr "by"
 
 #: templates/comments/discussion_current.html:9
 msgid "discussion_board_of"
-msgstr ""
+msgstr "Discussion Board"
 
 #: templates/comments/discussion_current.html:19
 msgid "add_discussion"
-msgstr ""
+msgstr "Add Discussion"

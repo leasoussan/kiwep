@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 10:13+0200\n"
+"POT-Creation-Date: 2021-11-02 11:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,15 +117,6 @@ msgstr "Time to Complete"
 #: templates/backend/team/team_detail_student.html:60
 msgid "days"
 msgstr "Days"
-
-#: templates/backend/mission/mission_detail_speaker.html:72
-#: templates/backend/mission/mission_detail_student.html:63
-#: templates/backend/project/project_detail_speaker.html:66
-#: templates/backend/project/project_detail_student.html:49
-#: templates/backend/team/team_detail_speaker.html:71
-#: templates/backend/team/team_detail_student.html:63
-msgid "acquired_skills"
-msgstr "Acquired skills"
 
 #: templates/backend/mission/mission_detail_speaker.html:89
 #: templates/backend/mission/mission_detail_student.html:80
@@ -257,7 +248,7 @@ msgstr "Mission Name"
 #: templates/backend/team/team_list_student.html:42
 #: templates/crud/list_view.html:20
 msgid "team_name"
-msgstr "Team Name"
+msgstr "Team"
 
 #: templates/backend/mission/my_mission_list.html:30
 #: templates/backend/team/team_detail_student.html:52
@@ -465,6 +456,10 @@ msgstr "Participants"
 msgid "delete_team"
 msgstr "Delete"
 
+#: templates/backend/team/team_detail_speaker.html:86
+msgid "mission_not_attributed_list"
+msgstr "Missions Not Attributed"
+
 #: templates/backend/team/team_detail_speaker.html:94
 msgid "not_claimed_"
 msgstr "Not Claimed"
@@ -485,9 +480,9 @@ msgid "mission_unclaimed_yet"
 msgstr "Mission Unclaimed"
 
 #: templates/backend/team/team_detail_speaker.html:156
-#: templates/backend/team/team_detail_student.html:159
-msgid "attributed_mission_log"
-msgstr "Attributed missions Log"
+
+msgid "attributed_missions_team"
+msgstr "Attributed missions"
 
 #: templates/backend/team/team_detail_speaker.html:179
 #: templates/backend/team/team_detail_student.html:183
@@ -548,17 +543,21 @@ msgstr "Mission Claimed"
 msgid "leave_collective"
 msgstr "Leave Collective Mission"
 
+#: templates/backend/team/team_detail_student.html:159
+msgid "attributed_mission_log"
+msgstr "Attributed missions"
+
 #: templates/backend/team/team_list_speaker.html:14
 msgid "create_a_new_team"
 msgstr "Create a Team"
 
 #: templates/backend/team/team_list_speaker.html:52
 msgid "has_project"
-msgstr "Has a Project"
+msgstr "Project"
 
 #: templates/backend/team/team_list_speaker.html:53
 msgid "edit_or_delete"
-msgstr "Edit or Delete"
+msgstr "Edit"
 
 #: templates/backend/team/team_list_speaker.html:112
 msgid "add_bulk_mission"
