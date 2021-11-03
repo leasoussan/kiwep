@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib import messages
 from django.shortcuts import render, reverse, redirect
 from django.contrib.auth import get_user_model
@@ -46,10 +48,16 @@ def dashboard(request):
         context = {
 
         }
+
         return render(request, "backend/general_dashboard.html", context)
 
-
-
+# TODO avi ?? The USage
+# def get_current_date_time(request):
+#     date_time_now = datetime.datetime.now()
+#     date_time_dict = {
+#         'date_time_key': date_time_now,
+#     }
+#     return render(request, 'backend/general_dashboard.html', date_time_dict)
 
 class InstitutionAddGroupView(ProfileCheckPassesTestMixin, View):
 

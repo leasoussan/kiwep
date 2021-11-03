@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 09:57+0200\n"
+"POT-Creation-Date: 2021-11-03 01:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: 404.html:11
 msgid "went_wrong"
-msgstr "Something went Wrong"
+msgstr "Something went wrong. Try refreshing the page or contact lea@kiwep.co "
 
 #: 404.html:16 500.html:17
 msgid "homepage"
@@ -28,91 +28,40 @@ msgstr "Homepage"
 
 #: 500.html:13
 msgid "internal_server_error"
-msgstr "Internal Server Error"
+msgstr "Internal problem error"
 
-#: navbar.html:34
-#, fuzzy
-#| msgid "dashboard"
-msgid "team_board"
-msgstr "Dashboard"
+#: navbar.html:25
+msgid "board_team"
+msgstr "Team Board"
 
-#: navbar.html:35
-#, fuzzy
-#| msgid "my_projects"
-msgid "templates_project"
-msgstr "Projects"
+#: navbar.html:26
+msgid "project_template"
+msgstr "Project Templates"
 
-#: navbar.html:36
-#, fuzzy
-#| msgid "dashboard"
-msgid "answer_board"
-msgstr "Dashboard"
+#: navbar.html:27
+msgid "board_answers"
+msgstr "Answers Board"
 
-#: navbar.html:39
-msgid "projects"
-msgstr "Projects"
+#: navbar.html:30
+msgid "student_projects"
+msgstr "My Projects"
 
-#: navbar.html:40
-msgid "my_missions"
+#: navbar.html:31
+msgid "student_missions_list"
 msgstr "My Missions"
 
-#: navbar.html:42
-msgid "welcome_to_kiwep_intstitution"
-msgstr ""
+#: navbar.html:33
+msgid "welcome_to_intstitution_message"
+msgstr "Welcome to KIWEP"
 
-#: navbar.html:60
+#: navbar.html:50
 msgid "profile"
 msgstr "Profile"
 
-#: navbar.html:61
-#, fuzzy
-#| msgid "profile"
-msgid "edit_profile"
-msgstr "Profile"
+#: navbar.html:51
+msgid "profile_edit"
+msgstr "Edit Profile"
 
-#: navbar.html:62
+#: navbar.html:52
 msgid "logout"
 msgstr "Logout"
-
-#: navbar.html:66
-msgid "other"
-msgstr "Other"
-
-#~ msgid "KIWEP"
-#~ msgstr "KIWEP"
-
-#~ msgid "home"
-#~ msgstr "Homepage"
-
-#~ msgid "teams"
-#~ msgstr "Teams"
-
-#~ msgid "todo"
-#~ msgstr "Todo"
-
-#~ msgid "availiable_projects"
-#~ msgstr "Available Projects"
-
-#~ msgid "kiwep"
-#~ msgstr "Kiwep"
-
-#~ msgid "log_in"
-#~ msgstr "LogIn"
-
-#~ msgid "signup"
-#~ msgstr "SignUp"
-
-#~ msgid "home_page"
-#~ msgstr "Homepage"
-
-#~ msgid "contact_us"
-#~ msgstr "Contact Us "
-
-#~ msgid "welcome"
-#~ msgstr "Welcome"
-
-#~ msgid "login"
-#~ msgstr "Login"
-
-#~ msgid "register"
-#~ msgstr "Register"

@@ -14,35 +14,53 @@
 
         <div class="speaker_btn_group">
             <a class="btn edit_btn_resource" href="{% url 'update_resource' resource.id %}">{% trans 'update_resource' %}</a>
+            <div class="action_button_resource_speaker">
+                <a class="btn" href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a>
 
-            <a class="btn" href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a>
 
+                {% if resource.mission %}
+                    <a  class="btn" href="{% url  'individual_mission_detail' resource.mission.id %}">{% trans 'back_to_mission' %}</a>
+                {% elif collectivemission %}
+                    <a  class="btn" href="{% url  'collective_mission_detail' mission.id %}">{% trans 'back_to_mission' %}"</a>
+                {% endif %}
 
-            {% if resource.mission %}
-
-                <a href="{% url  'individual_mission_detail' resource.mission.id %}">{% trans 'back_to_mission' %}</a>
-            {% elif collectivemission %}
-                here3
-                <a href="{% url  'collective_mission_detail' mission.id %}">{% trans 'back_to_mission' %}"</a>
-            {% endif %}
-
+            </div>
         </div>
 
         <div class="container_resource">
             <div class="resource_info">
                 <h3 class="medium_title">{% trans 'resource_lable' %} {{ resource.name }}</h3>
 
-
             </div>
 
             <div class="resource_detail">
+                <div class="resource_img_box">
+                    {% if resource.image %}
+                        <!-- Button trigger modal -->
+                        <button  data-bs-toggle="modal" data-bs-target="#see_image_resource">
+                            <img class="resource_image"  src="{{ resource.get_resourceImg_or_default }}" alt="{{ resource.title }}">  </button>
+                    {% else %}
+
+                    {% endif %}
+
+                </div>
                 <div class="resource_description_box">
-                    <p class="resource_description overflow-auto">{{resource.text}}</p>
+                    <div class="resource_description">
+                        <p class="resource_description_text"> {{resource.text}}</p>
+                    </div>
                     <div class="resource_additional">
                         {% trans 'additional_information' %}
                         <div class="additional_file_box">
-                            <h3>{% trans 'additional_file' %}</h3>
+                            {% if resource.file_rsc %}
+                                <!-- Button trigger modal -->
+                                <button class="see_additional_file" data-bs-toggle="modal" data-bs-target="#see_file_resource">
+                                {#                            <img class="resource_file_small"  src="{{ resource.get_resourceFILEor_default }}" alt="{{ resource.title }}">  #}
 
+                                <h3>{% trans 'see_additional_file' %}</h3> </button>
+                            {% else %}
+
+
+                            {% endif  %}
                         </div>
 
                         <div class="link_resource_box">
@@ -54,21 +72,7 @@
                     </div>
 
                 </div>
-                <div class="resource_img_box">
-                    {% if resource.image %}
-                        <!-- Button trigger modal -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#see_image_resource">
-                        <img class="resource_image"  src="{{ resource.get_resourceImg_or_default }}" alt="{{ resource.title }}">  </button>
 
-
-                    {% endif %}
-                {% if resource.file_rsc %}
-                    <!-- Button trigger modal -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#see_file_resource">
-
-                     <img class="resource_image"  src="{{ resource.get_resourceFILEor_default }}" alt="{{ resource.title }}">  </button>
-                {% endif  %}
-                </div>
 
 
 
@@ -89,7 +93,7 @@
 
     <!-- Modal SEE IMAGE-->
     <div class="modal fade" id="see_image_resource" tabindex="-1" aria-labelledby="see_image_resourceLabel" aria-hidden="true">
-         <div class="modal-dialog modal-dialog_view_document">
+        <div class="modal-dialog modal-dialog_view_document">
             <div class="modal-content view_document_modal_content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="see_image_resourceLabel">{% trans 'attached_image' %}</h5>
@@ -97,9 +101,9 @@
                 </div>
                 <div class="modal-body">
                     {% if resource.image %}
-                    <img class="resource_image_big"  src="{{ resource.image.url }}" alt="{{ resource.title }}">
+                        <img class="resource_image_big"  src="{{ resource.image.url }}" alt="{{ resource.title }}">
                     {% else %}
-                    {% trans 'no_image' %}
+                        {% trans 'no_image' %}
 
                     {% endif %}
                 </div>
@@ -114,20 +118,21 @@
 
     <!-- Modal  SEE FILE-->
     <div class="modal fade" id="see_file_resource" tabindex="-1" aria-labelledby="see_file_resourceLabel" aria-hidden="true">
-         <div class="modal-dialog modal-dialog_view_document">
+        <div class="modal-dialog modal-dialog_view_document">
             <div class="modal-content view_document_modal_content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="see_file_resourceLabel">{% trans 'attached_file' %}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {% if not resource.file_rsc.exists %}
-              <h1>      {% trans 'no_resource_yet' %}</h1>
+                    {% if resource.file_rsc %}
+                        <img class="resource_file_big"  src="{{ resource.file_rsc.url }}" alt="{{ resource.title }}">
+
 
                     {% else %}
-                        <img class="resource_file_big"  src="{{ resource.file_rsc.url }}" alt="{{ resource.title }}">
+                        <h1>      {% trans 'no_resource_yet' %}</h1>
                     {% endif %}
-                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
 

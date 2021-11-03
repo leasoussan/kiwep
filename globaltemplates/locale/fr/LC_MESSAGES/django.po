@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 09:57+0200\n"
+"POT-Creation-Date: 2021-11-03 01:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,52 +20,50 @@ msgstr ""
 
 #: 404.html:11
 msgid "went_wrong"
-msgstr "Quelque chose a mal tourné"
+msgstr "Quelque chose s'est mal passé ici"
 
 #: 404.html:16 500.html:17
 msgid "homepage"
-msgstr "Homepage"
+msgstr "Page d'accueil"
 
 #: 500.html:13
 msgid "internal_server_error"
-msgstr "Problem de notre serveur - Contactez lea@Kiwep.co"
+msgstr ""
+"Oupss... Une erreur s'est produite. Essayez d'actualiser la page ou "
+"contactez lea@kiwep.co."
 
-#: navbar.html:34
-msgid "team_board"
-msgstr "Équipes"
+#: navbar.html:25
+msgid "board_team"
+msgstr "Tableau d'équipe"
 
-#: navbar.html:35
-msgid "templates_project"
-msgstr "Projets"
+#: navbar.html:26
+msgid "project_template"
+msgstr "Modèles de projet"
 
-#: navbar.html:36
-msgid "answer_board"
-msgstr "Réponses"
+#: navbar.html:27
+msgid "board_answers"
+msgstr "Tableau des réponses"
 
-#: navbar.html:39
-msgid "projects"
-msgstr "Projets"
+#: navbar.html:30
+msgid "student_projects"
+msgstr "Mes Projects"
 
-#: navbar.html:40
-msgid "my_missions"
+#: navbar.html:31
+msgid "student_missions_list"
 msgstr "Mes Missions"
 
-#: navbar.html:42
-msgid "welcome_to_kiwep_intstitution"
-msgstr "Bienvenue!"
+#: navbar.html:33
+msgid "welcome_to_intstitution_message"
+msgstr "Bienvenue a KIWEP"
 
-#: navbar.html:60
+#: navbar.html:50
 msgid "profile"
 msgstr "Profil"
 
-#: navbar.html:61
-msgid "edit_profile"
-msgstr "Modifier votre profil"
+#: navbar.html:51
+msgid "profile_edit"
+msgstr "Modifer votre Profil"
 
-#: navbar.html:62
+#: navbar.html:52
 msgid "logout"
 msgstr "Déconnexion"
-
-#: navbar.html:66
-msgid "other"
-msgstr "Autre"

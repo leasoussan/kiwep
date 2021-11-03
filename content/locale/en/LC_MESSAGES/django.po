@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 11:24+0200\n"
+"POT-Creation-Date: 2021-11-03 00:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -258,7 +258,6 @@ msgstr "Project name"
 
 #: templates/backend/mission/my_mission_list.html:31
 #: templates/backend/mission/my_mission_list.html:94
-#: templates/backend/team/team_list_student.html:14
 #: templates/backend/team/team_list_student.html:44
 msgid "due_date"
 msgstr "Due Date"
@@ -480,7 +479,6 @@ msgid "mission_unclaimed_yet"
 msgstr "Mission Unclaimed"
 
 #: templates/backend/team/team_detail_speaker.html:156
-
 msgid "attributed_missions_team"
 msgstr "Attributed missions"
 
@@ -574,6 +572,10 @@ msgstr "Add Collective Mission"
 #: templates/backend/team/team_list_student.html:7
 msgid "my_team"
 msgstr "Teams"
+
+#: templates/backend/team/team_list_student.html:14
+msgid "duration_in_days"
+msgstr "In Days"
 
 #: templates/backend/team/team_list_student.html:38
 msgid "join_other_team"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 11:24+0200\n"
+"POT-Creation-Date: 2021-11-03 00:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -258,7 +258,6 @@ msgstr "Nom du projet"
 
 #: templates/backend/mission/my_mission_list.html:31
 #: templates/backend/mission/my_mission_list.html:94
-#: templates/backend/team/team_list_student.html:14
 #: templates/backend/team/team_list_student.html:44
 msgid "due_date"
 msgstr "Date limite"
@@ -326,8 +325,6 @@ msgid "edit_project"
 msgstr "Modifier Project"
 
 #: templates/backend/project/project_detail_speaker.html:38
-#, fuzzy
-#| msgid "delete_team"
 msgid "delete"
 msgstr "Supprimer"
 
@@ -376,7 +373,7 @@ msgstr ""
 
 #: templates/backend/project/project_list.html:67
 msgid "in_days"
-msgstr "En jours"
+msgstr "En Jours"
 
 #: templates/backend/project/project_list.html:93
 msgid "create_template"
@@ -459,7 +456,6 @@ msgid "delete_team"
 msgstr "Supprimer"
 
 #: templates/backend/team/team_detail_speaker.html:86
-
 msgid "mission_not_attributed_list"
 msgstr "Mission non attribuées"
 
@@ -577,13 +573,15 @@ msgstr "Ajouter"
 msgid "my_team"
 msgstr "Mon équipe"
 
+#: templates/backend/team/team_list_student.html:14
+msgid "duration_in_days"
+msgstr "Durée  En jours"
+
 #: templates/backend/team/team_list_student.html:38
 msgid "join_other_team"
 msgstr "Rejoindre une autre équipe"
 
 #: templates/crud/create.html:25 templates/crud/create_current.html:25
-#, fuzzy
-#| msgid "create_team"
 msgid "create_title"
 msgstr "Créer une équipe"
 
@@ -592,8 +590,6 @@ msgid "save_button"
 msgstr "Enregistrer"
 
 #: templates/crud/create_team_missions.html:52
-#, fuzzy
-#| msgid "This project has no missions yet"
 msgid "this_project_has_no_mission"
 msgstr "Ce projet n’a pas de mission."
 
