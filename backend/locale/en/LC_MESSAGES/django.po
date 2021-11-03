@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 10:10+0200\n"
+"POT-Creation-Date: 2021-11-03 11:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,55 +24,36 @@ msgstr ""
 msgid "welcome"
 msgstr "Welcome"
 
-#: templates/backend/general_dashboard.html:34
+#: templates/backend/general_dashboard.html:35
 msgid "edit_profile"
 msgstr "Edit Profile"
 
 #: templates/backend/representative_dashboard.html:14
 msgid "Invite_a_speaker"
-msgstr ""
+msgstr "Invite a speaker"
 
 #: templates/backend/representative_dashboard.html:18
 msgid "send_invite"
-msgstr ""
+msgstr "Send Invite"
 
 #: templates/backend/representative_dashboard.html:30
 msgid "add_group"
-msgstr ""
+msgstr "Add group"
 
 #: templates/backend/representative_dashboard.html:35
 msgid "groups_list"
-msgstr ""
+msgstr "Groups list"
 
 #: templates/backend/speaker_dashboard.html:34
 #: templates/backend/student_dashboard.html:34
 msgid "feeb_back_request"
-msgstr ""
+msgstr "Please give us your feedback about Kiwep !"
 
 #: templates/backend/speaker_dashboard.html:36
 #: templates/backend/student_dashboard.html:36
 msgid "feedback"
-msgstr ""
+msgstr "Your Feedback"
 
 #: templates/backend/speaker_dashboard_current.html:21
 msgid "team"
-msgstr ""
-
-#, fuzzy
-#~| msgid "create_team"
-#~ msgid "current teams"
-#~ msgstr "Create Team"
-
-#, fuzzy
-#~| msgid "create_project"
-#~ msgid "selected project"
-#~ msgstr "Create Project"
-
-#~ msgid "groups_dasboard_title"
-#~ msgstr "Groups"
-
-#~ msgid "current_teams_dashboard_title"
-#~ msgstr "Current Teams"
-
-#~ msgid "selected_project_dashboard_title"
-#~ msgstr "My Projects Team"
+msgstr "Team"

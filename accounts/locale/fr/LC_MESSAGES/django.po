@@ -237,7 +237,7 @@ msgstr "Se connecter"
 
 #: templates/registration/‏‏login_current.html:29
 msgid "Do not have an account yet?"
-msgstr ""
+msgstr "Vous n'avez pas encore de compte"
 
 #: views.py:99
 msgid "invite_used"
@@ -249,4 +249,4 @@ msgstr "Votre invitation a expiré. Merci de contacter : lea@kiwep.co"
 
 #: views.py:106
 msgid "no_key_to_register"
-msgstr ""
+msgstr "Il n'y a pas de clé pour s'inscrire "

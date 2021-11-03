@@ -25,14 +25,14 @@
         {% if not object.discussions %}
             <!-- Button trigger modal -->
             <div class="start_discussion_btn_team_detail_speaker">
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
+                <button type="button"  data-bs-toggle="modal" data-bs-target="#add_discussion_box">
                     <i class="bi bi-plus-square btn-lg"></i>
                 </button>
             </div>
         {% else %}
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-lg" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
-                <i class="bi bi-plus-square "></i></button>
+            <button data-bs-toggle="modal" data-bs-target="#add_discussion_box">
+              <i class="bi bi-folder-plus fa-4x"></i></button>
         {% endif %}
     </div>
 
@@ -50,7 +50,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="add_discussion_box">Modal title</h5>
+                <h5 class="modal-title" id="add_discussion_box">{% trans 'add_new_discussion_modal' %}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

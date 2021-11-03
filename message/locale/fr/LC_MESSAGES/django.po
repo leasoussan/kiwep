@@ -1,5 +1,3 @@
-
-
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -10,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-27 09:30+0300\n"
+"POT-Creation-Date: 2021-11-03 12:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,61 +48,61 @@ msgstr "Pas de réponse"
 
 #: templates/answer/speaker_mission_answer.html:23
 msgid "response_type"
-msgstr ""
+msgstr "Type de réponse"
 
-#: templates/answer/speaker_mission_answer.html:32
+#: templates/answer/speaker_mission_answer.html:33
 msgid "text_lable"
-msgstr ""
+msgstr "Texte"
 
-#: templates/answer/speaker_mission_answer.html:34
+#: templates/answer/speaker_mission_answer.html:35
 msgid "see_file"
 msgstr "Voir le fichier"
 
-#: templates/answer/speaker_mission_answer.html:36
+#: templates/answer/speaker_mission_answer.html:37
 msgid "no_file_was_submited"
 msgstr "Pas de fichier"
 
-#: templates/answer/speaker_mission_answer.html:40
+#: templates/answer/speaker_mission_answer.html:41
 #: templates/answer/student_collective_answers.html:27
-#: templates/answer/student_mission_answer.html:24
+#: templates/answer/student_mission_answer.html:31
 msgid "sent_file"
 msgstr "Pièce jointe"
 
-#: templates/answer/speaker_mission_answer.html:73
+#: templates/answer/speaker_mission_answer.html:74
 #: templates/answer/student_collective_answers.html:100
-#: templates/answer/student_mission_answer.html:93
+#: templates/answer/student_mission_answer.html:98
 msgid "response_file_view"
-msgstr ""
+msgstr "Fichier"
 
-#: templates/answer/speaker_mission_answer.html:80
+#: templates/answer/speaker_mission_answer.html:81
 #: templates/answer/student_collective_answers.html:107
-#: templates/answer/student_mission_answer.html:100
+#: templates/answer/student_mission_answer.html:105
 msgid "there_is_no_file_yet\""
 msgstr "Pas de fichier"
 
-#: templates/answer/speaker_mission_answer.html:84
+#: templates/answer/speaker_mission_answer.html:85
 #: templates/answer/student_collective_answers.html:111
-#: templates/answer/student_mission_answer.html:104
+#: templates/answer/student_mission_answer.html:109
 msgid "close"
 msgstr "Fermer"
 
 #: templates/answer/student_collective_answers.html:21
-#: templates/answer/student_mission_answer.html:18
+#: templates/answer/student_mission_answer.html:20
 msgid "your_last_answer"
 msgstr "Votre réponse"
 
 #: templates/answer/student_collective_answers.html:31
-#: templates/answer/student_mission_answer.html:28
+#: templates/answer/student_mission_answer.html:35
 msgid "no_file_yet"
 msgstr "Pas de fichier"
 
 #: templates/answer/student_collective_answers.html:35
-#: templates/answer/student_mission_answer.html:32
+#: templates/answer/student_mission_answer.html:22
 msgid "edit_answer"
 msgstr "Modifier"
 
 #: templates/answer/student_collective_answers.html:45
-#: templates/answer/student_mission_answer.html:46
+#: templates/answer/student_mission_answer.html:51
 msgid "answer_status"
 msgstr "Statut"
 
@@ -113,7 +111,7 @@ msgid "you_didnt__answered_yet"
 msgstr "Pas de réponse"
 
 #: templates/answer/student_collective_answers.html:73
-#: templates/answer/student_mission_answer.html:74
+#: templates/answer/student_mission_answer.html:79
 msgid "save_answer"
 msgstr "Enregistrer"
 
@@ -125,7 +123,7 @@ msgstr "Voir la réponse"
 msgid "see_other_student_answers"
 msgstr "Voir les réponses des apprenants"
 
-#: templates/answer/student_mission_answer.html:70
+#: templates/answer/student_mission_answer.html:75
 msgid "no_answered_yet"
 msgstr "Pas de réponse"
 
@@ -136,6 +134,10 @@ msgstr "Conversation"
 #: templates/comments/discussion.html:22
 msgid "comment_on_answer : "
 msgstr "Commentaires"
+
+#: templates/comments/discussion.html:53
+msgid "add_new_discussion_modal"
+msgstr "Ouvrir une conversation"
 
 #: templates/comments/discussion.html:62
 #: templates/comments/discussion_current.html:14
@@ -155,4 +157,3 @@ msgstr "Conversation"
 #: templates/comments/discussion_current.html:19
 msgid "add_discussion"
 msgstr "Ouvrir une conversation"
-

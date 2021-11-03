@@ -87,7 +87,6 @@
     font-size: 15px;
     color: #87837f;
     font-weight: bolder;
-    background-color: red;
     border: solid 1px white;
     padding: 5px ;
 
@@ -98,7 +97,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-content: center;
-    width: 70%;
+    width: 80%;
     min-height: 2rem;
     max-height: 2rem;
     border-radius: 10px;
@@ -120,7 +119,10 @@
     background-color: transparent;
 }
 
-
+.plus_icon{
+    width: 100px;
+    height: 50px;
+}
 .speech-bubble-left {
     position: relative;
     background: #7000bb;

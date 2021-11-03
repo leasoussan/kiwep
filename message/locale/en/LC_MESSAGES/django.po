@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-29 11:58+0300\n"
+"POT-Creation-Date: 2021-11-03 12:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,67 +20,67 @@ msgstr ""
 
 #: models.py:101
 msgid "waiting_review"
-msgstr ""
+msgstr "Waiting review"
 
 #: models.py:102
 msgid "under_review"
-msgstr ""
+msgstr "Under Review"
 
 #: models.py:103
 msgid "accepted"
-msgstr ""
+msgstr "Accepted"
 
 #: models.py:104
 msgid "rejected"
-msgstr ""
+msgstr "To Review"
 
 #: models.py:105
 msgid "see_comment"
-msgstr ""
+msgstr "See Comments"
 
 #: templates/answer/speaker_mission_answer.html:15
 msgid "answers"
-msgstr ""
+msgstr "Answers"
 
 #: templates/answer/speaker_mission_answer.html:19
 msgid "student_didnt_respond"
-msgstr ""
+msgstr "Student didn't answer"
 
 #: templates/answer/speaker_mission_answer.html:23
 msgid "response_type"
-msgstr ""
+msgstr "Response type"
 
-#: templates/answer/speaker_mission_answer.html:32
+#: templates/answer/speaker_mission_answer.html:33
 msgid "text_lable"
-msgstr ""
+msgstr "Text"
 
-#: templates/answer/speaker_mission_answer.html:34
+#: templates/answer/speaker_mission_answer.html:35
 msgid "see_file"
-msgstr ""
+msgstr "See File"
 
-#: templates/answer/speaker_mission_answer.html:36
+#: templates/answer/speaker_mission_answer.html:37
 msgid "no_file_was_submited"
-msgstr ""
+msgstr "Student didn't submit a file"
 
-#: templates/answer/speaker_mission_answer.html:40
+#: templates/answer/speaker_mission_answer.html:41
 #: templates/answer/student_collective_answers.html:27
 #: templates/answer/student_mission_answer.html:31
 msgid "sent_file"
 msgstr "Attached file"
 
-#: templates/answer/speaker_mission_answer.html:73
+#: templates/answer/speaker_mission_answer.html:74
 #: templates/answer/student_collective_answers.html:100
 #: templates/answer/student_mission_answer.html:98
 msgid "response_file_view"
 msgstr "View response file"
 
-#: templates/answer/speaker_mission_answer.html:80
+#: templates/answer/speaker_mission_answer.html:81
 #: templates/answer/student_collective_answers.html:107
 #: templates/answer/student_mission_answer.html:105
 msgid "there_is_no_file_yet\""
 msgstr "File not sent yet"
 
-#: templates/answer/speaker_mission_answer.html:84
+#: templates/answer/speaker_mission_answer.html:85
 #: templates/answer/student_collective_answers.html:111
 #: templates/answer/student_mission_answer.html:109
 msgid "close"
@@ -128,12 +128,17 @@ msgid "no_answered_yet"
 msgstr "No answers yet"
 
 #: templates/comments/discussion.html:18
-msgid "discussions_board:"
+
+msgid "discussions_board: "
 msgstr "Discussion Board"
 
 #: templates/comments/discussion.html:22
 msgid "comment_on_answer : "
 msgstr "Comment on answer"
+
+#: templates/comments/discussion.html:53
+msgid "add_new_discussion_modal"
+msgstr "Add Discussion"
 
 #: templates/comments/discussion.html:62
 #: templates/comments/discussion_current.html:14

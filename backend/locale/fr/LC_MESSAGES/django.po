@@ -1,4 +1,3 @@
-
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -9,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-25 23:47+0300\n"
+"POT-Creation-Date: 2021-11-03 11:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,37 +24,36 @@ msgstr ""
 msgid "welcome"
 msgstr "Welcome"
 
-#: templates/backend/general_dashboard.html:34
+#: templates/backend/general_dashboard.html:35
 msgid "edit_profile"
-msgstr "Edit profile"
+msgstr "Editer le profil"
 
 #: templates/backend/representative_dashboard.html:14
 msgid "Invite_a_speaker"
-msgstr "Invite a speaker"
+msgstr "Invitez un intervenant "
 
 #: templates/backend/representative_dashboard.html:18
 msgid "send_invite"
-msgstr "Send invite"
+msgstr "Envoyer une invitation"
 
 #: templates/backend/representative_dashboard.html:30
 msgid "add_group"
-msgstr "Add group"
+msgstr "Ajouter un groupe"
 
 #: templates/backend/representative_dashboard.html:35
 msgid "groups_list"
-msgstr "Groups list"
+msgstr "Liste de groupe"
 
 #: templates/backend/speaker_dashboard.html:34
 #: templates/backend/student_dashboard.html:34
 msgid "feeb_back_request"
-msgstr "Your feedback : please give us your feedback about Kiwep !"
+msgstr "Nous souhaiterions avoir votre avis!"
 
 #: templates/backend/speaker_dashboard.html:36
 #: templates/backend/student_dashboard.html:36
 msgid "feedback"
-msgstr "Click here"
+msgstr "Votre Avis"
 
 #: templates/backend/speaker_dashboard_current.html:21
 msgid "team"
-msgstr "Team"
-
+msgstr "Équipe"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-03 00:38+0200\n"
+"POT-Creation-Date: 2021-11-03 11:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: models.py:90 templates/backend/team/team_list_student.html:45
+#: models.py:90 templates/backend/team/team_list_student.html:15
+#: templates/backend/team/team_list_student.html:45
 msgid "project"
 msgstr "Project"
 
@@ -82,7 +83,7 @@ msgstr "You can’t see this page"
 
 #: templates/backend/mission/mission_detail_speaker.html:14
 #: templates/backend/mission/mission_detail_student.html:16
-#: templates/backend/resource/resource_detail.html:18
+#: templates/backend/resource/resource_detail.html:17
 msgid "back_to_project"
 msgstr "Back to Project"
 
@@ -189,8 +190,8 @@ msgstr "Select"
 #: templates/backend/project/project_detail_student.html:283
 #: templates/backend/project/project_list.html:163
 #: templates/backend/project/project_list.html:247
-#: templates/backend/resource/resource_detail.html:107
-#: templates/backend/resource/resource_detail.html:132
+#: templates/backend/resource/resource_detail.html:112
+#: templates/backend/resource/resource_detail.html:143
 #: templates/backend/team/team_detail_speaker.html:260
 msgid "close"
 msgstr "Close"
@@ -252,13 +253,11 @@ msgstr "Team"
 
 #: templates/backend/mission/my_mission_list.html:30
 #: templates/backend/team/team_detail_student.html:52
-#: templates/backend/team/team_list_student.html:15
 msgid "project_name"
 msgstr "Project name"
 
 #: templates/backend/mission/my_mission_list.html:31
 #: templates/backend/mission/my_mission_list.html:94
-#: templates/backend/team/team_list_student.html:44
 msgid "due_date"
 msgstr "Due Date"
 
@@ -390,44 +389,46 @@ msgstr "Create Project"
 msgid "view_template"
 msgstr "View Template"
 
-#: templates/backend/resource/resource_detail.html:16
-msgid "update_resource"
-msgstr "Update"
-
+#: templates/backend/resource/resource_detail.html:21
 #: templates/backend/resource/resource_detail.html:23
-#: templates/backend/resource/resource_detail.html:26
 msgid "back_to_mission"
 msgstr "Back to Mission"
+
+#: templates/backend/resource/resource_detail.html:27
+msgid "update_resource"
+msgstr "Update"
 
 #: templates/backend/resource/resource_detail.html:33
 msgid "resource_lable"
 msgstr "Resource"
 
-#: templates/backend/resource/resource_detail.html:42
+#: templates/backend/resource/resource_detail.html:53
 msgid "additional_information"
 msgstr "Additional Information"
 
-#: templates/backend/resource/resource_detail.html:44
-msgid "additional_file"
+#: templates/backend/resource/resource_detail.html:60
+#, fuzzy
+#| msgid "additional_file"
+msgid "see_additional_file"
 msgstr "Additional File"
 
-#: templates/backend/resource/resource_detail.html:50
+#: templates/backend/resource/resource_detail.html:69
 msgid "resource_link"
 msgstr "Resource Link"
 
-#: templates/backend/resource/resource_detail.html:95
+#: templates/backend/resource/resource_detail.html:100
 msgid "attached_image"
 msgstr "Attached Image"
 
-#: templates/backend/resource/resource_detail.html:102
+#: templates/backend/resource/resource_detail.html:107
 msgid "no_image"
 msgstr "No Image Uploaded"
 
-#: templates/backend/resource/resource_detail.html:120
+#: templates/backend/resource/resource_detail.html:125
 msgid "attached_file"
 msgstr "Attached File"
 
-#: templates/backend/resource/resource_detail.html:125
+#: templates/backend/resource/resource_detail.html:139
 msgid "no_resource_yet"
 msgstr "No resources yet"
 
@@ -574,6 +575,7 @@ msgid "my_team"
 msgstr "Teams"
 
 #: templates/backend/team/team_list_student.html:14
+#: templates/backend/team/team_list_student.html:44
 msgid "duration_in_days"
 msgstr "In Days"
 
