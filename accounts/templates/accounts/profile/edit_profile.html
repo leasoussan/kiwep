@@ -12,7 +12,7 @@
     <form method="post" enctype=multipart/form-data>
 
         {% csrf_token %}
-      <h3>{% trans 'form_user' %}</h3>
+
         <div>
             {{ user_form.as_p }}
         </div>

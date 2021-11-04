@@ -29,6 +29,13 @@
 
 }
 
+.modal_save_button_answer{
+    margin-top: 2rem;
+    background-color: #fad673;
+    width: 15rem;
+    height: 2rem;
+}
+
 .mission_answer_status_label{
     display: flex;
     flex-direction: row;
@@ -158,4 +165,9 @@
     max-width: 100%;
     min-height: 70%;
     max-height: 100%;
+     border: lightgray 1px solid;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    background-color: #f2f2f2;
 }

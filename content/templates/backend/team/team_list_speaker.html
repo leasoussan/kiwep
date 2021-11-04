@@ -62,11 +62,7 @@
                                         <td class="content_table">{{ team.participants.count }}</td>
                                         <td class="content_table">
                                             {% if team.project %}
-
-
                                                 {{team.project.name}}
-
-
                                             {% else %}
                                                 <a href="{% url 'team_detail' team.id %}">{% translate 'create_project' %}</a>
                                             {% endif %}

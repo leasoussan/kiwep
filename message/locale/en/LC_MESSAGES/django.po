@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-03 12:00+0200\n"
+"POT-Creation-Date: 2021-11-04 02:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,72 +63,73 @@ msgid "no_file_was_submited"
 msgstr "Student didn't submit a file"
 
 #: templates/answer/speaker_mission_answer.html:41
-#: templates/answer/student_collective_answers.html:27
-#: templates/answer/student_mission_answer.html:31
+#: templates/answer/student_collective_answers.html:26
+#: templates/answer/student_mission_answer.html:32
 msgid "sent_file"
 msgstr "Attached file"
 
 #: templates/answer/speaker_mission_answer.html:74
-#: templates/answer/student_collective_answers.html:100
-#: templates/answer/student_mission_answer.html:98
+#: templates/answer/student_collective_answers.html:99
+#: templates/answer/student_mission_answer.html:99
 msgid "response_file_view"
 msgstr "View response file"
 
 #: templates/answer/speaker_mission_answer.html:81
-#: templates/answer/student_collective_answers.html:107
-#: templates/answer/student_mission_answer.html:105
-msgid "there_is_no_file_yet\""
+#: templates/answer/student_collective_answers.html:106
+#: templates/answer/student_mission_answer.html:106
+#, fuzzy
+#| msgid "there_is_no_file_yet\""
+msgid "there_is_no_file_yet"
 msgstr "File not sent yet"
 
 #: templates/answer/speaker_mission_answer.html:85
-#: templates/answer/student_collective_answers.html:111
-#: templates/answer/student_mission_answer.html:109
+#: templates/answer/student_collective_answers.html:110
+#: templates/answer/student_mission_answer.html:110
 msgid "close"
 msgstr "Close"
 
-#: templates/answer/student_collective_answers.html:21
-#: templates/answer/student_mission_answer.html:20
+#: templates/answer/student_collective_answers.html:20
+#: templates/answer/student_mission_answer.html:21
 msgid "your_last_answer"
 msgstr "Your last answer"
 
-#: templates/answer/student_collective_answers.html:31
-#: templates/answer/student_mission_answer.html:35
+#: templates/answer/student_collective_answers.html:30
+#: templates/answer/student_mission_answer.html:36
 msgid "no_file_yet"
 msgstr "No file submitted yet"
 
-#: templates/answer/student_collective_answers.html:35
-#: templates/answer/student_mission_answer.html:22
+#: templates/answer/student_collective_answers.html:34
+#: templates/answer/student_mission_answer.html:23
 msgid "edit_answer"
 msgstr "Edit answer"
 
-#: templates/answer/student_collective_answers.html:45
-#: templates/answer/student_mission_answer.html:51
+#: templates/answer/student_collective_answers.html:44
+#: templates/answer/student_mission_answer.html:52
 msgid "answer_status"
 msgstr "Answer status"
 
-#: templates/answer/student_collective_answers.html:69
+#: templates/answer/student_collective_answers.html:68
 msgid "you_didnt__answered_yet"
 msgstr "You didnt answer yet"
 
-#: templates/answer/student_collective_answers.html:73
-#: templates/answer/student_mission_answer.html:79
+#: templates/answer/student_collective_answers.html:72
+#: templates/answer/student_mission_answer.html:80
 msgid "save_answer"
 msgstr "Save answer"
 
-#: templates/answer/student_collective_answers.html:84
+#: templates/answer/student_collective_answers.html:83
 msgid "see_student_answer"
 msgstr "See student answer"
 
-#: templates/answer/student_collective_answers.html:126
+#: templates/answer/student_collective_answers.html:125
 msgid "see_other_student_answers"
 msgstr "See others students answers"
 
-#: templates/answer/student_mission_answer.html:75
+#: templates/answer/student_mission_answer.html:76
 msgid "no_answered_yet"
 msgstr "No answers yet"
 
 #: templates/comments/discussion.html:18
-
 msgid "discussions_board: "
 msgstr "Discussion Board"
 

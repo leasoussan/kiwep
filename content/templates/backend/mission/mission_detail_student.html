@@ -9,6 +9,10 @@
 
 
 <div class="mission_detail_container">
+{##}
+{#{% if individualcollectivemission %}#}
+{##}
+{#    {% with object=object.parent_mission %}#}
 
     <div class="mission_detail_header">
         {% if object.project.team %}
@@ -54,24 +58,39 @@
             <div class="mission_related_elements_content">
 
                 <div class="mission_learning_info">
-                    <label>{{ object.get_mission_type_display }}</label>
-                    <p class="detail_time_to_complete">
-                        <span>{% trans 'time_to_complete' %}</span>{{object.time_to_complete}} {% trans 'days' %}
-                    </p>
-{#                    <div class="skills_mission">#}
-{#                        <div class="skills_mission_header">#}
-{#                            <h5 class="small_title">{% trans 'acquired_skills' %}</h5>#}
-{##}
-                            {#                            <button class="btn plus_button"></button>#}
-{##}
-{#                        </div>#}
-{#                        <div class="skills_name">#}
-{#                            {% for skill in object.acquired_skill.all %}#}
-{#                                <ul class="">{{skill.name}},  </ul>#}
-{##}
-{#                            {% endfor %}#}
-{#                        </div>#}
-{#                    </div>#}
+                    <div class="mission_type_info">
+                        {% if individualcollectivemission %}
+                            <label>{{ object.parent_mission.get_mission_type_display }}</label>
+                        {% else %}
+
+                            <label>{{ object.get_mission_type_display }}</label>
+                        {% endif %}
+                    </div>
+                    <div class="detail_time_to_complete">
+                        {% if individualcollectivemission %}
+                            <label>{% trans 'time_to_complete' %}
+                              {{ object.parent_mission.project.time_to_complete }} {% trans 'days' %}</label>
+                      </label>
+                        {% else %}
+
+                            <label>{% trans 'time_to_complete' %}
+                                {{object.project.time_to_complete}} {% trans 'days' %}</label>
+                        {% endif %}
+                    </div>
+                    {#                    <div class="skills_mission">#}
+                    {#                        <div class="skills_mission_header">#}
+                    {#                            <h5 class="small_title">{% trans 'acquired_skills' %}</h5>#}
+                    {##}
+                    {#                            <button class="btn plus_button"></button>#}
+                    {##}
+                    {#                        </div>#}
+                    {#                        <div class="skills_name">#}
+                    {#                            {% for skill in object.acquired_skill.all %}#}
+                    {#                                <ul class="">{{skill.name}},  </ul>#}
+                    {##}
+                    {#                            {% endfor %}#}
+                    {#                        </div>#}
+                    {#                    </div>#}
                 </div>
 
                 <div class="resource_container">
@@ -165,9 +184,9 @@
                                         {% for participant in object.attributed_to.all %}
                                             {#                                     <h4>   {{ participant }}</h4>#}
                                         {% endfor %}
-                                        {% if object.parent_mission %}
-                                            <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' object.parent_mission.id %}">{% trans 'leave_mission' %}</a>
-                                        {% else %}
+                                        {% if object %}
+{#                                            <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' object.parent_mission.id %}">{% trans 'leave_mission' %}</a>#}
+{#                                        {% else %}#}
                                             <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>
 
                                         {% endif %}
@@ -223,16 +242,17 @@
             <div class="student_mission_related_elements_content">
 
                 {% if user.profile in object.project.team.participants.all or  user.profile in object.parent_mission.attributed_to.all %}
+
                     {% if user.profile in object.parent_mission.attributed_to.all %}
                         <div class="mission_detail_answer_content">
                             {% include "answer/answer.html"  with object=object.parent_mission %}
                         </div>
 
-                    {% endif %}
+                    {% else %}
                     <div class="mission_detail_answer_content">
                         {% include "answer/answer.html"  with object=object %}
                     </div>
-
+                        {% endif %}
                     <div class="discussion_container_mission">
                         {% include 'comments/discussion.html' %}
                     </div>
@@ -242,7 +262,8 @@
         </div>
 
     </div>
-
+{#    {% endwith %}#}
+{#{% endif %}#}
 
 </div>
 

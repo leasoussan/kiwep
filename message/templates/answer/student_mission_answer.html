@@ -14,6 +14,7 @@
 
     <div class="answer_box">
         {% if object.answer.all.exists %}
+
             {% with answer=object.answer.all.last %}
                 <div class="answer_header">
 
@@ -77,7 +78,7 @@
                 {% csrf_token %}
                 {{ object.answer_form|crispy }}
                 <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save_answer' %}</p>
-                </button>                </button>
+                </button>
             </form>
         {% endif %}
         </div>
@@ -102,7 +103,7 @@
                     {% if answer.response_file %}
                         <img src="{{ answer.response_file.url }}">
                     {% else %}
-                        {% trans 'there_is_no_file_yet"' %}
+                        {% trans 'there_is_no_file_yet' %}
                     {% endif %}
                 </div>
                 <div class="modal-footer">

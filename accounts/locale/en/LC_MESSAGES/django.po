@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-25 23:46+0300\n"
+"POT-Creation-Date: 2021-11-04 02:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,6 @@ msgstr ""
 msgid "student"
 msgstr "Student"
 
-
 #: forms.py:26 forms_current.py:26
 msgid "speaker"
 msgstr "Speaker"
@@ -35,9 +34,15 @@ msgstr "Welcome"
 msgid "to KIWEP"
 msgstr ""
 
-#: mailer.py:12 mailer.py:25
-msgid "registration_email_subject"
+#: mailer.py:12
+msgid "send_welcome_signup"
 msgstr ""
+
+#: mailer.py:25
+#, fuzzy
+#| msgid "institution form_form"
+msgid "institution_welcome_email"
+msgstr "Institution registration"
 
 #: mailer.py:37
 msgid "institution_invitation_ registration"
@@ -47,13 +52,21 @@ msgstr "Institution invitation"
 msgid "to_kiwep"
 msgstr "Kiwep"
 
-#: mailer.py:40 mailer.py:54
-msgid "registration_invitation_email_subject"
-msgstr "Registration invitation email"
+#: mailer.py:40
+#, fuzzy
+#| msgid "institution_invite_for"
+msgid "send_institution_signup_invite"
+msgstr "Institution invite"
 
 #: mailer.py:51
 msgid "speaker_invitation_registration"
 msgstr "Registration invitation speaker"
+
+#: mailer.py:54
+#, fuzzy
+#| msgid "speaker_invite_for"
+msgid "send_speaker_signup_invit"
+msgstr "Speaker invite"
 
 #: models.py:56
 msgid "language"
@@ -79,16 +92,14 @@ msgstr "Send"
 msgid "profile_edit"
 msgstr "Edit"
 
-#: templates/accounts/profile/edit_profile.html:15
-msgid "form_user"
-msgstr "User registration"
-
 #: templates/accounts/profile/edit_profile.html:20
 msgid "profile_form"
 msgstr "Profile registration"
 
 #: templates/accounts/profile/edit_profile.html:22
-msgid "institution form_form"
+#, fuzzy
+#| msgid "institution form_form"
+msgid "institution_form_form"
 msgstr "Institution registration"
 
 #: templates/accounts/profile/profile_visitor.html:23
@@ -250,6 +261,8 @@ msgstr "Your invite expired"
 msgid "no_key_to_register"
 msgstr "No key to register"
 
+#~ msgid "form_user"
+#~ msgstr "User registration"
 
-
-
+#~ msgid "registration_invitation_email_subject"
+#~ msgstr "Registration invitation email"

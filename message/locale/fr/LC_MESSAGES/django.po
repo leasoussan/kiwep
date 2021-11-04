@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-03 12:00+0200\n"
+"POT-Creation-Date: 2021-11-04 02:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,67 +63,67 @@ msgid "no_file_was_submited"
 msgstr "Pas de fichier"
 
 #: templates/answer/speaker_mission_answer.html:41
-#: templates/answer/student_collective_answers.html:27
-#: templates/answer/student_mission_answer.html:31
+#: templates/answer/student_collective_answers.html:26
+#: templates/answer/student_mission_answer.html:32
 msgid "sent_file"
 msgstr "Pièce jointe"
 
 #: templates/answer/speaker_mission_answer.html:74
-#: templates/answer/student_collective_answers.html:100
-#: templates/answer/student_mission_answer.html:98
+#: templates/answer/student_collective_answers.html:99
+#: templates/answer/student_mission_answer.html:99
 msgid "response_file_view"
 msgstr "Fichier"
 
 #: templates/answer/speaker_mission_answer.html:81
-#: templates/answer/student_collective_answers.html:107
-#: templates/answer/student_mission_answer.html:105
-msgid "there_is_no_file_yet\""
+#: templates/answer/student_collective_answers.html:106
+#: templates/answer/student_mission_answer.html:106
+msgid "there_is_no_file_yet"
 msgstr "Pas de fichier"
 
 #: templates/answer/speaker_mission_answer.html:85
-#: templates/answer/student_collective_answers.html:111
-#: templates/answer/student_mission_answer.html:109
+#: templates/answer/student_collective_answers.html:110
+#: templates/answer/student_mission_answer.html:110
 msgid "close"
 msgstr "Fermer"
 
-#: templates/answer/student_collective_answers.html:21
-#: templates/answer/student_mission_answer.html:20
+#: templates/answer/student_collective_answers.html:20
+#: templates/answer/student_mission_answer.html:21
 msgid "your_last_answer"
 msgstr "Votre réponse"
 
-#: templates/answer/student_collective_answers.html:31
-#: templates/answer/student_mission_answer.html:35
+#: templates/answer/student_collective_answers.html:30
+#: templates/answer/student_mission_answer.html:36
 msgid "no_file_yet"
 msgstr "Pas de fichier"
 
-#: templates/answer/student_collective_answers.html:35
-#: templates/answer/student_mission_answer.html:22
+#: templates/answer/student_collective_answers.html:34
+#: templates/answer/student_mission_answer.html:23
 msgid "edit_answer"
 msgstr "Modifier"
 
-#: templates/answer/student_collective_answers.html:45
-#: templates/answer/student_mission_answer.html:51
+#: templates/answer/student_collective_answers.html:44
+#: templates/answer/student_mission_answer.html:52
 msgid "answer_status"
 msgstr "Statut"
 
-#: templates/answer/student_collective_answers.html:69
+#: templates/answer/student_collective_answers.html:68
 msgid "you_didnt__answered_yet"
 msgstr "Pas de réponse"
 
-#: templates/answer/student_collective_answers.html:73
-#: templates/answer/student_mission_answer.html:79
+#: templates/answer/student_collective_answers.html:72
+#: templates/answer/student_mission_answer.html:80
 msgid "save_answer"
 msgstr "Enregistrer"
 
-#: templates/answer/student_collective_answers.html:84
+#: templates/answer/student_collective_answers.html:83
 msgid "see_student_answer"
 msgstr "Voir la réponse"
 
-#: templates/answer/student_collective_answers.html:126
+#: templates/answer/student_collective_answers.html:125
 msgid "see_other_student_answers"
 msgstr "Voir les réponses des apprenants"
 
-#: templates/answer/student_mission_answer.html:75
+#: templates/answer/student_mission_answer.html:76
 msgid "no_answered_yet"
 msgstr "Pas de réponse"
 
@@ -148,7 +148,7 @@ msgstr "Nouvelle discussion"
 #: templates/comments/discussion.html:101
 #: templates/comments/discussion.html:108
 msgid "by"
-msgstr ""
+msgstr "Par:"
 
 #: templates/comments/discussion_current.html:9
 msgid "discussion_board_of"

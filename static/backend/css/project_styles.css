@@ -3,12 +3,24 @@
     display: flex;
     flex-direction: column;
     justify-content:start;
+    /*align-items: center;*/
+    width: 100%;
+    margin: 0rem 0rem;
+    min-height: 100vh;
+    padding: 1rem 1rem;
+}
+
+.project_detail_container_speaker{
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
     align-items: center;
     width: 100%;
     margin: 0rem 0rem;
     min-height: 100vh;
     padding: 1rem 1rem;
 }
+
 
 .project_detail_header{
     display: flex;

@@ -16,19 +16,16 @@
     max-width:90%;
     min-height: 4rem;
     max-height: 4rem;
-        margin-top:2rem;
+    margin-top:2rem;
 }
 
 .mission_detail_header h3{
-    display: flex;
-    flex-direction: column;
+    padding: 1rem;
     min-width: 60%;
     max-width: 75%;
-    min-height: 5rem;
-    max-height: 5rem;
-    align-content: flex-end;
 
 }
+
 
 .edit_button_team_speaker{
     background-color: #f7ebad;
@@ -226,6 +223,10 @@
     border: black solid 3px;
 }
 
+.mission_status_box button{
+    margin-left: 50px;
+}
+
 .mission_status_box {
     display: flex;
     flex-direction: column;
@@ -235,10 +236,7 @@
     max-height: 15%;
     align-items: center;
     flex-wrap: wrap;
-}
-
-.mission_status_box button{
-    margin-left: 50px;
+    padding: 1rem;
 }
 
 .mission_attribution_detail{

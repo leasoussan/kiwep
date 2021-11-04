@@ -73,13 +73,18 @@ button .edit_button{
 .student_mission_action_panel{
     display: flex;
     flex-direction: column;
-    min-width: 35%;
-    max-width: 35%;
+    min-width: 40%;
+    max-width: 40%;
     max-height:90vh;
     padding: 0rem 2rem;
     justify-content: flex-start;
+    align-items: center;
 }
 
+.student_mission_status_box{
+    display: flex;
+    flex-direction: row;
+}
 .edit_answer_button{
     background-color: #fad673;
     width: 6rem;
@@ -113,8 +118,6 @@ button .edit_button{
     min-height:  70%;
     max-height: 70%;
     padding-top: 1rem;
-    align-content: center;
-    padding-left: 1rem;
 }
 
 .mission_learning_info label{
@@ -125,10 +128,21 @@ button .edit_button{
     max-height: 25%;
     min-width: 90%;
     max-width: 90%;
-    padding-left: 1rem;
+    padding-left: 5px;
     background-color: white;
     margin-bottom: 5px;
-    font-size: x-large;
+}
+
+.mission_type_info{
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 25%;
+    max-height: 25%;
+    min-width: 90%;
+    max-width: 90%;
+    background-color: white;
+
 }
 
 .skills_mission{
