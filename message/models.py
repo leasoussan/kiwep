@@ -5,7 +5,7 @@ from django.forms import modelform_factory
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext as _
-
+from ckeditor.fields import RichTextField
 
 
 
@@ -104,7 +104,7 @@ class Answer(DiscussionModel):
         ('r', _('rejected')),
         ('c', _('see_comment')),
     ]
-    response_comment = models.TextField(blank=True)
+    response_comment = RichTextField(blank=True, null=True)
     response_file = models.FileField(null=True, blank=True)
     status= models.CharField(max_length=20, choices=STATUS_CHOICES, default='w_r')
     grade = models.IntegerField(null=True)

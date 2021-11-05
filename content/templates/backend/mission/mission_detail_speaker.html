@@ -52,7 +52,7 @@
                 </div>
                 <div class="mission_detail_details">
 
-                    <p class="mission_detail_description">{{object.description}}</p>
+                    <p class="mission_detail_description">{{object.description|safe}}</p>
 
 
                 </div>
@@ -239,6 +239,7 @@
                         <form method="post" action="{% url 'mission_create_resource' object.id %}">
                             {% csrf_token %}
                             {{ resources_form|crispy }}
+                            {{ resources_form.media }}
                             <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
                             </button>
                         </form>

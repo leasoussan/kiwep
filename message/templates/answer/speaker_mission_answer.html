@@ -4,7 +4,7 @@
 {% block css %}
     <link href="{% static 'backend/css/speaker_answer.css' %}" rel="stylesheet" >
     <link href="{% static 'backend/css/discussion.css' %}" rel="stylesheet" >
-        <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet" >
+    <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet" >
 
 {% endblock css %}
 
@@ -16,7 +16,7 @@
         {% endif %}
     </div>
     {% if not object.answer.all.exists %}
-                <h4>{% trans 'student_didnt_respond' %}</h4>
+        <h4>{% trans 'student_didnt_respond' %}</h4>
 
         <div class="mission_response_type_label">
 
@@ -29,10 +29,12 @@
         {% with answer=object.answer.all.last %}
             {% if answer.response_comment or answer.response_file %}
                 <div class="answer_content_box_view">
-                    <div class="speaker_answer_comment_text">
-                        <p>{% trans 'text_lable' %}:{{answer.response_comment}}</p></div>
+                <div class="speaker_answer_box">
+                    <button type="button" class="btn see_answer_modal_button" data-bs-toggle="modal" data-bs-target="#student_answer">
+                        {% trans 'submited_answer' %}
+                    </button>
+
                     <div class="answer_file_label">
-                        <lable>{% trans 'see_file' %} :</lable>
                         {% if not answer.response_file %}
                             <p>{% trans 'no_file_was_submited' %}</p>
                         {% else %}
@@ -43,15 +45,14 @@
 
                         {% endif %}
                     </div>
-                 </div>
-                    <div class="answer_content">
-                        <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
-                            {% csrf_token %}
-                            {{ answer.status_form }}
-                        </form>
+                </div>
+                <div class="answer_content">
+                    <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
+                        {% csrf_token %}
+                        {{ answer.status_form }}
+                    </form>
 
-
-                    </div>
+                </div>
 
 
 
@@ -61,9 +62,9 @@
 
     {% endif %}
 
+    </div>
+
 </div>
-
-
 
 <!-- Modal -->
 {% with answer=object.answer.last %}
@@ -92,53 +93,75 @@
 
 
 
+{% with answer=object.answer.last %}
 
+    {#MODAL FIRST ANSWER#}
+    <div class="modal fade" id="student_answer" tabindex="-1" aria-labelledby="student_answerLabel" aria-hidden="true">
+        <div class="modal-dialog modal_dialog_view_document">
+            <div class="modal-content view_document_modal_content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>
+                </div>
+                <div class="modal-body">
+                    {{ answer }}
+                    <p>{{answer.response_comment|safe}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endwith %}
 
 
 {#FOR FUTUR REFERENCES#}
- {#                TODO: grading >>    this is grading system #}
+{#                TODO: grading >>    this is grading system #}
 
-                        {#                    {% if answer.status == 'a' %}#}
-                        {##}
-                        {#                        {% if not answer.grade %}#}
-                        {#                            <div class="grade_content">#}
-                        {#                            <form method="POST" action="{% url 'answer_grade_add' answer.id %}">#}
-                        {#                                {% csrf_token %}#}
-                        {##}
-                        {#                                {{ answer.grade_form }}#}
-                        {#                            </form>#}
-                        {#                        {% else %}#}
-                        {#                            <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>#}
-                        {#                        {% endif %}#}
-                        {#                    </div>#}
-                        {#                    {% else %}#}
-                        {##}
-                        {#                        {% trans 'mission_wasnt_accepted_yet' %}#}
-                        {#                    {% endif %}#}
+{#                    {% if answer.status == 'a' %}#}
+{##}
+{#                        {% if not answer.grade %}#}
+{#                            <div class="grade_content">#}
+{#                            <form method="POST" action="{% url 'answer_grade_add' answer.id %}">#}
+{#                                {% csrf_token %}#}
+{##}
+{#                                {{ answer.grade_form }}#}
+{#                            </form>#}
+{#                        {% else %}#}
+{#                            <h3> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</h3>#}
+{#                        {% endif %}#}
+{#                    </div>#}
+{#                    {% else %}#}
+{##}
+{#                        {% trans 'mission_wasnt_accepted_yet' %}#}
+{#                    {% endif %}#}
 
 {##TODO: when more complex answers#}
 
-    {#        {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}#}
-    {#        {% if answer.status %}#}
-    {#            <label> {% trans 'answer_status' %}: {{ answer.status }} </label>#}
-    {#        {% elif answer.status == 'a' %}#}
-    {#            {% if not answer.grade %}#}
-    {#                <label>{% trans 'mission_not_graded' %}</label>#}
-    {#            {% else %}#}
-    {#                <label>{% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>#}
-    {#            {% endif %}#}
-    {##}
-    {#        {% else %}#}
-    {##}
-    {#            <label> {% trans 'mission_wasnt_accepted_yet' %}</label>#}
-    {#        {% endif %}#}
-    {#    </div>#}
-    {##}
-    {#    {% endwith %}#}
-    {##}
-    {##}
-    {##}
-    {##}
-    {##}
-    {#    {% endif %}#}
-    {#    {% endif %}#}
+{#        {% if user.profile in object.project.team.participants.all or user.is_speaker and  request.user.profile == object.project_set.team.manager%}#}
+{#        {% if answer.status %}#}
+{#            <label> {% trans 'answer_status' %}: {{ answer.status }} </label>#}
+{#        {% elif answer.status == 'a' %}#}
+{#            {% if not answer.grade %}#}
+{#                <label>{% trans 'mission_not_graded' %}</label>#}
+{#            {% else %}#}
+{#                <label>{% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>#}
+{#            {% endif %}#}
+{##}
+{#        {% else %}#}
+{##}
+{#            <label> {% trans 'mission_wasnt_accepted_yet' %}</label>#}
+{#        {% endif %}#}
+{#    </div>#}
+{##}
+{#    {% endwith %}#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#    {% endif %}#}
+{#    {% endif %}#}

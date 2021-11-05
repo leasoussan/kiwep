@@ -10,7 +10,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation
 from datetime import datetime, timedelta
-
+from ckeditor.fields import RichTextField
 from django.utils.translation import ugettext as _
 
 
@@ -33,7 +33,7 @@ class Resource(DiscussionModel):
     link = models.URLField(max_length=200,  blank=True, null =True)
     image = models.ImageField(upload_to='resources/', default ='resources/default.png', )
     file_rsc = models.FileField(upload_to='resources/', default ='static/file.png',null=True, blank=True)
-    text = models.TextField()
+    text = RichTextField(blank=True, null=True)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     field = models.ForeignKey(Field, on_delete=models.CASCADE,  blank=True, null =True)
     project = models.ForeignKey('Project', on_delete=models.CASCADE)
@@ -72,7 +72,7 @@ class Project(DiscussionModel):
 
     name = models.CharField(max_length=200)
     title = models.CharField(max_length=300)
-    description = models.TextField()
+    description = RichTextField(blank=True, null=True)
     required_skills = models.ManyToManyField(Skills, related_name="required_skills")
     time_to_complete = models.PositiveIntegerField()
     field = models.ManyToManyField(Field)
@@ -130,7 +130,7 @@ class Mission(AnswerModel):
     name = models.CharField(max_length=200)
     field = models.ForeignKey(Field, on_delete=models.CASCADE, blank= True, null= True)
     level = models.ForeignKey(Level, on_delete=models.CASCADE, blank= True, null= True)
-    description = models.TextField()
+    description = RichTextField(blank=True, null=True)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     points = models.PositiveIntegerField(null=True, blank=True)
     acquired_skill = models.ManyToManyField(Skills)

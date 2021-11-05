@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.forms import ModelForm
 from django.forms import inlineformset_factory
-
+from ckeditor.fields import RichTextFormField
 from django.http import Http404
 from django.utils.translation import ugettext as _
 from accounts.models import Student, Speaker

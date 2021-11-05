@@ -51,9 +51,9 @@
                 <img class="image_animation" src="{% static 'backend/images/kiwep/project.png' %}" alt="this slowpoke moves">
             </div>
             <div class="project_detail_details">
-
-
-                     <p class="project_detail_description">{{project.description}}</p>
+                     <div class="project_detail_description">
+                     <p>    {{project.description|safe}}</p>
+                     </div>
 
 
 
@@ -201,6 +201,7 @@
                         <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' project.id %}' >
                             {% csrf_token %}
                             {{ individual_form|crispy }}
+                            {{ individual_form.media }}
                                     <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
                             </button>
                         </form>
@@ -209,6 +210,8 @@
                         <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' project.id %}' >
                             {% csrf_token %}
                             {{ collective_form|crispy }}
+
+                            {{ collective_form.media }}
                                       <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
                             </button>
                         </form>
@@ -253,6 +256,7 @@
                         <form method="post" action="{% url 'project_create_resource' object.id %}">
                             {% csrf_token %}
                             {{ resources_form|crispy }}
+                            {{ resources_form.media }}
                                    <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
                             </button>
                         </form>

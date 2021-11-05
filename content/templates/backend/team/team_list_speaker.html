@@ -124,6 +124,7 @@
                         <form method="post" action="{% url 'bulk_add_individual_mission' %}">
                             {% csrf_token %}
                             {{ individual_form|crispy }}
+                            {{ individual_form.media }}
                             {{ mission_bulk_form|crispy }}
 
                             <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
@@ -133,8 +134,8 @@
 
                         <form method="post" action="{% url 'bulk_add_collective_mission' %}">
                             {% csrf_token %}
-
                             {{ collective_form|crispy }}
+                            {{ collective_form.media }}
                             {{ mission_bulk_form|crispy }}
                             <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
                             </button>

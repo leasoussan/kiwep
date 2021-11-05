@@ -16,15 +16,15 @@
 
 
         <div class="form_container">
-        {% if view.model %}
-            <div class="update_project_title"><h2>Update {{view.model|return_class_name}}</h2></div>
-        {% endif %}
+            {% if view.model %}
+                <div class="update_project_title"><h2>Update {{view.model|return_class_name}}</h2></div>
+            {% endif %}
             {#{{form.media}}#}
 
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-
-                {{form.as_p}}
+                {{ form.as_p }}
+                {{ form.media }}
 
                 <button class="btn btn-primary" type="submit">{% trans 'save' %}</button>
                 <button class="btn" type="submit"><a href="{% url 'dashboard' %}" style="color:#fffefc;">{% trans 'dashboard' %}</a></button>
@@ -38,8 +38,8 @@
 
             <div class="create_page_extra">
                 {% if object == Project %}
-  <!-- {% load static %}  -->
-               <img class="image_placeholder" src="{% static 'images/kiwep/logo.png' %}" alt="image_holder">
+                    <!-- {% load static %}  -->
+                    <img class="image_placeholder" src="{% static 'images/kiwep/logo.png' %}" alt="image_holder">
 
                     <img class="video_placeholder" src="{% static 'images/kiwep/video_placeholder.png' %}" alt="video_placeholder">
 

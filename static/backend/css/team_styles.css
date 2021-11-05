@@ -609,7 +609,11 @@ x/* TEAM-LIST */
     margin-left: 23px;
     margin-top: 10px;
 }
-
+/*modal size*/
+.modal-dialog{
+    min-width: 80%;
+    max-width: 80%;
+}
 .discussion_sub_title{
     margin: 10px 0 0 10px;
 }

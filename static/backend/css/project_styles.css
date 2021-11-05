@@ -63,19 +63,23 @@
 .project_detail_details{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 55%;
     min-height: 30vh;
     max-height: 30vh;
-    justify-content: flex-start;
+    /*justify-content: flex-start;*/
     background-color: whitesmoke;
 
 }
 
 .project_detail_description{
-    background-color: transparent;
-    height: 10rem;
-    padding-left: 10px;
+    min-height: 20vh;
+    max-height: 20vh;
+    min-width: 35rem;
+    max-width: 35rem;
+    overflow: auto;
+
 }
+
 
 .detail_time_to_complete{
     background-color: transparent;
@@ -134,7 +138,7 @@
 .project_detail_main_content{
     display: flex;
     flex-direction: column;
-     background-color:#e9f0e4 ;
+    background-color:#e9f0e4 ;
     border:#b4bfb6 solid 1px ;
 
 }
@@ -214,7 +218,7 @@
     max-width: 100%;
     min-height: 3rem;
     margin-top: 1rem;
-background-color: whitesmoke;
+    background-color: whitesmoke;
     margin-left: 2rem;
 }
 
@@ -313,7 +317,7 @@ background-color: whitesmoke;
 }
 
 .add_project_template_button{
-background-color: #84a184;}
+    background-color: #84a184;}
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     border: none !important;
     background-color: rgb(99, 162, 185) !important;
@@ -354,6 +358,14 @@ background-color: #84a184;}
 .project_detail_name_responsive{
     max-width: 50%;
     min-width: 50%;
+}
+
+
+/*MODAL*/
+
+.modal-dialog{
+    min-width: 80%;
+    max-width: 80%;
 }
 /* RESPONSIVE */
 @media (max-width: 670px){

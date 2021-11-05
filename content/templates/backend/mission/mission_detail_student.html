@@ -47,7 +47,7 @@
                 </div>
                 <div class="mission_detail_details">
 
-                    <p class="mission_detail_description">{{object.description}}</p>
+                    <p class="mission_detail_description">{{object.description|safe}}</p>
 
 
                 </div>
@@ -70,7 +70,6 @@
                         {% if individualcollectivemission %}
                             <label>{% trans 'time_to_complete' %}
                               {{ object.parent_mission.project.time_to_complete }} {% trans 'days' %}</label>
-                      </label>
                         {% else %}
 
                             <label>{% trans 'time_to_complete' %}
@@ -190,19 +189,13 @@
                                             <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>
 
                                         {% endif %}
-
                                     </div>
                                 {% else %}
                                     {% trans 'this_missions_belongs_to:' %}
                                     {{ object.attributed_to }}
-
                                 {% endif %}
-
-
                             {% endif %}
-
                         {% endif %}
-
 
                     {% endif %}
                 </div>
@@ -263,8 +256,8 @@
 
     </div>
 {#    {% endwith %}#}
-{#{% endif %}#}
-
+    {#{% endif %}#}
 </div>
+
 
 

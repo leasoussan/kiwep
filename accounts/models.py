@@ -8,6 +8,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 import datetime
 from django.utils.translation import ugettext_lazy as _
+from ckeditor.fields import RichTextField
 
 from accounts.managers import MyUserManager
 from todo.models import Task, PersonalTask, TeamTask

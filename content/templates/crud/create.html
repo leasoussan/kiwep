@@ -30,6 +30,8 @@
                     <table >
                         {% csrf_token %}
                         {{ form|crispy }}
+                        {{ form.media }}
+{#                        {{ form|crispy }}#}
                     </table>
 
                 {% endif %}

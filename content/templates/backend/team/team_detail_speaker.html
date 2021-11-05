@@ -239,6 +239,7 @@
                         <form method="post" action="{% url 'create_team_project' team.id %}">
                             {% csrf_token %}
                             {{ project_form|crispy }}
+                            {{ project_form.media }}
                             <button type="submit">{% trans 'save' %}</button>
                         </form>
                     </div>
@@ -300,6 +301,7 @@
                             <form method="POST" class="form-horizontal" action='{% url 'create_individual_mission' team.project.id %}' >
                                 {% csrf_token %}
                                 {{ individual_form|crispy }}
+                                {{ individual_form.media }}
                                 <button class="btn waves-effect waves-light modal-action modal-close add_button" type="submit" name="action">
                                     {% trans 'save'%}</button>
                             </form>
@@ -308,6 +310,7 @@
                             <form method="POST" class="form-horizontal" action='{% url 'create_collective_mission' team.project.id %}' >
                                 {% csrf_token %}
                                 {{ collective_form|crispy }}
+                                {{ collective_form.media }}
                                 <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
                                 </button>
                             </form>
