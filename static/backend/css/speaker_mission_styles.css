@@ -83,11 +83,13 @@
 .mission_detail_details{
     display: flex;
     flex-direction: column;
-    width: 45%;
-    min-height: 30vh;
-    max-height: 30vh;
+    min-width: 65%;
+    max-width: 65%;
+    min-height: 40vh;
+    max-height: 40vh;
     justify-content: space-between;
     background-color: transparent;
+    overflow: scroll;
 }
 
 
@@ -444,6 +446,16 @@
 .table_missions_list{
 
 }
+
+
+/*Modlas*/
+.modal-dialog{
+    min-width: 80%;
+    max-width: 80%;
+}
+
+
+
 
 /* RESPONSIVE */
 @media (max-width: 670px) {

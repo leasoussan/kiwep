@@ -153,6 +153,8 @@ overflow: auto;
 }
 
 .see_additional_file{
+    min-height: 3rem;
+    max-height: 3rem;
     width: 20rem;
     padding: 5px;
 }

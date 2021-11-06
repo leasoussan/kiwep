@@ -108,13 +108,18 @@ class StudentProfileCreationForm(forms.ModelForm):
     join_code = forms.CharField(max_length=10, required=False)
     
     def __init__(self, *args, **kwargs):
+
         if 'instance' in kwargs:
-            kwargs['initial'] = {'join_code':kwargs['instance'].class_level.join_code}
+            if kwargs['instance'] == None:
+                super(StudentProfileCreationForm, self).__init__(*args, **kwargs)
+            else:
+                kwargs['initial'] = {'join_code':kwargs['instance'].class_level.join_code}
         super(StudentProfileCreationForm, self).__init__(*args, **kwargs)
 
         "To have it disabled when editing "
         if 'instance' in kwargs:
-            self.fields['join_code'].disabled = True
+            if kwargs['instance'] != None:
+                self.fields['join_code'].disabled = True
 
 
         
