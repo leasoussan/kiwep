@@ -17,10 +17,10 @@
                 <a class="btn" href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a>
 
 
-                {% if resource.mission %}
+                {% if resource.mission.individualmission %}
                     <a  class="btn btn-light back_btn" href="{% url  'individual_mission_detail' resource.mission.id %}">{% trans 'back_to_mission' %}</a>
-                {% elif collectivemission %}
-                    <a  class="btn btn-light back_btn" href="{% url  'collective_mission_detail' mission.id %}">{% trans 'back_to_mission' %}"</a>
+                {% else %}
+                    <a  class="btn btn-light back_btn" href="{% url  'collective_mission_detail' resource.mission.id %}">{% trans 'back_to_mission' %}"</a>
                 {% endif %}
 
             </div>
@@ -55,9 +55,9 @@
                             {% if resource.file_rsc %}
                                 <!-- Button trigger modal -->
                                 <button class="see_additional_file" data-bs-toggle="modal" data-bs-target="#see_file_resource">
-                                    {#                            <img class="resource_file_small"  src="{{ resource.get_resourceFILEor_default }}" alt="{{ resource.title }}">  #}</button>
+                                    {#                            <img class="resource_file_small"  src="{{ resource.get_resourceFILEor_default }}" alt="{{ resource.title }}">  #}
 
-{#                                    <h3>{% trans 'see_additional_file' %}</h3> </button>#}
+                                    <h3>{% trans 'see_additional_file' %}</h3> </button>
                             {% else %}
 
 

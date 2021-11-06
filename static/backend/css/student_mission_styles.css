@@ -60,15 +60,7 @@ button .edit_button{
     flex-direction: row;
 }
 
-.action_button_answer_student{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 60%;
-    max-height: 60%;
-    padding-left: 5px;
 
-}
 
 .student_mission_action_panel{
     display: flex;
@@ -92,11 +84,13 @@ button .edit_button{
 .mission_detail_details{
     display: flex;
     flex-direction: column;
-    width: 45%;
-    min-height: 30vh;
-    max-height: 30vh;
+    min-width: 65%;
+    max-width: 65%;
+    min-height: 40vh;
+    max-height: 40vh;
     justify-content: space-between;
     background-color: transparent;
+    overflow: scroll;
 }
 
 

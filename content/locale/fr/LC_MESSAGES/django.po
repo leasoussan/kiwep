@@ -302,7 +302,7 @@ msgstr "Projet modèle"
 #: templates/backend/project/project_detail_speaker.html:35
 #: templates/backend/team/team_detail_speaker.html:77
 msgid "edit_project"
-msgstr "Modifier Project"
+msgstr "Modifier"
 
 #: templates/backend/project/project_detail_speaker.html:38
 msgid "delete"

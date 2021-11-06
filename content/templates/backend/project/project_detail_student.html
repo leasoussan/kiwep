@@ -27,16 +27,16 @@
     </div>
 
     <div class="project_detail_main_content">
-        <div class="project_header_section">
+        <div class="project_detail_section">
 
             <div class="animation_div">
                 <img class="image_animation" src="{% static 'backend/images/kiwep/project.png' %}" alt="this slowpoke moves">
             </div>
             <div class="project_detail_details">
 
-                <p class="project_detail_description">
-                    {% trans 'description: ' %}
-                    <br>{{project.description|safe}}</p>
+                <div class="project_detail_description">
+                    <p> {{project.description|safe}}</p>
+                </div>
 
 
 
@@ -45,14 +45,14 @@
                         <span>{% trans 'time_to_complete' %}:</span>
                         {{project.time_to_complete}} {% trans 'days' %}
                     </div>
-{#                    <div>#}
-{#                   <span>{% trans 'acquired_skills' %}<span>#}
-{#                    {% for skill in project.mission_set.acquired_skills.all %}#}
-{##}
-{#                        <li class="skill_decoration">{{skill.name}}</li>#}
-{#                    {% endfor %}#}
-{##}
-{#                    </div>#}
+                    {#                    <div>#}
+                    {#                   <span>{% trans 'acquired_skills' %}<span>#}
+                    {#                    {% for skill in project.mission_set.acquired_skills.all %}#}
+                    {##}
+                    {#                        <li class="skill_decoration">{{skill.name}}</li>#}
+                    {#                    {% endfor %}#}
+                    {##}
+                    {#                    </div>#}
 
                 </div>
 

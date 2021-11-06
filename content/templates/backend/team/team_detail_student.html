@@ -51,7 +51,9 @@
                 <div class="team_project_title">
                     <h2> {% trans "project_name" %} : <a href="{% url 'project_detail' team.project.id %}" >{{ team.project.name.title }}</a></h2>
                 </div>
-                <p class="project_detail_team_page"> {{ team.project.description }}</p>
+                <div class="project_detail_team_page">
+                    <p>{{ team.project.description|safe }}</p>
+                </div>
 
             </div>
             <div class="project_learning_info">
