@@ -6,30 +6,24 @@
 {% block css %}
     <link href="{% static 'backend/css/student_mission_styles.css' %}" rel="stylesheet">
 {% endblock %}
+{% get_collective_id object as mission %}
 
 
 <div class="mission_detail_container">
-{##}
+    {##}
 {#{% if individualcollectivemission %}#}
 {##}
 {#    {% with object=object.parent_mission %}#}
 
     <div class="mission_detail_header">
-        {% if object.project.team %}
+        {% if mission.project.team %}
 
-            <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_project' %}</a></button>
+            <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' mission.project.team.id %}">{% trans 'back_to_project' %}</a></button>
         {% endif %}
 
         <h3 class=""> {{ object.name }}</h3>
 
 
-        <div class="speaker_action_btn_group">
-            {% if user.is_speaker %}
-                <button type="button" class="btn btn-secondary btn-sm"><a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a></button>
-                <!-- <a class="btn edit_button" href="{{ object.get_update_url }}">{% trans 'edit' %}</a> -->
-            {% endif %}
-
-        </div>
 
     </div>
 
@@ -237,7 +231,8 @@
 
                     {% if user.profile in object.parent_mission.attributed_to.all %}
                         <div class="mission_detail_answer_content">
-                            {% include "answer/answer.html"  with object=object.parent_mission %}
+                            {% include "answer/answer.html"  with object=object %}
+                     
                         </div>
 
                     {% else %}

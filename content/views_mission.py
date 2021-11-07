@@ -72,8 +72,13 @@ class AnswerBoardMissionListView(ProfileCheckPassesTestMixin, ListView):
 
 
     def get_queryset(self):
-        return super().get_queryset().filter(attributed_to__isnull=False)
+        return super().get_queryset().filter(attributed_to__isnull=False, project__speaker=self.request.user.profile())
 
+    def get_context_data(self, *args,**kwargs):
+        if self.request.user.is_speaker:
+            context = super().get_context_data(**kwargs)
+            context['individual_collective_mission'] = IndividualCollectiveMission.objects.filter(parent_mission__project__speaker=self.request.user.profile())
+        return context
 # ----------------------------------------------------------------------------------------------------------------
 
 
@@ -203,7 +208,7 @@ class IndividualCollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailV
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
+        context['collective_id'] = self.get_object().parent_mission.id
         return context
 
 

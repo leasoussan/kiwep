@@ -1,0 +1,140 @@
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+    <link href="{% static 'backend/css/student_answer.css' %}" rel="stylesheet" >
+    <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet" >
+
+{% endblock css %}
+
+
+
+    <div class="collective_answer_container">
+        {% for participant in object.parent_mission.attributed_to.all %}
+            {% if participant == request.user.profile %}
+                <div class="answer_box_collective_individual">
+                    {% if object.answer.all.exists %}
+
+                        {% with answer=object.answer.all.last %}
+                            <label class="last_answer_label">{% trans 'your_last_answer' %}</label>
+                            <div class="last_answer_container">
+                                <div class="action_button_answer_student">
+                                    {% if answer.response_file %}
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
+                                            {% trans 'sent_file' %} </button>
+                                        {#                            <img  class="response_file_img" src="{{ answer.response_file.url }}" width="70px" height="90px">#}
+
+                                    {% else %}
+                                        <p class="file_place_holder">{% trans  'no_file_yet' %}</p>
+
+                                    {% endif %}
+                                    <div class="edit_answer_button">
+                                        <a href="{% url 'update_answer' answer.id %}" >{% trans 'edit_answer' %}</a>
+                                    </div>
+                                </div>
+                                <p class="answer_text_last_answer">{{ answer.response_comment }}</p>
+                            </div>
+
+
+                            {% if answer.status %}
+                                <div class="answer_status_view_student">
+
+                                <p> {% trans 'answer_status' %}: {{ answer.get_status_display }} </p>
+                                {#                    {% if answer.grade %}#}
+                                {#                        <p>  {% trans 'and_graded :' %}#}
+                                {#                            {{ answer.grade }}</p>#}
+                                {##}
+                                {##}
+                                {#                    {% elif answer.status == 'a' %}#}
+                                {#                        {% if not answer.grade %}#}
+                                {##}
+                                {#                            <label>{% trans 'mission_not_graded' %}</label>#}
+                                {#                        {% else %}#}
+                                {#                            <label> {% trans 'grade_for_mission ' %}: {{ answer.grade }}</label>#}
+                                {#                        {% endif %}#}
+                                {##}
+                                {#                    {% else %}#}
+                                {##}
+                                {#                        <p> {% trans 'mission_wasnt_accepted_yet' %}</p>#}
+                                {#                    {% endif %}#}
+
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                        <div class=""><span>{{answer.response_comment}}</span>
+                    {% else %}
+                        <label> {% trans 'you_didnt__answered_yet' %}</label>
+                        <form method="POST" class="student_answer_form" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >
+                            {% csrf_token %}
+                            {{ object.answer_form|crispy }}
+                            <button class="btn modal_save_button_answer" type="submit" name="action"><p class="button_text">{% trans 'save_answer' %}</p></button>
+
+                        </form>
+                    {% endif %}
+                    </div>
+
+                </div>
+
+
+            {% else %}
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#see_other_student_answers">
+                    {% trans 'see_student_answer' %}
+                </button>
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+
+
+    <!-- Modal -->
+    {% with answer=object.answer.last %}
+        <div class="modal fade" id="see_file_modal" tabindex="-1" aria-labelledby="see_file_modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog_view_document">
+                <div class="modal-content view_document_modal_content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">her</button>
+                    </div>
+                    <div class="modal-body">
+                        {% if answer.response_file %}
+                            <img src="{{ answer.response_file.url }}">
+                        {% else %}
+                            {% trans 'there_is_no_file_yet' %}
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endwith %}
+
+
+    <!-- Modal STUDENT COLLECTIVE INDIVIDUAL ANSWER-->
+    {% with mission=object %}
+        <div class="modal fade" id="see_other_student_answers" tabindex="-1" aria-labelledby="see_other_student_answersLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="see_other_student_answersLabel">{% trans 'see_other_student_answers' %}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="individual_collective_answer">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endwith %}
+

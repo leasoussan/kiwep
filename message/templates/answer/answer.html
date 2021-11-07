@@ -29,7 +29,9 @@
 
         {% include 'answer/student_collective_answers.html' with mission=object %}
 
+        
         {% else  %}
+        {% include 'answer/student_collective_i_answers.html' with mission=object %}
     {% endif %}
 
 

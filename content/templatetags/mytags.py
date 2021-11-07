@@ -11,7 +11,12 @@ def return_objects_name(value):
 def return_class_name(value):
     return  value._meta.verbose_name.title()
 
-
+@register.simple_tag
+def get_collective_id(value):
+    if value.__class__.__name__ == 'IndividualCollectiveMission':
+        return value.parent_mission
+    else:
+        return value
 
 @register.filter
 def student_missions(mission_qs, student):

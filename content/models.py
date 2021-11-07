@@ -245,7 +245,6 @@ class IndividualCollectiveMission(AnswerModel):
 
 
 
-
     def __str__(self):
         return f"Team Project Mission of Team: {self.parent_mission.project.team}"
 

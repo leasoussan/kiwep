@@ -48,12 +48,22 @@
                 </div>
 
                 <div class="groups_display">
+                    <div class="group_name_student">
+                        <h5>{% trans 'your_group' %}</h5>
+                       <label> {{ user.profile.class_level }}</label>
+                    </div>
 
-                    <ul class="ul_display"><lable class="information_label">{% trans 'teams' %}   </lable>
+
+
+                    <ul class="team_display_profile"><lable class="information_label">{% trans 'teams' %}   </lable>
                         <div class="groups_list"  >
-                            {% if user.profile.team.exists  %}
+                            {% if user.profile.team_set.exists  %}
                                 {% for team in user.profile.team_set.all %}
-                                    <p class="group_label">{{ team.name}}</p>
+
+                                    <div class="team_label_student" >
+                                    <a href="{% url 'team_detail' team.id %}" >{{ team.name}}</a>
+                                    </div>
+
                                 {% endfor %}
                             {% endif %}
                         </div>
