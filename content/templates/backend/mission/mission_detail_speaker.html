@@ -11,10 +11,10 @@
 <div class="mission_detail_container">
 
     <div class="mission_detail_header">
-                <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' mission.project.id %}">{% trans 'back_to_project' %}</a></button>
+        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' mission.project.id %}">{% trans 'back_to_project' %}</a></button>
 
 
-         {% if mission.project.team %}
+        {% if mission.project.team %}
             <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' mission.project.team.id %}">{% trans 'back_to_team' %}</a></button>
         {% endif %}
         {#        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' mission.project.id %}">{% trans 'back_to_project_button' %}</a></button>#}
@@ -67,20 +67,20 @@
                     <p class="detail_time_to_complete">
                         <span>{% trans 'time_to_complete' %}</span>{{object.time_to_complete}} {% trans 'days' %}
                     </p>
-{#                    <div class="skills_mission">#}
-{#                        <div class="skills_mission_header">#}
-{#                            <h5 class="small_title">{% trans 'acquired_skills' %}</h5>#}
-{##}
-                            {#                            <button class="btn plus_button"></button>#}
-{##}
-{#                        </div>#}
-{#                        <div class="skills_name">#}
-{#                            {% for skill in object.acquired_skill.all %}#}
-{#                                <ul class="">{{skill.name}},  </ul>#}
-{##}
-{#                            {% endfor %}#}
-{#                        </div>#}
-{#                    </div>#}
+                    {#                    <div class="skills_mission">#}
+                    {#                        <div class="skills_mission_header">#}
+                    {#                            <h5 class="small_title">{% trans 'acquired_skills' %}</h5>#}
+                    {##}
+                    {#                            <button class="btn plus_button"></button>#}
+                    {##}
+                    {#                        </div>#}
+                    {#                        <div class="skills_name">#}
+                    {#                            {% for skill in object.acquired_skill.all %}#}
+                    {#                                <ul class="">{{skill.name}},  </ul>#}
+                    {##}
+                    {#                            {% endfor %}#}
+                    {#                        </div>#}
+                    {#                    </div>#}
                 </div>
 
                 <div class="resource_container">
@@ -129,76 +129,84 @@
 
         </div>
 
-{% if not object.project.is_template %}
-        <div class="speaker_mission_action_panel">
+        {% if not object.project.is_template %}
+            <div class="speaker_mission_action_panel">
 
-            <div class="mission_status_box">
-                <div class="mission_attribution_detail">
-                    {% if individualmission  %}
+                <div class="mission_status_box">
+                    <div class="mission_attribution_detail">
+                        {% if individualmission  %}
 
-                        {% if not object.attributed_to  %}
-                            <h3 class="medium_title label_mission_status"> {% trans 'mission_unclaimed' %}</h3>
+                            {% if not object.attributed_to  %}
+                                <h3 class="medium_title label_mission_status"> {% trans 'mission_unclaimed' %}</h3>
 
-                        {% else %}
-                            <div class="mission_attributed_to_label">
-                                <h3>{% trans 'attributed_to' %}:</h3>
-                                <label class="mission_attr_name"> {{ object.attributed_to }}</label>
+                            {% else %}
+                                <div class="mission_attributed_to_label">
+                                    <h3>{% trans 'attributed_to' %}:</h3>
+                                    <label class="mission_attr_name"> {{ object.attributed_to }}</label>
 
-                            </div>
-                        {% endif %}
+                                </div>
+                            {% endif %}
 
-                    {% elif collectivemission  %}
-                        {% if not object.attributed_to.all.exists %}
+                        {% elif collectivemission  %}
+                            {% if not object.attributed_to.all.exists %}
 
-                            {% trans 'no_one_joined_yet' %}
+                                {% trans 'no_one_joined_yet' %}
 
-                            {% if user.profile ==  object.project.team.manager %}
+                                {% if user.profile ==  object.project.team.manager %}
+
+                                    <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
+                                {% endif %}
+
+                            {% else %}
 
                                 <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
                             {% endif %}
 
-                        {% else %}
+                            {% for participant in collectivemission.attributed_to.all %}
+                                <li> {{ participant }}</li>
+{#                                <a href="{% url 'individual_collective_mission_detail' object.id %}"> {{ object.attributed_to.name }}</a>#}
 
-                            <a href="{% url 'assign_collective_mission_detail' object.id %}">{% trans 'assign_mission' %}</a>
+
+                            {% endfor %}
+
+
+                        {% elif individualcollectivemission %}
+
+                            {% trans 'individual_collective_of' %}: {{ object.attributed_to.name }}
+                            <a href="{% url 'individual_collective_mission_detail' object.id %}"> {{ object.attributed_to.name }}</a>
                         {% endif %}
 
-                        {% for participant in object.attributed_to.all %}
-                            <li> {{ participant }}</li>
+                    </div>
 
-                        {% endfor %}
+                </div>
+
+
+                <div class="speaker_mission_related_elements_content">
+
+                    {% if user.profile == object.project.team.manager %}
+
+                        <div class="mission_detail_answer_content">
+
+                            {% include "answer/answer.html"  with object=object %}
+
+                        </div>
+
 
                     {% endif %}
 
+                    <div class="comments_mission_container">
+                        {% if user.profile == object.project.team.manager %}
+
+                            <div class="discussion_container_mission">
+                                {% include 'comments/discussion.html' %}
+                            </div>
+
+                        {% endif %}
+                    </div>
                 </div>
 
             </div>
-
-
-            <div class="speaker_mission_related_elements_content">
-
-                {% if user.profile == object.project.team.manager %}
-
-                    <div class="mission_detail_answer_content">
-
-                        {% include "answer/answer.html"  with object=object %}
-
-                    </div>
-
-
-                {% endif %}
-
-                <div class="comments_mission_container">            {% if user.profile == object.project.team.manager %}
-
-                    <div class="discussion_container_mission">
-                        {% include 'comments/discussion.html' %}
-                    </div>
-
-                {% endif %}
-                </div>
-            </div>
-
-        </div>
-{% endif %}
+        {% endif %}
     </div>
 
 
