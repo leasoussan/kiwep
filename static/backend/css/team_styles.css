@@ -64,9 +64,10 @@ x/* TEAM-LIST */
     flex-direction: column;
     justify-content:start;
     width: 100% ;
-    /*min-height: 100vh;*/
-    /*max-height: 100vh;*/
+    min-height: 100vh;
+    max-height: 200vh;
     padding: 0rem 5px;
+
 }
 
 .description_team_project{
@@ -241,8 +242,8 @@ x/* TEAM-LIST */
     display: flex;
     flex-direction: row;
     width: 100%;
-    min-height:500px;
-    max-height: 500px;
+  min-height: 30%;
+    max-height: 30%;
     flex-wrap: wrap;
     margin-top: 1rem;
     background-color: #f2f2f2;
@@ -256,7 +257,7 @@ x/* TEAM-LIST */
     min-width: 65%;
     max-width: 65%;
     min-height: 30%;
-    max-height: 50%;
+    max-height: 30%;
 }
 
 .team_mission_list{
@@ -265,7 +266,7 @@ x/* TEAM-LIST */
     margin-top: 2rem;
     overflow: auto;
     min-height: 30%;
-    max-height: 50%;
+    max-height: 30%;
     min-width: 100%;
     max-width: 100%;
 

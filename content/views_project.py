@@ -32,36 +32,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 
 
-
-
-# class ChooseTeamProjectView(SpeakerStatuPassesTestMixin, RedirectView):
-#     """Select a project will make you own a version of the project
-#     This View will make himself a speaker to the project -
-#     as a copy to enable using it after with a team and make changes"""
-#
-#     # query_sting = False >>this is false by default
-#     pattern_name = 'team_detail'
-#
-#     def get_redirect_url(self,  *args, **kwargs):
-#         project = get_object_or_404(Project, pk=kwargs['pk'])
-#         team = get_object_or_404(Team, pk=kwargs['team_pk'])
-#         project.id = None
-#         project.is_template = False
-#         project.is_global= False
-#         project.is_premium= False
-#         project.speaker = self.request.user.profile()
-#         project.save()
-#         team.project = project
-#         team.save()
-#         kwargs['pk'] = team.pk
-#         del kwargs['team_pk']
-#         return super().get_redirect_url(*args, **kwargs)
-#
-
-
-
-
-
 class ProjectListView(SpeakerStatuPassesTestMixin, ListView):
     model = Project
     template_name = 'backend/project/project_list.html'
@@ -165,6 +135,7 @@ class ProjectTeamCreateView(ProjectCreateView):
         pk = self.kwargs.get("pk")
         team= get_object_or_404(Team, pk=pk)
         team.project = self.object
+        team.project.is_template = False
         team.save()
         return super().form_valid(form)
 
@@ -213,10 +184,13 @@ def clean_resource(project_id, queryset):
         print('Function clean resource should be only used on resource query set ')
         return
     for resource in queryset:
+        print('cleaned_res_presave_project', resource)
         resource.id = None
         resource.project_id = project_id
         objects.append(resource)
+        print('resource_cleaner project', resource)
     queryset.model.objects.bulk_create(objects)
+
 
 
 def clean_m_resource(mission_id, queryset):
@@ -225,9 +199,12 @@ def clean_m_resource(mission_id, queryset):
         print('Function clean resource should be only used on resource query set ')
         return
     for resource in queryset:
+        print('cleaned_res_presave_mission', resource)
         resource.id = None
         resource.mission_id = mission_id
         objects.append(resource)
+        print('resource_cleaner mission ', resource)
+
     queryset.model.objects.bulk_create(objects)
 
 
