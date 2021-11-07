@@ -9,16 +9,15 @@
 
 {% if user.is_speaker %}
 
-
     {% if object.individualmission %}
     {% include 'answer/speaker_mission_answer.html' with mission=object %}
 
-    {% else %}
+    {% elif object.collectivemission %}
+
     {% include 'answer/speaker_collective_answers.html' with mission=object %}
+     {% else  %}
+        {% include 'answer/speaker_collective_i_answers.html' with mission=object %}
     {% endif %}
-
-
-
 
 {% elif user.is_student %}
     {% if object.individualmission %}
