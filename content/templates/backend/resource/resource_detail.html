@@ -3,6 +3,7 @@
 {% load static %}
 {% load mytags %}
 {% load crispy_forms_tags %}
+
 {% block css %}
     <link href="{% static 'backend/css/resource_styles.css' %}" rel="stylesheet">
 {% endblock css %}
@@ -19,9 +20,12 @@
 
                 {% if resource.mission.individualmission %}
                     <a  class="btn btn-light back_btn" href="{% url  'individual_mission_detail' resource.mission.id %}">{% trans 'back_to_mission' %}</a>
-                {% else %}
+                {% elif  resource.mission.collectivemission %}
                     <a  class="btn btn-light back_btn" href="{% url  'collective_mission_detail' resource.mission.id %}">{% trans 'back_to_mission' %}"</a>
-                {% endif %}
+
+{% else %}
+
+       {% endif %}
 
             </div>
             <a class="btn edit_btn_resource" href="{% url 'update_resource' resource.id %}">{% trans 'update_resource' %}</a>
@@ -50,7 +54,6 @@
                         <p>{{resource.text|safe}}</p>
                     </div>
                     <div class="resource_additional">
-                        {% trans 'additional_information' %}
                         <div class="additional_file_box">
                             {% if resource.file_rsc %}
                                 <!-- Button trigger modal -->
@@ -73,10 +76,6 @@
                     </div>
 
                 </div>
-
-
-
-
 
             </div>
 

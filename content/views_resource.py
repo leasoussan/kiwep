@@ -49,7 +49,6 @@ class ResourceProjectCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,
         form = ResourceAddForm()
         return render(request, 'crud/create.html', {'form': form})
 
-
     def post(self, request, *args, **kwargs):
         project = Project.objects.get(id=self.kwargs['project_id'])
 
@@ -98,9 +97,10 @@ class ResourceMissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,
 
 
 
-def chose_resource_to_mission(request):
+def chose_resource_to_mission(request, mission, project):
+    resources = project.resource_set.all()
 
-    pass
+
 
 
 class ResourceUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateView):
