@@ -93,8 +93,15 @@ class AnswerCreateView(StudentStatuPassesTestMixin, GenericCustomRedirectView):
 
     def can_save(self, form):
         mission = form.cleaned_data['content_type'].model_class().objects.get(id=form.cleaned_data['object_id'])
-        if self.request.user == mission.attributed_to.user:
-            return True
+        if mission.__class__.__name__ == 'IndividualCollectiveMission':
+            if self.request.user.profile() in mission.parent_mission.attributed_to.all():
+                return True
+        if mission.mission_type == 'i':
+            if self.request.user == mission.attributed_to.user:
+                return True
+        if mission.mission_type == 'c':
+            if self.request.user.profile() in mission.attributed_to.all():
+                return True
         return False
 
 

@@ -9,6 +9,7 @@
 
 
 <div class="mission_detail_container">
+    {{individualcollectivemission}}
 {##}
 {#{% if individualcollectivemission %}#}
 {##}
@@ -237,7 +238,8 @@
 
                     {% if user.profile in object.parent_mission.attributed_to.all %}
                         <div class="mission_detail_answer_content">
-                            {% include "answer/answer.html"  with object=object.parent_mission %}
+                            {% include "answer/answer.html"  with object=object %}
+                     
                         </div>
 
                     {% else %}

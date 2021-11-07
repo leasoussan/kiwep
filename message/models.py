@@ -113,8 +113,10 @@ class Answer(DiscussionModel):
     content_object = GenericForeignKey('content_type', 'object_id')
 
     def __str__(self):
-        return f'answer by: {self.content_object.attributed_to.user.first_name}'
-
+        if self.content_type.model_class().__name__ == 'CollectiveMission':
+            return f'answer by: {self.content_object.attributed_to}'
+        else:
+            return f'answer by: {self.content_object.attributed_to.user.first_name}'
 
     def status_form(self):
         from .forms import MissionSpeakerStatusAnswerForm
