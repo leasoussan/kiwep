@@ -17,25 +17,24 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = [
+admin.autodiscover()
+
+urlpatterns =[
     path('admin', admin.site.urls),
     path('i18n', include('django.conf.urls.i18n')),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('backend.urls')),
     path('', include('content.urls')),
-
     path('message/', include('message.urls')),
     path('todo/', include('todo.urls')),
-
 
     path('api_project/content/', include('content.api_project.project_urls')),
     path('api_team/content/', include('content.api_team.team_urls')),
     # path('api_mission/content/', include('content.api_mission.mission_urls')),
     path('api_resource/content/', include('content.api_resource.resource_urls')),
-
-
 ]
 if settings.DEBUG:
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 02:46+0200\n"
+"POT-Creation-Date: 2021-11-07 15:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,27 +30,27 @@ msgstr "Homepage"
 msgid "internal_server_error"
 msgstr "Internal problem error"
 
-#: navbar.html:27
+#: navbar.html:28
 msgid "board_team"
 msgstr "Team Board"
 
-#: navbar.html:28
+#: navbar.html:29
 msgid "project_template"
 msgstr "Project Templates"
 
-#: navbar.html:29
+#: navbar.html:30
 msgid "board_answers"
 msgstr "Answers Board"
 
-#: navbar.html:32
+#: navbar.html:33
 msgid "student_projects"
 msgstr "My Projects"
 
-#: navbar.html:33
+#: navbar.html:34
 msgid "student_missions_list"
 msgstr "My Missions"
 
-#: navbar.html:35
+#: navbar.html:36
 msgid "welcome_to_intstitution_message"
 msgstr "Welcome to KIWEP"
 
