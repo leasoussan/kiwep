@@ -77,7 +77,7 @@
                 </div>
                 <div class="modal-body">
                     {% if answer.response_file %}
-                        <img src="{{ answer.response_file.url }}">
+                        <img class="image_modal" src="{{ answer.response_file.url }}">
                     {% else %}
                         {% trans 'there_is_no_file_yet' %}
                     {% endif %}
@@ -103,7 +103,6 @@
                     <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>
                 </div>
                 <div class="modal-body">
-                    {{ answer }}
                     <p>{{answer.response_comment|safe}}</p>
                 </div>
                 <div class="modal-footer">
