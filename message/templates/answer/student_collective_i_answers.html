@@ -17,25 +17,43 @@
                     {% if object.answer.all.exists %}
 
                         {% with answer=object.answer.all.last %}
-                            <label class="last_answer_label">{% trans 'your_last_answer' %}</label>
-                            <div class="last_answer_container">
-                                <div class="action_button_answer_student">
-                                    {% if answer.response_file %}
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
-                                            {% trans 'sent_file' %} </button>
-                                        {#                            <img  class="response_file_img" src="{{ answer.response_file.url }}" width="70px" height="90px">#}
+                            <div class="answer_header">
 
-                                    {% else %}
-                                        <p class="file_place_holder">{% trans  'no_file_yet' %}</p>
+                    <label class="last_answer_label">{% trans 'your_last_answer' %}</label>
+                    <div class="btn edit_answer_button">
+                        <a href="{% url 'update_answer' answer.id %}" >{% trans 'edit_answer' %}</a>
+                    </div>
 
-                                    {% endif %}
-                                    <div class="edit_answer_button">
-                                        <a href="{% url 'update_answer' answer.id %}" >{% trans 'edit_answer' %}</a>
-                                    </div>
-                                </div>
-                                <p class="answer_text_last_answer">{{ answer.response_comment }}</p>
-                            </div>
+                </div>
+                <div class="last_answer_container">
+                    <div class="action_button_answer_student">
+                        {% if answer.response_file %}
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
+                                {% trans 'sent_file' %} </button>
+                            {#                            <img  class="response_file_img" src="{{ answer.response_file.url }}" width="70px" height="90px">#}
+
+                        {% else %}
+                            <p class="file_place_holder">{% trans  'no_file_yet' %}</p>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div  class="answer_text_last_answer">
+
+                        {% if answer.response_comment %}
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn see_answer_modal_button" data-bs-toggle="modal" data-bs-target="#see_answer_modal">
+                                {% trans 'Student_answer' %} </button>
+                            {#                            <img  class="response_file_img" src="{{ answer.response_file.url }}" width="70px" height="90px">#}
+
+                        {% else %}
+                            <p class="file_place_holder">{% trans  'no_answer' %}</p>
+                        {% endif %}
+                    </div>
+
+                </div>
 
 
                             {% if answer.status %}
@@ -101,7 +119,7 @@
                     </div>
                     <div class="modal-body">
                         {% if answer.response_file %}
-                            <img src="{{ answer.response_file.url }}">
+                            <img class="image_modal" src="{{ answer.response_file.url }}">
                         {% else %}
                             {% trans 'there_is_no_file_yet' %}
                         {% endif %}
@@ -113,9 +131,32 @@
                 </div>
             </div>
         </div>
-    {% endwith %}
 
 
+
+
+<div class="modal fade" id="see_answer_modal" tabindex="-1" aria-labelledby="see_answer_modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal_dialog_view_answer">
+            <div class="modal-content view_answer_modal_content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="see_answer_modalLabel">{% trans 'response_answer_view' %}</h5>
+                </div>
+                <div class="modal-body modal_answer_text">
+                    {% if answer.response_file %}
+                        <p> {{ answer.response_comment|safe }}</p>
+                    {% else %}
+                        {% trans 'there_is_no_answer' %}
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+ {% endwith %}
     <!-- Modal STUDENT COLLECTIVE INDIVIDUAL ANSWER-->
     {% with mission=object %}
         <div class="modal fade" id="see_other_student_answers" tabindex="-1" aria-labelledby="see_other_student_answersLabel" aria-hidden="true">

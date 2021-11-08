@@ -11,9 +11,9 @@
 
 <div class="mission_detail_container">
     {##}
-{#{% if individualcollectivemission %}#}
-{##}
-{#    {% with object=object.parent_mission %}#}
+    {#{% if individualcollectivemission %}#}
+    {##}
+    {#    {% with object=object.parent_mission %}#}
 
     <div class="mission_detail_header">
         {% if mission.project.team %}
@@ -63,7 +63,7 @@
                     <div class="detail_time_to_complete">
                         {% if individualcollectivemission %}
                             <label>{% trans 'time_to_complete' %}
-                              {{ object.parent_mission.project.time_to_complete }} {% trans 'days' %}</label>
+                                {{ object.parent_mission.project.time_to_complete }} {% trans 'days' %}</label>
                         {% else %}
 
                             <label>{% trans 'time_to_complete' %}
@@ -177,10 +177,11 @@
                                             {#                                     <h4>   {{ participant }}</h4>#}
                                         {% endfor %}
                                         {% if object %}
-{#                                            <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' object.parent_mission.id %}">{% trans 'leave_mission' %}</a>#}
-{#                                        {% else %}#}
-                                            <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_mission' %}</a>
-
+                                            {% if individualcollectivemission %}
+                                                <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_mission' %}</a>
+                                            {% else %}
+                                                <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_mission' %}</a>
+                                            {% endif %}
                                         {% endif %}
                                     </div>
                                 {% else %}
@@ -232,14 +233,14 @@
                     {% if user.profile in object.parent_mission.attributed_to.all %}
                         <div class="mission_detail_answer_content">
                             {% include "answer/answer.html"  with object=object %}
-                     
+
                         </div>
 
                     {% else %}
-                    <div class="mission_detail_answer_content">
-                        {% include "answer/answer.html"  with object=object %}
-                    </div>
-                        {% endif %}
+                        <div class="mission_detail_answer_content">
+                            {% include "answer/answer.html"  with object=object %}
+                        </div>
+                    {% endif %}
                     <div class="discussion_container_mission">
                         {% include 'comments/discussion.html' %}
                     </div>
@@ -249,7 +250,7 @@
         </div>
 
     </div>
-{#    {% endwith %}#}
+    {#    {% endwith %}#}
     {#{% endif %}#}
 </div>
 

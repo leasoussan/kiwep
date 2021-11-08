@@ -18,30 +18,30 @@
 
                         {% with answer=object.answer.all.last %}
                             <label class="last_answer_label">{% trans 'your_last_answer' %}</label>
-                            <div class="last_answer_container">
-                                <div class="action_button_answer_student">
-                                    {% if answer.response_file %}
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
-                                            {% trans 'sent_file' %} </button>
+{#                            <div class="last_answer_container">#}
+{#                                <div class="action_button_answer_student">#}
+{#                                    {% if answer.response_file %}#}
+{#                                        <!-- Button trigger modal -->#}
+{#                                        <button type="button" class="btn see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">#}
+{#                                            {% trans 'sent_file' %} </button>#}
                                         {#                            <img  class="response_file_img" src="{{ answer.response_file.url }}" width="70px" height="90px">#}
-
-                                    {% else %}
-                                        <p class="file_place_holder">{% trans  'no_file_yet' %}</p>
-
-                                    {% endif %}
-                                    <div class="edit_answer_button">
-                                        <a href="{% url 'update_answer' answer.id %}" >{% trans 'edit_answer' %}</a>
-                                    </div>
-                                </div>
-                                <p class="answer_text_last_answer">{{ answer.response_comment }}</p>
-                            </div>
-
-
-                            {% if answer.status %}
-                                <div class="answer_status_view_student">
-
-                                <p> {% trans 'answer_status' %}: {{ answer.get_status_display }} </p>
+{##}
+{#                                    {% else %}#}
+{#                                        <p class="file_place_holder">{% trans  'no_file_yet' %}</p>#}
+{##}
+{#                                    {% endif %}#}
+{#                                    <div class="edit_answer_button">#}
+{#                                        <a href="{% url 'update_answer' answer.id %}" >{% trans 'edit_answer' %}</a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <p class="answer_text_last_answer">{{ answer.response_comment }}</p>#}
+{#                            </div>#}
+{##}
+{##}
+{#                            {% if answer.status %}#}
+{#                                <div class="answer_status_view_student">#}
+{##}
+{#                                <p> {% trans 'answer_status' %}: {{ answer.get_status_display }} </p>#}
                                 {#                    {% if answer.grade %}#}
                                 {#                        <p>  {% trans 'and_graded :' %}#}
                                 {#                            {{ answer.grade }}</p>#}
@@ -59,18 +59,17 @@
                                 {##}
                                 {#                        <p> {% trans 'mission_wasnt_accepted_yet' %}</p>#}
                                 {#                    {% endif %}#}
-
-                            {% endif %}
+{##}
+{#                            {% endif %}#}
                         {% endwith %}
-                    </div>
-                        <div class=""><span>{{answer.response_comment}}</span>
-                    {% else %}
+{#                    </div>#}
+{#                        <div class=""><span>{{answer.response_comment}}</span>#}
+{#                    {% else %}#}
                         <label> {% trans 'you_didnt__answered_yet' %}</label>
-                        {% for participant in object.attributed_to.all %}
 
-{#                        <a href="{% url 'individual_collective_mission_detail' individual_collective_mission.id %}">{{ participant.name.title }}</a>#}
-{{ participant.name.title }}
-                        {% endfor %}
+{% for mission in object.individualcollectivemission_set.all %}
+    <a href="{% url 'individual_collective_mission_detail' mission.id %}">   {{ mission.attributed_to.name }}</a>
+{% endfor %}
 {#                        <form method="POST" class="student_answer_form" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >#}
 {#                            {% csrf_token %}#}
 {#                            {{ object.answer_form|crispy }}#}
@@ -84,6 +83,7 @@
 
 
             {% else %}
+
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#see_other_student_answers">
                     {% trans 'see_student_answer' %}
                 </button>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="modal-body">
                         {% if answer.response_file %}
-                            <img src="{{ answer.response_file.url }}">
+                            <img class="image_modal" src="{{ answer.response_file.url }}">
                         {% else %}
                             {% trans 'there_is_no_file_yet' %}
                         {% endif %}
