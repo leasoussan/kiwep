@@ -17,9 +17,11 @@
     {% if object|return_class_name == 'Team' %}
         <h4 class="title_box_discussion">{% trans 'discussions_board: ' %} </h4>
 
-    {% elif object|return_objects_name == 'IndividualMission' or object|return_objects_name == 'CollectiveMission' %}
+    {% elif object|return_objects_name == 'IndividualMission' or object|return_objects_name == 'CollectiveMission' or  object|return_objects_name == 'IndividualCollectiveMission' %}
 
         <h4 class="title_box_discussion">{% trans 'comment_on_answer : ' %} </h4>
+        {% else %}
+
     {% endif %}
     <div class="discussion_object_title">
         {% if not object.discussions %}

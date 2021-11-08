@@ -148,6 +148,7 @@
                             {% endif %}
 
                         {% elif collectivemission  %}
+
                             {% if not object.attributed_to.all.exists %}
 
                                 {% trans 'no_one_joined_yet' %}
@@ -183,8 +184,7 @@
 
                 <div class="speaker_mission_related_elements_content">
 
-                    {% if user.profile == object.project.team.manager %}
-
+                    {% if user.profile == mission.project.team.manager %}
                         <div class="mission_detail_answer_content">
 
                             {% include "answer/answer.html"  with object=object %}
@@ -195,7 +195,7 @@
                     {% endif %}
 
                     <div class="comments_mission_container">
-                        {% if user.profile == object.project.team.manager %}
+                        {% if user.profile == mission.project.team.manager %}
 
                             <div class="discussion_container_mission">
                                 {% include 'comments/discussion.html' %}
