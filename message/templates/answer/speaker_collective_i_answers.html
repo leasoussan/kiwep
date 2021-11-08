@@ -1,1 +1,119 @@
-{{object}}
+{% load i18n %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'backend/css/speaker_mission_styles.css' %}" rel="stylesheet" >
+    <link href="{% static 'backend/css/speaker_answer.css' %}" rel="stylesheet" >
+    <link href="{% static 'backend/css/discussion.css' %}" rel="stylesheet" >
+    <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet" >
+
+{% endblock css %}
+
+<div class="answer">
+    <div class="mission_answer_status_label">
+        {% if object.attributed_to and object.answer.exists %}
+            {{ object.answer.all.first.content_object.attributed_to.user.get_full_name }}   {% trans 'answers' %}:
+        {% endif %}
+    </div>
+    {% if not object.answer.all.exists %}
+        <h4>{% trans 'student_didnt_respond' %}</h4>
+
+        <div class="mission_response_type_label">
+
+            <h3 class="medium_title"> {% trans 'response_type' %}</h3>
+            <h3>{{ object.response_type }}</h3>
+
+        </div>
+
+    {% else %}
+        {% with answer=object.answer.all.last %}
+            {% if answer.response_comment or answer.response_file %}
+                <div class="answer_content_box_view">
+                <div class="speaker_answer_box">
+                    <button type="button" class="btn see_answer_modal_button" data-bs-toggle="modal" data-bs-target="#student_answer">
+                        {% trans 'submited_answer' %}
+                    </button>
+
+                    <div class="answer_file_label">
+                        {% if not answer.response_file %}
+                            <p>{% trans 'no_file_was_submited' %}</p>
+                        {% else %}
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
+                                {% trans 'sent_file' %} </button>
+
+
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="answer_content">
+                    <form method="POST" action="{% url 'answer_edit_status' answer.id %}">
+                        {% csrf_token %}
+                        {{ answer.status_form }}
+                    </form>
+
+                </div>
+
+
+
+
+            {% endif %}
+        {% endwith %}
+
+    {% endif %}
+
+    </div>
+
+</div>
+
+<!-- Modal -->
+{% with answer=object.answer.last %}
+    <div class="modal fade" id="see_file_modal" tabindex="-1" aria-labelledby="see_file_modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog_view_document">
+            <div class="modal-content view_document_modal_content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% if answer.response_file %}
+                        <img src="{{ answer.response_file.url }}">
+                    {% else %}
+                        {% trans 'there_is_no_file_yet' %}
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endwith %}
+
+
+
+{% with answer=object.answer.last %}
+
+    {#MODAL FIRST ANSWER#}
+    <div class="modal fade" id="student_answer" tabindex="-1" aria-labelledby="student_answerLabel" aria-hidden="true">
+        <div class="modal-dialog modal_dialog_view_document">
+            <div class="modal-content view_document_modal_content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>
+                </div>
+                <div class="modal-body">
+                    {{ answer }}
+                    <p>{{answer.response_comment|safe}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endwith %}
+

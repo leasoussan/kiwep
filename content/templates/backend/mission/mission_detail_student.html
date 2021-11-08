@@ -164,7 +164,7 @@
 
                         {% if collectivemission or object.parent_mission %}
 
-                            {% if request.user.profile not in object.attributed_to.all and request.user.profile not in object.parent_mission.attributed_to.all %}
+                            {% if request.user.profile not in object.attributed_to.all or request.user.profile not in object.parent_mission.attributed_to.all %}
                                 <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_collective_mission' %}</a>
                             {% elif object.attributed_to %}
 
@@ -179,7 +179,7 @@
                                         {% if object %}
 {#                                            <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' object.parent_mission.id %}">{% trans 'leave_mission' %}</a>#}
 {#                                        {% else %}#}
-                                            <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>
+                                            <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_mission' %}</a>
 
                                         {% endif %}
                                     </div>

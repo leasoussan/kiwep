@@ -193,8 +193,9 @@ class CollectiveMissionDetailView(ProfileCheckPassesTestMixin, DetailView):
         context['status_form'] = MissionSpeakerStatusAnswerForm()
         if self.request.user.is_student:
             context = super().get_context_data(**kwargs)
-            context['individual_collective_mission'] = IndividualCollectiveMission.objects.get(parent_mission=self.object.id,
-                attributed_to=self.request.user.profile())
+            # what if we dont have >>.there is an error
+            # context['individual_collective_mission'] = IndividualCollectiveMission.objects.get(parent_mission=self.object.id,
+            #     attributed_to=self.request.user.profile())
             return context
         # if self.object.attributed_to.exists() and self.request.user in self.object.attributed_to.all():
         #     context['collective_individual'] = IndividualCollectiveMission.objects.filter(parent_mission__id=get_object_or_404())

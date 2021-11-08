@@ -249,11 +249,13 @@ x/* TEAM-LIST */
     background-color: #f2f2f2;
     border: 1px #d7dbd7 solid;
     padding: 1rem;
-    justify-content: space-between;
+    justify-content: center;
 }
 .mission_list_box_team_detail{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-width: 65%;
     max-width: 65%;
     min-height: 30%;
@@ -265,24 +267,29 @@ x/* TEAM-LIST */
     flex-direction: column;
     margin-top: 2rem;
     overflow: auto;
-    min-height: 30%;
-    max-height: 30%;
+    min-height: 40%;
+    max-height: 40%;
     min-width: 100%;
     max-width: 100%;
+    padding: 1rem;
 
 }
-.team_mission_list h3{
-    margin-left: 30%;
-}
+
 
 .team_mission_log{
-    margin-top: 2rem;
-    display: flex;
+   display: flex;
     flex-direction: column;
-    min-height: 10%;
-    max-height: 30%;
-    /*padding-left: 2rem;*/
+align-items: center;
+    margin-top: 3rem;
+    overflow: auto;
+    min-height: 40%;
+    max-height: 40%;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 1rem;
 }
+
+
 
 .team_mission_detail_attributed_to{
     min-width: 20rem;
@@ -299,7 +306,7 @@ x/* TEAM-LIST */
 }
 
 .team_mission_log h3{
-    margin-left: 30%;
+    /*margin-left: 30%;*/
 }
 
 .detail_time_to_complete span{
@@ -520,15 +527,6 @@ x/* TEAM-LIST */
 }
 
 
-.team_mission_log{
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    min-height: 10%;
-    max-height: 30%;
-    /*padding-left: 2rem;*/
-}
-
 
 .join_other_team_box{
     display: flex;
@@ -553,9 +551,7 @@ x/* TEAM-LIST */
     max-width: 100%;
 }
 
-.team_mission_log h3{
-    margin-left: 30%;
-}
+
 /*______STUDENT TEAM LIST ________*/
 
 .join_team_btn_group{

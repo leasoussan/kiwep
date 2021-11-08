@@ -68,7 +68,7 @@
                         <label> {% trans 'you_didnt__answered_yet' %}</label>
                         {% for participant in object.attributed_to.all %}
 
-                        <a href="{% url 'individual_collective_mission_detail' individual_collective_mission.id %}">{{ participant.name.title }}</a>
+{#                        <a href="{% url 'individual_collective_mission_detail' individual_collective_mission.id %}">{{ participant.name.title }}</a>#}
 {{ participant.name.title }}
                         {% endfor %}
 {#                        <form method="POST" class="student_answer_form" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >#}

@@ -29,8 +29,8 @@
 .discussion_header{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-content: center;
+    justify-content: flex-start;
+    align-content: flex-start;
     background-color: whitesmoke;
     min-width:100%;
     max-width: 100%;
