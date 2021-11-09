@@ -1,81 +1,14 @@
+{% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% load mytags %}
-
-<div class="student_team_list_container">
-    <h2>{% trans 'my_team' %}</h2>
-
-    <table class="table student_mission_table">
-        <thead>
-        <tr>
-            <th scope="col">{% trans 'team_name' %}</th>
-            <th scope="col">{% trans 'participants' %}</th>
-            <th scope="col">{% trans 'duration_in_days' %}</th>
-            <th scope="col">{% trans 'project' %}</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        {% for team in team_list %}
-
-            <tr>
-                <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
-                <th>{{ team.participants.count }}</th>
-                <th>{{team.project.time_to_complete}}</th>
-                {% if team.project %}
-                    <th><a href="{% url 'project_detail' team.project.id %}">{{team.project.name}} </a></th>
-                {% else %}
-               <th><h3>{% trans 'no_project_yet' %}</h3></th>
-                {% endif %}
-            </tr>
-
-        {% endfor %}
-        </tbody>
-    </table>
 
 
-<br>
+{% block css %}
 
-        {% if not request.user.profile.class_level.team_set.all|student_available_projects:request.user.profile %}
-
-
-        {% else %}
-<div class="join_other_team_box">
-    <h2>{% trans 'join_other_team' %}</h2>
-    <table class="table student_mission_table">
-        <thead>
-        <tr>
-            <th>{% trans 'team_name' %}</th>
-            <th>{% trans 'participants' %}</th>
-            <th>{% trans 'duration_in_days' %}</th>
-            <th>{% trans 'project' %}</th>
+{% endblock %}
 
 
-        </tr>
-        </thead>
-        <tbody>
 
-            {% for team in  request.user.profile.class_level.team_set.all|student_available_projects:request.user.profile %}
-                {% if team not in team_list %}
-                    <tr>
-                        <th ><a class= "link-table" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></th>
-                        <th>{{ team.participants.count }}</th>
-                        <th>{{team.project.time_to_complete}}</th>
-                        {% if team.project %}
-                            <th><a href="{% url 'project_detail' team.project.id %}">{{team.project.name}} </a></th>
-                        {% else %}
-                          <th>  <h4>{% trans 'no_project_yet' %}</h4></th>
-                        {% endif %}
-                    </tr>
-                {% endif %}
-            {% endfor %}
 
-        {% endif %}
-
-        </tbody>
-    </table>
-</div>
-
-</div>
 
