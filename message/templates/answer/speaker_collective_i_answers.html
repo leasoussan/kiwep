@@ -81,7 +81,7 @@
             <div class="modal-body">
                 <form method="POST" class="student_answer_form" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >
                     {% csrf_token %}
-                    {{ mission.answer_form|crispy }}
+                    {{ mission.answer_form }}
                     {{ mission.answer_form.media}}
                     <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save_answer' %}</p>
                     </button>
