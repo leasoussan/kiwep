@@ -72,7 +72,7 @@ class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
         if not self.object.project and self.request.user.is_speaker:
             context['project_form'] = ProjectAddForm()
             context['templates'] = self.request.user.profile().project_set.personal_templates()
-            context['old_projects'] = self.request.user.profile().project_set.all()
+            context['old_projects'] = self.request.user.profile().project_set.filter(is_template=False)
         elif self.object.project:
             context['individual_form'] = IndividualMissionAddForm()
             context['collective_form'] = CollectiveMissionAddForm()
