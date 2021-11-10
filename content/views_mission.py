@@ -338,7 +338,7 @@ class ClaimMission(StudentStatuPassesTestMixin, RedirectView):
 
 class UnclaimMission(StudentStatuPassesTestMixin, RedirectView):
     ''' Unclaim the mission - will return to the list of available Mission'''
-    # query_sting = False >>this is false by default     
+    # query_string = False >>this is false by default
     pattern_name = 'my_mission_list'
 
     def get_redirect_url(self,  *args, **kwargs):

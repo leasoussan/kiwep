@@ -69,13 +69,6 @@
                 <span>{% trans 'time_to_complete' %}:</span>
                 {{team.project.time_to_complete}} {% trans 'days' %}
             </div>
-            {#                <div class="acquired_skills_team_page">#}
-            {#                    <span>{% trans 'acquired_skills' %}</span>#}
-            {#                    {% for skill in project.mission_set.acquired_skills.all %}#}
-            {##}
-            {#                        <li class="skill_decoration">{{skill.name}}</li>#}
-            {#                    {% endfor %}#}
-            {#                </div>#}
             <a class="edit_project_team_page" href="{% url 'project_detail' team.project.id %}" >{% trans 'edit_project' %}</a>
         </div>
     </div>
@@ -96,21 +89,11 @@
                                     {% trans 'not_claimed_' %}
                                 {% endif %}
                             </label>
-                            <label class="team_mission_detail_due_date">
-                                {{mission.due_date}}
-                            </label>
+
                             <label class="team_mission_detail_m_type">
                                 {{mission.get_mission_type_display}}
                             </label>
 
-                            <label class="team_detail_mission_answer_status">
-
-                                {% if mission.answer.status %}
-                                    {{answer.status}}
-                                {% else %}
-                                    <p>{% trans 'no_answer' %}</p>
-                                {% endif %}
-                            </label>
 
                         </div>
                     {% endfor %}
@@ -131,21 +114,11 @@
 
 
                             </label>
-                            <label class="team_mission_detail_due_date">
-                                {{mission.due_date}}
-                            </label>
+
                             <label class="team_mission_detail_m_type">
                                 {{mission.get_mission_type_display}}
                             </label>
 
-                            <label class="team_detail_mission_answer_status">
-
-                                {% if mission.answer.status %}
-                                    {{answer.status}}
-                                {% else %}
-                                    <p>{% trans 'no_answer' %}</p>
-                                {% endif %}
-                            </label>
 
                         </div>
                     {% endfor %}
@@ -168,22 +141,12 @@
                                         {{ mission.individualmission.attributed_to }}
 
                                     </label>
-                                    <label class="team_mission_detail_due_date">
-                                        {{mission.due_date}}
-                                    </label>
+
                                     <label class="team_mission_detail_m_type">
                                         {{mission.get_mission_type_display}}
                                     </label>
 
-                                    <label class="team_detail_mission_answer_status">
-                                        {% if mission.individualmission.attributed_to %}
-                                            {% if mission.answer.status %}
-                                                {{answer.status}}
-                                            {% else %}
-                                                <p>{% trans 'no_answer_yet' %}</p>
-                                            {% endif %}
-                                        {% endif %}
-                                    </label>
+
 
                                 </div>
                             {% endfor %}

@@ -21,7 +21,7 @@
             <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' mission.project.team.id %}">{% trans 'back_to_project' %}</a></button>
         {% endif %}
 
-        <h3 class=""> {{ object.name }}</h3>
+        <h3 class="mission_name_title"> {{ mission.name }}</h3>
 
 
 
@@ -41,7 +41,7 @@
                 </div>
                 <div class="mission_detail_details">
 
-                    <p class="mission_detail_description">{{object.description|safe}}</p>
+                    <p>{{object.description|safe}}</p>
 
 
                 </div>
@@ -196,30 +196,6 @@
 
 
 
-                {#                            {% if request.user.profile not in object.attributed_to.all %}#}
-                {#                                <a href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_collective_mission' %}</a>#}
-                {#                            {% elif object.attributed_to %}#}
-                {#                                {% if user.profile in object.attributed_to.all %}#}
-                {#                                    <div class="mission_attributed_to">#}
-                {##}
-                {#                                        <h4 class="small_title banner_attributed_to">{% trans 'participants_of_the_mission' %}</h4>#}
-                {#                                            {% for participant in object.attributed_to.all %}#}
-                {#                                     <h4>   {{ participant }}</h4>#}
-                {#                                            {% endfor %}#}
-                {#                                            <a class="btn unclaim_mission_button" href="{%  url 'leave_collective_mission_detail' object.id %}">{% trans 'leave_mission' %}</a>#}
-                {##}
-                {#                                    </div>#}
-                {#                                {% else %}#}
-                {#                                    {% trans 'this_missions_belongs_to:' %}#}
-                {#                                    {{ object.attributed_to }}#}
-                {##}
-                {#                                {% endif %}#}
-                {##}
-                {##}
-                {#                            {% endif %}#}
-
-
-
 
 
             </div>
@@ -232,6 +208,7 @@
 
                     {% if user.profile in object.parent_mission.attributed_to.all %}
                         <div class="mission_detail_answer_content">
+
                             {% include "answer/answer.html"  with object=object %}
 
                         </div>
