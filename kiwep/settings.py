@@ -175,9 +175,9 @@ USE_TZ = True
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-LOCALE_PATHS=[
+LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),  # underneath project root folder
-    os.path.join(BASE_DIR, 'kiwep/globaltemplates/locale'),  # underneath project package
+    os.path.join(BASE_DIR, 'globaltemplates/locale'),  # underneath project package
 ]
 
 # Static files (CSS, JavaScript, Images)

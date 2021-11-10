@@ -105,7 +105,6 @@ class ProjectCreateView(SuccessMessageMixin, SpeakerStatuPassesTestMixin, Create
     success_message = "Your project was created successfuly"
 
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
@@ -123,7 +122,7 @@ class ProjectCreateView(SuccessMessageMixin, SpeakerStatuPassesTestMixin, Create
         return super().form_invalid(form)
 
     def get_success_url(self):
-        return reverse_lazy('project_detail', kwargs ={'pk':self.object.id} )
+        return reverse_lazy('project_detail', kwargs={'pk': self.object.id} )
 
 
 
@@ -135,7 +134,7 @@ class ProjectTeamCreateView(ProjectCreateView):
     def form_valid(self, form):
         super().form_valid(form)
         pk = self.kwargs.get("pk")
-        team= get_object_or_404(Team, pk=pk)
+        team = get_object_or_404(Team, pk=pk)
         team.project = self.object
         team.project.is_template = False
         team.save()
