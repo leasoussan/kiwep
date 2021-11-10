@@ -171,10 +171,7 @@
 
             <div class="mission_list">
                 {% for mission in individual_collective_mission  %}
-                   1* {{ mission.id }}<br>
-                      2*      {{ parrent_mission.id }}
-                            <br>
-                      3*      {{ mission.parent_mission.id }}
+
                     <tr class="table_row_mission_answer_table">
 
                         <td><a class="mission_title_mission_list" href="{% url 'individual_collective_mission_detail'  mission.id %}">{{ mission.parent_mission.name }}</a></td>

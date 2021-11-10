@@ -150,7 +150,7 @@ x/* TEAM-LIST */
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 2rem;
-   flex-grow: 2;
+    flex-grow: 2;
     min-height: 35vh;
     max-height: 35vh;
     background-color: #f2f2f2;
@@ -568,6 +568,22 @@ x/* TEAM-LIST */
 
 /*______STUDENT TEAM LIST ________*/
 
+.project_student{
+    width: 100%;
+}
+.project_student h2{
+    margin-left: 30%
+}
+
+
+.available_project_student{
+    width: 100%;
+    margin-top: 3rem;
+}
+
+.available_project_student h2{
+    margin-left: 30%
+}
 .join_team_btn_group{
     display: flex;
     flex-direction: column;
@@ -642,9 +658,6 @@ x/* TEAM-LIST */
     max-height: 2rem;
 }
 
-.time_to_complete_table{
-    width: 100px;
-}
 
 .project_name_student_list{
     display: block;

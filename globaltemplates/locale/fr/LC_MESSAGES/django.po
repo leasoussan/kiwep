@@ -45,7 +45,7 @@ msgstr "Tableau des réponses"
 
 #: navbar.html:33
 msgid "student_projects"
-msgstr "student_projects"
+msgstr "Projets"
 
 #: navbar.html:34
 msgid "student_missions_list"
