@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content:space-between;
     width: 100%;
-    min-height: 30vh;
-    max-height: 35vh;
+    min-height: 300px;
+    max-height:300px;
     background-color: whitesmoke;
     border: lightgray 1px solid;
     border-bottom-right-radius: 10px;
@@ -127,12 +127,12 @@
     background-color:lightgray ;
 }
 .answer_text_last_answer{
+    display: flex;
+    justify-content: center;
     min-width: 50%;
     max-width: 50%;
     min-height: 90%;
     max-height: 90%;
-    display: flex;
-    justify-content: center;
 
 }
 
@@ -161,8 +161,13 @@
 
 }
 
-.answer_box .last_answer_label{
+.answer_box_collective_individual{
+    margin: auto;
+    min-height: 300px;
+    padding: 1rem;
+
 }
+
 .file_place_holder{
     width: 20%;
     height: 50%;
@@ -207,8 +212,11 @@
 }
 
 .first_answer_student_container{
+    display: flex;
+    justify-content: space-between;
     min-width: 90%;
     max-width: 90%;
+    padding: 1rem;
 }
 
 .modal-dialog{
@@ -219,10 +227,10 @@
 }
 
 .image_modal{
-  min-width: 800px;
-  min-width: 800px;
-  min-height:  700px  ;
-  max-height:700px;
+    min-width: 800px;
+    min-width: 800px;
+    min-height:  700px  ;
+    max-height:700px;
     overflow: scroll;
 }
 /*--------------------------_COLLECTIVE MISSION*/
@@ -232,9 +240,9 @@
     flex-direction: column;
     min-width: 100%;
     max-width: 100%;
-    min-height: 70%;
+    min-height: 100%;
     max-height: 100%;
-    border: lightgray 1px solid;
+    border: lightgray 10px solid;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;

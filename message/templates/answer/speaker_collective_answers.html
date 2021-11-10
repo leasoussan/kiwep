@@ -8,7 +8,8 @@
 
 {% endblock css %}
 
-{% for mission in object.individualcollectivemission_set.all %}
+
+{% for mission in mission.individualcollectivemission_set.all %}
     <a href="{% url 'individual_collective_mission_detail' mission.id %}">   {{ mission.attributed_to.name }}</a>
 {% endfor %}
 

@@ -7,7 +7,7 @@
 
     <div class="team_detail_header">
         <div class="description_team_project">
-            <h3>   {% trans 'team' %}:   {{ team.name.title }}</h3>
+            <h3> {{ team.name.title }}</h3>
 
         </div>
         <div class="team_extra_information">
@@ -49,7 +49,7 @@
 
             <div class="team_project_description">
                 <div class="team_project_title">
-                    <h2> {% trans "project_name" %} : <a href="{% url 'project_detail' team.project.id %}" >{{ team.project.name.title }}</a></h2>
+                    <h2><a href="{% url 'project_detail' team.project.id %}" >{{ team.project.name.title }}</a></h2>
                 </div>
                 <div class="project_detail_team_page">
                     <p>{{ team.project.description|safe }}</p>
@@ -96,20 +96,9 @@
                                         {% endif %}
                                     {% endif %}
                                 </label>
-                                <label class="team_mission_detail_due_date">
-                                    {{mission.due_date}}
-                                </label>
+
                                 <label class="team_mission_detail_m_type">
-                                    {{mission.get_mission_type_display}}
-                                </label>
-
-                                <label class="team_detail_mission_answer_status">
-
-                                    {% if mission.answer.status %}
-                                        {{answer.status}}
-                                    {% else %}
-                                        <p>{% trans 'no_answer' %}</p>
-                                    {% endif %}
+                                    <i class="bi bi-person" style="font-size: 3rem; color: darkgreen;"></i>
                                 </label>
 
                             </div>
@@ -135,21 +124,9 @@
                                         <a class="team_mission_name_title"href="{% url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_collective' %}</a>
                                     {% endif %}
                                 </label>
-                                <label class="team_mission_detail_due_date">
-                                    {{mission.due_date}}
-                                </label>
+
                                 <label class="team_mission_detail_m_type">
-                                    {{mission.get_mission_type_display}}
-                                </label>
-
-                                <label class="team_detail_mission_answer_status">
-
-                                    {% if mission.answer.status %}
-                                        {{answer.status}}
-                                    {% else %}
-                                        <p>{% trans 'no_answer' %}</p>
-                                    {% endif %}
-                                </label>
+                                    <i class="bi bi-people-fill" style="font-size: 3rem; color: darkolivegreen;"></i>
 
                             </div>
                         {% endfor %}
@@ -169,25 +146,20 @@
                                         <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
 
                                         <label class="team_mission_detail_attributed_to">
-                                            {{ mission.individualmission.attributed_to }}
-
-                                        </label>
-                                        <label class="team_mission_detail_due_date">
-                                            {{mission.due_date}}
-                                        </label>
-                                        <label class="team_mission_detail_m_type">
-                                            {{mission.get_mission_type_display}}
-                                        </label>
-
-                                        <label class="team_detail_mission_answer_status">
-                                            {% if mission.individualmission.attributed_to %}
-                                                {% if mission.answer.status %}
-                                                    {{answer.status}}
-                                                {% else %}
-                                                    <p>{% trans 'no_answer_yet' %}</p>
-                                                {% endif %}
+                                            {% if user.profile == mission.individualmission.attributed_to %}
+                                    <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a>
+                                            {% else %}
+                                                {{ mission.individualmission.attributed_to.user.first_name }}
                                             {% endif %}
                                         </label>
+
+                                        <label class="team_mission_detail_m_type">
+
+                                            <i class="bi bi-person" style="font-size: 3rem; color: darkgreen;"></i>
+
+                                        </label>
+
+
 
                                     </div>
                                 {% endfor %}

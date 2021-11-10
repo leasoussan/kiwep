@@ -66,6 +66,39 @@
 
 </div>
 
+
+
+
+{% with mission=mission %}
+
+{#MODAL FIRST ANSWER#}
+<div class="modal fade" id="student_collective_invdividual_answer" tabindex="-1" aria-labelledby="student_collective_invdividual_answerLabel" aria-hidden="true">
+    <div class="modal-dialog modal_dialog_view_document">
+        <div class="modal-content view_document_modal_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>{{ mission.id }}
+            </div>
+            <div class="modal-body">
+                <form method="POST" class="student_answer_form" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    {{ mission.answer_form|crispy }}
+                    {{ mission.answer_form.media}}
+                    <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save_answer' %}</p>
+                    </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endwith %}
+
+
 <!-- Modal -->
 {% with answer=object.answer.last %}
     <div class="modal fade" id="see_file_modal" tabindex="-1" aria-labelledby="see_file_modalLabel" aria-hidden="true">

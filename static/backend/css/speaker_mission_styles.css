@@ -88,20 +88,12 @@
     min-height: 40vh;
     max-height: 40vh;
     justify-content: space-between;
-    background-color: transparent;
     overflow: scroll;
+    word-break: break-all;
+    padding: 1rem;
 }
 
 
-
-.mission_detail_details p{
-    background-color: transparent;
-}
-.mission_detail_details div{
-    background-color: transparent;
-}.mission_detail_details div h4{
-     background-color: transparent;
- }
 
 .mission_learning_info{
     display: flex;
