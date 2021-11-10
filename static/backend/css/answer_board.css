@@ -36,6 +36,8 @@
     word-break: break-all;
     min-width: 600px;
     max-width: 600px;
+    min-height: 2rem;
+    max-height: 2rem;
     overflow: hidden;
 }
 
@@ -44,6 +46,8 @@
     word-break: break-all;
     min-width: 600px;
     max-width: 600px;
+     min-height: 2rem;
+    max-height: 2rem;
     overflow: hidden;
 
 }

@@ -161,10 +161,9 @@ x/* TEAM-LIST */
 
 .team_project_description{
     display: flex;
-
     flex-direction: column;
-    min-width: 60%;
-    max-width: 60%;
+    min-width: 50%;
+    max-width: 50%;
     min-height: 100%;
     max-height: 100%;
     margin-left: 1rem;
@@ -325,7 +324,7 @@ x/* TEAM-LIST */
 
 .team_mission_detail_attributed_to{
     font-size: smaller;
-    min-width: 30%;
+    min-width: 15%;
 }
 .mission_list_log_container{
     display: flex;
@@ -381,16 +380,13 @@ x/* TEAM-LIST */
 }
 .team_mission_name_title {
     width: 60%;
+    height: 2rem;
     font-size: larger;
     font-weight: bolder;
     overflow: hidden;
     padding: 5px;
     margin-right: 1rem;
     word-break: break-all;
-}
-
-.team_mission_detail_due_date{
-
 }
 
 
@@ -470,12 +466,7 @@ x/* TEAM-LIST */
 }
 
 
-.start_discussion_btn_team_detail_speaker{
-    display: flex;
-    justify-content: center;
-    margin-left: 50px;
-    margin-top: 9px;
-}
+
 
 /*SPEAKER------------------LIST_TEAM*/
 .navigation_btn{

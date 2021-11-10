@@ -32,7 +32,7 @@ from accounts.decorators import check_profile, login_check
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
 from datetime import datetime, timedelta, date
-from django.utils.translation  import ugettext as _
+from django.utils.translation import ugettext as _
 # ----------------------------------------------------------------------------------Mixin
 
 
@@ -40,7 +40,6 @@ from django.utils.translation  import ugettext as _
 
 
 # -----------------------------------------------------------------------------------Resistration and Profile Creation
-
 
 
 class Register(View):
