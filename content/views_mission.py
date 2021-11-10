@@ -416,7 +416,7 @@ class LeaveCollectiveMissionView(StudentStatuPassesTestMixin, RedirectView):
         collective_mission = get_object_or_404(CollectiveMission, pk=kwargs['pk'])
         IndividualCollectiveMission.objects.get(parent_mission=collective_mission,
                                                 attributed_to=self.request.user.profile()).delete()
-        print(collective_mission, "collective mission ")
+
         return super().get_redirect_url(*args, **kwargs)
 
 

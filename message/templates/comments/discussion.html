@@ -24,19 +24,12 @@
 
     {% endif %}
     <div class="discussion_object_title">
-        {% if not object.discussions %}
             <!-- Button trigger modal -->
             <div class="start_discussion_btn_team_detail_speaker">
-                <button type="button"  data-bs-toggle="modal" data-bs-target="#add_discussion_box">
-                    <i class="bi bi-plus-square btn-lg"></i>
+                <button class="clear_button" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
+                    <i class="bi bi-folder-plus" style="font-size: 3rem"></i>
                 </button>
             </div>
-        {% else %}
-            <!-- Button trigger modal -->
-            <button data-bs-toggle="modal" data-bs-target="#add_discussion_box">
-              <i class="bi bi-folder-plus fa-4x"></i></button>
-        {% endif %}
-    </div>
 
 
 

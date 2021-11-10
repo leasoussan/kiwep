@@ -75,6 +75,7 @@
         
                     <div class="mission_list">
                         {% for mission in individual_collective_mission  %}
+
                             <tr class="table_row_mission_answer_table">
         
                                 <td><a href="{% url 'individual_collective_mission_detail'  mission.id %}">{{ mission.parent_mission.name }}</a></td>
@@ -97,9 +98,8 @@
                                     {{mission.answer.first.get_status_display}}
                                 {% endif %}
                                 </td>
-                                <td><a href="{%  url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_mission' %}</a></td>
-                            </tr>
-                            {#                  {% endif %}#}
+
+
                         {% endfor %}
                     </div>
                     </tbody>
@@ -137,7 +137,6 @@
 
             <div class="mission_list">
                 {% for mission in mission_list  %}
-                    {#                {% if mission.project.team.id == True %}#}
                     <tr class="table_row_mission_answer_table">
                         <td>   <a class="mission_title_mission_list" href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
                         {%  if mission.project.team %}
@@ -172,6 +171,10 @@
 
             <div class="mission_list">
                 {% for mission in individual_collective_mission  %}
+                   1* {{ mission.id }}<br>
+                      2*      {{ parrent_mission.id }}
+                            <br>
+                      3*      {{ mission.parent_mission.id }}
                     <tr class="table_row_mission_answer_table">
 
                         <td><a class="mission_title_mission_list" href="{% url 'individual_collective_mission_detail'  mission.id %}">{{ mission.parent_mission.name }}</a></td>
@@ -194,7 +197,7 @@
                             {{mission.answer.first.get_status_display}}
                         {% endif %}
                         </td>
-                        <td><a href="{%  url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_mission' %}</a></td>
+                        <td><a href="{%  url 'leave_collective_mission_detail' mission.parent_mission.id %}">{% trans 'leave_mission' %}</a></td>
                     </tr>
                     {#                  {% endif %}#}
                 {% endfor %}

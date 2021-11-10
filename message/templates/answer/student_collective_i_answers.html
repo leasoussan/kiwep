@@ -10,7 +10,7 @@
 
 
 
-    <div class="collective_answer_container">
+    <div class="collective_answer_container_attributed">
         {% for participant in object.parent_mission.attributed_to.all %}
             {% if participant == request.user.profile %}
                 <div class="answer_box_collective_individual">
@@ -84,12 +84,17 @@
                         <div class=""><span>{{answer.response_comment}}</span>
                     {% else %}
                         <label> {% trans 'you_didnt__answered_yet' %}</label>
-                        <form method="POST" class="student_answer_form" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >
-                            {% csrf_token %}
-                            {{ object.answer_form|crispy }}
-                            <button class="btn modal_save_button_answer" type="submit" name="action"><p class="button_text">{% trans 'save_answer' %}</p></button>
 
-                        </form>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#student_first_answer">
+                    {% trans 'submit_answer' %}
+                </button>
+
+{#                        <form method="POST" class="student_answer_form" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >#}
+{#                            {% csrf_token %}#}
+{#                            {{ object.answer_form|crispy }}#}
+{#                            <button class="btn modal_save_button_answer" type="submit" name="action"><p class="button_text">{% trans 'save_answer' %}</p></button>#}
+{##}
+{#                        </form>#}
                     {% endif %}
                     </div>
 
@@ -107,6 +112,34 @@
     </div>
 
 
+{#{% with object=object %}#}
+
+{#MODAL FIRST ANSWER#}
+<div class="modal fade" id="student_first_answer" tabindex="-1" aria-labelledby="student_first_answerLabel" aria-hidden="true">
+    <div class="modal-dialog modal_dialog_view_document">
+        <div class="modal-content view_document_modal_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="see_file_modalLabel">{% trans 'response_file_view' %}</h5>
+            </div>
+            <div class="modal-body">
+                <form method="POST" class="student_answer_form" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    {{ object.answer_form|crispy }}
+                    {{ object.answer_form.media}}
+                    <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save_answer' %}</p>
+                    </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{#{% endwith %}#}
 
     <!-- Modal -->
     {% with answer=object.answer.last %}
