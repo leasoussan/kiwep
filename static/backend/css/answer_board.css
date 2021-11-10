@@ -31,10 +31,24 @@
     height: 4rem;
 }
 
+.mission_title_mission_list{
+        display: block;
+    word-break: break-all;
+    min-width: 600px;
+    max-width: 600px;
+    min-height: 2rem;
+    max-height: 2rem;
+    overflow: hidden;
+}
 
 .team_name_link{
-    display: inline-block;
-    min-width: 100%;
+    display: block;
+    word-break: break-all;
+    min-width: 600px;
+    max-width: 600px;
+     min-height: 2rem;
+    max-height: 2rem;
+    overflow: hidden;
 
 }
 
@@ -46,5 +60,12 @@
 
 .table_row_mission_answer_table{
     width: 100%;
-    min-height: 3rem;
+    min-height: 2rem;
+    max-height: 3rem;
+}
+
+.mission_list_due_date{
+min-width: 200px;
+max-width: 200px;
+
 }

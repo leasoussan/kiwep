@@ -22,7 +22,6 @@
     width: 100%;
     min-height: 100%;
     max-height: 100%;
-    margin-top: 3rem;
 }
 
 
@@ -87,11 +86,17 @@
     font-size: 15px;
     color: #87837f;
     font-weight: bolder;
-    border: solid 1px white;
     padding: 5px ;
 
 }
 
+.start_discussion_btn_team_detail_speaker{
+
+    margin-left: 50px;
+}
+.clear_button{
+    border: none;
+}
 .title_box_discussion{
     display: flex;
     flex-direction: row;
@@ -200,6 +205,7 @@
     width: 100%;
     overflow: auto;
     padding-left: 5px;
+    margin-top: 3rem;
 }
 
 

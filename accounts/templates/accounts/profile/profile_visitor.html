@@ -2,71 +2,84 @@
 {% load i18n %}
 {% load static %}
 
+
+{% block css %}
+    <link href="{% static 'backend/css/profile.css' %}" rel="stylesheet">
+{% endblock css %}
+
+
+
+
 {% block content %}
 
 
 
 
 
-<div class="profile_container">
+    <div class="profile_container">
 
-    <div class="profile_main_information_display">
-        <div class="profile_image_container">
-            <img class="image_size" src="{{user.profilepic_or_default}}" width="300px" height="300px">
-        </div>
+        <div class="profile_main_information_display">
+            <div class="profile_image_container">
+                <img class="image_size" src="{{user.profilepic_or_default}}" width="300px" height="300px">
+            </div>
 
-        <div class="basic_info_profile_container">
+            <div class="basic_info_profile_container">
 
-            <div class="user_details">
+                <div class="user_details">
 
-                <div class="information_data_display">
-                    <ul class="ul_display"><lable class="information_label">{% trans 'first_name' %}   </lable>
-                        <p class="user_data_profile_display">{{ user.first_name }}</p>
-                    </ul>
+                    <div class="information_data_display">
+                        <ul class="ul_display"><lable class="information_label">{% trans 'first_name' %}   </lable>
+                            <p class="user_data_profile_display">{{ user.first_name }}</p>
+                        </ul>
 
-                    <ul class="ul_display"><lable class="information_label">{% trans 'last_name' %}   </lable>
-                        <p class="user_data_profile_display">{{ user.last_name }} </p>
-                    </ul>
+                        <ul class="ul_display"><lable class="information_label">{% trans 'last_name' %}   </lable>
+                            <p class="user_data_profile_display">{{ user.last_name }} </p>
+                        </ul>
 
-                    <ul class="ul_display"><lable class="information_label">{% trans 'phone_number' %}   </lable>
-                        <p class="user_data_profile_display">{{ user.phone_number  }}</p>
-                    </ul>
+                        <ul class="ul_display"><lable class="information_label">{% trans 'phone_number' %}   </lable>
+                            <p class="user_data_profile_display">{{ user.phone_number  }}</p>
+                        </ul>
 
-                    <ul class="ul_display"><lable class="information_label">{% trans 'city' %}   </lable>
-                        <p class="user_data_profile_display">{{ user.city }}</p>
-                    </ul>
+                        <ul class="ul_display"><lable class="information_label">{% trans 'city' %}   </lable>
+                            <p class="user_data_profile_display">{{ user.city }}</p>
+                        </ul>
 
-                    <ul class="ul_display"><lable class="information_label">{% trans 'institution' %}   </lable>
-                        <p class="user_data_profile_display">{{ user.profile.institution.first.name }}</p>
-                    </ul>
+                        <ul class="ul_display"><lable class="information_label">{% trans 'institution' %}   </lable>
+                            <p class="user_data_profile_display">{{ user.profile.institution.first.name }}</p>
+                        </ul>
 
 
-                    <ul class="ul_display"><lable class="information_label">{% trans 'status' %}   </lable>
+                        <ul class="ul_display"><lable class="information_label">{% trans 'status' %}   </lable>
                             <p class="user_data_profile_display">{{user.get_user_type}}</p>
 
-                    </ul>
+                        </ul>
+
+                    </div>
+
+                    <div class="groups_display">
+
+
+                            <div>
+                                {% if user.profile.group_set %}
+                                        <ul>{% trans 'groups' %}   </ul>
+                                    {% for group in user.profile.group.all %}
+
+
+                                        <p class="user_data_profile_display">{{ group.name }}</p>
+                                    {% endfor %}
+
+                                {% else %}
+
+                                {% endif %}
+                            </div>
+                        </ul>
+
+                    </div>
 
                 </div>
-
-                <div class="groups_display">
-
-                    <ul class="ul_display"><lable class="information_label">{% trans 'groups' %}   </lable>
-                        <div class="groups_list">
-
-                          {% for group in user.profile.group.all %}
-
-
-                            <p class="user_data_profile_display">{{ group.name }}</p>
-                        {% endfor %}
-                        </div>
-                    </ul>
-
-                </div>
-
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 {% endblock %}

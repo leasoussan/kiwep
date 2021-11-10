@@ -252,7 +252,7 @@ class ClaimMission(StudentStatuPassesTestMixin, RedirectView):
 
 class UnclaimMission(StudentStatuPassesTestMixin, RedirectView):
     ''' Unclaim the mission - will return to the list of available Mission'''
-    # query_sting = False >>this is false by default     
+    # query_string = False >>this is false by default
     pattern_name = 'my_mission_list'
 
     def get_redirect_url(self,  *args, **kwargs):
@@ -283,7 +283,7 @@ class LeaveCollectiveMissionView(StudentStatuPassesTestMixin, RedirectView):
         collective_mission = get_object_or_404(CollectiveMission, pk=kwargs['pk'])
         IndividualCollectiveMission.objects.get(parent_mission=collective_mission,
                                                 attributed_to=self.request.user.profile()).delete()
-        print(collective_mission, "collective mission ")
+
         return super().get_redirect_url(*args, **kwargs)
 
 
