@@ -109,12 +109,8 @@
                         {% for mission in team.project.mission_set.collective %}
 
                             <div class="team_mission_detail">
-                                {#                                {% if request.user.profile in  mission.collectivemission.attributed_to.all %}#}
-                                {#                                    {% with mission.parent_mission=individual_collective_mission|student_individual_collective_mission:mission request.user.profile as mission %}#}
-                                {#                                    <a class="team_mission_name_title"href="{% url 'individual_collective_mission_detail' mission.id %}">{{ mission.name }}</a>#}
-                                {#                                    {% endwith %}#}
-                                {#                                {% else %}#}
-                                <a class="team_mission_name_title"href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+
+                                <a class="team_mission_name_title" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
 
                                 {#                                {% endif %}#}
                                 <label class="team_mission_detail_attributed_to">
@@ -143,7 +139,7 @@
                                 {% for mission in team.project.mission_set.all.get_attributed_mission  %}
                                     <div class="team_mission_detail">
 
-                                        <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                      <a class="team_mission_name_title" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
 
                                         <label class="team_mission_detail_attributed_to">
                                             {% if user.profile == mission.individualmission.attributed_to %}

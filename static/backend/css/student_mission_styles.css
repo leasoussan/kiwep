@@ -46,7 +46,10 @@ button .edit_button{
 
 .mission_name_title{
     width: 70%;
-    padding: 5px}
+    min-height: 2rem;
+    word-break: break-all;
+    padding: 1rem;
+}
 .mission_detail_main_panel{
     display: flex;
     flex-direction: row;
@@ -80,7 +83,7 @@ button .edit_button{
 .student_mission_status_box{
     display: flex;
     flex-direction: row;
-    height: 30%;
+    height: 150px;
 }
 .edit_answer_button{
     background-color: #fad673;
@@ -294,10 +297,9 @@ button .edit_button{
 .mission_detail_answer_content{
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
     width: 100%;
     justify-content: center;
-    align-content: flex-end;
+    align-content: flex-start;
     min-height: 100%;
     max-height: 100%;
 }
