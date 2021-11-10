@@ -386,6 +386,7 @@ x/* TEAM-LIST */
     overflow: hidden;
     padding: 5px;
     margin-right: 1rem;
+    word-break: break-all;
 }
 
 .team_mission_detail_due_date{
@@ -642,10 +643,14 @@ x/* TEAM-LIST */
 }
 .team_name_student_list{
     display: block;
+    word-break: break-all;
     min-width: 400px;
     max-width: 400px;
     overflow: hidden;
+    min-height: 2rem;
+    max-height: 2rem;
 }
+
 .time_to_complete_table{
     width: 100px;
 }

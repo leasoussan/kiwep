@@ -132,7 +132,7 @@
                     <h5 class="modal-title" id="see_answer_modalLabel">{% trans 'response_answer_view' %}</h5>
                 </div>
                 <div class="modal-body modal_answer_text">
-                    {% if answer.response_file.exists %}
+                    {% if answer.response_file %}
                         <p> {{ answer.response_comment|safe }}</p>
                     {% else %}
                         {% trans 'there_is_no_answer' %}
