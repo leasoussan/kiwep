@@ -8,19 +8,19 @@
     max-height: 100vh;
 }
 
-.table{
-    width: 98%;
+.speaker_answer_board{
 
 }
 
-
+.answer_collective_mission_list{
+    width: 95%;
+}
 
 /*_______STUDENT ANSWER BOARD*/
 
 .student_missions_board_container{
     width: 95%;
-    min-height: 90vh;
-    max-height: 90vh;
+
 }
 
 .mission_board_title{
@@ -36,20 +36,9 @@
     word-break: break-all;
     min-width: 600px;
     max-width: 600px;
-    min-height: 2rem;
-    max-height: 2rem;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
     overflow: hidden;
-}
-
-.team_name_link{
-    display: block;
-    word-break: break-all;
-    min-width: 600px;
-    max-width: 600px;
-     min-height: 2rem;
-    max-height: 2rem;
-    overflow: hidden;
-
 }
 
 .mission_list{
@@ -59,13 +48,66 @@
 }
 
 .table_row_mission_answer_table{
-    width: 100%;
-    min-height: 2rem;
-    max-height: 3rem;
+    /*width: 100%;*/
+    /*min-height: 2rem;*/
+    /*max-height: 3rem;*/
 }
 
+.mission_list_mission_name{
+    display: block;
+    word-break: break-all;
+    overflow: hidden;
+    min-width: 30%;
+    max-width: 30%;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
+    margin-left: 2rem;
+}
+
+
+.mission_list_team_name{
+    display: block;
+    word-break: break-all;
+    overflow: hidden;
+    min-width: 30%;
+    max-width: 30%;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
+    margin-left: 2rem;
+
+}
+
+.mission_list_project_name{
+    display: block;
+    word-break: break-all;
+    overflow: hidden;
+    min-width: 30%;
+    max-width: 30%;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
+    margin-left: 2rem;
+
+}
+.mission_list_mission_due_date{
+ width: 10rem;
+}
+.mission_list_mission_status{
+ width: 10rem;
+}
 .mission_list_due_date{
+    display: block;
 min-width: 200px;
 max-width: 200px;
-
+  min-height: 1.5rem;
+    max-height: 1.5rem;
 }
+
+
+/*_speaker*/
+.speaker_answer_board {
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*width: 90%;*/
+}
+
+

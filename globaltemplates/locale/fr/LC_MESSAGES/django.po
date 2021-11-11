@@ -49,7 +49,7 @@ msgstr "Projets"
 
 #: navbar.html:34
 msgid "student_missions_list"
-msgstr "Mes Projects"
+msgstr "Mes Missions"
 
 #: navbar.html:36
 msgid "welcome_to_intstitution_message"

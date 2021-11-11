@@ -565,7 +565,25 @@ x/* TEAM-LIST */
     max-width: 100%;
 }
 
+.team_title_speaker_list{
+    display: block;
+    min-width: 400px;
+    max-width: 400px;
+    min-height: 2rem;
+    max-height: 2rem;
+    overflow: hidden;
+    word-break: break-all;
+}
 
+.team_project_title_speaker_list{
+    display: block;
+    min-width: 400px;
+    max-width: 400px;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
+    overflow: hidden;
+    word-break: break-all;
+}
 /*______STUDENT TEAM LIST ________*/
 
 .project_student{
