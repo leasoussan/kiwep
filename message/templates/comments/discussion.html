@@ -7,33 +7,112 @@
 
 {% block css %}
     <link href="{% static 'backend/css/discussion.css' %}" rel="stylesheet">
-        <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet" >
+    <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet" >
+    <link href="{% static 'backend/css/buttons.css' %}" rel="stylesheet" >
 
 {% endblock css %}
+<div class="main_discussion_container">
 
 
-<div class="discussion_header">
 
-    {% if object|return_class_name == 'Team' %}
-        <h4 class="title_box_discussion">{% trans 'discussions_board: ' %} </h4>
+    <div class="discussion_header">
+        <div class="discussion_object_title">
+            {% if object|return_class_name == 'Team' %}
+                <h4>{% trans 'discussions_board: ' %} </h4>
+            {% elif object|return_objects_name == 'IndividualMission' or object|return_objects_name == 'CollectiveMission' or  object|return_objects_name == 'IndividualCollectiveMission' %}
+                <h4>{% trans 'comment_on_answer : ' %} </h4>
+            {% else %}
+                <h4>{% trans 'comment: ' %} </h4>
 
-    {% elif object|return_objects_name == 'IndividualMission' or object|return_objects_name == 'CollectiveMission' or  object|return_objects_name == 'IndividualCollectiveMission' %}
-
-        <h4 class="title_box_discussion">{% trans 'comment_on_answer : ' %} </h4>
-        {% else %}
-
-    {% endif %}
-    <div class="discussion_object_title">
+            {% endif %}
+        </div>
+        <div class="add_discussion">
             <!-- Button trigger modal -->
             <div class="start_discussion_btn_team_detail_speaker">
-                <button class="clear_button" data-bs-toggle="modal" data-bs-target="#add_discussion_box">
-                    <i class="bi bi-folder-plus" style="font-size: 3rem"></i>
+               <!-- Button trigger modal -->
+
+                <button type="button" class="btn clear_button" data-bs-toggle="modal"
+                        data-bs-target="#add_discussion_box">
+                    <span class="bi bi-folder-plus" style="font-size: 2rem; color: darkslategray"></span></button>
+        </div>
+    </div>
+    </div>
+
+    {#---------------------------------FOR DISCUSSION BOARD#}
+    <div class="discussion_list">
+        {% with discussions=object.discussions.all %}
+
+            {% for discussion in discussions %}
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn discussion_button" data-bs-toggle="modal" data-bs-target="#_{{ discussion.id }}_discussion">
+                   <h3> {{discussion.title.title}}</h3>
                 </button>
-            </div>
+
+                <!-- Modal -->
+                <div class="modal fade modal_discussion" id="_{{ discussion.id }}_discussion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog dialog_modal_overwrite">
+                        <div class="modal-content modal_discussion_display">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="_{{ discussion.id }}_discussionLable">{{discussion.title.title}}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body discussion_window">
+                                {% if discussion.replies %}
+                                    <div class="card card-body view_comments_list_discussion">
+
+                                        {% for comment in discussion.replies.all %}
+                                            {% if comment.user.profile == request.user.profile %}
+
+                                                <div class="speech-bubble-left user_comment">
+                                                    <label class="date_label">
+                                                        {{ comment.date_posted }} {% trans 'by' %} {{ comment.user.username }}
+                                                    </label>
+                                                    <p> {{ comment.comment_text }}</p>
+                                                </div>
+                                            {% else %}
+                                                <div class="speech-bubble-right profile_comment">
+                                                    <label class="date_label">
+                                                        {{ comment.date_posted }} {% trans 'by' %} {{ comment.user.username }}
+                                                    </label>
+                                                    <p class="comment_text"> {{ comment.comment_text }}</p>
+                                                </div>
+                                            {% endif %}
 
 
+                                        {% endfor %}
+                                    </div>
+                                    <div class="add_comment_input">
+
+                                        <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" class="form_comment_input">
+                                            {% csrf_token %}
+                                            {{ discussion.comment_form|crispy }}
+
+                                            <button type="submit" class="btn modal_save_button"><i class="material-icons">{% trans 'save' %}</i></button>
+
+                                        </form>
+
+
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+
+        {% endwith %}
+    </div>
 
 </div>
+
+
 
 
 
@@ -63,79 +142,6 @@
     </div>
 </div>
 
-
-
-{#---------------------------------FOR DISCUSSION BOARD#}
-<div class="discussion_list">
-    {% with discussions=object.discussions.all %}
-
-        {% for discussion in discussions %}
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn title_discussion_button" data-bs-toggle="modal" data-bs-target="#_{{ discussion.id }}_discussion">
-                {{discussion.title.title}}
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade modal_discussion" id="_{{ discussion.id }}_discussion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog dialog_modal_overwrite">
-                    <div class="modal-content modal_discussion_display">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="_{{ discussion.id }}_discussionLable">{{discussion.title.title}}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body discussion_window">
-                            {% if discussion.replies %}
-                                <div class="card card-body view_comments_list_discussion">
-
-                                    {% for comment in discussion.replies.all %}
-                                        {% if comment.user.profile == request.user.profile %}
-
-                                            <div class="speech-bubble-left user_comment">
-                                                <label class="date_label">
-                                                    {{ comment.date_posted }} {% trans 'by' %} {{ comment.user.username }}
-                                                </label>
-                                                <p> {{ comment.comment_text }}</p>
-                                            </div>
-                                        {% else %}
-                                            <div class="speech-bubble-right profile_comment">
-                                                <label class="date_label">
-                                                    {{ comment.date_posted }} {% trans 'by' %} {{ comment.user.username }}
-                                                </label>
-                                                <p class="comment_text"> {{ comment.comment_text }}</p>
-                                            </div>
-                                        {% endif %}
-
-
-                                    {% endfor %}
-                                </div>
-                                <div class="add_comment_input">
-
-                                    <form method="POST" action = "{% url 'comment_add' %}?next={{ request.path }}" class="form_comment_input">
-                                        {% csrf_token %}
-                                        {{ discussion.comment_form|crispy }}
-
-                                        <button type="submit" class="btn modal_save_button"><i class="material-icons">send</i></button>
-
-                                    </form>
-
-
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        {% endfor %}
-
-    {% endwith %}
-</div>
 
 
 {% block javascript %}

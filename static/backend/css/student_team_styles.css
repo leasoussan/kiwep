@@ -1,0 +1,441 @@
+/*STUDENT TEAM LIST*/
+
+.student_team_list_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.list_table_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 95%;
+    max-width: 95%;
+    min-height: 50%;
+    max-height:50%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    box-shadow:2px 2px 10px darkslategrey;
+    padding: 2rem;
+
+}
+
+
+table {
+    margin-top: 2rem;
+    min-width: 90%;
+    max-width: 90%;
+    border-spacing: 0;
+    margin-bottom: 5rem;
+}
+
+tbody, thead tr {
+    display: block;
+    width: 100%;
+}
+thead th{
+    width: 150px;
+
+}
+
+thead th:first-child{
+    width: 600px;
+}
+
+thead th:last-child{
+    width: 450px;
+    padding-left: 2rem;
+
+}
+
+tbody{
+    height: 60%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+tbody th{
+    min-width: 150px;
+    padding-left: 2rem;
+
+}
+
+.table_item_team{
+    display: block;
+    word-break: break-all;
+    min-width: 500px;
+    max-width: 500px;
+    overflow: hidden;
+    min-height: 2rem;
+    max-height: 2rem;
+    margin-left: 2rem;
+
+}
+
+
+.time_to_complete_table{
+    min-width: 200px;
+    max-width: 200px;
+}
+.table_item_project{
+    display: block;
+    min-width: 500px;
+    max-width: 500px;
+    min-height: 2rem;
+    max-height: 2rem;
+    overflow: hidden;
+}
+
+
+.no_item_message{
+    margin-top: 5rem;
+}
+
+
+
+/*STUDENT TEAM DETAIL*/
+
+.team_detail_container{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    width: 100% ;
+    padding: 0px 5px;
+
+}
+
+.team_detail_header{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr)40%);
+    grid-template-rows: 200px;
+    margin-bottom:1rem;
+    justify-content: space-between;
+    justify-items: center;
+}
+
+.team_header_participants{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    justify-items: right;
+    width: 95%;
+    min-height: 100%;
+    max-height: 100%;
+    /*padding: 1rem;*/
+    border: 1px #d7dbd7 solid;
+    border-radius: 10px;
+}
+
+.team_participant_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    border: 1px #d7dbd7 solid;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+}
+
+.participants_team_header{
+
+}
+
+.participants_list_icon{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: auto;
+    justify-content: space-between;
+    margin: 2px;
+    width: 100%;
+    min-height: 80%;
+    background-color: white;
+    padding: 10px;
+}
+
+
+.profile_pic_rounded{
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 50%;
+}
+
+
+.avatar{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 50%;
+    border: solid grey 1px;
+
+}
+
+.team_detail_main_content{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr)40%);
+    justify-items: center;
+    padding: 1rem 0rem;
+    margin-top:1rem;
+}
+
+.team_mission_list_panel{
+    display: inline-grid;
+    grid-template-rows: 1fr 1fr ;
+    height: 60%;
+    width: 90%;
+}
+
+.mission_list_box_team_detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 100%;
+    max-width: 100%;
+    min-height:  400px;
+    max-height:  400px;
+    margin-bottom: 4rem;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
+.mission_list_box_team_detail h2{
+    margin: 5px;
+}
+.team_mission_list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(95%, 1fr));
+    grid-template-rows: 4rem;
+    width: 95%;
+    overflow: auto;
+    min-height: 50%;
+    max-height: 100%;
+}
+
+
+.team_mission_detail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:95%;
+    background-color: white;
+    box-shadow:2px 2px 5px grey;
+    min-height: 4rem;
+    max-height: 4rem;
+    align-items: center;
+    margin: 1rem 1rem ;
+}
+
+.team_mission_name_title {
+    width: 60%;
+    height: 2rem;
+    font-size: larger;
+    font-weight: bolder;
+    overflow: hidden;
+    padding: 5px;
+    margin-right: 1rem;
+    word-break: break-all;
+}
+
+.team_mission_detail_attributed_to{
+    font-size: smaller;
+    min-width: 15%;
+}
+
+.team_mission_detail_m_type{
+    display: flex;
+    justify-content: flex-end;
+    width: 10%;
+}
+.description_team_project{
+    display: flex;
+    justify-content: flex-start;
+    width: 90%;
+    padding: 5px;
+
+}
+
+.description_team_project h1{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    word-wrap: normal;
+    word-break: break-all;
+    overflow: hidden;
+
+}
+
+
+
+
+.team_extra_detail{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    margin-bottom: 2rem;
+    width: 95%;
+    min-height: 70%;
+    max-height: 70%;
+    border-radius: 10px;
+}
+
+
+.team_detail_project_detail{
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    min-height: 70%;
+    max-height: 70%;
+    width: 100%;
+    border: 1px #d7dbd7 solid;
+    border-radius: 10px;
+    box-shadow: 4px 4px 20px darkslategrey;
+
+}
+
+.team_project_title{
+    height: 4rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.team_project_title h3{
+
+     min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    word-wrap: normal;
+    word-break: break-all;
+    overflow: hidden;
+
+}
+
+.team_detail_project h2{
+    padding-left: 5px;
+    background-color: white;
+    width: 15rem;
+    height: 3rem;
+
+}
+
+
+
+.team_detail_project{
+    display:grid;
+    grid-template-columns: 5fr 1fr;
+    height: 4rem;
+
+}
+.project_learning_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding:1rem 1rem ;
+    min-width: 100%;
+    max-width: 100%;
+    height: 75%;
+
+}
+.detail_container_center{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    padding: 1rem;
+    align-content: flex-start;
+}
+
+
+.team_project_description{
+    padding: 1rem;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 15rem;
+    max-height: 15rem;
+    overflow: scroll;
+    word-break:break-word;
+    overflow-x: hidden;
+}
+
+
+
+
+/*.team_project_description strong{*/
+/*    padding: 1rem;*/
+/*    !*border: yellow solid 3px;*!*/
+/*    overflow: hidden;*/
+/*    word-break: break-word;*/
+/*    font-size: x-large;*/
+/*}*/
+/*.team_project_description h1{*/
+/*    padding: 1rem;*/
+/*    !*border: yellow solid 3px;*!*/
+/*    overflow: hidden;*/
+/*    word-break: break-word;*/
+/*    font-size: x-large;*/
+/*}*/
+
+.detail_time_to_complete{
+    margin-right: 2rem;
+}
+.project_image_size{
+    margin: auto;
+    display: block;
+    max-width: 200px;
+    height: 150px;
+    width: auto;
+    box-shadow: 5px 5px 10px lightgray;
+}
+
+
+
+.team_discussion_container {
+    display: block;
+    width: 100%;
+    min-height: 50%;
+    max-height: 50%;
+    margin-top:3rem;
+    padding: 0rem 1rem;
+    background-color: whitesmoke;
+    box-shadow:6px 4px 10px lightgray;
+}
+
+
+team_project_detail
+img_team_project
+image_size
+team_project_description
+team_project_title
+project_detail_team_page
+project_learning_info
+detail_time_to_complete
+team_detail_main_content
+mission_list_box_team_detail
+team_mission_list
+team_mission_detail
+team_mission_name_title
+team_mission_detail_attributed_to
+team_mission_detail_m_type
+team_mission_detail
+team_mission_name_title
+team_mission_detail_attributed_to
+team_mission_name_title
+team_mission_detail_m_type
+team_mission_log
+mission_list_log_container
+team_mission_detail
+team_mission_name_title
+team_mission_detail_attributed_to
+unclaim_mission_button
+team_mission_detail_m_type
+discussion_container

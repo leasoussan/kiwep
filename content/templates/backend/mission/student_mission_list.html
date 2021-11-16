@@ -1,0 +1,107 @@
+{% load i18n %}
+{% load mytags %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'backend/css/answer_board.css' %}" rel="stylesheet">
+{% endblock css %}
+
+
+<div class="missions_list_container">
+
+    <div class="table_view_panel">
+        <h2>{% trans 'my_mission_board_title' %}</h2>
+        <table>
+            <thead>
+            <tr>
+                <th >{% trans 'mission_name' %}</th>
+                <th>{% trans 'team_name' %}</th>
+                <th>{% trans 'project_name' %}</th>
+                <th>{% trans 'due_date' %}</th>
+                <th>{% trans 'status_answer_student' %}</th>
+                <th><i class="bi bi-box-arrow-right" style="font-size:2rem"></i></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <div class="mission_list">
+                {% for mission in mission_list  %}
+                    <tr>
+                        <td>   <a class="table_column_large" href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
+                        {%  if mission.project.team %}
+                            <td> <a class="table_column_large" href="{% url 'team_detail'  mission.project.team.pk %}">{{ mission.project.team.name }}</a></td>
+                        {% else %}
+                            <td class="table_column_large"> {% trans 'no_team' %}</td>
+                        {% endif %}
+                        <td><a class="table_column_large" href="{% url 'project_detail'  mission.project.pk %}">{{ mission.project.name }}</a></td>
+
+                        <td class="table_column_medium">{{ mission.due_date }}</td>
+                        {#                        <td>{% if mission.response_comment or mission.response_file %}#}
+                        {#                            <a href="{% url 'individual_mission_detail'  mission.id %}">{% trans 'see_answer' %}</a>#}
+                        {#                        {% elif user.profile == mission.attributed_to %}#}
+                        {#                            <lable>{% trans 'submit_mission' %}</lable>#}
+                        {#                        {% endif %}</td>#}
+                        <td class="table_column_medium">{% if not mission.answer.first %}
+                            <h4>{% trans 'mission_not_answered_yet' %}</h4>
+                        {% else %}
+                            {{mission.answer.first.get_status_display}}
+                        {% endif %}
+                        </td>
+                        <td><a class="table_column_medium" href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a></td>
+                    </tr>
+                    {#                  {% endif %}#}
+                {% endfor %}
+            </div>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table_view_panel">
+
+        <h2>{% trans 'collective_mission' %}</h2>
+        <table>
+            <thead>
+            <tr>
+             <th >{% trans 'mission_name' %}</th>
+                <th>{% trans 'team_name' %}</th>
+                <th>{% trans 'project_name' %}</th>
+                <th>{% trans 'due_date' %}</th>
+                <th>{% trans 'status_answer_student' %}</th>
+                <th><i class="bi bi-box-arrow-right" style="font-size:2rem"></i></th>
+            </tr>
+
+
+            </thead>
+            <tbody>
+            <tbody>
+            <div class="mission_list">
+                {% for mission in individual_collective_mission  %}
+                    <tr>
+                        <td><a class="table_column_large" href="{% url 'individual_collective_mission_detail'  mission.id %}">{{ mission.parent_mission.name }}</a></td>
+
+                        {%  if mission.parent_mission.project.team %}
+                            <td> <a class="table_column_large" href="{% url 'team_detail'  mission.parent_mission.project.team.pk %}">{{ mission.parent_mission.project.team.name }}</a></td>
+                        {% else %}
+                            <td class="table_column_large"> {% trans 'no_team' %}</td>
+                        {% endif %}
+                        <td><a class="table_column_large" href="{% url 'project_detail'  mission.parent_mission.project.pk %}">{{ mission.parent_mission.project.name }}</a></td>
+
+                        <td class="table_column_medium">{{ mission.parent_mission.due_date }}</td>
+
+                        <td class="table_column_medium">{% if not mission.answer.first %}
+                            <h4>{% trans 'mission_not_answered_yet' %}</h4>
+                        {% else %}
+                            {{mission.answer.first.get_status_display}}
+                        {% endif %}
+                        </td>
+                        <td><a class="table_column_medium" href="{%  url 'leave_collective_mission_detail' mission.parent_mission.id %}">{% trans 'leave_mission' %}</a></td>
+                    </tr>
+                {% endfor %}
+            </div>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+</div>

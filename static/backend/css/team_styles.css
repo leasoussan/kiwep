@@ -159,24 +159,6 @@ x/* TEAM-LIST */
     padding: 1rem;
 }
 
-.team_project_description{
-    display: flex;
-    flex-direction: column;
-    min-width: 50%;
-    max-width: 50%;
-    min-height: 100%;
-    max-height: 100%;
-    margin-left: 1rem;
-
-}
-.team_project_title{
-    min-width: 95%;
-    max-width: 95%;
-    min-height: 3rem;
-    max-height: 3rem;
-    margin-bottom: 1rem;
-}
-
 
 
 .project_detail_team_page{
@@ -280,14 +262,15 @@ x/* TEAM-LIST */
     flex-wrap: wrap;
     margin-top: 1rem;
     background-color: #f2f2f2;
-    border: 1px #d7dbd7 solid;
+    border: 1px orchid solid;
+    /*border: 1px #d7dbd7 solid;*/
     padding: 1rem;
     justify-content: center;
 }
 .mission_list_box_team_detail{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-width: 65%;
     max-width: 65%;
@@ -299,11 +282,9 @@ x/* TEAM-LIST */
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
-    min-height: 40%;
-    max-height: 40%;
-    min-width: 100%;
-    max-width: 100%;
     padding: 1rem;
+    height:20rem ;
+    overflow: scroll;
 
 }
 
@@ -406,7 +387,6 @@ x/* TEAM-LIST */
     border: 1px #d7dbd7 solid;
     border-radius: 10px;
 
-
 }
 .participants_title{
     font-size: larger;
@@ -442,12 +422,6 @@ x/* TEAM-LIST */
     border-radius: 50%;
     border: black 1px solid;
     margin: 5px;
-}
-
-.profile_pic_rounded{
-    max-width: 95%;
-    max-height: 95%;
-    border-radius: 50%;
 }
 
 .discussion_list{
@@ -596,7 +570,7 @@ x/* TEAM-LIST */
 
 .available_project_student{
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 5rem;
 }
 
 .available_project_student h2{
@@ -656,15 +630,20 @@ x/* TEAM-LIST */
 }
 
 .student_team_table{
-    min-width: 80%;
-    max-width: 80%;
+    width: 80%;
     margin-top: 2rem;
+    min-height:20rem ;
+    max-height:20rem ;
+    overflow: scroll;
 }
 
 .student_team_table_available_project{
     min-width: 80%;
     max-width: 80%;
     margin-top: 2rem;
+    min-height:20rem ;
+    max-height:20rem ;
+    overflow: scroll;
 }
 .team_name_student_list{
     display: block;

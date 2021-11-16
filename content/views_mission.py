@@ -27,7 +27,7 @@ from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMi
 class IndividualMissionListView(ProfileCheckPassesTestMixin, ListView):
     ''' To See all Missions View  STUDENT '''
     model = IndividualMission
-    template_name = 'backend/mission/my_mission_list.html'
+    template_name = 'backend/mission/mission_list.html'
     context_object_name = 'mission_list'
 
 
@@ -45,7 +45,7 @@ class IndividualMissionListView(ProfileCheckPassesTestMixin, ListView):
 class AnswerBoardMissionListView(ProfileCheckPassesTestMixin, ListView):
     ''' To See all Missions View    SPEAKER '''
     model = IndividualMission
-    template_name = 'backend/mission/my_mission_list.html'
+    template_name = 'backend/mission/mission_list.html'
     context_object_name = 'answers_mission_list'
     form = ValidateMissionForm()
 
@@ -347,7 +347,7 @@ def validate_mission(request, form):
         else:
             print("not validate")
 
-    return render(request, "backend/mission/my_mission_list.html", {'form': form})
+    return render(request, "backend/mission/mission_list.html", {'form': form})
 
 
 

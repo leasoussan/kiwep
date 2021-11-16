@@ -89,7 +89,7 @@ class ResourceMissionCreateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin,
                 resource.save()
                 print('your resource was saved to"', mission.id)
 
-            return redirect('resource_detail', resource.id)
+                return redirect('resource_detail', resource.id)
 
         return render(request, 'crud/create.html', {'form': form})
 

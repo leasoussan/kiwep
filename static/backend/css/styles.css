@@ -21,21 +21,51 @@ INDEX:
 
 /*------BASE------*/
 body *{
-  font-family: Helvetica, sans-serif;
+  font-family: FontAwesome;
   color: #000000;
 }
 
-/*------REGISTER/LOGIN------*/
+
+
+.main_base_content_block{
+  margin: auto;
+  min-width: 90%;
+  max-width: 90%;
+  min-height: 900px;
+  padding: 1rem 0rem;
+    box-shadow:5px 5px 5px grey;
+      background-color: #d5e0d9;
+}
+
+
+/*FONTS STYLES*/
 
 
 header{
-  display: block;
 }
 
 h1{
   font-weight: bold;
-  color: rgb(92, 92, 92);
+  font-size: 2.5rem;
+  color: #062913;
+
 }
+h2{
+  font-weight: bold;
+  font-size: 2rem;
+  color: grey;
+}
+
+h3{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+h4{
+    font-size: 1.5rem;
+}
+
+
 
 .navsize{
   width: 100%;
@@ -206,10 +236,6 @@ background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
 
 
-span{
-  white-space: nowrap;
-  background-color: transparent;
-}
 
 #username{
   background-color: transparent;
@@ -253,50 +279,51 @@ nav{
   font-size: x-large;
 }
 
-/*------BREADCRUMBS------*/
 
-.breadcrumbs{
-  position: relative;
-  width: 60%;
-  bottom: 7px;
-  right: 10px;
+
+
+
+/*_IMAGES */
+
+.icon_image{
+   --max-height: 65px;
+    width: 100%;
+    /* And limit it with our function above */
+    max-width: calc(var(--max-height, 65px) * var(--img-ratio, 1));
+
+  border-radius: 50%;
+
 }
 
-.inline{
-  display: inline-block;
-  font-size: small;
+.small_image{
+   --max-height: 150px;
+    width: 100%;
+    /* And limit it with our function above */
+    max-width: calc(var(--max-height, 150px) * var(--img-ratio, 1));
+
+
 }
-/*------SIDENAV----MENU PANEL----*/
-/*------DASHBOARD------*/
+.medium_image{
+   --max-height: 350px;
+    width: 100%;
+    /* And limit it with our function above */
+    max-width: calc(var(--max-height, 350px) * var(--img-ratio, 1));
 
 
-.video_sp{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-left: 20px;
-  margin-top: 30px;
+}
+
+.large_image{
+   --max-height: 900px;
+    width: 100%;
+    /* And limit it with our function above */
+    max-width: calc(var(--max-height, 900px) * var(--img-ratio, 1));
+
+  border-radius: 50%;
+
 }
 
 
-/*------7 Modal------*/
-/*------COLORS------*/
-/*------BUTTONS------*/
-/*------PROJECT------*/
 
-
-
-/*------TEAM------*/
-
-
-
-/*------MISSION------*/
-
-/*------RESOURCE------*/
-/*------ANSWER------*/
-/*------GLOBAL------*/
-/*------COMMENT-DISCUSSION------*/
-/*------DISCUSSION------*/
 
 
 /* RESPONSIVE */
@@ -405,9 +432,7 @@ nav{
 /*  padding: 20px;*/
 /*}*/
 
-.main_base_content_block{
 
-}
 
 .delete_button{
   background-color: white;
