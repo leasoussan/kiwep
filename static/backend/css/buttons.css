@@ -1,4 +1,7 @@
-
+.btn_group_navigation{
+    height: 6rem;
+    width: 40%;
+    }
 .primary_button{
     width: 15rem;
     background-color: #449162;
@@ -28,9 +31,10 @@
 }
 
 .neutral_action{
-    width: 11rem;
-    background-color:#f7dab7;
-    border: lightyellow solid 1px;
+    width: 14rem;
+    height: 2.5rem;
+    background-color:#c0c2c1;
+    border: #bfc9c5 solid 1px;
     margin: 5px;
 }
 

@@ -23,7 +23,7 @@
             </thead>
 
             <tbody>
-            <div class="mission_list">
+            <div>
                 {% for mission in mission_list  %}
                     <tr>
                         <td>   <a class="table_column_large" href="{% url 'individual_mission_detail'  mission.pk %}">{{ mission.name }}</a></td>
@@ -41,12 +41,12 @@
                         {#                            <lable>{% trans 'submit_mission' %}</lable>#}
                         {#                        {% endif %}</td>#}
                         <td class="table_column_medium">{% if not mission.answer.first %}
-                            <h4>{% trans 'mission_not_answered_yet' %}</h4>
+                            {% trans 'mission_not_answered_yet' %}
                         {% else %}
                             {{mission.answer.first.get_status_display}}
                         {% endif %}
                         </td>
-                        <td><a class="table_column_medium" href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a></td>
+                        <td class="small_text"><a class="table_column_medium" href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a></td>
                     </tr>
                     {#                  {% endif %}#}
                 {% endfor %}
@@ -72,8 +72,7 @@
 
             </thead>
             <tbody>
-            <tbody>
-            <div class="mission_list">
+            <div>
                 {% for mission in individual_collective_mission  %}
                     <tr>
                         <td><a class="table_column_large" href="{% url 'individual_collective_mission_detail'  mission.id %}">{{ mission.parent_mission.name }}</a></td>
@@ -88,12 +87,12 @@
                         <td class="table_column_medium">{{ mission.parent_mission.due_date }}</td>
 
                         <td class="table_column_medium">{% if not mission.answer.first %}
-                            <h4>{% trans 'mission_not_answered_yet' %}</h4>
+                            {% trans 'mission_not_answered_yet' %}
                         {% else %}
                             {{mission.answer.first.get_status_display}}
                         {% endif %}
                         </td>
-                        <td><a class="table_column_medium" href="{%  url 'leave_collective_mission_detail' mission.parent_mission.id %}">{% trans 'leave_mission' %}</a></td>
+                        <td class="small_text"><a class="table_column_medium" href="{%  url 'leave_collective_mission_detail' mission.parent_mission.id %}">{% trans 'leave_mission' %}</a></td>
                     </tr>
                 {% endfor %}
             </div>

@@ -15,13 +15,15 @@
     min-height: 95%;
     max-height: 95%;
     margin-bottom:5rem ;
+    padding: 1rem;
     background-color: #f0f0f0;
 }
 
 
 table{
     display: block;
-    width: 95%;
+    min-width: 95%;
+    max-width: 95%;
     min-height: 80%;
     max-height: 80%;
     overflow: auto;
@@ -29,14 +31,29 @@ table{
     padding: 3px;
 }
 
-thead tr th{
+thead tr{
+    height: 2rem;
+    min-width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+thead tr .table_column_medium{
     font-size: x-large;
     color: darkslategrey;
+    max-width: 120px;
 }
 
 tbody tr{
-    min-height: 3rem;
-    max-height: 3rem;
+    min-height: 2rem;
+    max-height: 2rem;
+}
+
+tbody tr td {
+    font-size: smaller;
+}
+tbody tr td a{
+    font-size: larger;
 }
 .table_column_large{
     /*border: solid red 4px;*/
@@ -51,16 +68,20 @@ tbody tr{
 }
 
 .table_column_medium{
-    /* !*display: block;*!*/
+     /*display: inline-bloc*/
     /*word-break: break-all;*/
-    min-width: 150px;
-    max-width: 150px;
+    min-width: 130px;
+    max-width: 130px;
     min-height: 2rem;
-    max-height: 1rem;
+    max-height: 2rem;
     overflow: hidden;
     margin: 1rem;
 }
 
+.small_text a{
+    font-size: smaller;
+    margin-left: 1rem;
+}
 /*}*/
 /*.mission_board_title{*/
 /*    display: flex;*/

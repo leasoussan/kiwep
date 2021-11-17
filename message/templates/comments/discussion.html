@@ -12,9 +12,6 @@
 
 {% endblock css %}
 <div class="main_discussion_container">
-
-
-
     <div class="discussion_header">
         <div class="discussion_object_title">
             {% if object|return_class_name == 'Team' %}
@@ -128,7 +125,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }} " >
+                <form method="POST" action = "{% url 'discussion_add' %}?next={{ request.path }}" >
 
                     {% csrf_token %}
                     {{ object.discussion_form|crispy }}

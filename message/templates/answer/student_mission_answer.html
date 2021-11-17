@@ -33,16 +33,22 @@
                 <div class="answer_header">
 
                     <label class="last_answer_label">{% trans 'your_last_answer' %}</label>
-                    <div class="btn edit_button">
+                    <div class="btn">
                         <a href="{% url 'update_answer' answer.id %}" >{% trans 'edit_answer' %}</a>
                     </div>
 
                 </div>
                 <div class="last_answer_container">
-                    <div class="action_button_answer_student">
+
+                <div class="answer_detail">
+
+                    <p class="date_tag">  {% trans 'from:' %} {{ answer.date_posted }}</p>
+                </div>
+                    <div class="answer_detail">
+
                         {% if answer.response_file %}
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn see_file_modal_button" data-bs-toggle="modal" data-bs-target="#see_file_modal">
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#see_file_modal">
                                 {% trans 'sent_file' %} </button>
                             {#                            <img  class="response_file_img" src="{{ answer.response_file.url }}" width="70px" height="90px">#}
 
@@ -53,11 +59,11 @@
 
                     </div>
 
-                    <div  class="answer_text_last_answer">
+                    <div  class="answer_detail">
 
                         {% if answer.response_comment %}
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn see_answer_modal_button" data-bs-toggle="modal" data-bs-target="#see_answer_modal">
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#see_answer_modal">
                                 {% trans 'Student_answer' %} </button>
                             {#                            <img  class="response_file_img" src="{{ answer.response_file.url }}" width="70px" height="90px">#}
 
@@ -113,7 +119,7 @@
                 </div>
                 <div class="modal-body">
                     {% if answer.response_file %}
-                        <img class="image_modal" src="{{ answer.response_file.url }}">
+                        <img class="large_image" src="{{ answer.response_file.url }}" style="--img-ratio: 1">
                     {% else %}
                         {% trans 'there_is_no_file_yet' %}
                     {% endif %}

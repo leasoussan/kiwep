@@ -370,10 +370,7 @@ msgstr "Créer un projet"
 msgid "view_template"
 msgstr "Voir les modèles"
 
-#: templates/backend/resource/resource_detail.html:21
-#: templates/backend/resource/resource_detail.html:23
-msgid "back_to_mission"
-msgstr "Retour vers la mission"
+
 
 #: templates/backend/resource/resource_detail.html:27
 msgid "update_resource"
