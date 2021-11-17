@@ -46,6 +46,7 @@
                    <h3> {{discussion.title.title}}</h3>
                 </button>
 
+
                 <!-- Modal -->
                 <div class="modal fade modal_discussion" id="_{{ discussion.id }}_discussion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog dialog_modal_overwrite">
@@ -60,7 +61,6 @@
 
                                         {% for comment in discussion.replies.all %}
                                             {% if comment.user.profile == request.user.profile %}
-
                                                 <div class="speech-bubble-left user_comment">
                                                     <label class="date_label">
                                                         {{ comment.date_posted }} {% trans 'by' %} {{ comment.user.username }}
@@ -86,10 +86,7 @@
                                             {{ discussion.comment_form|crispy }}
 
                                             <button type="submit" class="btn modal_save_button"><i class="material-icons">{% trans 'save' %}</i></button>
-
                                         </form>
-
-
                                     </div>
                                 {% endif %}
                             </div>
@@ -139,10 +136,3 @@
     </div>
 </div>
 
-
-
-{% block javascript %}
-    <script>
-
-    </script>
-{% endblock javascript %}

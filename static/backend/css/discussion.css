@@ -1,15 +1,9 @@
 
 .main_discussion_container{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     width:100%;
     min-height: 100%;
     max-height: 100%;
-    background-color: whitesmoke; opacity: 0.8;
-    box-shadow: 6px 6px 10px white;
-    border-radius: 15px;
-
+    background-color: #e6e4df;
 }
 
 
@@ -185,10 +179,11 @@
     width: 100%;
     overflow: auto;
     padding-left: 5px;
+    padding-left: 5px;
 }
 
 .clear_button > i {
-    pointer-events: auto;
+    /*pointer-events: auto;*/
 }
 
 
@@ -233,7 +228,7 @@
 
     min-width: 90%;
     min-height: 25%;
-    min-height: 25%;
+    max-height: 25%;
 }
 
 

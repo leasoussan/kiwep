@@ -304,10 +304,10 @@ nav{
 
 }
 .medium_image{
-   --max-height: 350px;
+   --max-height: 500px;
     width: 100%;
     /* And limit it with our function above */
-    max-width: calc(var(--max-height, 350px) * var(--img-ratio, 1));
+    max-width: calc(var(--max-height, 500px) * var(--img-ratio, 1));
 
 
 }

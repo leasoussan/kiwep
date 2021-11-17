@@ -11,16 +11,54 @@
 
 <div class="individual_collective_answer_container">
     <div class="answer_box_participants_answers">
-        {% if request.user.profile != object.attributed_to.all %}
-
-            {% for answer in mission.parent_mission.attributed_to.all %}
-
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#see_other_student_answers">
-                    {{ answer.id }} {% trans 'answer' %}
+    <h3>{% trans 'participants_answers' %}</h3>
+        {% for individualcollectivemission in object.parent_mission.individualcollectivemission_set.all|student_participants_collective_mission:request.user.id %}
+            {% if request.user.profile != participant.id  %}
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#see_student_{{ individualcollectivemission.id }}">
+                    {{ individualcollectivemission.id }} {% trans 'answer' %}
                 </button>
 
-            {% endfor %}
-        {% endif %}
+                <div class="modal fade" id="see_student_{{ individualcollectivemission.id }}" tabindex="-1" aria-labelledby="see_other_student_answersLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content view_answer_modal_content">
+                            <div class="modal-body participant_answer_modal">
+                                {% with student_answer=individualcollectivemission.answer.first %}
+                                    <div class="view_test_overflow">
+                                        {% if student_answer.response_comment %}
+                                           <div>{{student_answer.response_comment|safe }}</div>
+                                        {% else %}
+                                            <div> {% trans 'no_answer_yet' %}</div>
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                        {% if student_answer.response_file %}
+                                        <div> {{student_answer.response_file }}</div>
+                                        {% else %}
+                                            <div> {% trans 'no_file' %}</div>
+                                        {% endif %}
+                                    </div>
+
+                                {% endwith %}
+                            </div>
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">{% trans 'close' %}</button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'close' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Modal STUDENT COLLECTIVE INDIVIDUAL ANSWER-->
+
+            {% else %}
+                {{ participant.id }}
+
+
+            {% endif %}
+        {% endfor %}
     </div>
     <div class="answer_box_collective_individual">
         {% if object.answer.all.exists %}
@@ -36,10 +74,10 @@
 
                 </div>
                 <div class="collective_existing_answer_container">
-                 <div class="answer_detail">
+                    <div class="answer_detail">
 
-                    <p class="date_tag">  {% trans 'from:' %} {{ answer.date_posted }}</p>
-                </div>
+                        <p class="date_tag">  {% trans 'from:' %} {{ answer.date_posted }}</p>
+                    </div>
                     <div class="answer_detail">
                         {% if answer.response_file %}
                             <!-- Button trigger modal -->
@@ -167,27 +205,36 @@
     </div>
 
 {% endwith %}
-<!-- Modal STUDENT COLLECTIVE INDIVIDUAL ANSWER-->
 
-{% with mission=object.parent_mission.attributed_to %}
-<div class="modal fade" id="see_other_student_answers" tabindex="-1" aria-labelledby="see_other_student_answersLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="see_other_student_answersLabel">{% trans 'see_other_student_answers' %}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                {{ mission.answer.id }}
-                <div class="individual_collective_answer">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-{% endwith %}
+
+{#{% with answers=participant.id %}#}
+{#    <div class="modal fade" id="see_other_student_answers" tabindex="-1" aria-labelledby="see_other_student_answersLabel" aria-hidden="true">#}
+{#        <div class="modal-dialog">#}
+{#            <div class="modal-content">#}
+{#                <div class="modal-body">#}
+{#                    {% for answer in answers %}#}
+{#                        <div class="other_participants_answer">#}
+{#                    aaaa    {{ answers }}aaaa#}
+{#                          bbb  {{ object }}bbb#}
+{#                           ccc {{ answer.response_file }}ccc#}
 {##}
+{#                            {{ answer.response_comment }}#}
+{##}
+{#                        </div>#}
+{##}
+{#                    {% endfor %}#}
+{#                    <div class="individual_collective_answer">#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="modal-header">#}
+{#                    <h5 class="modal-title" id="see_other_student_answersLabel">{% trans 'see_other_student_answers' %}</h5>#}
+{#                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
+{#                </div>#}
+{#                <div class="modal-footer">#}
+{#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>#}
+{#                    <button type="button" class="btn btn-primary">Save changes</button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endwith %}#}

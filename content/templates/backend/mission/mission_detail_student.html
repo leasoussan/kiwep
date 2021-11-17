@@ -16,13 +16,16 @@
         <div class="btn_group_navigation">
             {% if mission.project.team %}
                 <a class="btn neutral_action" href="{% url 'team_detail' mission.project.team.id %}"><h5>{% trans 'back_to_project' %}</h5></a>
+                {% if individualcollectivemission %}
+                <a class="btn neutral_action" href="{% url 'collective_mission_detail' mission.id %}"><h5>{% trans 'back_to_collective' %}</h5></a>
+                    {% endif %}
             {% endif %}
 
         </div>
-    <div  class="mission_name_title">
+        <div  class="mission_name_title">
 
-        <h2> {{ mission.name.title }}</h2>
-    </div>
+            <h2> {{ mission.name.title }}</h2>
+        </div>
     </div>
 
     <div class="mission_detail_main_panel">
@@ -67,9 +70,9 @@
                                     {% if request.user.profile not in object.attributed_to.all or request.user.profile not in object.parent_mission.attributed_to.all %}
                                         <a class="btn primary_button claim_mission" href="{% url 'join_collective_mission_detail' object.id %}">{% trans 'join_collective_mission' %}</a>
                                         <div class="mission_attributed_to_participants">
-{#                                            {% for participant in object.attributed_to.all %}#}
-{#                                                <h4>   {{ participant }}</h4>#}
-{#                                            {% endfor %}#}
+                                            {#                                            {% for participant in object.attributed_to.all %}#}
+                                            {#                                                <h4>   {{ participant }}</h4>#}
+                                            {#                                            {% endfor %}#}
                                         </div>
                                     {% elif object.attributed_to %}
                                         {% if user.profile in object.attributed_to.all or request.user.profile in object.parent_mission.attributed_to.all %}
@@ -80,15 +83,23 @@
                                                     {% else %}
                                                         <a class="btn neutral_action" href="{%  url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_mission' %}</a>
                                                     {% endif %}
-                                            </div>
+                                                </div>
 
-                                            <div class="mission_attributed_to_participants">
-                                                <h4 class="small_title banner_attributed_to">{% trans 'participants_of_the_mission' %}</h4>
-                                                {% for participant in object.parent_mission.attributed_to.all %}
-                                                    <h5>   {{ participant }}</h5>
-                                                {% endfor %}
-                                            </div>
-                                                   {% endif %}
+                                                <div class="mission_attributed_to_participants">
+                                                    <h4 class="small_title banner_attributed_to">{% trans 'participants_of_the_mission' %}</h4>
+                                                    {% if individualcollectivemission %}
+                                                        {% for participant in object.parent_mission.attributed_to.all %}
+                                                            <h5>   {{ participant }}</h5>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        {% for participant in object.attributed_to.all %}
+                                                            <h5>   {{ participant }}</h5>
+                                                        {% endfor %}
+                                                    {% endif %}
+
+
+                                                </div>
+                                            {% endif %}
                                         {% else %}
                                             {% trans 'this_missions_belongs_to:' %}
                                             {{ object.attributed_to }}

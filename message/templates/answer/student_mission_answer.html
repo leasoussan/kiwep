@@ -140,7 +140,7 @@
                 </div>
                 <div class="modal-body modal_answer_text">
                     {% if answer.response_file %}
-                        <p> {{ answer.response_comment|safe }}</p>
+                        <div> {{ answer.response_comment|safe }}</div>
                     {% else %}
                         {% trans 'there_is_no_answer' %}
                     {% endif %}

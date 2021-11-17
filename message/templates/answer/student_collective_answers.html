@@ -12,24 +12,22 @@
 
 <div class="collective_answer_container">
     <div class="container_left_side">
+
 {% for mission in mission.individualcollectivemission_set.all %}
+
             {% if request.user.profile == mission.attributed_to %}
                 <div class="answer_box_collective_individual">
-                {% if mission.answer.exists %}
-                    {% for mission in object.parent_mission.individualcollectivemission_set.all %}
-                        <a class="btn secondary_button" href="{% url 'individual_collective_mission_detail' mission.id %}">  <h3> {{ mission.attributed_to.name }}</h3></a>
-                    {% endfor %}
-                {% else %}
 
-                    <a class="btn secondary_button" href="{% url 'individual_collective_mission_detail' mission.id %}">{{ mission.attributed_to}}</a>
-                {% endif %}
+                        <a class="btn secondary_button" href="{% url 'individual_collective_mission_detail' mission.id %}">  <h3>
+                            {% trans 'response' %}</h3></a>
+
                 </div>
-            {% else %}
-                {% for answer in mission.parent_mission.answer_set.all %}
-                    <button type="button" class="btn secondary_button" data-bs-toggle="modal" data-bs-target="#see_others_student_answers">
-                        <h4>{% trans 'answer_of' %} {{ participant.id }}</h4>
-                    </button>
-                {% endfor %}
+{#            {% else %}#}
+{#                {% for answer in mission.parent_mission.answer_set.all %}#}
+{#                    <button type="button" class="btn secondary_button" data-bs-toggle="modal" data-bs-target="#see_others_student_answers">#}
+{#                        <h4>{% trans 'answer_of' %} {{ participant.id }}</h4>#}
+{#                    </button>#}
+{#                {% endfor %}#}
             {% endif %}
 
         {% endfor %}

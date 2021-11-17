@@ -172,6 +172,12 @@ USE_L10N = True
 USE_TZ = True
 
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'autoParagraph': False
+    },
+}
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

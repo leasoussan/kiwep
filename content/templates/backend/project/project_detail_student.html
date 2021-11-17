@@ -12,17 +12,11 @@
 
         <div class="speaker_action_btn_group">
 
-            {% if project.is_template %}
-                <h3 class="templates_tag">{% trans 'this_is_a_template' %}</h3>
-
-
-            {% else %}
                 {% if project.team %}
                     {% with team=project.team %}
-                        <a class="btn team_button_from_project" href="{% url 'team_detail' team.id %}">{% trans 'back_to_team' %}</a>
+                        <a class="btn secondary_button" href="{% url 'team_detail' team.id %}">{% trans 'back_to_team' %}</a>
                     {% endwith %}
                 {% endif %}
-            {% endif %}
         </div>
     </div>
 

@@ -40,11 +40,46 @@
     max-height: 100vh;
 }
 
-.modal_answer_text{
+.participant_answer_modal{
+    display: flex;
+    flex-direction: row;
+}
+
+.participant_answer_modal div{
+    width: 50%;
+    min-height: 85%;
+    max-height: 85%;
+    border: solid white 2px;
     background-color: white;
+    margin: 5px;
+}
+.view_test_overflow{
+    display: inline;
+    min-width: 50%;
+    max-width: 50%;
+    min-height: 100%;
+    max-height: 100%;
+    border: solid orchid 2px;
+   overflow: scroll;
+    overflow-x: hidden;
+    word-wrap: normal;
+    word-break: break-all;
+}
+
+.modal_answer_text{
+    width: 100%;
+    height: 100%;
+    border: solid 9px yellow;
+}
+
+.modal_answer_text div{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    word-break: break-all;
     overflow: scroll;
-
-
+    overflow-x: hidden;
 }
 .modal_answer_text p{
     max-width: 100%;
@@ -156,25 +191,39 @@
     align-items: flex-start;
     min-height:20%;
     max-height: 20%;
-    border: white 1px solid;
     padding: 3px 6px;
     width: 100%;
+    background-color: whitesmoke;
+    border-radius: 10px;
 }
 
 .answer_header .btn{
 
 }
 .answer_box_collective_individual{
-    min-width: 50%;
-    max-width: 50%;
+    min-width: 60%;
+    max-width: 60%;
+    padding: 1rem;
+    border: white solid 1px;
 }
 
 .answer_box_participants_answers{
     display: flex;
     flex-direction: column;
-    min-width: 50%;
-    max-width: 50%;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 40%;
+    max-width: 40%;
+    padding: 1rem;
+    background-color: #b4c2b9;
 }
+.answer_box_participants_answers button{
+    width: 70%;
+    height: 2rem;
+    margin: 5px;
+    background-color: whitesmoke;
+}
+
 .file_place_holder{
     width: 20%;
     height: 50%;
@@ -234,6 +283,8 @@
     max-height:100% ;
 }
 
+
+
 .image_modal{
     min-width: 800px;
     min-width: 800px;
@@ -259,12 +310,10 @@
 
 
 .container_left_side{
-    border:solid 4px purple;
     width:50%
 }
 
 .container_right_side {
-    border: solid 4px pink;
     width: 50%
 
 }
@@ -272,6 +321,9 @@
 .individual_collective_answer_container{
     display: flex;
     flex-direction: row;
+    background-color: #b4c2b9;
+    border: solid 2px lightgray;
+    border-radius: 15px;
 }
 
 .last_answer_container {

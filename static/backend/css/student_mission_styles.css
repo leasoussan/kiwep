@@ -117,7 +117,7 @@
     flex-direction: column;
     align-items: flex-end;
     width: 25%;
-    height: 100%;
+    max-height: 100%;
     padding-bottom: 2rem;
 }
 
@@ -126,6 +126,7 @@
     padding: 5px;
     background-color: whitesmoke;
     margin: 1rem;
+
 }
 
 .resource_container{
@@ -146,6 +147,7 @@
     width: 100%;
     justify-content: space-between;
     align-content: center;
+    height: 3rem;
 
 }
 .mission_detail_resources_list_box{
@@ -153,8 +155,11 @@
     flex-direction: column;
     min-width: 100%;
     max-width: 100%;
-    overflow: auto;
-    }
+    min-height: 70%;
+    max-height: 70%;
+    overflow: scroll;
+word-break: break-all;
+overflow-x: hidden}
 
 .resource_item_detail{
     display: flex;
