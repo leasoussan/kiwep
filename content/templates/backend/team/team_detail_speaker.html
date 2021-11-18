@@ -3,6 +3,14 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
+{% block css %}
+    <link href="{% static 'backend/css/speaker_team_styles.css' %}" rel="stylesheet">
+
+
+{% endblock css %}
+
+
+
 <div class="team_detail_container">
 
     <div class="team_detail_header">
@@ -43,8 +51,8 @@
 
         {% if request.user.profile == team.manager %}
             <div class="speaker_action_btn_group">
-                <button type="button" class="edit_team_button_team_detail"><a href="{% url 'update_team' team.id %}">{% trans 'edit' %}</a></button>
-                <button type="button" class="delete_team_button_team_detail"> <a href="{% url 'delete_team' team.id %}" >{% trans 'delete_team' %}</a></button>
+                <button type="button" class="neutral_action"><a href="{% url 'update_team' team.id %}">{% trans 'edit' %}</a></button>
+                <button type="button" class="neutral_action"> <a href="{% url 'delete_team' team.id %}" >{% trans 'delete_team' %}</a></button>
             </div>
         {% endif %}
     </div>
@@ -52,7 +60,7 @@
     {% if team.project %}
     <div class="team_project_detail">
         <div class="img_team_project">
-            <img class="image_size" src="{%  static 'backend/images/kiwep/project.png' %}">
+            <img class="small_medium_image" src="{%  static 'backend/images/kiwep/project_default.png' %}" style="--img-ratio: 1" alt="{{ team.title }}">
         </div>
 
         <div class="team_project_description">
@@ -69,7 +77,7 @@
                 <span>{% trans 'time_to_complete' %}:</span>
                 {{team.project.time_to_complete}} {% trans 'days' %}
             </div>
-            <a class="edit_project_team_page" href="{% url 'project_detail' team.project.id %}" >{% trans 'edit_project' %}</a>
+            <a class="btn neutral_action" href="{% url 'project_detail' team.project.id %}" >{% trans 'edit_project' %}</a>
         </div>
     </div>
 

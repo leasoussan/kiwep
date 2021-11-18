@@ -48,11 +48,11 @@
         <div class="project_detail_section">
 
             <div class="animation_div">
-                <img class="image_animation" src="{% static 'backend/images/kiwep/project.png' %}" alt="this slowpoke moves">
+                <img class="small_medium_image" src="{% static 'backend/images/kiwep/project_default.png' %}" style="--img-ratio: 1"  alt="this slowpoke moves">
             </div>
             <div class="project_detail_details">
                 <div class="project_detail_description">
-                    <p>   {{project.description|safe}}</p>
+                    <div>   {{project.description|safe}}</div>
                 </div>
 
 

@@ -12,8 +12,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 95%;
-    max-height: 95%;
+    min-height: 350px;
+    max-height: 350px;
     margin-bottom:5rem ;
     padding: 1rem;
     background-color: #f0f0f0;
@@ -31,20 +31,27 @@ table{
     padding: 3px;
 }
 
-thead tr{
+thead{
+    display: block;
+    width: 90%;
     height: 2rem;
-    min-width: 100%;
-    max-width: 100%;
+    margin-bottom: 1rem;
+}
+thead tr th{
+    width: 20%;
+    height:     2rem;
     margin-bottom: 1rem;
 }
 
-thead tr .table_column_medium{
-    font-size: x-large;
-    color: darkslategrey;
-    max-width: 120px;
+thead tr{
+    width: 100%;
 }
 
+
+
 tbody tr{
+    width: 95%;
+
     min-height: 2rem;
     max-height: 2rem;
 }
@@ -55,23 +62,36 @@ tbody tr td {
 tbody tr td a{
     font-size: larger;
 }
+
+/**/
 .table_column_large{
     /*border: solid red 4px;*/
     display: block;
     word-break: break-all;
     min-width: 300px;
     max-width: 300px;
-    min-height: 2rem;
-    max-height: 2rem;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
     overflow: hidden;
     margin-right: 1.5rem;
 }
+
 
 .table_column_medium{
      /*display: inline-bloc*/
     /*word-break: break-all;*/
     min-width: 130px;
     max-width: 130px;
+    min-height: 2rem;
+    max-height: 2rem;
+    overflow: hidden;
+    margin: 1rem;
+}
+.table_column_small{
+     /*display: inline-bloc*/
+    /*word-break: break-all;*/
+    min-width: 70px;
+    max-width: 70px;
     min-height: 2rem;
     max-height: 2rem;
     overflow: hidden;

@@ -263,8 +263,6 @@ msgid "due_date"
 msgstr "Due Date"
 
 #: templates/backend/mission/my_mission_list.html:32
-#, fuzzy
-#| msgid "see_answer"
 msgid "status_answer"
 msgstr "See answer"
 
@@ -272,15 +270,6 @@ msgstr "See answer"
 msgid "not_answer_yet"
 msgstr "Not answered"
 
-#: templates/backend/mission/my_mission_list.html:84
-msgid "my_mission_board_title"
-msgstr "My Missions Board"
-
-#: templates/backend/mission/my_mission_list.html:93
-#, fuzzy
-#| msgid "not_answer_yet"
-msgid "status_answer_student"
-msgstr "Not answered"
 
 #: templates/backend/mission/my_mission_list.html:109
 #: templates/backend/mission/my_mission_list.html:145
@@ -468,10 +457,8 @@ msgid "no_answer_yet"
 msgstr "No answer submitted yet"
 
 #: templates/backend/team/team_detail_speaker.html:191
-#, fuzzy
-#| msgid "claim_mission_link"
 msgid "no_claimed_mission_yet_speaker"
-msgstr "Claim Mission"
+msgstr "No Claimed missions yet"
 
 #: templates/backend/team/team_detail_speaker.html:227
 #: templates/backend/team/team_detail_student.html:222
@@ -532,10 +519,9 @@ msgid "attributed_mission_log"
 msgstr "Attributed missions"
 
 #: templates/backend/team/team_detail_student.html:192
-#, fuzzy
-#| msgid "unclaim_mission"
+
 msgid "no_claimed_mission_yet"
-msgstr "Unclaime"
+msgstr "No Claimed Missions Yet"
 
 #: templates/backend/team/team_list_speaker.html:14
 msgid "create_a_new_team"
@@ -604,23 +590,3 @@ msgstr "Delete"
 #: templates/crud/update.html:30 templates/crud/update_current.html:29
 msgid "dashboard"
 msgstr "Dashboard"
-
-#, fuzzy
-#~| msgid "additional_file"
-#~ msgid "see_additional_file"
-#~ msgstr "Additional File"
-
-#~ msgid "answer"
-#~ msgstr "Answer"
-
-#~ msgid "validate_title"
-#~ msgstr "Validate"
-
-#~ msgid "action"
-#~ msgstr "Action"
-
-#~ msgid "status"
-#~ msgstr "Status"
-
-#~ msgid "submit_mission"
-#~ msgstr "Submit Answer"

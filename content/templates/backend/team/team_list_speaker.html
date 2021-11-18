@@ -44,9 +44,9 @@
                         <table>
                             <thead>
                             <tr>
-                                <th class="table_item_team"><h3>{% trans 'team_name' %}</h3></th>
-                                <th><h3>{% trans 'participants' %}</h3></th>
-                                <th class="table_item_project"><h3>{% trans 'project' %}</h3></th>
+                                <th class="table_column_large"><h3>{% trans 'team_name' %}</h3></th>
+                                <th class="table_column_large"><h3>{% trans 'participants' %}</h3></th>
+                                <th class="table_column_large"><h3>{% trans 'project' %}</h3></th>
                                 <th class="col_width"><h3>{% trans 'edit_or_delete' %}</h3></th>
                             </tr>
                             </thead>
@@ -55,18 +55,18 @@
                             {% for team in team_list %}
                                 {% if team.group_institution == group %}
                                     <tr>
-                                        <td><a class="table_item_team" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></td>
-                                        <td>{{ team.participants.count }}</td>
-                                        <td>
+                                        <td><a class="table_column_large" href="{% url 'team_detail' team.id %}"><h4>{{ team.name }}</h4></a></td>
+                                        <td class="table_column_medium">{{ team.participants.count }}</td>
+                                        <td class="table_column_large">
                                             {% if team.project %}
-                                               <h4 class="table_item_project"> {{team.project.name}} </h4>
+                                               <h4> {{team.project.name}} </h4>
                                             {% else %}
                                                 <a href="{% url 'team_detail' team.id %}">{% translate 'create_project' %}</a>
                                             {% endif %}
 
                                         </td>
-                                        <td>
-                                            <div class="team_list_tbl_edit_delete_icons">
+                                        <td  class="table_column_large">
+                                            <div>
                                                 <div class="team_list_tbl_edit_delete">
                                                     <a href="{% url 'update_team' team.id %}" class=""><img src="/static/backend/images/kiwep/edit.png"></a>
                                                 </div>

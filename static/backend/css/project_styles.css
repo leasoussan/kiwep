@@ -76,11 +76,13 @@
 }
 
 .project_detail_description{
-    min-height: 32vh;
-    max-height: 32vh;
-    min-width: 90%;
-    max-width: 90%;
+    min-height: 30vh;
+    max-height: 30vh;
+    min-width: 100%;
+    max-width: 100%;
     overflow: scroll;
+    overflow-x: hidden;
+    padding: 1rem;
 }
 
 .detail_time_to_complete{
