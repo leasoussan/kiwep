@@ -205,7 +205,7 @@ class CreateProfile(View):
 
     def post(self, request):
 
-        user_form = UserForm(request.POST,  request.FILES,  instance= request.user)
+        user_form = UserForm(request.POST,  request.FILES,  instance=request.user)
 
         profile_form = get_user_profile_form(request)
         user = request.user
@@ -233,6 +233,7 @@ class CreateProfile(View):
                     join_group = Group.objects.get(join_code=join_code)
                     profile_object.class_level=join_group
                     profile_object.save()
+
 
 
             return redirect('dashboard')

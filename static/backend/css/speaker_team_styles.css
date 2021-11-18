@@ -1,3 +1,305 @@
+/*SPEAKER TEAM LIST */
+
+.team_board_container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    width: 100%;
+    align-items: flex-start;
+    height: 70vh;
+}
+
+.tab-content{
+    min-width:100% ;
+    max-width: 100%;
+    height: 200px;
+    padding: 1rem;
+}
+
+.team_list_btn_gp{
+    display: flex;
+    flex-direction: column;
+    min-height: 30%;
+    max-height: 30%;
+    justify-content: flex-start;
+    padding: 1rem;
+}
+
+table{
+    display: block;
+     min-width: 95%;
+    max-width: 95%;
+    margin-bottom: 5rem;
+}
+
+
+thead th{
+    margin-right: 1rem;
+    width: 150px;
+}
+
+
+thead tr{
+    width: 95%;
+}
+thead th:first-child{
+    width: 400px;
+}
+
+thead th:last-child{
+    width: 70px;
+    padding-left: 2rem;
+
+}
+
+tbody{
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+tbody tr{
+    height: 3rem;
+}
+.table_column_large h4{
+    display: block;
+    word-break: break-all;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 2rem;
+    max-height: 2rem;
+    overflow: hidden;
+    margin-right: 1.5rem;
+}
+
+
+.table_column_medium{
+     /*display: inline-bloc*/
+    /*word-break: break-all;*/
+    min-width: 130px;
+    max-width: 130px;
+    min-height: 2rem;
+    max-height: 2rem;
+    overflow: hidden;
+    margin: 1rem;
+}
+.table_item_team{
+    display: block;
+    word-break: break-all;
+    min-width: 450px;
+    overflow: hidden;
+    min-height: 2rem;
+    max-height: 2rem;
+    margin-left: 2rem;
+}
+
+
+.time_to_complete_table{
+    min-width: 200px;
+    max-width: 200px;
+}
+.table_item_project{
+    display: block;
+    min-width: 600px;
+    max-width: 600px;
+    min-height: 2rem;
+    max-height: 2rem;
+    overflow: hidden;
+}
+
+
+.no_item_message{
+    margin-top: 5rem;
+}
+/*SPEAKER TEAM DETAIL */
+
+
+.team_detail_container{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    width: 90% ;
+    padding: 0rem 5px;
+
+}
+
+.team_detail_header{
+
+}
+
+.description_team_project{
+
+}
+
+.team_extra_information{
+
+}
+
+.team_participant_container{
+
+}
+
+.participants_team_header{
+
+}
+
+.participants_title{
+
+}
+
+.participants_list_icon{
+
+}
+
+.avatar{
+
+}
+
+.join_team_btn_group{
+
+}
+
+.join_team_button{
+
+}
+
+.leave_team_button{
+
+}
+
+.team_project_detail{
+
+}
+
+.img_team_project{
+
+}
+
+.image_size{
+
+}
+.team_project_description{
+    padding: 1rem;
+    min-width: 50%;
+    max-width: 50%;
+    min-height: 15rem;
+    max-height: 15rem;
+    overflow: scroll;
+    word-break:break-word;
+    overflow-x: hidden;
+}
+
+.team_project_title{
+
+}
+
+.project_detail_team_page{
+
+}
+
+.project_learning_info{
+
+}
+
+.detail_time_to_complete{
+
+}
+
+.team_detail_main_content{
+
+}
+
+.mission_list_box_team_detail{
+
+}
+
+.team_mission_list{
+
+}
+
+.team_mission_detail{
+
+}
+
+.team_mission_name_title{
+
+}
+
+.team_mission_detail_attributed_to{
+
+}
+
+.team_mission_detail_m_type{
+
+}
+
+.team_mission_detail{
+
+}
+
+.team_mission_name_title{
+
+}
+
+.team_mission_detail_attributed_to{
+
+}
+
+
+.team_mission_name_title{
+
+}
+
+.team_mission_detail_m_type{
+
+}
+
+.team_mission_log{
+
+}
+
+.mission_list_log_container{
+
+}
+
+.team_mission_detail{
+
+}
+
+.team_mission_name_title{
+
+}
+
+.team_mission_detail_attributed_to{
+
+}
+
+.unclaim_mission_button{
+
+}
+
+.team_mission_detail_m_type{
+
+}
+
+.discussion_container{
+    width: 35%;
+}
+
+.modal{
+
+}
+
+.dialog{
+
+}
+
+.modal{
+
+}
+
+.content{
+
+}
 x/* TEAM-LIST */
 
 
@@ -34,8 +336,8 @@ x/* TEAM-LIST */
 }
 
 .team_board_manager{
-    width: 70%;
-    min-height: 50%;
+    width: 100%;
+    min-height: 100%;
     max-height: 100%;
     overflow: auto;
     padding-right: 3rem;
@@ -76,8 +378,6 @@ x/* TEAM-LIST */
     min-height:20vh;
     max-height:20vh;
     justify-content: space-between;
-
-
 }
 
 
@@ -87,15 +387,15 @@ x/* TEAM-LIST */
     justify-content: center;
     align-content: center;
     justify-items: center;
-    width: 75%;
+    width: 70%;
 
 }
-
 
 .description_team_project h3{
     padding-left: 2rem;
     min-width: 80%;
     max-width: 80%;
+    min-height: 4rem;
     word-wrap: normal;
     word-break: break-all;
     overflow: hidden;
@@ -129,7 +429,7 @@ x/* TEAM-LIST */
     width: 25%;
     min-height: 100%;
     max-height: 100%;
-    align-items: flex-end;
+    align-content: flex-start;
 }
 
 .choose_project_button{
@@ -157,6 +457,7 @@ x/* TEAM-LIST */
     border: 1px #d7dbd7 solid;
     border-radius: 10px;
     padding: 1rem;
+
 }
 
 
@@ -173,7 +474,8 @@ x/* TEAM-LIST */
 .speaker_action_btn_group{
     display: flex;
     flex-direction: column;
-    width: 10%;
+    min-width: 10%;
+    max-width: 10%;
     min-height: 7rem;
     max-height: 10rem;
     justify-content: space-between;
@@ -199,32 +501,10 @@ x/* TEAM-LIST */
     background-color: red;
 
 }
-.edit_team_button_team_detail{
-    width: 8rem;
-    height: 40px;
-    border-radius: 5px;
-    background-color: #fae66e;
-}
-
-.sm-btn{
-    height: 35px;
-    line-height: 5px;
-}
 
 
-.img_team_project{
-    display: flex;
-    justify-content: center;
-    max-width: 30%;
-    min-height: 100%;
-    max-height: 100%;
-}
 
-.image_size{
-    min-width: 50%;
-    max-width: 100%;
-    min-height: 50%;
-    max-height: 100%;
+.img_team_project {
 }
 .team_navigation_extra_button {
     display: flex;
@@ -256,15 +536,14 @@ x/* TEAM-LIST */
 .team_detail_main_content{
     display: flex;
     flex-direction: row;
-    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
     min-height: 30%;
     max-height: 30%;
     flex-wrap: wrap;
     margin-top: 1rem;
     background-color: #f2f2f2;
-    border: 1px orchid solid;
-    /*border: 1px #d7dbd7 solid;*/
-    padding: 1rem;
+
     justify-content: center;
 }
 .mission_list_box_team_detail{
@@ -283,7 +562,8 @@ x/* TEAM-LIST */
     flex-direction: column;
     margin-top: 2rem;
     padding: 1rem;
-    height:20rem ;
+    height:15rem ;
+    width: 95%;
     overflow: scroll;
 
 }
@@ -436,251 +716,13 @@ x/* TEAM-LIST */
 }
 
 .add_mission{
-    margin-left: 75px;
 }
 
 
-
-
-/*SPEAKER------------------LIST_TEAM*/
-.navigation_btn{
-    margin-right: 3rem;
-}
-
-.team_list_page_container{
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    margin: auto;
-    padding: 1rem 1rem;
-}
-.team_list_main_container{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: auto;
-    padding-top: 3rem;
-}
-
-.add_team_button{
-    width:45%;
-    height: 3rem;
-    border-radius: 10px;
-    margin: 2rem;
-    background-color: #92b392;
-    border: #92b392 solid 1px;
-    font-weight: bolder;
-    color: white;
-}
-
-
-.add_team_button h4{
-    color: white;
-    max-width: 100%;
-    font-size: large;
-}
-
-.add_team_button h4:hover{
-    color: yellow;
-}
-
-.add_bulk_mission{
-    width:45%;
-    height: 3rem;
-    border-radius: 10px;
-    margin: 2rem;
-    background-color: #92b392;
-    border: #92b392 solid 1px;
-    font-weight: bolder;
-}
-
-
-.add_bulk_mission h4{
-    color: white;
-    max-width: 90%;
-    font-size: larger;
-}
-
-.add_bulk_mission h4:hover{
-    color: yellow;
-}
-
-.mission_list_btn{
-    background-color: #1668c2;
-    font-weight: bold;
-    font-size: large;
-    color: white;
-
-}
-
-.medium_title{
-    margin-bottom: 2rem;
-    font-weight: bolder;
-    font-size: larger;
-}
-
-
-
-.join_other_team_box{
-    min-width: 80%;
-    max-width: 80%;
-    margin-top: 3rem;
-}
-
-
-.mission_list_log_container{
-    display: flex;
-    flex-direction: column;
-    margin-top: 2rem;
-    overflow: auto;
-    min-height: 90%;
-    max-height: 90%;
-    min-width: 100%;
-    max-width: 100%;
-}
-
-.team_title_speaker_list{
-    display: block;
-    min-width: 400px;
-    max-width: 400px;
-    min-height: 2rem;
-    max-height: 2rem;
-    overflow: hidden;
-    word-break: break-all;
-}
-
-.team_project_title_speaker_list{
-    display: block;
-    min-width: 400px;
-    max-width: 400px;
-    min-height: 1.5rem;
-    max-height: 1.5rem;
-    overflow: hidden;
-    word-break: break-all;
-}
-/*______STUDENT TEAM LIST ________*/
-
-.project_student{
-    width: 100%;
-}
-.project_student h2{
-    margin-left: 30%
-}
-
-
-.available_project_student{
-    width: 100%;
-    margin-top: 5rem;
-}
-
-.available_project_student h2{
-    margin-left: 30%
-}
-.join_team_btn_group{
-    display: flex;
-    flex-direction: column;
-    width: 15%;
-    min-height: 10vh;
-    max-height: 10vh;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-}
-
-.join_team_button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    width: 50%;
-    height:7rem;
-    background-color: #ebd96c;
-}
-
-.leave_team_button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    width: 50%;
-    height: 7rem;
-    background-color: #f7ebad;
-}
-
-
-
-/*_______STUDENT TEAM DETAIL STYLE_____________________*/
-
-.team_project_status{
-}
-
-
-
-/*___________________________STUDENT LIST MISSION*/
-.student_team_list_container{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    min-width: 80%;
-    max-width: 80%;
-    min-height: 40vh;
-    max-height: 80vh;
-    margin: auto;
-}
-
-.student_team_table{
-    width: 80%;
-    margin-top: 2rem;
-    min-height:20rem ;
-    max-height:20rem ;
-    overflow: scroll;
-}
-
-.student_team_table_available_project{
-    min-width: 80%;
-    max-width: 80%;
-    margin-top: 2rem;
-    min-height:20rem ;
-    max-height:20rem ;
-    overflow: scroll;
-}
-.team_name_student_list{
-    display: block;
-    word-break: break-all;
-    min-width: 400px;
-    max-width: 400px;
-    overflow: hidden;
-    min-height: 2rem;
-    max-height: 2rem;
-}
-
-
-.project_name_student_list{
-    display: block;
-    min-width: 500px;
-    max-width: 500px;
-    min-height: 2rem;
-    max-height: 2rem;
-    overflow: hidden;
-}
-
-.discussion_board_row{
-    border: 1px solid maroon;
-    width: 100%;
-    margin-left: 23px;
-    margin-top: 10px;
-}
-/*modal size*/
+/*MODAL*/
 .modal-dialog{
     min-width: 80%;
-    max-width: 80%;
 }
-.discussion_sub_title{
-    margin: 10px 0 0 10px;
-}
-
-
 /* RESPONSIVE */
 @media (max-width: 670px){
 

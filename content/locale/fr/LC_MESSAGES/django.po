@@ -370,10 +370,7 @@ msgstr "Créer un projet"
 msgid "view_template"
 msgstr "Voir les modèles"
 
-#: templates/backend/resource/resource_detail.html:21
-#: templates/backend/resource/resource_detail.html:23
-msgid "back_to_mission"
-msgstr "Retour vers la mission"
+
 
 #: templates/backend/resource/resource_detail.html:27
 msgid "update_resource"
@@ -526,8 +523,6 @@ msgid "attributed_mission_log"
 msgstr "Missions attribuées"
 
 #: templates/backend/team/team_detail_student.html:192
-#, fuzzy
-#| msgid "unclaim_mission"
 msgid "no_claimed_mission_yet"
 msgstr "Pas de mission attribuées"
 
@@ -557,7 +552,7 @@ msgstr "Ajouter"
 
 #: templates/backend/team/team_list_student.html:7
 msgid "my_team"
-msgstr "Mon équipe"
+msgstr "Mes équipe"
 
 #: templates/backend/team/team_list_student.html:14
 #: templates/backend/team/team_list_student.html:51

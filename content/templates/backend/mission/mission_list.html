@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load mytags %}
+
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+    <link href="{% static 'backend/css/buttons.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet">
+{% endblock css %}
+
+
+{% block content %}
+    {% if user.is_speaker %}
+        {% include 'backend/mission/speaker_mission_list.html' %}
+    {% elif user.is_student %}
+        {% include 'backend/mission/student_mission_list.html' %}
+    {% else %}
+        {% trans 'you_can_t_see_this_page' %}
+    {% endif %}
+{% endblock %}
+
+
+
+
+
+

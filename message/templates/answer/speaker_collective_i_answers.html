@@ -11,6 +11,7 @@
 
 <div class="answer">
     <div class="mission_answer_status_label">
+
         {% if object.attributed_to and object.answer.exists %}
             {{ object.answer.all.first.content_object.attributed_to.user.get_full_name }}   {% trans 'answers' %}:
         {% endif %}
@@ -26,7 +27,10 @@
         </div>
 
     {% else %}
+ {% for participant in answer %}
+     <div class="participant_collective_mission_answer">
         {% with answer=object.answer.all.last %}
+
             {% if answer.response_comment or answer.response_file %}
                 <div class="answer_content_box_view">
                 <div class="speaker_answer_box">
@@ -55,10 +59,10 @@
                 </div>
 
 
-
-
             {% endif %}
         {% endwith %}
+ </div>
+            {% endfor %}
 
     {% endif %}
 

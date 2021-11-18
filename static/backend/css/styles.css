@@ -21,282 +21,99 @@ INDEX:
 
 /*------BASE------*/
 body *{
-  font-family: Helvetica, sans-serif;
+  font-family: FontAwesome;
   color: #000000;
 }
 
-/*------REGISTER/LOGIN------*/
+
+
+.main_base_content_block{
+  margin: auto;
+  min-width: 90%;
+  max-width: 90%;
+  min-height: 900px;
+  padding: 1rem 0rem;
+    box-shadow:5px 5px 5px grey;
+      background-color: #d5e0d9;
+}
+
+
+/*FONTS STYLES*/
 
 
 header{
-  display: block;
 }
 
 h1{
+  font-weight: normal;
+  font-size: 2.5rem;
+  color: #375442;
+
+}
+h2{
   font-weight: bold;
-  color: rgb(92, 92, 92);
+  font-size: 2rem;
+  color: grey;
 }
 
-.navsize{
-  width: 100%;
-  height: 50px;
-  position: relative;
-  padding: 15px;
-}
-
-
-a{
-  text-decoration: none;
-  font-size: larger;
-}
-
-p{
-  font-size: large;
-}
-div{
-  font-size: large;
-}
-
-.smallfont{
-  font-size: small;
-}
-
-
-#background{
-  background-color: rgb(187, 187, 187);
-  width: 716px;
-  height: 614px;
-  display: block;
-  margin-top: 55px;
-  margin-left: 120px;
-}
-
-#opacity{
-  opacity: 0.8;
-  width: 650px;
-  height: 530px;
-  background-color: white;
-  margin-left: 30px;
-  padding-top: 50px;
-  position: relative;
-  top: 40px;
-} 
-
-.aligning{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  top: 110px;
-}
-
-.aligning1{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 18px;
-  background-color: transparent;
-}
-
-.aligning2{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  top: 30px;
-  left: 150px;
-}
-
-.aligning3{
-  width: 30px;
-  height: 40px;
-  position: relative;
-  left: 150px;
-}
-
-.aligning4{
-  position: relative;
-  left: 130px;
-}
-
-button a:hover{
-  color: white;
-}
-
-#wrapper{
-  margin: 0 auto;
-  width: 1000px;
-}
-
-#rememcheck{
-  position: relative;
-  bottom: 30px;
-  left: 14px;
-  background-color: transparent;
-}
-
-.fonts{
-  text-decoration: none;
-  font-weight: bold;
-  font-size: small;
-  color:rgb(0, 174, 255);
-  background-color: transparent;
-
-}
-
-.formfont{
+h3{
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
-.forms{
-  background-color: transparent;
-}
-
-div a{
-  background-color: transparent;
-}
-
-/*------NAVBAR--------- */
-
-#navbarSupportedContent{
-  margin: 0;
-  padding: 0;
-  text-align: right;
-}
-
-.nav_alignment_right{
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-}
-/*added by Lea*/
-.navbar_items{
-  display: flex;
-  flex-direction: row;
-  background-color: #0c8b51;
-}
-
-#logotitle{
-  display: flex;
-  justify-content: center;
-}
-
-#logotitle h1{
-  background-color: transparent;
-}
-
-#logotitle-nav{
-  width: 150px;
-  position: relative;
-  left: 10px;
-  top: 20px;
-  background-color: transparent;
-}
-
-#profile_info{
-  padding-bottom: 15px;
-}
-
-.bg-custom-1 {
-  background-color: #85144b;
-}
-
-.bg-custom-2 {
-background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+h4{
+    font-size: 1.5rem;
 }
 
 
-span{
-  white-space: nowrap;
-  background-color: transparent;
+
+
+/*_IMAGES */
+
+.icon_image{
+   --max-height: 65px;
+    width: 100%;
+    /* And limit it with our function above */
+    max-width: calc(var(--max-height, 65px) * var(--img-ratio, 1));
+
+  border-radius: 50%;
+
 }
 
-#username{
-  background-color: transparent;
-  margin-left: 17px;
+.small_image{
+   --max-height: 150px;
+    width: 100%;
+    /* And limit it with our function above */
+    max-width: calc(var(--max-height, 150px) * var(--img-ratio, 1));
+}
+.small_medium_image{
+   --max-height: 300px;
+    width: 100%;
+    /* And limit it with our function above */
+    max-width: calc(var(--max-height, 200px) * var(--img-ratio, 1));
+}
+.medium_image{
+   --max-height: 500px;
+    width: 100%;
+    /* And limit it with our function above */
+    max-width: calc(var(--max-height, 500px) * var(--img-ratio, 1));
+
+
 }
 
-#username span{
-  font-size: medium;
-}
+.large_image{
+   --max-height: 100%px;
+    width: 100%;
+    /* And limit it with our function above */
+    max-width: calc(var(--max-height, 100%) * var(--img-ratio, 1));
 
-ul li{
-  list-style-type:none;
-}
 
-nav{
-  display: block;
-  width: 100%;
-}
-
-.menu_navbar_right{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border: solid red 3px;
-}
-
-.texter{
-  background-color: yellow;
 }
 
 
-.navlinks{
-  display: flex;
-  padding-left: 0;
-  margin-left: 0;
-  
-}
-
-.navitem{
-  padding: 10px 0 0 20px;
-  font-size: x-large;
-}
-
-/*------BREADCRUMBS------*/
-
-.breadcrumbs{
-  position: relative;
-  width: 60%;
-  bottom: 7px;
-  right: 10px;
-}
-
-.inline{
-  display: inline-block;
+.date_tag{
   font-size: small;
 }
-/*------SIDENAV----MENU PANEL----*/
-/*------DASHBOARD------*/
-
-
-.video_sp{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-left: 20px;
-  margin-top: 30px;
-}
-
-
-/*------7 Modal------*/
-/*------COLORS------*/
-/*------BUTTONS------*/
-/*------PROJECT------*/
-
-
-
-/*------TEAM------*/
-
-
-
-/*------MISSION------*/
-
-/*------RESOURCE------*/
-/*------ANSWER------*/
-/*------GLOBAL------*/
-/*------COMMENT-DISCUSSION------*/
-/*------DISCUSSION------*/
 
 
 /* RESPONSIVE */
@@ -405,9 +222,7 @@ nav{
 /*  padding: 20px;*/
 /*}*/
 
-.main_base_content_block{
 
-}
 
 .delete_button{
   background-color: white;

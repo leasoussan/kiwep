@@ -3,18 +3,27 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
+{% block css %}
+    <link href="{% static 'backend/css/student_team_styles.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/css/discussion.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/css/buttons.css' %}" rel="stylesheet">
+
+{% endblock css %}
+
 <div class="team_detail_container">
 
     <div class="team_detail_header">
         <div class="description_team_project">
-            <h3> {{ team.name.title }}</h3>
+            <h2> {{ team.name.title }}</h2>
 
         </div>
-        <div class="team_extra_information">
+
+        <div class="team_header_participants">
             <div class="team_participant_container">
 
                 <div class="participants_team_header">
-                    <h4 class="participants_title">{% trans 'participants' %}</h4>
+                    <h4>{% trans 'participants' %}</h4>
 
                 </div>
 
@@ -22,128 +31,99 @@
                     {% for participant in team.participants.all %}
                         <div class="avatar">
                             {{ user.profile.profilepic_or_default}}
-                            <a href="{% url 'profile_view' participant.id  %} "  > <img src="{{user.profilepic_or_default}}" class="profile_pic_rounded" height="50px" width="50px"></a>
+                            <a href="{% url 'profile_view' participant.id  %}"><img src="{{user.profilepic_or_default}}" class="profile_pic_rounded" height="50px" width="50px"></a>
                         </div>
                     {% endfor %}
 
                 </div>
             </div>
-        </div>
-        <div class="join_team_btn_group">
-            {% if team.group_institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
-                <a class="btn join_team_button" href="{% url 'join_team' team.id %}">{% trans 'join_the_team' %}</a>
-            {% elif team.group_institution == request.user.profile.class_level and request.user.profile in team.participants.all %}
-                <a class="btn leave_team_button" href="{% url 'leave_team' team.id %}">{% trans 'leave team' %} </a>
-            {% endif %}
+
+
+            <div class="join_team_btn_group">
+                {% if team.group_institution == request.user.profile.class_level and request.user.profile not in team.participants.all %}
+                    <a class="btn primary_button" href="{% url 'join_team' team.id %}"><h5>{% trans 'join_the_team' %}</h5></a>
+                {% elif team.group_institution == request.user.profile.class_level and request.user.profile in team.participants.all %}
+                    <a class="btn neutral_action" href="{% url 'leave_team' team.id %}"><h5>{% trans 'leave team' %}</h5></a>
+                {% endif %}
+            </div>
         </div>
     </div>
 
 
+
+
     {% if team.project %}
-
-        <div class="team_project_detail">
-
-            <div class="img_team_project">
-                <img class="image_size" src="{%  static 'backend/images/kiwep/project.png' %}">
-            </div>
-
-            <div class="team_project_description">
-                <div class="team_project_title">
-                    <h2><a href="{% url 'project_detail' team.project.id %}" >{{ team.project.name.title }}</a></h2>
-                </div>
-                <div class="project_detail_team_page">
-                    <p>{{ team.project.description|safe }}</p>
-                </div>
-
-            </div>
-            <div class="project_learning_info">
-                <div class="detail_time_to_complete">
-                    <span>{% trans 'time_to_complete' %}:</span>
-                    {{team.project.time_to_complete}} {% trans 'days' %}
-                </div>
-                {#                <div>#}
-                {#                   <span>{% trans 'acquired_skills' %}<span>#}
-                {#                    {% for skill in project.mission_set.acquired_skills.all %}#}
-                {##}
-                {#                        <li class="skill_decoration">{{skill.name}}</li>#}
-                {#                    {% endfor %}#}
-                {#                </div>#}
-            </div>
-        </div>
-
         <div class="team_detail_main_content">
+
             {% if user.profile in team.participants.all %}
+                <div class="team_mission_list_panel">
+                    <div class="mission_list_box_team_detail">
+                        <h2>{% trans 'mission_not_attributed_list' %}</h2>
 
-                <div class="mission_list_box_team_detail">
-                    <h3>{% trans 'mission_not_attributed_list' %}</h3>
+                        <div class="team_mission_list">
 
-                    <div class="team_mission_list">
+                            {#STUDENT ____________________INDIVIDUAL MISSIONS DISPLAY IN TABLE #}
 
-                        {#STUDENT ____________________INDIVIDUAL MISSIONS DISPLAY IN TABLE #}
+                            {% for mission in team.project.mission_set.available_mission %}
 
-                        {% for mission in team.project.mission_set.available_mission %}
+                                <div class="team_mission_detail">
+                                    <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
 
-                            <div class="team_mission_detail">
-                                <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                    <label class="team_mission_detail_attributed_to">
 
-                                <label class="team_mission_detail_attributed_to">
-
-                                    {% if mission.individualmission %}
-                                        {% if not mission.attributed_to %}
-                                            <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
-                                        {% else %}
-                                            {% trans 'claimed_already' %}
+                                        {% if mission.individualmission %}
+                                            {% if not mission.attributed_to %}
+                                                <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
+                                            {% else %}
+                                                {% trans 'claimed_already' %}
+                                            {% endif %}
                                         {% endif %}
-                                    {% endif %}
-                                </label>
+                                    </label>
 
-                                <label class="team_mission_detail_m_type">
-                                    <i class="bi bi-person" style="font-size: 3rem; color: darkgreen;"></i>
-                                </label>
+                                    <label class="team_mission_detail_m_type">
+                                        <i class="bi bi-person" style="font-size: 3rem; color: darkgreen;"></i>
+                                    </label>
 
-                            </div>
-                        {% endfor %}
+                                </div>
+                            {% endfor %}
 
-                        {#STUDENT ____________________COLLECTIVE  MISSIONS DISPLAY IN TABLE #}
+                            {#STUDENT ____________________COLLECTIVE  MISSIONS DISPLAY IN TABLE #}
 
-                        {% for mission in team.project.mission_set.collective %}
+                            {% for mission in team.project.mission_set.collective %}
 
-                            <div class="team_mission_detail">
+                                <div class="team_mission_detail">
 
-                                <a class="team_mission_name_title" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                    <a class="team_mission_name_title" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
 
-                                {#                                {% endif %}#}
-                                <label class="team_mission_detail_attributed_to">
-                                    {%  if request.user.profile not in mission.collectivemission.attributed_to.all %}
-                                        <a href="{% url 'join_collective_mission_detail' mission.id %}">{% trans 'join_collective_mission' %}</a>
-                                    {% else %}
-                                        <a class="team_mission_name_title"href="{% url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_collective' %}</a>
-                                    {% endif %}
-                                </label>
+                                    <label class="team_mission_detail_attributed_to">
+                                        {%  if request.user.profile not in mission.collectivemission.attributed_to.all %}
+                                            <a href="{% url 'join_collective_mission_detail' mission.id %}">{% trans 'join_collective_mission' %}</a>
+                                        {% else %}
+                                            <a class="team_mission_name_title"href="{% url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_collective' %}</a>
+                                        {% endif %}
+                                    </label>
 
-                                <label class="team_mission_detail_m_type">
-                                    <i class="bi bi-people-fill" style="font-size: 3rem; color: darkolivegreen;"></i>
+                                    <label class="team_mission_detail_m_type">
+                                        <i class="bi bi-people-fill" style="font-size: 3rem; color: darkolivegreen;"></i>
 
-                            </div>
-                        {% endfor %}
+                                </div>
+                            {% endfor %}
 
 
 
+                        </div>
                     </div>
-
-                    <div class="team_mission_log">
-                        <h3>{% trans 'attributed_mission_log' %}</h3>
-                        <div class="mission_list_log_container">
+                    <div class="mission_list_box_team_detail">
+                        <h2>{% trans 'attributed_mission_log' %}</h2>
+                        <div class="team_mission_list">
                             {% if team.project.mission_set.all.get_attributed_mission %}
-
                                 {% for mission in team.project.mission_set.all.get_attributed_mission  %}
                                     <div class="team_mission_detail">
-
-                                      <a class="team_mission_name_title" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                                        <a class="team_mission_name_title" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
 
                                         <label class="team_mission_detail_attributed_to">
                                             {% if user.profile == mission.individualmission.attributed_to %}
-                                    <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a>
+                                                <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a>
                                             {% else %}
                                                 {{ mission.individualmission.attributed_to.user.first_name }}
                                             {% endif %}
@@ -160,24 +140,50 @@
                                     </div>
                                 {% endfor %}
                             {% else %}
-                                <h4>{% trans 'no_claimed_mission_yet' %}</h4>
+                                <h2>{% trans 'no_claimed_mission_yet' %}</h2>
                             {% endif %}
                         </div>
                     </div>
                 </div>
 
+                <div class="team_extra_detail">
+                    <div class="team_detail_project_detail">
 
-                <div class="discussion_container">
+                        <div class="team_detail_project">
+                            <div class="team_project_title">
+                             <a href="{% url 'project_detail' team.project.id %}" >   <h3>{{ team.project.name.title }}   </h3></a>
+                            </div>
+                         <a href="{% url 'project_detail' team.project.id %}" ><h2>{% trans 'project_detail' %}</h2></a>
+                        </div>
+                        <div class="project_learning_info">
+                            <div class="detail_container_center">
+                                <img class="medium_image" src="{%  static 'backend/images/kiwep/project_default.png' %}" style="--img-ratio: 1" >
 
-                    {% include 'comments/discussion.html' %}
+                                <div class="team_project_description">
+                                    {{ team.project.description|safe }}
+                                </div>
+                            </div>
+                            <div class="detail_time_to_complete">
+                                <h4>{% trans 'time_to_complete' %}:
+                                    {{team.project.time_to_complete}} {% trans 'days' %}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team_discussion_container">
+
+                        {% include 'comments/discussion.html' %}
+
+                    </div>
 
                 </div>
+
                 </div>
+
             {% endif %}
+        </div>
+
 
     {% endif %}
-
-</div>
 
 
 

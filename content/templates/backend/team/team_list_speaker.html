@@ -3,17 +3,18 @@
 {% load crispy_forms_tags %}
 
 {% block css %}
-    <link href="{% static 'backend/css/speaker_team_list.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/css/speaker_team_styles.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/css/buttons.css' %}" rel="stylesheet">
 {% endblock css %}
 
 
 <div class="team_board_container">
     <div class="team_list_btn_gp">
 
-        <a class="btn add_team_button" href="{% url 'create_team' %}">
-            <h4>{% trans 'create_a_new_team' %}</h4></a>
-        <button class="add_bulk_mission" data-bs-toggle="modal" data-bs-target="#add_bulk_mission">
-            <h4> {% trans 'add_mission' %} </h4>
+        <a class="btn primary_button" href="{% url 'create_team' %}">
+            <h5>{% trans 'create_a_new_team' %}</h5></a>
+        <button class="btn secondary_button" data-bs-toggle="modal" data-bs-target="#add_bulk_mission">
+            <h5> {% trans 'add_mission' %} </h5>
         </button>
     </div>
 
@@ -25,32 +26,28 @@
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 {% for group in user.profile.group.all %}
 
-                    <button class="nav-link" id="nav-{{ group.id }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ group.id }}" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
-                        {{ group.name }}</button>
+                    <button class="nav-link" id="nav-{{ group.id }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ group.id }}" type="button" role="tab" aria-controls="nav-{{ group.id }}" aria-selected="false">
+                      <h4>{{ group.name.title }}</h4></button>
                 {% endfor %}
             </div>
         </nav>
 
 
         <div class="tab-content" id="nav-tabContent">
+
+
             {% for group in user.profile.group.all %}
 
-                {% if group.first %}
-                <div class="tab-pane fade show active" id="nav-{{ group.id }}" role="tabpanel" aria-labelledby="nav-{{ group.id }}-tab">
-                {% else %}
-                <div class="tab-pane fade" id="nav-{{ group.id }}" role="tabpanel" aria-labelledby="nav-{{ group.id }}-tab">
-                {% endif %}
-                    <div class="">
-                        <!-- <div class="my_table"> -->
-                        <table class="table">
-                            <!--   <table class="team_list_table"> -->
+
+                <div class="tab-pane fade test" id="nav-{{ group.id }}" role="tabpanel" aria-labelledby="nav-{{ group.id }}-tab">
+
+                        <table>
                             <thead>
-                            <!-- <tr class="table_headers"> -->
                             <tr>
-                                <th>{% trans 'team_name' %}</th>
-                                <th>{% trans 'participants' %}</th>
-                                <th>{% trans 'has_project' %}</th>
-                                <th class="col_width">{% trans 'edit_or_delete' %}</th>
+                                <th class="table_column_large"><h3>{% trans 'team_name' %}</h3></th>
+                                <th class="table_column_large"><h3>{% trans 'participants' %}</h3></th>
+                                <th class="table_column_large"><h3>{% trans 'project' %}</h3></th>
+                                <th class="col_width"><h3>{% trans 'edit_or_delete' %}</h3></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -58,18 +55,18 @@
                             {% for team in team_list %}
                                 {% if team.group_institution == group %}
                                     <tr>
-                                        <td><a class="team_title_speaker_list" href="{% url 'team_detail' team.id %}">{{ team.name }}</a></td>
-                                        <td>{{ team.participants.count }}</td>
-                                        <td>
+                                        <td><a class="table_column_large" href="{% url 'team_detail' team.id %}"><h4>{{ team.name }}</h4></a></td>
+                                        <td class="table_column_medium">{{ team.participants.count }}</td>
+                                        <td class="table_column_large">
                                             {% if team.project %}
-                                               <h4 class="team_project_title_speaker_list"> {{team.project.name}} </h4>
+                                               <h4> {{team.project.name}} </h4>
                                             {% else %}
                                                 <a href="{% url 'team_detail' team.id %}">{% translate 'create_project' %}</a>
                                             {% endif %}
 
                                         </td>
-                                        <td>
-                                            <div class="team_list_tbl_edit_delete_icons">
+                                        <td  class="table_column_large">
+                                            <div>
                                                 <div class="team_list_tbl_edit_delete">
                                                     <a href="{% url 'update_team' team.id %}" class=""><img src="/static/backend/images/kiwep/edit.png"></a>
                                                 </div>
@@ -84,9 +81,10 @@
 
                         </table>
 
-                    </div>
                 </div>
+
             {% endfor %}
+
         </div>
 
     </div>

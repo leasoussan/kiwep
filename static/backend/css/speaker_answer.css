@@ -90,6 +90,10 @@
     overflow: auto;
 }
 
+.participant_collective_mission_answer{
+    width: 95%;
+    border: #0b2e13 solid 3px;
+}
 
 .mission_response_type_label{
     display: flex;

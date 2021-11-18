@@ -6,6 +6,7 @@
 {% block css %}
     <link href="{% static 'backend/css/speaker_mission_styles.css' %}" rel="stylesheet">
 {% endblock %}
+
 {% get_collective_id object as mission %}
 
 <div class="mission_detail_container">
@@ -48,7 +49,7 @@
 
             <div class="mission_detail_panel">
                 <div class="animation_div">
-                    <img class="image_animation" src="{% static 'backend/images/kiwep/mission_default.jpeg' %}" alt="this slowpoke moves">
+                    <img class="small_medium_image" src="{% static 'backend/images/kiwep/mission_default.png' %}" style="--img-ratio: 1"  alt="this slowpoke moves">
                 </div>
                 <div class="mission_detail_details">
 
@@ -103,7 +104,7 @@
 
                                     <div class="resource_cover">
 
-                                        <img class="image_resource" src="{{ resource.get_resourceImg_or_default }}">
+                                        <img class="icon_image" src="{{ resource.get_resourceImg_or_default }}" style="--img-ratio: 1" >
 
                                     </div>
 

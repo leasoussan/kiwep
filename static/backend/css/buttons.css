@@ -1,0 +1,83 @@
+.btn_group_navigation{
+    height: 6rem;
+    width: 40%;
+    }
+.primary_button{
+    width: 15rem;
+    height: 3rem;
+    background-color: #449162;
+    border: #92b392 solid 1px;
+    margin: 1rem;
+}
+
+.primary_button h5{
+    color: white;
+    font-weight: bolder;
+
+}
+
+
+.secondary_button{
+    width: 15rem;
+    background-color: #92b392;
+    border: #92b392 solid 1px;
+     margin: 1rem;
+
+}
+
+.secondary_button h5{
+    color: white;
+    font-weight: bolder;
+
+}
+
+.neutral_action{
+    width: 14rem;
+    height: 2.5rem;
+    background-color:#c0c2c1;
+    border: #bfc9c5 solid 1px;
+    margin: 5px;
+}
+
+.neutral_action h5{
+   color: #597F53;
+    font-weight: bolder;
+
+}
+
+.discussion_button{
+    min-width: 90%;
+    max-width: 90%;
+    color: white;
+    background-color:#64748f ;
+    padding: 5px;
+    margin-top: 1rem;
+}
+
+.discussion_button h3{
+    min-width: 95%;
+    max-width: 95%;
+    color:white;
+    overflow: hidden;
+
+}
+
+.claim_mission{
+ width: 15rem;
+ height: 5rem;
+}
+
+.clear_button{
+    border: none;
+    background-color: transparent;
+}
+
+.submit_button{
+    background-color: #92d192;
+}
+
+.edit_button{
+    background-color: lightgray;
+    width: 6rem;
+    /*color: white;*/
+}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 02:37+0200\n"
+"POT-Creation-Date: 2021-11-18 02:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,19 +62,19 @@ msgstr ""
 msgid "send_speaker_signup_invit"
 msgstr ""
 
-#: models.py:56
+#: models.py:57
 msgid "language"
 msgstr "Langue"
 
-#: models.py:179
+#: models.py:180
 msgid "invitor"
 msgstr "Invitant"
 
-#: models.py:193
+#: models.py:194
 msgid "institution_invite_for"
 msgstr ""
 
-#: models.py:216
+#: models.py:217
 msgid "speaker_invite_for"
 msgstr ""
 
@@ -82,60 +82,65 @@ msgstr ""
 msgid "send"
 msgstr "Envoyer"
 
-#: templates/accounts/profile/edit_profile.html:10
+#: templates/accounts/profile/edit_profile.html:16
 msgid "profile_edit"
 msgstr "Profile"
 
-#: templates/accounts/profile/edit_profile.html:20
+#: templates/accounts/profile/edit_profile.html:26
 msgid "profile_form"
 msgstr "Votre profile"
 
-#: templates/accounts/profile/edit_profile.html:22
+#: templates/accounts/profile/edit_profile.html:28
 msgid "institution_form_form"
 msgstr "Détails de l'établissement"
 
-#: templates/accounts/profile/profile_visitor.html:23
+#: templates/accounts/profile/profile_visitor.html:31
 #: templates/accounts/profile/speaker_profile.html:22
 #: templates/accounts/profile/student_profile.html:22
 msgid "first_name"
 msgstr "Prénom"
 
-#: templates/accounts/profile/profile_visitor.html:27
+#: templates/accounts/profile/profile_visitor.html:35
 #: templates/accounts/profile/speaker_profile.html:26
 #: templates/accounts/profile/student_profile.html:26
 msgid "last_name"
 msgstr "Nom de famille"
 
-#: templates/accounts/profile/profile_visitor.html:31
+#: templates/accounts/profile/profile_visitor.html:39
 #: templates/accounts/profile/speaker_profile.html:30
 #: templates/accounts/profile/student_profile.html:30
 msgid "phone_number"
 msgstr "Numéro de téléphone"
 
-#: templates/accounts/profile/profile_visitor.html:35
+#: templates/accounts/profile/profile_visitor.html:43
 #: templates/accounts/profile/speaker_profile.html:34
 #: templates/accounts/profile/student_profile.html:34
 msgid "city"
 msgstr "Ville"
 
-#: templates/accounts/profile/profile_visitor.html:39
+#: templates/accounts/profile/profile_visitor.html:47
 #: templates/accounts/profile/speaker_profile.html:38
 #: templates/accounts/profile/student_profile.html:38
 msgid "institution"
 msgstr "Institution"
 
-#: templates/accounts/profile/profile_visitor.html:44
+#: templates/accounts/profile/profile_visitor.html:52
 #: templates/accounts/profile/speaker_profile.html:43
 #: templates/accounts/profile/student_profile.html:43
 msgid "status"
 msgstr "Rôle"
 
-#: templates/accounts/profile/profile_visitor.html:53
+#: templates/accounts/profile/profile_visitor.html:64
 #: templates/accounts/profile/speaker_profile.html:52
 msgid "groups"
 msgstr "Groupes"
 
 #: templates/accounts/profile/student_profile.html:52
+
+msgid "your_group"
+msgstr "Mes Groups"
+
+#: templates/accounts/profile/student_profile.html:58
 msgid "teams"
 msgstr "Equipes"
 
@@ -241,15 +246,14 @@ msgstr "Se connecter"
 msgid "Do not have an account yet?"
 msgstr "Vous n'avez pas encore de compte"
 
-#: views.py:99
+#: views.py:98
 msgid "invite_used"
 msgstr ""
 
-#: views.py:103
+#: views.py:102
 msgid "your_invite_expired"
 msgstr "Votre invitation a expiré. Merci de contacter : lea@kiwep.co"
 
-#: views.py:106
+#: views.py:105
 msgid "no_key_to_register"
 msgstr "Il n'y a pas de clé pour s'inscrire "
-
