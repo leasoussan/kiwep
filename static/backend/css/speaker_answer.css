@@ -38,7 +38,7 @@
     align-items: flex-start;
     background-color: transparent;
     width: 80%;
-    height: 5rem;
+    height: 3rem;
     padding:5px 0px ;
 
 }
@@ -50,18 +50,25 @@
     max-height: 100%;
 }
 
+.speaker_collective_student_answer{
+    display: flex;
+    flex-direction: column;
+    min-height: 25rem;
+    max-height: 25rem;
+    /*overflow-x: hidden;*/
+    overflow: scroll;
+}
+
 .answer_content_box_view{
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    min-height:100%;
-    max-height: 100%;
+    min-height:80%;
+    max-height: 80%;
     min-width: 100%;
     max-width: 100%;
     justify-content: space-between;
 }
-
-
 .answer_file_label{
 
     height: 60%;
@@ -92,7 +99,7 @@
 
 .participant_collective_mission_answer{
     width: 95%;
-    border: #0b2e13 solid 3px;
+    height: 8rem;
 }
 
 .mission_response_type_label{
