@@ -8,6 +8,7 @@
 
 
 {% if user.is_speaker %}
+
     {% if object.individualmission %}
         {% include 'answer/speaker_mission_answer.html' with mission=object %}
 

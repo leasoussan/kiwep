@@ -32,7 +32,8 @@
                                     </div>
                                     <div>
                                         {% if student_answer.response_file %}
-                                        <div> {{student_answer.response_file }}</div>
+                                            <img class="large_image" src="{{ student_answer.response_file.url }}">
+
                                         {% else %}
                                             <div> {% trans 'no_file' %}</div>
                                         {% endif %}
@@ -117,7 +118,7 @@
 
         {% else %}
             <label> {% trans 'you_didnt__answered_yet' %}</label>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#student_first_answer">
+            <button type="button" class="btn primary_button" data-bs-toggle="modal" data-bs-target="#student_first_answer">
                 {% trans 'submit_answer' %}
             </button>
 
