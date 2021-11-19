@@ -1,3 +1,5 @@
+import json
+
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
@@ -22,11 +24,8 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save, m2m_changed, pre_delete, pre_save
 
 from django.utils import timezone
-from message.models import DiscussionModel,AnswerModel
+from message.models import DiscussionModel, AnswerModel
 
-
-
-# class VideoEmbid
 
 class Resource(DiscussionModel):
     name = models.CharField(max_length=200)
@@ -88,7 +87,6 @@ class Project(DiscussionModel):
 
     class Meta:
         verbose_name = _('project')
-
         verbose_name_plural = _('projects')
 
     def __str__(self):
@@ -100,6 +98,12 @@ class Project(DiscussionModel):
     def get_absolute_url(self):
         return reverse("project_detail", kwargs={"pk": self.pk})
 
+    def missions_without_chapters(self):
+        return self.mission_set.filter(chapter__isnull=True)
+
+    def chapter_html_ids(self):
+        html_ids = [f'#{chapter.id}-list' for chapter in self.chapter_set.all()]
+        return json.dumps(html_ids)
 
 
 
@@ -123,8 +127,10 @@ class Mission(AnswerModel):
         ('c', _('collective_mission')),
         ('ci', _('collective_Individual_mission')),
     ]
-    
+
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    chapter = models.ForeignKey('Chapter', on_delete=models.SET_NULL, null=True)
+    order = models.PositiveIntegerField(default=0)
     stage = models.CharField(max_length=10, choices=STAGE_CHOICE, default='start')
     response_type = models.CharField(max_length=200, choices=RESPONSE_TYPE, default=None, blank= True, null= True)
     name = models.CharField(max_length=200)
@@ -140,6 +146,8 @@ class Mission(AnswerModel):
 
     objects = MissionModelManager()
 
+    class Meta:
+        ordering = ['order', 'id']
 
     def __str__(self):
         return f"Mission Name : {self.name}"
@@ -172,7 +180,6 @@ class Mission(AnswerModel):
     #     return days_left.days
 
 
-
 class MissionValue(models.Model):
     percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
     hard_skills = models.ManyToManyField(Skills, through='HardSkillsRating', blank=True)
@@ -182,7 +189,8 @@ class MissionValue(models.Model):
 
 # Teacher decides how much the mission distribution of points there is in the mission- according to skills ni the mission
 # could be 100% of one skill and few % if many skills
-#
+
+
 class HardSkillsRating(models.Model):
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
     project_mission = models.ForeignKey(MissionValue, on_delete=models.CASCADE)
@@ -213,7 +221,6 @@ class IndividualMission(Mission):
         return reverse('update_individual_mission', kwargs={"pk":self.pk})
 
 
-
 class CollectiveMission(Mission):
     """
     This mission has to be done by each participants of a team.
@@ -235,8 +242,6 @@ class CollectiveMission(Mission):
         return reverse('update_collective_mission', kwargs={"pk":self.pk})
 
 
-
-
 class IndividualCollectiveMission(AnswerModel):
     """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
 
@@ -251,9 +256,6 @@ class IndividualCollectiveMission(AnswerModel):
 
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"pk":self.pk})
-
-
-
 
 
 class Team(DiscussionModel):
@@ -289,9 +291,16 @@ class Team(DiscussionModel):
             return days_left.days
 
 
+class Chapter(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    order = models.PositiveIntegerField(default=0)
 
-# def check_date(sender, instance, *args, **kwargs):
-#         if instance.start_date > instance.due_date:
-#             raise ValueError('Start date must be less than end date')
+    class Meta:
+        ordering = ['order', 'id']
 
-# pre_save.connect(check_date, sender=Team)
+    def other_chapter_ids(self):
+        chapters = self.project.chapter_set.exclude(id=self.id)
+        html_ids = [f'#{chapter.id}-list' for chapter in chapters]
+        html_ids.append('#new-jobs-list')
+        return json.dumps(html_ids)

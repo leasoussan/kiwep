@@ -13,6 +13,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
 
 from accounts.models import Student
+from content.models import Project
 from .models import Institution, Group
 from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin, RepresentativeStatuPassesTestMixin
 from .forms import InstitutionAddForm, InstitutionAddGroupForm
@@ -74,3 +75,8 @@ class InstitutionAddGroupView(ProfileCheckPassesTestMixin, View):
             return redirect('dashboard')
 
         return redirect('dashboard')
+
+
+class ProjectMissionBoardView(DetailView):
+    model = Project
+    template_name = 'backend/project/project_mission_board.html'

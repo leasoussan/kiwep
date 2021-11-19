@@ -9,7 +9,7 @@ from .models import (
     CollectiveMission,
     IndividualMission,
     MissionValue,
-    HardSkillsRating, IndividualCollectiveMission
+    HardSkillsRating, IndividualCollectiveMission, Chapter
 )
 
 
@@ -17,6 +17,7 @@ from .models import (
 admin.site.register(MissionValue)
 admin.site.register(HardSkillsRating)
 admin.site.register(Mission)
+admin.site.register(Chapter)
 
 
 

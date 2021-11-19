@@ -12,6 +12,11 @@ def clone_project_skills(project, new_project):
     pass
 
 
+def clone_project_chapters(project, new_project):
+    # TODO: create function
+    pass
+
+
 def clone_mission_fields(mission, new_mission):
     # TODO: create function
     pass
