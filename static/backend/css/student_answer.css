@@ -2,9 +2,10 @@
     display: flex;
     flex-direction: column;
     justify-content:space-between;
+    align-items: center;
     width: 100%;
-    min-height: 30vh;
-    max-height: 35vh;
+    min-height: 300px;
+    max-height:300px;
     background-color: whitesmoke;
     border: lightgray 1px solid;
     border-bottom-right-radius: 10px;
@@ -39,11 +40,46 @@
     max-height: 100vh;
 }
 
-.modal_answer_text{
+.participant_answer_modal{
+    display: flex;
+    flex-direction: row;
+}
+
+.participant_answer_modal div{
+    width: 50%;
+    min-height: 85%;
+    max-height: 85%;
+    border: solid white 2px;
     background-color: white;
+    margin: 5px;
+}
+.view_test_overflow{
+    display: inline;
+    min-width: 50%;
+    max-width: 50%;
+    min-height: 100%;
+    max-height: 100%;
+    border: solid orchid 2px;
+   overflow: scroll;
+    overflow-x: hidden;
+    word-wrap: normal;
+    word-break: break-all;
+}
+
+.modal_answer_text{
+    width: 100%;
+    height: 100%;
+    border: solid 9px yellow;
+}
+
+.modal_answer_text div{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    word-break: break-all;
     overflow: scroll;
-
-
+    overflow-x: hidden;
 }
 .modal_answer_text p{
     max-width: 100%;
@@ -76,7 +112,7 @@
 .answer_status_view_student{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     background-color: transparent;
     width: 90%;
     margin-top: 1rem;
@@ -90,25 +126,32 @@
     font-size: x-large;
 }
 
-.last_answer_container{
+.collective_existing_answer_container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     min-width: 100%;
     max-width: 100%;
-    min-height: 50%;
-    max-height: 50%;
+    min-height: 30%;
+    max-height: 30%;
     padding: 3rem 1rem;
+    background-color: white;
+    margin-top: 1rem;
 }
 
-.action_button_answer_student{
+.answer_detail{
     display: flex;
-    justify-content: center;
-    min-width: 50%;
-    max-width: 50%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 30%;
+    max-width: 30%;
     min-height: 90%;
     max-height: 90%;
 }
+
+
 .response_file_img{
     width: 100px;
     height: 100px;
@@ -126,15 +169,7 @@
     height: 4rem;
     background-color:lightgray ;
 }
-.answer_text_last_answer{
-    min-width: 50%;
-    max-width: 50%;
-    min-height: 90%;
-    max-height: 90%;
-    display: flex;
-    justify-content: center;
 
-}
 
 
 .add_answer{
@@ -154,15 +189,41 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    min-height:15%;
-    max-height: 15%;
-    border: white 1px solid;
+    min-height:20%;
+    max-height: 20%;
     padding: 3px 6px;
-
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 10px;
 }
 
-.answer_box .last_answer_label{
+.answer_header .btn{
+
 }
+.answer_box_collective_individual{
+    min-width: 60%;
+    max-width: 60%;
+    padding: 1rem;
+    border: white solid 1px;
+}
+
+.answer_box_participants_answers{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 40%;
+    max-width: 40%;
+    padding: 1rem;
+    background-color: #b4c2b9;
+}
+.answer_box_participants_answers button{
+    width: 70%;
+    height: 2rem;
+    margin: 5px;
+    background-color: whitesmoke;
+}
+
 .file_place_holder{
     width: 20%;
     height: 50%;
@@ -206,9 +267,13 @@
     margin-left: 60%;
 }
 
-.first_answer_student_container{
+.no_answer_student_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     min-width: 90%;
     max-width: 90%;
+    padding: 1rem;
 }
 
 .modal-dialog{
@@ -218,25 +283,71 @@
     max-height:100% ;
 }
 
+
+
 .image_modal{
-  min-width: 800px;
-  min-width: 800px;
-  min-height:  700px  ;
-  max-height:700px;
+    min-width: 800px;
+    min-width: 800px;
+    min-height:  700px  ;
+    max-height:700px;
     overflow: scroll;
 }
 /*--------------------------_COLLECTIVE MISSION*/
 
 .collective_answer_container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     min-width: 100%;
     max-width: 100%;
-    min-height: 70%;
-    max-height: 100%;
-    border: lightgray 1px solid;
+    min-height: 40%;
+    max-height: 40%;
+    padding: 1rem;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
-    background-color: #f2f2f2;
+    /*background-color: #f2f2f2;*/
 }
+
+
+.container_left_side{
+    width:50%
+}
+
+.container_right_side {
+    width: 50%
+
+}
+
+.individual_collective_answer_container{
+    display: flex;
+    flex-direction: row;
+    background-color: #b4c2b9;
+    border: solid 2px lightgray;
+    border-radius: 15px;
+}
+
+.last_answer_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    width: 95%;
+    background-color: lightgray;
+}
+
+
+individual_collective_mission_answer_container
+
+individual_collective_answer_container
+answer_box_collective_individual
+answer_header
+last_answer_label
+edit_answer_button
+last_answer_container
+action_button_answer_student
+see_file_modal_button
+file_place_holder
+answer_text_last_answer
+see_answer_modal_button
+file_place_holder
+answer_status_view_student

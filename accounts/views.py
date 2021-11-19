@@ -32,7 +32,7 @@ from accounts.decorators import check_profile, login_check
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
 from datetime import datetime, timedelta, date
-from django.utils.translation  import ugettext as _
+from django.utils.translation import ugettext as _
 # ----------------------------------------------------------------------------------Mixin
 
 
@@ -40,7 +40,6 @@ from django.utils.translation  import ugettext as _
 
 
 # -----------------------------------------------------------------------------------Resistration and Profile Creation
-
 
 
 class Register(View):
@@ -206,7 +205,7 @@ class CreateProfile(View):
 
     def post(self, request):
 
-        user_form = UserForm(request.POST,  request.FILES,  instance= request.user)
+        user_form = UserForm(request.POST,  request.FILES,  instance=request.user)
 
         profile_form = get_user_profile_form(request)
         user = request.user
@@ -234,6 +233,7 @@ class CreateProfile(View):
                     join_group = Group.objects.get(join_code=join_code)
                     profile_object.class_level=join_group
                     profile_object.save()
+
 
 
             return redirect('dashboard')

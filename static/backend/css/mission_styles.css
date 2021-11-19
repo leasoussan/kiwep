@@ -37,9 +37,17 @@ button .edit_button{
 .mission_detail_details{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    min-width: 65%;
+    max-width: 65%;
+    min-height: 40vh;
+    max-height: 40vh;
     justify-content: space-between;
+    overflow: scroll;
+    word-break: break-all;
+    border: #0b2e13 solid  3px
 }
+
+
 .mission_learning_info{
     display: flex;
     flex-direction: row;
@@ -188,10 +196,6 @@ display: flex;
 
 
 /*--------------------------SPEAKER ANSWER BOARD*/
-
-.speaker_answer_board{
-    width: 80%;
-}
 
 .table_missions_list{
 

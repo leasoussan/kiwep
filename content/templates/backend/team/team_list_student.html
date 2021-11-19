@@ -1,14 +1,98 @@
-{% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
 {% load crispy_forms_tags %}
-
+{% load mytags %}
 
 {% block css %}
-
-{% endblock %}
-
-
+    <link href="{% static 'backend/css/student_team_styles.css' %}" rel="stylesheet">
+{% endblock css %}
 
 
+<div class="student_team_list_container">
+    <div class="list_table_container">
+        <h2>{% trans 'my_team' %}</h2>
+        <table>
+            <thead>
+            <tr>
+                <th><h3>{% trans 'team_name' %}</h3></th>
+                <th><h3>{% trans 'participants' %}</h3></th>
+                <th><h3>{% trans 'duration_in_days' %}</h3></th>
+                <th><h3>{% trans 'project' %}</h3></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for team in team_list %}
+                <tr>
+                    <th><a class="table_item_team" href="{% url 'team_detail' team.id %}">
+                        <h4>{{ team.name.title }}</h4></a></th>
+                    <th><h4>{{ team.participants.count }}</h4></th>
+                    <th class="time_to_complete_table"><h4>{{team.project.time_to_complete}}</h4></th>
+                    {% if team.project %}
+                        <th><a class="table_item_project" href="{% url 'project_detail' team.project.id %}">
+                            <h4>{{team.project.name.title}} </h4></a></th>
+                    {% else %}
+                        <th><h3 class="table_item_project">{% trans 'no_project_yet' %}</h3></th>
+                    {% endif %}
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    {% if not request.user.profile.class_level.team_set.all|student_available_projects:request.user.profile %}
+
+
+    {% else %}
+        {% if request.user.profile.class_level.team_set.all|student_available_projects:request.user.profile %}
+        <div class="list_table_container">
+        <h2>{% trans 'join_other_team' %}</h2>
+
+        <table>
+        <thead>
+        <tr>
+            <th><h3>{% trans 'team_name' %}</h3></th>
+            <th><h3>{% trans 'participants' %}</h3></th>
+            <th><h3>{% trans 'duration_in_days' %}</h3></th>
+            <th><h3>{% trans 'project' %}</h3></th>
+
+
+        </tr>
+        </thead>
+   <tbody>
+        {% for team in  request.user.profile.class_level.team_set.all|student_available_projects:request.user.profile %}
+            {% if team not in team_list %}
+                <tr>
+                    <th><a class="table_item_team" href="{% url 'team_detail' team.id %}">
+                        <h4>{{ team.name.title }}</h4></a></th>
+                    <th><h4>{{ team.participants.count }}</h4></th>
+                    <th class="time_to_complete_table"><h4>{{team.project.time_to_complete}}</h4></th>
+                    {% if team.project %}
+                        <th><a class="table_item_project" href="{% url 'project_detail' team.project.id %}">
+                            <h4>{{team.project.name.title}} </h4></a></th>
+                    {% else %}
+                        <th><h3 class="table_item_project">{% trans 'no_project_yet' %}</h3></th>
+                    {% endif %}
+                </tr>
+            {% endif %}
+        {% endfor %}
+   {% else %}
+        <div class="no_item_message">
+
+            <h2>{% trans 'no_other_team_to_join' %}</h2>
+        </div>
+
+        {% endif %}
+
+    </tbody>
+    </div>
+    </table>
+    </div>
+
+{% endif %}
+
+</div>
 

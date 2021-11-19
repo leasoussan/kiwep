@@ -1,12 +1,18 @@
-
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load i18n %}
+{% load static %}
 {% load mytags %}
 {% load crispy_forms_tags %}
 
+{% block css %}
+    <link href="{% static 'backend/css/profile.css' %}" rel="stylesheet">
+{% endblock css %}
+
+
+
 {% block content %}
 
-
+    <div class="profile_main_information_display">
     <h2>{{ usertype }} {% trans 'profile_edit' %}</h2>
 
     <form method="post" enctype=multipart/form-data>
@@ -16,9 +22,9 @@
         <div>
             {{ user_form.as_p }}
         </div>
-<hr>
+        <hr>
         <h3>{% trans 'profile_form' %}</h3>
-{% if user.is_representative %}
+        {% if user.is_representative %}
             <h3>{% trans 'institution_form_form' %}</h3>
         {% endif %}
         <div>
@@ -32,6 +38,7 @@
     </form>
 
 
+</div>
 
 
 

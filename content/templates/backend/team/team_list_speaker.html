@@ -1,10 +1,136 @@
-{% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
 {% load crispy_forms_tags %}
 
 
 {% block css %}
+    <link href="{% static 'backend/css/speaker_team_styles.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/css/buttons.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+
+<div class="team_board_container">
+    <div class="team_list_btn_gp">
+
+        <a class="btn primary_button" href="{% url 'create_team' %}">
+            <h5>{% trans 'create_a_new_team' %}</h5></a>
+        <button class="btn secondary_button" data-bs-toggle="modal" data-bs-target="#add_bulk_mission">
+            <h5> {% trans 'add_mission' %} </h5>
+        </button>
+    </div>
+
+
+
+    <div class="team_board_manager">
+
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                {% for group in user.profile.group.all %}
+
+                    <button class="nav-link" id="nav-{{ group.id }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ group.id }}" type="button" role="tab" aria-controls="nav-{{ group.id }}" aria-selected="false">
+                      <h4>{{ group.name.title }}</h4></button>
+                {% endfor %}
+            </div>
+        </nav>
+
+
+        <div class="tab-content" id="nav-tabContent">
+
+
+            {% for group in user.profile.group.all %}
+
+
+                <div class="tab-pane fade test" id="nav-{{ group.id }}" role="tabpanel" aria-labelledby="nav-{{ group.id }}-tab">
+
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="table_column_large"><h3>{% trans 'team_name' %}</h3></th>
+                                <th class="table_column_large"><h3>{% trans 'participants' %}</h3></th>
+                                <th class="table_column_large"><h3>{% trans 'project' %}</h3></th>
+                                <th class="col_width"><h3>{% trans 'edit_or_delete' %}</h3></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for team in team_list %}
+                                {% if team.group_institution == group %}
+                                    <tr>
+                                        <td><a class="table_column_large" href="{% url 'team_detail' team.id %}"><h4>{{ team.name }}</h4></a></td>
+                                        <td class="table_column_medium">{{ team.participants.count }}</td>
+                                        <td class="table_column_large">
+                                            {% if team.project %}
+                                               <h4> {{team.project.name}} </h4>
+                                            {% else %}
+                                                <a href="{% url 'team_detail' team.id %}">{% translate 'create_project' %}</a>
+                                            {% endif %}
+
+                                        </td>
+                                        <td  class="table_column_large">
+                                            <div>
+                                                <div class="team_list_tbl_edit_delete">
+                                                    <a href="{% url 'update_team' team.id %}" class=""><img src="/static/backend/images/kiwep/edit.png"></a>
+                                                </div>
+                                                <div class="team_list_tbl_edit_delete">
+                                                    <a href="{% url 'delete_team' team.id %}"><img src="/static/backend/images/kiwep/trash.png"></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+
+                        </table>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="add_bulk_mission" tabindex="-1" aria-labelledby="add_bulk_missionLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="add_bulk_mission">{% trans 'add_bulk_mission' %}</h5>
+
+            </div>
+            <div class="modal-body">
+
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-bulk_add_individual-tab" data-bs-toggle="tab" data-bs-target="#nav-bulk_add_individual" type="button" role="tab" aria-controls="nav-bulk-individual" aria-selected="true">
+                            {% trans 'add_bulk_indidv' %}</button>
+                        <button class="nav-link" id="nav-bulk_add_collective-tab" data-bs-toggle="tab" data-bs-target="#nav-bulk_add_collective" type="button" role="tab" aria-controls="nav-bulk-collective" aria-selected="false">
+                            {% trans 'add_collective' %}</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-bulk_add_individual" role="tabpanel" aria-labelledby="nav-bulk-individual">
+
+                        <form method="post" action="{% url 'bulk_add_individual_mission' %}">
+                            {% csrf_token %}
+                            {{ individual_form|crispy }}
+                            {{ individual_form.media }}
+                            {{ mission_bulk_form|crispy }}
+
+                            <button class="btn modal_save_button" type="submit" name="action"><p class="button_text">{% trans 'save' %}</p>
+                            </button>                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="nav-bulk_add_collective" role="tabpanel" aria-labelledby="nav-bulk-collective">
 
 {% endblock %}
 

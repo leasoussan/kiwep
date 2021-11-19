@@ -57,6 +57,8 @@
     display: flex;
     width: 60%;
     justify-content: flex-start;
+    word-break: break-all;
+    overflow: hidden;
 }
 
 .templates_tag{
@@ -74,11 +76,13 @@
 }
 
 .project_detail_description{
-    min-height: 32vh;
-    max-height: 32vh;
-    min-width: 90%;
-    max-width: 90%;
+    min-height: 30vh;
+    max-height: 30vh;
+    min-width: 100%;
+    max-width: 100%;
     overflow: scroll;
+    overflow-x: hidden;
+    padding: 1rem;
 }
 
 .detail_time_to_complete{
@@ -106,6 +110,7 @@
     display: flex;
     flex-direction: row;
     width: 30%;
+    height: 20%;
     justify-content: flex-end;
 }
 
@@ -218,9 +223,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    min-width: 80%;
+    min-width: 100%;
     max-width: 100%;
-    min-height: 3rem;
+    min-height: 2rem;
     margin-top: 1rem;
     background-color: whitesmoke;
     margin-left: 2rem;
@@ -233,9 +238,11 @@
 }
 .project_mission_items .mission_name{
     margin-left: 5px;
-    min-width: 20%;
-    max-width: 20%;
-
+    min-width: 55%;
+    max-width: 55%;
+    word-break: break-all;
+    overflow: hidden;
+    max-height: 2rem;
 }
 
 .project_mission_items span {

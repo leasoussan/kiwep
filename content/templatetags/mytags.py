@@ -29,6 +29,11 @@ def student_individual_collective_mission(mission_qs, user):
     """ get in team the individualcollective Mission for joined user"""
     return mission_qs.filter(mission__parent_mission__attributed_to=user)
 
+@register.filter
+def student_participants_collective_mission(mission_qs, user):
+    """ get in IndividualCollectiveMission detail the other participants answer"""
+    return mission_qs.exclude(attributed_to=user)
+
 
 
 @register.filter

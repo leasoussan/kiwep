@@ -12,16 +12,16 @@ urlpatterns = [
     path('', homepage_view, name = 'homepage'),
     # project
 
-    path('chose-project-detail/<int:pk>/<int:team_id>/', ChooseProjectForTeamView.as_view(), name = "choose_project_for_team_detail"),
-    path('project-list/', ProjectListView.as_view(), name = "project_list"),
+    path('chose-project-detail/<int:pk>/<int:team_id>/', ChooseProjectForTeamView.as_view(), name="choose_project_for_team_detail"),
+    path('project-list/', ProjectListView.as_view(), name="project_list"),
     path('student-available-project-list/', StudentAvailableTeamList.as_view(), name="student_available_project_list"),
-    path('project-detail/<int:pk>', ProjectDetailView.as_view(), name = "project_detail"),
-    path('create-project/', ProjectCreateView.as_view(), name ="create_project"),
-    path('duplicate-project/<int:pk>/<int:team_id>/', DuplicateProjectCreateView.as_view(), name="duplicate_create_project"),
+    path('project-detail/<int:pk>', ProjectDetailView.as_view(), name="project_detail"),
+    path('create-project/', ProjectCreateView.as_view(), name="create_project"),
+    path('duplicate-project/<int:pk>/<int:team_id>/', ChooseProjectForTeamView.as_view(), name="duplicate_create_project"),
 
     # path('create-project-mission/<int:pk>', CreateProjectMissionView.as_view(), name="create_project_mission"),
-    path('update-project/<int:pk>', ProjectUpdateView.as_view(), name = "update_project"),
-    path('delete-project/<int:pk>', ProjectDeleteView.as_view(), name = "delete_project"),
+    path('update-project/<int:pk>', ProjectUpdateView.as_view(), name="update_project"),
+    path('delete-project/<int:pk>', ProjectDeleteView.as_view(), name="delete_project"),
 
 
 
@@ -50,8 +50,8 @@ urlpatterns = [
     # path('submit-mission/<int:pk>', StudentSubmitMission.as_view(), name='submit_mission'),
     path('validate-mission/<int:pk>', ValidateMission.as_view(), name='validate_mission'),
     path('unclaim-mission/<int:pk>', UnclaimMission.as_view(), name="unclaim_mission"),
-    path('bulk-add-individual-mission/', bulk_add_individual_mission, name="bulk_add_individual_mission"),
-    path('bulk-add-collective-mission/', bulk_add_collective_mission, name="bulk_add_collective_mission"),
+    path('bulk-add-individual-mission/', bulk_add_mission, name="bulk_add_individual_mission"),
+    path('bulk-add-collective-mission/', bulk_add_mission, name="bulk_add_collective_mission"),
 
     # team
     path('team-list/', TeamListView.as_view(), name = "team_list"),

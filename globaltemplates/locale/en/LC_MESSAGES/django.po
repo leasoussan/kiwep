@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-07 15:22+0200\n"
+"POT-Creation-Date: 2021-11-10 23:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: 404.html:11
+#: 404.html:12
 msgid "went_wrong"
-msgstr "Something went wrong. Try refreshing the page or contact lea@kiwep.co "
+msgstr "Ouups, Something went wrong"
 
-#: 404.html:16 500.html:17
+#: 404.html:17 500.html:17
 msgid "homepage"
 msgstr "Homepage"
 
 #: 500.html:13
 msgid "internal_server_error"
-msgstr "Internal problem error"
+msgstr "Internal Server Error, Please contact lea@kiwep.co"
 
 #: navbar.html:28
 msgid "board_team"
@@ -44,15 +44,15 @@ msgstr "Answers Board"
 
 #: navbar.html:33
 msgid "student_projects"
-msgstr "My Projects"
+msgstr "Projects"
 
 #: navbar.html:34
 msgid "student_missions_list"
-msgstr "My Missions"
+msgstr "Missions List"
 
 #: navbar.html:36
 msgid "welcome_to_intstitution_message"
-msgstr "Welcome to KIWEP"
+msgstr "Welcome to Kiwep!"
 
 #: navbar.html:52
 msgid "profile"
@@ -60,7 +60,7 @@ msgstr "Profile"
 
 #: navbar.html:53
 msgid "profile_edit"
-msgstr "Edit Profile"
+msgstr "Edit"
 
 #: navbar.html:54
 msgid "logout"

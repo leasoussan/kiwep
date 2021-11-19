@@ -6,6 +6,7 @@
 {% block css %}
     <link href="{% static 'backend/css/speaker_mission_styles.css' %}" rel="stylesheet">
 {% endblock %}
+
 {% get_collective_id object as mission %}
 
 <div class="mission_detail_container">
@@ -30,7 +31,7 @@
         {##}
         {#    {% endif %}#}
 
-        <h3> {{ object.name }}</h3>
+        <h3 class="mission_name_title"> {{ object.name }}</h3>
 
 
         <div class="speaker_action_btn_group">
@@ -48,11 +49,11 @@
 
             <div class="mission_detail_panel">
                 <div class="animation_div">
-                    <img class="image_animation" src="{% static 'backend/images/kiwep/mission_default.jpeg' %}" alt="this slowpoke moves">
+                    <img class="small_medium_image" src="{% static 'backend/images/kiwep/mission_default.png' %}" style="--img-ratio: 1"  alt="this slowpoke moves">
                 </div>
                 <div class="mission_detail_details">
 
-                    <p class="mission_detail_description">{{object.description|safe}}</p>
+                    <p>{{object.description|safe}}</p>
 
 
                 </div>
@@ -87,12 +88,13 @@
 
                     <div class="header_resource_container">
                         <h3>{% trans 'resource_list' %}</h3>
+{% if not individualcollectivemission %}
 
                         <!-- Button trigger modal add Resource -->
                         <button type="button" class="btn btn-primary add_resource_button" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
                             <i class="bi bi-plus-square"></i>
                         </button>
-
+{% endif %}
                     </div>
 
                     {% if object.resource_set.exists %}
@@ -103,7 +105,7 @@
 
                                     <div class="resource_cover">
 
-                                        <img class="image_resource" src="{{ resource.get_resourceImg_or_default }}">
+                                        <img class="icon_image" src="{{ resource.get_resourceImg_or_default }}" style="--img-ratio: 1" >
 
                                     </div>
 
@@ -138,8 +140,8 @@
 
                             {% if not object.attributed_to  %}
                                 <h3 class="medium_title label_mission_status"> {% trans 'mission_unclaimed' %}</h3>
-
                             {% else %}
+
                                 <div class="mission_attributed_to_label">
                                     <h3>{% trans 'attributed_to' %}:</h3>
                                     <label class="mission_attr_name"> {{ object.attributed_to }}</label>

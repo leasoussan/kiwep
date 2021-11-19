@@ -6,6 +6,7 @@
 
 {% block css %}
     <link href="{% static 'backend/css/resource_styles.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/css/buttons.css' %}" rel="stylesheet">
 {% endblock css %}
 
 {% block content %}
@@ -15,21 +16,22 @@
 
         <div class="speaker_btn_group">
             <div class="action_button_resource_speaker">
-                <a class="btn" href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a>
+                <a class="btn neutral_action" href="{% url 'project_detail' resource.project.id %}">{% trans 'back_to_project' %}</a>
 
 
                 {% if resource.mission.individualmission %}
-                    <a  class="btn btn-light back_btn" href="{% url  'individual_mission_detail' resource.mission.id %}">{% trans 'back_to_mission' %}</a>
+                    <a  class="btn neutral_action" href="{% url  'individual_mission_detail' resource.mission.id %}">{% trans 'back_to_mission' %}</a>
                 {% elif  resource.mission.collectivemission %}
-                    <a  class="btn btn-light back_btn" href="{% url  'collective_mission_detail' resource.mission.id %}">{% trans 'back_to_mission' %}"</a>
+                    <a  class="btn neutral_action" href="{% url  'collective_mission_detail' resource.mission.id %}">{% trans 'back_to_mission' %}"</a>
 
-{% else %}
+                {% else %}
 
-       {% endif %}
+                {% endif %}
 
             </div>
-            <a class="btn edit_btn_resource" href="{% url 'update_resource' resource.id %}">{% trans 'update_resource' %}</a>
-
+            {% if user.is_speaker %}
+                <a class="btn secondary_button" href="{% url 'update_resource' resource.id %}">{% trans 'update_resource' %}</a>
+            {% endif %}
         </div>
 
         <div class="container_resource">
@@ -39,11 +41,11 @@
             </div>
 
             <div class="resource_detail">
-                <div class="resource_img_box">
+                <div class="medium_image">
                     {% if resource.image %}
                         <!-- Button trigger modal -->
                         <button  data-bs-toggle="modal" data-bs-target="#see_image_resource">
-                            <img class="resource_image"  src="{{ resource.get_resourceImg_or_default }}" alt="{{ resource.title }}">  </button>
+                            <img class="resource_image"  src="{{ resource.get_resourceImg_or_default }}" style="--img-ratio: 1" alt="{{ resource.title }}" >  </button>
                     {% else %}
 
                     {% endif %}
@@ -57,10 +59,10 @@
                         <div class="additional_file_box">
                             {% if resource.file_rsc %}
                                 <!-- Button trigger modal -->
-                                <button class="see_additional_file" data-bs-toggle="modal" data-bs-target="#see_file_resource">
+                                <button class="primary_button" data-bs-toggle="modal" data-bs-target="#see_file_resource">
                                     {#                            <img class="resource_file_small"  src="{{ resource.get_resourceFILEor_default }}" alt="{{ resource.title }}">  #}
 
-                                    <h3>{% trans 'see_additional_file' %}</h3> </button>
+                                    <h5>{% trans 'see_additional_file' %}</h5> </button>
                             {% else %}
 
 
@@ -69,7 +71,7 @@
 
                         <div class="link_resource_box">
 
-                            <a class="btn resource_link_btn" href="{{ resource.link }}">{% trans 'resource_link' %}</a>
+                            <a class="btn primary_button" href="{{ resource.link }}"><h5>{% trans 'resource_link' %}</h5></a>
 
                         </div>
 

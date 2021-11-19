@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-07 15:22+0200\n"
+"POT-Creation-Date: 2021-11-10 21:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,18 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: 404.html:11
+#: 404.html:12
 msgid "went_wrong"
-msgstr "Quelque chose s'est mal passé ici"
+msgstr ""
 
-#: 404.html:16 500.html:17
+#: 404.html:17 500.html:17
 msgid "homepage"
 msgstr "Page d'accueil"
 
 #: 500.html:13
 msgid "internal_server_error"
-msgstr ""
-"Oupss... Une erreur s'est produite. Essayez d'actualiser la page ou "
+msgstr "Oupss... Une erreur s'est produite. Essayez d'actualiser la page ou "
 "contactez lea@kiwep.co."
 
 #: navbar.html:28
@@ -46,7 +45,7 @@ msgstr "Tableau des réponses"
 
 #: navbar.html:33
 msgid "student_projects"
-msgstr "Mes Projects"
+msgstr "Projets"
 
 #: navbar.html:34
 msgid "student_missions_list"
@@ -62,8 +61,10 @@ msgstr "Profil"
 
 #: navbar.html:53
 msgid "profile_edit"
-msgstr "Modifer votre Profil"
+msgstr "Modifer Profil"
 
 #: navbar.html:54
 msgid "logout"
 msgstr "Déconnexion"
+
+

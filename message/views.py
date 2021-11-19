@@ -122,6 +122,16 @@ class AnswerUpdateView(StudentStatuPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
 
+class AnswerDeletView(StudentStatuPassesTestMixin, DeleteView):
+    model = Answer
+    template_name = 'crud/delete.html'
+    success_url = reverse_lazy('my_mission_list')
+
+    def get_object(self, queryset=None):
+        pk =self.kwargs['pk']
+        return get_object_or_404(Answer, pk=pk)
+
+
 class SpeakerAnswerMissionStatusView(UpdateView):
     model = Answer
     template_name = 'crud/update.html'

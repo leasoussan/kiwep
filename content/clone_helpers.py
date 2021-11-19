@@ -1,29 +1,54 @@
 from content.models import *
 from django.utils import timezone
 
+
+def clone_mission_skills(mission, new_mission):
+    # TODO: create function
+    pass
+
+
+def clone_project_skills(project, new_project):
+    # TODO: create function
+    pass
+
+
+def clone_mission_fields(mission, new_mission):
+    # TODO: create function
+    pass
+
+
+def clone_project_fields(project, new_project):
+    # TODO: create function
+    pass
+
 def clone_resource(resource):
+    print(resource.id)
     resource.id = None
     resource.save()
+    print(resource.id)
     return resource
 
+
 def clone_mission_resources(mission, new_mission):
+    print('clone resources function')
     for resource in mission.resource_set.all():
+        print(resource)
         new_resource = clone_resource(resource)
         new_resource.mission = new_mission
         new_resource.project = new_mission.project
         new_resource.save()
-    
+
 
 def clone_mission(mission, new_proj):
     if mission.mission_type == 'i':
             new_mission = IndividualMission.objects.create(
                 id=None,
-                name = mission.name,
-                project_id = new_proj.id,
-                created_date = None,
-                due_date = timezone.now(),
+                name=mission.name,
+                project_id=new_proj.id,
+                created_date=None,
+                due_date=timezone.now(),
                 mission_type='i',
-                owner_id= mission.project.speaker.user.id,
+                owner_id=mission.project.speaker.user.id,
                 attributed_to=None,
                 description=mission.description
             )
@@ -40,10 +65,11 @@ def clone_mission(mission, new_proj):
             description=mission.description
         )
         new_mission.attributed_to.set(attributed_to)
- 
+    print('mission cloned, starting on resources')
     clone_mission_resources(mission, new_mission)
 
     return new_mission
+
 
 def clone_missions(proj, new_proj):
     for mission in proj.mission_set.all():
@@ -56,8 +82,10 @@ def clone_proj_resources(proj, new_proj):
         new_resource.project = new_proj
         new_resource.save()
 
+
 def check_if_allowed_to_clone(project, speaker):
     return True
+
 
 def clone_project(project, speaker):
     if not check_if_allowed_to_clone(project, speaker):
@@ -72,10 +100,13 @@ def clone_project(project, speaker):
         project.is_global = False
         project.is_premium = False
         project.speaker = speaker
+        project.title += ' - copy'
+        project.name += ' - copy'
     project.save()
     old_proj = Project.objects.get(id=original_id)
     clone_missions(old_proj, project)
     clone_proj_resources(old_proj, project)
+    return project
 
 
 def bulk_add(mission, *projects):
