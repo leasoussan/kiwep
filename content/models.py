@@ -105,6 +105,11 @@ class Project(DiscussionModel):
         html_ids = [f'#{chapter.id}-list' for chapter in self.chapter_set.all()]
         return json.dumps(html_ids)
 
+    def next_chapter_num(self):
+        if self.chapter_set.last():
+            return self.chapter_set.last().order + 1
+        return 0
+
 
 
 class Mission(AnswerModel):
@@ -304,3 +309,8 @@ class Chapter(models.Model):
         html_ids = [f'#{chapter.id}-list' for chapter in chapters]
         html_ids.append('#new-jobs-list')
         return json.dumps(html_ids)
+
+    def save(self, *args, **kwargs):
+        if self.order == 0 and self.project.chapter_set.last():
+            self.order = self.project.chapter_set.last().order + 1
+        super().save(*args, **kwargs)

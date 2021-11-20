@@ -1,9 +1,4 @@
-body {
-  padding: 0px;
-  font: 14px "Lato";
-  margin: 0px;
-  background-color: rgba(186, 186, 186, 1.0);
-}
+
 
 ul {
   list-style-type: none;
@@ -121,7 +116,6 @@ Body Section Styles
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: space-between;
 	align-items: stretch;
 	align-content: stretch;
 	height: 100%;

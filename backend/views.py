@@ -1,11 +1,15 @@
+import json
 from datetime import datetime
 
 from django.contrib import messages
-from django.shortcuts import render, reverse, redirect
+from django.http import HttpResponse
+from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.urls import reverse_lazy
 from django.views import View
+from django.views.decorators.http import require_POST
+from django.views.generic import RedirectView
 
 from accounts.forms import SpeakerInviteForm
 from accounts.decorators import check_profile
@@ -13,7 +17,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
 
 from accounts.models import Student
-from content.models import Project
+from content.models import Project, Mission, Chapter
 from .models import Institution, Group
 from accounts.mixin import ProfileCheckPassesTestMixin, SpeakerStatuPassesTestMixin, RepresentativeStatuPassesTestMixin
 from .forms import InstitutionAddForm, InstitutionAddGroupForm
@@ -80,3 +84,23 @@ class InstitutionAddGroupView(ProfileCheckPassesTestMixin, View):
 class ProjectMissionBoardView(DetailView):
     model = Project
     template_name = 'backend/project/project_mission_board.html'
+
+
+class CreateChapterRedirectView(RedirectView):
+    pattern_name = 'project_mission_board'
+
+    def get_redirect_url(self, *args, **kwargs):
+        proj = get_object_or_404(Project, id=kwargs['pk'])
+        if proj.speaker == self.request.user.profile():
+            proj.chapter_set.create(name=f'Chapter {proj.next_chapter_num()}')
+        return super().get_redirect_url(*args, **kwargs)
+
+
+# @require_POST
+def change_mission_chapter(request):
+    data = json.loads(request.body)
+    chapter_id = data.get('chapter_id')
+    mission = get_object_or_404(Mission, id=data.get('mission_id'))
+    mission.chapter = None if chapter_id == 0 else get_object_or_404(Chapter, id=chapter_id)
+    mission.save()
+    return HttpResponse('ok')
