@@ -63,9 +63,26 @@
   }
   return cookieValue;
 }
+function extractMissionIdFromDivId(string){
+      return string.match('(?<=^[^-]+-)[^-]+')
 
-  function moveMissionToChapter(chapter_id, mission_id) {
-      var url= '{% url "change_mission_chapter" %}';
+}
+
+{#function moveMissionToChapter(chapter_id, mission_id) {#}
+{#      url= '{% url "change_mission_chapter" %}';#}
+{#      fetch(url, {#}
+{#      method: "POST",#}
+{#      credentials: "same-origin",#}
+{#      headers: {#}
+{#        "X-Requested-With": "XMLHttpRequest",#}
+{#        "X-CSRFToken": getCookie("csrftoken"),#}
+{#      },#}
+{#      body: JSON.stringify({chapter_id: chapter_id, mission_id:mission_id})#}
+{#    });#}
+{#    }#}
+
+  function moveMissionToChapter(chapter_id, mission_id, previous_id=null) {
+      url= '{% url "change_mission_chapter" %}';
       fetch(url, {
       method: "POST",
       credentials: "same-origin",
@@ -73,9 +90,23 @@
         "X-Requested-With": "XMLHttpRequest",
         "X-CSRFToken": getCookie("csrftoken"),
       },
-      body: JSON.stringify({chapter_id: chapter_id, mission_id:mission_id})
+      body: JSON.stringify({chapter_id: chapter_id, mission_id:mission_id, previous_id:previous_id})
     });
     }
+
+  function moveOrSortMission(ui, chapter_id){
+      var string = ui.item[0].childNodes[1].id;
+            console.log(string)
+            var result = string.match('(?<=^[^-]+-)[^-]+');
+            if (ui.item[0].previousElementSibling){
+                string = ui.item[0].previousElementSibling.childNodes[1].id;
+                var previous_id = extractMissionIdFromDivId(string)[0];
+                moveMissionToChapter(chapter_id, result[0], previous_id);
+
+            } else {
+                moveMissionToChapter(chapter_id, result[0]);
+            }
+  }
   $( function() {
         $( "#new-jobs-list" ).sortable({
           connectWith: {{ project.chapter_html_ids|safe }},
@@ -88,7 +119,7 @@
           receive: function( event, ui ) { // event is triggered when an item from a connected sortable list has been dropped into another list
             $('#new-jobs').css('background-color', 'rgba(0,0,0,.0)');
             var string = ui.item[0].childNodes[1].id;
-            var result = string.match('(?<=^[^-]+-)[^-]+');
+            var result = extractMissionIdFromDivId(string);
             console.log(ui);
             moveMissionToChapter(0, result[0])
           },
@@ -113,15 +144,15 @@
           },
           receive: function( event, ui ) { // event is triggered when an item from a connected sortable list has been dropped into another list
             $('#{{chapter.id}}').css('background-color', 'rgba(0,0,0,.0)');
-            var string = ui.item[0].childNodes[1].id;
-            var result = string.match('(?<=^[^-]+-)[^-]+');
-            moveMissionToChapter({{chapter.id}}, result[0]);
+            moveOrSortMission(ui, '{{ chapter.id }}')
+
           },
           revert: 100,
           start: function( event, ui ) { //event is triggered when sorting starts.
 
           },
           stop: function( event, ui ) { //event is triggered when sorting has stopped.
+            moveOrSortMission(ui, '{{ chapter.id }}')
 
           }
         });

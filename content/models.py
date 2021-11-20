@@ -1,6 +1,7 @@
 import json
 
 from django.db import models
+from django.db.models import F
 from django.urls import reverse
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -134,7 +135,7 @@ class Mission(AnswerModel):
     ]
 
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    chapter = models.ForeignKey('Chapter', on_delete=models.SET_NULL, null=True)
+    chapter = models.ForeignKey('Chapter', on_delete=models.SET_NULL, null=True, blank=True)
     order = models.PositiveIntegerField(default=0)
     stage = models.CharField(max_length=10, choices=STAGE_CHOICE, default='start')
     response_type = models.CharField(max_length=200, choices=RESPONSE_TYPE, default=None, blank= True, null= True)
@@ -157,7 +158,6 @@ class Mission(AnswerModel):
     def __str__(self):
         return f"Mission Name : {self.name}"
 
-
     def get_mission_type(self):
         mission_type = {
         'is_indidividual':IndividualMission,
@@ -170,7 +170,14 @@ class Mission(AnswerModel):
                 # TODO: We need to check if there is the Individual Mission
                 return key
 
-
+    def save(self, *args, **kwargs):
+        if self.order == 0 and self.chapter:
+            self.order = self.chapter.mission_set.last().order + 1
+        elif not self.chapter:
+            self.order = 0
+        elif self.order in self.chapter.mission_set.exclude(id=self.id).values_list('order', flat=True):
+            self.chapter.mission_set.filter(order__gte=self.order).update(order=F('order') + 1)
+        super().save(*args, **kwargs)
     #
     # def mission_due_date(self, ):
     #     if self.mission:

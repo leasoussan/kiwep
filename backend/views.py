@@ -96,11 +96,15 @@ class CreateChapterRedirectView(RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-# @require_POST
+@require_POST
 def change_mission_chapter(request):
     data = json.loads(request.body)
     chapter_id = data.get('chapter_id')
+    previous_id = data.get('previous_id')
     mission = get_object_or_404(Mission, id=data.get('mission_id'))
     mission.chapter = None if chapter_id == 0 else get_object_or_404(Chapter, id=chapter_id)
+    if previous_id:
+        prev_mission = get_object_or_404(Mission, id=previous_id)
+        mission.order = prev_mission.order + 1
     mission.save()
     return HttpResponse('ok')
