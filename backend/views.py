@@ -12,7 +12,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic import RedirectView
 
 from accounts.forms import SpeakerInviteForm
-from accounts.decorators import check_profile
+from accounts.decorators import check_profile, speaker_check
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
 
@@ -83,11 +83,11 @@ class InstitutionAddGroupView(ProfileCheckPassesTestMixin, View):
 
 class ProjectMissionBoardView(DetailView):
     model = Project
-    template_name = 'backend/project/project_mission_board.html'
+    template_name = 'backend/project/project_board/project_mission_board.html'
 
 
 class CreateChapterRedirectView(RedirectView):
-    pattern_name = 'project_mission_board'
+    pattern_name = 'project_detail'
 
     def get_redirect_url(self, *args, **kwargs):
         proj = get_object_or_404(Project, id=kwargs['pk'])
@@ -95,7 +95,8 @@ class CreateChapterRedirectView(RedirectView):
             proj.chapter_set.create(name=f'Chapter {proj.next_chapter_num()}')
         return super().get_redirect_url(*args, **kwargs)
 
-
+# @login_required
+# @user_passes_test(speaker_check, login_url='create_profile')
 @require_POST
 def change_mission_chapter(request):
     data = json.loads(request.body)

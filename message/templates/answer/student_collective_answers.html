@@ -13,7 +13,25 @@
 <div class="collective_answer_container">
     <div class="container_left_side">
 
+<<<<<<< Updated upstream
 {% for mission in mission.individualcollectivemission_set.all %}
+=======
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                        <div class=""><span>{{answer.response_comment}}</span>
+                    {% else %}
+                        <label> {% trans 'you_didnt__answered_yet' %}</label>
+                        <form method="POST" class="student_answer_form" action = "{% url 'create_answer' %}?next={{ request.path }} " enctype="multipart/form-data" >
+                            {% csrf_token %}
+                            {{ object.answer_form|crispy }}
+                            {{ object.answer_form.media }}
+                            <button class="btn modal_save_button_answer" type="submit" name="action"><p class="button_text">{% trans 'save_answer' %}</p></button>
+
+                        </form>
+                    {% endif %}
+                    </div>
+>>>>>>> Stashed changes
 
             {% if request.user.profile == mission.attributed_to %}
                 <div class="answer_box_collective_individual">

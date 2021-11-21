@@ -47,75 +47,24 @@
     <div class="project_detail_main_content">
         <div class="project_detail_section">
 
-            <div class="animation_div">
-                <img class="small_medium_image" src="{% static 'backend/images/kiwep/project_default.png' %}" style="--img-ratio: 1"  alt="this slowpoke moves">
-            </div>
+            {#            <div class="animation_div">#}
+            {#                <img class="small_medium_image" src="{% static 'backend/images/kiwep/project_default.png' %}" style="--img-ratio: 1"  alt="this slowpoke moves">#}
+            {#            </div>#}
+
             <div class="project_detail_details">
                 <div class="project_detail_description">
                     <div>   {{project.description|safe}}</div>
                 </div>
-
-
 
                 <div class="project_learning_info">
                     <div class="detail_time_to_complete">
                         <span>{% trans 'time_to_complete' %}:</span>
                         {{project.time_to_complete}} {% trans 'days' %}
                     </div>
-                    {#                    <div class="acquired_skills_project_detail">#}
-                    {#                   <span>{% trans 'acquired_skills' %}<span>#}
-                    {#                    {% for skill in project.mission_set.acquired_skills.all %}#}
-                    {##}
-                    {#                        <li class="skill_decoration">{{skill.name}}</li>#}
-                    {#                    {% endfor %}#}
-                    {##}
-                    {#                    </div>#}
 
                 </div>
 
             </div>
-        </div>
-
-
-
-
-        <div class="project_related_elements_content">
-            {# Here is the mission List #}
-
-            <div class="project_mission_list_items">
-
-                <div class="project_mission_header">
-                    <h2>{% trans 'missions' %}</h2>
-
-                    <button type="button" class="btn btn-primary sm_btn" data-bs-toggle="modal" data-bs-target="#add_mission_modal">
-                        {% trans 'add_mission' %}
-                    </button>
-                </div>
-
-                <div class="mission_list_project_detail overflow-auto">
-
-
-
-                    {% for chapter in project.chapter_set.all %}
-                        <div class="row">
-                        <h4>{{ chapter.name }}</h4>
-                        {% for mission in chapter.mission_set.all %}
-                            {% include 'backend/project/mission_block.html' %}
-                        {% endfor %}
-                        </div>
-
-                    {% endfor %}
-                {% for mission in project.missions_without_chapters %}
-                        {% include 'backend/project/mission_block.html' %}
-                    {% endfor %}
-
-                </div>
-            </div>
-
-
-
-
-
             <div class="project_resource_content">
                 <div class="project_resource_header">
                     <div class="medium_resource_title">
@@ -155,6 +104,47 @@
                     {% endif %}
                 </div>
             </div>
+        </div>
+
+
+
+
+        <div class="project_related_elements_content">
+            {% include 'backend/project/project_board/project_mission_board.html' %}
+            {# Here is the mission List #}
+            {##}
+            {#            <div class="project_mission_list_items">#}
+            {##}
+            {#                <div class="project_mission_header">#}
+            {#                    <h2>{% trans 'missions' %}</h2>#}
+            {##}
+            {#                    <button type="button" class="btn btn-primary sm_btn" data-bs-toggle="modal" data-bs-target="#add_mission_modal">#}
+            {#                        {% trans 'add_mission' %}#}
+            {#                    </button>#}
+            {#                </div>#}
+            {##}
+            {#                <div class="mission_list_project_detail overflow-auto">#}
+            {##}
+            {##}
+            {##}
+            {#                    {% for chapter in project.chapter_set.all %}#}
+            {#                        <div class="row">#}
+            {#                        <h4>{{ chapter.name }}</h4>#}
+            {#                        {% for mission in chapter.mission_set.all %}#}
+            {##}
+            {#                            {% include 'backend/project/project_board/mission_block.html' %}#}
+            {#                        {% endfor %}#}
+            {#                        </div>#}
+            {##}
+            {#                    {% endfor %}#}
+            {#                {% for mission in project.missions_without_chapters %}#}
+            {#                    kjhglj#}
+            {#                        {% include 'backend/project/project_board/mission_block.html' %}#}
+            {#                    {% endfor %}#}
+            {##}
+            {#                </div>#}
+            {#            </div>#}
+
 
         </div>
 
@@ -267,9 +257,6 @@
             </div>
         </div>
     </div>
-
-
-
 
     <!-- Modal  Delete project-->
     <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

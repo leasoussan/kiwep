@@ -174,16 +174,17 @@
     width: 90%;
     align-items: flex-start;
     justify-content: space-between;
-    margin: auto;
     border: solid 7px gainsboro;
+    margin-top: 1rem;
 }
 
 
 .project_related_elements_content {
     display: flex;
     flex-direction: row;
-    width: 95%;
-    min-height: 30vh;
+    justify-content: space-between;
+    min-width: 95%;
+    max-width: 95%;
     margin-top: 3rem;
 }
 

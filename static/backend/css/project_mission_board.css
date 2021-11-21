@@ -1,25 +1,32 @@
 
 
 ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  height: 100%;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	height: 100%;
 }
 
 
-.header-top-bar{
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	align-items: stretch;
-	align-content: stretch;
-	height: 30px;
-	padding: 5px;
-	background-color: rgba(0,0,0,.15);
+/*.header-top-bar{*/
+/*	display: flex;*/
+/*	flex-direction: row;*/
+/*	flex-wrap: nowrap;*/
+/*	justify-content: space-between;*/
+/*	align-items: stretch;*/
+/*	align-content: stretch;*/
+/*	height: 30px;*/
+/*	padding: 5px;*/
+/*	background-color: red;*/
 
-	box-shadow: 0 1px 1px rgba(0,0,0,.1);
+/*	box-shadow: 0 1px 1px rgba(0,0,0,.1);*/
+/*}*/
+
+.header-section{
+	display: flex;
+	flex-direction: column;
+	margin: 1rem;
+	min-width: 12rem;
 }
 
 .top-bar-block{
@@ -30,7 +37,7 @@ ul {
 	align-items: stretch;
 	justify-content: flex-end;
 	align-content: center;
-
+	/*background-color: #0b2e13;*/
 }
 
 .top-bar-block.left{
@@ -108,7 +115,10 @@ ul {
 Body Section Styles
 ***********************************************************/
 .body-section{
-	padding-top: 40px;
+overflow: scroll;
+overflow-y: hidden;
+	height: 100%;
+	padding-top: 1rem;
 }
 
 
@@ -125,7 +135,7 @@ Body Section Styles
 }
 
 .jobs-list{
-	width: 270px;
+	width: 300px;
 	margin: 0 5px 30px 0px;
 	height: 100%;
 	display: inline-block;
@@ -136,10 +146,13 @@ Body Section Styles
 }
 
 h2.jobs-list-heading{
-	font-family: "Lato";
-	font-size: 12px;
+	font-size: 16px;
 	font-weight: bold;
 	margin-left: 9px;
+	height: 2rem;
+	padding: 5px;
+	max-width: 95%;
+	overflow: hidden;
 }
 
 .jobs-list-body{
@@ -150,16 +163,16 @@ h2.jobs-list-heading{
 }
 
 .jobs-list-body::-webkit-scrollbar {
-    width: 0.4em;
+	width: 0.4em;
 }
 
 .jobs-list-body::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0, 0.2);
-    border-radius: 5px;
+	background-color: rgba(0,0,0, 0.2);
+	border-radius: 5px;
 }
 
 .jobs-list-body::-webkit-scrollbar-track {
-    background-color: #e2e4e6;
+	background-color: #e2e4e6;
 }
 
 .jobs-list-footer{
@@ -169,25 +182,27 @@ h2.jobs-list-heading{
 .job-block{
 	background-color: #fff;
 	border-bottom: 1px solid #ccc;
-    border-radius: 3px;
-    cursor: pointer;
-    display: block;
-    margin-bottom: 6px;
-    width: 94%;
-    max-width: 300px;
-    min-height: 20px;
-    position: relative;
-    text-decoration: none;
-    z-index: 0;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+	border-radius: 3px;
+	cursor: pointer;
+	display: block;
+	margin-bottom: 6px;
+	width: 94%;
+	max-width: 300px;
+	min-height: 20px;
+	position: relative;
+	text-decoration: none;
+	z-index: 0;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	padding-top: 10px;
 }
 
 .job-name{
 	font-family: "Lato";
-	width: 100%;
+	min-width: 95%;
+	max-width: 95%;
+	overflow: hidden;
 }
 
 .job-info-block{
