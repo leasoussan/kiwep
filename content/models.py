@@ -171,13 +171,36 @@ class Mission(AnswerModel):
                 return key
 
     def save(self, *args, **kwargs):
+        print('order_print1',self.order)
         if self.order == 0 and self.chapter:
-            self.order = self.chapter.mission_set.last().order + 1
+            # self.order= None
+            print('model_176-before_reorder', self.order)
+            new_mission_order = self.chapter.mission_set.count()+1
+            print('model-178after_reorder', new_mission_order)
+            self.order = new_mission_order
+            print('model-178after_reorder', self.order)
+            super().save(*args, **kwargs)
+            print('model-new_order_save', self.save)
+
+
         elif not self.chapter:
             self.order = 0
-        elif self.order in self.chapter.mission_set.exclude(id=self.id).values_list('order', flat=True):
-            self.chapter.mission_set.filter(order__gte=self.order).update(order=F('order') + 1)
+            print('model-183-unordered_mission_with_no_chapter', self.order)
+            super().save(*args, **kwargs)
+
+        elif self.order:
+            if self.order in self.chapter.mission_set.exclude(id=self.id).values_list('order', flat=True):
+
+                new_order = self.chapter.mission_set.filter(order__gte=self.order)
+                new_order.update(order=F('order') + 1)
+                print('model-194-pre_saved_mission_new_order')
+                super().save(*args, **kwargs)
+                print('elif')
+
         super().save(*args, **kwargs)
+        print('out_model_192', self.order)
+
+
     #
     # def mission_due_date(self, ):
     #     if self.mission:
@@ -257,8 +280,8 @@ class CollectiveMission(Mission):
 class IndividualCollectiveMission(AnswerModel):
     """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
 
-    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")
-    parent_mission = models.ForeignKey(CollectiveMission, on_delete= models.CASCADE)
+    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name="individual_team_mission")
+    parent_mission = models.ForeignKey(CollectiveMission, on_delete=models.CASCADE)
 
 
 
@@ -267,7 +290,7 @@ class IndividualCollectiveMission(AnswerModel):
 
 
     def get_absolute_url(self):
-        return reverse("team_detail", kwargs={"pk":self.pk})
+        return reverse("team_detail", kwargs={"pk": self.pk})
 
 
 class Team(DiscussionModel):
@@ -277,9 +300,9 @@ class Team(DiscussionModel):
     project = models.OneToOneField(Project, on_delete=models.CASCADE, null=True)
     start_date = models.DateField()
     group_institution = models.ForeignKey(Group, on_delete=models.CASCADE)
-    participants = models.ManyToManyField(Student, blank = True )
+    participants = models.ManyToManyField(Student, blank=True )
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-    project_completed = models.BooleanField(null=True, blank = True)
+    project_completed = models.BooleanField(null=True, blank=True)
 
     objects = TeamModelManager()
 
@@ -288,7 +311,7 @@ class Team(DiscussionModel):
         return f"Team Name : {self.name}"
 
     def get_absolute_url(self):
-        return reverse("team_detail", kwargs={"pk":self.pk})
+        return reverse("team_detail", kwargs={"pk": self.pk})
 
     def due_date(self,):
         if self.project:

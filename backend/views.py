@@ -104,8 +104,18 @@ def change_mission_chapter(request):
     previous_id = data.get('previous_id')
     mission = get_object_or_404(Mission, id=data.get('mission_id'))
     mission.chapter = None if chapter_id == 0 else get_object_or_404(Chapter, id=chapter_id)
+    print("previouseID", previous_id)
+
     if previous_id:
         prev_mission = get_object_or_404(Mission, id=previous_id)
         mission.order = prev_mission.order + 1
+        print("mission_order", mission.order)
+        # mission.save()
+        print("mission_with_prev_saved", mission.order)
+
     mission.save()
+    print("globale_mission_saved", mission.order)
+
+    print("back_view_ligne_112", mission.order)
+    print("back_view_ligne_113_save", mission.save)
     return HttpResponse('ok')
