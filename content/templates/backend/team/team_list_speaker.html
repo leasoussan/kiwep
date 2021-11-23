@@ -43,21 +43,25 @@
 
                         <table>
                             <thead>
+                            {% if not group.team_set.exists %}
+                                <h4>{% trans 'start_and_create_your_first_team' %}</h4>
+                            {% else %}
                             <tr>
                                 <th class="table_column_large"><h3>{% trans 'team_name' %}</h3></th>
-                                <th class="table_column_large"><h3>{% trans 'participants' %}</h3></th>
+{#                                <th class="table_column_large"><h3>{% trans 'participants' %}</h3></th>#}
                                 <th class="table_column_large"><h3>{% trans 'project' %}</h3></th>
                                 <th class="col_width"><h3>{% trans 'edit_or_delete' %}</h3></th>
                             </tr>
+                            {% endif %}
                             </thead>
                             <tbody>
 
                             {% for team in team_list %}
                                 {% if team.group_institution == group %}
                                     <tr>
-                                        <td><a class="table_column_large" href="{% url 'team_detail' team.id %}"><h4>{{ team.name }}</h4></a></td>
-                                        <td class="table_column_medium">{{ team.participants.count }}</td>
-                                        <td class="table_column_large">
+                                        <td><a class="table_column_large_inner" href="{% url 'team_detail' team.id %}"><h4>{{ team.name }}</h4></a></td>
+{#                                        <td class="table_column_medium_inner">{{ team.participants.count }}</td>#}
+                                        <td class="table_column_large_inner">
                                             {% if team.project %}
                                                <h4> {{team.project.name}} </h4>
                                             {% else %}
@@ -65,7 +69,7 @@
                                             {% endif %}
 
                                         </td>
-                                        <td  class="table_column_large">
+                                        <td>
                                             <div>
                                                 <div class="team_list_tbl_edit_delete">
                                                     <a href="{% url 'update_team' team.id %}" class=""><img src="/static/backend/images/kiwep/edit.png"></a>

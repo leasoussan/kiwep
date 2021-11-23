@@ -124,7 +124,7 @@ class Mission(AnswerModel):
         ('link', _('link')),
         ('video', _('video')),
         ('doc', _('document')),
-        ('power_p', _('power Point')),
+        ('power_p', _('power_oint')),
         ('image', _('image')),
     ]
 
@@ -171,33 +171,32 @@ class Mission(AnswerModel):
                 return key
 
     def save(self, *args, **kwargs):
-        print('order_print1',self.order)
+        print('model_save_order',self.order)
         if self.order == 0 and self.chapter:
-            # self.order= None
-            print('model_176-before_reorder', self.order)
+            print(f'model_self_order_0_with_chap, {self.order},in {self.chapter_id}')
             new_mission_order = self.chapter.mission_set.count()+1
-            print('model-178after_reorder', new_mission_order)
+            print('new_mission_order', new_mission_order)
             self.order = new_mission_order
-            print('model-178after_reorder', self.order)
-            super().save(*args, **kwargs)
+            print('mission_order_pre_save', self.order)
+            # super().save(*args, **kwargs)
             print('model-new_order_save', self.save)
 
 
         elif not self.chapter:
             self.order = 0
-            print('model-183-unordered_mission_with_no_chapter', self.order)
-            super().save(*args, **kwargs)
+            print('mission_no_chapter_mocel_187', self.order)
+            # super().save(*args, **kwargs)
 
-        elif self.order:
-            if self.order in self.chapter.mission_set.exclude(id=self.id).values_list('order', flat=True):
-
+        elif self.order in self.chapter.mission_set.exclude(id=self.id).values_list('order', flat=True):
+                print("big_print", (self.chapter.mission_set.exclude(id=self.id).values_list('order')))
                 new_order = self.chapter.mission_set.filter(order__gte=self.order)
+                print('new_order', new_order)
                 new_order.update(order=F('order') + 1)
-                print('model-194-pre_saved_mission_new_order')
-                super().save(*args, **kwargs)
+                print('model-194-pre_saved_mission_new_order', new_order)
+                # super().save(*args, **kwargs)
                 print('elif')
 
-        super().save(*args, **kwargs)
+        # super().save(*args, **kwargs)
         print('out_model_192', self.order)
 
 
@@ -294,7 +293,7 @@ class IndividualCollectiveMission(AnswerModel):
 
 
 class Team(DiscussionModel):
-    """ a Team Model is to manage a Project per Team- Creating a team is allowing the Speaker to  
+    """ a Team Model is to manage a Project per Team- Creating a team is allowing the Speaker to
     Manage one or few people on a Project"""
     name = models.CharField(max_length=200)
     project = models.OneToOneField(Project, on_delete=models.CASCADE, null=True)

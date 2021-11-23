@@ -1,41 +1,44 @@
 {% load mytags %}
-
 {% load static %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-<div class="project_detail_container_speaker">
-    <div class="project_detail_header">
+{% block css %}
+    <link href="{% static 'backend/css/speaker_project_style.css' %}" rel="stylesheet">
+{% endblock %}
 
-        <h2 class="project_title">{{ project.name }}</h2>
-        {% if project != project.is_template %}
+<div class="main_container">
+    <div class="container_header">
+        <div class="header_right_section">
+            <h2>{{ project.name }}</h2>
+        </div>
 
-            {% if project.team %}
-                {% with team=project.team %}
-                    <a class="btn secondary_button" href="{% url 'team_detail' team.id %}">{% trans 'back_to_team' %}</a>
-                {% endwith %}
-            {% endif%}
-        {% else %}
-            {% trans 'condition_to_set' %}
+        <div class="header_center_section">
+            {% if not project.is_template %}
+                {% if project.team %}
+                    {% with team=project.team %}
+                        <a class="btn secondary_button" href="{% url 'team_detail' team.id %}">{% trans 'back_to_team' %}</a>
+                    {% endwith %}
+                {% endif%}
+            {% else %}
+                <h3 class="templates_tag">{% trans 'this_is_a_template' %}</h3>
+            {% endif %}
+        </div>
 
-        {% endif %}
-
-
-
-        <div class="speaker_action_btn_group">
+        <div class="header_left_section">
 
             {% if project.is_template %}
-                <h3 class="templates_tag">{% trans 'this_is_a_template' %}</h3>
+
 
                 {#                                        <a class="btn" href="{% url 'choose_project_for_team_adetail' project.id %}">{% trans 'select'%}</a>#}
                 <button type="button" class="btn edit_project_btn"><a href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a></button>
 
             {% else %}
-                <button type="button" class="btn edit_project_btn"><a href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a></button>
+                <a class="btn edit_button" href="{% url 'update_project' project.id %}">{% trans 'edit'%}</a>
                 <!-- <a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a> -->
                 {#<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete_modal">#}
                 {#                            {% trans 'delete' %}</button>#}
-                <button type="button" class="btn delete_button"><a href="{% url 'delete_project' project.id %}" >{% trans 'delete' %}</a></button>
+                <a class="btn delete_button" href="{% url 'delete_project' project.id %}" >{% trans 'delete' %}</a>
 
                 {% if team.project %}
                     <a class="btn team_project_button" href="{% url 'team_detail' project.team.id %}" >{% trans 'team_of_project' %}</a>
@@ -44,52 +47,47 @@
         </div>
     </div>
 
-    <div class="project_detail_main_content">
-        <div class="project_detail_section">
-
-            {#            <div class="animation_div">#}
-            {#                <img class="small_medium_image" src="{% static 'backend/images/kiwep/project_default.png' %}" style="--img-ratio: 1"  alt="this slowpoke moves">#}
-            {#            </div>#}
-
-            <div class="project_detail_details">
-                <div class="project_detail_description">
-                    <div>   {{project.description|safe}}</div>
+    <div class="project_main_container">
+        <div class="project_content_header">
+            <div class="descriptive_detail_container">
+                <div class="text_description_container">
+                    {{project.description|safe}}
                 </div>
 
-                <div class="project_learning_info">
+                <div class="learning_info_container">
                     <div class="detail_time_to_complete">
-                        <span>{% trans 'time_to_complete' %}:</span>
+                        {% trans 'time_to_complete' %}:
                         {{project.time_to_complete}} {% trans 'days' %}
                     </div>
-
+                    <div class="detail_skills">
+                        <div class="detail_skills_header">
+                           <h2> {% trans 'skills' %}</h2>
+                            <i class="bi bi-plus-circle-fill"></i>
+                        </div>
+                        <div class="skills_list_container">
+                            {% for skill in project.required_skills.all %}
+                            {{ skill }}
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
-
             </div>
-            <div class="project_resource_content">
-                <div class="project_resource_header">
-                    <div class="medium_resource_title">
-                        <h2> {% trans 'resources' %}</h2>
-                    </div>
-
-                    <div class="btn_control_project1">
-
-                        <!-- Button trigger modal add Resource -->
-                        <button type="button" class="btn btn-primary sm_btn1" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
-                            {% trans 'add_resource' %}
-                        </button>
-                    </div>
+            <div class="resource_project_container">
+                <div class="resource_container_header">
+                    <h2> {% trans 'resources' %}</h2>
+                    <!-- Button trigger modal add Resource -->
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#add_resource_modal">
+                        <i class="bi bi-plus-circle-fill" style="font-size: 2rem; color: #0c8b51" ></i>
+                    </a>
                 </div>
 
-
-
-                <div class="project_resource_list_items overflow-auto">
+                <div class="project_resource_list_items">
                     {% if project.resource_set.exists %}
 
                         {% for resource in project.resource_set.all %}
                             {%  if resource in project.resource_set.exists and resource not in project.mission_set.resource_set.exists %}
-                                kjher
                             {% else %}
-                                <ul class="resource_details">
+                                <ul class="resource_container_item">
                                 <li><a href="{% url 'resource_detail' resource.id %}">{{ resource.name }}</a></li>
                                 {% if user.is_speaker %}
                                     <li><a href="{% url 'delete_resource' resource.id %}"> <img src="/static/backend/images/kiwep/trash.png" alt="delete"></a>

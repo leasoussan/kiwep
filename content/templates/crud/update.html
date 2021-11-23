@@ -27,7 +27,6 @@
                 {{ form.media }}
 
                 <button class="btn btn-primary" type="submit">{% trans 'save' %}</button>
-                <button class="btn" type="submit"><a href="{% url 'dashboard' %}" style="color:#fffefc;">{% trans 'dashboard' %}</a></button>
 
 
             </form>
@@ -37,17 +36,17 @@
 
 
             <div class="create_page_extra">
-                {% if object == Project %}
-                    <!-- {% load static %}  -->
-                    <img class="image_placeholder" src="{% static 'images/kiwep/logo.png' %}" alt="image_holder">
-
-                    <img class="video_placeholder" src="{% static 'images/kiwep/video_placeholder.png' %}" alt="video_placeholder">
-
-
-                {% else %}
-                    <img class="image_placeholder" src="{% static 'images/kiwep/image_holder.png' %}" alt="image_holder">
-
-                {% endif %}
+{#                {% if object == Project %}#}
+{#                    <!-- {% load static %}  -->#}
+{#                    <img class="image_placeholder" src="{% static 'backend/images/kiwep/logo.png' %}" alt="image_holder">#}
+{##}
+{#                    <img class="video_placeholder" src="{% static 'backend/images/kiwep/video_placeholder.png' %}" alt="video_placeholder">#}
+{##}
+{##}
+{#                {% else %}#}
+{#                    <img class="image_placeholder" src="{% static 'backend/images/kiwep/image_holder.png' %}" alt="image_holder">#}
+{##}
+{#                {% endif %}#}
 
 
 

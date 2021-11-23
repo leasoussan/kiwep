@@ -26,7 +26,9 @@ ul {
 	display: flex;
 	flex-direction: column;
 	margin: 1rem;
-	min-width: 12rem;
+	width: 20%;
+	height: 40%;
+	justify-content: space-between;
 }
 
 .top-bar-block{
@@ -115,8 +117,8 @@ ul {
 Body Section Styles
 ***********************************************************/
 .body-section{
-overflow: scroll;
-overflow-y: hidden;
+	overflow: scroll;
+	overflow-y: hidden;
 	height: 100%;
 	padding-top: 1rem;
 }
@@ -135,7 +137,7 @@ overflow-y: hidden;
 }
 
 .jobs-list{
-	width: 300px;
+	width: 350px;
 	margin: 0 5px 30px 0px;
 	height: 100%;
 	display: inline-block;
@@ -228,8 +230,8 @@ h2.jobs-list-heading{
 .job-date{
 	font-size: 10px;
 	padding: 2px 8px 3px 8px;
-	background-color: #61bd4f;
-	color: #fff;
+	background-color: #f0f7d2;
+	color: grey;
 	display: inline-block;
 	border-radius: 5px;
 }
