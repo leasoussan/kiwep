@@ -121,7 +121,6 @@
                 <th>{% trans 'project_name' %}</th>
                 <th>{% trans 'due_date' %}</th>
                 <th>{% trans 'status_answer_student' %}</th>
-                <th><i class="bi bi-box-arrow-right" style="font-size:2rem"></i></th>
             </tr>
             </thead>
 
@@ -149,7 +148,6 @@
                             {{mission.answer.first.get_status_display}}
                         {% endif %}
                         </td>
-                        <td class="small_text"><a class="table_column_medium" href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a></td>
                     </tr>
                     {#                  {% endif %}#}
                 {% endfor %}
@@ -164,12 +162,11 @@
         <table>
             <thead>
             <tr>
-                <th >{% trans 'mission_name' %}</th>
-                <th>{% trans 'team_name' %}</th>
-                <th>{% trans 'project_name' %}</th>
-                <th>{% trans 'due_date' %}</th>
-                <th>{% trans 'status_answer_student' %}</th>
-                <th><i class="bi bi-box-arrow-right" style="font-size:2rem"></i></th>
+                <th><h3 class="table_column_large"> {% trans 'mission_name' %}</h3></th>
+                <th><h3 class="table_column_large"> {% trans 'team_name' %}</h3></th>
+                <th><h3 class="table_column_large"> {% trans 'project_name' %}</h3></th>
+                <th><h3 class="table_column_medium"> {% trans 'due_date' %}</h3></th>
+                <th><h3 class="table_column_medium"> {% trans 'status_answer_student' %}</h3></th>
             </tr>
 
 
@@ -195,7 +192,6 @@
                             {{mission.answer.first.get_status_display}}
                         {% endif %}
                         </td>
-                        <td class="small_text"><a class="table_column_medium" href="{%  url 'leave_collective_mission_detail' mission.parent_mission.id %}">{% trans 'leave_mission' %}</a></td>
                     </tr>
                 {% endfor %}
             </div>

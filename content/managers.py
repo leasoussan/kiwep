@@ -19,6 +19,7 @@ class ProjectModelQuerySet(models.QuerySet):
     def global_template_projects(self):
         return self.filter(is_template=True, is_global=True)
 
+
 class ProjectModelManager(models.Manager):
     """ Managers are a way to get specifi data from a Model with the help of a queryset """
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-18 02:37+0200\n"
+"POT-Creation-Date: 2021-11-24 23:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,67 +18,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models.py:90 templates/backend/team/team_list_speaker.html:49
+#: models.py:90 templates/backend/team/team_list_speaker.html:50
 #: templates/backend/team/team_list_student.html:21
 #: templates/backend/team/team_list_student.html:61
 msgid "project"
 msgstr "Projet"
 
-#: models.py:92
+#: models.py:91
 msgid "projects"
 msgstr "Projets"
 
-#: models.py:108
+#: models.py:118
 msgid "start"
 msgstr "Début"
 
-#: models.py:109
+#: models.py:119
 msgid "middle"
 msgstr "Milieu"
 
-#: models.py:110
+#: models.py:120
 msgid "final"
 msgstr "Fin"
 
-#: models.py:114
+#: models.py:124
 msgid "link"
 msgstr "URL"
 
-#: models.py:115
+#: models.py:125
 msgid "video"
 msgstr "Vidéo"
 
-#: models.py:116
+#: models.py:126
 msgid "document"
 msgstr "Document rédigé"
 
-#: models.py:117
-msgid "power Point"
+#: models.py:127
+#, fuzzy
+#| msgid "power Point"
+msgid "power_oint"
 msgstr "Présentation"
 
-#: models.py:118
+#: models.py:128
 msgid "image"
 msgstr "Image"
 
-#: models.py:122 templates/backend/project/project_detail_speaker.html:189
+#: models.py:132 templates/backend/project/project_detail_speaker.html:166
 #: templates/backend/project/project_detail_student.html:172
 msgid "individual_mission"
 msgstr "Mission individuelle"
 
-#: models.py:123 templates/backend/mission/speaker_mission_list.html:163
+#: models.py:133 templates/backend/mission/speaker_mission_list.html:161
 #: templates/backend/mission/student_mission_list.html:60
-#: templates/backend/project/project_detail_speaker.html:193
+#: templates/backend/project/project_board/mission_block_from_board.html:13
+#: templates/backend/project/project_detail_speaker.html:170
 #: templates/backend/project/project_detail_student.html:176
 msgid "collective_mission"
 msgstr "Mission collective"
 
-#: models.py:124
+#: models.py:134
 msgid "collective_Individual_mission"
 msgstr "Mission collective à individualiser"
 
 #: templates/backend/mission/mission_detail.html:19
 #: templates/backend/mission/mission_list.html:20
-#: templates/backend/project/project_detail.html:24
+#: templates/backend/project/project_detail.html:31
 #: templates/backend/team/team_detail.html:25
 #: templates/backend/team/team_list.html:20
 msgid "you_can_t_see_this_page"
@@ -91,13 +94,14 @@ msgid "back_to_project"
 msgstr "Retour au projet"
 
 #: templates/backend/mission/mission_detail_speaker.html:19
-#: templates/backend/project/project_detail_speaker.html:15
+#: templates/backend/project/project_detail_speaker.html:20
 #: templates/backend/project/project_detail_student.html:17
 msgid "back_to_team"
 msgstr "Retour @ l’équipe"
 
 #: templates/backend/mission/mission_detail_speaker.html:39
 #: templates/backend/mission/mission_detail_speaker.html:40
+#: templates/backend/project/project_detail_speaker.html:37
 #: templates/backend/team/team_detail_speaker.html:54
 msgid "edit"
 msgstr "Modifier"
@@ -105,7 +109,7 @@ msgstr "Modifier"
 #: templates/backend/mission/mission_detail_speaker.html:69
 #: templates/backend/mission/mission_detail_student.html:130
 #: templates/backend/mission/mission_detail_student.html:134
-#: templates/backend/project/project_detail_speaker.html:62
+#: templates/backend/project/project_detail_speaker.html:59
 #: templates/backend/project/project_detail_student.html:39
 #: templates/backend/team/team_detail_speaker.html:77
 #: templates/backend/team/team_detail_student.html:167
@@ -115,7 +119,7 @@ msgstr "Durée du projet"
 #: templates/backend/mission/mission_detail_speaker.html:69
 #: templates/backend/mission/mission_detail_student.html:131
 #: templates/backend/mission/mission_detail_student.html:135
-#: templates/backend/project/project_detail_speaker.html:63
+#: templates/backend/project/project_detail_speaker.html:60
 #: templates/backend/project/project_detail_student.html:40
 #: templates/backend/team/team_detail_speaker.html:78
 #: templates/backend/team/team_detail_student.html:168
@@ -127,45 +131,45 @@ msgstr "Jours"
 msgid "resource_list"
 msgstr "Liste des ressources"
 
-#: templates/backend/mission/mission_detail_speaker.html:141
+#: templates/backend/mission/mission_detail_speaker.html:142
 msgid "mission_unclaimed"
 msgstr "Mission non attribuée"
 
-#: templates/backend/mission/mission_detail_speaker.html:145
+#: templates/backend/mission/mission_detail_speaker.html:146
 msgid "attributed_to"
 msgstr "Attribuée à"
 
-#: templates/backend/mission/mission_detail_speaker.html:155
+#: templates/backend/mission/mission_detail_speaker.html:156
 msgid "no_one_joined_yet"
 msgstr "Personne n’a rejoint la mission"
 
-#: templates/backend/mission/mission_detail_speaker.html:159
-#: templates/backend/mission/mission_detail_speaker.html:164
+#: templates/backend/mission/mission_detail_speaker.html:160
+#: templates/backend/mission/mission_detail_speaker.html:165
 msgid "assign_mission"
 msgstr "Attribuer la mission à"
 
-#: templates/backend/mission/mission_detail_speaker.html:177
+#: templates/backend/mission/mission_detail_speaker.html:178
 #, fuzzy
 #| msgid "add_collective"
 msgid "individual_collective_of"
 msgstr "Ajouter"
 
-#: templates/backend/mission/mission_detail_speaker.html:236
-#: templates/backend/project/project_detail_speaker.html:243
+#: templates/backend/mission/mission_detail_speaker.html:237
+#: templates/backend/project/project_detail_speaker.html:220
 #: templates/backend/project/project_detail_student.html:225
 msgid "create_resource"
 msgstr "Créer"
 
-#: templates/backend/mission/mission_detail_speaker.html:238
-#: templates/backend/project/project_detail_speaker.html:245
+#: templates/backend/mission/mission_detail_speaker.html:239
+#: templates/backend/project/project_detail_speaker.html:222
 #: templates/backend/project/project_detail_student.html:227
 msgid "chose_resource"
 msgstr "Choisir"
 
-#: templates/backend/mission/mission_detail_speaker.html:251
-#: templates/backend/project/project_detail_speaker.html:205
-#: templates/backend/project/project_detail_speaker.html:214
-#: templates/backend/project/project_detail_speaker.html:258
+#: templates/backend/mission/mission_detail_speaker.html:252
+#: templates/backend/project/project_detail_speaker.html:182
+#: templates/backend/project/project_detail_speaker.html:191
+#: templates/backend/project/project_detail_speaker.html:235
 #: templates/backend/project/project_detail_student.html:188
 #: templates/backend/project/project_detail_student.html:196
 #: templates/backend/project/project_detail_student.html:239
@@ -175,23 +179,23 @@ msgstr "Choisir"
 #: templates/backend/team/team_detail_speaker.html:287
 #: templates/backend/team/team_detail_speaker.html:322
 #: templates/backend/team/team_detail_student.html:210
-#: templates/backend/team/team_list_speaker.html:128
-#: templates/backend/team/team_list_speaker.html:138
+#: templates/backend/team/team_list_speaker.html:132
+#: templates/backend/team/team_list_speaker.html:142
 #: templates/crud/create.html:51 templates/crud/create_current.html:49
-#: templates/crud/update.html:29
+#: templates/crud/update.html:30
 msgid "save"
 msgstr "Save"
 
-#: templates/backend/mission/mission_detail_speaker.html:261
-#: templates/backend/project/project_detail_speaker.html:268
+#: templates/backend/mission/mission_detail_speaker.html:262
+#: templates/backend/project/project_detail_speaker.html:245
 #: templates/backend/project/project_detail_student.html:248
 #: templates/backend/team/team_detail_speaker.html:225
 msgid "select"
 msgstr "Sélectionner"
 
-#: templates/backend/mission/mission_detail_speaker.html:268
-#: templates/backend/project/project_detail_speaker.html:275
-#: templates/backend/project/project_detail_speaker.html:297
+#: templates/backend/mission/mission_detail_speaker.html:269
+#: templates/backend/project/project_detail_speaker.html:252
+#: templates/backend/project/project_detail_speaker.html:271
 #: templates/backend/project/project_detail_student.html:277
 #: templates/backend/project/project_list.html:163
 #: templates/backend/project/project_list.html:247
@@ -214,7 +218,6 @@ msgid "mission_is_attributed_to"
 msgstr "Mission attribuée à"
 
 #: templates/backend/mission/mission_detail_student.html:59
-#: templates/backend/mission/speaker_mission_list.html:152
 #: templates/backend/mission/student_mission_list.html:49
 #: templates/backend/team/team_detail_student.html:126
 msgid "unclaim_mission"
@@ -232,7 +235,6 @@ msgstr "Rejoindre"
 
 #: templates/backend/mission/mission_detail_student.html:82
 #: templates/backend/mission/mission_detail_student.html:84
-#: templates/backend/mission/speaker_mission_list.html:198
 #: templates/backend/mission/student_mission_list.html:95
 msgid "leave_mission"
 msgstr "Quitter la mission"
@@ -253,17 +255,17 @@ msgid "my_mission_board_title"
 msgstr "Mes missions"
 
 #: templates/backend/mission/speaker_mission_list.html:119
-#: templates/backend/mission/speaker_mission_list.html:167
+#: templates/backend/mission/speaker_mission_list.html:165
 #: templates/backend/mission/student_mission_list.html:16
 #: templates/backend/mission/student_mission_list.html:64
 msgid "mission_name"
 msgstr "Nom de la mission"
 
 #: templates/backend/mission/speaker_mission_list.html:120
-#: templates/backend/mission/speaker_mission_list.html:168
+#: templates/backend/mission/speaker_mission_list.html:166
 #: templates/backend/mission/student_mission_list.html:17
 #: templates/backend/mission/student_mission_list.html:65
-#: templates/backend/team/team_list_speaker.html:47
+#: templates/backend/team/team_list_speaker.html:48
 #: templates/backend/team/team_list_student.html:18
 #: templates/backend/team/team_list_student.html:58
 #: templates/crud/list_view.html:20
@@ -271,82 +273,91 @@ msgid "team_name"
 msgstr "Équipe"
 
 #: templates/backend/mission/speaker_mission_list.html:121
-#: templates/backend/mission/speaker_mission_list.html:169
+#: templates/backend/mission/speaker_mission_list.html:167
 #: templates/backend/mission/student_mission_list.html:18
 #: templates/backend/mission/student_mission_list.html:66
 msgid "project_name"
 msgstr "Nom du projet"
 
 #: templates/backend/mission/speaker_mission_list.html:122
-#: templates/backend/mission/speaker_mission_list.html:170
+#: templates/backend/mission/speaker_mission_list.html:168
 #: templates/backend/mission/student_mission_list.html:19
 #: templates/backend/mission/student_mission_list.html:67
 msgid "due_date"
 msgstr "Date limite"
 
 #: templates/backend/mission/speaker_mission_list.html:123
-#: templates/backend/mission/speaker_mission_list.html:171
+#: templates/backend/mission/speaker_mission_list.html:169
 #: templates/backend/mission/student_mission_list.html:20
 #: templates/backend/mission/student_mission_list.html:68
 msgid "status_answer_student"
 msgstr "Statut"
 
-#: templates/backend/mission/speaker_mission_list.html:136
-#: templates/backend/mission/speaker_mission_list.html:186
+#: templates/backend/mission/speaker_mission_list.html:135
+#: templates/backend/mission/speaker_mission_list.html:183
 #: templates/backend/mission/student_mission_list.html:33
 #: templates/backend/mission/student_mission_list.html:83
 msgid "no_team"
 msgstr "Pas d’équipe"
 
-#: templates/backend/mission/speaker_mission_list.html:147
-#: templates/backend/mission/speaker_mission_list.html:193
+#: templates/backend/mission/speaker_mission_list.html:146
+#: templates/backend/mission/speaker_mission_list.html:190
 #: templates/backend/mission/student_mission_list.html:44
 #: templates/backend/mission/student_mission_list.html:90
 msgid "mission_not_answered_yet"
 msgstr "Pas de réponse"
 
-#: templates/backend/project/project_detail_speaker.html:19
-msgid "condition_to_set"
+#: templates/backend/project/project_board/project_mission_board.html:9
+msgid "add_chapter"
 msgstr ""
 
-#: templates/backend/project/project_detail_speaker.html:28
+#: templates/backend/project/project_board/project_mission_board.html:10
+#: templates/backend/project/project_detail_student.html:70
+#: templates/backend/team/team_list_speaker.html:17
+#, fuzzy
+#| msgid "add_bulk_mission"
+msgid "add_mission"
+msgstr "Ajouter une mission à plusieurs projets"
+
+#: templates/backend/project/project_board/project_mission_board.html:15
+#, fuzzy
+#| msgid "mission_unclaimed"
+msgid "mission_without_chapter"
+msgstr "Mission non attribuée"
+
+#: templates/backend/project/project_detail_speaker.html:24
 msgid "this_is_a_template"
 msgstr "Projet modèle"
 
-#: templates/backend/project/project_detail_speaker.html:31
 #: templates/backend/project/project_detail_speaker.html:34
-#: templates/backend/project/project_detail_speaker.html:35
+#: templates/backend/project/project_detail_speaker.html:38
 #: templates/backend/team/team_detail_speaker.html:80
 msgid "edit_project"
 msgstr "Modifier"
 
-#: templates/backend/project/project_detail_speaker.html:38
+#: templates/backend/project/project_detail_speaker.html:41
 msgid "delete"
 msgstr "Supprimer"
 
-#: templates/backend/project/project_detail_speaker.html:41
+#: templates/backend/project/project_detail_speaker.html:44
 msgid "team_of_project"
 msgstr "Equipe"
 
-#: templates/backend/project/project_detail_speaker.html:88
-#: templates/backend/project/project_detail_student.html:65
-msgid "missions"
-msgstr "Missions"
+#: templates/backend/project/project_detail_speaker.html:64
+msgid "skills"
+msgstr ""
 
-#: templates/backend/project/project_detail_speaker.html:91
-#: templates/backend/project/project_detail_student.html:70
-#: templates/backend/team/team_list_speaker.html:17
-msgid "add_mission"
-msgstr "Ajouter une mission"
-
-#: templates/backend/project/project_detail_speaker.html:133
+#: templates/backend/project/project_detail_speaker.html:77
 #: templates/backend/project/project_detail_student.html:114
 #: templates/backend/team/team_detail_speaker.html:308
 #: templates/backend/team/team_detail_student.html:196
 msgid "resources"
 msgstr "Ressources"
 
-#: templates/backend/project/project_detail_speaker.html:140
+#: templates/backend/project/project_detail_student.html:65
+msgid "missions"
+msgstr "Missions"
+
 #: templates/backend/project/project_detail_student.html:122
 msgid "add_resource"
 msgstr "Ajouter une ressource"
@@ -373,7 +384,7 @@ msgstr "Créer un projet modèle"
 
 #: templates/backend/project/project_list.html:100
 #: templates/backend/team/team_detail_speaker.html:198
-#: templates/backend/team/team_list_speaker.html:64
+#: templates/backend/team/team_list_speaker.html:68
 msgid "create_project"
 msgstr "Créer un projet"
 
@@ -391,10 +402,6 @@ msgstr "Ajouter une mission"
 #: templates/backend/resource/resource_detail.html:33
 msgid "update_resource"
 msgstr "Modifier"
-
-#: templates/backend/resource/resource_detail.html:39
-msgid "resource_lable"
-msgstr "Ressource"
 
 #: templates/backend/resource/resource_detail.html:65
 #, fuzzy
@@ -436,7 +443,6 @@ msgstr "Choisir un projet"
 
 #: templates/backend/team/team_detail_speaker.html:29
 #: templates/backend/team/team_detail_student.html:26
-#: templates/backend/team/team_list_speaker.html:48
 #: templates/backend/team/team_list_student.html:19
 #: templates/backend/team/team_list_student.html:59
 msgid "participants"
@@ -527,27 +533,31 @@ msgstr "Pas de Project"
 
 #: templates/backend/team/team_list_speaker.html:15
 msgid "create_a_new_team"
-msgstr "Créer une équipe"
+msgstr "Nouvelle équipe"
 
-#: templates/backend/team/team_list_speaker.html:50
+#: templates/backend/team/team_list_speaker.html:51
 msgid "edit_or_delete"
 msgstr "Modifier"
 
-#: templates/backend/team/team_list_speaker.html:106
+#: templates/backend/team/team_list_speaker.html:54
+msgid "start_and_create_your_first_team"
+msgstr ""
+
+#: templates/backend/team/team_list_speaker.html:110
 msgid "add_bulk_mission"
 msgstr "Ajouter une mission à plusieurs projets"
 
-#: templates/backend/team/team_list_speaker.html:114
+#: templates/backend/team/team_list_speaker.html:118
 msgid "add_bulk_indidv"
 msgstr "Ajouter"
 
-#: templates/backend/team/team_list_speaker.html:116
+#: templates/backend/team/team_list_speaker.html:120
 msgid "add_collective"
 msgstr "Ajouter"
 
 #: templates/backend/team/team_list_student.html:14
 msgid "my_team"
-msgstr "Mes équipe"
+msgstr "Mes équipes"
 
 #: templates/backend/team/team_list_student.html:20
 #: templates/backend/team/team_list_student.html:60
@@ -589,9 +599,12 @@ msgstr "Veuillez confirmer que vous souhaitez supprimer"
 msgid "delete_button"
 msgstr "Supprimer"
 
-#: templates/crud/update.html:30 templates/crud/update_current.html:29
+#: templates/crud/update_current.html:29
 msgid "dashboard"
 msgstr "Dashboard"
+
+#~ msgid "resource_lable"
+#~ msgstr "Ressource"
 
 #~ msgid "there_are_no_answers_yet"
 #~ msgstr "Pas de réponse"

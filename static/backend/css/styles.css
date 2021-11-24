@@ -26,6 +26,9 @@ body *{
 }
 
 
+a{
+  line-height: 1.8;
+}
 
 .main_base_content_block{
   margin: auto;
@@ -33,8 +36,8 @@ body *{
   max-width: 90%;
   min-height: 900px;
   padding: 1rem 0rem;
-    box-shadow:5px 5px 5px grey;
-      background-color: #d5e0d9;
+  box-shadow:5px 5px 5px grey;
+  background-color: #edf2f1;
 }
 
 
@@ -48,21 +51,26 @@ h1{
   font-weight: normal;
   font-size: 2.5rem;
   color: #375442;
-
+  line-height: 1.6;
 }
+
 h2{
   font-weight: bold;
   font-size: 2rem;
   color: grey;
+  line-height: 1.6;
 }
 
 h3{
   font-size: 1.5rem;
   font-weight: bold;
+  line-height: 1.6;
 }
 
 h4{
-    font-size: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 1.6;
+
 }
 
 
@@ -71,41 +79,41 @@ h4{
 /*_IMAGES */
 
 .icon_image{
-   --max-height: 65px;
-    width: 100%;
-    /* And limit it with our function above */
-    max-width: calc(var(--max-height, 65px) * var(--img-ratio, 1));
+  --max-height: 65px;
+  width: 100%;
+  /* And limit it with our function above */
+  max-width: calc(var(--max-height, 65px) * var(--img-ratio, 1));
 
   border-radius: 50%;
 
 }
 
 .small_image{
-   --max-height: 150px;
-    width: 100%;
-    /* And limit it with our function above */
-    max-width: calc(var(--max-height, 150px) * var(--img-ratio, 1));
+  --max-height: 150px;
+  width: 100%;
+  /* And limit it with our function above */
+  max-width: calc(var(--max-height, 150px) * var(--img-ratio, 1));
 }
 .small_medium_image{
-   --max-height: 300px;
-    width: 100%;
-    /* And limit it with our function above */
-    max-width: calc(var(--max-height, 200px) * var(--img-ratio, 1));
+  --max-height: 300px;
+  width: 100%;
+  /* And limit it with our function above */
+  max-width: calc(var(--max-height, 200px) * var(--img-ratio, 1));
 }
 .medium_image{
-   --max-height: 500px;
-    width: 100%;
-    /* And limit it with our function above */
-    max-width: calc(var(--max-height, 500px) * var(--img-ratio, 1));
+  --max-height: 500px;
+  width: 100%;
+  /* And limit it with our function above */
+  max-width: calc(var(--max-height, 500px) * var(--img-ratio, 1));
 
 
 }
 
 .large_image{
-   --max-height: 100%px;
-    width: 100%;
-    /* And limit it with our function above */
-    max-width: calc(var(--max-height, 100%) * var(--img-ratio, 1));
+  --max-height: 100%px;
+  width: 100%;
+  /* And limit it with our function above */
+  max-width: calc(var(--max-height, 100%) * var(--img-ratio, 1));
 
 
 }
@@ -118,15 +126,15 @@ h4{
 
 /* RESPONSIVE */
 @media (max-width: 670px) {
-  
+
   /* REGISTER/LOGIN */
   #wrapper{
     margin: 0 auto;
     width: 100%;
   }
-  
+
   #logotitle{
-      background-color: transparent;
+    background-color: transparent;
   }
 
   #logotitle h1{
@@ -139,11 +147,11 @@ h4{
     background-repeat: no-repeat;
     width: 380px;
     height: 580px;
-    display: block; 
-    margin: 50px 
+    display: block;
+    margin: 50px
   }
 
-  
+
   #opacity{
     opacity: 0.8;
     width: 350px;
@@ -152,9 +160,9 @@ h4{
     position: relative;
     top: 26px;
     right: 15px;
-  } 
+  }
 
-  
+
   .aligning{
     display: flex;
     flex-direction: column;
@@ -165,7 +173,7 @@ h4{
   }
 
   a > h1{
-    background-color: rgb(184, 181, 181); 
+    background-color: rgb(184, 181, 181);
   }
 
   .formfont{
@@ -191,7 +199,7 @@ h4{
     left: 80px;
     background-color: transparent;
   }
-  
+
   .aligning4{
     position: relative;
     left: 58px;
@@ -200,7 +208,7 @@ h4{
   /* DASHBOARD */
 
   .video_speaker {
- 
+
     width: 370px;
   }
 }
@@ -224,16 +232,6 @@ h4{
 
 
 
-.delete_button{
-  background-color: white;
-  border: 4px solid red;
-  color: black;
-  font-weight: bolder;
-  margin:  0rem 2rem;
-}
-
-
-
 .add_resource_button{
   background-color: #a3c9ac;
 }
@@ -248,7 +246,7 @@ h4{
 }
 
 .button_text{
-    color: darkgreen;
+  color: darkgreen;
 
 }
 

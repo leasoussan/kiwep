@@ -176,6 +176,7 @@ class ProjectUpdateView(LoginRequiredMixin, SpeakerStatuPassesTestMixin, UpdateV
         'name',
         'description',
         'time_to_complete',
+        'required_skills',
         'points',
     ]
     template_name = 'crud/update.html'

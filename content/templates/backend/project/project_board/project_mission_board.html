@@ -1,0 +1,46 @@
+{% load i18n %}
+{% load static %}
+
+
+
+
+
+<div class="header-section">
+    <a href="{% url 'create_chapter' project.pk %}" class="btn primary_button"><h5>{% trans 'add_chapter' %}</h5></a>
+    <a type="button" class="btn primary_button" data-bs-toggle="modal" data-bs-target="#add_mission_modal">
+        <h5>{% trans 'add_mission' %}</h5>
+    </a>
+</div>
+<div class="body-section">
+    <div class="jobs-list-wrapper">
+        <div class="jobs-list">
+            <h2 class="jobs-list-heading">{% trans 'mission_without_chapter' %}</h2>
+            <div class="jobs-list-body" id="new-jobs">
+                <ul id="new-jobs-list">
+                    {% for mission in project.missions_without_chapters %}
+                        {% include "backend/project/project_board/mission_block_from_board.html" %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="jobs-list-footer"></div>
+        </div>
+        {% for chapter in project.chapter_set.all %}
+            <div class="jobs-list">
+                <h2 class="jobs-list-heading">{{ chapter.name }}</h2>
+                <div class="jobs-list-body" id="{{chapter.id}}">
+                    <ul id="{{chapter.id}}-list">
+                        {% for mission in chapter.mission_set.all %}
+                            {% include "backend/project/project_board/mission_block_from_board.html" %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="jobs-list-footer"></div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+

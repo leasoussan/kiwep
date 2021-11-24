@@ -1,0 +1,17 @@
+{% load i18n %}
+<li>
+    <div class="job-block" id="mission-{{ mission.id }}-test">
+        <div class="job-name-block">
+            <div class="job-name">{{ mission.name }}</div>
+{#            <div class="job-edit"><img class="edit-job-icon" src="https://image.flaticon.com/icons/svg/61/61456.svg"></div>#}
+        </div>
+        <div class="job-info-block">
+            <div class="job-date">{{ mission.due_date }}</div>
+            {% if mission.individualmission %}
+                <div class="user-email">{% firstof mission.individualmission.attributed_to.user.full_name 'Not attributted' %}</div>
+            {% else %}
+                <div class="user-email">{% trans 'collective_mission'%}</div>
+            {% endif %}
+        </div>
+    </div>
+</li>

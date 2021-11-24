@@ -1,4 +1,7 @@
+import json
+
 from django.db import models
+from django.db.models import F
 from django.urls import reverse
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -22,11 +25,8 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save, m2m_changed, pre_delete, pre_save
 
 from django.utils import timezone
-from message.models import DiscussionModel,AnswerModel
+from message.models import DiscussionModel, AnswerModel
 
-
-
-# class VideoEmbid
 
 class Resource(DiscussionModel):
     name = models.CharField(max_length=200)
@@ -88,7 +88,6 @@ class Project(DiscussionModel):
 
     class Meta:
         verbose_name = _('project')
-
         verbose_name_plural = _('projects')
 
     def __str__(self):
@@ -100,6 +99,17 @@ class Project(DiscussionModel):
     def get_absolute_url(self):
         return reverse("project_detail", kwargs={"pk": self.pk})
 
+    def missions_without_chapters(self):
+        return self.mission_set.filter(chapter__isnull=True)
+
+    def chapter_html_ids(self):
+        html_ids = [f'#{chapter.id}-list' for chapter in self.chapter_set.all()]
+        return json.dumps(html_ids)
+
+    def next_chapter_num(self):
+        if self.chapter_set.last():
+            return self.chapter_set.last().order + 1
+        return 0
 
 
 
@@ -114,7 +124,7 @@ class Mission(AnswerModel):
         ('link', _('link')),
         ('video', _('video')),
         ('doc', _('document')),
-        ('power_p', _('power Point')),
+        ('power_p', _('power_oint')),
         ('image', _('image')),
     ]
 
@@ -123,8 +133,10 @@ class Mission(AnswerModel):
         ('c', _('collective_mission')),
         ('ci', _('collective_Individual_mission')),
     ]
-    
+
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    chapter = models.ForeignKey('Chapter', on_delete=models.SET_NULL, null=True, blank=True)
+    order = models.PositiveIntegerField(default=0)
     stage = models.CharField(max_length=10, choices=STAGE_CHOICE, default='start')
     response_type = models.CharField(max_length=200, choices=RESPONSE_TYPE, default=None, blank= True, null= True)
     name = models.CharField(max_length=200)
@@ -140,10 +152,11 @@ class Mission(AnswerModel):
 
     objects = MissionModelManager()
 
+    class Meta:
+        ordering = ['order', 'id']
 
     def __str__(self):
         return f"Mission Name : {self.name}"
-
 
     def get_mission_type(self):
         mission_type = {
@@ -156,6 +169,21 @@ class Mission(AnswerModel):
             if value.objects.filter(mission=self).exists():
                 # TODO: We need to check if there is the Individual Mission
                 return key
+
+    def save(self, *args, **kwargs):
+        print(self.order)
+        if self.order == 0 and self.chapter:
+            new_mission_order = self.chapter.mission_set.count()+1
+            self.order = new_mission_order
+
+        elif not self.chapter:
+            self.order = 0
+
+        elif self.order in self.chapter.mission_set.exclude(id=self.id).values_list('order', flat=True):
+                new_order = self.chapter.mission_set.filter(order__gte=self.order)
+                new_order.update(order=F('order') + 1)
+
+        super().save(*args, **kwargs)
 
 
     #
@@ -172,7 +200,6 @@ class Mission(AnswerModel):
     #     return days_left.days
 
 
-
 class MissionValue(models.Model):
     percentage = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
     hard_skills = models.ManyToManyField(Skills, through='HardSkillsRating', blank=True)
@@ -182,7 +209,8 @@ class MissionValue(models.Model):
 
 # Teacher decides how much the mission distribution of points there is in the mission- according to skills ni the mission
 # could be 100% of one skill and few % if many skills
-#
+
+
 class HardSkillsRating(models.Model):
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
     project_mission = models.ForeignKey(MissionValue, on_delete=models.CASCADE)
@@ -213,7 +241,6 @@ class IndividualMission(Mission):
         return reverse('update_individual_mission', kwargs={"pk":self.pk})
 
 
-
 class CollectiveMission(Mission):
     """
     This mission has to be done by each participants of a team.
@@ -235,13 +262,11 @@ class CollectiveMission(Mission):
         return reverse('update_collective_mission', kwargs={"pk":self.pk})
 
 
-
-
 class IndividualCollectiveMission(AnswerModel):
     """Through table > a Custom ManyToMany Table to manage the Collective mission status  """
 
-    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE , related_name = "individual_team_mission")
-    parent_mission = models.ForeignKey(CollectiveMission, on_delete= models.CASCADE)
+    attributed_to = models.ForeignKey(Student, on_delete= models.CASCADE, related_name="individual_team_mission")
+    parent_mission = models.ForeignKey(CollectiveMission, on_delete=models.CASCADE)
 
 
 
@@ -250,22 +275,19 @@ class IndividualCollectiveMission(AnswerModel):
 
 
     def get_absolute_url(self):
-        return reverse("team_detail", kwargs={"pk":self.pk})
-
-
-
+        return reverse("team_detail", kwargs={"pk": self.pk})
 
 
 class Team(DiscussionModel):
-    """ a Team Model is to manage a Project per Team- Creating a team is allowing the Speaker to  
+    """ a Team Model is to manage a Project per Team- Creating a team is allowing the Speaker to
     Manage one or few people on a Project"""
     name = models.CharField(max_length=200)
     project = models.OneToOneField(Project, on_delete=models.CASCADE, null=True)
     start_date = models.DateField()
     group_institution = models.ForeignKey(Group, on_delete=models.CASCADE)
-    participants = models.ManyToManyField(Student, blank = True )
+    participants = models.ManyToManyField(Student, blank=True )
     manager = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-    project_completed = models.BooleanField(null=True, blank = True)
+    project_completed = models.BooleanField(null=True, blank=True)
 
     objects = TeamModelManager()
 
@@ -274,7 +296,7 @@ class Team(DiscussionModel):
         return f"Team Name : {self.name}"
 
     def get_absolute_url(self):
-        return reverse("team_detail", kwargs={"pk":self.pk})
+        return reverse("team_detail", kwargs={"pk": self.pk})
 
     def due_date(self,):
         if self.project:
@@ -289,9 +311,21 @@ class Team(DiscussionModel):
             return days_left.days
 
 
+class Chapter(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    order = models.PositiveIntegerField(default=0)
 
-# def check_date(sender, instance, *args, **kwargs):
-#         if instance.start_date > instance.due_date:
-#             raise ValueError('Start date must be less than end date')
+    class Meta:
+        ordering = ['order', 'id']
 
-# pre_save.connect(check_date, sender=Team)
+    def other_chapter_ids(self):
+        chapters = self.project.chapter_set.exclude(id=self.id)
+        html_ids = [f'#{chapter.id}-list' for chapter in chapters]
+        html_ids.append('#new-jobs-list')
+        return json.dumps(html_ids)
+
+    def save(self, *args, **kwargs):
+        if self.order == 0 and self.project.chapter_set.last():
+            self.order = self.project.chapter_set.last().order + 1
+        super().save(*args, **kwargs)

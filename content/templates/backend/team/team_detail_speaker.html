@@ -15,7 +15,7 @@
 
     <div class="team_detail_header">
         <div class="description_team_project">
-            <h3>  {{ team.name.title }}</h3>
+            <h3>  {{ team.name }}</h3>
 
             {% if not team.project %}
                 <button type="button" class="choose_project_button" data-bs-toggle="modal" data-bs-target="#ChoseProject">{% trans 'choose_project_team' %}</button>
@@ -77,7 +77,7 @@
                 <span>{% trans 'time_to_complete' %}:</span>
                 {{team.project.time_to_complete}} {% trans 'days' %}
             </div>
-            <a class="btn neutral_action" href="{% url 'project_detail' team.project.id %}" >{% trans 'edit_project' %}</a>
+            <a class="btn neutral_action" href="{% url 'project_detail' team.project.id %}" >{% trans 'view_project' %}</a>
         </div>
     </div>
 

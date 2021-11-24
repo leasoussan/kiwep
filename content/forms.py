@@ -18,6 +18,7 @@ class ProjectAddForm(ModelForm):
             'name',
             'description',
             'time_to_complete',
+            'required_skills',
             'points',
             'is_template'
         ]
@@ -209,7 +210,6 @@ class addSkillsForm(forms.Form):
 
 
     def save_add_skill(self):
-
         object.acquired_skills = self.cleaned_data['name']
 
 

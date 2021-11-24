@@ -2,9 +2,14 @@
     height: 6rem;
     width: 40%;
     }
+
+/*.btn{*/
+/*    */
+/*}*/
+
 .primary_button{
-    width: 15rem;
-    height: 3rem;
+    width: 13rem;
+    height: 2rem;
     background-color: #449162;
     border: #92b392 solid 1px;
     margin: 1rem;
@@ -12,13 +17,15 @@
 
 .primary_button h5{
     color: white;
-    font-weight: bolder;
+    font-weight: bold;
+    font-size: medium;
 
 }
 
 
 .secondary_button{
-    width: 15rem;
+    width: 13rem;
+    height: 2rem;
     background-color: #92b392;
     border: #92b392 solid 1px;
      margin: 1rem;
@@ -77,6 +84,17 @@
 
 .edit_button{
     background-color: lightgray;
-    width: 6rem;
+    width: 8rem;
+    height: 2rem;
     /*color: white;*/
+}
+
+.delete_button{
+      background-color: lightsalmon;
+    width: 8rem;
+    height: 2rem;
+}
+
+.add_button{
+    background-image: ;
 }

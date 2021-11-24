@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'bootstrap4',
     'ckeditor',
+    'ckeditor_uploader',
 
 ]
 
@@ -216,6 +217,8 @@ LOGOUT_URL = "homepage"
 APPEND_SLASH=False
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
 
 
 # Activate Django-Heroku.
