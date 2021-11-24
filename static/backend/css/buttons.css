@@ -8,7 +8,7 @@
 /*}*/
 
 .primary_button{
-    width: 12rem;
+    width: 13rem;
     height: 2rem;
     background-color: #449162;
     border: #92b392 solid 1px;
@@ -17,13 +17,14 @@
 
 .primary_button h5{
     color: white;
-    font-weight: bolder;
+    font-weight: bold;
+    font-size: medium;
 
 }
 
 
 .secondary_button{
-    width: 12rem;
+    width: 13rem;
     height: 2rem;
     background-color: #92b392;
     border: #92b392 solid 1px;

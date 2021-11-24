@@ -35,9 +35,7 @@
 
             {% else %}
                 <a class="btn edit_button" href="{% url 'update_project' project.id %}">{% trans 'edit'%}</a>
-                <!-- <a class="darker-edit-btn" href="{% url 'update_project' project.id %}">{% trans 'edit_project'%}</a> -->
-                {#<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete_modal">#}
-                {#                            {% trans 'delete' %}</button>#}
+
                 <a class="btn delete_button" href="{% url 'delete_project' project.id %}" >{% trans 'delete' %}</a>
 
                 {% if team.project %}
