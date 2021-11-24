@@ -171,33 +171,19 @@ class Mission(AnswerModel):
                 return key
 
     def save(self, *args, **kwargs):
-        print('model_save_order',self.order)
+        print(self.order)
         if self.order == 0 and self.chapter:
-            print(f'model_self_order_0_with_chap, {self.order},in {self.chapter_id}')
             new_mission_order = self.chapter.mission_set.count()+1
-            print('new_mission_order', new_mission_order)
             self.order = new_mission_order
-            print('mission_order_pre_save', self.order)
-            # super().save(*args, **kwargs)
-            print('model-new_order_save', self.save)
-
 
         elif not self.chapter:
             self.order = 0
-            print('mission_no_chapter_mocel_187', self.order)
-            # super().save(*args, **kwargs)
 
         elif self.order in self.chapter.mission_set.exclude(id=self.id).values_list('order', flat=True):
-                print("big_print", (self.chapter.mission_set.exclude(id=self.id).values_list('order')))
                 new_order = self.chapter.mission_set.filter(order__gte=self.order)
-                print('new_order', new_order)
                 new_order.update(order=F('order') + 1)
-                print('model-194-pre_saved_mission_new_order', new_order)
-                # super().save(*args, **kwargs)
-                print('elif')
 
-        # super().save(*args, **kwargs)
-        print('out_model_192', self.order)
+        super().save(*args, **kwargs)
 
 
     #

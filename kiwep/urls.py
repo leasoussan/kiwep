@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
+from accounts.views import MyLoginView
 
 admin.autodiscover()
 
@@ -30,7 +31,7 @@ urlpatterns =[
     path('', include('content.urls')),
     path('message/', include('message.urls')),
     path('todo/', include('todo.urls')),
-
+    path('login/', MyLoginView.as_view(), name='login'),
     path('api_project/content/', include('content.api_project.project_urls')),
     path('api_team/content/', include('content.api_team.team_urls')),
     # path('api_mission/content/', include('content.api_mission.mission_urls')),

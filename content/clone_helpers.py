@@ -13,18 +13,18 @@ def clone_project_skills(project, new_project):
 
 
 def clone_chapter(chapter):
-    chapter.id=None
+    chapter.id = None
     chapter.save()
     print('chapter_order', chapter.order)
     return chapter
 
 
-def clone_project_chapters(project, new_project):
+def clone_chapters(project, new_project):
     for chapter in project.chapter_set.all():
         new_chapter = clone_chapter(chapter)
-        new_chapter.order = chapter.order+1
-        new_chapter.project_id = new_project
-        clone_missions(project, new_project)
+        for mission in chapter.mission_set.all():
+            clone_mission(mission, new_project, chapter=new_chapter)
+        new_chapter.project = new_project
         new_chapter.save()
         print('new_chapter_save')
 
@@ -56,7 +56,7 @@ def clone_mission_resources(mission, new_mission):
         print("save")
         return new_resource
 
-def clone_mission(mission, new_proj):
+def clone_mission(mission, new_proj, chapter=None):
     if mission.mission_type == 'i':
         new_mission = IndividualMission.objects.create(
             id=None,
@@ -73,6 +73,7 @@ def clone_mission(mission, new_proj):
         )
         new_mission.save()
 
+
     elif mission.mission_type == 'c':
         attributed_to = []
         new_mission = CollectiveMission.objects.create(
@@ -87,15 +88,20 @@ def clone_mission(mission, new_proj):
             description=mission.description
         )
         new_mission.save()
-        # new_mission.attributed_to.set(attributed_to)
+        new_mission.attributed_to.clear()
         print('mission cloned, starting on resources')
         clone_mission_resources(mission, new_mission)
-        return new_mission
+    if chapter:
+        new_mission.chapter = chapter
+        new_mission.save()
+    return new_mission
 
 
 def clone_missions(proj, new_proj):
-    for mission in proj.mission_set.all():
+    for mission in proj.mission_set.filter(chapter_isnull=True):
         clone_mission(mission, new_proj)
+
+    clone_chapters(proj, new_proj)
 
 
 def clone_proj_resources(proj, new_proj):
