@@ -57,13 +57,13 @@ def clone_mission_resources(mission, new_mission):
         return new_resource
 
 def clone_mission(mission, new_proj, chapter=None):
+    new_mission= None
     if mission.mission_type == 'i':
         new_mission = IndividualMission.objects.create(
             id=None,
             name=mission.name,
             project_id=new_proj.id,
             order=mission.order,
-
             created_date=None,
             due_date=timezone.now(),
             mission_type='i',
@@ -87,20 +87,22 @@ def clone_mission(mission, new_proj, chapter=None):
             owner_id=mission.project.speaker.user.id,
             description=mission.description
         )
+
         new_mission.save()
         new_mission.attributed_to.clear()
         print('mission cloned, starting on resources')
+
         clone_mission_resources(mission, new_mission)
-    if chapter:
-        new_mission.chapter = chapter
-        new_mission.save()
+    #
+    # if chapter:
+    #     new_mission.chapter_id = chapter
+    #     new_mission.save()
     return new_mission
 
 
 def clone_missions(proj, new_proj):
-    for mission in proj.mission_set.filter(chapter_isnull=True):
+    for mission in proj.mission_set.filter(chapter__order__isnull=True):
         clone_mission(mission, new_proj)
-
     clone_chapters(proj, new_proj)
 
 
@@ -132,12 +134,12 @@ def clone_project(project, speaker):
         project.name += ' - copy'
     project.save()
     old_proj = Project.objects.get(id=original_id)
-    # clone_missions(old_proj, project)
-    clone_project_chapters(old_proj, project)
+    clone_missions(old_proj, project)
     clone_proj_resources(old_proj, project)
     return project
 
 
-def bulk_add(mission, *projects):
+def bulk_add(mission, projects):
     for project in projects:
-        clone_mission(mission, project)
+        clone_mission(mission, project, chapter=None),
+

@@ -43,8 +43,7 @@
 
                     <table>
                         <thead>
-                        {% if request.user.profile.team_set.exists %}
-
+                        {% if group.team_set.exists %}
                             <tr>
                                 <th class="table_column_large"><h3>{% trans 'team_name' %}</h3></th>
                                 {#                                <th class="table_column_large"><h3>{% trans 'participants' %}</h3></th>#}

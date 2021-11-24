@@ -121,7 +121,6 @@
                 <th>{% trans 'project_name' %}</th>
                 <th>{% trans 'due_date' %}</th>
                 <th>{% trans 'status_answer_student' %}</th>
-                <th><i class="bi bi-box-arrow-right" style="font-size:2rem"></i></th>
             </tr>
             </thead>
 
@@ -149,7 +148,6 @@
                             {{mission.answer.first.get_status_display}}
                         {% endif %}
                         </td>
-                        <td class="small_text"><a class="table_column_medium" href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a></td>
                     </tr>
                     {#                  {% endif %}#}
                 {% endfor %}
@@ -169,7 +167,6 @@
                 <th>{% trans 'project_name' %}</th>
                 <th>{% trans 'due_date' %}</th>
                 <th>{% trans 'status_answer_student' %}</th>
-                <th><i class="bi bi-box-arrow-right" style="font-size:2rem"></i></th>
             </tr>
 
 
@@ -195,7 +192,6 @@
                             {{mission.answer.first.get_status_display}}
                         {% endif %}
                         </td>
-                        <td class="small_text"><a class="table_column_medium" href="{%  url 'leave_collective_mission_detail' mission.parent_mission.id %}">{% trans 'leave_mission' %}</a></td>
                     </tr>
                 {% endfor %}
             </div>

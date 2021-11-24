@@ -310,12 +310,6 @@ msgstr "Team of Project"
 msgid "missions"
 msgstr "Missions"
 
-#: templates/backend/project/project_detail_speaker.html:91
-#: templates/backend/project/project_detail_student.html:76
-#: templates/backend/team/team_list_speaker.html:16
-msgid "add_mission"
-msgstr "Add Mission"
-
 #: templates/backend/project/project_detail_speaker.html:133
 #: templates/backend/project/project_detail_student.html:120
 #: templates/backend/team/team_detail_speaker.html:332
