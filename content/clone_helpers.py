@@ -12,10 +12,21 @@ def clone_project_skills(project, new_project):
     pass
 
 
-def clone_project_chapters(project, new_project):
-    # TODO: create function
-    pass
+def clone_chapter(chapter):
+    chapter.id=None
+    chapter.save()
+    print('chapter_order', chapter.order)
+    return chapter
 
+
+def clone_project_chapters(project, new_project):
+    for chapter in project.chapter_set.all():
+        new_chapter = clone_chapter(chapter)
+        new_chapter.order = chapter.order+1
+        new_chapter.project_id = new_project
+        clone_missions(project, new_project)
+        new_chapter.save()
+        print('new_chapter_save')
 
 def clone_mission_fields(mission, new_mission):
     # TODO: create function
@@ -27,53 +38,59 @@ def clone_project_fields(project, new_project):
     pass
 
 def clone_resource(resource):
-    print(resource.id)
+    # print('resource_old',resource.id)
     resource.id = None
     resource.save()
-    print(resource.id)
+    # print('new_res_id',resource.id)
     return resource
 
 
 def clone_mission_resources(mission, new_mission):
     print('clone resources function')
     for resource in mission.resource_set.all():
-        print(resource)
+        print('new_mission_res', new_mission)
         new_resource = clone_resource(resource)
         new_resource.mission = new_mission
         new_resource.project = new_mission.project
         new_resource.save()
-
+        print("save")
+        return new_resource
 
 def clone_mission(mission, new_proj):
     if mission.mission_type == 'i':
-            new_mission = IndividualMission.objects.create(
-                id=None,
-                name=mission.name,
-                project_id=new_proj.id,
-                created_date=None,
-                due_date=timezone.now(),
-                mission_type='i',
-                owner_id=mission.project.speaker.user.id,
-                attributed_to=None,
-                description=mission.description
-            )
+        new_mission = IndividualMission.objects.create(
+            id=None,
+            name=mission.name,
+            project_id=new_proj.id,
+            order=mission.order,
+
+            created_date=None,
+            due_date=timezone.now(),
+            mission_type='i',
+            owner_id=mission.project.speaker.user.id,
+            attributed_to=None,
+            description=mission.description
+        )
+        new_mission.save()
+
     elif mission.mission_type == 'c':
         attributed_to = []
         new_mission = CollectiveMission.objects.create(
             id=None,
             name=mission.name,
             project_id=new_proj.id,
+            order=mission.order,
             created_date=None,
             due_date=timezone.now(),
             mission_type='c',
             owner_id=mission.project.speaker.user.id,
             description=mission.description
         )
-        new_mission.attributed_to.set(attributed_to)
-    print('mission cloned, starting on resources')
-    clone_mission_resources(mission, new_mission)
-
-    return new_mission
+        new_mission.save()
+        # new_mission.attributed_to.set(attributed_to)
+        print('mission cloned, starting on resources')
+        clone_mission_resources(mission, new_mission)
+        return new_mission
 
 
 def clone_missions(proj, new_proj):
@@ -109,7 +126,8 @@ def clone_project(project, speaker):
         project.name += ' - copy'
     project.save()
     old_proj = Project.objects.get(id=original_id)
-    clone_missions(old_proj, project)
+    # clone_missions(old_proj, project)
+    clone_project_chapters(old_proj, project)
     clone_proj_resources(old_proj, project)
     return project
 

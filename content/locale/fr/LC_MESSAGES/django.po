@@ -547,7 +547,7 @@ msgstr "Ajouter"
 
 #: templates/backend/team/team_list_student.html:14
 msgid "my_team"
-msgstr "Mes équipe"
+msgstr "Mes équipes"
 
 #: templates/backend/team/team_list_student.html:20
 #: templates/backend/team/team_list_student.html:60
