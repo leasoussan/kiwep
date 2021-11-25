@@ -90,8 +90,6 @@ def clone_mission(mission, new_proj, chapter=None):
             owner_id=mission.project.speaker.user.id,
             description=mission.description
         )
-
-
         new_mission.save()
         new_mission.attributed_to.clear()
         print('mission cloned, starting on resources')
