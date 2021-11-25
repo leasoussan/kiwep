@@ -192,7 +192,10 @@
 .modal-content{
     min-width: 100%;
     max-width: 100%;
-    background-color:  antiquewhite;
+    min-height: 100%;
+    max-height: 100%;
+    overflow: scroll;
+    background-color:  #faf8ed;
 }
 .modal_discussion{
     width: 40%;

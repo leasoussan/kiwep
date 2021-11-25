@@ -53,137 +53,193 @@
 
 
     {% if team.project %}
-        <div class="team_detail_main_content">
+    <div class="team_detail_main_content">
 
-            {% if user.profile in team.participants.all %}
-                <div class="team_mission_list_panel">
-                    <div class="mission_list_box_team_detail">
-                        <h2>{% trans 'mission_not_attributed_list' %}</h2>
+        {% if user.profile in team.participants.all %}
+        <div class="team_mission_list_panel">
+            <div class="mission_list_box_team_detail">
+                <h2>{% trans 'mission_not_attributed_list' %}</h2>
 
-                        <div class="team_mission_list">
+                <div class="team_mission_list">
+{#no chpater mission#}
 
-                            {#STUDENT ____________________INDIVIDUAL MISSIONS DISPLAY IN TABLE #}
+                    {#STUDENT ____________________INDIVIDUAL MISSIONS DISPLAY IN TABLE #}
 
-                            {% for mission in team.project.mission_set.available_mission %}
+                    <div class="chapter_row">
+                        {% for mission in team.project.mission_set.all.available_mission %}
 
-                                <div class="team_mission_detail">
-                                    <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+                            <div class="team_mission_detail">
+                                <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
 
-                                    <label class="team_mission_detail_attributed_to">
+                                <label class="team_mission_detail_attributed_to">
 
-                                        {% if mission.individualmission %}
-                                            {% if not mission.attributed_to %}
-                                                <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
-                                            {% else %}
-                                                {% trans 'claimed_already' %}
-                                            {% endif %}
-                                        {% endif %}
-                                    </label>
-
-                                    <label class="team_mission_detail_m_type">
-                                        <i class="bi bi-person" style="font-size: 3rem; color: darkgreen;"></i>
-                                    </label>
-
-                                </div>
-                            {% endfor %}
-
-                            {#STUDENT ____________________COLLECTIVE  MISSIONS DISPLAY IN TABLE #}
-
-                            {% for mission in team.project.mission_set.collective %}
-
-                                <div class="team_mission_detail">
-
-                                    <a class="team_mission_name_title" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
-
-                                    <label class="team_mission_detail_attributed_to">
-                                        {%  if request.user.profile not in mission.collectivemission.attributed_to.all %}
-                                            <a href="{% url 'join_collective_mission_detail' mission.id %}">{% trans 'join_collective_mission' %}</a>
+                                    {% if mission.individualmission %}
+                                        {% if not mission.attributed_to %}
+                                            <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
                                         {% else %}
-                                            <a class="team_mission_name_title"href="{% url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_collective' %}</a>
+                                            {% trans 'claimed_already' %}
                                         {% endif %}
-                                    </label>
+                                    {% endif %}
+                                </label>
 
-                                    <label class="team_mission_detail_m_type">
-                                        <i class="bi bi-people-fill" style="font-size: 3rem; color: darkolivegreen;"></i>
+                                <label class="team_mission_detail_m_type">
+                                    <i class="bi bi-person" style="font-size: 3rem; color: darkgreen;"></i>
+                                </label>
 
-                                </div>
-                            {% endfor %}
+                            </div>
+                        {% endfor %}
 
+                        {#STUDENT ____________________COLLECTIVE  MISSIONS DISPLAY IN TABLE #}
 
+                        {% for mission in team.project.mission_set.collective %}
 
-                        </div>
+                            <div class="team_mission_detail">
+
+                                <a class="team_mission_name_title" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+
+                                <label class="team_mission_detail_attributed_to">
+                                    {%  if request.user.profile not in mission.collectivemission.attributed_to.all %}
+                                        <a href="{% url 'join_collective_mission_detail' mission.id %}">{% trans 'join_collective_mission' %}</a>
+                                    {% else %}
+                                        <a class="team_mission_name_title"href="{% url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_collective' %}</a>
+                                    {% endif %}
+                                </label>
+
+                                <label class="team_mission_detail_m_type">
+                                    <i class="bi bi-people-fill" style="font-size: 3rem; color: darkolivegreen;"></i>
+
+                            </div>
+                        {% endfor %}
                     </div>
-                    <div class="mission_list_box_team_detail">
-                        <h2>{% trans 'attributed_mission_log' %}</h2>
-                        <div class="team_mission_list">
-                            {% if team.project.mission_set.all.get_attributed_mission %}
-                                {% for mission in team.project.mission_set.all.get_attributed_mission  %}
-                                    <div class="team_mission_detail">
-                                        <a class="team_mission_name_title" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
-
-                                        <label class="team_mission_detail_attributed_to">
-                                            {% if user.profile == mission.individualmission.attributed_to %}
-                                                <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a>
-                                            {% else %}
-                                                {{ mission.individualmission.attributed_to.user.first_name }}
-                                            {% endif %}
-                                        </label>
-
-                                        <label class="team_mission_detail_m_type">
-
-                                            <i class="bi bi-person" style="font-size: 3rem; color: darkgreen;"></i>
-
-                                        </label>
 
 
+{#                with chapter #}
+                    {%  for chapter in team.project.chapter_set.all %}
+                    {#STUDENT ____________________INDIVIDUAL MISSIONS DISPLAY IN TABLE #}
 
-                                    </div>
-                                {% endfor %}
-                            {% else %}
-                                <h2>{% trans 'no_claimed_mission_yet' %}</h2>
+                    <div class="chapter_row">
+                        {% for mission in team.project.chapter_set.mission_set.available_mission %}
+                            {{ mission }}
+                        {% if mission.order%}
+                            <div class="team_mission_detail">
+                                <a class="team_mission_name_title"href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
+
+                                <label class="team_mission_detail_attributed_to">
+
+                                    {% if mission.individualmission %}
+                                        {% if not mission.attributed_to %}
+                                            <a href="{% url 'claim_mission' mission.id %}">{% trans 'claim_mission_link' %}</a>
+                                        {% else %}
+                                            {% trans 'claimed_already' %}
+                                        {% endif %}
+                                    {% endif %}
+                                </label>
+
+                                <label class="team_mission_detail_m_type">
+                                    <i class="bi bi-person" style="font-size: 3rem; color: darkgreen;"></i>
+                                </label>
+
+                            </div>
                             {% endif %}
-                        </div>
-                    </div>
-                </div>
+                        {% endfor %}
 
-                <div class="team_extra_detail">
-                    <div class="team_detail_project_detail">
+                        {#STUDENT ____________________COLLECTIVE  MISSIONS DISPLAY IN TABLE #}
 
-                        <div class="team_detail_project">
-                            <div class="team_project_title">
-                             <a href="{% url 'project_detail' team.project.id %}" >   <h3>{{ team.project.name.title }}   </h3></a>
+                        {% for mission in team.project.mission_set.collective %}
+
+                            <div class="team_mission_detail">
+
+                                <a class="team_mission_name_title" href="{% url 'collective_mission_detail' mission.id %}">{{ mission.name }}</a>
+
+                                <label class="team_mission_detail_attributed_to">
+                                    {%  if request.user.profile not in mission.collectivemission.attributed_to.all %}
+                                        <a href="{% url 'join_collective_mission_detail' mission.id %}">{% trans 'join_collective_mission' %}</a>
+                                    {% else %}
+                                        <a class="team_mission_name_title"href="{% url 'leave_collective_mission_detail' mission.id %}">{% trans 'leave_collective' %}</a>
+                                    {% endif %}
+                                </label>
+
+                                <label class="team_mission_detail_m_type">
+                                    <i class="bi bi-people-fill" style="font-size: 3rem; color: darkolivegreen;"></i>
+
                             </div>
-                         <a href="{% url 'project_detail' team.project.id %}" ><h2>{% trans 'project_detail' %}</h2></a>
-                        </div>
-                        <div class="project_learning_info">
-                            <div class="detail_container_center">
-                                <img class="medium_image" src="{%  static 'backend/images/kiwep/project_default.png' %}" style="--img-ratio: 1" >
-
-                                <div class="team_project_description">
-                                    {{ team.project.description|safe }}
-                                </div>
-                            </div>
-                            <div class="detail_time_to_complete">
-                                <h4>{% trans 'time_to_complete' %}:
-                                    {{team.project.time_to_complete}} {% trans 'days' %}</h4>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="team_discussion_container">
-
-                        {% include 'comments/discussion.html' %}
-
-                    </div>
+                    {% endfor %}
 
                 </div>
+            </div>
+            <div class="mission_list_box_team_detail">
+                <h2>{% trans 'attributed_mission_log' %}</h2>
+                <div class="team_mission_list">
+                    {% if team.project.mission_set.all.get_attributed_mission %}
+                        {% for mission in team.project.mission_set.all.get_attributed_mission  %}
+                            <div class="team_mission_detail">
+                                <a class="team_mission_name_title" href="{% url 'individual_mission_detail' mission.id %}">{{ mission.name }}</a>
 
+                                <label class="team_mission_detail_attributed_to">
+                                    {% if user.profile == mission.individualmission.attributed_to %}
+                                        <a class="btn unclaim_mission_button" href="{%  url 'unclaim_mission' mission.id %}">{% trans 'unclaim_mission' %}</a>
+                                    {% else %}
+                                        {{ mission.individualmission.attributed_to.user.first_name }}
+                                    {% endif %}
+                                </label>
+
+                                <label class="team_mission_detail_m_type">
+
+                                    <i class="bi bi-person" style="font-size: 3rem; color: darkgreen;"></i>
+
+                                </label>
+
+
+
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <h2>{% trans 'no_claimed_mission_yet' %}</h2>
+                    {% endif %}
                 </div>
-
-            {% endif %}
+            </div>
         </div>
 
+        <div class="team_extra_detail">
+            <div class="team_detail_project_detail">
+
+                <div class="team_detail_project">
+                    <div class="team_project_title">
+                        <a href="{% url 'project_detail' team.project.id %}" >   <h3>{{ team.project.name.title }}   </h3></a>
+                    </div>
+                    <a href="{% url 'project_detail' team.project.id %}" ><h2>{% trans 'project_detail' %}</h2></a>
+                </div>
+                <div class="project_learning_info">
+                    <div class="detail_container_center">
+                        <img class="medium_image" src="{%  static 'backend/images/kiwep/project_default.png' %}" style="--img-ratio: 1" >
+
+                        <div class="team_project_description">
+                            {{ team.project.description|safe }}
+                        </div>
+                    </div>
+                    <div class="detail_time_to_complete">
+                        <h4>{% trans 'time_to_complete' %}:
+                            {{team.project.time_to_complete}} {% trans 'days' %}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="team_discussion_container">
+
+                {% include 'comments/discussion.html' %}
+
+            </div>
+
+        </div>
+
+    </div>
 
     {% endif %}
+</div>
+
+
+{% endif %}
 
 
 

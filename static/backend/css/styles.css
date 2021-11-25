@@ -26,9 +26,9 @@ body *{
 }
 
 
-a{
-  line-height: 1.8;
-}
+/*a{*/
+/*  !*line-height: 1.8;*!*/
+/*}*/
 
 .main_base_content_block{
   margin: auto;
@@ -49,22 +49,23 @@ header{
 
 h1{
   font-weight: normal;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #375442;
   line-height: 1.6;
 }
 
 h2{
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: grey;
   line-height: 1.6;
 }
 
 h3{
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   line-height: 1.6;
+  color: #3f704a;
 }
 
 h4{
@@ -110,7 +111,7 @@ h4{
 }
 
 .large_image{
-  --max-height: 100%px;
+  --max-height: 100%;
   width: 100%;
   /* And limit it with our function above */
   max-width: calc(var(--max-height, 100%) * var(--img-ratio, 1));

@@ -69,7 +69,6 @@
 .modal_answer_text{
     width: 100%;
     height: 100%;
-    border: solid 9px yellow;
 }
 
 .modal_answer_text div{
@@ -201,8 +200,8 @@
 
 }
 .answer_box_collective_individual{
-    min-width: 60%;
-    max-width: 60%;
+    width: 60%;
+    width: 60%;
     padding: 1rem;
 }
 

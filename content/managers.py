@@ -107,10 +107,10 @@ class IndividualMissionQuerySet(models.QuerySet):
 
 
     def is_my_mission(self, user):
-        return self.filter(attributed_to = user)
+        return self.filter(attributed_to=user)
 
-    def get_student_missions(self):
-        return self.filter(mission='s_m')
+    def get_student_missions(self, user):
+        return self.filter(attributed_to=user, parent_mission__project__team__isnull=False)
 
 
     # def attributed_mission(self):

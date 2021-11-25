@@ -32,13 +32,16 @@ class IndividualMissionListView(ProfileCheckPassesTestMixin, ListView):
 
 
     def get_queryset(self):
-        return super().get_queryset().filter(attributed_to=self.request.user.profile())
+        return super().get_queryset().filter(attributed_to=self.request.user.profile(), mission_ptr__project__team__isnull=False)
 
 
     def get_context_data(self, *args,**kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_student:
-            context['individual_collective_mission'] = IndividualCollectiveMission.objects.filter(attributed_to=self.request.user.profile())
+            context['individual_collective_mission'] = IndividualCollectiveMission.objects.filter(
+                attributed_to=self.request.user.profile(),
+                parent_mission__project__team__isnull=False,
+            )
         return context
 
 

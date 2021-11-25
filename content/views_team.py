@@ -73,9 +73,11 @@ class TeamDetailView(ProfileCheckPassesTestMixin, DetailView):
             context['project_form'] = ProjectAddForm()
             context['templates'] = self.request.user.profile().project_set.personal_templates()
             context['old_projects'] = self.request.user.profile().project_set.filter(is_template=False)
-        elif self.object.project:
+        elif self.object.project and self.request.user.is_speaker:
             context['individual_form'] = IndividualMissionAddForm()
             context['collective_form'] = CollectiveMissionAddForm()
+        elif self.request.user.is_student:
+            context['mission_no_chapter'] = Mission.objects.filter(order=None)
             # to get her all individualcollective Mission
             #     context['individual_collective_mission']= IndividualCollectiveMission.objects.filter(parent_mission__project__id=self.object.project.id, attributed_to=self.request.user.profile())
         return context

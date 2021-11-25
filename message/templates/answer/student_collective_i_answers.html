@@ -13,9 +13,9 @@
     <div class="answer_box_participants_answers">
     <h3>{% trans 'participants_answers' %}</h3>
         {% for individualcollectivemission in object.parent_mission.individualcollectivemission_set.all|student_participants_collective_mission:request.user.id %}
-            {% if request.user.profile != participant.id  %}
+            {% if request.user.profile != individualcollectivemission.attributed_to  %}
                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#see_student_{{ individualcollectivemission.id }}">
-                    {{ individualcollectivemission.id }} {% trans 'answer' %}
+                    {{ individualcollectivemission.attributed_to.name }} {% trans 'answer' %}
                 </button>
 
                 <div class="modal fade" id="see_student_{{ individualcollectivemission.id }}" tabindex="-1" aria-labelledby="see_other_student_answersLabel" aria-hidden="true">
@@ -77,7 +77,7 @@
                 <div class="collective_existing_answer_container">
                     <div class="answer_detail">
 
-                        <p class="date_tag">  {% trans 'from:' %} {{ answer.date_posted }}</p>
+                        <p class="date_tag">{{ answer.date_posted }}</p>
                     </div>
                     <div class="answer_detail">
                         {% if answer.response_file %}

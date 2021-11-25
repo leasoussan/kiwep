@@ -182,7 +182,7 @@ tbody th{
     grid-template-columns: repeat(auto-fill, minmax(50%, 1fr)40%);
     justify-items: center;
     padding: 1rem 0rem;
-    margin-top:1rem;
+    margin-top:3px;
 }
 
 .team_mission_list_panel{
@@ -227,10 +227,10 @@ tbody th{
     width:95%;
     background-color: white;
     box-shadow:2px 2px 5px grey;
-    min-height: 4rem;
-    max-height: 4rem;
+    min-height: 2.8rem;
+    max-height: 2.8rem;
     align-items: center;
-    margin: 1rem 1rem ;
+    margin: 3px 3px ;
 }
 
 .team_mission_name_title {
