@@ -12,11 +12,11 @@
 <div class="mission_detail_container">
 
     <div class="mission_detail_header">
-        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' mission.project.id %}">{% trans 'back_to_project' %}</a></button>
+        <button type="button" class="btn secondary_button"><a href="{% url 'project_detail' mission.project.id %}">{% trans 'back_to_project' %}</a></button>
 
 
         {% if mission.project.team %}
-            <button type="button" class="btn btn-light back_btn"><a href="{% url 'team_detail' mission.project.team.id %}">{% trans 'back_to_team' %}</a></button>
+            <button type="button" class="btn secondary_button"><a href="{% url 'team_detail' mission.project.team.id %}">{% trans 'back_to_team' %}</a></button>
         {% endif %}
         {#        <button type="button" class="btn btn-light back_btn"><a href="{% url 'project_detail' mission.project.id %}">{% trans 'back_to_project_button' %}</a></button>#}
         {#        <!-- <a href="{% url 'project_detail' object.project.id %}"> <button>{% trans 'back_to_project_button' %}</button></a> -->#}
@@ -138,16 +138,11 @@
                     <div class="mission_attribution_detail">
                         {% if individualmission  %}
 
-                            {% if not object.attributed_to  %}
-                                <h3 class="medium_title label_mission_status"> {% trans 'mission_unclaimed' %}</h3>
-                            {% else %}
-
                                 <div class="mission_attributed_to_label">
                                     <h3>{% trans 'attributed_to' %}:</h3>
                                     <label class="mission_attr_name"> {{ object.attributed_to }}</label>
 
                                 </div>
-                            {% endif %}
 
                         {% elif collectivemission  %}
 

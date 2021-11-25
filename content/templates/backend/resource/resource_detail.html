@@ -45,7 +45,7 @@
                     {% if resource.image %}
                         <!-- Button trigger modal -->
                         <button  data-bs-toggle="modal" data-bs-target="#see_image_resource">
-                            <img class="resource_image"  src="{{ resource.get_resourceImg_or_default }}" style="--img-ratio: 1" alt="{{ resource.title }}" >  </button>
+                            <img class="medium_image"  src="{{ resource.get_resourceImg_or_default }}" style="--img-ratio: 1" alt="{{ resource.title }}" >  </button>
                     {% else %}
 
                     {% endif %}
@@ -128,11 +128,10 @@
                 </div>
                 <div class="modal-body">
                     {% if resource.file_rsc %}
-
-                        <embed src="{{ resource.file_rsc.url }}" width="500" height="375"
-                               type="application/pdf">
-
-
+{##}
+{#                        <embed src="{{ resource.file_rsc.url }}" width="500" height="375"#}
+{#                               type="application/pdf">#}
+{##}
                         <img class="resource_file_big"  src="{{ resource.file_rsc.url }}" alt="{{ resource.title }}">
 
 

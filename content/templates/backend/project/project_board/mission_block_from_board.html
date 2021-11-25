@@ -2,8 +2,14 @@
 <li>
     <div class="job-block" id="mission-{{ mission.id }}-test">
         <div class="job-name-block">
-            <div class="job-name">{{ mission.name }}</div>
-{#            <div class="job-edit"><img class="edit-job-icon" src="https://image.flaticon.com/icons/svg/61/61456.svg"></div>#}
+            <div class="job-name">
+                {%  if mission.individualmission %}
+                    <a href="{% url 'individual_mission_detail' mission.id %}"> {{ mission.name }}</a>
+                {% elif mission.collectivemission %}
+                    <a href="{% url 'collective_mission_detail' mission.id %}"> {{ mission.name }}</a>
+
+                {% endif %}
+            </div>
         </div>
         <div class="job-info-block">
             <div class="job-date">{{ mission.due_date }}</div>

@@ -67,8 +67,8 @@ tbody th{
 .table_item_team{
     display: block;
     word-break: break-all;
-    min-width: 500px;
-    max-width: 500px;
+    min-width: 450px;
+    max-width: 450px;
     overflow: hidden;
     min-height: 2rem;
     max-height: 2rem;

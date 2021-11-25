@@ -185,6 +185,8 @@ class IndividualMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
 
     fields = ['name',
               'field',
+              'chapter',
+              'order',
               'level',
               'description',
               'response_type',
@@ -199,11 +201,15 @@ def get_object(self):
     return get_object_or_404(IndividualMission, pk=pk)
 
 
+
+
 class CollectiveMissionUpdateView(SpeakerStatuPassesTestMixin, UpdateView):
     '''Update a Collective Mission'''
     model = CollectiveMission
     fields = ['name',
               'field',
+              'chapter',
+              'order',
               'level',
               'response_type',
               'description',

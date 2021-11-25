@@ -14,12 +14,12 @@
 {% block content %}
 
     <div class="update_form_container">
+     {% if view.model %}
+                <div class="update_project_title"><h2>Update {{view.model|return_class_name}}</h2></div>
 
 
         <div class="form_container">
-            {% if view.model %}
-                <div class="update_project_title"><h2>Update {{view.model|return_class_name}}</h2></div>
-            {% endif %}
+
             {#{{form.media}}#}
 
             <form method="post" enctype="multipart/form-data">
@@ -32,6 +32,22 @@
 
             </form>
 
+                {% if view.model|return_class_name == 'Team' %}
+            <button type="button" class="btn secondary_button"><a href="{% url 'team_detail' object.project.team.id %}">{% trans 'back_to_team' %}</a></button>
+                    {% elif view.model|return_class_name == 'Mission' %}
+                    {%  if object.individualmission %}
+
+            <button type="button" class="btn secondary_button"><a href="{% url 'individual_mission' object.mission.id %}">{% trans 'back_to_team' %}</a></button>
+                        {% elif object.collectivemission %}
+                        <button type="button" class="btn secondary_button"><a href="{% url 'collective_mission' object.mission.id %}">{% trans 'back_to_team' %}</a></button>
+                        {% endif %}
+                    {% elif view.model|return_class_name == 'Project' %}
+            <button type="button" class="btn secondary_button"><a href="{% url 'project_detail' object.id %}">{% trans 'back_to_project' %}</a></button>
+                {% elif view.model|return_class_name == 'Team' %}
+
+
+                    {% endif %}
+            {% endif %}
 
 
 
