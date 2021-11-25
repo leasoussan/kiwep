@@ -21,8 +21,9 @@ def clone_chapter(chapter):
 
 def clone_chapters(project, new_project):
     for chapter in project.chapter_set.all():
+        old_chapter=Chapter.objects.get(id=chapter.id)
         new_chapter = clone_chapter(chapter)
-        for mission in chapter.mission_set.all():
+        for mission in old_chapter.mission_set.all():
             clone_mission(mission, new_project, chapter=new_chapter)
         new_chapter.project = new_project
         new_chapter.save()
@@ -57,7 +58,9 @@ def clone_mission_resources(mission, new_mission):
         return new_resource
 
 def clone_mission(mission, new_proj, chapter=None):
-    new_mission= None
+    print('mission', mission.mission_type)
+    if mission.mission_type == 'ci':
+        return
     if mission.mission_type == 'i':
         new_mission = IndividualMission.objects.create(
             id=None,
@@ -88,20 +91,23 @@ def clone_mission(mission, new_proj, chapter=None):
             description=mission.description
         )
 
+
         new_mission.save()
         new_mission.attributed_to.clear()
         print('mission cloned, starting on resources')
 
-        clone_mission_resources(mission, new_mission)
-    #
-    # if chapter:
-    #     new_mission.chapter_id = chapter
-    #     new_mission.save()
+    clone_mission_resources(mission, new_mission)
+    print('new_mission',new_mission.chapter)
+    print('print_chapter2',chapter)
+    if chapter:
+        print("print here 103 ")
+        new_mission.chapter = chapter
+        new_mission.save()
     return new_mission
 
 
 def clone_missions(proj, new_proj):
-    for mission in proj.mission_set.filter(chapter__order__isnull=True):
+    for mission in proj.mission_set.filter(chapter__isnull=True):
         clone_mission(mission, new_proj)
     clone_chapters(proj, new_proj)
 
