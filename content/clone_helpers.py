@@ -47,14 +47,11 @@ def clone_resource(resource):
 
 
 def clone_mission_resources(mission, new_mission):
-    print('clone resources function')
     for resource in mission.resource_set.all():
-        print('new_mission_res', new_mission)
         new_resource = clone_resource(resource)
         new_resource.mission = new_mission
         new_resource.project = new_mission.project
         new_resource.save()
-        print("save")
         return new_resource
 
 def clone_mission(mission, new_proj, chapter=None):
