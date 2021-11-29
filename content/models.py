@@ -169,24 +169,43 @@ class Mission(AnswerModel):
             if value.objects.filter(mission=self).exists():
                 # TODO: We need to check if there is the Individual Mission
                 return key
-
-    def save(self, *args, **kwargs):
-        print(self.order)
-        if self.order == 0 and self.chapter:
-            new_mission_order = self.chapter.mission_set.count()+1
-            self.order = new_mission_order
-
-        elif not self.chapter:
-            self.order = 0
-
-        elif self.order in self.chapter.mission_set.exclude(id=self.id).values_list('order', flat=True):
-                new_order = self.chapter.mission_set.filter(order__gte=self.order)
-                new_order.update(order=F('order') + 1)
-
-        super().save(*args, **kwargs)
-
-
-    #
+ #
+ #    def save(self, *args, **kwargs):
+ #        print('hola',self.order)
+ #        if self.order and self.chapter:
+ #            # if
+ #        if not self.chapter and self.order:
+ #            self.order = 0
+ #            # new_mission_order = self.chapter.mission_set.count()+1
+ #            print('new_mission_roeder', self.order)
+ #            self.order = new_mission_order
+ #
+ #        elif not self.chapter:
+ #            self.order = 0
+ #
+ #        elif self.order in self.chapter.mission_set.exclude(id=self.id).values_list('order', flat=True):
+ #                new_order = self.chapter.mission_set.filter(order__gte=self.order)
+ #                new_order.update(order=F('order') + 1)
+ #
+ #        super().save(*args, **kwargs)
+ # #
+ # if self.order == 0 and self.chapter:
+ #            # problem when we are copying todo
+ #            new_mission_order = self.chapter.mission_set.count()+1
+ #            print('new_mission_roeder', new_mission_order)
+ #            self.order = new_mission_order
+ #
+ #        elif not self.chapter:
+ #            self.order = 0
+ #
+ #        elif self.order in self.chapter.mission_set.exclude(id=self.id).values_list('order', flat=True):
+ #                new_order = self.chapter.mission_set.filter(order__gte=self.order)
+ #                new_order.update(order=F('order') + 1)
+ #
+ #        super().save(*args, **kwargs)
+ #
+ #
+ #    #
     # def mission_due_date(self, ):
     #     if self.mission:
     #         due_date = self.start_date + timedelta(days=self.project.time_to_complete)

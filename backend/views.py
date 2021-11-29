@@ -108,8 +108,7 @@ def change_mission_chapter(request):
     if previous_id:
         prev_mission = get_object_or_404(Mission, id=previous_id)
         mission.order = prev_mission.order + 1
-        # mission.save()
-        # print("view_114mission_with_prev_saved", mission.order)
+
     elif mission.chapter:
         mission.order = 1
     mission.save()

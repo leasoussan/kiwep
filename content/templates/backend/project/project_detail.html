@@ -6,7 +6,6 @@
 {% load crispy_forms_tags %}
 
 {% block css %}
-{#    <link href="{% static 'backend/css/project_styles.css' %}" rel="stylesheet">#}
         <link href="{% static 'backend/css/discussion.css' %}" rel="stylesheet">
         <link href="{% static 'backend/css/buttons.css' %}" rel="stylesheet">
 
@@ -86,10 +85,10 @@
 
         function moveOrSortMission(ui, chapter_id){
             var string = ui.item[0].childNodes[1].id;
+            console.log('mission_id ' + string )
 
             var result = string.match('(?<=^[^-]+-)[^-]+');
             if (ui.item[0].previousElementSibling){
-
                 string = ui.item[0].previousElementSibling.childNodes[1].id;
                 let previous_id = extractMissionIdFromDivId(string)[0];
                 console.log('have previous' + previous_id )
@@ -98,7 +97,6 @@
             } else {
 
                 moveMissionToChapter(chapter_id, result[0]);
-
 
             }
         }
